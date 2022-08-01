@@ -75,5 +75,9 @@ GTK_SOURCE_INTERNAL
 GtkTextTag               *_gtk_source_buffer_get_snippet_focus_tag       (GtkSourceBuffer        *buffer);
 GTK_SOURCE_INTERNAL
 gint64                    _gtk_source_buffer_get_insertion_count         (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
+void                      _gtk_source_buffer_block_cursor_moved          (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
+void                      _gtk_source_buffer_unblock_cursor_moved        (GtkSourceBuffer        *buffer);
 
 G_END_DECLS

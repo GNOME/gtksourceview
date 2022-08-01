@@ -163,6 +163,8 @@ typedef struct
 
 	gint64 insertion_count;
 
+	guint cursor_moved_block_count;
+
 	guint has_draw_spaces_tag : 1;
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
@@ -1030,6 +1032,13 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 static void
 cursor_moved (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (priv->cursor_moved_block_count > 0)
+	{
+		return;
+	}
+
 	queue_bracket_highlighting_update (buffer);
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
@@ -3070,4 +3079,30 @@ _gtk_source_buffer_get_insertion_count (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return priv->insertion_count;
+}
+
+void
+_gtk_source_buffer_block_cursor_moved (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	priv->cursor_moved_block_count++;
+}
+
+void
+_gtk_source_buffer_unblock_cursor_moved (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (priv->cursor_moved_block_count > 0);
+
+	priv->cursor_moved_block_count--;
+
+	if (priv->cursor_moved_block_count == 0)
+	{
+		cursor_moved (buffer);
+	}
 }
