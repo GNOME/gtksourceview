@@ -29,6 +29,7 @@
 #include "gtksourcebuffer-private.h"
 #include "gtksourceencoding.h"
 #include "gtksourcefileloader.h"
+#include "gtksourcetrace.h"
 
 /* NOTE: never use async methods on this stream, the stream is just
  * a wrapper around GtkTextBuffer api so that we can use GIO Stream
@@ -575,6 +576,8 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 		return;
 	}
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK
+
 	/* If we are here it is because we are pointing to an invalid char so we
 	 * substitute it by an hex value.
 	 */
@@ -588,6 +591,8 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 	                        &stream->pos, (const gchar *)out, 3);
 
 	++stream->n_fallback_errors;
+
+	GTK_SOURCE_PROFILER_END_MARK ("BufferOutputStream", "insert_fallback");
 }
 
 static void
@@ -605,6 +610,8 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 	{
 		return;
 	}
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK
 
 	text_buffer = GTK_TEXT_BUFFER (stream->source_buffer);
 	iter = &stream->pos;
@@ -715,6 +722,8 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 	}
 
 	g_free (free_text);
+
+	GTK_SOURCE_PROFILER_END_MARK ("BufferOutputStream", "validate_and_insert");
 }
 
 static void
