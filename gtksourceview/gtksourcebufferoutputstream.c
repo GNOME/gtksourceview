@@ -889,17 +889,26 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 	gchar *text;
 	gsize len;
 	gboolean freetext = FALSE;
+	gboolean blocked = FALSE;
 	gssize ret = -1;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK
 
 	ostream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (stream);
 
+	if (ostream->source_buffer == NULL)
+	{
+		goto failure;
+	}
+
 	if (g_cancellable_set_error_if_cancelled (cancellable, error) ||
 	    ostream->source_buffer == NULL)
 	{
 		goto failure;
 	}
+
+	blocked = TRUE;
+	_gtk_source_buffer_block_cursor_moved (ostream->source_buffer);
 
 	if (!ostream->is_initialized)
 	{
@@ -1070,6 +1079,11 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 	ret = (gssize)count;
 
 failure:
+	if (blocked)
+	{
+		_gtk_source_buffer_unblock_cursor_moved (ostream->source_buffer);
+	}
+
 	GTK_SOURCE_PROFILER_END_MARK ("BufferOutputStream", "gtk_source_buffer_output_stream_write");
 
 	return ret;
