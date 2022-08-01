@@ -889,13 +889,16 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 	gchar *text;
 	gsize len;
 	gboolean freetext = FALSE;
+	gssize ret = -1;
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK
 
 	ostream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (stream);
 
 	if (g_cancellable_set_error_if_cancelled (cancellable, error) ||
 	    ostream->source_buffer == NULL)
 	{
-		return -1;
+		goto failure;
 	}
 
 	if (!ostream->is_initialized)
@@ -911,7 +914,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 			                     GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED,
 			                     "It is not possible to detect the encoding automatically");
 
-			return -1;
+			goto failure;
 		}
 
 		/* Do not initialize iconv if we are not going to convert anything */
@@ -944,7 +947,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 				g_free (from_charset);
 				g_clear_object (&ostream->charset_conv);
 
-				return -1;
+				goto failure;
 			}
 
 			g_free (from_charset);
@@ -1004,7 +1007,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 				g_free (text);
 			}
 
-			return -1;
+			goto failure;
 		}
 
 		/* manage the previous conversion buffer */
@@ -1044,7 +1047,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 				g_free (text);
 			}
 
-			return -1;
+			goto failure;
 		}
 
 		if (freetext)
@@ -1064,7 +1067,12 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		g_free (text);
 	}
 
-	return count;
+	ret = (gssize)count;
+
+failure:
+	GTK_SOURCE_PROFILER_END_MARK ("BufferOutputStream", "gtk_source_buffer_output_stream_write");
+
+	return ret;
 }
 
 static gboolean
