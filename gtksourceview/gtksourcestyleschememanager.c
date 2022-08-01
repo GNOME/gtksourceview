@@ -24,6 +24,7 @@
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourceutils-private.h"
+#include "gtksourcetrace.h"
 
 /**
  * GtkSourceStyleSchemeManager:
@@ -344,6 +345,8 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 	if (!mgr->need_reload)
 		return;
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK
+
 	schemes_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 
 	files = _gtk_source_utils_get_file_list ((gchar **)gtk_source_style_scheme_manager_get_search_path (mgr),
@@ -389,6 +392,8 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 
 	mgr->ids = schemes_list_to_ids (schemes);
 	g_slist_free (schemes);
+
+	GTK_SOURCE_PROFILER_END_MARK ("StyleSchemeManager", "reload");
 }
 
 static void

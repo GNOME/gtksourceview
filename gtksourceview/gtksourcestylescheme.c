@@ -30,6 +30,7 @@
 #include "gtksourcestyle-private.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
+#include "gtksourcetrace.h"
 
 /**
  * GtkSourceStyleScheme:
@@ -1491,6 +1492,8 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 
 	g_return_val_if_fail (filename != NULL, NULL);
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK
+
 	if (!g_file_get_contents (filename, &text, &text_len, &error))
 	{
 		gchar *filename_utf8 = g_filename_display_name (filename);
@@ -1546,6 +1549,8 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 
 	xmlFreeDoc (doc);
 	g_free (text);
+
+	GTK_SOURCE_PROFILER_END_MARK ("StyleScheme.new", filename);
 
 	return scheme;
 }
