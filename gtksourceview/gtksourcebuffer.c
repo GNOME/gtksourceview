@@ -112,7 +112,7 @@
  * read the no-spell-check region).
  */
 
-#define UPDATE_BRACKET_DELAY          50
+#define UPDATE_BRACKET_DELAY_MSEC     50
 #define BRACKET_MATCHING_CHARS_LIMIT  10000
 #define CONTEXT_CLASSES_PREFIX        "gtksourceview:context-classes:"
 
@@ -974,9 +974,18 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
+	/* Rearm existing GSource when possible */
 	if (priv->bracket_highlighting_timeout_id != 0)
 	{
-		g_source_remove (priv->bracket_highlighting_timeout_id);
+		GSource *source;
+		gint64 ready_time;
+
+		ready_time = g_get_monotonic_time () +
+			     (G_USEC_PER_SEC / 1000L) * UPDATE_BRACKET_DELAY_MSEC;
+
+		source = g_main_context_find_source_by_id (NULL, priv->bracket_highlighting_timeout_id);
+		g_source_set_ready_time (source, ready_time);
+		return;
 	}
 
 	/* Queue an update to the bracket location instead of doing it
@@ -998,7 +1007,7 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 	 */
 	priv->bracket_highlighting_timeout_id =
 		g_timeout_add_full (G_PRIORITY_LOW,
-		                    UPDATE_BRACKET_DELAY,
+		                    UPDATE_BRACKET_DELAY_MSEC,
 		                    bracket_highlighting_timeout_cb,
 		                    buffer,
 		                    NULL);
