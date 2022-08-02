@@ -612,7 +612,17 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 		for (gsize i = 0; i < count; i++)
 		{
 			guint8 c = ((const guint8 *)buffer)[i];
+
 			g_string_append_len (str, hex_fallback[c], 3);
+
+			/* Add an occasional newline so that we are more
+			 * likely to not tank app performance.
+			 */
+			if ((i+1) % 80 == 0)
+			{
+				g_string_append_c (str, '\n');
+			}
+
 		}
 
 		gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->source_buffer),
