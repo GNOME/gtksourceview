@@ -1,3 +1,23 @@
+News in 5.5.1, 2022-08-05
+-------------------------
+
+ * Many fixes to GtkSourceSnippet parsing and expaction
+ * Various test-suite fixes
+ * The snippet completion provider now avoids inflating snippet objects
+   until they are inserted.
+ * Input-method integration improvements for custom indenters
+ * Performance improvements to GtkSourceBuffer
+ * Performance improvements when translating improperly encoded
+   documents to fallback hexadecimal characters
+ * Disable GtkSourceBuffer::cursor-moved signal while loading
+   buffers with GtkSourceFileLoader
+ * Adwaita.xml styling fixes for def:error
+ * More profiling integration with sysprof
+ * Updated languages: lean, latex, chdr, cpphdr
+ * Translation updates
+
+This is a development release snapshot not intended for end-users.
+
 News in 5.5.0, 2022-07-11
 -------------------------
 
