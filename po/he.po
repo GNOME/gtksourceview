@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-04 20:07+0000\n"
-"PO-Revision-Date: 2022-02-07 19:32+0200\n"
+"POT-Creation-Date: 2022-07-29 09:09+0000\n"
+"PO-Revision-Date: 2022-08-22 18:21+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -305,7 +305,6 @@ msgstr "‫Adwaita כהה"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
-#| msgid "Style scheme search path"
 msgid "An style scheme for Adwaita"
 msgstr "ערכת סגנון עבור Adwaita"
 
@@ -336,7 +335,6 @@ msgstr "סכימת צבעים קלאסית"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
-#| msgid "Cobalt"
 msgid "Cobalt Light"
 msgstr "‏Cobalt בהיר"
 
@@ -400,7 +398,7 @@ msgstr "טנגו"
 msgid "Color scheme using Tango color palette"
 msgstr "סכימת צבעים בעזרת לוח הצבעים ‚טנגו’"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:459
 msgid "Snippets"
 msgstr "קטעי קוד"
 
@@ -440,7 +438,7 @@ msgstr "רצף UTF-8 חלקי בקלט"
 #: gtksourceview/gtksourcecompletionlist.c:210
 #, c-format
 msgid "%d of %u"
-msgstr "‫%d מתוך %u"
+msgstr "‏%d מתוך %u"
 
 #: gtksourceview/gtksourcecompletionlist.ui:59
 msgid "_Details"
@@ -700,23 +698,23 @@ msgstr "_ביטול"
 msgid "_Select"
 msgstr "ב_חירה"
 
-#: gtksourceview/gtksourceview.c:1804
+#: gtksourceview/gtksourceview.c:1806
 msgid "All _Upper Case"
 msgstr "הכול לאותיות _רישיות"
 
-#: gtksourceview/gtksourceview.c:1808
+#: gtksourceview/gtksourceview.c:1810
 msgid "All _Lower Case"
 msgstr "הכול לאותיות _קטנות"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_החלפה בין אותיות רישיות וקטנות"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1818
 msgid "_Title Case"
 msgstr "_אות רישית בראש מילה"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1822
 msgid "C_hange Case"
 msgstr "_שינוי גודל האותיות"
 
@@ -761,7 +759,7 @@ msgstr "רצף החרגה בלתי מוכר"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "שגיאה בפענוח טקסט ההחלפה „%s” בתו %lu:‏ %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:489
 msgid "-- INSERT --"
 msgstr "-- הוספה --"
 
@@ -1053,9 +1051,6 @@ msgstr "-- מקטע חזותי --"
 
 #~ msgid "Name"
 #~ msgstr "שם"
-
-#~ msgid "E-mail address"
-#~ msgstr "כתובת דוא\"ל"
 
 #~ msgid "File"
 #~ msgstr "קובץ"
