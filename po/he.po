@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-01-19 22:05+0000\n"
+"POT-Creation-Date: 2022-07-29 05:40+0000\n"
 "PO-Revision-Date: 2022-01-20 21:17+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
@@ -378,13 +378,11 @@ msgstr "Error during conversion: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:929
 #, c-format
-#| msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Conversion from character set “%s” to “UTF-8” is not supported"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:935
 #, c-format
-#| msgid "Could not open converter from '%s' to 'UTF-8'"
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Could not open converter from “%s” to “UTF-8”"
 
@@ -443,23 +441,18 @@ msgstr "הדגשת שורה אחת לקחה זמן כל כך רב, הדגשת ת
 
 #: gtksourceview/gtksourcecontextengine.c:5724
 #, c-format
-#| msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "context “%s” cannot contain a \\%%{...@start} command"
 
 #: gtksourceview/gtksourcecontextengine.c:5887
 #: gtksourceview/gtksourcecontextengine.c:5977
 #, c-format
-#| msgid "duplicated context id '%s'"
 msgid "duplicated context id “%s”"
 msgstr "duplicated context id “%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6091
 #: gtksourceview/gtksourcecontextengine.c:6151
 #, c-format
-#| msgid ""
-#| "style override used with wildcard context reference in language '%s' in "
-#| "ref '%s'"
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
@@ -469,14 +462,12 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
-#| msgid "invalid context reference '%s'"
 msgid "invalid context reference “%s”"
 msgstr "invalid context reference “%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6184
 #: gtksourceview/gtksourcecontextengine.c:6194
 #, c-format
-#| msgid "unknown context '%s'"
 msgid "unknown context “%s”"
 msgstr "unknown context “%s”"
 
@@ -659,13 +650,11 @@ msgstr "אחרים"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
-#| msgid "Unknown id '%s' in regex '%s'"
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "מזהה „%s” לא ידוע בביטוי הרגולרי „%s”"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
-#| msgid "in regex '%s': backreferences are not supported"
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "בביטוי הרגולרי „%s”: הפניה אחורנית איננה נתמכת"
 
@@ -979,9 +968,6 @@ msgstr "_שינוי גודל האותיות"
 
 #~ msgid "Name"
 #~ msgstr "שם"
-
-#~ msgid "E-mail address"
-#~ msgstr "כתובת דוא\"ל"
 
 #~ msgid "File"
 #~ msgstr "קובץ"
