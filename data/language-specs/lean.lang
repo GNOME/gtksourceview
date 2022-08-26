@@ -31,6 +31,7 @@
 
   <styles>
     <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="attribute" name="Attribute" map-to="def:preprocessor"/>
     <style id="command" name="Command" map-to="def:preprocessor"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
     <style id="identifier" name="Identifier"/>
@@ -55,6 +56,14 @@
       <include>
         <context ref="def:in-comment"/>
         <context ref="block-comment"/>
+      </include>
+    </context>
+
+    <context id="attribute" style-ref="attribute">
+      <start>@\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="lean"/>
       </include>
     </context>
 
@@ -160,6 +169,7 @@
       <include>
         <context ref="line-comment"/>
         <context ref="block-comment"/>
+        <context ref="attribute"/>
         <context ref="command"/>
         <context ref="keyword"/>
         <context ref="identifier"/>
