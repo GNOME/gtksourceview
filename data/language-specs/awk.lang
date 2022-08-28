@@ -32,6 +32,7 @@
     <style id="pattern" name="Pattern" map-to="def:preprocessor"/>
     <style id="variable" name="Variable" map-to="def:identifier"/>
     <style id="builtin-function" name="Builtin Function" map-to="def:builtin"/>
+    <style id="regexpr" name="Regular Expression" map-to="def:string"/>
   </styles>
 
   <definitions>
@@ -118,6 +119,10 @@
       <match>\$\d+</match>
     </context>
 
+    <context id="regexpr" style-ref="regexpr">
+      <match>/.*/</match>
+    </context>
+
     <context id="awk">
       <include>
         <context ref="def:shebang"/>
@@ -129,6 +134,7 @@
         <context ref="field-variable"/>
         <context ref="built-in-functions"/>
         <context ref="arithmetic-functions"/>
+        <context ref="regexpr"/>
       </include>
     </context>
 
