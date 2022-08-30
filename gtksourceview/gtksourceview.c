@@ -2718,6 +2718,8 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 
 	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
+		GtkRoot *root;
+
 		/* Now draw the background pattern, which might draw above the
 		 * right-margin area for additional texture. We can't really optimize
 		 * these too much since they move every scroll. Otherwise we'd move
@@ -2729,9 +2731,15 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 			gtk_source_view_paint_background_pattern_grid (view, snapshot);
 		}
 
+		/* Only draw the line hightlight on the active window and if
+		 * we are sensitive to keyboard input.
+		 */
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
 		    priv->highlight_current_line &&
-		    priv->current_line_background_color_set)
+		    priv->current_line_background_color_set &&
+		    (root = gtk_widget_get_root (GTK_WIDGET (view))) &&
+		    GTK_IS_WINDOW (root) &&
+		    gtk_window_is_active (GTK_WINDOW (root)))
 		{
 			gtk_source_view_paint_current_line_highlight (view, snapshot);
 		}
