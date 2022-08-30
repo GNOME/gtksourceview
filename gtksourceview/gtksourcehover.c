@@ -166,28 +166,38 @@ gtk_source_hover_get_bounds (GtkSourceHover *self,
 		return FALSE;
 	}
 
+	if (g_unichar_isspace (gtk_text_iter_get_char (&iter)))
+	{
+		return FALSE;
+	}
+
+	*begin = *end = iter;
+
+	while (!gtk_text_iter_starts_line (begin))
+	{
+		gtk_text_iter_backward_char (begin);
+
+		if (g_unichar_isspace (gtk_text_iter_get_char (begin)))
+		{
+			gtk_text_iter_forward_char (begin);
+			break;
+		}
+	}
+
+	while (!gtk_text_iter_ends_line (end))
+	{
+		if (g_unichar_isspace (gtk_text_iter_get_char (end)))
+		{
+			break;
+		}
+
+		if (!gtk_text_iter_forward_char (end))
+		{
+			break;
+		}
+	}
+
 	*location = iter;
-
-	if (!_gtk_source_iter_inside_word (&iter))
-	{
-		*begin = iter;
-		gtk_text_iter_set_line_offset (begin, 0);
-
-		*end = iter;
-		gtk_text_iter_forward_to_line_end (end);
-
-		return TRUE;
-	}
-
-	if (!_gtk_source_iter_starts_full_word (&iter))
-	{
-		_gtk_source_iter_backward_extra_natural_word_start (&iter);
-	}
-
-	*begin = iter;
-	*end = iter;
-
-	_gtk_source_iter_forward_extra_natural_word_end (end);
 
 	return TRUE;
 }
