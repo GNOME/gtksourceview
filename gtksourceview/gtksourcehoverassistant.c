@@ -217,6 +217,7 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 	GdkRectangle begin_rect;
 	GdkRectangle end_rect;
 	GdkRectangle location_rect;
+	GdkRectangle visible_rect;
 
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
 	g_return_if_fail (n_providers == 0 || providers != NULL);
@@ -242,14 +243,26 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 
 	view = GTK_SOURCE_VIEW (gtk_widget_get_parent (GTK_WIDGET (self)));
 
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), begin, &begin_rect);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), end, &end_rect);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), location, &location_rect);
 
 	gdk_rectangle_union (&begin_rect, &end_rect, &location_rect);
 
-	if (gtk_text_iter_equal (begin, end) &&
-	    gtk_text_iter_starts_line (begin))
+	if (!gdk_rectangle_intersect (&location_rect, &visible_rect, &location_rect))
+	{
+		if (gtk_widget_get_visible (GTK_WIDGET (self)))
+		{
+			gtk_widget_hide (GTK_WIDGET (self));
+		}
+
+		memset (&self->hovered_at, 0, sizeof self->hovered_at);
+
+		return;
+	}
+
+	if (gtk_text_iter_equal (begin, end) && gtk_text_iter_starts_line (begin))
 	{
 		location_rect.width = 1;
 		gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_RIGHT);
