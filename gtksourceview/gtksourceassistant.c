@@ -58,7 +58,7 @@ _gtk_source_assistant_hide_action (GtkWidget   *widget,
 {
 	g_assert (GTK_SOURCE_IS_ASSISTANT (widget));
 
-	gtk_popover_popdown (GTK_POPOVER (widget));
+	gtk_widget_hide (widget);
 }
 
 static void
