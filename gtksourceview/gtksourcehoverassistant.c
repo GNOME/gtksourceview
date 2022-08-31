@@ -52,6 +52,8 @@ struct _GtkSourceHoverAssistant
 	gulong root_leave_handler;
 
 	GSource *dismiss_source;
+
+	guint disposed : 1;
 };
 
 G_DEFINE_TYPE (GtkSourceHoverAssistant, gtk_source_hover_assistant, GTK_SOURCE_TYPE_ASSISTANT)
@@ -289,6 +291,8 @@ gtk_source_hover_assistant_dispose (GObject *object)
 {
 	GtkSourceHoverAssistant *self = (GtkSourceHoverAssistant *)object;
 
+	self->disposed = TRUE;
+
 	self->display = NULL;
 
 	g_clear_pointer (&self->dismiss_source, g_source_destroy);
@@ -360,8 +364,11 @@ gtk_source_hover_assistant_populate_cb (GObject      *object,
 
 	if (_gtk_source_hover_context_populate_finish (context, result, &error))
 	{
-		gtk_widget_set_visible (GTK_WIDGET (self),
-					!_gtk_source_hover_display_is_empty (self->display));
+		if (!self->disposed)
+		{
+			gtk_widget_set_visible (GTK_WIDGET (self),
+			                        !_gtk_source_hover_display_is_empty (self->display));
+		}
 	}
 
 	g_clear_object (&self);
