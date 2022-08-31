@@ -65,7 +65,8 @@ struct _GtkSourceHover
 	double              motion_y;
 
 	guint               hover_delay;
-	guint               settle_source;
+
+	GSource            *settle_source;
 };
 
 G_DEFINE_TYPE (GtkSourceHover, gtk_source_hover, G_TYPE_OBJECT)
@@ -79,14 +80,26 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 static void
-cursor_moved_cb (GtkSourceHover  *hover,
+gtk_source_hover_dismiss (GtkSourceHover *self)
+{
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+
+	g_clear_pointer (&self->settle_source, g_source_destroy);
+
+	if (self->assistant != NULL)
+	{
+		_gtk_source_hover_assistant_dismiss (GTK_SOURCE_HOVER_ASSISTANT (self->assistant));
+	}
+}
+
+static void
+cursor_moved_cb (GtkSourceHover  *self,
 		 GtkSourceBuffer *buffer)
 {
-	g_assert (GTK_SOURCE_IS_HOVER (hover));
+	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
-	g_clear_handle_id (&hover->settle_source, g_source_remove);
-	_gtk_source_hover_assistant_dismiss (GTK_SOURCE_HOVER_ASSISTANT (hover->assistant));
+	gtk_source_hover_dismiss (self);
 }
 
 static void
@@ -211,7 +224,7 @@ gtk_source_hover_settled_cb (GtkSourceHover *self)
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
-	self->settle_source = 0;
+	g_clear_pointer (&self->settle_source, g_source_destroy);
 
 	if (gtk_source_hover_get_bounds (self, &begin, &end, &location))
 	{
@@ -229,10 +242,18 @@ gtk_source_hover_queue_settle (GtkSourceHover *self)
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
-	g_clear_handle_id (&self->settle_source, g_source_remove);
-	self->settle_source = g_timeout_add (self->hover_delay,
-	                                     (GSourceFunc) gtk_source_hover_settled_cb,
-	                                     self);
+	if G_LIKELY (self->settle_source != NULL)
+	{
+		gint64 ready_time = g_get_monotonic_time () + (1000L * self->hover_delay);
+		g_source_set_ready_time (self->settle_source, ready_time);
+		return;
+	}
+
+	self->settle_source = g_timeout_source_new (self->hover_delay);
+	g_source_set_callback (self->settle_source, (GSourceFunc)gtk_source_hover_settled_cb, self, NULL);
+	g_source_set_name (self->settle_source, "gtk-source-hover-settle");
+	g_source_attach (self->settle_source, g_main_context_default ());
+	g_source_unref (self->settle_source);
 }
 
 static gboolean
@@ -245,12 +266,10 @@ gtk_source_hover_key_pressed_cb (GtkSourceHover        *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (controller));
 
-	g_clear_handle_id (&self->settle_source, g_source_remove);
-	_gtk_source_hover_assistant_dismiss (GTK_SOURCE_HOVER_ASSISTANT (self->assistant));
+	gtk_source_hover_dismiss (self);
 
 	return GDK_EVENT_PROPAGATE;
 }
-
 
 static void
 gtk_source_hover_motion_cb (GtkSourceHover           *self,
@@ -280,7 +299,7 @@ gtk_source_hover_leave_cb (GtkSourceHover           *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
-	g_clear_handle_id (&self->settle_source, g_source_remove);
+	g_clear_pointer (&self->settle_source, g_source_destroy);
 }
 
 static gboolean
@@ -292,8 +311,7 @@ gtk_source_hover_scroll_cb (GtkSourceHover           *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (controller));
 
-	g_clear_handle_id (&self->settle_source, g_source_remove);
-	_gtk_source_hover_assistant_dismiss (GTK_SOURCE_HOVER_ASSISTANT (self->assistant));
+	gtk_source_hover_dismiss (self);
 
 	return GDK_EVENT_PROPAGATE;
 }
@@ -303,15 +321,17 @@ gtk_source_hover_dispose (GObject *object)
 {
 	GtkSourceHover *self = (GtkSourceHover *)object;
 
-	g_clear_handle_id (&self->settle_source, g_source_remove);
-	g_clear_pointer (&self->assistant, _gtk_source_assistant_destroy);
-	g_clear_weak_pointer (&self->view);
-	g_clear_weak_pointer (&self->buffer);
 
 	if (self->providers->len > 0)
 	{
 		g_ptr_array_remove_range (self->providers, 0, self->providers->len);
 	}
+
+	g_clear_pointer (&self->settle_source, g_source_destroy);
+	g_clear_pointer (&self->assistant, _gtk_source_assistant_destroy);
+
+	g_clear_weak_pointer (&self->view);
+	g_clear_weak_pointer (&self->buffer);
 
 	G_OBJECT_CLASS (gtk_source_hover_parent_class)->dispose (object);
 }
@@ -324,7 +344,7 @@ gtk_source_hover_finalize (GObject *object)
 	g_clear_pointer (&self->providers, g_ptr_array_unref);
 
 	g_assert (self->assistant == NULL);
-	g_assert (self->settle_source == 0);
+	g_assert (self->settle_source == NULL);
 
 	G_OBJECT_CLASS (gtk_source_hover_parent_class)->finalize (object);
 }
