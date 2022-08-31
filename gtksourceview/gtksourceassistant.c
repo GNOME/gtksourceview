@@ -220,7 +220,7 @@ _gtk_source_assistant_real_get_offset (GtkSourceAssistant *assistant,
 	}
 	else
 	{
-		*y = (margin.bottom / 3 * 2) - 1;
+		*y = margin.bottom - 1;
 	}
 }
 
