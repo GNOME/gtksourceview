@@ -241,8 +241,15 @@ buffer_cursor_moved_cb (GtkSourceBuffer       *buffer,
 
 			snippet = g_queue_peek_head (&snippets->queue);
 		}
-	}
 
+		if (snippet == NULL)
+		{
+			if (snippets->informative != NULL)
+			{
+				gtk_widget_hide (GTK_WIDGET (snippets->informative));
+			}
+		}
+	}
 }
 
 void
@@ -345,7 +352,7 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 		snippets->informative = g_object_new (GTK_SOURCE_TYPE_INFORMATIVE,
 		                                      "position", GTK_POS_TOP,
 		                                      "message-type", GTK_MESSAGE_INFO,
-		                                       "icon-name", "completion-snippet-symbolic",
+		                                      "icon-name", "completion-snippet-symbolic",
 		                                      NULL);
 		_gtk_source_view_add_assistant (snippets->view,
 		                                GTK_SOURCE_ASSISTANT (snippets->informative));
@@ -548,6 +555,7 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 {
 	GdkModifierType modifiers;
 	gboolean editable;
+	gboolean ret = GDK_EVENT_PROPAGATE;
 
 	g_return_val_if_fail (snippets != NULL, FALSE);
 	g_return_val_if_fail (snippets->view != NULL, FALSE);
@@ -557,9 +565,9 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 	 * the view, such as with completion providers.
 	 */
 
-	if (snippets->buffer == NULL)
+	if (snippets->buffer == NULL || snippets->queue.length == 0)
 	{
-		return FALSE;
+		return GDK_EVENT_PROPAGATE;
 	}
 
 	/* Be careful when testing for modifier state equality:
@@ -591,7 +599,8 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 
 				gtk_source_view_snippets_scroll_to_insert (snippets);
 
-				return GDK_EVENT_STOP;
+				ret = GDK_EVENT_STOP;
+				goto cleanup;
 			}
 			else if (state & GDK_SHIFT_MASK)
 			{
@@ -602,7 +611,8 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 
 				gtk_source_view_snippets_scroll_to_insert (snippets);
 
-				return GDK_EVENT_STOP;
+				ret = GDK_EVENT_STOP;
+				goto cleanup;
 			}
 		}
 
@@ -617,11 +627,22 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 		    gtk_source_view_snippets_try_expand (snippets, &end))
 		{
 			gtk_source_view_snippets_scroll_to_insert (snippets);
-			return GDK_EVENT_STOP;
+
+			ret = GDK_EVENT_STOP;
+			goto cleanup;
 		}
 	}
 
-	return GDK_EVENT_PROPAGATE;
+cleanup:
+	if (snippets->queue.length == 0)
+	{
+		if (snippets->informative)
+		{
+			gtk_widget_hide (GTK_WIDGET (snippets->informative));
+		}
+	}
+
+	return ret;
 }
 
 void
@@ -670,11 +691,6 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 
 	g_return_if_fail (snippets != NULL);
 
-	if (snippets->informative != NULL)
-	{
-		gtk_widget_hide (GTK_WIDGET (snippets->informative));
-	}
-
 	if (snippets->buffer == NULL)
 	{
 		return;
@@ -706,6 +722,14 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 
 	snippet = g_queue_peek_head (&snippets->queue);
 	gtk_source_signal_group_set_target (snippets->snippet_signals, snippet);
+
+	if (snippet == NULL)
+	{
+		if (snippets->informative != NULL)
+		{
+			gtk_widget_hide (GTK_WIDGET (snippets->informative));
+		}
+	}
 }
 
 void
