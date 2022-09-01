@@ -253,7 +253,6 @@ _gtk_source_assistant_class_init (GtkSourceAssistantClass *klass)
 	klass->get_target_location = _gtk_source_assistant_real_get_target_location;
 
 	gtk_widget_class_install_action (widget_class, "assistant.hide", NULL, _gtk_source_assistant_hide_action);
-	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "assistant.hide", NULL);
 	gtk_widget_class_set_css_name (widget_class, "GtkSourceAssistant");
 }
 

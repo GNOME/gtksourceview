@@ -268,12 +268,21 @@ key_press_propagate_cb (GtkSourceCompletionList *self,
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
-	if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
+	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
+
+	/* Process Escape inline because we want to both hide our assistant
+	 * but also allow the view to handle Escape too (which might pass it
+	 * along to somehwere else like Vim emulation.
+	 */
+
+	if (keyval == GDK_KEY_Escape)
+	{
+		gtk_widget_hide (GTK_WIDGET (self));
+	}
+	else if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
 	{
 		return TRUE;
 	}
-
-	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
 
 	if (GTK_SOURCE_IS_VIEW (parent))
 	{
