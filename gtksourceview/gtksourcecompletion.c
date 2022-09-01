@@ -150,6 +150,12 @@ struct _GtkSourceCompletion
 	 */
 	guint page_size;
 
+	/* Handler for gtk_widget_add_tick_callback() to do delayed calls to
+	 * gtk_widget_hide() (so that we don't potentially flap between
+	 * hide/show while typing.
+	 */
+	guint hide_tick_handler;
+
 	/* If we're currently being displayed */
 	guint shown : 1;
 
@@ -197,29 +203,69 @@ static GParamSpec *properties [N_PROPS];
 static guint signals [N_SIGNALS];
 
 static void
-display_show (GtkSourceCompletionList *display)
+display_show (GtkSourceCompletion *self)
 {
-	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (display));
+	g_assert (GTK_SOURCE_IS_COMPLETION (self));
 
-	gtk_widget_show (GTK_WIDGET (display));
-	gtk_widget_grab_focus (GTK_WIDGET (display));
+	if (self->hide_tick_handler != 0)
+	{
+		/* See display_hide() for why a tick handler is used */
+		gtk_widget_remove_tick_callback (GTK_WIDGET (self->view),
+		                                 self->hide_tick_handler);
+		self->hide_tick_handler = 0;
+	}
+
+	gtk_widget_show (GTK_WIDGET (_gtk_source_completion_get_display (self)));
+}
+
+static gboolean
+display_hide_cb (GtkWidget     *widget,
+                 GdkFrameClock *frame_clock,
+                 gpointer       user_data)
+{
+	GtkSourceCompletion *self = user_data;
+
+	g_assert (GTK_SOURCE_IS_VIEW (widget));
+	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
+	g_assert (GTK_SOURCE_IS_COMPLETION (self));
+
+	self->hide_tick_handler = 0;
+
+	if (self->display != NULL)
+	{
+		gtk_widget_hide (GTK_WIDGET (self->display));
+	}
+
+	return G_SOURCE_REMOVE;
 }
 
 static void
-display_hide (GtkSourceCompletionList *display)
+display_hide (GtkSourceCompletion *self)
 {
-	GtkWidget *view;
+	g_assert (GTK_SOURCE_IS_COMPLETION (self));
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (display));
+	/* We don't want to hide immediately because we might get another
+	 * change that causes the assistant to be redisplayed before the
+	 * next frame. Flapping the visibility is really distracting, so we'll
+	 * wait until the next start of the frame clock cycle to hide.
+	 *
+	 * We use the GtkSourceView's frame clock for this instead of the GtkPopover
+	 * because that is the frame clock we need to synchronize with to be sure
+	 * were not invalidating allocations during an active frame cycle.
+	 */
 
-	gtk_widget_hide (GTK_WIDGET (display));
-
-	view = gtk_widget_get_ancestor (GTK_WIDGET (display), GTK_SOURCE_TYPE_VIEW);
-
-	if (view != NULL)
+	if (self->display == NULL ||
+	    self->hide_tick_handler != 0 ||
+	    !gtk_widget_get_visible (GTK_WIDGET (self->display)))
 	{
-		gtk_widget_grab_focus (view);
+		return;
 	}
+
+	self->hide_tick_handler =
+		gtk_widget_add_tick_callback (GTK_WIDGET (self->view),
+		                              display_hide_cb,
+		                              g_object_ref (self),
+		                              g_object_unref);
 }
 
 static gboolean
@@ -302,7 +348,6 @@ gtk_source_completion_complete_cb (GObject      *object,
                                    gpointer      user_data)
 {
 	GtkSourceCompletionContext *context = (GtkSourceCompletionContext *)object;
-	GtkSourceCompletionList *list;
 	GtkSourceCompletion *self = user_data;
 	GError *error = NULL;
 
@@ -335,12 +380,14 @@ gtk_source_completion_complete_cb (GObject      *object,
 		_gtk_source_completion_context_refilter (context);
 	}
 
-	list = _gtk_source_completion_get_display (self);
-
 	if (!gtk_source_completion_context_get_empty (context))
-		display_show (list);
+	{
+		display_show (self);
+	}
 	else
-		display_hide (list);
+	{
+		display_hide (self);
+	}
 
 cleanup:
 	g_clear_error (&error);
@@ -471,9 +518,13 @@ gtk_source_completion_start (GtkSourceCompletion           *self,
 		_gtk_source_completion_list_set_context (self->display, context);
 
 		if (!gtk_source_completion_context_get_empty (context))
-			display_show (self->display);
+		{
+			display_show (self);
+		}
 		else
-			display_hide (self->display);
+		{
+			display_hide (self);
+		}
 	}
 
 cleanup:
@@ -503,8 +554,6 @@ gtk_source_completion_update (GtkSourceCompletion           *self,
 
 	if (_gtk_source_completion_context_can_refilter (self->context, &begin, &end))
 	{
-		GtkSourceCompletionList *display = _gtk_source_completion_get_display (self);
-
 		/*
 		 * Make sure we update providers that have already delivered results
 		 * even though some of them won't be ready yet.
@@ -522,9 +571,13 @@ gtk_source_completion_update (GtkSourceCompletion           *self,
 		}
 
 		if (!gtk_source_completion_context_get_empty (self->context))
-			display_show (display);
+		{
+			display_show (self);
+		}
 		else
-			display_hide (display);
+		{
+			display_hide (self);
+		}
 
 		return;
 	}
@@ -600,9 +653,13 @@ gtk_source_completion_real_show (GtkSourceCompletion *self)
 	_gtk_source_completion_list_set_context (display, self->context);
 
 	if (!gtk_source_completion_context_get_empty (self->context))
-		display_show (display);
+	{
+		display_show (self);
+	}
 	else
-		display_hide (display);
+	{
+		display_hide (self);
+	}
 }
 
 static gboolean
@@ -651,17 +708,23 @@ gtk_source_completion_notify_context_empty_cb (GtkSourceCompletion        *self,
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 
 	if (context != self->context)
+	{
+		/* Delayed notification from a context we no longer care about.
+		 * Just silently drop the notification.
+		 */
 		return;
+	}
 
 	if (gtk_source_completion_context_get_empty (context))
 	{
 		if (self->display != NULL)
-			display_hide (self->display);
+		{
+			display_hide (self);
+		}
 	}
 	else
 	{
-		GtkSourceCompletionList *display = _gtk_source_completion_get_display (self);
-		display_show (display);
+		display_show (self);
 	}
 }
 
@@ -876,6 +939,17 @@ gtk_source_completion_dispose (GObject *object)
 	g_assert (GTK_SOURCE_IS_COMPLETION (self));
 
 	self->disposed = TRUE;
+
+	if (self->hide_tick_handler != 0)
+	{
+		if (self->view != NULL)
+		{
+			gtk_widget_remove_tick_callback (GTK_WIDGET (self->view),
+			                                 self->hide_tick_handler);
+		}
+
+		self->hide_tick_handler = 0;
+	}
 
 	gtk_source_signal_group_set_target (self->context_signals, NULL);
 	gtk_source_signal_group_set_target (self->buffer_signals, NULL);
