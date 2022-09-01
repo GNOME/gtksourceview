@@ -368,13 +368,11 @@ gtk_source_completion_snippets_refilter (GtkSourceCompletionProvider *provider,
 	old_word = g_steal_pointer (&priv->filter_data->word);
 
 	if (old_word && g_str_has_prefix (word, old_word))
-	{
 		change = GTK_FILTER_CHANGE_MORE_STRICT;
-	}
-	else
-	{
+	else if (old_word && g_str_has_prefix (old_word, word))
 		change = GTK_FILTER_CHANGE_LESS_STRICT;
-	}
+	else
+		change = GTK_FILTER_CHANGE_DIFFERENT;
 
 	if (priv->filter_data->filter_all)
 	{
