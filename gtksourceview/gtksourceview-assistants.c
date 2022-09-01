@@ -114,7 +114,7 @@ _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *assistants,
 	}
 }
 
-static gboolean
+gboolean
 _gtk_source_view_assistants_hide_all (GtkSourceViewAssistants *assistants)
 {
 	gboolean ret = FALSE;
@@ -129,7 +129,7 @@ _gtk_source_view_assistants_hide_all (GtkSourceViewAssistants *assistants)
 
 		if (gtk_widget_get_visible (GTK_WIDGET (assistant)))
 		{
-			gtk_popover_popdown (GTK_POPOVER (assistant));
+			gtk_widget_hide (GTK_POPOVER (assistant));
 			ret = TRUE;
 		}
 	}

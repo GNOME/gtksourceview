@@ -61,6 +61,7 @@ void     _gtk_source_view_assistants_remove        (GtkSourceViewAssistants *ass
                                                     GtkSourceAssistant      *assistant);
 void     _gtk_source_view_assistants_remove        (GtkSourceViewAssistants *assistants,
                                                     GtkSourceAssistant      *assistant);
+gboolean _gtk_source_view_assistants_hide_all      (GtkSourceViewAssistants *assistants);
 void     _gtk_source_view_assistants_shutdown      (GtkSourceViewAssistants *assistants);
 void     _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *assistants,
                                                     int                      width,

@@ -277,6 +277,10 @@ static gboolean       gtk_source_view_key_pressed          (GtkSourceView       
                                                             guint                    keycode,
                                                             guint                    state,
                                                             GtkEventControllerKey   *controller);
+static void           gtk_source_view_scroll               (GtkSourceView           *view,
+                                                            double                   x,
+                                                            double                   y,
+                                                            GtkEventControllerScroll*scroll);
 static gint           calculate_real_tab_width             (GtkSourceView           *view,
                                                             guint                    tab_size,
                                                             gchar                    c);
@@ -1408,6 +1412,7 @@ gtk_source_view_init (GtkSourceView *view)
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkStyleContext *context;
 	GtkEventController *key;
+	GtkEventController *scroll;
 	GtkDropTarget *dest;
 
 	gtk_widget_add_css_class (GTK_WIDGET (view), "GtkSourceView");
@@ -1442,10 +1447,18 @@ gtk_source_view_init (GtkSourceView *view)
 	key = gtk_event_controller_key_new ();
 	gtk_event_controller_set_propagation_phase (key, GTK_PHASE_CAPTURE);
 	g_signal_connect_swapped (key,
-				  "key-pressed",
-				  G_CALLBACK (gtk_source_view_key_pressed),
-				  view);
+	                          "key-pressed",
+	                          G_CALLBACK (gtk_source_view_key_pressed),
+	                          view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&key));
+
+	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
+	gtk_event_controller_set_propagation_phase (scroll, GTK_PHASE_CAPTURE);
+	g_signal_connect_swapped (scroll,
+	                          "scroll",
+	                          G_CALLBACK (gtk_source_view_scroll),
+	                          view);
+	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&scroll));
 
 	dest = gtk_drop_target_new (GDK_TYPE_RGBA, GDK_ACTION_COPY);
 	gtk_drop_target_set_preload (dest, TRUE);
@@ -4192,6 +4205,20 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	}
 
 	return GDK_EVENT_PROPAGATE;
+}
+
+static void
+gtk_source_view_scroll (GtkSourceView            *view,
+                        double                    x,
+                        double                    y,
+			GtkEventControllerScroll *scroll)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
+
+	_gtk_source_view_assistants_hide_all (&priv->assistants);
 }
 
 /**
