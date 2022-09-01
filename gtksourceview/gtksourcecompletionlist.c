@@ -48,6 +48,10 @@ struct _GtkSourceCompletionList
 	GtkSourceCompletionCell    *comments;
 	GtkLabel                   *alternate_label;
 
+	GtkEventController         *key;
+	gulong                      key_press_handler;
+	gulong                      key_release_handler;
+
 	guint                       remember_info_visibility : 1;
 };
 
@@ -63,11 +67,46 @@ G_DEFINE_TYPE (GtkSourceCompletionList, _gtk_source_completion_list, GTK_SOURCE_
 static GParamSpec *properties [N_PROPS];
 
 static void
+_gtk_source_completion_list_unroot (GtkWidget *widget)
+{
+	GtkSourceCompletionList *self = (GtkSourceCompletionList *)widget;
+	GtkWidget *view;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	if ((view = gtk_widget_get_ancestor (widget, GTK_SOURCE_TYPE_VIEW)))
+	{
+		gtk_widget_remove_controller (view, self->key);
+	}
+
+	GTK_WIDGET_CLASS (_gtk_source_completion_list_parent_class)->unroot (widget);
+}
+
+static void
+_gtk_source_completion_list_root (GtkWidget *widget)
+{
+	GtkSourceCompletionList *self = (GtkSourceCompletionList *)widget;
+	GtkWidget *view;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	GTK_WIDGET_CLASS (_gtk_source_completion_list_parent_class)->root (widget);
+
+	if ((view = gtk_widget_get_ancestor (widget, GTK_SOURCE_TYPE_VIEW)))
+	{
+		gtk_widget_add_controller (view, g_object_ref (self->key));
+	}
+}
+
+static void
 _gtk_source_completion_list_hide (GtkWidget *widget)
 {
 	GtkSourceCompletionList *self = (GtkSourceCompletionList *)widget;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	g_signal_handler_block (self->key, self->key_press_handler);
+	g_signal_handler_block (self->key, self->key_release_handler);
 
 	GTK_WIDGET_CLASS (_gtk_source_completion_list_parent_class)->hide (widget);
 
@@ -90,6 +129,9 @@ _gtk_source_completion_list_show (GtkWidget *widget)
 	{
 		gtk_widget_show (GTK_WIDGET (self->info));
 	}
+
+	g_signal_handler_unblock (self->key, self->key_press_handler);
+	g_signal_handler_unblock (self->key, self->key_release_handler);
 }
 
 static void
@@ -263,30 +305,17 @@ key_press_propagate_cb (GtkSourceCompletionList *self,
                         GdkModifierType          modifiers,
                         GtkEventControllerKey   *key)
 {
-	GtkWidget *parent;
-
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
-	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
-
-	/* Process Escape inline because we want to both hide our assistant
-	 * but also allow the view to handle Escape too (which might pass it
-	 * along to somehwere else like Vim emulation.
-	 */
-
 	if (keyval == GDK_KEY_Escape)
 	{
+		/* Still propagate after hiding */
 		gtk_widget_hide (GTK_WIDGET (self));
 	}
 	else if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
 	{
-		return TRUE;
-	}
-
-	if (GTK_SOURCE_IS_VIEW (parent))
-	{
-		return gtk_event_controller_key_forward (key, parent);
+		return GDK_EVENT_STOP;
 	}
 
 	return GDK_EVENT_PROPAGATE;
@@ -299,21 +328,12 @@ key_release_propagate_cb (GtkSourceCompletionList *self,
                           GdkModifierType          modifiers,
                           GtkEventControllerKey   *key)
 {
-	GtkWidget *parent;
-
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
 	if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
 	{
-		return TRUE;
-	}
-
-	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
-
-	if (GTK_SOURCE_IS_VIEW (parent))
-	{
-		return gtk_event_controller_key_forward (key, parent);
+		return GDK_EVENT_STOP;
 	}
 
 	return GDK_EVENT_PROPAGATE;
@@ -346,6 +366,13 @@ _gtk_source_completion_list_dispose (GObject *object)
 	GtkSourceCompletionList *self = (GtkSourceCompletionList *)object;
 
 	g_clear_object (&self->context);
+
+	if (self->key)
+	{
+		g_clear_signal_handler (&self->key_press_handler, self->key);
+		g_clear_signal_handler (&self->key_release_handler, self->key);
+		g_clear_object (&self->key);
+	}
 
 	G_OBJECT_CLASS (_gtk_source_completion_list_parent_class)->dispose (object);
 }
@@ -410,6 +437,8 @@ _gtk_source_completion_list_class_init (GtkSourceCompletionListClass *klass)
 	widget_class->get_request_mode = _gtk_source_completion_list_get_request_mode;
 	widget_class->show = _gtk_source_completion_list_show;
 	widget_class->hide = _gtk_source_completion_list_hide;
+	widget_class->root = _gtk_source_completion_list_root;
+	widget_class->unroot = _gtk_source_completion_list_unroot;
 
 	assistant_class->get_offset = _gtk_source_completion_list_get_offset;
 	assistant_class->get_target_location = _gtk_source_completion_list_get_target_location;
@@ -446,25 +475,29 @@ _gtk_source_completion_list_class_init (GtkSourceCompletionListClass *klass)
 static void
 _gtk_source_completion_list_init (GtkSourceCompletionList *self)
 {
-	GtkEventController *key;
-
 	gtk_widget_init_template (GTK_WIDGET (self));
 	gtk_widget_add_css_class (GTK_WIDGET (self), "completion");
-	gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_BOTTOM);
 
-	key = gtk_event_controller_key_new ();
-	gtk_event_controller_set_propagation_phase (key, GTK_PHASE_BUBBLE);
-	g_signal_connect_object (key,
-	                         "key-pressed",
-	                         G_CALLBACK (key_press_propagate_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (key,
-	                         "key-released",
-	                         G_CALLBACK (key_release_propagate_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), g_steal_pointer (&key));
+	gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_BOTTOM);
+	gtk_popover_set_autohide (GTK_POPOVER (self), FALSE);
+
+	self->key = gtk_event_controller_key_new ();
+	gtk_event_controller_set_name (self->key, "gtk-source-completion");
+	gtk_event_controller_set_propagation_phase (self->key, GTK_PHASE_CAPTURE);
+	self->key_press_handler =
+		g_signal_connect_object (self->key,
+					 "key-pressed",
+					 G_CALLBACK (key_press_propagate_cb),
+					 self,
+					 G_CONNECT_SWAPPED);
+	self->key_release_handler =
+		g_signal_connect_object (self->key,
+					 "key-released",
+					 G_CALLBACK (key_release_propagate_cb),
+					 self,
+					 G_CONNECT_SWAPPED);
+	g_signal_handler_block (self->key, self->key_press_handler);
+	g_signal_handler_block (self->key, self->key_release_handler);
 
 	self->info = GTK_SOURCE_COMPLETION_INFO (_gtk_source_completion_info_new ());
 	_gtk_source_assistant_attach (GTK_SOURCE_ASSISTANT (self->info),
