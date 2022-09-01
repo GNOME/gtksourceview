@@ -38,19 +38,16 @@
               <object class="GtkSourceCompletionCell" id="comments">
                 <property name="column">comment</property>
                 <property name="hexpand">true</property>
-                <property name="valign">baseline</property>
+                <property name="margin-top">6</property>
               </object>
             </child>
             <child>
               <object class="GtkBox">
                 <property name="orientation">horizontal</property>
-                <property name="baseline-position">top</property>
-                <property name="valign">baseline</property>
                 <child>
                   <object class="GtkLabel" id="alternate_label">
                     <property name="margin-end">6</property>
                     <property name="margin-start">6</property>
-                    <property name="valign">baseline</property>
                   </object>
                 </child>
                 <child>
