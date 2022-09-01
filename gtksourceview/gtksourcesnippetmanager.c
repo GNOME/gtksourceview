@@ -290,6 +290,11 @@ ensure_snippets (GtkSourceSnippetManager *self)
 
 	g_assert (GTK_SOURCE_IS_SNIPPET_MANAGER (self));
 
+	if (self->bundle != NULL)
+	{
+		return;
+	}
+
 	filenames = _gtk_source_utils_get_file_list (
 		(gchar **)gtk_source_snippet_manager_get_search_path (self),
 		SNIPPET_FILE_SUFFIX,
@@ -312,7 +317,6 @@ ensure_snippets (GtkSourceSnippetManager *self)
 		g_clear_object (&parsed);
 	}
 
-	g_clear_object (&self->bundle);
 	self->bundle = g_steal_pointer (&bundle);
 
 	g_slist_free_full (filenames, g_free);
