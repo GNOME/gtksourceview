@@ -42,19 +42,19 @@ struct _GtkSourceAssistantClass
 	                             GdkRectangle       *rect);
 };
 
-GtkSourceAssistant *_gtk_source_assistant_new        (void);
-void                _gtk_source_assistant_attach     (GtkSourceAssistant *assistant,
-                                                      GtkSourceAssistant *attached_to);
-void                _gtk_source_assistant_detach     (GtkSourceAssistant *assistant);
-void                _gtk_source_assistant_get_offset (GtkSourceAssistant *assistant,
-                                                      int                *x,
-                                                      int                *y);
-GtkTextMark        *_gtk_source_assistant_get_mark   (GtkSourceAssistant *assistant);
-void                _gtk_source_assistant_set_mark   (GtkSourceAssistant *assistant,
-                                                      GtkTextMark        *mark);
-void                _gtk_source_assistant_set_child  (GtkSourceAssistant *assistant,
-                                                      GtkWidget          *child);
-void                _gtk_source_assistant_reposition (GtkSourceAssistant *assistant);
-void                _gtk_source_assistant_destroy    (GtkSourceAssistant *assistant);
+GtkSourceAssistant *_gtk_source_assistant_new                (void);
+void                _gtk_source_assistant_attach             (GtkSourceAssistant *assistant,
+                                                              GtkSourceAssistant *attached_to);
+void                _gtk_source_assistant_detach             (GtkSourceAssistant *assistant);
+void                _gtk_source_assistant_get_offset         (GtkSourceAssistant *assistant,
+                                                              int                *x,
+                                                              int                *y);
+GtkTextMark        *_gtk_source_assistant_get_mark           (GtkSourceAssistant *assistant);
+void                _gtk_source_assistant_set_mark           (GtkSourceAssistant *assistant,
+                                                              GtkTextMark        *mark);
+void                _gtk_source_assistant_set_child          (GtkSourceAssistant *assistant,
+                                                              GtkWidget          *child);
+void                _gtk_source_assistant_set_needs_position (GtkSourceAssistant *assistant);
+void                _gtk_source_assistant_destroy            (GtkSourceAssistant *assistant);
 
 G_END_DECLS
