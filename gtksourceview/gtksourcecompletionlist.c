@@ -170,6 +170,8 @@ _gtk_source_completion_list_update_comment (GtkSourceCompletionList *self)
 		info = _gtk_source_completion_info_get_cell (self->info);
 	}
 
+        gtk_source_completion_cell_set_widget (self->comments, NULL);
+
 	if (_gtk_source_completion_list_box_get_selected (self->listbox, &provider, &proposal))
 	{
 		gtk_source_completion_provider_display (provider, self->context, proposal, self->comments);
@@ -181,8 +183,6 @@ _gtk_source_completion_list_update_comment (GtkSourceCompletionList *self)
 	}
 	else
 	{
-		gtk_source_completion_cell_set_widget (self->comments, NULL);
-
 		if (info != NULL)
 		{
 			gtk_source_completion_cell_set_widget (info, NULL);
