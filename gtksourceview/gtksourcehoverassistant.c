@@ -325,10 +325,20 @@ gtk_source_hover_assistant_class_init (GtkSourceHoverAssistantClass *klass)
 static void
 gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 {
+	GtkEventController *scroll;
+
 	gtk_widget_add_css_class (GTK_WIDGET (self), "hover-assistant");
 
 	gtk_popover_set_autohide (GTK_POPOVER (self), FALSE);
 	gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_TOP);
+
+	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
+	g_signal_connect_object (scroll,
+	                         "scroll",
+	                         G_CALLBACK (_gtk_source_hover_assistant_dismiss),
+	                         self,
+				 G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (self), g_steal_pointer (&scroll));
 
 	self->display = g_object_new (GTK_SOURCE_TYPE_HOVER_DISPLAY, NULL);
 	_gtk_source_assistant_set_child (GTK_SOURCE_ASSISTANT (self), GTK_WIDGET (self->display));
