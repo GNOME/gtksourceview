@@ -745,6 +745,15 @@ _gtk_source_snippet_bundle_list_matching (GtkSourceSnippetBundle *self,
 		}
 	}
 
+	g_array_set_size (ret->tooltips, self->tooltips->len);
+
+	if (self->tooltips->len > 0)
+	{
+		memcpy (ret->tooltips->data,
+			self->tooltips->data,
+			sizeof (GtkSourceSnippetTooltip) * self->tooltips->len);
+	}
+
 	return G_LIST_MODEL (g_steal_pointer (&ret));
 }
 
