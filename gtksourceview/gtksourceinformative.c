@@ -284,4 +284,5 @@ gtk_source_informative_init (GtkSourceInformative *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
 
+	gtk_popover_set_autohide (GTK_POPOVER (self), FALSE);
 }
