@@ -183,50 +183,6 @@ gtk_source_informative_get_target_location (GtkSourceAssistant *assistant,
 	rect->width = 0;
 }
 
-static gboolean
-key_press_propagate_cb (GtkSourceInformative  *self,
-                        guint                  keyval,
-                        guint                  keycode,
-                        GdkModifierType        modifiers,
-                        GtkEventControllerKey *key)
-{
-	GtkWidget *parent;
-
-	g_assert (GTK_SOURCE_IS_INFORMATIVE (self));
-	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
-
-	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
-
-	if (GTK_SOURCE_IS_VIEW (parent))
-	{
-		return gtk_event_controller_key_forward (key, parent);
-	}
-
-	return GDK_EVENT_PROPAGATE;
-}
-
-static gboolean
-key_release_propagate_cb (GtkSourceInformative  *self,
-                          guint                  keyval,
-                          guint                  keycode,
-                          GdkModifierType        modifiers,
-                          GtkEventControllerKey *key)
-{
-	GtkWidget *parent;
-
-	g_assert (GTK_SOURCE_IS_INFORMATIVE (self));
-	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
-
-	parent = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
-
-	if (GTK_SOURCE_IS_VIEW (parent))
-	{
-		return gtk_event_controller_key_forward (key, parent);
-	}
-
-	return GDK_EVENT_PROPAGATE;
-}
-
 static void
 gtk_source_informative_get_property (GObject    *object,
                                      guint       prop_id,
@@ -326,21 +282,6 @@ gtk_source_informative_class_init (GtkSourceInformativeClass *klass)
 static void
 gtk_source_informative_init (GtkSourceInformative *self)
 {
-	GtkEventController *key;
-
 	gtk_widget_init_template (GTK_WIDGET (self));
 
-	key = gtk_event_controller_key_new ();
-	gtk_event_controller_set_propagation_phase (key, GTK_PHASE_BUBBLE);
-	g_signal_connect_object (key,
-	                         "key-pressed",
-	                         G_CALLBACK (key_press_propagate_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (key,
-	                         "key-released",
-	                         G_CALLBACK (key_release_propagate_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), g_steal_pointer (&key));
 }
