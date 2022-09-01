@@ -167,11 +167,10 @@ gtk_source_assistant_reposition_tick_cb (GtkWidget     *widget,
                                          GdkFrameClock *frame_clock,
                                          gpointer       user_data)
 {
-	GtkSourceView *view = (GtkSourceView *)widget;
 	GtkSourceAssistant *self = user_data;
 	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (self);
 
-	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_SOURCE_IS_VIEW (widget));
 	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
 	g_assert (GTK_SOURCE_IS_ASSISTANT (self));
 
