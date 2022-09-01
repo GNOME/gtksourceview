@@ -88,6 +88,7 @@ gtk_source_snippet_manager_dispose (GObject *object)
 	if (self->bundle != NULL)
 	{
 		g_object_run_dispose (G_OBJECT (self->bundle));
+		g_clear_object (&self->bundle);
 	}
 
 	G_OBJECT_CLASS (gtk_source_snippet_manager_parent_class)->dispose (object);
@@ -98,7 +99,6 @@ gtk_source_snippet_manager_finalize (GObject *object)
 {
 	GtkSourceSnippetManager *self = GTK_SOURCE_SNIPPET_MANAGER (object);
 
-	g_clear_object (&self->bundle);
 	g_clear_pointer (&self->search_path, g_strfreev);
 	g_clear_pointer (&self->strings, g_string_chunk_free);
 
