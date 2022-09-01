@@ -533,9 +533,9 @@ _gtk_source_snippet_bundle_merge (GtkSourceSnippetBundle *self,
 		return;
 	}
 
-	for (guint i = 0; i < other->infos->len; i++)
+	for (guint i = 0; i < self->infos->len; i++)
 	{
-		const GtkSourceSnippetInfo *info = &g_array_index (other->infos, GtkSourceSnippetInfo, i);
+		const GtkSourceSnippetInfo *info = &g_array_index (self->infos, GtkSourceSnippetInfo, i);
 		max_id = MAX (max_id, info->identifier);
 	}
 
