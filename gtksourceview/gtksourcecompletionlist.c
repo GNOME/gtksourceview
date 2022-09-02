@@ -348,10 +348,13 @@ _gtk_source_completion_list_get_target_location (GtkSourceAssistant *assistant,
 
 	GTK_SOURCE_ASSISTANT_CLASS (_gtk_source_completion_list_parent_class)->get_target_location (assistant, rect);
 
-	/* We want to align to the beginning of the character, so set the width
-	 * to 0 to ensure things align correctly.
+	/* We want to align to the beginning of the character, so set the
+	 * width to one to ensure that. We do not use zero here just to help
+	 * ensure math is stable but also because GtkPopover's
+	 * gtk_popover_set_pointing_to() would convert width to one anyway.
+	 * That way the value can be compared for changes.
 	 */
-	rect->width = 0;
+	rect->width = 1;
 }
 
 static GtkSizeRequestMode
