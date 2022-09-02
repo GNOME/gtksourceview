@@ -201,7 +201,7 @@ _gtk_source_assistant_set_needs_position (GtkSourceAssistant *self)
 			gtk_widget_add_tick_callback (GTK_WIDGET (view),
 			                              gtk_source_assistant_reposition_tick_cb,
 			                              g_object_ref (self),
-						      g_object_unref);
+			                              g_object_unref);
 	}
 }
 
