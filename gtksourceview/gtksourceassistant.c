@@ -195,6 +195,13 @@ gtk_source_assistant_reposition_tick_cb (GtkWidget     *widget,
 
 	_gtk_source_assistant_update_position (self);
 
+	/* We have to gtk_widget_queue_resize() to ensure that the view will
+	 * continue to have an allocation when the assistant gets snapshotted.
+	 * gtk_widget_queue_allocate() is not enough to make that happen.
+	 * Without this, we often get flickering of the GtkSourceView.
+	 */
+	gtk_widget_queue_resize (widget);
+
 	return G_SOURCE_REMOVE;
 }
 
