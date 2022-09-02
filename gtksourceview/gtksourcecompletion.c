@@ -988,6 +988,10 @@ gtk_source_completion_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
+	case PROP_PAGE_SIZE:
+		g_value_set_uint (value, gtk_source_completion_get_page_size (self));
+		break;
+
 	case PROP_REMEMBER_INFO_VISIBILITY:
 		g_value_set_boolean (value, self->remember_info_visibility);
 		break;
@@ -1019,6 +1023,10 @@ gtk_source_completion_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
+	case PROP_PAGE_SIZE:
+		gtk_source_completion_set_page_size (self, g_value_get_uint (value));
+		break;
+
 	case PROP_REMEMBER_INFO_VISIBILITY:
 		self->remember_info_visibility = g_value_get_boolean (value);
 		if (self->display != NULL)
