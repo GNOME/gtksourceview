@@ -397,6 +397,12 @@ gtk_source_completion_cell_set_widget (GtkSourceCompletionCell *self,
 			{
 				gtk_label_set_xalign (GTK_LABEL (widget), 1.0);
 			}
+			else if (self->column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
+			{
+				gtk_label_set_xalign (GTK_LABEL (widget), 0.0);
+				gtk_label_set_ellipsize (GTK_LABEL (widget), PANGO_ELLIPSIZE_END);
+				gtk_widget_set_hexpand (widget, TRUE);
+			}
 			else if (self->column == GTK_SOURCE_COMPLETION_COLUMN_AFTER ||
 			         self->column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT ||
 			         self->column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT ||
