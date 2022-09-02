@@ -117,15 +117,12 @@ get_gutter_width (GtkSourceView *view)
 	return 0;
 }
 
-static void
+static gboolean
 _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 {
 	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (assistant);
-	const GList *children = NULL;
 	GtkWidget *parent;
-	GdkRectangle rect;
-	int x = 0;
-	int y = 0;
+	gboolean changed = FALSE;
 
 	g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
 
@@ -134,6 +131,10 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 	if (GTK_SOURCE_IS_VIEW (parent))
 	{
 		GdkRectangle visible_rect;
+		GdkRectangle old_rect;
+		GdkRectangle rect;
+		int old_x, old_y;
+		int x, y;
 
 		gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (parent), &visible_rect);
 
@@ -144,22 +145,38 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 		rect.y -= visible_rect.y;
 		rect.x += get_gutter_width (GTK_SOURCE_VIEW (parent));
 
-		gtk_popover_set_offset (GTK_POPOVER (assistant), x, y);
-		gtk_popover_set_pointing_to (GTK_POPOVER (assistant), &rect);
+		gtk_popover_get_offset (GTK_POPOVER (assistant), &old_x, &old_y);
+
+		if (old_x != x || old_y != y)
+		{
+			gtk_popover_set_offset (GTK_POPOVER (assistant), x, y);
+			changed = TRUE;
+		}
+
+		if (!gtk_popover_get_pointing_to (GTK_POPOVER (assistant), &old_rect) ||
+		    !gdk_rectangle_equal (&old_rect, &rect))
+		{
+			gtk_popover_set_pointing_to (GTK_POPOVER (assistant), &rect);
+			changed = TRUE;
+		}
 	}
 
 	if (priv->child != NULL)
 	{
-		children = _gtk_source_assistant_child_get_attached (priv->child);
+		const GList *children = _gtk_source_assistant_child_get_attached (priv->child);
+
+		for (const GList *iter = children; iter; iter = iter->next)
+		{
+			GtkSourceAssistant *child = iter->data;
+			int x, y;
+
+			_gtk_source_assistant_get_offset (child, &x, &y);
+			gtk_popover_set_offset (GTK_POPOVER (child), x, y);
+		}
 	}
 
-	for (const GList *iter = children; iter; iter = iter->next)
-	{
-		GtkSourceAssistant *child = iter->data;
 
-		_gtk_source_assistant_get_offset (child, &x, &y);
-		gtk_popover_set_offset (GTK_POPOVER (child), x, y);
-	}
+	return changed;
 }
 
 static gboolean
