@@ -49,6 +49,7 @@ typedef struct _GtkSourceViewSnippets
 	gulong                buffer_cursor_moved_handler;
 } GtkSourceViewSnippets;
 
+gboolean _gtk_source_view_has_snippet              (GtkSourceView           *view);
 void     _gtk_source_view_add_assistant            (GtkSourceView           *view,
                                                     GtkSourceAssistant      *assistant);
 void     _gtk_source_view_remove_assistant         (GtkSourceView           *view,

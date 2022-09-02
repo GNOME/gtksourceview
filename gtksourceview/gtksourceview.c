@@ -5541,3 +5541,13 @@ _gtk_source_view_get_current_line_number_bold (GtkSourceView *view)
 
 	return priv->current_line_number_bold;
 }
+
+gboolean
+_gtk_source_view_has_snippet (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	return priv->snippets.queue.length > 0;
+}

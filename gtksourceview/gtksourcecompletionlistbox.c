@@ -27,6 +27,7 @@
 #include "gtksourcecompletionlistboxrow-private.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
+#include "gtksourceview-private.h"
 
 struct _GtkSourceCompletionListBox
 {
@@ -483,6 +484,33 @@ activate_nth_cb (GtkWidget *widget,
 }
 
 static gboolean
+activate_nth_tab_cb (GtkWidget *widget,
+                     GVariant  *param,
+                     gpointer   user_data)
+{
+	GtkSourceCompletionListBox *self = (GtkSourceCompletionListBox *)widget;
+	GtkSourceView *view;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
+
+	if (self->context == NULL)
+	{
+		return FALSE;
+	}
+
+	/* If Tab was pressed by we have a snippet active, that takes precidence
+	 * and we should ignore this completion request.
+	 */
+	view = gtk_source_completion_context_get_view (self->context);
+	if (!view || _gtk_source_view_has_snippet (view))
+	{
+		return FALSE;
+	}
+
+	return activate_nth_cb (widget, param, user_data);
+}
+
+static gboolean
 _gtk_source_completion_list_box_key_pressed_cb (GtkSourceCompletionListBox *self,
                                                 guint                       keyval,
                                                 guint                       keycode,
@@ -756,7 +784,7 @@ gtk_source_completion_list_box_class_init (GtkSourceCompletionListBoxClass *klas
 	gtk_widget_class_add_binding (widget_class, GDK_KEY_9, GDK_ALT_MASK, activate_nth_cb, "(i)", 9);
 	gtk_widget_class_add_binding (widget_class, GDK_KEY_Return, 0, activate_nth_cb, "(i)", 0);
 	gtk_widget_class_add_binding (widget_class, GDK_KEY_KP_Enter, 0, activate_nth_cb, "(i)", 0);
-	gtk_widget_class_add_binding (widget_class, GDK_KEY_Tab, 0, activate_nth_cb, "(i)", 0);
+	gtk_widget_class_add_binding (widget_class, GDK_KEY_Tab, 0, activate_nth_tab_cb, "(i)", 0);
 	gtk_widget_class_add_binding (widget_class, GDK_KEY_Right, 0, move_next_alternate, NULL);
 	gtk_widget_class_add_binding (widget_class, GDK_KEY_Left, 0, move_previous_alternate, NULL);
 	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_Escape, 0, "assistant.hide", NULL);
