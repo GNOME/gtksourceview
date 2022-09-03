@@ -21,6 +21,10 @@
 
 #pragma once
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#error "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #include <glib-object.h>
 
 #include "gtksourcetypes.h"
@@ -35,6 +39,11 @@ G_DECLARE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal
 struct _GtkSourceCompletionProposalInterface
 {
 	GTypeInterface parent_iface;
+
+  char *(*get_typed_text) (GtkSourceCompletionProposal *proposal);
 };
+
+GTK_SOURCE_AVAILABLE_IN_5_6
+char *gtk_source_completion_proposal_get_typed_text (GtkSourceCompletionProposal *proposal);
 
 G_END_DECLS

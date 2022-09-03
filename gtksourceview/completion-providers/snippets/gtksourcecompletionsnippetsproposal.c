@@ -23,11 +23,22 @@
 
 #include "gtksourcecompletionsnippetsproposal-private.h"
 
+static char *
+gtk_source_completion_snippets_proposal_get_typed_text (GtkSourceCompletionProposal *proposal)
+{
+  return g_strdup (GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal)->info.trigger);
+}
+
+static void
+proposal_iface_init (GtkSourceCompletionProposalInterface *iface)
+{
+  iface->get_typed_text = gtk_source_completion_snippets_proposal_get_typed_text;
+}
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippetsProposal,
                          gtk_source_completion_snippets_proposal,
                          G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, proposal_iface_init))
 
 enum {
 	PROP_0,

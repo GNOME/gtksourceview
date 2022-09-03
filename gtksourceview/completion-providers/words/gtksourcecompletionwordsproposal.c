@@ -45,10 +45,22 @@ enum
 static GParamSpec *properties[N_PROPS];
 static guint signals[N_SIGNALS];
 
+static char *
+gtk_source_completion_words_proposal_get_typed_text (GtkSourceCompletionProposal *proposal)
+{
+	return g_strdup (GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (proposal)->word);
+}
+
+static void
+proposal_iface_init (GtkSourceCompletionProposalInterface *iface)
+{
+	iface->get_typed_text = gtk_source_completion_words_proposal_get_typed_text;
+}
+
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
                          gtk_source_completion_words_proposal,
                          G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, proposal_iface_init))
 
 static void
 gtk_source_completion_words_proposal_finalize (GObject *object)
