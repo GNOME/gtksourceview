@@ -590,6 +590,40 @@ gtk_source_completion_context_items_changed_cb (GtkSourceCompletionContext *self
 }
 
 /**
+ * gtk_source_completion_context_get_proposals_for_provider:
+ * @self: a #GtkSourceCompletionContext
+ * @provider: a #GtkSourceCompletionProvider
+ *
+ * Gets the #GListModel associated with the provider.
+ *
+ * You can connect to #GtkSourceCompletionContext::model-changed to receive
+ * notifications about when the model has been replaced by a new model.
+ *
+ * Returns: (transfer none) (nullable): a #GListModel or %NULL
+ *
+ * Since: 5.6
+ */
+GListModel *
+gtk_source_completion_context_get_proposals_for_provider (GtkSourceCompletionContext  *self,
+                                                          GtkSourceCompletionProvider *provider)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (self), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
+
+	for (guint i = 0; i < self->providers->len; i++)
+	{
+		const ProviderInfo *info = &g_array_index (self->providers, ProviderInfo, i);
+
+		if (info->provider == provider)
+		{
+			return info->results;
+		}
+	}
+
+	return NULL;
+}
+
+/**
  * gtk_source_completion_context_set_proposals_for_provider:
  * @self: an #GtkSourceCompletionContext
  * @provider: an #GtkSourceCompletionProvider

@@ -63,5 +63,8 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void                           gtk_source_completion_context_set_proposals_for_provider (GtkSourceCompletionContext  *self,
                                                                                          GtkSourceCompletionProvider *provider,
                                                                                          GListModel                  *results);
+GTK_SOURCE_AVAILABLE_IN_5_6
+GListModel                    *gtk_source_completion_context_get_proposals_for_provider (GtkSourceCompletionContext  *self,
+                                                                                         GtkSourceCompletionProvider *provider);
 
 G_END_DECLS
