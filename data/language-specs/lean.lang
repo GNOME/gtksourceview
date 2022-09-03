@@ -69,12 +69,12 @@
 
     <context id="command" style-ref="command">
       <match extended="true">
-        ^\s*\#(
+        \#(
             check(_failure)?
           | eval
           | print
           | reduce
-        )
+        )\b
       </match>
     </context>
 
