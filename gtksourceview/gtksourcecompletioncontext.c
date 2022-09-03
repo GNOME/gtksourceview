@@ -96,7 +96,13 @@ enum {
 	N_PROPS
 };
 
+enum {
+	PROVIDER_MODEL_CHANGED,
+	N_SIGNALS
+};
+
 static GParamSpec *properties [N_PROPS];
+static guint signals [N_SIGNALS];
 
 static void
 clear_provider_info (gpointer data)
@@ -315,6 +321,32 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 		                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
+
+	/**
+	 * GtkSourceCompletionContext::provider-model-changed:
+	 * @self: a #GtkSourceCompletionContext
+	 * @provider: a #GtkSourceCompletionProvider
+	 * @model: (nullable): a #GListModel
+	 *
+	 * Emitted when a provider changes a model.
+	 *
+	 * This signal is primarily useful for #GtkSourceCompletionProvider's
+	 * that want to track other providers in context. For example, it can
+	 * be used to create a "top results" provider.
+	 *
+	 * Since: 5.6
+	 */
+	signals [PROVIDER_MODEL_CHANGED] =
+		g_signal_new ("provider-model-changed",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+		              NULL,
+		              G_TYPE_NONE,
+		              2,
+		              GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
+		              G_TYPE_LIST_MODEL);
 }
 
 static void
@@ -682,6 +714,8 @@ gtk_source_completion_context_set_proposals_for_provider (GtkSourceCompletionCon
 					                         G_CONNECT_SWAPPED);
 
 			g_list_model_items_changed (G_LIST_MODEL (self), position, n_removed, n_added);
+
+			g_signal_emit (self, signals [PROVIDER_MODEL_CHANGED], 0, provider, results);
 
 			break;
 		}
