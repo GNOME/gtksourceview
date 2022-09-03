@@ -829,6 +829,7 @@ static void
 gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
                                           gboolean                    update_selection)
 {
+	GtkSourceCompletionProvider *last_provider = NULL;
 	UpdateState state = {0};
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
@@ -857,9 +858,15 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 	{
 		GtkSourceCompletionProposal *proposal = NULL;
 		GtkSourceCompletionProvider *provider = NULL;
+		GtkWidget *header;
 		gboolean has_alternates = FALSE;
 
-		g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (iter));
+		if (!GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (iter))
+		{
+			continue;
+		}
+
+		header = gtk_list_box_row_get_header (GTK_LIST_BOX_ROW (iter));
 
 		if (state.selected >= 0 && state.position == (guint)state.selected)
 		{
@@ -896,15 +903,19 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 			                                             has_alternates);
 
 			gtk_widget_show (iter);
+			gtk_widget_set_visible (header, provider != last_provider && last_provider);
 		}
 		else
 		{
-			gtk_widget_hide (GTK_WIDGET (iter));
+			gtk_widget_hide (iter);
+			gtk_widget_hide (header);
 			_gtk_source_completion_list_box_row_display (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (iter),
 			                                             NULL, NULL, NULL, self->show_icons, FALSE);
 		}
 
 		state.position++;
+
+		last_provider = provider;
 
 		g_clear_object (&proposal);
 		g_clear_object (&provider);
@@ -1005,15 +1016,21 @@ _gtk_source_completion_list_box_set_n_rows (GtkSourceCompletionListBox *self,
 		for (guint i = 0; i < n_rows; i++)
 		{
 			GtkWidget *row;
+			GtkWidget *header;
 
 			row = _gtk_source_completion_list_box_row_new ();
+			header = gtk_list_box_row_get_header (GTK_LIST_BOX_ROW (row));
+
 			gtk_widget_set_can_focus (GTK_WIDGET (row), FALSE);
+
 			_gtk_source_completion_list_box_row_attach (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (row),
 			                                            self->before_size_group,
 			                                            self->typed_text_size_group,
 			                                            self->after_size_group);
 			_gtk_source_completion_list_box_row_set_attrs (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (row),
 			                                               self->font_attrs);
+
+			gtk_box_append (self->box, header);
 			gtk_box_append (self->box, row);
 		}
 
@@ -1173,7 +1190,17 @@ _gtk_source_completion_list_box_get_first (GtkSourceCompletionListBox *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self), NULL);
 
-	return GTK_SOURCE_COMPLETION_LIST_BOX_ROW (gtk_widget_get_first_child (GTK_WIDGET (self->box)));
+	for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->box));
+	     child != NULL;
+	     child = gtk_widget_get_next_sibling (child))
+	{
+		if (GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (child))
+		{
+			return GTK_SOURCE_COMPLETION_LIST_BOX_ROW (child);
+		}
+	}
+
+	return NULL;
 }
 
 void
@@ -1277,6 +1304,11 @@ _gtk_source_completion_list_box_set_font_desc (GtkSourceCompletionListBox *self,
 	     iter != NULL;
 	     iter = gtk_widget_get_next_sibling (iter))
 	{
+		if (!GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (iter))
+		{
+			continue;
+		}
+
 		_gtk_source_completion_list_box_row_set_attrs (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (iter),
 		                                               self->font_attrs);
 	}

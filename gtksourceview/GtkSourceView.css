@@ -32,6 +32,14 @@ GtkSourceAssistant.completion list {
   border-top-right-radius: 11px;
   margin: 0px;
 }
+GtkSourceAssistant.completion list separator.horizontal {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+GtkSourceAssistant.completion list row:selected:not(:backdrop) {
+  background: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
+}
 GtkSourceAssistant.completion list,
 GtkSourceAssistant.completion list row:not(:selected):not(:hover),
 GtkSourceAssistant.completion list row cell {
