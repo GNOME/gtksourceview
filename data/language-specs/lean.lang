@@ -69,7 +69,7 @@
 
     <context id="command" style-ref="command">
       <match extended="true">
-        \#(
+        \#(?:
             check(_failure)?
           | eval
           | print
@@ -112,24 +112,24 @@
       <keyword>λ</keyword>
     </context>
 
-    <define-regex id="string-escape" extended="true">
-      \\(
-          \\
-        | \"
-        | \'
-        | n
-        | t
-        | x[0-9a-fA-F]{2}
-      )
-    </define-regex>
+    <context id="escaped-character" style-ref="escaped-character">
+      <match extended="true">
+        \\(?:
+            \\
+          | \"
+          | \'
+          | n
+          | t
+          | x[0-9a-fA-F]{2}
+        )
+      </match>
+    </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
-        <context style-ref="escaped-character">
-          <match>\%{string-escape}</match>
-        </context>
+        <context ref="escaped-character"/>
       </include>
     </context>
 
@@ -137,15 +137,13 @@
       <start>'</start>
       <end>'</end>
       <include>
-        <context style-ref="escaped-character">
-          <match>\%{string-escape}</match>
-        </context>
+        <context ref="escaped-character"/>
       </include>
     </context>
 
     <context id="numeric" style-ref="numeric">
       <match extended="true">
-          0[bB][0-1]+
+          0[bB][01]+
         | 0[oO][0-7]+
         | 0[xX][0-9a-fA-F]+
         | [0-9]+
