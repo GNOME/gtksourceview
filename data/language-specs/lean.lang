@@ -34,12 +34,12 @@
     <style id="attribute" name="Attribute" map-to="def:preprocessor"/>
     <style id="command" name="Command" map-to="def:preprocessor"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="identifier" name="Identifier"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="character" name="Character" map-to="def:character"/>
     <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
     <style id="numeric" name="Numeric" map-to="def:number"/>
     <style id="boolean" name="Boolean" map-to="def:boolean"/>
+    <style id="identifier" name="Identifier"/>
   </styles>
 
   <definitions>
@@ -112,14 +112,6 @@
       <keyword>λ</keyword>
     </context>
 
-    <context id="identifier" style-ref="identifier">
-      <match extended="true">
-        (?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_]
-        (?:(?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_0-9'ⁿ₀-₉ₐ-ₜᵢ-ᵪ])*
-        | «[^«»\r\n\t]*»
-      </match>
-    </context>
-
     <define-regex id="string-escape" extended="true">
       \\(
           \\
@@ -165,6 +157,14 @@
       <keyword>false</keyword>
     </context>
 
+    <context id="identifier" style-ref="identifier">
+      <match extended="true">
+        (?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_]
+        (?:(?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_0-9'ⁿ₀-₉ₐ-ₜᵢ-ᵪ])*
+        | «[^«»\r\n\t]*»
+      </match>
+    </context>
+
     <context id="lean" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
@@ -172,11 +172,11 @@
         <context ref="attribute"/>
         <context ref="command"/>
         <context ref="keyword"/>
-        <context ref="identifier"/>
         <context ref="string"/>
         <context ref="character"/>
         <context ref="numeric"/>
         <context ref="boolean"/>
+        <context ref="identifier"/>
       </include>
     </context>
 
