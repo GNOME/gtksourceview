@@ -346,6 +346,10 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 	{
 		gtk_source_completion_cell_set_text (cell, p->info.description);
 	}
+	else
+	{
+		gtk_source_completion_cell_set_text (cell, NULL);
+	}
 }
 
 static void

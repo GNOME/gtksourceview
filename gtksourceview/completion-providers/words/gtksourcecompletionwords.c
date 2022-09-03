@@ -374,6 +374,10 @@ gtk_source_completion_words_display (GtkSourceCompletionProvider *provider,
 	{
 		gtk_source_completion_cell_set_icon_name (cell, "completion-word-symbolic");
 	}
+	else
+	{
+		gtk_source_completion_cell_set_text (cell, NULL);
+	}
 }
 
 static void
