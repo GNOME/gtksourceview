@@ -1106,3 +1106,32 @@ gtk_source_completion_context_get_language (GtkSourceCompletionContext *self)
 
 	return NULL;
 }
+
+/**
+ * gtk_source_completion_context_list_providers:
+ * @self: a #GtkSourceCompletionContext
+ *
+ * Gets the providers that are associated with the context.
+ *
+ * Returns: (transfer full): a #GListModel of #GtkSourceCompletionProvider
+ *
+ * Since: 5.6
+ */
+GListModel *
+gtk_source_completion_context_list_providers (GtkSourceCompletionContext *self)
+{
+	GListStore *store;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (self), NULL);
+
+	store = g_list_store_new (GTK_SOURCE_TYPE_COMPLETION_PROVIDER);
+
+	for (guint i = 0; i < self->providers->len; i++)
+	{
+		const ProviderInfo *info = &g_array_index (self->providers, ProviderInfo, i);
+
+		g_list_store_append (store, info->provider);
+	}
+
+	return G_LIST_MODEL (store);
+}
