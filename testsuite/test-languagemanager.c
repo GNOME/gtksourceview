@@ -215,6 +215,8 @@ test_resources (void)
 
 	g_assert_true (g_strv_contains (ids, "testsuite"));
 	g_assert_true (g_strv_contains (ids, "testsuite-2"));
+	g_assert_true (g_strv_contains (ids, "def"));
+	g_assert_cmpint (g_strv_length ((char **)ids), ==, 3);
 
 	l = gtk_source_language_manager_get_language (lm, "testsuite");
 	g_assert_nonnull (l);
