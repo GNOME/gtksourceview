@@ -79,6 +79,7 @@ gladeui_req = '>= 3.9'
 introspection_req  = '>= 1.42.0'
 gtk_doc_req = '>= 1.25'
 fribidi_req = '>= 0.19.7'
+pcre2_req = '>= 10.21'
 
 glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
@@ -86,6 +87,7 @@ gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk+-3.0', version: gtk_req)
 libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id() != 'msvc')
 fribidi_dep = dependency('fribidi', version: fribidi_req)
+pcre2_dep = dependency('libpcre2-8', version: pcre2_req, fallback : ['pcre2', 'libpcre2_8'])
 
 gtk_quartz_dep = dependency('gtk+-quartz-3.0', version: gtk_doc_req, required: false)
 

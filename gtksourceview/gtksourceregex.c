@@ -29,21 +29,23 @@
 #include <glib/gi18n-lib.h>
 #include "gtksourceutils-private.h"
 
+#include "implregex-private.h"
+
 /*
  * GRegex wrapper which adds a few features needed for syntax highlighting,
  * in particular resolving "\%{...@start}" and forbidding the use of \C.
  */
 
 /* Regex used to match "\%{...@start}". */
-static GRegex *
+static ImplRegex *
 get_start_ref_regex (void)
 {
-	static GRegex *start_ref_regex = NULL;
+	static ImplRegex *start_ref_regex = NULL;
 
 	if (start_ref_regex == NULL)
 	{
-		start_ref_regex = g_regex_new ("(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}",
-					       G_REGEX_OPTIMIZE, 0, NULL);
+		start_ref_regex = impl_regex_new ("(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}",
+		                                  G_REGEX_OPTIMIZE, 0, NULL);
 	}
 
 	return start_ref_regex;
@@ -57,8 +59,8 @@ struct _GtkSourceRegex
 			GRegexCompileFlags flags;
 		} info;
 		struct {
-			GRegex *regex;
-			GMatchInfo *match;
+			ImplRegex *regex;
+			ImplMatchInfo *match;
 		} regex;
 	} u;
 
@@ -105,16 +107,16 @@ find_single_byte_escape (const gchar *string)
  * gtk_source_regex_new:
  * @pattern: the regular expression.
  * @flags: compile options for @pattern.
- * @error: location to store the error occuring, or %NULL to ignore errors.
+ * @error: location to store the error occurring, or %NULL to ignore errors.
  *
  * Creates a new regex.
  *
  * Returns: a newly-allocated #GtkSourceRegex.
  */
 GtkSourceRegex *
-_gtk_source_regex_new (const gchar           *pattern,
-		       GRegexCompileFlags     flags,
-		       GError               **error)
+_gtk_source_regex_new (const gchar         *pattern,
+		       GRegexCompileFlags   flags,
+		       GError             **error)
 {
 	GtkSourceRegex *regex;
 
@@ -132,7 +134,7 @@ _gtk_source_regex_new (const gchar           *pattern,
 	regex = g_slice_new0 (GtkSourceRegex);
 	regex->ref_count = 1;
 
-	if (g_regex_match (get_start_ref_regex (), pattern, 0, NULL))
+	if (impl_regex_match (get_start_ref_regex (), pattern, 0, NULL))
 	{
 		regex->resolved = FALSE;
 		regex->u.info.pattern = g_strdup (pattern);
@@ -141,9 +143,9 @@ _gtk_source_regex_new (const gchar           *pattern,
 	else
 	{
 		regex->resolved = TRUE;
-		regex->u.regex.regex = g_regex_new (pattern,
-						    flags | G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF, 0,
-						    error);
+		regex->u.regex.regex = impl_regex_new (pattern,
+		                                       flags | G_REGEX_OPTIMIZE | G_REGEX_NEWLINE_LF, 0,
+		                                       error);
 
 		if (regex->u.regex.regex == NULL)
 		{
@@ -170,9 +172,9 @@ _gtk_source_regex_unref (GtkSourceRegex *regex)
 	{
 		if (regex->resolved)
 		{
-			g_regex_unref (regex->u.regex.regex);
+			impl_regex_unref (regex->u.regex.regex);
 			if (regex->u.regex.match)
-				g_match_info_free (regex->u.regex.match);
+				impl_match_info_free (regex->u.regex.match);
 		}
 		else
 		{
@@ -188,27 +190,25 @@ struct RegexResolveData {
 };
 
 static gboolean
-replace_start_regex (const GMatchInfo *match_info,
-		     GString          *expanded_regex,
-		     gpointer          user_data)
+replace_start_regex (const ImplMatchInfo *match_info,
+		     GString             *expanded_regex,
+		     gpointer             user_data)
 {
 	gchar *num_string, *subst, *subst_escaped, *escapes;
 	gint num;
 	struct RegexResolveData *data = user_data;
 
-	escapes = g_match_info_fetch (match_info, 1);
-	num_string = g_match_info_fetch (match_info, 2);
+	escapes = impl_match_info_fetch (match_info, 1);
+	num_string = impl_match_info_fetch (match_info, 2);
 	num = _gtk_source_utils_string_to_int (num_string);
 
 	if (num < 0)
 	{
-		subst = g_match_info_fetch_named (data->start_regex->u.regex.match,
-						  num_string);
+		subst = impl_match_info_fetch_named (data->start_regex->u.regex.match, num_string);
 	}
 	else
 	{
-		subst = g_match_info_fetch (data->start_regex->u.regex.match,
-					    num);
+		subst = impl_match_info_fetch (data->start_regex->u.regex.match, num);
 	}
 
 	if (subst != NULL)
@@ -263,18 +263,18 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
-	expanded_regex = g_regex_replace_eval (get_start_ref_regex (),
-					       regex->u.info.pattern,
-					       -1, 0, 0,
-					       replace_start_regex,
-					       &data, NULL);
+	expanded_regex = impl_regex_replace_eval (get_start_ref_regex (),
+	                                          regex->u.info.pattern,
+	                                          -1, 0, 0,
+	                                          replace_start_regex,
+	                                          &data, NULL);
 	new_regex = _gtk_source_regex_new (expanded_regex, regex->u.info.flags, NULL);
 	if (new_regex == NULL || !new_regex->resolved)
 	{
 		_gtk_source_regex_unref (new_regex);
 		g_warning ("Regular expression %s cannot be expanded.",
 			   regex->u.info.pattern);
-		/* Returns a regex that nevers matches. */
+		/* Returns a regex that never matches. */
 		new_regex = _gtk_source_regex_new ("$never-match^", 0, NULL);
 	}
 
@@ -301,14 +301,14 @@ _gtk_source_regex_match (GtkSourceRegex *regex,
 
 	if (regex->u.regex.match)
 	{
-		g_match_info_free (regex->u.regex.match);
+		impl_match_info_free (regex->u.regex.match);
 		regex->u.regex.match = NULL;
 	}
 
-	result = g_regex_match_full (regex->u.regex.regex, line,
-				     byte_length, byte_pos,
-				     0, &regex->u.regex.match,
-				     NULL);
+	result = impl_regex_match_full (regex->u.regex.regex, line,
+	                                byte_length, byte_pos,
+	                                0, &regex->u.regex.match,
+	                                NULL);
 
 	return result;
 }
@@ -319,7 +319,7 @@ _gtk_source_regex_fetch (GtkSourceRegex *regex,
 {
 	g_assert (regex->resolved);
 
-	return g_match_info_fetch (regex->u.regex.match, num);
+	return impl_match_info_fetch (regex->u.regex.match, num);
 }
 
 void
@@ -333,8 +333,8 @@ _gtk_source_regex_fetch_pos (GtkSourceRegex *regex,
 
 	g_assert (regex->resolved);
 
-	/* g_match_info_fetch_pos() can return TRUE with start_pos/end_pos set to -1 */
-	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
+	/* impl_match_info_fetch_pos() can return TRUE with start_pos/end_pos set to -1 */
+	if (!impl_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
 	{
 		if (start_pos != NULL)
 			*start_pos = -1;
@@ -356,12 +356,12 @@ _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex *regex,
 				   gint           *start_pos_p, /* byte offsets */
 				   gint           *end_pos_p)   /* byte offsets */
 {
-	gint start_pos;
-	gint end_pos;
+	gint start_pos = -1;
+	gint end_pos = -1;
 
 	g_assert (regex->resolved);
 
-	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &start_pos, &end_pos))
+	if (!impl_match_info_fetch_pos (regex->u.regex.match, num, &start_pos, &end_pos))
 	{
 		start_pos = -1;
 		end_pos = -1;
@@ -384,7 +384,7 @@ _gtk_source_regex_fetch_named_pos (GtkSourceRegex *regex,
 
 	g_assert (regex->resolved);
 
-	if (!g_match_info_fetch_named_pos (regex->u.regex.match, name, &byte_start_pos, &byte_end_pos))
+	if (!impl_match_info_fetch_named_pos (regex->u.regex.match, name, &byte_start_pos, &byte_end_pos))
 	{
 		if (start_pos != NULL)
 			*start_pos = -1;
@@ -405,6 +405,6 @@ _gtk_source_regex_get_pattern (GtkSourceRegex *regex)
 {
 	g_assert (regex->resolved);
 
-	return g_regex_get_pattern (regex->u.regex.regex);
+	return impl_regex_get_pattern (regex->u.regex.regex);
 }
 

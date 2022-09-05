@@ -28,56 +28,46 @@
 G_BEGIN_DECLS
 
 GTK_SOURCE_INTERNAL
-GtkSourceRegex	*_gtk_source_regex_new		(const gchar         *pattern,
-						 GRegexCompileFlags   flags,
-						 GError             **error);
-
+GtkSourceRegex *_gtk_source_regex_new             (const gchar         *pattern,
+                                                   GRegexCompileFlags   flags,
+                                                   GError             **error);
 GTK_SOURCE_INTERNAL
-GtkSourceRegex	*_gtk_source_regex_ref		(GtkSourceRegex *regex);
-
+GtkSourceRegex *_gtk_source_regex_ref             (GtkSourceRegex      *regex);
 GTK_SOURCE_INTERNAL
-void		 _gtk_source_regex_unref	(GtkSourceRegex *regex);
-
+void            _gtk_source_regex_unref           (GtkSourceRegex      *regex);
 GTK_SOURCE_INTERNAL
-GtkSourceRegex	*_gtk_source_regex_resolve	(GtkSourceRegex *regex,
-						 GtkSourceRegex *start_regex,
-						 const gchar    *matched_text);
-
+GtkSourceRegex *_gtk_source_regex_resolve         (GtkSourceRegex      *regex,
+                                                   GtkSourceRegex      *start_regex,
+                                                   const gchar         *matched_text);
 GTK_SOURCE_INTERNAL
-gboolean	 _gtk_source_regex_is_resolved	(GtkSourceRegex *regex);
-
+gboolean        _gtk_source_regex_is_resolved     (GtkSourceRegex      *regex);
 GTK_SOURCE_INTERNAL
-gboolean	_gtk_source_regex_match		(GtkSourceRegex *regex,
-						 const gchar    *line,
-						 gint             byte_length,
-						 gint             byte_pos);
-
+gboolean        _gtk_source_regex_match           (GtkSourceRegex      *regex,
+                                                   const gchar         *line,
+                                                   gint                 byte_length,
+                                                   gint                 byte_pos);
 GTK_SOURCE_INTERNAL
-gchar		*_gtk_source_regex_fetch	(GtkSourceRegex *regex,
-						 gint            num);
-
+gchar          *_gtk_source_regex_fetch           (GtkSourceRegex      *regex,
+                                                   gint                 num);
 GTK_SOURCE_INTERNAL
-void		 _gtk_source_regex_fetch_pos	(GtkSourceRegex *regex,
-						 const gchar    *text,
-						 gint            num,
-						 gint           *start_pos, /* character offsets */
-						 gint           *end_pos);  /* character offsets */
-
+void            _gtk_source_regex_fetch_pos       (GtkSourceRegex      *regex,
+                                                   const gchar         *text,
+                                                   gint                 num,
+                                                   gint                *start_pos,
+                                                   gint                *end_pos);
 GTK_SOURCE_INTERNAL
-void		 _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex *regex,
-						    gint            num,
-						    gint           *start_pos_p, /* byte offsets */
-						    gint           *end_pos_p);  /* byte offsets */
-
+void            _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex      *regex,
+                                                   gint                 num,
+                                                   gint                *start_pos_p,
+                                                   gint                *end_pos_p);
 GTK_SOURCE_INTERNAL
-void		 _gtk_source_regex_fetch_named_pos (GtkSourceRegex *regex,
-						    const gchar    *text,
-						    const gchar    *name,
-						    gint           *start_pos, /* character offsets */
-						    gint           *end_pos);  /* character offsets */
-
+void            _gtk_source_regex_fetch_named_pos (GtkSourceRegex      *regex,
+                                                   const gchar         *text,
+                                                   const gchar         *name,
+                                                   gint                *start_pos,
+                                                   gint                *end_pos);
 GTK_SOURCE_INTERNAL
-const gchar	*_gtk_source_regex_get_pattern	(GtkSourceRegex *regex);
+const gchar    *_gtk_source_regex_get_pattern     (GtkSourceRegex      *regex);
 
 G_END_DECLS
 

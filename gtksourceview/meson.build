@@ -103,6 +103,7 @@ core_private_c = files([
   'gtksourcepixbufhelper.c',
   'gtksourceregex.c',
   'gtksourceundomanagerdefault.c',
+  'implregex.c',
 ])
 
 core_c_args = [
@@ -119,6 +120,7 @@ core_deps = [
   gio_dep,
   gtk_dep,
   libxml_dep,
+  pcre2_dep,
 ]
 
 if config_h.has('OS_OSX')
