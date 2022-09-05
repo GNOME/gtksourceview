@@ -42,9 +42,10 @@
  * given file name and content type.
  */
 
-#define RNG_SCHEMA_FILE   "language2.rng"
-#define LANGUAGE_DIR      "language-specs"
-#define LANG_FILE_SUFFIX  ".lang"
+#define RNG_SCHEMA_FILE          "language2.rng"
+#define LANGUAGE_DIR             "language-specs"
+#define LANG_FILE_SUFFIX         ".lang"
+#define FALLBACK_RNG_SCHEMA_FILE PACKAGE_DATADIR "/language-specs/" RNG_SCHEMA_FILE
 
 enum {
 	PROP_0,
@@ -67,6 +68,7 @@ struct _GtkSourceLanguageManager
 
 static GtkSourceLanguageManager *default_instance;
 static GParamSpec *properties[N_PROPS];
+static const char *default_rng_file = FALLBACK_RNG_SCHEMA_FILE;
 
 G_DEFINE_TYPE (GtkSourceLanguageManager, gtk_source_language_manager, G_TYPE_OBJECT)
 
@@ -369,6 +371,19 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 	return (const gchar * const *)lm->lang_dirs;
 }
 
+void
+_gtk_source_language_manager_set_rng_file (const char *rng_file)
+{
+	if (rng_file == NULL)
+	{
+		default_rng_file = FALLBACK_RNG_SCHEMA_FILE;
+	}
+	else
+	{
+		default_rng_file = g_intern_string (rng_file);
+	}
+}
+
 /**
  * _gtk_source_language_manager_get_rng_file:
  * @lm: a #GtkSourceLanguageManager.
@@ -400,6 +415,14 @@ _gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
 			}
 
 			g_free (file);
+		}
+
+		if (lm->rng_file == NULL)
+		{
+			if (g_file_test (default_rng_file, G_FILE_TEST_EXISTS))
+			{
+				lm->rng_file = g_strdup (default_rng_file);
+			}
 		}
 	}
 
