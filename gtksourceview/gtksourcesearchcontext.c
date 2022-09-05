@@ -2876,7 +2876,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 static void
 gtk_source_search_context_init (GtkSourceSearchContext *search)
 {
-	search = gtk_source_search_context_get_instance_private (search);
 }
 
 /**
