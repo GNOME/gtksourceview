@@ -1,0 +1,23 @@
+{{ var }}
+{{ var|escape }}
+{{ var|e }}         {# shortcut to escape a variable #}
+
+{% for user in users %}
+    * {{ user.name }}
+{% else %}
+    No users have been found.
+{% endfor %}
+
+{% extends "layout.html" %}
+
+{% block content %}
+    Content of the page...
+{% endblock %}
+
+{% autoescape "html" %}
+    {{ var }}
+    {{ var|raw }}     {# var won't be escaped #}
+    {{ var|escape }}  {# var won't be doubled-escaped #}
+{% endautoescape %}
+
+{{ include('page.html', sandboxed = true) }}

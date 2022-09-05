@@ -61,7 +61,7 @@
     </define-regex>
 
     <define-regex id="letter" extended="true">
-      [a-zA-Z\x{c0}-\x{d6}\x{d8}-\x{f6}\x{f8}-\x{ff}\x{100}-\x{fffe}_]
+      [a-zA-Z\N{U+c0}-\N{U+d6}\N{U+d8}-\N{U+f6}\N{U+f8}-\N{U+ff}\N{U+100}-\N{U+fffe}_]
     </define-regex>
 
     <context id="escaped-character">
@@ -155,8 +155,8 @@
         # we can't have it match an arbitrary amount of whitespace. Thus, we do an approximate
         # check, only trying zero and one spaces.
 
-        (?&lt;! \+\+   | --   | [])}'"\$\d]   | \%{letter} |
-                \+\+\s | --\s | [])}'"\$\d]\s | \%{letter}\s )
+        (?&lt;! \+\+   | --   | [\]\)}'"\$\d]   | \%{letter} |
+                \+\+\s | --\s | [\]\)}'"\$\d]\s | \%{letter}\s )
 
         /
       </start>

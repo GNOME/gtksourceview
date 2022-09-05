@@ -189,7 +189,7 @@
 
     <!-- Lab text definition -->
     <context id="labtext" style-ref="labtext">
-      <start>^\s*[\x{2500}|-]{2,}</start>
+      <start>^\s*[\N{U+2500}|-]{2,}</start>
       <end>\%{close-expdef}</end>
     </context>
 

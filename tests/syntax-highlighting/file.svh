@@ -1,7 +1,7 @@
 class my_class extends some_class;
 
   // This is a comment.
-  /* This is also a comment, but it containts keywords: bit string, etc */
+  /* This is also a comment, but it contains keywords: bit string, etc */
 
   // Some types.
   string         my_string = "This is a string";

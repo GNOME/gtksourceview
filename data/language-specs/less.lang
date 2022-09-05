@@ -56,7 +56,7 @@
   <default-regex-options case-sensitive="false"/>
 
   <!-- from css:keyword-code-point -->
-  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
+  <keyword-char-class>[^\N{U+0}-\N{U+2C}\N{U+2E}\N{U+2F}\N{U+3A}-\N{U+40}\N{U+5B}\N{U+5D}\N{U+5E}\N{U+60}\N{U+7B}-\N{U+7F}]</keyword-char-class>
 
   <definitions>
 

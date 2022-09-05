@@ -5,11 +5,12 @@
   /- nested block comment -/
 -/
 
-def main : IO Unit :=
+@[noinline]
+def helloWorld : IO Unit :=
   let a := 1
-  let b := 0b1
-  let c := 0x1
-  let d := '1'
+  let a1 := 0b1
+  let a₂ := 0x1
+  let a' := '1'
   IO.println "Hello World"
 
-#eval main
+#eval helloWorld

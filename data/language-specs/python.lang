@@ -72,7 +72,7 @@
         [#0\-\ \+]*             # conversion flags
         (\-?\%{number}|\*)?     # minimum field width
         (\.(\-?\%{number}|\*))? # precision
-        (hlL)?                  # lentgh modifier
+        (hlL)?                  # length modifier
         [diouxXeEfFgGcrs%]      # conversion type
       </match>
     </context>

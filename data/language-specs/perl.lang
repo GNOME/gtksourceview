@@ -165,7 +165,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     </define-regex>
 
     <!-- this assertion is shared by all the regex contexts to avoid wrong
-         highlighing of function calls, etc.
+         highlighting of function calls, etc.
          \b can't be used because of $var, @var, &func, %func.              -->
     <!-- FIXME I added { and ( to the list to fix #507075 and #535703. Someone
          please look at it, it seems wrong. It probably should be a positive
@@ -1022,7 +1022,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     </context>
 
     <context id="pod" style-ref="pod" class-disabled="no-spell-check">
-      <start>^(?=(=[a-z]))</start>
+      <start>^(?=(=(?!end))[a-z])</start>
       <end>^=(cut)$</end>
       <include>
         <context sub-pattern="1" where="end" style-ref="pod-keyword"/>
@@ -1033,7 +1033,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
         </context>
         <context>
           <start>^=(begin)\s+(.*)$</start>
-          <end>^=(end)\s+\%{1@start}$</end>
+          <end>^=(end)\s+\%{2@start}$</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="pod-keyword"/>
             <context sub-pattern="1" where="end" style-ref="pod-keyword"/>

@@ -28,25 +28,26 @@
   </metadata>
 
   <styles>
-    <style id="module-handler"    name="Module Handler"        map-to="python:module-handler"/>
-    <style id="keyword"           name="Keyword"               map-to="python:keyword"/>
-    <style id="multiline-string"  name="Multiline string"      map-to="python:multiline-string"/>
-    <style id="string"            name="String"                map-to="python:string"/>
-    <style id="escaped-char"      name="Escaped Character"     map-to="python:escaped-char"/>
-    <style id="format"            name="Format"                map-to="python:format"/>
-    <style id="string-conversion" name="String Conversion"     map-to="python:string-conversion"/>
-    <style id="special-variable"  name="Special Variable"      map-to="python:special-variable"/>
-    <style id="boolean"           name="Boolean"               map-to="python:boolean"/>
-    <style id="floating-point"    name="Floating point number" map-to="python:floating-point"/>
-    <style id="decimal"           name="Decimal number"        map-to="python:decimal"/>
-    <style id="base-n-integer"    name="Base-N number"         map-to="python:base-n-integer"/>
-    <style id="complex"           name="Complex number"        map-to="python:complex"/>
-    <style id="builtin-constant"  name="Builtin Constant"      map-to="python:builtin-constant"/>
-    <style id="builtin-object"    name="Builtin Object"        map-to="python:builtin-object"/>
-    <style id="builtin-function"  name="Builtin Function"      map-to="python:builtin-function"/>
-    <style id="function-name"     name="Function Name"         map-to="python:function-name"/>
-    <style id="class-name"        name="Class Name"            map-to="python:class-name"/>
-    <style id="decorator"         name="Decorator"             map-to="python:decorator"/>
+    <style id="module-handler"        name="Module Handler"        map-to="python:module-handler"/>
+    <style id="keyword"               name="Keyword"               map-to="python:keyword"/>
+    <style id="multiline-string"      name="Multiline string"      map-to="python:multiline-string"/>
+    <style id="string"                name="String"                map-to="python:string"/>
+    <style id="escaped-char"          name="Escaped Character"     map-to="python:escaped-char"/>
+    <style id="format"                name="Format"                map-to="python:format"/>
+    <style id="string-conversion"     name="String Conversion"     map-to="python:string-conversion"/>
+    <style id="special-variable"      name="Special Variable"      map-to="python:special-variable"/>
+    <style id="boolean"               name="Boolean"               map-to="python:boolean"/>
+    <style id="floating-point"        name="Floating point number" map-to="python:floating-point"/>
+    <style id="decimal"               name="Decimal number"        map-to="python:decimal"/>
+    <style id="base-n-integer"        name="Base-N number"         map-to="python:base-n-integer"/>
+    <style id="complex"               name="Complex number"        map-to="python:complex"/>
+    <style id="builtin-constant"      name="Builtin Constant"      map-to="python:builtin-constant"/>
+    <style id="builtin-object"        name="Builtin Object"        map-to="python:builtin-object"/>
+    <style id="builtin-function"      name="Builtin Function"      map-to="python:builtin-function"/>
+    <style id="function-name"         name="Function Name"         map-to="python:function-name"/>
+    <style id="class-name"            name="Class Name"            map-to="python:class-name"/>
+    <style id="decorator"             name="Decorator"             map-to="python:decorator"/>
+    <style id="f-string-curly-braces" name="f-string curly braces" map-to="def:special-char"/>
   </styles>
 
   <definitions>
@@ -73,13 +74,38 @@
         [#0\-\ \+]*             # conversion flags
         (\-?\%{number}|\*)?     # minimum field width
         (\.(\-?\%{number}|\*))? # precision
-        (hlL)?                  # lentgh modifier
+        (hlL)?                  # length modifier
         [diouxXeEfFgGcrs%]      # conversion type
       </match>
     </context>
 
+    <context id="curly-braces" extend-parent="true">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context ref="python3"/>
+        <context ref="curly-braces"/>
+      </include>
+    </context>
+
+    <context id="f-string-curly-braces" extend-parent="false" class-disabled="string">
+      <start>(\{)</start>
+      <end>(\})</end>
+      <include>
+        <context ref="python3"/>
+        <context ref="curly-braces"/>
+        <context sub-pattern="1" where="start" style-ref="f-string-curly-braces"/>
+        <context sub-pattern="1" where="end" style-ref="f-string-curly-braces"/>
+      </include>
+    </context>
+
+    <context id="escaped-curly-brace" style-ref="escaped-char" extend-parent="true">
+      <match>\{\{</match>
+    </context>
+
     <define-regex id="string-prefix">(b|B)?</define-regex>
     <define-regex id="raw-string-prefix">(r|R|rb|RB|rB|Rb|br|BR|bR|Br)</define-regex>
+    <define-regex id="f-string-prefix">(f|F)</define-regex>
 
     <context id="multiline-double-quoted-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}"""</start>
@@ -116,6 +142,69 @@
         <context ref="format"/>
         <context ref="python:escaped-char"/>
         <context ref="def:line-continue"/>
+      </include>
+    </context>
+    <context id="multiline-double-quoted-f-string" class="string" class-disabled="no-spell-check">
+      <start>(\%{f-string-prefix}""")</start>
+      <end>(""")</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="python:escaped-char"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="multiline-string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="multiline-single-quoted-f-string" class="string" class-disabled="no-spell-check">
+      <start>(\%{f-string-prefix}''')</start>
+      <end>(''')</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="python:escaped-char"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="multiline-string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="double-quoted-f-string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>(\%{f-string-prefix}")</start>
+      <end>(")</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="python:escaped-char"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="single-quoted-f-string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>(\%{f-string-prefix}')</start>
+      <end>(')</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="python:escaped-char"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
       </include>
     </context>
 
@@ -206,6 +295,11 @@
         <context ref="multiline-single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="single-quoted-string"/>
+
+        <context ref="multiline-double-quoted-f-string"/>
+        <context ref="multiline-single-quoted-f-string"/>
+        <context ref="single-quoted-f-string"/>
+        <context ref="double-quoted-f-string"/>
 
         <context ref="multiline-double-quoted-raw-string"/>
         <context ref="multiline-single-quoted-raw-string"/>

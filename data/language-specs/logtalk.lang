@@ -204,7 +204,7 @@
       <keyword>(copy_term)(?=[(])</keyword>
       <keyword>(numbervars)(?=[(])</keyword>
       <keyword>(term_variables)(?=[(])</keyword>
-      <!-- Arithemtic evaluation -->
+      <!-- Arithmetic evaluation -->
       <keyword>is</keyword>
       <!-- Evaluable functors -->
       <keyword>e</keyword>
@@ -222,7 +222,7 @@
       <keyword>(truncate)(?=[(])</keyword>
       <keyword>(round)(?=[(])</keyword>
       <keyword>(ceiling)(?=[(])</keyword>
-      <!-- Other arithemtic functors -->
+      <!-- Other arithmetic functors -->
       <keyword>(sin)(?=[(])</keyword>
       <keyword>(cos)(?=[(])</keyword>
       <keyword>(tan)(?=[(])</keyword>
@@ -285,7 +285,7 @@
       <keyword>@&gt;</keyword>
       <!-- Term creation and decomposition -->
       <keyword>=\.\.</keyword>
-      <!-- Arithemtic comparison -->
+      <!-- Arithmetic comparison -->
       <keyword>=:=</keyword>
       <keyword>=\\=</keyword>
       <keyword>&lt;</keyword>
@@ -298,7 +298,7 @@
       <keyword>\*</keyword>
       <keyword>//</keyword>
       <keyword>/</keyword>
-      <!-- Other arithemtic functors -->
+      <!-- Other arithmetic functors -->
       <keyword>\*\*</keyword>
       <!-- Bitwise functors -->
       <keyword>&gt;&gt;</keyword>

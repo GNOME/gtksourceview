@@ -58,7 +58,7 @@
 
   <definitions>
 
-    <define-regex id="identifier">[a-zA-Z_\x{80}-\x{10ffff}][a-zA-Z0-9_\x{80}-\x{10ffff}]*</define-regex>
+    <define-regex id="identifier">[a-zA-Z_\N{U+80}-\N{U+10ffff}][a-zA-Z0-9_\N{U+80}-\N{U+10ffff}]*</define-regex>
 
     <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false" class="comment" class-disabled="no-spell-check">
       <start>#</start>
@@ -264,11 +264,15 @@
       <keyword>floatval</keyword>
       <keyword>gettype</keyword>
       <keyword>intval</keyword>
+      <keyword>json_decode</keyword>
+      <keyword>json_encode</keyword>
       <keyword>print_r</keyword>
       <keyword>serialize</keyword>
       <keyword>settype</keyword>
       <keyword>str_contains</keyword>
       <keyword>str_replace</keyword>
+      <keyword>str_starts_with</keyword>
+      <keyword>str_ends_with</keyword>
       <keyword>strip_tags</keyword>
       <keyword>strpos</keyword>
       <keyword>strval</keyword>
