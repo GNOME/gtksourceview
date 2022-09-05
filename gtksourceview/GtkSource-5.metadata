@@ -1,2 +1,8 @@
 CompletionProposal
   .get_typed_text#virtual_method virtual
+CompletionProvider
+  .get_title#virtual_method virtual
+  .get_priority#virtual_method virtual
+  .is_trigger#virtual_method virtual
+  .key_activates#virtual_method virtual
+  .list_alternates#virtual_method virtual
