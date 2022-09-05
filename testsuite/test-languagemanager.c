@@ -23,6 +23,8 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
+#include "gtksourceview/gtksourcelanguagemanager-private.h"
+
 #include "testsuite-gresources.h"
 
 /* If we are running from the source dir (e.g. during make check)
@@ -31,22 +33,25 @@
 static void
 init_default_manager (void)
 {
-	gchar *dir;
-
-	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+	char *dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
 	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
 	{
 		GtkSourceLanguageManager *lm;
-		gchar **lang_dirs;
+		char **lang_dirs;
+		char *rng = g_build_filename (dir, "language2.rng", NULL);
 
 		lm = gtk_source_language_manager_get_default ();
 
 		lang_dirs = g_new0 (gchar *, 2);
 		lang_dirs[0] = dir;
 
+		_gtk_source_language_manager_set_rng_file (rng);
 		gtk_source_language_manager_set_search_path (lm, (const gchar * const *)lang_dirs);
+
 		g_strfreev (lang_dirs);
+		g_free (rng);
+
 	}
 	else
 	{
@@ -201,12 +206,8 @@ test_resources (void)
 	GtkSourceLanguageManager *lm = gtk_source_language_manager_new ();
 	GtkSourceLanguage *l;
 	GtkSourceBuffer *buffer;
-	const char * search_path[] = { "resource:///language-specs/", NULL, NULL };
+	const char * const search_path[] = { "resource:///language-specs/", NULL };
 	const char * const *ids;
-	char *dir;
-
-	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
-	search_path[1] = dir;
 
 	g_resources_register (testsuite_get_resource ());
 
@@ -227,7 +228,6 @@ test_resources (void)
 
 	g_object_unref (buffer);
 	g_object_unref (lm);
-	g_free (dir);
 }
 
 static void
