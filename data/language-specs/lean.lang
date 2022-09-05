@@ -34,12 +34,12 @@
     <style id="attribute" name="Attribute" map-to="def:preprocessor"/>
     <style id="command" name="Command" map-to="def:preprocessor"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="identifier" name="Identifier"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="character" name="Character" map-to="def:character"/>
     <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
     <style id="numeric" name="Numeric" map-to="def:number"/>
     <style id="boolean" name="Boolean" map-to="def:boolean"/>
+    <style id="identifier" name="Identifier"/>
   </styles>
 
   <definitions>
@@ -69,25 +69,28 @@
 
     <context id="command" style-ref="command">
       <match extended="true">
-        ^\s*\#(
+        \#(?:
             check(_failure)?
           | eval
           | print
           | reduce
-        )
+        )\b
       </match>
     </context>
 
     <context id="keyword" style-ref="keyword">
+      <keyword>abbrev</keyword>
       <keyword>axiom</keyword>
       <keyword>break</keyword>
       <keyword>class</keyword>
       <keyword>continue</keyword>
       <keyword>def</keyword>
+      <keyword>deriving</keyword>
       <keyword>do</keyword>
       <keyword>else</keyword>
       <keyword>end</keyword>
       <keyword>example</keyword>
+      <keyword>extends</keyword>
       <keyword>for</keyword>
       <keyword>fun</keyword>
       <keyword>if</keyword>
@@ -98,8 +101,10 @@
       <keyword>match</keyword>
       <keyword>mut</keyword>
       <keyword>namespace</keyword>
+      <keyword>opaque</keyword>
       <keyword>open</keyword>
       <keyword>partial</keyword>
+      <keyword>rec</keyword>
       <keyword>return</keyword>
       <keyword>section</keyword>
       <keyword>structure</keyword>
@@ -112,32 +117,24 @@
       <keyword>λ</keyword>
     </context>
 
-    <context id="identifier" style-ref="identifier">
+    <context id="escaped-character" style-ref="escaped-character">
       <match extended="true">
-        (?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_]
-        (?:(?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_0-9'ⁿ₀-₉ₐ-ₜᵢ-ᵪ])*
-        | «[^«»\r\n\t]*»
+        \\(?:
+            \\
+          | \"
+          | \'
+          | n
+          | t
+          | x[0-9a-fA-F]{2}
+        )
       </match>
     </context>
-
-    <define-regex id="string-escape" extended="true">
-      \\(
-          \\
-        | \"
-        | \'
-        | n
-        | t
-        | x[0-9a-fA-F]{2}
-      )
-    </define-regex>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
       <include>
-        <context style-ref="escaped-character">
-          <match>\%{string-escape}</match>
-        </context>
+        <context ref="escaped-character"/>
       </include>
     </context>
 
@@ -145,15 +142,13 @@
       <start>'</start>
       <end>'</end>
       <include>
-        <context style-ref="escaped-character">
-          <match>\%{string-escape}</match>
-        </context>
+        <context ref="escaped-character"/>
       </include>
     </context>
 
     <context id="numeric" style-ref="numeric">
       <match extended="true">
-          0[bB][0-1]+
+          0[bB][01]+
         | 0[oO][0-7]+
         | 0[xX][0-9a-fA-F]+
         | [0-9]+
@@ -165,6 +160,14 @@
       <keyword>false</keyword>
     </context>
 
+    <context id="identifier" style-ref="identifier">
+      <match extended="true">
+        (?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_]
+        (?:(?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_0-9'ⁿ₀-₉ₐ-ₜᵢ-ᵪ])*
+        | «[^«»\r\n\t]*»
+      </match>
+    </context>
+
     <context id="lean" class="no-spell-check">
       <include>
         <context ref="line-comment"/>
@@ -172,11 +175,11 @@
         <context ref="attribute"/>
         <context ref="command"/>
         <context ref="keyword"/>
-        <context ref="identifier"/>
         <context ref="string"/>
         <context ref="character"/>
         <context ref="numeric"/>
         <context ref="boolean"/>
+        <context ref="identifier"/>
       </include>
     </context>
 
