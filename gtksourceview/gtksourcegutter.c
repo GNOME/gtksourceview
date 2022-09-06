@@ -24,7 +24,6 @@
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterlines.h"
 #include "gtksourcegutterlines-private.h"
-#include "gtksourcesignalgroup-private.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourceview-private.h"
 #include "gtksourcegutterrenderer.h"
@@ -74,7 +73,7 @@ struct _GtkSourceGutter
 	GtkSourceView        *view;
 	GList                *renderers;
 	GtkSourceGutterLines *lines;
-	GtkSourceSignalGroup *signals;
+	GSignalGroup         *signals;
 	GBinding             *target_binding;
 
 	GtkTextWindowType     window_type;
@@ -426,7 +425,7 @@ gtk_source_gutter_dispose (GObject *object)
 
 	if (gutter->signals != NULL)
 	{
-		gtk_source_signal_group_set_target (gutter->signals, NULL);
+		g_signal_group_set_target (gutter->signals, NULL);
 		g_clear_object (&gutter->signals);
 	}
 
@@ -488,17 +487,17 @@ gtk_source_gutter_init (GtkSourceGutter *gutter)
 
 	gutter->window_type = GTK_TEXT_WINDOW_LEFT;
 
-	gutter->signals = gtk_source_signal_group_new (GTK_TYPE_ADJUSTMENT);
-	gtk_source_signal_group_connect_object (gutter->signals,
-						"value-changed",
-						G_CALLBACK (on_adjustment_value_changed),
-						gutter,
-						0);
-	gtk_source_signal_group_connect_object (gutter->signals,
-						"notify::upper",
-						G_CALLBACK (on_adjustment_upper_changed),
-						gutter,
-						0);
+	gutter->signals = g_signal_group_new (GTK_TYPE_ADJUSTMENT);
+	g_signal_group_connect_object (gutter->signals,
+	                               "value-changed",
+	                               G_CALLBACK (on_adjustment_value_changed),
+	                               gutter,
+	                               0);
+	g_signal_group_connect_object (gutter->signals,
+	                               "notify::upper",
+	                               G_CALLBACK (on_adjustment_upper_changed),
+	                               gutter,
+	                               0);
 
 	/* Setup fallback click handling */
 	click = gtk_gesture_click_new ();

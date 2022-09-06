@@ -131,7 +131,6 @@ core_private_c = files([
   'gtksourcemarkssequence.c',
   'gtksourcepixbufhelper.c',
   'gtksourceregex.c',
-  'gtksourcesignalgroup.c',
   'gtksourceview-assistants.c',
   'gtksourcesnippetbundle.c',
   'gtksourcesnippetbundle-parser.c',

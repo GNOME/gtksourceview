@@ -28,7 +28,6 @@
 #include "gtksourcehovercontext.h"
 #include "gtksourcehoverprovider.h"
 #include "gtksourceiter-private.h"
-#include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
 #define DEFAULT_HOVER_DELAY 500

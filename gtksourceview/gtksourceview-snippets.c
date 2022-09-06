@@ -392,7 +392,7 @@ gtk_source_view_snippets_notify_position_cb (GtkSourceViewSnippets *snippets,
 }
 
 static void
-gtk_source_view_snippets_bind_cb (GtkSourceSignalGroup  *signals,
+gtk_source_view_snippets_bind_cb (GSignalGroup          *signals,
                                   GtkSourceSnippet      *snippet,
                                   GtkSourceViewSnippets *snippets)
 {
@@ -416,19 +416,19 @@ _gtk_source_view_snippets_init (GtkSourceViewSnippets *snippets,
 	memset (snippets, 0, sizeof *snippets);
 	snippets->view = view;
 
-	snippets->snippet_signals = gtk_source_signal_group_new (GTK_SOURCE_TYPE_SNIPPET);
+	snippets->snippet_signals = g_signal_group_new (GTK_SOURCE_TYPE_SNIPPET);
 
 	g_signal_connect (snippets->snippet_signals,
 	                  "bind",
 	                  G_CALLBACK (gtk_source_view_snippets_bind_cb),
 	                  snippets);
 
-	gtk_source_signal_group_connect_data (snippets->snippet_signals,
-	                                      "notify::focus-position",
-	                                      G_CALLBACK (gtk_source_view_snippets_notify_position_cb),
-	                                      snippets,
-	                                      NULL,
-	                                      G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+	g_signal_group_connect_data (snippets->snippet_signals,
+	                             "notify::focus-position",
+	                             G_CALLBACK (gtk_source_view_snippets_notify_position_cb),
+	                             snippets,
+	                             NULL,
+	                             G_CONNECT_SWAPPED | G_CONNECT_AFTER);
 
 	if (GTK_SOURCE_IS_BUFFER (buffer))
 	{
@@ -464,7 +464,7 @@ _gtk_source_view_snippets_shutdown (GtkSourceViewSnippets *snippets)
 
 	if (snippets->snippet_signals != NULL)
 	{
-		gtk_source_signal_group_set_target (snippets->snippet_signals, NULL);
+		g_signal_group_set_target (snippets->snippet_signals, NULL);
 		g_clear_object (&snippets->snippet_signals);
 	}
 
@@ -679,7 +679,7 @@ _gtk_source_view_snippets_push (GtkSourceViewSnippets *snippets,
 	}
 	else
 	{
-		gtk_source_signal_group_set_target (snippets->snippet_signals, snippet);
+		g_signal_group_set_target (snippets->snippet_signals, snippet);
 	}
 }
 
@@ -721,7 +721,7 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 	}
 
 	snippet = g_queue_peek_head (&snippets->queue);
-	gtk_source_signal_group_set_target (snippets->snippet_signals, snippet);
+	g_signal_group_set_target (snippets->snippet_signals, snippet);
 
 	if (snippet == NULL)
 	{

@@ -30,7 +30,6 @@
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcebuffer.h"
-#include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
 /**
@@ -105,17 +104,17 @@ struct _GtkSourceCompletion
 	 * our current context. That includes handling notification of the first
 	 * result so that we can show the window, etc.
 	 */
-	GtkSourceSignalGroup *context_signals;
+	GSignalGroup *context_signals;
 
 	/* Signals to changes in the underlying GtkTextBuffer that we use to
 	 * determine where and how we can do completion.
 	 */
-	GtkSourceSignalGroup *buffer_signals;
+	GSignalGroup *buffer_signals;
 
 	/* We need to track various events on the view to ensure that we don't
 	 * activate at incorrect times.
 	 */
-	GtkSourceSignalGroup *view_signals;
+	GSignalGroup *view_signals;
 
 	/* The display popover for results */
 	GtkSourceCompletionList *display;
@@ -403,7 +402,7 @@ _gtk_source_completion_set_context (GtkSourceCompletion        *self,
 	if (g_set_object (&self->context, context))
 	{
 		g_clear_handle_id (&self->queued_update, g_source_remove);
-		gtk_source_signal_group_set_target (self->context_signals, context);
+		g_signal_group_set_target (self->context_signals, context);
 	}
 }
 
@@ -896,7 +895,7 @@ gtk_source_completion_set_view (GtkSourceCompletion *self,
 
 	if (g_set_weak_pointer (&self->view, view))
 	{
-		gtk_source_signal_group_set_target (self->view_signals, view);
+		g_signal_group_set_target (self->view_signals, view);
 		g_object_bind_property (view, "buffer",
 		                        self->buffer_signals, "target",
 		                        G_BINDING_SYNC_CREATE);
@@ -904,15 +903,15 @@ gtk_source_completion_set_view (GtkSourceCompletion *self,
 }
 
 static void
-on_buffer_signals_bind (GtkSourceCompletion  *self,
-                        GtkSourceBuffer      *buffer,
-                        GtkSourceSignalGroup *signals_)
+on_buffer_signals_bind (GtkSourceCompletion *self,
+                        GtkSourceBuffer     *buffer,
+                        GSignalGroup        *signals_)
 {
 	GtkTextIter where;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION (self));
 	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
-	g_assert (GTK_SOURCE_IS_SIGNAL_GROUP (signals_));
+	g_assert (G_IS_SIGNAL_GROUP (signals_));
 
 	if (self->disposed)
 		return;
@@ -950,9 +949,9 @@ gtk_source_completion_dispose (GObject *object)
 		self->hide_tick_handler = 0;
 	}
 
-	gtk_source_signal_group_set_target (self->context_signals, NULL);
-	gtk_source_signal_group_set_target (self->buffer_signals, NULL);
-	gtk_source_signal_group_set_target (self->view_signals, NULL);
+	g_signal_group_set_target (self->context_signals, NULL);
+	g_signal_group_set_target (self->buffer_signals, NULL);
+	g_signal_group_set_target (self->view_signals, NULL);
 
 	g_clear_pointer ((GtkSourceAssistant **)&self->display, _gtk_source_assistant_destroy);
 
@@ -1229,9 +1228,9 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 {
 	self->cancellable = g_cancellable_new ();
 	self->providers = g_ptr_array_new_with_free_func (g_object_unref);
-	self->buffer_signals = gtk_source_signal_group_new (GTK_TYPE_TEXT_BUFFER);
-	self->context_signals = gtk_source_signal_group_new (GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
-	self->view_signals = gtk_source_signal_group_new (GTK_SOURCE_TYPE_VIEW);
+	self->buffer_signals = g_signal_group_new (GTK_TYPE_TEXT_BUFFER);
+	self->context_signals = g_signal_group_new (GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
+	self->view_signals = g_signal_group_new (GTK_SOURCE_TYPE_VIEW);
 	self->page_size = DEFAULT_PAGE_SIZE;
 	self->show_icons = TRUE;
 
@@ -1240,11 +1239,11 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 	 * having results (or vice-versa, when we've filtered to the point of
 	 * no results).
 	 */
-	gtk_source_signal_group_connect_object (self->context_signals,
-	                                        "notify::empty",
-	                                        G_CALLBACK (gtk_source_completion_notify_context_empty_cb),
-	                                        self,
-	                                        G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->context_signals,
+	                               "notify::empty",
+	                               G_CALLBACK (gtk_source_completion_notify_context_empty_cb),
+	                               self,
+	                               G_CONNECT_SWAPPED);
 
 	/*
 	 * We need to know when the buffer inserts or deletes text so that we
@@ -1256,41 +1255,41 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 	                         G_CALLBACK (on_buffer_signals_bind),
 	                         self,
 	                         G_CONNECT_SWAPPED);
-	gtk_source_signal_group_connect_object (self->buffer_signals,
-	                                        "delete-range",
-	                                        G_CALLBACK (gtk_source_completion_buffer_delete_range_after_cb),
-	                                        self,
-	                                        G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-	gtk_source_signal_group_connect_object (self->buffer_signals,
-	                                        "insert-text",
-	                                        G_CALLBACK (gtk_source_completion_buffer_insert_text_after_cb),
-	                                        self,
-	                                        G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-	gtk_source_signal_group_connect_object (self->buffer_signals,
-	                                        "mark-set",
-	                                        G_CALLBACK (gtk_source_completion_buffer_mark_set_cb),
-	                                        self,
-	                                        G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->buffer_signals,
+	                               "delete-range",
+	                               G_CALLBACK (gtk_source_completion_buffer_delete_range_after_cb),
+	                               self,
+	                               G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->buffer_signals,
+	                               "insert-text",
+	                               G_CALLBACK (gtk_source_completion_buffer_insert_text_after_cb),
+	                               self,
+	                               G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->buffer_signals,
+	                               "mark-set",
+	                               G_CALLBACK (gtk_source_completion_buffer_mark_set_cb),
+	                               self,
+	                               G_CONNECT_SWAPPED);
 
 	/*
 	 * We track some events on the view that owns our GtkSourceCompletion instance so
 	 * that we can hide the window when it definitely should not be displayed.
 	 */
-	gtk_source_signal_group_connect_object (self->view_signals,
-	                                        "move-cursor",
-	                                        G_CALLBACK (gtk_source_completion_view_move_cursor_cb),
-	                                        self,
-	                                        G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-	gtk_source_signal_group_connect_object (self->view_signals,
-	                                        "paste-clipboard",
-	                                        G_CALLBACK (gtk_source_completion_block_interactive),
-	                                        self,
-	                                        G_CONNECT_SWAPPED);
-	gtk_source_signal_group_connect_object (self->view_signals,
-	                                        "paste-clipboard",
-	                                        G_CALLBACK (gtk_source_completion_unblock_interactive),
-	                                        self,
-	                                        G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->view_signals,
+	                               "move-cursor",
+	                               G_CALLBACK (gtk_source_completion_view_move_cursor_cb),
+	                               self,
+	                               G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->view_signals,
+	                               "paste-clipboard",
+	                               G_CALLBACK (gtk_source_completion_block_interactive),
+	                               self,
+	                               G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (self->view_signals,
+	                               "paste-clipboard",
+	                               G_CALLBACK (gtk_source_completion_unblock_interactive),
+	                               self,
+	                               G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 }
 
 /**
@@ -1505,7 +1504,7 @@ _gtk_source_completion_get_display (GtkSourceCompletion *self)
  * @priority: (out) (allow-none): An optional location for the score of the match
  *
  * This helper function can do a fuzzy match for you giving a haystack and
- * casefolded needle. 
+ * casefolded needle.
  *
  * Casefold your needle using [func@GLib.utf8_casefold] before
  * running the query.

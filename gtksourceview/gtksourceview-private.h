@@ -25,7 +25,6 @@
 
 #include "gtksourceinformative-private.h"
 #include "gtksourceassistant-private.h"
-#include "gtksourcesignalgroup-private.h"
 
 G_BEGIN_DECLS
 
@@ -39,7 +38,7 @@ typedef struct _GtkSourceViewSnippets
 {
 	GtkSourceView        *view;
 	GtkSourceBuffer      *buffer;
-	GtkSourceSignalGroup *snippet_signals;
+	GSignalGroup         *snippet_signals;
 	GtkSourceInformative *informative;
 	GQueue                queue;
 	gulong                buffer_insert_text_handler;
