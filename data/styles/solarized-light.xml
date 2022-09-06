@@ -121,7 +121,7 @@
 
   <!-- Others -->
   <style name="def:preprocessor"            foreground="violet"/>
-  <style name="def:error"                   foreground="red" bold="true"/>
+  <style name="def:error"                   underline="error" underline-color="red"/>
   <style name="def:note"                    foreground="magenta" bold="true"/>
   <style name="def:net-address"             italic="true" underline="single"/>
 
