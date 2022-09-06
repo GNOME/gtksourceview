@@ -24,7 +24,6 @@
 
 #include "config.h"
 
-#include "gtksourcebindinggroup-private.h"
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletioncontext-private.h"
 #include "gtksourcecompletionlist-private.h"

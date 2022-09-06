@@ -113,7 +113,6 @@ core_public_c = files([
 core_private_c = files([
   'gtksourceassistant.c',
   'gtksourceassistantchild.c',
-  'gtksourcebindinggroup.c',
   'gtksourcebufferinputstream.c',
   'gtksourcebufferinternal.c',
   'gtksourcebufferoutputstream.c',
