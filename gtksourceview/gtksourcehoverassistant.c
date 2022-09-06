@@ -283,7 +283,16 @@ static void
 gtk_source_hover_assistant_get_target_location (GtkSourceAssistant *assistant,
                                                 GdkRectangle       *rect)
 {
+	GtkSourceHoverAssistant *self = GTK_SOURCE_HOVER_ASSISTANT (assistant);
+	GtkStyleContext *style_context;
+	GtkBorder padding;
+
 	*rect = GTK_SOURCE_HOVER_ASSISTANT (assistant)->hovered_at;
+
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (self->display));
+	gtk_style_context_get_padding (style_context, &padding);
+
+	rect->x -= padding.left;
 }
 
 static void
