@@ -68,8 +68,8 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.70'
-gtk_req_version = '4.5'
+glib_req_version = '2.73'
+gtk_req_version = '4.7'
 
 libm_dep = cc.find_library('m', required: false)
 
@@ -115,6 +115,10 @@ xmllint_prg = find_program('xmllint', required: false)
 glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]
 glib_minor_version = glib_version_arr[1]
+
+if glib_minor_version.to_int() % 2 == 1
+  glib_minor_version = '@0@'.format(glib_minor_version.to_int()+1)
+endif
 
 gtk_version_arr = gtk_req_version.split('.')
 gtk_major_version = gtk_version_arr[0]
