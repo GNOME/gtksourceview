@@ -64,6 +64,7 @@ gtk_source_hover_display_class_init (GtkSourceHoverDisplayClass *klass)
 	object_class->dispose = gtk_source_hover_display_dispose;
 
 	gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+	gtk_widget_class_set_css_name (widget_class, "GtkSourceHoverDisplay");
 }
 
 static void
