@@ -70,6 +70,10 @@
   <!-- Search Matching -->
   <style name="search-match"                foreground="base03" background="yellow"/>
 
+  <!-- Builder Overrides -->
+  <style name="-Builder:breakpoint"         line-background="base1" foreground="base01"/>
+  <style name="-Builder:current-breakpoint" line-background="yellow" foreground="base01"/>
+
   <!-- Comments -->
   <style name="def:comment"                 foreground="base01"/>
   <style name="def:shebang"                 foreground="base01" bold="true"/>
