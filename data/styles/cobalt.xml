@@ -118,9 +118,9 @@
   <style name="def:list-marker"             foreground="bright_orange"/>
 
   <!-- Others -->
-  <style name="def:error"                   foreground="white" background="dark_red" bold="true"/>
-  <style name="def:warning"                 foreground="white" background="nail_polish_pink"/>
-  <style name="def:note"                    foreground="neon_yellow" bold="true"/>
+  <style name="def:error"                   underline="error" underline-color="dark_red"/>
+  <style name="def:warning"                 underline="error" underline-color="neon_yellow"/>
+  <style name="def:note"                    underline="error" underline-color="steel_grey"/>
   <style name="def:net-address"             foreground="teal_blue" italic="false" underline="single"/>
   <style name="def:preprocessor"            foreground="light_grey"/>
   <style name="def:underlined"              underline="single"/>
