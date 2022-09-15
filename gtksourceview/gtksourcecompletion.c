@@ -1594,7 +1594,7 @@ add_attributes (PangoAttrList **attrs,
 		*attrs = pango_attr_list_new ();
 	}
 
-	attr = pango_attr_underline_new (PANGO_UNDERLINE_SINGLE);
+	attr = pango_attr_underline_new (PANGO_UNDERLINE_SINGLE_LINE);
 	attr->start_index = begin;
 	attr->end_index = end;
 	pango_attr_list_insert (*attrs, g_steal_pointer (&attr));
