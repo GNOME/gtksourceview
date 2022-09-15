@@ -36,7 +36,7 @@ testsuite_sources = [
   ['test-regex'],
   ['test-region'],
   ['test-search-context'],
-  ['test-snippets'],
+  ['test-snippets', false],
   ['test-space-drawer'],
   ['test-stylescheme'],
   ['test-styleschememanager'],
