@@ -318,12 +318,17 @@ gtk_source_completion_cell_set_text_with_attributes (GtkSourceCompletionCell *se
 
 	gtk_source_completion_cell_set_text (self, text);
 
+	if (text == NULL)
+	{
+		return;
+	}
+
 	if (attrs != NULL)
 	{
 		if (self->attrs != NULL)
 		{
 			PangoAttrList *copy = pango_attr_list_copy (self->attrs);
-			pango_attr_list_splice (copy, attrs, 0, 0);
+			pango_attr_list_splice (copy, attrs, 0, g_utf8_strlen (text, -1));
 			gtk_label_set_attributes (GTK_LABEL (self->child), copy);
 			g_clear_pointer (&copy, pango_attr_list_unref);
 		}
