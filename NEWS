@@ -1,3 +1,47 @@
+News in 5.6.0, 2022-09-17
+-------------------------
+
+This release corresponds to GNOME 43.0 and includes many bug fixes
+across the library. It is recommended that distributions update to
+this release.
+
+ * Updated languages: awk.lang, lean.lang
+ * Updated style schemes: Adwaita.xml, Adwaita-dark.xml,
+   solarized-light.xml, solarized-dark.xml, cobalt.xml
+ * Translation updates
+ * A bug with input grabs has been fixed when using GtkSourceHover
+   to create interactive tooltips in a stack or notebook.
+ * highlight-current-line is only rendered when the toplevel is active.
+ * Merging of snippet bundles handles tooltips now.
+ * The snippet manager now delays snippet parsing until needed.
+ * Completion of snippets is now lazier resulting in less memory and
+   CPU usage.
+ * Informative tooltips for snippets are now more aggressively dismissed.
+ * Scrolling now dismisses interactive hover tooltips.
+ * Use of Escape now dismisses the completion list and forwards the
+   event to the GtkSourceView, improving integration of Vim emulation.
+ * Snippet filtering correctness has been improved when adding/removing
+   characters from the filter text.
+ * Assistants such as the completion list defer repositioning to the
+   next frame tick which improves some situations with widgetry not
+   having an allocation when snapshotted.
+ * A new GtkSourceCompletion::provider-model-changed signal has been
+   added which allows observation of providers by external tooling.
+   This can be used to implement features like "top matches" from various
+   completion providers.
+ * Testsuite improvements
+ * GtkSourceView now uses GSignalGroup and GBindingGroup from GLib, and
+   therefore bumps our GLib dependency as it would be necessary with
+   updated GTK releases anyway.
+ * GtkSourceHoverDisplay now specifies a CSS element name for use by
+   applications in styling.
+ * GtkSourceCompletion now uses PANGO_UNDERLINE_SINGLE_LINE and
+   PANGO_WEIGHT_BOLD Pango attributes for highlighting fuzzy matches.
+   This improves visibility when used with certain character sets.
+ * Splicing of Pango attributes has been improved for completion which
+   ensures the merging does not result in missing attributes.
+ * Some methods have been marked as virtual for Vala.
+
 News in 5.5.1, 2022-08-05
 -------------------------
 
