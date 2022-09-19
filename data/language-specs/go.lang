@@ -236,9 +236,11 @@
     </context>
 
     <context id="types" style-ref="type">
+      <keyword>any</keyword>
       <keyword>bool</keyword>
       <keyword>byte</keyword>
       <keyword>chan</keyword>
+      <keyword>comparable</keyword>
       <keyword>complex64</keyword>
       <keyword>complex128</keyword>
       <keyword>error</keyword>
