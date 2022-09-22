@@ -315,6 +315,32 @@ gtk_source_hover_assistant_dispose (GObject *object)
 }
 
 static void
+gtk_source_hover_assistant_click_pressed_cb (GtkSourceHoverAssistant *self,
+                                             int                      n_press,
+                                             double                   x,
+                                             double                   y,
+                                             GtkGestureClick         *click)
+{
+	GdkEventSequence *sequence;
+	GdkEvent *event;
+
+	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
+
+	sequence = gtk_gesture_single_get_current_sequence (GTK_GESTURE_SINGLE (click));
+	event = gtk_gesture_get_last_event (GTK_GESTURE (click), sequence);
+
+	/* WORKAROUND: See comment below in gtk_source_hover_assistant_init().
+	 * We have to block context menus from here until we can be sure they'll
+	 * work with GtkPopover:autohide disabled.
+	 */
+	if (gdk_event_triggers_context_menu (event))
+	{
+		gtk_gesture_set_state (GTK_GESTURE (click), GTK_EVENT_SEQUENCE_CLAIMED);
+	}
+}
+
+static void
 gtk_source_hover_assistant_class_init (GtkSourceHoverAssistantClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -334,6 +360,7 @@ gtk_source_hover_assistant_class_init (GtkSourceHoverAssistantClass *klass)
 static void
 gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 {
+	GtkEventController *click;
 	GtkEventController *scroll;
 
 	gtk_widget_add_css_class (GTK_WIDGET (self), "hover-assistant");
@@ -360,6 +387,21 @@ gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 	                         self,
 	                         G_CONNECT_SWAPPED);
 	gtk_widget_add_controller (GTK_WIDGET (self), g_object_ref (self->popover_motion));
+
+	/* WORKAROUND: Until we have a way to ensure that showing context
+	 * menus from the popover won't break our popover, we need to prevent
+	 * them from potentially breaking input/grabs.
+	 */
+	click = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
+	g_signal_connect_object (click,
+	                         "pressed",
+	                         G_CALLBACK (gtk_source_hover_assistant_click_pressed_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (click), 0);
+	gtk_gesture_single_set_exclusive (GTK_GESTURE_SINGLE (click), TRUE);
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (click), GTK_PHASE_CAPTURE);
+	gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (click));
 }
 
 GtkSourceAssistant *
