@@ -1,3 +1,21 @@
+News in 5.6.1, 2022-09-22
+-------------------------
+
+This release contains a number of fixes found early after release
+of 5.6.0 that warrant distributing to users.
+
+ * Improve resilience of GtkSourceHover assistants to prevent
+   unbreakable grabs by application added widgets.
+ * Hide all assistants when unmapping GtkSourceViews.
+ * Don't dismiss hover delay timeout from pointer clicks, allow
+   them to click through to display hover information.
+ * Don't show new assistants unless parent GtkSourceView is
+   mapped. This can improve situations with tabbed editors and
+   asynchronous operations to load completion, hover data, etc.
+ * Additional Vim commands.
+ * Updated languages: go.lang
+ * Updated translations: Turkish and Nepali
+
 News in 5.6.0, 2022-09-17
 -------------------------
 
