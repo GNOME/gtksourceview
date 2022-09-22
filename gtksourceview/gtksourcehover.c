@@ -66,6 +66,8 @@ struct _GtkSourceHover
 	guint               hover_delay;
 
 	GSource            *settle_source;
+
+	guint               in_click : 1;
 };
 
 G_DEFINE_TYPE (GtkSourceHover, gtk_source_hover, G_TYPE_OBJECT)
@@ -98,7 +100,10 @@ cursor_moved_cb (GtkSourceHover  *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
-	gtk_source_hover_dismiss (self);
+	if (!self->in_click)
+	{
+		gtk_source_hover_dismiss (self);
+	}
 }
 
 static void
@@ -416,6 +421,32 @@ gtk_source_hover_init (GtkSourceHover *self)
 	self->hover_delay = DEFAULT_HOVER_DELAY;
 }
 
+static void
+gtk_source_hover_click_pressed_cb (GtkSourceHover  *self,
+                                   int              n_press,
+                                   double           x,
+                                   double           y,
+                                   GtkGestureClick *click)
+{
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
+
+	self->in_click = TRUE;
+}
+
+static void
+gtk_source_hover_click_released_cb (GtkSourceHover  *self,
+                                    int              n_press,
+                                    double           x,
+                                    double           y,
+                                    GtkGestureClick *click)
+{
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
+
+	self->in_click = FALSE;
+}
+
 GtkSourceHover *
 _gtk_source_hover_new (GtkSourceView *view)
 {
@@ -423,6 +454,7 @@ _gtk_source_hover_new (GtkSourceView *view)
 	GtkEventController *key;
 	GtkEventController *motion;
 	GtkEventController *scroll;
+	GtkEventController *click;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
@@ -451,6 +483,20 @@ _gtk_source_hover_new (GtkSourceView *view)
 	                         self,
 	                         G_CONNECT_SWAPPED);
 	gtk_widget_add_controller (GTK_WIDGET (view), motion);
+
+	click = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
+	g_signal_connect_object (click,
+	                         "pressed",
+	                         G_CALLBACK (gtk_source_hover_click_pressed_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	g_signal_connect_object (click,
+	                         "released",
+	                         G_CALLBACK (gtk_source_hover_click_released_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_event_controller_set_propagation_phase (click, GTK_PHASE_CAPTURE);
+	gtk_widget_add_controller (GTK_WIDGET (view), click);
 
 	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
 	g_signal_connect_object (scroll,
