@@ -1048,6 +1048,7 @@ key_handler_g (GtkSourceVimNormal *self,
                const char         *string)
 {
 	GtkSourceVimState *new_state;
+	GtkSourceVimState *root;
 
 	g_assert (GTK_SOURCE_IS_VIM_NORMAL (self));
 
@@ -1076,6 +1077,19 @@ key_handler_g (GtkSourceVimNormal *self,
 			new_state = gtk_source_vim_visual_clone (GTK_SOURCE_VIM_VISUAL (self->last_visual));
 			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), new_state);
 			return TRUE;
+
+		case GDK_KEY_d:
+		case GDK_KEY_D:
+			if ((root = gtk_source_vim_state_get_root (GTK_SOURCE_VIM_STATE (self))) &&
+			    GTK_SOURCE_IS_VIM (root))
+			{
+				const char *command = keyval == GDK_KEY_d ? "gd" : "gD";
+				gtk_source_vim_emit_execute_command (GTK_SOURCE_VIM (root), command);
+				gtk_source_vim_normal_clear (self);
+				return TRUE;
+			}
+
+			G_GNUC_FALLTHROUGH;
 
 		default:
 			return gtk_source_vim_normal_bail (self);
