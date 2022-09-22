@@ -385,8 +385,11 @@ gtk_source_hover_assistant_populate_cb (GObject      *object,
 	{
 		if (!self->disposed)
 		{
-			gtk_widget_set_visible (GTK_WIDGET (self),
-			                        !_gtk_source_hover_display_is_empty (self->display));
+			GtkWidget *parent = gtk_widget_get_parent (GTK_WIDGET (self));
+			gboolean mapped = parent && gtk_widget_get_mapped (parent);
+			gboolean empty = _gtk_source_hover_display_is_empty (self->display);
+
+			gtk_widget_set_visible (GTK_WIDGET (self), mapped && !empty);
 		}
 	}
 

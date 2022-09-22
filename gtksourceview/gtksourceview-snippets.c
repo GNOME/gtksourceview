@@ -367,7 +367,10 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 	}
 	else
 	{
-		gtk_widget_show (GTK_WIDGET (snippets->informative));
+		if (gtk_widget_get_mapped (GTK_WIDGET (snippets->view)))
+		{
+			gtk_widget_show (GTK_WIDGET (snippets->informative));
+		}
 	}
 
 	return;

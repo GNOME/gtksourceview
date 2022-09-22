@@ -213,7 +213,10 @@ display_show (GtkSourceCompletion *self)
 		self->hide_tick_handler = 0;
 	}
 
-	gtk_widget_show (GTK_WIDGET (_gtk_source_completion_get_display (self)));
+	if (gtk_widget_get_mapped (GTK_WIDGET (self->view)))
+	{
+		gtk_widget_show (GTK_WIDGET (_gtk_source_completion_get_display (self)));
+	}
 }
 
 static gboolean
