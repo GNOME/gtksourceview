@@ -473,7 +473,8 @@ gtk_source_completion_compute_bounds (GtkSourceCompletion *self,
 
 static void
 gtk_source_completion_start (GtkSourceCompletion           *self,
-                             GtkSourceCompletionActivation  activation)
+                             GtkSourceCompletionActivation  activation,
+                             gboolean                       from_trigger)
 {
 	GtkSourceCompletionContext *context = NULL;
 	GtkTextBuffer *buffer;
@@ -487,8 +488,11 @@ gtk_source_completion_start (GtkSourceCompletion           *self,
 
 	if (!gtk_source_completion_compute_bounds (self, &begin, &end))
 	{
-		if (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
+		if (!from_trigger && activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
+		{
 			goto cleanup;
+		}
+
 		begin = end;
 	}
 
@@ -531,7 +535,8 @@ cleanup:
 
 static void
 gtk_source_completion_update (GtkSourceCompletion           *self,
-                              GtkSourceCompletionActivation  activation)
+                              GtkSourceCompletionActivation  activation,
+                              gboolean                       from_trigger)
 {
 	GtkTextBuffer *buffer;
 	GtkTextMark *insert;
@@ -616,7 +621,7 @@ gtk_source_completion_update (GtkSourceCompletion           *self,
 
 reset:
 	gtk_source_completion_cancel (self);
-	gtk_source_completion_start (self, activation);
+	gtk_source_completion_start (self, activation, from_trigger);
 }
 
 static void
@@ -641,11 +646,11 @@ gtk_source_completion_real_show (GtkSourceCompletion *self)
 
 	if (self->context == NULL)
 	{
-		gtk_source_completion_start (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED);
+		gtk_source_completion_start (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED, FALSE);
 	}
 	else
 	{
-		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED);
+		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED, FALSE);
 	}
 
 	_gtk_source_completion_list_set_context (display, self->context);
@@ -670,7 +675,9 @@ gtk_source_completion_queued_update_cb (gpointer user_data)
 	self->queued_update = 0;
 
 	if (self->context != NULL)
-		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE);
+	{
+		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE, FALSE);
+	}
 
 	return G_SOURCE_REMOVE;
 }
@@ -803,7 +810,8 @@ gtk_source_completion_buffer_insert_text_after_cb (GtkSourceCompletion *self,
                                                    gint                 len,
                                                    GtkTextBuffer       *buffer)
 {
-	GtkSourceCompletionActivation activation = GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE;
+	const GtkSourceCompletionActivation activation = GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE;
+	gboolean from_trigger = FALSE;
 	GtkTextIter begin;
 	GtkTextIter end;
 
@@ -840,8 +848,8 @@ gtk_source_completion_buffer_insert_text_after_cb (GtkSourceCompletion *self,
 					 * completion. We need to cancel the previous completion (if any) first
 					 * and then try to start a new completion due to trigger.
 					 */
+					from_trigger = TRUE;
 					gtk_source_completion_cancel (self);
-					activation = GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE;
 					goto do_completion;
 				}
 			}
@@ -854,9 +862,9 @@ gtk_source_completion_buffer_insert_text_after_cb (GtkSourceCompletion *self,
 do_completion:
 
 	if (self->context == NULL)
-		gtk_source_completion_start (self, activation);
+		gtk_source_completion_start (self, activation, from_trigger);
 	else
-		gtk_source_completion_update (self, activation);
+		gtk_source_completion_update (self, activation, from_trigger);
 }
 
 static void
