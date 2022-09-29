@@ -99,12 +99,18 @@ translate_compile_flags (GRegexCompileFlags flags)
 	if ((flags & G_REGEX_RAW) == 0)
 	{
 		ret |= (PCRE2_UTF | PCRE2_NO_UTF_CHECK);
+	}
+	else
+	{
 		flags &= ~G_REGEX_RAW;
 	}
 
-	if (~flags & G_REGEX_BSR_ANYCRLF)
+	if ((flags & G_REGEX_BSR_ANYCRLF) == 0)
 	{
 		ret |= PCRE2_BSR_UNICODE;
+	}
+	else
+	{
 		flags &= ~G_REGEX_BSR_ANYCRLF;
 	}
 
