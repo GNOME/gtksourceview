@@ -128,15 +128,32 @@ compare_impl_regex_to_g_regex (const char         *subject,
   g_clear_pointer (&mi1, g_match_info_free);
   g_clear_pointer (&mi2, impl_match_info_free);
 
-  for (int i = 0; i <= subject_len; i++)
+  if (compile_flags & G_REGEX_RAW)
     {
-      r1 = g_regex_match_full (reg1, subject, subject_len, i, match_flags, &mi1, &err1);
-      r2 = impl_regex_match_full (reg2, subject, subject_len, i, match_flags, &mi2, &err2);
-      g_assert_cmpint (r1, ==, r2);
-      g_assert_true (err1 == NULL || err2 != NULL);
-      assert_iterations (mi1, mi2);
-      g_clear_pointer (&mi1, g_match_info_free);
-      g_clear_pointer (&mi2, impl_match_info_free);
+      for (int i = 0; i <= subject_len; i++)
+        {
+          r1 = g_regex_match_full (reg1, subject, subject_len, i, match_flags, &mi1, &err1);
+          r2 = impl_regex_match_full (reg2, subject, subject_len, i, match_flags, &mi2, &err2);
+          g_assert_cmpint (r1, ==, r2);
+          g_assert_true (err1 == NULL || err2 != NULL);
+          assert_iterations (mi1, mi2);
+          g_clear_pointer (&mi1, g_match_info_free);
+          g_clear_pointer (&mi2, impl_match_info_free);
+        }
+    }
+  else
+    {
+      for (const char *iter = subject; *iter; iter = g_utf8_next_char (iter))
+        {
+          gsize i = iter - subject;
+          r1 = g_regex_match_full (reg1, subject, subject_len, i, match_flags, &mi1, &err1);
+          r2 = impl_regex_match_full (reg2, subject, subject_len, i, match_flags, &mi2, &err2);
+          g_assert_cmpint (r1, ==, r2);
+          g_assert_true (err1 == NULL || err2 != NULL);
+          assert_iterations (mi1, mi2);
+          g_clear_pointer (&mi1, g_match_info_free);
+          g_clear_pointer (&mi2, impl_match_info_free);
+        }
     }
 
   g_clear_pointer (&reg1, g_regex_unref);
@@ -195,6 +212,7 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", compile, match);
 
   compare_impl_regex_to_g_regex ("&aa", "\\baa\\b", compile, match);
+  compare_impl_regex_to_g_regex ("\342\200\223aa", "\\baa\\b", compile, match);
   /* this can be a invalid UTF-8 string if substring-ed, make glib think it's a raw string */
   compare_impl_regex_to_g_regex ("\342\200\223aa", "\\baa\\b", compile | G_REGEX_RAW, match);
 
