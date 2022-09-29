@@ -195,7 +195,8 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", compile, match);
 
   compare_impl_regex_to_g_regex ("&aa", "\\baa\\b", compile, match);
-  compare_impl_regex_to_g_regex ("\342\200\223aa", "\\baa\\b", compile, match);
+  /* this can be a invalid UTF-8 string if substring-ed, make glib think it's a raw string */
+  compare_impl_regex_to_g_regex ("\342\200\223aa", "\\baa\\b", compile | G_REGEX_RAW, match);
 
   compare_impl_regex_to_g_regex ("12\n", "(?<=1)23", compile, match);
   compare_impl_regex_to_g_regex ("\n23\n", "(?<=1)23", compile, match);
