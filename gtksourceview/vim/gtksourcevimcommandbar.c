@@ -1,7 +1,7 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright 2021 Christian Hergert <chergert@redhat.com>
+ * Copyright 2021-2022 Christian Hergert <chergert@redhat.com>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -32,6 +32,7 @@ struct _GtkSourceVimCommandBar
 	GtkSourceVimState parent_instance;
 	GtkSourceVimCommand *command;
 	GString *buffer;
+	char *typed;
 	int history_pos;
 };
 
@@ -57,6 +58,8 @@ static void
 gtk_source_vim_command_bar_dispose (GObject *object)
 {
 	GtkSourceVimCommandBar *self = (GtkSourceVimCommandBar *)object;
+
+	g_clear_pointer (&self->typed, g_free);
 
 	if (self->buffer == NULL)
 	{
@@ -86,23 +89,45 @@ static void
 move_history (GtkSourceVimCommandBar *self,
               int                     direction)
 {
+	int position;
+
 	g_assert (GTK_SOURCE_IS_VIM_COMMAND_BAR (self));
 
 	if (history->len == 0)
+	{
 		return;
+	}
 
-	if (direction < 0)
-		self->history_pos--;
-	else
-		self->history_pos++;
+	if (self->typed == NULL && self->buffer->len > 0)
+	{
+		self->typed = g_strdup (self->buffer->str);
+	}
 
-	if (self->history_pos < 0)
-		self->history_pos = history->len - 1;
-	else if (self->history_pos >= history->len)
-		self->history_pos = 0;
+	direction = direction < 0 ? -1 : 1;
+	position = self->history_pos + direction;
 
-	g_string_truncate (self->buffer, 0);
-	g_string_append (self->buffer, g_ptr_array_index (history, self->history_pos));
+	while (position >= 0 && position < history->len)
+	{
+		const char *item = g_ptr_array_index (history, position);
+
+		if (self->typed == NULL || g_str_has_prefix (item, self->typed))
+		{
+			self->history_pos = position;
+			g_string_truncate (self->buffer, 0);
+			g_string_append (self->buffer, item);
+			return;
+		}
+
+		position += direction;
+	}
+
+	/* Reset to typed text if we exhausted the tail of history */
+	if (position >= history->len && self->typed != NULL)
+	{
+		self->history_pos = history->len;
+		g_string_truncate (self->buffer, 0);
+		g_string_append (self->buffer, self->typed);
+	}
 }
 
 static void
@@ -191,6 +216,8 @@ gtk_source_vim_command_bar_handle_keypress (GtkSourceVimState *state,
 		{
 			gsize len = g_utf8_strlen (self->buffer->str, -1);
 
+			g_clear_pointer (&self->typed, g_free);
+
 			if (len > 1)
 			{
 				char *s = g_utf8_offset_to_pointer (self->buffer->str, len-1);
@@ -219,6 +246,7 @@ gtk_source_vim_command_bar_handle_keypress (GtkSourceVimState *state,
 		case GDK_KEY_Return:
 		case GDK_KEY_KP_Enter:
 		case GDK_KEY_ISO_Enter:
+			g_clear_pointer (&self->typed, g_free);
 			do_execute (self, self->buffer->str);
 			g_string_truncate (self->buffer, 0);
 			do_notify (self);
@@ -228,6 +256,7 @@ gtk_source_vim_command_bar_handle_keypress (GtkSourceVimState *state,
 		case GDK_KEY_u:
 			if (mods & GDK_CONTROL_MASK)
 			{
+				g_clear_pointer (&self->typed, g_free);
 				g_string_truncate (self->buffer, 1);
 				do_notify (self);
 				return TRUE;
@@ -242,6 +271,7 @@ gtk_source_vim_command_bar_handle_keypress (GtkSourceVimState *state,
 	if (str[0])
 	{
 		g_string_append (self->buffer, str);
+		g_clear_pointer (&self->typed, g_free);
 		do_notify (self);
 	}
 
@@ -256,7 +286,7 @@ gtk_source_vim_command_bar_enter (GtkSourceVimState *state)
 
 	g_assert (GTK_SOURCE_VIM_STATE (self));
 
-	self->history_pos = 0;
+	self->history_pos = history->len;
 
 	if (self->buffer->len == 0)
 	{
@@ -276,6 +306,9 @@ gtk_source_vim_command_bar_leave (GtkSourceVimState *state)
 
 	g_assert (GTK_SOURCE_VIM_STATE (self));
 
+	self->history_pos = 0;
+
+	g_clear_pointer (&self->typed, g_free);
 	g_string_truncate (self->buffer, 0);
 	do_notify (self);
 
