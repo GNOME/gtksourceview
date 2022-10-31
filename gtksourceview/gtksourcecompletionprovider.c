@@ -181,6 +181,10 @@ gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
  *
  * An example would be period '.' which might indicate that the user wants
  * to complete method or field names of an object.
+ *
+ * This method will only trigger when text is inserted into the #GtkTextBuffer
+ * while the completion list is visible and a proposal is selected. Incremental
+ * key-presses (like shift, control, or alt) are not triggerable.
  */
 gboolean
 gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
@@ -313,7 +317,7 @@ gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
  *
  * This function requests that the #GtkSourceCompletionProvider prepares
  * @cell to display the contents of @proposal.
- * 
+ *
  * Based on @cells column type, you may want to display different information.
  *
  * This allows for columns of information among completion proposals
@@ -371,7 +375,7 @@ gtk_source_completion_provider_activate (GtkSourceCompletionProvider *self,
  *
  * Providers should return a list of alternates to @proposal or %NULL if
  * there are no alternates available.
- * 
+ *
  * This can be used by the completion view to allow the user to move laterally
  * through similar proposals, such as overrides of methods by the same name.
  *
