@@ -383,8 +383,16 @@ gtk_source_list_snapshot_release (GtkSourceListSnapshot *self)
 	guint new_n_items;
 
 	g_return_if_fail (GTK_SOURCE_IS_LIST_SNAPSHOT (self));
-	g_return_if_fail (self->held_position != GTK_INVALID_LIST_POSITION);
 	g_return_if_fail (self->held_items != NULL);
+
+	/* Allow mismatched calls to release() which can happen often when
+	 * paired with GdkFrameClock update/after-paint, especially when
+	 * multiple surfaces are used.
+	 */
+	if (self->held_position == GTK_INVALID_LIST_POSITION)
+	{
+		return;
+	}
 
 	was_invalid = self->invalid;
 	old_n_items = self->held_n_items;
