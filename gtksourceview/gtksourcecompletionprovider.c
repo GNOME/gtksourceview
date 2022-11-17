@@ -176,7 +176,7 @@ gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
  * @iter: a #GtkTextIter
  * @ch: a #gunichar of the character inserted
  *
- * This function is used to determine of a character inserted into the text
+ * This function is used to determine if a character inserted into the text
  * editor should cause a new completion request to be triggered.
  *
  * An example would be period '.' which might indicate that the user wants
