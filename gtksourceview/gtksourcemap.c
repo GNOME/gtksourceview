@@ -202,6 +202,11 @@ typedef struct
 	/* Signals connected indirectly to the buffer */
 	gulong buffer_notify_style_scheme_handler;
 
+	/* Tick callback to queue work until the next frame to
+	 * avoid doing changes during LAYOUT phase.
+	 */
+	guint update_id;
+
 	/* Denotes if we are in a grab from button press */
 	guint in_press : 1;
 
@@ -519,6 +524,37 @@ update_child_vadjustment (GtkSourceMap *map)
 	}
 
 	gtk_adjustment_set_value (child_vadj, new_value);
+
+	gtk_widget_queue_allocate (GTK_WIDGET (map));
+}
+
+static gboolean
+gtk_source_map_do_update (GtkWidget     *widget,
+                          GdkFrameClock *frame_clock,
+			  gpointer       user_data)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	priv->update_id = 0;
+	update_child_vadjustment (map);
+	return G_SOURCE_REMOVE;
+}
+
+static void
+gtk_source_map_queue_update (GtkSourceMap *map)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	if (priv->update_id == 0)
+	{
+		priv->update_id =
+			gtk_widget_add_tick_callback (GTK_WIDGET (map),
+			                              gtk_source_map_do_update,
+			                              NULL, NULL);
+	}
 }
 
 static void
@@ -531,8 +567,7 @@ view_vadj_value_changed (GtkSourceMap  *map,
 	if (value != priv->last_vadj_value)
 	{
 		priv->last_vadj_value = value;
-		update_child_vadjustment (map);
-		gtk_widget_queue_allocate (GTK_WIDGET (map));
+		gtk_source_map_queue_update (map);
 	}
 }
 
@@ -547,7 +582,7 @@ view_vadj_notify_upper (GtkSourceMap  *map,
 	if (upper != priv->last_vadj_upper)
 	{
 		priv->last_vadj_upper = upper;
-		gtk_widget_queue_allocate (GTK_WIDGET (map));
+		gtk_source_map_queue_update (map);
 	}
 }
 
