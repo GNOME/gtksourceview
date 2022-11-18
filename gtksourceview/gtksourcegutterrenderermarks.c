@@ -121,40 +121,38 @@ composite_marks (GtkSourceView *view,
 		                                             gtk_source_mark_get_category (mark),
 		                                             NULL);
 
-		if (attrs == NULL)
+		if (attrs != NULL)
 		{
-			continue;
-		}
+			pixbuf = gtk_source_mark_attributes_render_icon (attrs,
+			                                                 GTK_WIDGET (view),
+			                                                 size);
 
-		pixbuf = gtk_source_mark_attributes_render_icon (attrs,
-		                                                 GTK_WIDGET (view),
-		                                                 size);
-
-		if (pixbuf != NULL)
-		{
-			if (composite == NULL)
+			if (pixbuf != NULL)
 			{
-				composite = gdk_pixbuf_copy (pixbuf);
-				mark_width = gdk_pixbuf_get_width (composite);
-				mark_height = gdk_pixbuf_get_height (composite);
-			}
-			else
-			{
-				gint pixbuf_w;
-				gint pixbuf_h;
+				if (composite == NULL)
+				{
+					composite = gdk_pixbuf_copy (pixbuf);
+					mark_width = gdk_pixbuf_get_width (composite);
+					mark_height = gdk_pixbuf_get_height (composite);
+				}
+				else
+				{
+					gint pixbuf_w;
+					gint pixbuf_h;
 
-				pixbuf_w = gdk_pixbuf_get_width (pixbuf);
-				pixbuf_h = gdk_pixbuf_get_height (pixbuf);
+					pixbuf_w = gdk_pixbuf_get_width (pixbuf);
+					pixbuf_h = gdk_pixbuf_get_height (pixbuf);
 
-				gdk_pixbuf_composite (pixbuf,
-				                      composite,
-				                      0, 0,
-				                      mark_width, mark_height,
-				                      0, 0,
-				                      (gdouble) pixbuf_w / mark_width,
-				                      (gdouble) pixbuf_h / mark_height,
-				                      GDK_INTERP_BILINEAR,
-				                      COMPOSITE_ALPHA);
+					gdk_pixbuf_composite (pixbuf,
+					                      composite,
+					                      0, 0,
+					                      mark_width, mark_height,
+					                      0, 0,
+					                      (gdouble) pixbuf_w / mark_width,
+					                      (gdouble) pixbuf_h / mark_height,
+					                      GDK_INTERP_BILINEAR,
+					                      COMPOSITE_ALPHA);
+				}
 			}
 		}
 
