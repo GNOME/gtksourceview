@@ -27,20 +27,11 @@
 #include "gtksourcecompletionlistboxrow-private.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourcelistsnapshot-private.h"
 #include "gtksourceview-private.h"
 
 struct _GtkSourceCompletionListBox
 {
 	GtkWidget parent_instance;
-
-	/* Used to snapshot a GListModel of the visible range during a
-	 * frame cycle, so that it cannot change underneath us. We hold()
-	 * and release() the snapshot from frame clock callbacks.
-	 */
-	GtkSourceListSnapshot *list_snapshot;
-	gulong update_handler;
-	gulong after_paint_handler;
 
 	/* The box containing the rows. */
 	GtkBox *box;
@@ -50,6 +41,11 @@ struct _GtkSourceCompletionListBox
 
 	/* The completion context that is being displayed. */
 	GtkSourceCompletionContext *context;
+
+	/* The handler for GtkSourceCompletionContext::items-chaged which should
+	 * be disconnected when no longer needed.
+	 */
+	gulong items_changed_handler;
 
 	/* The number of rows we expect to have visible to the user. */
 	guint n_rows;
@@ -120,21 +116,12 @@ enum {
 	N_SIGNALS
 };
 
-static void     gtk_source_completion_list_box_queue_update     (GtkSourceCompletionListBox *self);
-static gboolean gtk_source_completion_list_box_update_cb        (GtkWidget                  *widget,
-                                                                 GdkFrameClock              *frame_clock,
-                                                                 gpointer                    user_data);
-static void     gtk_source_completion_list_box_after_update_cb  (GtkWidget                  *widget,
-                                                                 GdkFrameClock              *frame_clock);
-static void     gtk_source_completion_list_box_after_paint_cb   (GtkWidget                  *widget,
-                                                                 GdkFrameClock              *frame_clock);
-static void     gtk_source_completion_list_box_do_update        (GtkSourceCompletionListBox *self,
-                                                                 gboolean                    update_selection);
-static void     gtk_source_completion_list_box_items_changed_cb (GtkSourceCompletionListBox *self,
-                                                                 guint                       position,
-                                                                 guint                       removed,
-                                                                 guint                       added,
-                                                                 GListModel                 *model);
+static void     gtk_source_completion_list_box_queue_update (GtkSourceCompletionListBox *self);
+static gboolean gtk_source_completion_list_box_update_cb    (GtkWidget                  *widget,
+                                                             GdkFrameClock              *frame_clock,
+                                                             gpointer                    user_data);
+static void     gtk_source_completion_list_box_do_update    (GtkSourceCompletionListBox *self,
+                                                             gboolean                    update_selection);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionListBox, gtk_source_completion_list_box, GTK_TYPE_WIDGET,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_SCROLLABLE, NULL))
@@ -561,42 +548,6 @@ _gtk_source_completion_list_box_key_pressed_cb (GtkSourceCompletionListBox *self
 }
 
 static void
-gtk_source_completion_list_box_realize (GtkWidget *widget)
-{
-	GtkSourceCompletionListBox *self = GTK_SOURCE_COMPLETION_LIST_BOX (widget);
-	GdkFrameClock *frame_clock;
-
-	GTK_WIDGET_CLASS (gtk_source_completion_list_box_parent_class)->realize (widget);
-
-	frame_clock = gtk_widget_get_frame_clock (widget);
-
-	self->update_handler =
-		g_signal_connect_data (frame_clock,
-		                       "update",
-		                       G_CALLBACK (gtk_source_completion_list_box_after_update_cb),
-		                       self, NULL,
-		                       G_CONNECT_AFTER | G_CONNECT_SWAPPED);
-	self->after_paint_handler =
-		g_signal_connect_swapped (frame_clock,
-		                          "after-paint",
-		                          G_CALLBACK (gtk_source_completion_list_box_after_paint_cb),
-		                          self);
-}
-
-static void
-gtk_source_completion_list_box_unrealize (GtkWidget *widget)
-{
-	GtkSourceCompletionListBox *self = GTK_SOURCE_COMPLETION_LIST_BOX (widget);
-	GdkFrameClock *frame_clock;
-
-	frame_clock = gtk_widget_get_frame_clock (widget);
-	g_clear_signal_handler (&self->update_handler, frame_clock);
-	g_clear_signal_handler (&self->after_paint_handler, frame_clock);
-
-	GTK_WIDGET_CLASS (gtk_source_completion_list_box_parent_class)->unrealize (widget);
-}
-
-static void
 gtk_source_completion_list_box_constructed (GObject *object)
 {
 	GtkSourceCompletionListBox *self = (GtkSourceCompletionListBox *)object;
@@ -631,7 +582,6 @@ gtk_source_completion_list_box_dispose (GObject *object)
 		self->box = NULL;
 	}
 
-	g_clear_object (&self->list_snapshot);
 	g_clear_object (&self->before_size_group);
 	g_clear_object (&self->typed_text_size_group);
 	g_clear_object (&self->after_size_group);
@@ -743,9 +693,6 @@ gtk_source_completion_list_box_class_init (GtkSourceCompletionListBoxClass *klas
 	object_class->get_property = gtk_source_completion_list_box_get_property;
 	object_class->set_property = gtk_source_completion_list_box_set_property;
 
-	widget_class->realize = gtk_source_completion_list_box_realize;
-	widget_class->unrealize = gtk_source_completion_list_box_unrealize;
-
 	properties [PROP_ALTERNATE] =
 		g_param_spec_int ("alternate",
 		                  "Alternate",
@@ -856,13 +803,6 @@ gtk_source_completion_list_box_init (GtkSourceCompletionListBox *self)
 	                          G_CALLBACK (_gtk_source_completion_list_box_key_pressed_cb),
 	                          self);
 	gtk_widget_add_controller (GTK_WIDGET (self), key);
-
-	self->list_snapshot = gtk_source_list_snapshot_new ();
-	g_signal_connect_object (self->list_snapshot,
-	                         "items-changed",
-	                         G_CALLBACK (gtk_source_completion_list_box_items_changed_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
 
 	self->box = g_object_new (GTK_TYPE_BOX,
 				  "orientation", GTK_ORIENTATION_VERTICAL,
@@ -1218,10 +1158,25 @@ _gtk_source_completion_list_box_set_context (GtkSourceCompletionListBox *self,
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 	g_return_if_fail (!context || GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 
-	if (g_set_object (&self->context, context))
+	if (self->context == context)
+		return;
+
+	if (self->context != NULL && self->items_changed_handler != 0)
 	{
-		gtk_source_list_snapshot_set_model (self->list_snapshot,
-		                                    G_LIST_MODEL (context));
+		g_signal_handler_disconnect (self->context, self->items_changed_handler);
+		self->items_changed_handler = 0;
+	}
+
+	g_set_object (&self->context, context);
+
+	if (self->context != NULL)
+	{
+		self->items_changed_handler =
+			g_signal_connect_object (self->context,
+			                         "items-changed",
+			                         G_CALLBACK (gtk_source_completion_list_box_items_changed_cb),
+			                         self,
+			                         G_CONNECT_SWAPPED);
 	}
 
 	gtk_source_completion_list_box_set_selected (self, -1);
@@ -1384,33 +1339,4 @@ _gtk_source_completion_list_box_set_show_icons (GtkSourceCompletionListBox *self
 	self->show_icons = !!show_icons;
 
 	gtk_source_completion_list_box_queue_update (self);
-}
-
-static void
-gtk_source_completion_list_box_after_update_cb (GtkWidget     *widget,
-                                                GdkFrameClock *frame_clock)
-{
-	GtkSourceCompletionListBox *self = (GtkSourceCompletionListBox *)widget;
-	double lower;
-	double page_size;
-
-	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
-	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
-
-	lower = gtk_adjustment_get_lower (self->vadjustment);
-	page_size = gtk_adjustment_get_page_size (self->vadjustment);
-
-	gtk_source_list_snapshot_hold (self->list_snapshot, lower, lower + page_size);
-}
-
-static void
-gtk_source_completion_list_box_after_paint_cb (GtkWidget     *widget,
-					       GdkFrameClock *frame_clock)
-{
-	GtkSourceCompletionListBox *self = (GtkSourceCompletionListBox *)widget;
-
-	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
-	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
-
-	gtk_source_list_snapshot_release (self->list_snapshot);
 }
