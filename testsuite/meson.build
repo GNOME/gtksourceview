@@ -31,7 +31,6 @@ testsuite_sources = [
   ['test-language'],
   ['test-languagemanager'],
   ['test-language-specs', false],
-  ['test-listsnapshot'],
   ['test-mark'],
   ['test-printcompositor'],
   ['test-regex'],
