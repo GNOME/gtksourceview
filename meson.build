@@ -103,13 +103,6 @@ else
   introspection_dep = []
 endif
 
-if generate_vapi
-  vapigen_dep = dependency('vapigen')
-else
-  vapigen_dep = []
-endif
-
-
 xmllint_prg = find_program('xmllint', required: false)
 
 glib_version_arr = glib_req_version.split('.')
