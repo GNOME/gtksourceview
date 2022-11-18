@@ -171,25 +171,38 @@ gtk_source_vim_insert_handle_event (GtkSourceVimState *state,
 	g_assert (GTK_SOURCE_IS_VIM_INSERT (self));
 	g_assert (event != NULL);
 
-	if (!(view = gtk_source_vim_state_get_view (state)))
-		return FALSE;
+	view = gtk_source_vim_state_get_view (state);
 
+	/* We only handle keypress, otherwise defer to the normal event processing
+	 * flow and/or input methods.
+	 */
+	if (view == NULL || gdk_event_get_event_type (event) != GDK_KEY_PRESS)
+	{
+		return FALSE;
+	}
+
+	/* gtk_text_view_im_context_filter_keypress() will always filter input that
+	 * can be converted into an GtkIMContext::commit emission so we must check
+	 * to see if any of our handlers will check first.
+	 *
+	 * This has a sort of annoying impact with the underlying input method that
+	 * we could collide, but there doesn't seem to be much we can do about that.
+	 *
+	 * https://gitlab.gnome.org/GNOME/gtk/-/issues/5349
+	 */
 	keyval = gdk_key_event_get_keyval (event);
 	keycode = gdk_key_event_get_keycode (event);
 	mods = gdk_event_get_modifier_state (event)
 	     & gtk_accelerator_get_default_mod_mask ();
 
-	/* Allow input methods to complete */
-	if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
-		return TRUE;
-
-	/* Only deal with presses after this */
-	if (gdk_event_get_event_type (event) != GDK_KEY_PRESS)
-		return TRUE;
-
 	gtk_source_vim_state_keyval_to_string (keyval, mods, string);
 
-	return GTK_SOURCE_VIM_STATE_GET_CLASS (self)->handle_keypress (state, keyval, keycode, mods, string);
+	if (GTK_SOURCE_VIM_STATE_GET_CLASS (self)->handle_keypress (state, keyval, keycode, mods, string))
+	{
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 static void
