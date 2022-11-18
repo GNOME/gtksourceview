@@ -118,18 +118,16 @@ composite_marks (GtkSourceView                 *view,
 		                                             gtk_source_mark_get_category (mark),
 		                                             NULL);
 
-		if (attrs == NULL)
+		if (attrs != NULL)
 		{
-			continue;
-		}
+			paintable = gtk_source_mark_attributes_render_icon (attrs,
+			                                                    GTK_WIDGET (view),
+			                                                    size);
 
-		paintable = gtk_source_mark_attributes_render_icon (attrs,
-		                                                    GTK_WIDGET (view),
-		                                                    size);
-
-		if (paintable != NULL)
-		{
-			gtk_source_gutter_renderer_pixbuf_overlay_paintable (renderer, paintable);
+			if (paintable != NULL)
+			{
+				gtk_source_gutter_renderer_pixbuf_overlay_paintable (renderer, paintable);
+			}
 		}
 
 		marks = g_slist_next (marks);
