@@ -568,7 +568,7 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 	 * the view, such as with completion providers.
 	 */
 
-	if (snippets->buffer == NULL || snippets->queue.length == 0)
+	if (snippets->buffer == NULL)
 	{
 		return GDK_EVENT_PROPAGATE;
 	}
@@ -637,7 +637,7 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 	}
 
 cleanup:
-	if (snippets->queue.length == 0)
+	if (ret != GDK_EVENT_PROPAGATE && snippets->queue.length == 0)
 	{
 		if (snippets->informative)
 		{
