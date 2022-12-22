@@ -23,8 +23,6 @@
 
 #include <glib/gi18n-lib.h>
 
-#include "gconstructor.h"
-
 #include "gtksourcebuffer.h"
 #include "gtksourcebufferinputstream-private.h"
 #include "gtksourcebufferoutputstream-private.h"
@@ -166,9 +164,9 @@ get_locale_dir (void)
 void
 gtk_source_init (void)
 {
-	static gsize initialized;
+	static gboolean done = FALSE;
 
-	if (g_once_init_enter (&initialized))
+	if (!done)
 	{
 		GdkDisplay *display;
 		gchar *locale_dir;
@@ -178,8 +176,6 @@ gtk_source_init (void)
 		g_free (locale_dir);
 
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-
-		gtk_init ();
 
 		/* Due to potential deadlocks when registering types, we need to
 		 * ensure the dependent private class GtkSourceBufferOutputStream
@@ -244,16 +240,8 @@ gtk_source_init (void)
 			gtk_icon_theme_add_search_path (icon_theme, HICOLORDIR);
 		}
 
-		g_once_init_leave (&initialized, TRUE);
+		done = TRUE;
 	}
-}
-
-G_DEFINE_CONSTRUCTOR (_gtk_source_init_ctor)
-
-static void
-_gtk_source_init_ctor (void)
-{
-	gtk_source_init ();
 }
 
 /**
