@@ -22,3 +22,11 @@ can for example use the following command:
 ```
 $ gcc hello.c `pkg-config --cflags --libs gtksourceview-5` -o hello
 ```
+
+## Library Initialization
+
+Your application *MUST* initialize GtkSourceView from `main()`.
+Call `gtk_source_init()` or it's variant within your programming language.
+A great place to do this is right after calling `gtk_init()`.
+
+In language bindings, this function is often named similar to `GtkSource.init()`.
