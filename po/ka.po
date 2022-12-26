@@ -1,22 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Georgian translation for gtksourceview.
+# Copyright (C) 2022 gtksourceview authors
+# This file is distributed under the same license as the gtksourceview package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-07-23 12:52+0000\n"
-"PO-Revision-Date: 2022-07-23 20:47+0200\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2022-12-18 11:28+0000\n"
+"PO-Revision-Date: 2022-12-26 18:14+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -358,12 +358,12 @@ msgstr "რედაქტორში \"Kate\" გამოყენებუ�
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:23
 msgid "Oblivion"
-msgstr ""
+msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
-msgstr ""
+msgstr "ფერის მუქი თემა Tango ფერის პალიტრის გამოყენებით"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
@@ -373,7 +373,7 @@ msgstr "სოლარიზებული მუქი"
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr ""
+msgstr "ფერის სქემა Solarized ბნელი მუქი პალიტრის გამოყენებით"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
@@ -383,7 +383,7 @@ msgstr "სოლარიზებული ღია"
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr ""
+msgstr "ფერის სქემა Solarized ბნელი ღია პალიტრის გამოყენებით"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -393,51 +393,51 @@ msgstr "ტანგო"
 #. (itstool) path: style-scheme/_description
 #: tango.xml:25
 msgid "Color scheme using Tango color palette"
-msgstr ""
+msgstr "ფერის ღია თემა Tango ფერის პალიტრის გამოყენებით"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:460
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "ფრაგმენტები"
 
 #: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
-msgstr ""
+msgstr "დოკუმენტის სიტყვები"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:915
 msgid "Invalid byte sequence in conversion input"
 msgstr "შეტანილ ტექსტში ბაიტების მიმდევრობა მცდარია"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:921
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "გარდაქმნის შეცდომა: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1014
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "%s-დან UTF-8-ზე გარდაქმნა მხარდაუჭერელია"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1020
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "%s-დან UTF-8-ზე გარდაქმნის შეცდომა"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1080
 msgid "Invalid object, not initialized"
 msgstr "ობიექტი არასწორია. ინიციალიზებული არაა"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1282
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "შეყვანილია UTF-8-ის არასწორი მიმდევრობა"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d %u-დან"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_დეტალები"
 
@@ -452,17 +452,22 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"რეგულარული გამოსახულების შექმნა ყველა გადასვლისთვის შეუძლებელია. სინტაქსის "
+"გამოკვეთის პროცესი ჩვეულებრივზე ნელი იქნება.\n"
+"შეცდომა: %s"
 
 #: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"ერთი ხაზის გამოკვეთამ მეტისმეტად დიდი დრო წაიღო. სინტაქსის გამოკვეთა "
+"გაითიშება"
 
 #: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "\"%s\" კონტექსტი %%{..@start} ბრძანებას არ შეიძლება შეიცავდეს"
 
 #: gtksourceview/gtksourcecontextengine.c:5871
 #: gtksourceview/gtksourcecontextengine.c:5961
@@ -477,11 +482,13 @@ msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr ""
+"ენაში \"%s\" მიმართვაში \"%s\" ვაილდკარდის კონტექსტის მიმართვა სტილის "
+"გადაფარვასთან ერთად გამოიყენება"
 
 #: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "invalid context reference “%s”"
-msgstr ""
+msgstr "არასწორი კონტექსტის მიმართვა \"%s\""
 
 #: gtksourceview/gtksourcecontextengine.c:6168
 #: gtksourceview/gtksourcecontextengine.c:6178
@@ -633,6 +640,8 @@ msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr ""
+"დაფიქსირდა სიმბოლოების კოდირების გადაყვანის შეცდომა და ის გადასართავი "
+"სიმბოლოს გამოსაყენებლად იყო საჭირო."
 
 #: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
@@ -668,16 +677,16 @@ msgstr "სხვები"
 #: gtksourceview/gtksourcelanguage-parser-2.c:946
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
-msgstr ""
+msgstr "რეგულარულ გამოსახულებაში \"%2$s\" ნაპოვნი id \"%1$s\" უცნობია"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr ""
+msgstr "რეგულარულ გამოსახულებაში \"%s\" უკუმიმართვა მხარდაუჭერელია"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "ენის აღწერაში \\C-ის გამოყენება მხარდაუჭერელია"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:178
@@ -692,68 +701,69 @@ msgstr "_გაუქმება"
 msgid "_Select"
 msgstr "_აირჩიეთ"
 
-#: gtksourceview/gtksourceview.c:1806
+#: gtksourceview/gtksourceview.c:1831
 msgid "All _Upper Case"
 msgstr "დიდ ასოებში გადაყვანა"
 
-#: gtksourceview/gtksourceview.c:1810
+#: gtksourceview/gtksourceview.c:1835
 msgid "All _Lower Case"
 msgstr "პატარა ასოებში გადაყვანა"
 
-#: gtksourceview/gtksourceview.c:1814
+#: gtksourceview/gtksourceview.c:1839
 msgid "_Invert Case"
 msgstr "ზომის ინვერსია"
 
-#: gtksourceview/gtksourceview.c:1818
+#: gtksourceview/gtksourceview.c:1843
 msgid "_Title Case"
 msgstr "სათაურის ზომა"
 
-#: gtksourceview/gtksourceview.c:1822
+#: gtksourceview/gtksourceview.c:1847
 msgid "C_hange Case"
 msgstr "ზომის შეცვლა"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "მოსალოდნელია თექვსმეტობითი რიცხვი, ან '}'"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "მოსალოდნელია თექვსმეტობითი სიმბოლო"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "არ მოიძებნა '<', სიმბოლურ მითითებაში"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "დაუსრულებელი სიმბოლური მითითება"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "ნულოვანი სიგრძის სიმბოლური მითითება"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "მოველოდი ციფრს"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "მიუღებელი სიმბოლური მითითება"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
-msgstr ""
+msgstr "დაბოლოვება '\\'"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "უცნობი escape სეკვენცია"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
+"შეცდომა ჩასანაცვლებელი ტექსტის \"%s\" განაალიზებისას, სიმბოლო ნომრით %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:489
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- ჩასმა --"
 
