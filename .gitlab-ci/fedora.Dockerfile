@@ -1,20 +1,24 @@
 FROM fedora:36
 
 RUN dnf update -y
-RUN dnf -y install \
+RUN dnf -y install --setopt=install_weak_deps=False \
+    clang \
+    git \
+    gi-docgen \
     meson \
-    vala \
-    libvala-devel \
-    gtk4-devel \
     ninja-build \
     pkgconf \
-    clang \
+    vala \
+    expat-devel \
+    gtk4-devel \
     gobject-introspection-devel \
+    libjpeg-turbo-devel \
+    libpng-devel \
+    libvala-devel \
+    sysprof-devel \
     vulkan-headers \
-    python3-pip \
     wayland-devel \
-    wayland-protocols-devel \
-    sysprof-devel
+    wayland-protocols-devel
 
 RUN dnf clean all
 
@@ -27,8 +31,5 @@ RUN useradd -u $HOST_USER_ID -G wheel -ms /bin/bash user
 
 USER user
 WORKDIR /home/user
-
-ENV PATH="/home/user/.local/bin:${PATH}"
-RUN pip3 install --user --upgrade gi-docgen
 
 ENV LANG C.UTF-8
