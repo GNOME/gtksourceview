@@ -3029,7 +3029,7 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
  * [property@SearchSettings:search-text] breaks a rule, the error can be
  * retrieved with this function.
  *
- * The error domain is [enum@GLib.RegexError].
+ * The error domain is [error@GLib.RegexError].
  *
  * Free the return value with [method@GLib.Error.free].
  *
