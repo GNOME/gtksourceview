@@ -1,0 +1,16 @@
+News in 5.7.0, 2023-01-23
+-------------------------
+
+5.7.0 is a development release of GtkSourceView intended for application
+developers and unstable distributions alike.
+
+Changes since 5.6.2
+
+ * gutterrenderermarks: avoid potential infinite loop with marks
+ * build: drop unnecessary vapigen check
+ * cpp.lang: add constinit keyword
+ * java.lang: fix escaped characters
+ * lean.lang: strings may contain line breaks
+ * nix.lang: Add Nix syntax highlighting
+ * reasonml.lang: add ReasonML language
+
