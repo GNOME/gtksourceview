@@ -9,9 +9,9 @@ RUN dnf -y install \
     ninja-build \
     pkgconf \
     clang \
+    gi-docgen \
     gobject-introspection-devel \
     vulkan-headers \
-    python3-pip \
     wayland-devel \
     wayland-protocols-devel \
     sysprof-devel
@@ -27,8 +27,5 @@ RUN useradd -u $HOST_USER_ID -G wheel -ms /bin/bash user
 
 USER user
 WORKDIR /home/user
-
-ENV PATH="/home/user/.local/bin:${PATH}"
-RUN pip3 install --user --upgrade gi-docgen
 
 ENV LANG C.UTF-8
