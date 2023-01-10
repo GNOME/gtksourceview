@@ -155,7 +155,7 @@ gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
  * provider so that higher priority providers results are shown
  * above lower priority providers.
  *
- * Lower value indicates higher priority.
+ * Higher value indicates higher priority.
  */
 int
 gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
