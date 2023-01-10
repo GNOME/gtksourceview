@@ -1,4 +1,4 @@
-FROM fedora:36
+FROM fedora:37
 
 RUN dnf update -y
 RUN dnf -y install --setopt=install_weak_deps=False \
