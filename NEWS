@@ -1,3 +1,31 @@
+News in 5.6.2, 2023-01-23
+-------------------------
+
+This release contains a number of quality of life fixes for users.
+It is recommended that distributions update to this release.
+
+ * Add styling for 'def:note' to Adwaita and Adwaita-dark
+ * Adwaita-dark.xml: soften match color a bit
+ * Adwaita.xml: add def:statement
+ * Adwaita.xml: soften search highlight
+ * Docs: Fix RegexError reference
+ * completion: add note about what when is_trigger can activate
+ * completion: fix typo in documentation
+ * completionlistbox: lock listmodel items during snapshot
+ * completionprovider: fix documentation for get_priority()
+ * docs: add note about library initialization
+ * glsl.lang: set no-spell-check on default context
+ * kate: use italic for def:emphasis
+ * listsnapshot: add snapshotting listmodel
+ * listsnapshot: allow mismatched hold()/release()
+ * llvm.lang: Add missing 'sge' keyword
+ * map: defer adjustment changes to next frame
+ * regex: Fix incorrect bitflag operations
+ * snippets: fix GtkSourceView:enable-snippets use without completion
+ * testsuite/regex: walk subject as utf8 unless G_REGEX_RAW
+ * testsuite: use G_REGEX_RAW with invalid UTF-8
+ * vim: implement rudimentary search through previous commands
+
 News in 5.6.1, 2022-09-22
 -------------------------
 
