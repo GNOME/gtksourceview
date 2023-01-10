@@ -1,20 +1,24 @@
 FROM fedora:36
 
 RUN dnf update -y
-RUN dnf -y install \
+RUN dnf -y install --setopt=install_weak_deps=False \
+    clang \
+    git \
+    gi-docgen \
     meson \
-    vala \
-    libvala-devel \
-    gtk4-devel \
     ninja-build \
     pkgconf \
-    clang \
-    gi-docgen \
+    vala \
+    expat-devel \
+    gtk4-devel \
     gobject-introspection-devel \
+    libjpeg-turbo-devel \
+    libpng-devel \
+    libvala-devel \
+    sysprof-devel \
     vulkan-headers \
     wayland-devel \
-    wayland-protocols-devel \
-    sysprof-devel
+    wayland-protocols-devel
 
 RUN dnf clean all
 
