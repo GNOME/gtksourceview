@@ -24,9 +24,9 @@ reference:
     stage: docs
     needs: []
     variables:
-        MESON_FLAGS: "-Dc_std=c11 -Dcpp_std=c++11 -Dwerror=true --buildtype=release -Dglib:tests=false -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dlibsass:werror=false -Dsassc:werror=false -Dlibadwaita:werror=false"
+        MESON_FLAGS: "-Dc_std=c11 -Dcpp_std=c++11 -Dwerror=true --buildtype=release -Dglib:tests=false -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dlibsass:werror=false -Dsassc:werror=false"
     script:
-        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel
+        - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel gtk4-devel
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
