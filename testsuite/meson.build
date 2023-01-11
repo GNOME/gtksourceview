@@ -26,7 +26,7 @@ testsuite_sources = [
   ['test-iter'],
   ['test-language'],
   ['test-languagemanager'],
-  ['test-language-specs'],
+  ['test-language-specs', false],
   ['test-mark'],
   ['test-printcompositor'],
   ['test-regex'],
@@ -42,6 +42,7 @@ testsuite_sources = [
 
 foreach test: testsuite_sources
   test_name = test.get(0)
+  install_test = test.get(1, true) and get_option('install_tests')
   test_sources = gtksource_res + [
     '@0@.c'.format(test_name),
   ]
@@ -60,7 +61,7 @@ foreach test: testsuite_sources
   test_exe = executable(test_name, test_sources,
           c_args: testsuite_c_args,
     dependencies: [core_dep, completionwords_dep],
-         install: get_option('install_tests'),
+         install: install_test,
      install_dir: testexecdir
   )
 
@@ -80,7 +81,7 @@ foreach test: testsuite_sources
   endif
 endforeach
 
-if get_option('install_tests')
+if install_test
   install_subdir('language-specs', install_dir: testexecdir)
   install_subdir('styles', install_dir: testexecdir)
 endif
