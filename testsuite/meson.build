@@ -67,7 +67,7 @@ foreach test: testsuite_sources
 
   test(test_name, test_exe, suite: package_string, env: test_env)
 
-  if get_option('install_tests')
+  if install_test
     test_t = configuration_data()
     test_t.set('testexecdir', testexecdir)
     test_t.set('test', test_name)
@@ -81,7 +81,7 @@ foreach test: testsuite_sources
   endif
 endforeach
 
-if install_test
+if get_option('install_tests')
   install_subdir('language-specs', install_dir: testexecdir)
   install_subdir('styles', install_dir: testexecdir)
 endif
