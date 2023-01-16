@@ -47,6 +47,7 @@
     <style id="escaped-character" name="Escaped Character"     map-to="def:special-char"/>
     <style id="floating-point"    name="Floating point number" map-to="def:floating-point"/>
     <style id="decimal"           name="Decimal number"        map-to="def:decimal"/>
+    <style id="binary"            name="Binary number"         map-to="def:base-n-integer"/>
     <style id="octal"             name="Octal number"          map-to="def:base-n-integer"/>
     <style id="hexadecimal"       name="Hexadecimal number"    map-to="def:base-n-integer"/>
     <style id="boolean"           name="Boolean value"         map-to="def:boolean"/>
@@ -183,6 +184,22 @@
       <match extended="true">
         (?&lt;![\w\.])
         0[0-7]*[89][0-9]*[uUlL]*
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="binary" style-ref="binary">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[bB][01]+[uUlL]*
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="invalid-binary" style-ref="error">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[bB][01]*[2-9][a-zA-Z0-9]*[uUlL]*
         (?![\w\.])
       </match>
     </context>
@@ -325,6 +342,8 @@
         <context ref="invalid-hexadecimal"/>
         <context ref="octal"/>
         <context ref="invalid-octal"/>
+        <context ref="binary"/>
+        <context ref="invalid-binary"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
         <context ref="type-keywords"/>
