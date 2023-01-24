@@ -421,7 +421,7 @@ get_color_by_name (GtkSourceStyleScheme *scheme,
 
 		if (color == NULL)
 		{
-			g_warning ("no color named '%s'", name);
+			g_warning ("no color named '%s' in scheme '%s'", name, scheme->id);
 		}
 	}
 
