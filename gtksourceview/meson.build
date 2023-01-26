@@ -279,6 +279,7 @@ if generate_gir
     core_public_h,
     core_enums_h,
     extra_public_sources,
+    gtksourceversion_h,
   ]
 
   gtksource_gir = gnome.generate_gir(gtksource_lib,
