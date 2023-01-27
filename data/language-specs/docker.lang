@@ -21,7 +21,7 @@
 <language id="docker" name="Dockerfile" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">application/docker;text/docker</property>
-    <property name="globs">Dockerfile</property>
+    <property name="globs">Containerfile;Dockerfile</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
