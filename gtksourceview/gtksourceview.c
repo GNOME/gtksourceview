@@ -5563,3 +5563,16 @@ _gtk_source_view_has_snippet (GtkSourceView *view)
 
 	return priv->snippets.queue.length > 0;
 }
+
+void
+_gtk_source_view_hide_completion (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+	if (priv->completion != NULL)
+	{
+		gtk_source_completion_hide (priv->completion);
+	}
+}

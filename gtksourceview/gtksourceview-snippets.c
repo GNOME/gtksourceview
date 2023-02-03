@@ -593,6 +593,8 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 		 */
 		if (snippet != NULL)
 		{
+			_gtk_source_view_hide_completion (snippets->view);
+
 			if ((state & modifiers) == 0)
 			{
 				if (!_gtk_source_snippet_move_next (snippet))
@@ -629,6 +631,8 @@ _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
 		    !has_selection &&
 		    gtk_source_view_snippets_try_expand (snippets, &end))
 		{
+			_gtk_source_view_hide_completion (snippets->view);
+
 			gtk_source_view_snippets_scroll_to_insert (snippets);
 
 			ret = GDK_EVENT_STOP;
