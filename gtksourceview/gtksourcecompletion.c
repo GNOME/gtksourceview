@@ -647,14 +647,14 @@ gtk_source_completion_real_show (GtkSourceCompletion *self)
 
 	display = _gtk_source_completion_get_display (self);
 
-	if (self->context == NULL)
-	{
-		gtk_source_completion_start (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED, FALSE);
-	}
-	else
-	{
-		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED, FALSE);
-	}
+	/* If the user is requesting completion manually, we should throw away
+	 * our previous results and attempt completion over. Otherwise, providers
+	 * which bailed because they were in _INTERACTIVE_ mode will not be
+	 * requeried for updated results.
+	 */
+	g_clear_object (&self->context);
+
+	gtk_source_completion_start (self, GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED, FALSE);
 
 	_gtk_source_completion_list_set_context (display, self->context);
 
