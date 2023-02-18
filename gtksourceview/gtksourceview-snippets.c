@@ -73,9 +73,14 @@ gtk_source_view_snippets_scroll_to_insert (GtkSourceViewSnippets *snippets)
 	GtkTextIter iter;
 	GdkRectangle area;
 	GdkRectangle visible_rect;
+	guint top_margin;
 	double x, y;
 
 	g_assert (snippets != NULL);
+
+	g_object_get (snippets->view,
+		      "top-margin", &top_margin,
+		      NULL);
 
 	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (snippets->buffer));
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (snippets->buffer), &iter, mark);
@@ -97,7 +102,7 @@ gtk_source_view_snippets_scroll_to_insert (GtkSourceViewSnippets *snippets)
 		y = visible_rect.y;
 
 	gtk_adjustment_set_value (gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (snippets->view)), x);
-	gtk_adjustment_set_value (gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (snippets->view)), y);
+	gtk_adjustment_set_value (gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (snippets->view)), y + top_margin);
 
 	gtk_source_view_snippets_update_informative (snippets);
 }
