@@ -77,12 +77,6 @@ static void
 gtk_source_completion_list_box_row_init (GtkSourceCompletionListBoxRow *self)
 {
 	gtk_widget_init_template (GTK_WIDGET (self));
-
-  gtk_list_box_row_set_header (GTK_LIST_BOX_ROW (self),
-                               g_object_new (GTK_TYPE_SEPARATOR,
-                                             "orientation", GTK_ORIENTATION_HORIZONTAL,
-                                             "visible", FALSE,
-                                             NULL));
 }
 
 GtkWidget *
