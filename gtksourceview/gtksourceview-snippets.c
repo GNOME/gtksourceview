@@ -368,7 +368,7 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 
 	if (gtk_widget_get_visible (GTK_WIDGET (snippets->informative)))
 	{
-		_gtk_source_assistant_set_needs_position (GTK_SOURCE_ASSISTANT (snippets->informative));
+		_gtk_source_assistant_update_position (GTK_SOURCE_ASSISTANT (snippets->informative));
 	}
 	else
 	{

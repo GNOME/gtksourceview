@@ -263,7 +263,7 @@ _gtk_source_completion_list_reposition_cb (GtkSourceCompletionList *self)
 {
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 
-	_gtk_source_assistant_set_needs_position (GTK_SOURCE_ASSISTANT (self));
+	_gtk_source_assistant_update_position (GTK_SOURCE_ASSISTANT (self));
 }
 
 static void

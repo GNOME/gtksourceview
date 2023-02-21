@@ -54,7 +54,7 @@ void                _gtk_source_assistant_set_mark           (GtkSourceAssistant
                                                               GtkTextMark        *mark);
 void                _gtk_source_assistant_set_child          (GtkSourceAssistant *assistant,
                                                               GtkWidget          *child);
-void                _gtk_source_assistant_set_needs_position (GtkSourceAssistant *assistant);
+gboolean            _gtk_source_assistant_update_position    (GtkSourceAssistant *assistant);
 void                _gtk_source_assistant_destroy            (GtkSourceAssistant *assistant);
 
 G_END_DECLS

@@ -117,7 +117,7 @@ get_gutter_width (GtkSourceView *view)
 	return 0;
 }
 
-static gboolean
+gboolean
 _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 {
 	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (assistant);
@@ -177,56 +177,6 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 
 
 	return changed;
-}
-
-static gboolean
-gtk_source_assistant_reposition_tick_cb (GtkWidget     *widget,
-                                         GdkFrameClock *frame_clock,
-                                         gpointer       user_data)
-{
-	GtkSourceAssistant *self = user_data;
-	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (self);
-
-	g_assert (GTK_SOURCE_IS_VIEW (widget));
-	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
-	g_assert (GTK_SOURCE_IS_ASSISTANT (self));
-
-	priv->reposition_handler = 0;
-
-	_gtk_source_assistant_update_position (self);
-
-	/* We have to gtk_widget_queue_resize() to ensure that the view will
-	 * continue to have an allocation when the assistant gets snapshotted.
-	 * gtk_widget_queue_allocate() is not enough to make that happen.
-	 * Without this, we often get flickering of the GtkSourceView.
-	 */
-	gtk_widget_queue_resize (widget);
-
-	return G_SOURCE_REMOVE;
-}
-
-void
-_gtk_source_assistant_set_needs_position (GtkSourceAssistant *self)
-{
-	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (self);
-
-	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (self));
-
-	if (priv->reposition_handler == 0)
-	{
-		GtkSourceView *view = _gtk_source_assistant_get_view (self);
-
-		if (view == NULL)
-		{
-			return;
-		}
-
-		priv->reposition_handler =
-			gtk_widget_add_tick_callback (GTK_WIDGET (view),
-			                              gtk_source_assistant_reposition_tick_cb,
-			                              g_object_ref (self),
-			                              g_object_unref);
-	}
 }
 
 static void
@@ -292,18 +242,7 @@ _gtk_source_assistant_dispose (GObject *object)
 
 	g_assert (GTK_SOURCE_IS_ASSISTANT (self));
 
-	if (priv->reposition_handler != 0)
-	{
-		GtkSourceView *view = _gtk_source_assistant_get_view (self);
-
-		if (view != NULL)
-		{
-			gtk_widget_remove_tick_callback (GTK_WIDGET (view),
-			                                 priv->reposition_handler);
-		}
-
-		priv->reposition_handler = 0;
-	}
+	g_clear_handle_id (&priv->reposition_handler, g_source_remove);
 
 	_gtk_source_assistant_detach (self);
 	g_clear_object (&priv->mark);
