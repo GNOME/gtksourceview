@@ -33,10 +33,12 @@
 
   <styles>
     <style id="comment"           name="Comment"                   map-to="def:comment"/>
+    <style id="doc-comment"       name="Documentation comment"     map-to="def:doc-comment"/>
     <style id="escaped-character" name="Escaped Character"         map-to="def:special-char"/>
     <style id="string"            name="String"                    map-to="def:string"/>
     <style id="char"              name="Character"                 map-to="def:character"/>
     <style id="external"          name="External"                  map-to="def:preprocessor"/>
+    <style id="annotation"        name="Annotation"                map-to="def:preprocessor"/>
     <style id="declaration"       name="Declaration"               map-to="def:type"/>
     <style id="storage-class"     name="Storage Class"             map-to="def:type"/>
     <style id="scope-declaration" name="Scope Declaration"         map-to="def:type"/>
@@ -58,6 +60,11 @@
       )
     </define-regex>
 
+    <context id="doc-comment" style-ref="doc-comment" class-disabled="no-spell-check" class="comment">
+      <start>/\*\*(?![\*/])</start>
+      <end>\*/</end>
+    </context>
+
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
@@ -68,13 +75,30 @@
       </include>
     </context>
 
-   <context id="char" style-ref="char">
-     <match>'(\%{escaped-character}|.)'</match>
-   </context>
+    <context id="char" style-ref="char">
+      <match>'((\%{escaped-character})|.)'</match>
+      <include>
+        <context sub-pattern="2" style-ref="escaped-character"/>
+      </include>
+    </context>
+
+    <context id="annotation" style-ref="annotation">
+      <match>@\w*</match>
+    </context>
 
     <context id="externals" style-ref="external">
+      <keyword>exports</keyword>
       <keyword>import</keyword>
+      <keyword>module</keyword>
+      <keyword>open</keyword>
+      <keyword>opens</keyword>
       <keyword>package</keyword>
+      <keyword>provides</keyword>
+      <keyword>requires</keyword>
+      <keyword>to</keyword>
+      <keyword>transitive</keyword>
+      <keyword>uses</keyword>
+      <keyword>with</keyword>
     </context>
 
     <context id="declarations" style-ref="declaration">
@@ -85,6 +109,10 @@
       <keyword>instanceof</keyword>
       <keyword>interface</keyword>
       <keyword>native</keyword>
+      <keyword>non-sealed</keyword>
+      <keyword>permits</keyword>
+      <keyword>record</keyword>
+      <keyword>sealed</keyword>
       <keyword>throws</keyword>
     </context>
 
@@ -97,6 +125,7 @@
       <keyword>int</keyword>
       <keyword>long</keyword>
       <keyword>short</keyword>
+      <keyword>var</keyword>
       <keyword>void</keyword>
     </context>
 
@@ -133,6 +162,7 @@
       <keyword>switch</keyword>
       <keyword>try</keyword>
       <keyword>while</keyword>
+      <keyword>yield</keyword>
     </context>
 
     <context id="memory" style-ref="keyword">
@@ -144,6 +174,7 @@
     <context id="future-reserved-words" style-ref="reserved">
       <keyword>const</keyword>
       <keyword>goto</keyword>
+      <keyword>_</keyword>
     </context>
 
     <context id="null-value" style-ref="null-value">
@@ -156,21 +187,24 @@
     </context>
 
     <context id="numeric" style-ref="number">
-      <match extended="true">
-        (\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|
-         \b(([0-9]+[Ee][-]?[0-9]+|
-            ([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|
-            [0-9]+[FfDd]))
+      <match extended="true" case-sensitive="false">
+        \b(
+          \d+[fd] |
+          ((\d*\.\d+|\d+\.)(e[-+]?\d+)?|\d+e[-+]?\d+)[fd]? |
+          (0x[\da-f]+|[1-9]\d*|0[0-7]*)l?
+        )
       </match>
     </context>
 
     <context id="java" class="no-spell-check">
       <include>
+        <context ref="doc-comment"/>
         <context ref="def:c-like-comment" style-ref="comment"/>
         <context ref="def:c-like-comment-multiline" style-ref="comment"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="string"/>
         <context ref="char"/>
+        <context ref="annotation"/>
         <context ref="externals"/>
         <context ref="declarations"/>
         <context ref="primitive-types"/>
