@@ -68,39 +68,37 @@
          HTML tags and attributes.
     -->
     <context id="embedded-lang-hook">
-      <start>\%{def:never-match}</start>
-      <end></end>
+      <match>\%{def:never-match}</match>
     </context>
 
-    <!-- Certain HTML tags (e.g. h1) require container contexts that
-         exclude highlighting from embedding languages. Languages can
-         replace this context when they need to highlight all content,
-         but not inside HTML tags and attributes.
+    <!-- This one is for languages such as Markdown and MediaWiki
+         in which HTML tags can be included. Their syntax will be
+         recognized in text nodes, but not in attribute values.
     -->
-
     <context id="embedded-lang-hook-content">
-      <start>\%{def:never-match}</start>
-      <end></end>
+      <match>\%{def:never-match}</match>
     </context>
 
-    <context id="heading-tag" once-only="true">
-      <start>\%{def:always-match}</start>
-      <end>&gt;</end>
+    <context id="heading-element-content" style-inside="true" end-parent="true" class-disabled="no-spell-check">
+      <start>&gt;</start>
+      <end>&lt;/h[1-6]\s*&gt;</end>
       <include>
+        <context sub-pattern="0" where="start" style-ref="tag"/>
         <context sub-pattern="0" where="end" style-ref="tag"/>
-        <context ref="generic-tag"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="embedded-lang-hook-content"/>
+        <context extend-parent="false">
+          <start>\%{def:always-match}</start>
+          <include>
+            <context ref="html"/>
+          </include>
+        </context>
       </include>
     </context>
 
-    <define-regex id="h1-close">&lt;/h1\s*&gt;</define-regex>
-    <define-regex id="h2-close">&lt;/h2\s*&gt;</define-regex>
-    <define-regex id="h3-close">&lt;/h3\s*&gt;</define-regex>
-    <define-regex id="h4-close">&lt;/h4\s*&gt;</define-regex>
-    <define-regex id="h5-close">&lt;/h5\s*&gt;</define-regex>
-    <define-regex id="h6-close">&lt;/h6\s*&gt;</define-regex>
-
     <context id="headings">
       <include>
+        <!-- Inside <title> tags, no other tags are recognized. -->
         <context id="title" class="no-spell-check">
           <start>&lt;title\%]</start>
           <include>
@@ -113,6 +111,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="xml:entity"/>
                 <context ref="embedded-lang-hook"/>
                 <context ref="embedded-lang-hook-content"/>
               </include>
@@ -124,23 +123,8 @@
           <start>&lt;h1\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h1" class-disabled="no-spell-check">
-              <start>(?!\%{h1-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h1-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h1-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h1"/>
           </include>
         </context>
 
@@ -148,23 +132,8 @@
           <start>&lt;h2\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h2" class-disabled="no-spell-check">
-              <start>(?!\%{h2-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h2-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h2-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h2"/>
           </include>
         </context>
 
@@ -172,23 +141,8 @@
           <start>&lt;h3\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h3" class-disabled="no-spell-check">
-              <start>(?!\%{h3-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h3-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h3-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h3"/>
           </include>
         </context>
 
@@ -196,23 +150,8 @@
           <start>&lt;h4\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h4" class-disabled="no-spell-check">
-              <start>(?!\%{h4-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h4-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h4-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h4"/>
           </include>
         </context>
 
@@ -220,23 +159,8 @@
           <start>&lt;h5\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h5" class-disabled="no-spell-check">
-              <start>(?!\%{h5-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h5-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h5-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h5"/>
           </include>
         </context>
 
@@ -244,23 +168,8 @@
           <start>&lt;h6\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="heading-tag"/>
-
-            <context style-ref="h6" class-disabled="no-spell-check">
-              <start>(?!\%{h6-close})</start>
-              <include>
-                <context end-parent="true">
-                  <match>(?=\%{h6-close})</match>
-                </context>
-                <context ref="embedded-lang-hook"/>
-                <context ref="embedded-lang-hook-content"/>
-                <context ref="tag"/>
-              </include>
-            </context>
-
-            <context style-ref="tag" end-parent="true">
-              <match>\%{h6-close}</match>
-            </context>
+            <context ref="generic-tag"/>
+            <context ref="heading-element-content" style-ref="h6"/>
           </include>
         </context>
       </include>
