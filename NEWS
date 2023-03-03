@@ -1,3 +1,19 @@
+News in 5.7.2, 2023-03-03
+-------------------------
+
+5.7.2 is a development release of GtkSourceView intended for application
+developers and unstable distributions alike.
+
+ * Documentation improvements
+ * Updated languages: java.lang, html.lang
+ * Fix Y offset calculation when GtkTextView:top-margin is set
+ * Completion now requeries providers upon manual activation
+ * CSS updates for completion popover to reduce allocation jitter
+ * Assistants will more aggresively update positioning. It is heavily
+   suggested that you have GNOME/gtk!5564 in whatever GTK you are
+   linking against to reduce the potential for frames rendered with
+   missing allocations/text.
+
 News in 5.7.1, 2023-02-15
 -------------------------
 
