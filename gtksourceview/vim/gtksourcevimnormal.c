@@ -605,9 +605,9 @@ key_handler_command (GtkSourceVimNormal *self,
 
 		case GDK_KEY_J:
 			gtk_source_vim_normal_begin_command (self,
-							     gtk_source_vim_motion_new_next_line_end_with_nl (),
-							     gtk_source_vim_motion_new_line_start (),
-							     ":join", 0);
+			                                     gtk_source_vim_motion_new_next_line_end_with_nl (),
+			                                     gtk_source_vim_motion_new_line_start (),
+			                                     ":join", 0);
 			return TRUE;
 
 		case GDK_KEY_u:
