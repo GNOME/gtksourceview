@@ -89,6 +89,67 @@ gtk_source_vim_real_format (GtkSourceVim *self,
 	return FALSE;
 }
 
+typedef struct _LineReader
+{
+  const char *contents;
+  gsize       length;
+  gssize      pos;
+} LineReader;
+
+static void
+line_reader_init (LineReader *reader,
+		  const char *contents,
+		  gssize      length)
+{
+  if (length < 0)
+    length = strlen (contents);
+
+  if (contents != NULL)
+    {
+      reader->contents = contents;
+      reader->length = length;
+      reader->pos = 0;
+    }
+  else
+    {
+      reader->contents = NULL;
+      reader->length = 0;
+      reader->pos = 0;
+    }
+}
+
+static const char *
+line_reader_next (LineReader *reader,
+		  gsize      *length)
+{
+  const char *ret = NULL;
+
+  if ((reader->contents == NULL) || (reader->pos >= reader->length))
+    {
+      *length = 0;
+      return NULL;
+    }
+
+  ret = &reader->contents [reader->pos];
+
+  for (; reader->pos < reader->length; reader->pos++)
+    {
+      if (reader->contents [reader->pos] == '\n')
+        {
+          *length = &reader->contents [reader->pos] - ret;
+          /* Ingore the \r in \r\n if provided */
+          if (*length > 0 && reader->pos > 0 && reader->contents [reader->pos - 1] == '\r')
+            (*length)--;
+          reader->pos++;
+          return ret;
+        }
+    }
+
+  *length = &reader->contents [reader->pos] - ret;
+
+  return ret;
+}
+
 static gboolean
 gtk_source_vim_real_filter (GtkSourceVim *self,
                             GtkTextIter  *begin,
@@ -100,6 +161,11 @@ gtk_source_vim_real_filter (GtkSourceVim *self,
 	GtkTextMark *begin_mark;
 	GtkTextMark *end_mark;
 	GtkTextIter iter;
+	LineReader reader;
+	const char *line;
+	char *text;
+	gsize line_len;
+	guint count = 0;
 
 	g_assert (GTK_SOURCE_IS_VIM (self));
 	g_assert (begin != NULL);
@@ -114,39 +180,67 @@ gtk_source_vim_real_filter (GtkSourceVim *self,
 		return FALSE;
 	}
 
+	gtk_text_iter_order (begin, end);
+
+	/* Remove trialing \n which might have happened from linewise */
+	if (gtk_text_iter_starts_line (end) &&
+	    gtk_text_iter_get_line (begin) != gtk_text_iter_get_line (end))
+	{
+		gtk_text_iter_backward_char (end);
+	}
+
+	if (!gtk_text_iter_starts_line (begin))
+	{
+		gtk_text_iter_set_line_offset (begin, 0);
+	}
+
+	if (!gtk_text_iter_ends_line (end))
+	{
+		gtk_text_iter_forward_to_line_end (end);
+	}
+
+	if (gtk_text_iter_equal (begin, end))
+	{
+		return FALSE;
+	}
+
 	/* Create temporary marks for bounds checking */
 	begin_mark = gtk_text_buffer_create_mark (buffer, NULL, begin, TRUE);
 	end_mark = gtk_text_buffer_create_mark (buffer, NULL, end, FALSE);
 
-	/* Start at beginning of first line */
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter, begin_mark);
-	gtk_text_iter_set_line_offset (&iter, 0);
+	/* Remove all text, as if we try to do this within the buffer it has
+	 * the chance to really hammer applications which process events on
+	 * buffer changes.
+	 */
+	text = gtk_text_iter_get_slice (begin, end);
+	gtk_text_buffer_delete (buffer, begin, end);
 
-	/* Remove prefix space from each line */
-	while (compare_position (&iter, end_mark) < 0)
+	iter = *begin;
+	line_reader_init (&reader, text, -1);
+	while ((line = line_reader_next (&reader, &line_len)))
 	{
-		GtkTextIter end_of_space = iter;
-		guint line;
+		char *stripped = g_strstrip (g_strndup (line, line_len));
+		guint offset;
 
-		while (!gtk_text_iter_ends_line (&end_of_space) &&
-		       g_unichar_isspace (gtk_text_iter_get_char (&end_of_space)))
+		if (count > 0)
 		{
-			gtk_text_iter_forward_char (&end_of_space);
+			gtk_text_buffer_insert (buffer, &iter, "\n", -1);
 		}
 
-		if (!gtk_text_iter_equal (&iter, &end_of_space))
-		{
-			gtk_text_buffer_delete (buffer, &iter, &end_of_space);
-		}
+		offset = gtk_text_iter_get_offset (&iter);
+		gtk_text_buffer_insert (buffer, &iter, stripped, -1);
+		gtk_text_buffer_get_iter_at_offset (buffer, &iter, offset);
 
-		/* The thought here to get_iter_at_line() instead of forward_line()
-		 * is that it is a bit more resilient against how much the indenter
-		 * changes outside of the direct indentation point. It ensures that
-		 * we take the next line after we were on and then processes it too.
-		 */
-		line = gtk_text_iter_get_line (&iter);
 		gtk_source_indenter_indent (indenter, view, &iter);
-		gtk_text_buffer_get_iter_at_line (buffer, &iter, line + 1);
+
+		if (!gtk_text_iter_ends_line (&iter))
+		{
+			gtk_text_iter_forward_to_line_end (&iter);
+		}
+
+		count++;
+
+		g_free (stripped);
 	}
 
 	/* Revalidate iter positions */
@@ -156,6 +250,8 @@ gtk_source_vim_real_filter (GtkSourceVim *self,
 	/* Remove our temporary marks */
 	gtk_text_buffer_delete_mark (buffer, begin_mark);
 	gtk_text_buffer_delete_mark (buffer, end_mark);
+
+	g_free (text);
 
 	return TRUE;
 }
