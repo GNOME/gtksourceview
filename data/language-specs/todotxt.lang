@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Victor Kareh <vkareh@vkareh.net>
+ Copyright (C) 2023 by Victor Kareh <vkareh@vkareh.net>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+  The todo.txt format is a simple set of rules that make todo.txt both
+  human and machine-readable. The format supports priorities, creation and
+  completion dates, projects and contexts.
+
+  Project website: http://todotxt.org
+  Format rules: https://github.com/todotxt/todo.txt
+-->
+
+<language id="todotxt" name="todo.txt" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetype">text/x-todo-txt</property>
+    <property name="line-comment-start">x </property>
+  </metadata>
+
+  <styles>
+    <style id="done" name="Done" map-to="def:deletion"/>
+    <style id="priority" name="Priority" map-to="def:list-marker"/>
+    <style id="date" name="Date" map-to="def:preprocessor"/>
+    <style id="link" name="Link" map-to="def:link-destination"/>
+    <style id="context" name="Context" map-to="def:type"/>
+    <style id="project" name="Project" map-to="def:special-char"/>
+    <style id="metadata" name="Metadata" map-to="def:emphasis"/>
+  </styles>
+
+  <definitions>
+    <context id="done" style-ref="done">
+      <match>^x .*</match>
+    </context>
+
+    <context id="priority" style-ref="priority">
+      <match>^\([A-Z]\) </match>
+    </context>
+
+    <context id="date" style-ref="date">
+      <match>[0-9]+-[0-9]+-[0-9]+</match>
+    </context>
+
+    <context id="link" style-ref="link">
+      <prefix>(ftp|git|http|mailto|ssh)s?:</prefix>
+      <keyword>[^\s]+</keyword>
+    </context>
+
+    <context id="context" style-ref="context">
+      <prefix>(?!\s+)\@</prefix>
+      <keyword>[^\s]+</keyword>
+    </context>
+
+    <context id="project" style-ref="project">
+      <prefix>(?!\s+)\+</prefix>
+      <keyword>[^\s]+</keyword>
+    </context>
+
+    <context id="metadata" style-ref="metadata">
+      <match>(?!\s)\w+:\w+(?!\s)?</match>
+    </context>
+
+    <context id="todotxt">
+      <include>
+        <context ref="context" />
+        <context ref="date" />
+        <context ref="done" />
+        <context ref="link" />
+        <context ref="project" />
+        <context ref="priority" />
+        <context ref="metadata" />
+      </include>
+    </context>
+  </definitions>
+</language>
