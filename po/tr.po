@@ -14,16 +14,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-08-26 19:50+0000\n"
-"PO-Revision-Date: 2022-02-23 13:20+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2023-01-25 20:29+0000\n"
+"PO-Revision-Date: 2023-03-08 00:25+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -403,7 +403,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango renk paletinde kullanılan renk şeması"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:459
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Kırıntılar"
 
@@ -439,13 +439,13 @@ msgstr "Geçersiz nesne, ilklendirilmemiş"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Girdide eksik UTF-8 dizisi"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d / %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_Ayrıntılar"
 
@@ -665,7 +665,7 @@ msgstr "Dosya dıştan düzenlenmiş."
 
 #: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
-msgstr "Arabellek geçersiz karakterler içeriyor."
+msgstr "Tampon geçersiz karakterler içeriyor."
 
 #. *
 #. * GtkSourceLanguage:
@@ -709,68 +709,68 @@ msgstr "_Vazgeç"
 msgid "_Select"
 msgstr "_Seç"
 
-#: gtksourceview/gtksourceview.c:1806
+#: gtksourceview/gtksourceview.c:1831
 msgid "All _Upper Case"
 msgstr "Tümü _Büyük Harf"
 
-#: gtksourceview/gtksourceview.c:1810
+#: gtksourceview/gtksourceview.c:1835
 msgid "All _Lower Case"
 msgstr "Tümü _Küçük Harf"
 
-#: gtksourceview/gtksourceview.c:1814
+#: gtksourceview/gtksourceview.c:1839
 msgid "_Invert Case"
 msgstr "Durum Değ_iştir"
 
-#: gtksourceview/gtksourceview.c:1818
+#: gtksourceview/gtksourceview.c:1843
 msgid "_Title Case"
 msgstr "Başlık _Durumu"
 
-#: gtksourceview/gtksourceview.c:1822
+#: gtksourceview/gtksourceview.c:1847
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "onaltılı rakam ya da “}” beklendi"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "onaltılı rakam beklendi"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "simgesel referansda eksik “<”"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "tamamlanmamış simgesel referans"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "sıfır-uzunlukta simgesel referans"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "rakam beklendi"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "geçersiz simgesel referans"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "son “\\” kayıp"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "geçersiz çıkış dizisi"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Yerine koyma metni “%s” işlenirken karakter %lu hatalı: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:489
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- YERLEŞTİR --"
 
