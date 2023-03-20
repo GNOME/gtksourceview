@@ -50,12 +50,6 @@
  * function names, etc. To add a provider, call
  * [method@Completion.add_provider].
  *
- * When several providers match, they are all shown in the completion
- * window, but one can switch between providers: see the
- * #GtkSourceCompletion::move-page signal. It is also possible to
- * activate the first proposals with key bindings, see the
- * #GtkSourceCompletion:accelerators property.
- *
  * The [iface@CompletionProposal] interface represents a proposal.
  *
  * If a proposal contains extra information (see
