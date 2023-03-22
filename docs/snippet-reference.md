@@ -17,44 +17,44 @@ It has the following attributes:
 
 - `_group`
 
-The group for the snippet. This is purely used to group snippets together
-in user-interfaces.
+  The group for the snippet. This is purely used to group snippets together
+  in user-interfaces.
 
-Within the snippets tag is one or more `<snippets>` elements.
-It has the following attributes:
+  Within the snippets tag is one or more `<snippets>` elements.
+  It has the following attributes:
 
 - `_name`
 
-The name of the snippet. This may be displayed in the user interface such as
-in a snippet editor or completion providers. An attempt will be made to translate
-it by GtkSourceView.
+  The name of the snippet. This may be displayed in the user interface such as
+  in a snippet editor or completion providers. An attempt will be made to translate
+  it by GtkSourceView.
 
 - `trigger`
 
-The word trigger of the snippet. If the user types this word and hits Tab,
-the snippet will be inserted.
+  The word trigger of the snippet. If the user types this word and hits Tab,
+  the snippet will be inserted.
 
 - `_description`
 
-The description of the snippet. This may be displayed in the user interface
-such as in a snippet editor or completion providers. An attempt will be made
-to translate it by GtkSourceView.
+  The description of the snippet. This may be displayed in the user interface
+  such as in a snippet editor or completion providers. An attempt will be made
+  to translate it by GtkSourceView.
 
-Within the snippet tag is one or more `<text>` elements.
-It has the following attributes:
+  Within the snippet tag is one or more `<text>` elements.
+  It has the following attributes:
 
 - `languages`
 
-A semicolon separated list of GtkSourceView language identifiers for which this
-text should be used when inserting the snippet. Defining this on the
-`<text>` tag allows a snippet to have multiple variants based
-on the programming language.
+  A semicolon separated list of GtkSourceView language identifiers for which this
+  text should be used when inserting the snippet. Defining this on the
+  `<text>` tag allows a snippet to have multiple variants based
+  on the programming language.
 
 - `CDATA` Within the `<text>` tag should be a single
 
-`<![CDATA[]]>` tag containing the text for the snippet
-between the []. You do not need to use CDATA if the text does not have any
-embedded characters that will conflict with XML.
+  `<![CDATA[]]>` tag containing the text for the snippet
+  between the []. You do not need to use CDATA if the text does not have any
+  embedded characters that will conflict with XML.
 
 ## Snippet Text Format
 
