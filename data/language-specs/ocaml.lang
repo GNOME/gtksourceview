@@ -33,7 +33,8 @@
 
   <styles>
     <style id="comment" name="Comment" map-to="def:comment"/>
-    <style id="ocamldoc" name="Ocamldoc Comments" map-to="def:note"/>
+    <style id="ocamldoc" name="OCamldoc Comments" map-to="def:doc-comment"/>
+    <style id="ocamldoc-element" name="OCamldoc element" map-to="def:doc-comment-element"/>
     <style id="base-n-integer" name="Base-N Integer" map-to="def:base-n-integer"/>
     <style id="floating-point" name="Floating Point number" map-to="def:floating-point"/>
     <style id="decimal" name="Decimal number" map-to="def:decimal"/>
@@ -42,7 +43,7 @@
     <style id="meta-keyword" name="Type, module or object keyword" map-to="def:keyword"/>
     <style id="fun-keyword" name="Builtin-function keyword" map-to="def:keyword"/>
     <style id="type" name="Data Type" map-to="def:type"/>
-    <style id="label" name="Labeled argument" map-to="def:type"/>
+    <style id="label" name="Labeled argument" map-to="def:identifier"/>
     <style id="poly-variant" name="Polymorphic Variant" map-to="def:type"/>
     <style id="variant" name="Variant Constructor" map-to="def:type"/>
     <style id="type-var" name="Type Variable" map-to="def:type"/>
@@ -54,9 +55,9 @@
   </styles>
 
   <definitions>
-    <define-regex id="cap-ident">\b[A-Z][A-Za-z0-9_']*</define-regex>
-    <define-regex id="low-ident">\b[a-z][A-Za-z0-9_']*</define-regex>
-    <define-regex id="char-esc">\\((\\|"|'|n|t|b|r)|[0-9]{3}|x[0-9a-fA-F]{2})</define-regex>
+    <define-regex id="cap-ident">\b[A-Z][A-Za-z\d_']*</define-regex>
+    <define-regex id="low-ident">\b[a-z_][A-Za-z\d_']*</define-regex>
+    <define-regex id="char-esc">\\((\\|"|'|n|t|b|r)|\d{3}|o[0-3][0-7]{2}|x[\da-fA-F]{2})</define-regex>
 
     <context id="escape-seq" style-ref="escape">
       <match>\%{char-esc}</match>
@@ -80,34 +81,44 @@
             </context>
             <context ref="string"/>
             <context ref="def:in-comment:*"/>
+            <context id="ocamldoc-element" style-ref="ocamldoc-element">
+              <match>\B@\w+</match>
+            </context>
           </include>
         </context>
         <context id="comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
           <start>\(\*</start>
           <end>\*\)</end>
           <include>
-            <context ref="string"/>
-            <context ref="comment-in-comment"/>
-            <context ref="def:in-comment:*"/>
+            <context ref="comment-in-comment:*"/>
           </include>
         </context>
+        <context id="floating-point-number" style-ref="floating-point">
+          <match case-sensitive="false">\b\d[\d_]*(\.[\d_]*(e[+-]?\d[\d_]*)?|e[+-]?\d[\d_]*)</match>
+        </context>
         <context id="hex-number" style-ref="base-n-integer">
-          <match>[-]?0[xX][0-9A-Fa-f][0-9A-Fa-f_]*[lL]?</match>
+          <match case-sensitive="false">\b0x[\da-f][0-9a-f_]*l?</match>
         </context>
         <context id="octal-number" style-ref="base-n-integer">
-          <match>[-]?0[oO][0-7][0-7_]*[lL]?</match>
+          <match case-sensitive="false">\b0o[0-7][0-7_]*l?</match>
         </context>
         <context id="binary-number" style-ref="base-n-integer">
-          <match>[-]?0[bB][01][01_]*[lL]?</match>
+          <match case-sensitive="false">\b0b[01][01_]*l?</match>
         </context>
         <context id="decimal" style-ref="decimal">
-          <match>[-]?[0-9][0-9_]*[lLn]?</match>
+          <match>\b\d[\d_]*[lLn]?</match>
         </context>
-        <context id="floating-point-number" style-ref="floating-point">
-          <match>[-]?[0-9][0-9_]*(\.[0-9_]*)?([Ee][+-]?[0-9][0-9_]*)?</match>
-        </context>
-        <context id="label" style-ref="label">
-          <match>[~?]\%{low-ident}</match>
+        <context id="label">
+          <start>[~?]</start>
+          <end>\b|[^\w\s]</end>
+          <include>
+            <context once-only="true">
+              <match>\(</match>
+            </context>
+            <context style-ref="label">
+              <match>\%{low-ident}</match>
+            </context>
+          </include>
         </context>
         <context id="poly-variant" style-ref="poly-variant">
           <match>`\%{cap-ident}</match>
@@ -119,11 +130,19 @@
         <context id="variant" style-ref="variant">
           <match>\%{cap-ident}</match>
         </context>
-        <context id="string" style-ref="string">
-          <start>"</start>
-          <end>"</end>
+        <context id="string" class-disabled="no-spell-check">
           <include>
-            <context ref="escape-seq"/>
+            <context style-ref="string">
+              <start>"</start>
+              <end>"</end>
+              <include>
+                <context ref="escape-seq"/>
+              </include>
+            </context>
+            <context style-ref="string">
+              <start>\{([a-z]*)\|</start>
+              <end>\|\%{1@start}\}</end>
+            </context>
           </include>
         </context>
         <context id="character-constant" style-ref="string">
@@ -173,6 +192,7 @@
           <keyword>in</keyword>
           <keyword>let</keyword>
           <keyword>match</keyword>
+          <keyword>nonrec</keyword>
           <keyword>rec</keyword>
           <keyword>then</keyword>
           <keyword>to</keyword>
@@ -216,26 +236,32 @@
           <keyword>lsr</keyword>
           <keyword>lxor</keyword>
           <keyword>mod</keyword>
-          <keyword>or</keyword>
           <!-- from pervasives, but same as others -->
+          <keyword>not</keyword>
           <keyword>lnot</keyword>
         </context>
         <context id="types" style-ref="type">
-          <!-- pervasives types -->
-          <keyword>option</keyword>
-          <keyword>ignore</keyword>
-          <keyword>ref</keyword>
+          <!-- built-in types -->
           <keyword>array</keyword>
           <keyword>bool</keyword>
+          <keyword>bytes</keyword>
           <keyword>char</keyword>
+          <keyword>exn</keyword>
           <keyword>float</keyword>
+          <keyword>format6?</keyword>
           <keyword>int</keyword>
+          <keyword>int32</keyword>
+          <keyword>int64</keyword>
           <keyword>list</keyword>
+          <keyword>option</keyword>
+          <keyword>nativeint</keyword>
           <keyword>string</keyword>
           <keyword>unit</keyword>
+          <!-- other pervasive types -->
+          <keyword>ref</keyword>
         </context>
-        <context id="standart-modules" style-ref="std-modules">
-          <!--Standart modules -->
+        <!--Standard modules -->
+        <context id="standard-modules" style-ref="std-modules">
           <keyword>Arg</keyword>
           <keyword>Arith_status</keyword>
           <keyword>Array</keyword>
@@ -293,7 +319,6 @@
           <keyword>Unix</keyword>
           <keyword>UnixLabels</keyword>
           <keyword>Weak</keyword>
-          <!-- Standart modules -->
         </context>
       </include>
     </context>
