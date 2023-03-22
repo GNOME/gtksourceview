@@ -314,17 +314,21 @@
 
         <context ref="python:float"/>
 
-        <context ref="python:decimal"/>
+        <context id="decimal" style-ref="decimal">
+          <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0)(?![\w\.])</match>
+        </context>
 
         <context id="binary" style-ref="base-n-integer">
-          <match>(?&lt;![\w\.])0[bB][0-1]+[lL]?(?![\w\.])</match>
+          <match>(?&lt;![\w\.])0[bB](_?[0-1])+(?![\w\.])</match>
         </context>
 
         <context id="octal" style-ref="base-n-integer">
-          <match>(?&lt;![\w\.])0[oO][0-7]+[lL]?(?![\w\.])</match>
+          <match>(?&lt;![\w\.])0[oO](_?[0-7])+(?![\w\.])</match>
         </context>
 
-        <context ref="python:hex"/>
+        <context id="hex" style-ref="base-n-integer">
+          <match>(?&lt;![\w\.])0[xX](_?[0-9A-Fa-f])+(?![\w\.])</match>
+        </context>
 
         <context ref="module-handler-from"/>
         <context ref="python:module-handler"/>
