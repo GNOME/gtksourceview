@@ -119,9 +119,9 @@
 
   <!-- Others -->
   <style name="def:preprocessor"            foreground="plum1"/>
-  <style name="def:error"                   foreground="aluminium1" background="scarletred2" bold="true"/>
+  <style name="def:error"                   underline="error" underline-color="scarletred2"/>
   <style name="def:warning"                 foreground="aluminium1" background="plum1"/>
-  <style name="def:note"                    background="butter1" foreground="aluminium5" bold="true"/>
+  <style name="def:note"                    foreground="butter1" background="black" bold="true"/>
   <style name="def:net-address"             italic="true" underline="single"/>
 
   <!-- Heading styles, uncomment to enable -->
