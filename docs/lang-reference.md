@@ -25,7 +25,7 @@ user languages are usually placed in
 replace `${GSV_API_VERSION}` with 2.0 or 3.0 in the path for GtkSourceView version
 2 or version 3.
 
-## Some advices
+## Some advice
 
 The easiest way to start a new language definition is to copy a preinstalled
 language definition from a language that has similar constructs as the one you
@@ -137,17 +137,17 @@ Recognized elements are (all optional):
 - `line-comment-start`
 
   String used to create single-line comment in files of this type, e.g.
-  "#" in shell scripts.
+  "`#`" in shell scripts.
   It may be used in an editor to implement Comment/Uncomment functionality.
 
 - `block-comment-start`
 
-  String used to start block comment in files of this type, e.g. "/*" in C
+  String used to start block comment in files of this type, e.g. "`/*`" in C
   files.
 
 - `block-comment-end`
 
-  String used to end block comment in files of this type, e.g. "*/" in C
+  String used to end block comment in files of this type, e.g. "`*/`" in C
   files.
 
 ## Tag `<styles>`
@@ -192,8 +192,8 @@ Contained elements: none.
 
   Used to map the style with a default style, to use colors and
   font properties defined for those default styles.
-  The id of the default style has to be preceded with the id of the
-  language where it is defined, separated with a semicolon ":".
+  The id of the default style has to be preceded by the id of the
+  language where it is defined, separated with a colon "`:`".
   When omitted the style is not considered derived from any style and will
   not be highlighted until the user specifies a color scheme for this
   style.
@@ -201,9 +201,9 @@ Contained elements: none.
 ## Tag `<keyword-char-class>`
 
 Contains a regex character class used to redefine the customizable
-word boundary delimiters "\%[" and "\%]". This class is the set of character
+word boundary delimiters `\%[` and `\%]`. This class is the set of character
 that can be commonly found in a keyword.
-If the element is omitted the two delimiters default to "\b".
+If the element is omitted the two delimiters default to `\b`.
 
 Contained elements: none.
 
@@ -250,7 +250,7 @@ enters at the beginning of the highlighted file.
 Contained elements:
 
 - `<context>` (one or more)
-- `<define-regex>` (zero or more).
+- `<define-regex>` (zero or more)
 
 ## Tag `<define-regex>`
 
@@ -399,7 +399,7 @@ Contained elements:
 
 - `style-inside` (optional)
 
-  If this attribute is "true", then the highlighting style will
+  If this attribute is `true`, then the highlighting style will
   be applied to the area between start and end matches; otherwise
   whole context will be highlighted.
 
@@ -423,8 +423,8 @@ Contained elements:
 
 - `first-line-only` (optional)
 
-A boolean value telling the engine whether the context can start only
-on the first line of buffer. If not specified it defaults to `false`.
+  A boolean value telling the engine whether the context can start only
+  on the first line of buffer. If not specified it defaults to `false`.
 
 - `once-only` (optional)
 
@@ -490,9 +490,9 @@ Contained elements: none.
 
   The id of the context to be included. A colon followed by an asterisk
   ("`:*`") at the end of the id means that the parent should include
-  every children of the specified context, instead of the context itself.
+  every child of the specified context, instead of the context itself.
   Prepending the id of another language to the id of the context (separated
-  with a semicolon ":") is possible to include contexts defined inside such
+  with a colon "`:`") is possible to include contexts defined inside such
   external language.
 
 - `style-ref` (optional)
@@ -503,12 +503,12 @@ Contained elements: none.
 
 - `ignore-style` (optional)
 
-  If this attribute is "true" then the referenced context will not
+  If this attribute is `true` then the referenced context will not
   be highlighted. It does not affect child contexts and their styles.
 
 - `original` (optional)
 
-  If this attribute is "true", it references the original context, if it
+  If this attribute is `true`, it references the original context, if it
   has been replaced with the `<replace>` tag.
 
 ## Keyword contexts
@@ -517,7 +517,7 @@ They contain a list of `<keyword>` and matches every keyword
 listed. You can also put a `<prefix>` and/or a
 `<suffix>` common to every keyword.
 Note that keywords are matched in the order they are listed, so if you
-have both a keyword "foo" and a keyword "foobar", you should always list
+have both a keyword `foo` and a keyword `foobar`, you should always list
 foobar before foo, or it will never be matched.
 
 Contained elements:
@@ -593,7 +593,7 @@ Contained elements: none.
 
 Contains a prefix common to all of the following keywords in the current
 context. The prefix is a regular expression in the form used in
-`<define-regex>`. If not specified it defaults to `\%[`
+`<define-regex>`. If not specified it defaults to `\%[`.
 
 Contained elements: none.
 
@@ -601,7 +601,7 @@ Contained elements: none.
 
 Contains a suffix common to all of the following keywords in the current
 context. The suffix is a regular expression in the form used in
-`<define-regex>`. If not specified it defaults to `\%]`
+`<define-regex>`. If not specified it defaults to `\%]`.
 
 Contained elements: none.
 
