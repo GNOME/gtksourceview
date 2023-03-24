@@ -32,6 +32,7 @@
 #include "gtksourcevimmotion.h"
 #include "gtksourcevimreplace.h"
 #include "gtksourcevimvisual.h"
+#include "gtksourcevimregisters.h"
 
 typedef gboolean (*KeyHandler) (GtkSourceVimVisual *self,
                                 guint               keyval,
@@ -449,6 +450,48 @@ gtk_source_vim_visual_begin_insert (GtkSourceVimVisual *self)
 }
 
 static gboolean
+gtk_source_vim_visual_put (GtkSourceVimVisual *self,
+                           gboolean            clipboard)
+{
+	GtkSourceVimRegisters *registers;
+	GtkSourceBuffer *buffer;
+	const char *replace_content;
+	const char *selection_content;
+	GtkTextIter start;
+	GtkTextIter end;
+
+	g_assert (GTK_SOURCE_IS_VIM_VISUAL (self));
+
+	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), NULL, NULL);
+
+	if (clipboard)
+	{
+		registers = GTK_SOURCE_VIM_REGISTERS (gtk_source_vim_state_get_registers (GTK_SOURCE_VIM_STATE (self)));
+		replace_content = gtk_source_vim_registers_get (registers, "+");
+	}
+	else
+	{
+		replace_content = gtk_source_vim_state_get_current_register_value (GTK_SOURCE_VIM_STATE (self));
+	}
+
+	gtk_source_vim_visual_get_bounds (self, &start, &end);
+	gtk_text_iter_forward_char (&start);
+	selection_content = gtk_text_buffer_get_text (GTK_TEXT_BUFFER (buffer), &start, &end, FALSE);
+
+	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+	gtk_text_buffer_delete_selection (GTK_TEXT_BUFFER (buffer), TRUE, TRUE);
+	gtk_text_buffer_insert_at_cursor (GTK_TEXT_BUFFER (buffer), replace_content, strlen (replace_content));
+	gtk_source_vim_state_set_current_register_value (GTK_SOURCE_VIM_STATE (self), selection_content);
+	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+	gtk_source_vim_state_pop (GTK_SOURCE_VIM_STATE (self));
+
+	gtk_source_vim_visual_clear (self);
+
+	return TRUE;
+}
+
+static gboolean
 gtk_source_vim_visual_replace (GtkSourceVimVisual *self)
 {
 	g_assert (GTK_SOURCE_IS_VIM_VISUAL (self));
@@ -619,6 +662,9 @@ key_handler_initial (GtkSourceVimVisual *self,
 
 		case GDK_KEY_r:
 			return gtk_source_vim_visual_replace (self);
+
+		case GDK_KEY_p:
+			return gtk_source_vim_visual_put (self, FALSE);
 
 		case GDK_KEY_greater:
 			return gtk_source_vim_visual_begin_command (self, "indent", FALSE);
@@ -855,6 +901,21 @@ gtk_source_vim_visual_handle_keypress (GtkSourceVimState *state,
 		gtk_source_vim_visual_clear (self);
 		gtk_source_vim_state_pop (GTK_SOURCE_VIM_STATE (self));
 		return TRUE;
+	}
+
+	/* Now handle our commands */
+	if ((mods & GDK_CONTROL_MASK) != 0)
+	{
+		switch (keyval)
+		{
+			case GDK_KEY_V:
+				/* For the terminal users out there */
+				gtk_source_vim_visual_put (GTK_SOURCE_VIM_VISUAL (state), TRUE);
+				return TRUE;
+
+			default:
+				break;
+		}
 	}
 
 	return self->handler (self, keyval, keycode, mods, string);
