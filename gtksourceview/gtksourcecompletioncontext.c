@@ -888,6 +888,8 @@ _gtk_source_completion_context_complete_finish (GtkSourceCompletionContext  *sel
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (self), FALSE);
 	g_return_val_if_fail (G_IS_TASK (result), FALSE);
+	g_return_val_if_fail (g_task_is_valid (result, self), FALSE);
+	g_return_val_if_fail (g_task_get_source_tag (G_TASK (result)) == _gtk_source_completion_context_complete_async, FALSE);
 
 	return g_task_propagate_boolean (G_TASK (result), error);
 }
