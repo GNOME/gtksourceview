@@ -480,7 +480,7 @@ gtk_source_vim_visual_put (GtkSourceVimVisual *self,
 
 	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 	gtk_text_buffer_delete_selection (GTK_TEXT_BUFFER (buffer), TRUE, TRUE);
-	gtk_text_buffer_insert_at_cursor (GTK_TEXT_BUFFER (buffer), replace_content, strlen (replace_content));
+	gtk_text_buffer_insert_at_cursor (GTK_TEXT_BUFFER (buffer), replace_content, -1);
 	gtk_source_vim_state_set_current_register_value (GTK_SOURCE_VIM_STATE (self), selection_content);
 	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 
