@@ -456,7 +456,7 @@ gtk_source_vim_visual_put (GtkSourceVimVisual *self,
 	GtkSourceVimRegisters *registers;
 	GtkSourceBuffer *buffer;
 	const char *replace_content;
-	const char *selection_content;
+	char *selection_content;
 	GtkTextIter start;
 	GtkTextIter end;
 
@@ -487,6 +487,8 @@ gtk_source_vim_visual_put (GtkSourceVimVisual *self,
 	gtk_source_vim_state_pop (GTK_SOURCE_VIM_STATE (self));
 
 	gtk_source_vim_visual_clear (self);
+
+	g_free (selection_content);
 
 	return TRUE;
 }
