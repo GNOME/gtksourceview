@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: James Westman <james@jwestman.net>
+ Copyright (C) 2023 James Westman <james@jwestman.net>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="blueprint" name="Blueprint" version="2.0" _section="Other">
+  <metadata>
+    <property name="globs">*.blp</property>
+    <property name="mimetypes">text/x-blueprint</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+    <property name="line-comment-start">//</property>
+  </metadata>
+
+  <styles>
+
+    <!-- global -->
+    <style id="comment"                     name="Comment"                     map-to="def:comment"/>
+    <style id="translator"                  name="Translator Comment"          map-to="def:emphasis"/>
+    <style id="keyword"                     name="Keyword"                     map-to="def:keyword"/>
+    <style id="namespace"                   name="Namespace"                   map-to="def:type"/>
+    <style id="class"                       name="Class"                       map-to="def:type"/>
+    <style id="function"                    name="Function"                    map-to="def:function"/>
+    <style id="property"                    name="Property"                    map-to="def:identifier"/>
+    <style id="identifier"                  name="Identifier"                  map-to="def:identifier"/>
+    <style id="builtin"                     name="Builtin"                     map-to="def:builtin"/>
+    <style id="child_type"                  name="Child Type"                  map-to="def:identifier"/>
+
+    <!-- data types -->
+    <style id="escape"                      name="Escape Sequence"             map-to="def:special-char"/>
+    <style id="string"                      name="String"                      map-to="def:string"/>
+    <style id="boolean"                     name="Boolean"                     map-to="def:boolean"/>
+    <style id="null"                        name="Null"                        map-to="def:special-constant"/>
+    <style id="number"                      name="Number"                      map-to="def:number"/>
+  </styles>
+
+  <definitions>
+    <define-regex id="ident">[A-Za-z_][\d\w\-_]*</define-regex>
+    <define-regex id="quoted">("(\\"|[^"\n])+"|'(\\'|[^'\n])+')</define-regex>
+    <define-regex id="number">[-+]?((\d[0-9a-zA-Z_]*(\.[0-9a-zA-Z_]+)?)|(\.[0-9_]+))</define-regex>
+    <define-regex id="comment">(/\*[\s\S]*\*/|\/\/[^\n]*)</define-regex>
+    <define-regex id="op">[:=\.=\|&lt;&gt;\+\-/\*]+</define-regex>
+    <define-regex id="escape">\\n|\\"|\\'</define-regex>
+
+    <context id="type">
+      <include>
+        <context style-ref="class">
+          <match>\$\s*\%{ident}</match>
+        </context>
+        <context>
+          <match>(?:(\%{ident})\s*(\.)\s*)?(\%{ident})</match>
+          <include>
+            <context sub-pattern="1" style-ref="namespace"/>
+            <context sub-pattern="3" style-ref="class"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="value">
+      <include>
+        <context>
+          <start>(typeof)\s*&lt;</start>
+          <end>&gt;</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context ref="type"/>
+          </include>
+        </context>
+        <context style-ref="boolean">
+          <match>true|false</match>
+        </context>
+        <context style-ref="null">
+          <match>null</match>
+        </context>
+        <context style-ref="builtin">
+          <match>template</match>
+        </context>
+        <context style-ref="number">
+          <match>\%{number}</match>
+        </context>
+        <context style-ref="string">
+          <start>"</start>
+          <end>"</end>
+          <include>
+            <context style-ref="escape">
+              <match>\%{escape}</match>
+            </context>
+          </include>
+        </context>
+        <context style-ref="string">
+          <start>'</start>
+          <end>'</end>
+          <include>
+            <context style-ref="escape">
+              <match>\%{escape}</match>
+            </context>
+          </include>
+        </context>
+        <context style-ref="identifier">
+          <match>\%{ident}</match>
+        </context>
+      </include>
+    </context>
+
+    <context id="comment">
+      <include>
+        <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+          <start>//</start>
+          <include>
+            <context ref="def:in-line-comment"/>
+          </include>
+        </context>
+
+        <context id="multiline-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+          <start>/\*</start>
+          <end>\*/</end>
+          <include>
+            <context ref="def:in-comment"/>
+            <context id="translator-comment" style-ref="translator">
+              <match case-sensitive="false">translators:</match>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="content">
+      <include>
+        <context ref="comment"/>
+
+        <!-- Keywords -->
+        <context style-ref="keyword">
+          <keyword>after</keyword>
+          <keyword>bidirectional</keyword>
+          <keyword>bind-property</keyword>
+          <keyword>bind</keyword>
+          <keyword>default</keyword>
+          <keyword>destructive</keyword>
+          <keyword>disabled</keyword>
+          <keyword>inverted</keyword>
+          <keyword>no-sync-create</keyword>
+          <keyword>suggested</keyword>
+          <keyword>swapped</keyword>
+          <keyword>sync-create</keyword>
+          <keyword>template</keyword>
+        </context>
+
+        <!-- Translated strings -->
+        <context>
+          <start>(C?_)\s*\(</start>
+          <end>\)</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="function" />
+            <context ref="content"/>
+          </include>
+        </context>
+
+        <!-- Cast expressions -->
+        <context>
+          <start>(as)\s*&lt;</start>
+          <end>&gt;</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context ref="type"/>
+          </include>
+        </context>
+
+        <!-- Closures -->
+        <context id="closure">
+          <start>(\$?\%{ident})\s*\(</start>
+          <end>\)</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="function"/>
+            <context ref="content"/>
+          </include>
+        </context>
+
+        <!-- Objects -->
+        <context>
+          <start extended="true">
+            (?:
+              (?:(\%{ident})\s*\.\s*)?(\%{ident})
+              | (\$\s*\%{ident})
+            )
+            (?:\s+(\%{ident}))?
+            \s*
+            \{
+          </start>
+          <end>\}</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="namespace"/>
+            <context where="start" sub-pattern="2" style-ref="class"/>
+            <context where="start" sub-pattern="3" style-ref="class"/>
+            <context where="start" sub-pattern="4" style-ref="identifier"/>
+            <context ref="block-content"/>
+          </include>
+        </context>
+
+        <context ref="value"/>
+      </include>
+    </context>
+
+    <context id="block-content">
+      <include>
+        <!-- Templates -->
+        <context id="template">
+          <start>template</start>
+          <include>
+            <context where="start" sub-pattern="0" style-ref="keyword"/>
+            <context ref="type"/>
+            <context end-parent="true">
+              <start>{</start>
+              <end>}</end>
+              <include>
+                <context ref="block-content"/>
+              </include>
+            </context>
+          </include>
+        </context>
+
+        <!-- Import statements -->
+        <context id="using">
+          <match extended="true">
+            (using)
+            \s+
+            (\%{ident})
+            \s+
+            (\%{number})
+          </match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword"/>
+            <context sub-pattern="2" style-ref="namespace"/>
+            <context sub-pattern="3" style-ref="namespace"/>
+          </include>
+        </context>
+
+        <!-- Menus -->
+        <context>
+          <start extended="true">
+            (menu|submenu|section)
+            (?:\s+(\%{ident}))?
+            \s*
+            \{
+          </start>
+          <end>}</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context where="start" sub-pattern="2" style-ref="identifier"/>
+            <context ref="block-content"/>
+          </include>
+        </context>
+
+        <!-- Nested blocks -->
+        <context>
+          <start>(responses|items|mime-types|patterns|suffixes|marks|widgets|strings|styles)\s*\[</start>
+          <end>]</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context ref="block-content"/>
+          </include>
+        </context>
+
+        <context>
+          <start>(accessibility|setters|layout|item)\s*\{</start>
+          <end>}</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context ref="block-content"/>
+          </include>
+        </context>
+
+        <context>
+          <start>(condition|mark|item)\s*\(</start>
+          <end>\)</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="keyword"/>
+            <context ref="block-content"/>
+          </include>
+        </context>
+
+        <context style-ref="child_type">
+          <start>\[</start>
+          <end>\]</end>
+          <include>
+            <context>
+              <match>(action)\s+(response)\s*=\s*(?:(\%{ident})|(\%{number}))</match>
+              <include>
+                <context sub-pattern="1" style-ref="keyword"/>
+                <context sub-pattern="1" style-ref="identifier"/>
+                <context sub-pattern="3" style-ref="identifier"/>
+                <context sub-pattern="4" style-ref="number"/>
+              </include>
+            </context>
+            <context style-ref="keyword">
+              <keyword>default</keyword>
+              <keyword>internal-child</keyword>
+            </context>
+            <context style-ref="child_type">
+              <match>\%{ident}</match>
+            </context>
+          </include>
+        </context>
+
+        <!-- Properties and signals -->
+        <context>
+          <start>(\%{ident}(?:::\%{ident})?)\s*(:|=>)</start>
+          <end>;</end>
+          <include>
+            <context where="start" sub-pattern="1" style-ref="property"/>
+            <context ref="content"/>
+          </include>
+        </context>
+
+        <context ref="content"/>
+      </include>
+    </context>
+
+    <context id="blueprint" class="no-spell-check">
+      <include>
+        <context ref="comment"/>
+        <context ref="block-content"/>
+      </include>
+    </context>
+  </definitions>
+</language>
+
