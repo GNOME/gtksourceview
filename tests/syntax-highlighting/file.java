@@ -35,6 +35,11 @@ public final class /* the same as the file name */ file extends C {
             "Long: " + 1L + " or " + 0x1l,
             "Unsigned: don’t exist in Java",
             "Escaped chars: \\ \" \101 " + '\141',
+            """
+            Multiline string:
+                - One
+                - Two
+                - Three""",
         };
     }
 
