@@ -79,5 +79,9 @@ GTK_SOURCE_INTERNAL
 void                      _gtk_source_buffer_block_cursor_moved          (GtkSourceBuffer        *buffer);
 GTK_SOURCE_INTERNAL
 void                      _gtk_source_buffer_unblock_cursor_moved        (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
+void                      _gtk_source_buffer_begin_loading               (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
+void                      _gtk_source_buffer_end_loading                 (GtkSourceBuffer        *buffer);
 
 G_END_DECLS

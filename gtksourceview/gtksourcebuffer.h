@@ -116,6 +116,8 @@ GtkSourceLanguage     *gtk_source_buffer_get_language                          (
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                   gtk_source_buffer_set_language                          (GtkSourceBuffer         *buffer,
                                                                                 GtkSourceLanguage       *language);
+GTK_SOURCE_AVAILABLE_IN_5_10
+gboolean               gtk_source_buffer_get_loading                           (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleScheme  *gtk_source_buffer_get_style_scheme                      (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL

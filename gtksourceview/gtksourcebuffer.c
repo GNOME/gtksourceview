@@ -134,6 +134,7 @@ enum
 	PROP_HIGHLIGHT_SYNTAX,
 	PROP_IMPLICIT_TRAILING_NEWLINE,
 	PROP_LANGUAGE,
+	PROP_LOADING,
 	PROP_STYLE_SCHEME,
 	N_PROPERTIES
 };
@@ -164,6 +165,8 @@ typedef struct
 	gint64 insertion_count;
 
 	guint cursor_moved_block_count;
+
+	int loading_count;
 
 	guint has_draw_spaces_tag : 1;
 	guint highlight_syntax : 1;
@@ -332,6 +335,25 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 				     GTK_SOURCE_TYPE_LANGUAGE,
 				     G_PARAM_READWRITE |
 				     G_PARAM_STATIC_STRINGS);
+
+	/**
+	 * GtkSourceBuffer:loading:
+	 *
+	 * The "loading" property denotes that a `GtkSourceFileLoader` is
+	 * currently loading the buffer.
+	 *
+	 * Applications may want to use this setting to avoid doing work
+	 * while the buffer is loading such as spellchecking.
+	 *
+	 * Since: 5.10
+	 */
+	buffer_properties[PROP_LOADING] =
+		g_param_spec_boolean ("loading",
+		                      "Loading",
+		                      "If a GtkSourceFileLoader is loading the buffer",
+		                      FALSE,
+		                      G_PARAM_READABLE |
+		                      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:style-scheme:
@@ -627,7 +649,7 @@ gtk_source_buffer_new (GtkTextTagTable *table)
  * gtk_source_buffer_new_with_language:
  * @language: a #GtkSourceLanguage.
  *
- * Creates a new source buffer using the highlighting patterns in `language`.  
+ * Creates a new source buffer using the highlighting patterns in `language`.
  *
  * This is equivalent to creating a new source buffer with
  * a new tag table and then calling [method@Buffer.set_language].
@@ -1405,7 +1427,7 @@ gtk_source_buffer_get_highlight_matching_brackets (GtkSourceBuffer *buffer)
  * @buffer: a #GtkSourceBuffer.
  * @highlight: %TRUE if you want matching brackets highlighted.
  *
- * Controls the bracket match highlighting function in the buffer. 
+ * Controls the bracket match highlighting function in the buffer.
  *
  * If activated, when you position your cursor over a bracket character
  * (a parenthesis, a square bracket, etc.) the matching opening or
@@ -1542,8 +1564,8 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * @buffer: a #GtkSourceBuffer.
  *
  * Returns the [class@Language] associated with the buffer,
- * see [method@Buffer.set_language]. 
- * 
+ * see [method@Buffer.set_language].
+ *
  * The returned object should not be unreferenced by the user.
  *
  * Returns: (nullable) (transfer none): the [class@Language] associated
@@ -1794,10 +1816,10 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
  * @category: a string defining the mark category.
  * @where: location to place the mark.
  *
- * Creates a source mark in the `buffer` of category `category`.  
- * 
- * A source mark is a [class@Gtk.TextMark] but organized into categories. 
- * Depending on the category a pixbuf can be specified that will be displayed 
+ * Creates a source mark in the `buffer` of category `category`.
+ *
+ * A source mark is a [class@Gtk.TextMark] but organized into categories.
+ * Depending on the category a pixbuf can be specified that will be displayed
  * along the line of the mark.
  *
  * Like a [class@Gtk.TextMark], a [class@Mark] can be anonymous if the
@@ -1934,7 +1956,7 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * @category: (nullable): category to search for, or %NULL
  *
  * Moves `iter` to the position of the previous [class@Mark] of the given
- * category. 
+ * category.
  *
  * Returns %TRUE if `iter` was moved. If `category` is NULL, the
  * previous source mark can be of any category.
@@ -1967,7 +1989,7 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * @iter: an iterator.
  * @category: (nullable): category to search for, or %NULL
  *
- * Returns the list of marks of the given category at @iter. 
+ * Returns the list of marks of the given category at @iter.
  *
  * If @category is %NULL it returns all marks at @iter.
  *
@@ -3105,4 +3127,47 @@ _gtk_source_buffer_unblock_cursor_moved (GtkSourceBuffer *buffer)
 	{
 		cursor_moved (buffer);
 	}
+}
+
+void
+_gtk_source_buffer_begin_loading (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (priv->loading_count >= 0);
+
+	priv->loading_count++;
+
+	if (priv->loading_count == 1)
+	{
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_LOADING]);
+	}
+}
+
+void
+_gtk_source_buffer_end_loading (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (priv->loading_count > 0);
+
+	priv->loading_count--;
+
+	if (priv->loading_count == 0)
+	{
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_LOADING]);
+	}
+}
+
+gboolean
+gtk_source_buffer_get_loading (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (priv->loading_count >= 0, FALSE);
+
+	return priv->loading_count > 0;
 }

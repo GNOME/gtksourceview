@@ -25,7 +25,7 @@
 #include <glib/gi18n-lib.h>
 
 #include "gtksourcefileloader.h"
-#include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourcefile-private.h"
 #include "gtksourcebufferoutputstream-private.h"
 #include "gtksourceencoding.h"
@@ -1122,6 +1122,16 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 		                         "Invalid argument");
 		return;
 	}
+
+  /* Leave an internal mark about the buffer loading during the
+   * progreess of the operation so external tooling can find it.
+   */
+  _gtk_source_buffer_begin_loading (loader->source_buffer);
+  g_signal_connect_object (loader->task,
+                           "notify::completed",
+                           G_CALLBACK (_gtk_source_buffer_end_loading),
+                           loader->source_buffer,
+                           G_CONNECT_SWAPPED);
 
 	loader->load_begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 
