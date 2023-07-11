@@ -127,6 +127,16 @@ G_BEGIN_DECLS
  */
 #define GTK_SOURCE_VERSION_5_8 (G_ENCODE_VERSION (5, 8))
 
+/**
+ * GTK_SOURCE_VERSION_5_10:
+ *
+ * A macro that evaluates to the 5.10 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 5.10
+ */
+#define GTK_SOURCE_VERSION_5_10 (G_ENCODE_VERSION (5, 10))
+
 /* Define GTK_SOURCE_VERSION_CUR_STABLE */
 #ifndef __GTK_DOC_IGNORE__
 #  if (GTK_SOURCE_MINOR_VERSION % 2)
@@ -233,6 +243,14 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_AVAILABLE_IN_5_8 G_UNAVAILABLE(5, 8) _GTK_SOURCE_EXTERN
 #else
 #define GTK_SOURCE_AVAILABLE_IN_5_8 _GTK_SOURCE_EXTERN
+#endif
+#endif /* __GTK_DOC_IGNORE__ */
+
+#ifndef __GTK_DOC_IGNORE__
+#if GTK_SOURCE_VERSION_MAX_ALLOWED < GTK_SOURCE_VERSION_5_10
+#define GTK_SOURCE_AVAILABLE_IN_5_10 G_UNAVAILABLE(5, 10) _GTK_SOURCE_EXTERN
+#else
+#define GTK_SOURCE_AVAILABLE_IN_5_10 _GTK_SOURCE_EXTERN
 #endif
 #endif /* __GTK_DOC_IGNORE__ */
 
