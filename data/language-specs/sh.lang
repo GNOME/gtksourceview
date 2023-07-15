@@ -40,6 +40,9 @@
     <style id="common-command"      name="Common Commands"     map-to="def:keyword"/>
     <style id="here-doc-bound"      name="Heredoc Bound"       map-to="def:keyword"/>
     <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
+    <!-- Used to achieve what ignore-style="true" is supposed to do: no style
+         but child contexts are not affected -->
+    <style id="none"                name="No style"/>
   </styles>
 
   <definitions>
@@ -222,6 +225,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="subshell" style-ref="none"/>
         <context ref="sh"/>
       </include>
     </context>
