@@ -173,7 +173,7 @@ gtk_source_scheduler_dispatch (GSource     *source,
 		{
 			task->ready_time = current + interval;
 			g_queue_push_tail_link (&self->queue, &task->link);
-			break;
+			continue;
 		}
 
 		gtk_source_task_free (task);
