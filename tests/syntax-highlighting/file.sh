@@ -89,6 +89,11 @@ var1=$((var2+2#101+$(cmd)+($var3+ \
   "$var4")/0x1f))
 let var1='1'+010-23+`cmd`+var2 # Comment
 
+# Nested subshells (should not match arithmetic evaluation)
+(([ -f f ] && [ -f g ]) || ([ -f h ] && [ -f i ]))
+((command1 && command2) \
+ || (command3 && command4))
+
 # History expansion
 "txt!cmd:^-$:r:gs/xxx/yyy/:ptxt"
 ^xxx^yyy^

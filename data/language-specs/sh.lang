@@ -41,6 +41,9 @@
     <style id="common-command"      name="Common Commands"     map-to="def:keyword"/>
     <style id="here-doc-bound"      name="Heredoc Bound"       map-to="def:keyword"/>
     <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
+    <!-- Used to achieve what ignore-style="true" is supposed to do: no style
+         but child contexts are not affected -->
+    <style id="none"                name="No style"/>
   </styles>
 
   <definitions>
@@ -168,7 +171,21 @@
     </context>
 
     <context id="arithmetic-evaluation">
-      <start>\%{parentheses-prefix}\({2}(?!\()</start>
+      <start extended="true">
+        \%{parentheses-prefix} \({2}
+        (?!
+          # Two opening parentheses already imply ambiguities that cannot be
+          # totally eliminated, so let's avoid nesting
+          \(
+          # Helps disambiguate arithmetic evaluation from two nested subshells:
+          # a typical use of nested subshells is to perform tests
+          | .*\[.+\]
+          # No orphan closing parenthesis: that would mean the two opening
+          # parentheses above are actually nested subshells. If multi-line
+          # regexes were allowed, this would be enough to remove the ambiguity.
+          | ( (?>[^()]+) | ( \( ( (?>[^()]+) | (?2) )+ \) ) )+ \)[^)]
+        )
+      </start>
       <end>\){2}\%{rb}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
@@ -223,6 +240,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="subshell" style-ref="none"/>
         <context ref="sh"/>
       </include>
     </context>
