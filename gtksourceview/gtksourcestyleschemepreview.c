@@ -456,7 +456,7 @@ gtk_source_style_scheme_preview_init (GtkSourceStyleSchemePreview *self)
  * Creates a new #GtkSourceStyleSchemePreview to preview the style scheme
  * provided in @scheme.
  *
- * Returns: (transfer full): a #GtkWidget
+ * Returns: a #GtkWidget
  *
  * Since: 5.4
  */
