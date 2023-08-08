@@ -1,5 +1,5 @@
 # Turkish translation of gtksourceview.
-# Copyright (C) 2003-2022 gtksourceview's copyright holder
+# Copyright (C) 2003-2023 gtksourceview's copyright holder
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Sami Onur Zaim <onurzaim@hotmail.com>, 2003.
@@ -14,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-08-22 15:24+0000\n"
+"POT-Creation-Date: 2023-07-26 00:35+0000\n"
 "PO-Revision-Date: 2018-08-08 15:50+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -372,30 +372,30 @@ msgstr "Tango renk paletinde kullanılan renk şeması"
 msgid "Document Words"
 msgstr "Belge Kelimeleri"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "Girişte geçersiz bayt dizisi"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Dönüştürme esnasında hata: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "“%s” karakter setinden “UTF-8”e dönüştürme desteklenmiyor"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "“%s”den “UTF-8”e dönüştürücü açılamadı"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:995
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "Geçersiz nesne, ilklendirilmemiş"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1187
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Girdide eksik UTF-8 dizisi"
