@@ -36,7 +36,6 @@
         <style id="raw-string" name="Raw String" map-to="def:string"/>
         <style id="keyword" name="Keyword" map-to="c:keyword"/>
         <style id="type" name="Data Type" map-to="c:type"/>
-        <style id="nullptr" name="Null Pointer Value" map-to="def:special-constant"/>
         <style id="common-defines" name="Common Defines" map-to="c:common-defines"/>
     </styles>
 
@@ -106,10 +105,6 @@
                 <context id="types" style-ref="type">
                     <keyword>explicit</keyword>
                     <keyword>mutable</keyword>
-                </context>
-
-                <context id="nullptr" style-ref="nullptr">
-                    <keyword>nullptr</keyword>
                 </context>
 
                 <context id="common-defines" style-ref="common-defines">

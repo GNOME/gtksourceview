@@ -52,6 +52,7 @@
     <style id="octal"                  name="Octal number"           map-to="def:base-n-integer"/>
     <style id="hexadecimal"            name="Hexadecimal number"     map-to="def:base-n-integer"/>
     <style id="boolean"                name="Boolean value"          map-to="def:boolean"/>
+    <style id="nullptr"                name="Null Pointer Value"     map-to="def:special-constant"/>
     <style id="standard-stream"        name="Standard stream"        map-to="def:constant"/>
     <style id="signal-name"            name="Signal name"            map-to="def:constant"/>
     <style id="error"                  name="Error"                  map-to="def:error"/>
@@ -294,6 +295,10 @@
       <keyword>false</keyword>
     </context>
 
+    <context id="nullptr" style-ref="nullptr">
+      <keyword>nullptr</keyword>
+    </context>
+
     <context id="common-defines" style-ref="common-defines">
       <keyword>NULL</keyword>
       <keyword>MAX</keyword>
@@ -364,6 +369,7 @@
         <context ref="types"/>
         <context ref="storage-class"/>
         <context ref="boolean"/>
+        <context ref="nullptr"/>
         <context ref="common-defines"/>
         <context ref="standard-streams"/>
         <context ref="signals"/>
