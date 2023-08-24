@@ -293,12 +293,10 @@ except according to those terms.
     </context>
 
     <context id="attribute" style-ref="attribute" class="attribute">
-      <start extended="true">\#!?\[</start>
+      <start>#!?\[</start>
       <end>\]</end>
       <include>
-        <context ref="def:in-comment"/>
-        <context ref="string"/>
-        <context ref="raw-string"/>
+        <context ref="rust"/>
       </include>
     </context>
 
