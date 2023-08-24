@@ -54,3 +54,11 @@ fn main() {
 
     hello_world_macro!();
 }
+
+#[
+  /* a comment that contains ] */
+  derive(Clone)
+]
+struct Foo;
+
+fn main() {}
