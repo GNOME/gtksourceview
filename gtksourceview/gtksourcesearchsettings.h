@@ -70,4 +70,11 @@ void                     gtk_source_search_settings_set_regex_enabled      (GtkS
 GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                 gtk_source_search_settings_get_regex_enabled      (GtkSourceSearchSettings *settings);
 
+GTK_SOURCE_AVAILABLE_IN_5_12
+gboolean                 gtk_source_search_settings_get_visible_only       (GtkSourceSearchSettings *settings);
+
+GTK_SOURCE_AVAILABLE_IN_5_12
+void                     gtk_source_search_settings_set_visible_only       (GtkSourceSearchSettings *settings,
+                                                                            gboolean                 visible_only);
+
 G_END_DECLS

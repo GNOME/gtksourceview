@@ -556,11 +556,15 @@ clear_search (GtkSourceSearchContext *search)
 static GtkTextSearchFlags
 get_text_search_flags (GtkSourceSearchContext *search)
 {
-	GtkTextSearchFlags flags = GTK_TEXT_SEARCH_TEXT_ONLY | GTK_TEXT_SEARCH_VISIBLE_ONLY;
+	GtkTextSearchFlags flags = GTK_TEXT_SEARCH_TEXT_ONLY;
 
 	if (!gtk_source_search_settings_get_case_sensitive (search->settings))
 	{
 		flags |= GTK_TEXT_SEARCH_CASE_INSENSITIVE;
+	}
+	if (gtk_source_search_settings_get_visible_only (search->settings))
+	{
+		flags |= GTK_TEXT_SEARCH_VISIBLE_ONLY;
 	}
 
 	return flags;

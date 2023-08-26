@@ -39,6 +39,7 @@ enum
 	PROP_AT_WORD_BOUNDARIES,
 	PROP_WRAP_AROUND,
 	PROP_REGEX_ENABLED,
+	PROP_VISIBLE_ONLY,
 	N_PROPS
 };
 
@@ -49,6 +50,7 @@ typedef struct
 	guint at_word_boundaries : 1;
 	guint wrap_around : 1;
 	guint regex_enabled : 1;
+	guint visible_only : 1;
 } GtkSourceSearchSettingsPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSearchSettings, gtk_source_search_settings, G_TYPE_OBJECT)
@@ -97,6 +99,10 @@ gtk_source_search_settings_get_property (GObject    *object,
 			g_value_set_boolean (value, priv->regex_enabled);
 			break;
 
+		case PROP_VISIBLE_ONLY:
+			g_value_set_boolean (value, priv->visible_only);
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -132,6 +138,10 @@ gtk_source_search_settings_set_property (GObject      *object,
 
 		case PROP_REGEX_ENABLED:
 			priv->regex_enabled = g_value_get_boolean (value);
+			break;
+
+		case PROP_VISIBLE_ONLY:
+			priv->visible_only = g_value_get_boolean (value);
 			break;
 
 		default:
@@ -214,6 +224,21 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 				      "Regex enabled",
 				      "Whether to search by regular expression",
 				      FALSE,
+				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
+
+	/**
+	 * GtkSourceSearchSettings:visible-only:
+	 *
+	 * Exclude invisible text from the search.
+	 * A search match may have invisible text interspersed.
+	 *
+	 * Since: 5.12
+	 */
+	properties[PROP_VISIBLE_ONLY] =
+		g_param_spec_boolean ("visible-only",
+				      "Visible only",
+				      "Whether to exclude invisible text from the search",
+				      TRUE,
 				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
@@ -476,4 +501,51 @@ gtk_source_search_settings_get_regex_enabled (GtkSourceSearchSettings *settings)
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
 
 	return priv->regex_enabled;
+}
+
+/**
+ * gtk_source_search_settings_set_visible_only:
+ * @settings: a #GtkSourceSearchSettings.
+ * @visible_only: the setting.
+ *
+ * Enables or disables whether to exclude invisible text from the search.
+ *
+ * If enabled, only visible text will be searched.
+ * A search match may have invisible text interspersed.
+ *
+ * Since: 5.12
+ */
+void
+gtk_source_search_settings_set_visible_only (GtkSourceSearchSettings *settings,
+                                             gboolean                 visible_only)
+{
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
+	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
+
+	visible_only = visible_only != FALSE;
+
+	if (priv->visible_only != visible_only)
+	{
+		priv->visible_only = visible_only;
+		g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_VISIBLE_ONLY]);
+	}
+}
+
+/**
+ * gtk_source_search_settings_get_visible_only:
+ * @settings: a #GtkSourceSearchSettings.
+ *
+ * Returns: whether to exclude invisible text from the search.
+ *
+ * Since: 5.12
+ */
+gboolean
+gtk_source_search_settings_get_visible_only (GtkSourceSearchSettings *settings)
+{
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
+
+	return priv->visible_only;
 }
