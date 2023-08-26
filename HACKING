@@ -47,8 +47,9 @@ conventions, but for new code it is better to follow them, for consistency.
     modifying a block of code, if it switches between one and two lines, we
     don't need to add/remove the curly braces all the time.
 
-  - Follow the C99 standard but without "//"-style comments. Some restrictions
-    apply but relatively should match GTK and GLib.
+  - Follow the C99 standard but without "//"-style comments and with all
+    declarations at the top, before statements.
+    Some restrictions apply but relatively should match GTK and GLib.
 
   - The files should not have modelines included. A .editorconfig file is
     provided for configuration indentation and many editors have support for
