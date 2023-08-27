@@ -333,6 +333,9 @@ static void
 gtk_source_view_constructed (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	_gtk_source_view_snippets_init (&priv->snippets, view);
 
 	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
@@ -1490,7 +1493,6 @@ gtk_source_view_init (GtkSourceView *view)
 	gtk_source_view_populate_extra_menu (view);
 
 	_gtk_source_view_assistants_init (&priv->assistants, view);
-	_gtk_source_view_snippets_init (&priv->snippets, view);
 }
 
 static void
