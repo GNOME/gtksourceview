@@ -613,6 +613,10 @@ gtk_source_buffer_get_property (GObject    *object,
 			g_value_set_object (value, priv->language);
 			break;
 
+		case PROP_LOADING:
+			g_value_set_boolean (value, gtk_source_buffer_get_loading (buffer));
+			break;
+
 		case PROP_STYLE_SCHEME:
 			g_value_set_object (value, priv->style_scheme);
 			break;
