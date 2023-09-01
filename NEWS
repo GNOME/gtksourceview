@@ -1,3 +1,25 @@
+News in 5.9.0, 2023-09-01
+-------------------------
+
+5.9.0 is a release candidate for GNOME 45.
+
+ * Documentation improvements
+ * Various introspection improvements
+ * New languages: Blueprint
+ * Updated languages: C, C++, Rust, Python3, Shell, Java, OCaml
+ * Updated style schemes: cobalt
+ * GtkSourceBuffer gained a "loading" property which is
+   toggled when GtkSourceFileLoader is loading the buffer
+   from storage.
+ * More defensiveness improvements in GtkSourceBufferOutputStream.
+ * A leak in Vim emulation has been fixed.
+ * Vim emulation now supports visual replace.
+ * Scheduling of batched workers has been improved with
+   gtk_source_scheduler_add().
+ * Snippets are now initialized from GtkSourceView.constructed()
+   to allow for applications to hook buffer creation.
+ * Translation updates
+
 News in 5.8.0, 2023-03-17
 -------------------------
 
