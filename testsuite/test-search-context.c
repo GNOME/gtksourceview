@@ -712,6 +712,155 @@ test_async_forward_search_wrap_around (void)
 }
 
 static void
+setup_invisible_text_buffer (GtkSourceBuffer *source_buffer)
+{
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkTextTag *tag = gtk_text_tag_new ("invisible");
+	GtkTextTagTable *tags = gtk_text_buffer_get_tag_table (text_buffer);
+	GtkTextIter iter;
+
+	g_object_set (tag, "invisible", TRUE, NULL);
+	gtk_text_tag_table_add (tags, tag);
+
+	gtk_text_buffer_get_start_iter (text_buffer, &iter);
+	gtk_text_buffer_insert (text_buffer, &iter, "a", -1);
+	gtk_text_buffer_insert_with_tags_by_name (text_buffer, &iter, "ba", -1, "invisible", NULL);
+	gtk_text_buffer_insert (text_buffer, &iter, "b", -1);
+}
+
+static void
+test_sync_forward_search_invisibility (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+
+	static SearchResult ignore_invisible_a_results[] =
+	{
+		/* a|ba|b */ { 0, 1, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 0, 0, FALSE, FALSE },
+		/* |a|b   */ { 0, 0, FALSE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult include_invisible_a_results[] =
+	{
+		/* a|ba|b */ { 0, 1, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 2, 3, TRUE, FALSE },
+		/* |a|b   */ { 2, 3, TRUE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult ignore_invisible_ab_results[] =
+	{
+		/* a|ba|b */ { 0, 4, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 0, 0, FALSE, FALSE },
+		/* |a|b   */ { 0, 0, FALSE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult include_invisible_ab_results[] =
+	{
+		/* a|ba|b */ { 0, 2, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 2, 4, TRUE, FALSE },
+		/* |a|b   */ { 2, 4, TRUE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	setup_invisible_text_buffer (source_buffer);
+
+	gtk_source_search_settings_set_search_text (settings, "a");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_search_results (source_buffer, context, ignore_invisible_a_results, /* forward = */ TRUE);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_search_results (source_buffer, context, include_invisible_a_results, /* forward = */ TRUE);
+
+	gtk_source_search_settings_set_search_text (settings, "ab");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_search_results (source_buffer, context, ignore_invisible_ab_results, /* forward = */ TRUE);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_search_results (source_buffer, context, include_invisible_ab_results, /* forward = */ TRUE);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
+test_async_forward_search_invisibility (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+
+	static SearchResult ignore_invisible_a_results[] =
+	{
+		/* a|ba|b */ { 0, 1, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 0, 0, FALSE, FALSE },
+		/* |a|b   */ { 0, 0, FALSE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult include_invisible_a_results[] =
+	{
+		/* a|ba|b */ { 0, 1, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 2, 3, TRUE, FALSE },
+		/* |a|b   */ { 2, 3, TRUE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult ignore_invisible_ab_results[] =
+	{
+		/* a|ba|b */ { 0, 4, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 0, 0, FALSE, FALSE },
+		/* |a|b   */ { 0, 0, FALSE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	static SearchResult include_invisible_ab_results[] =
+	{
+		/* a|ba|b */ { 0, 2, /* found = */ TRUE, /* wrapped = */ FALSE },
+		/* |ba|b  */ { 2, 4, TRUE, FALSE },
+		/* |a|b   */ { 2, 4, TRUE, FALSE },
+		/* b      */ { 0, 0, FALSE, FALSE },
+		/*        */ { 0, 0, FALSE, FALSE },
+	};
+
+	setup_invisible_text_buffer (source_buffer);
+
+	gtk_source_search_settings_set_search_text (settings, "a");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_async_search_results (context, ignore_invisible_a_results, /* forward = */ TRUE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_async_search_results (context, include_invisible_a_results, /* forward = */ TRUE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_search_text (settings, "ab");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_async_search_results (context, ignore_invisible_ab_results, /* forward = */ TRUE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_async_search_results (context, include_invisible_ab_results, /* forward = */ TRUE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
 test_backward_search (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
@@ -827,6 +976,138 @@ test_async_backward_search_wrap_around (void)
 	check_async_search_results (context, results, FALSE, TRUE);
 
 	g_main_loop_run (main_loop);
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
+test_sync_backward_search_invisibility (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+
+	static SearchResult ignore_invisible_a_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 1, TRUE, FALSE },
+		/* a|b|   */ { 0, 1, TRUE, FALSE },
+		/* a|ba|  */ { 0, 1, TRUE, FALSE },
+		/* a|ba|b */ { 0, 1, TRUE, FALSE },
+	};
+
+	static SearchResult include_invisible_a_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 1, TRUE, FALSE },
+		/* a|b|   */ { 0, 1, TRUE, FALSE },
+		/* a|ba|  */ { 2, 3, TRUE, FALSE },
+		/* a|ba|b */ { 2, 3, TRUE, FALSE },
+	};
+
+	static SearchResult ignore_invisible_ab_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 0, FALSE, FALSE },
+		/* a|b|   */ { 0, 0, FALSE, FALSE },
+		/* a|ba|  */ { 0, 0, FALSE, FALSE },
+		/* a|ba|b */ { 0, 4, TRUE, FALSE },
+	};
+
+	static SearchResult include_invisible_ab_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 0, FALSE, FALSE },
+		/* a|b|   */ { 0, 2, TRUE, FALSE },
+		/* a|ba|  */ { 0, 2, TRUE, FALSE },
+		/* a|ba|b */ { 2, 4, TRUE, FALSE },
+	};
+
+	setup_invisible_text_buffer (source_buffer);
+
+	gtk_source_search_settings_set_search_text (settings, "a");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_search_results (source_buffer, context, ignore_invisible_a_results, /* forward = */ FALSE);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_search_results (source_buffer, context, include_invisible_a_results, /* forward = */ FALSE);
+
+	gtk_source_search_settings_set_search_text (settings, "ab");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_search_results (source_buffer, context, ignore_invisible_ab_results, /* forward = */ FALSE);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_search_results (source_buffer, context, include_invisible_ab_results, /* forward = */ FALSE);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
+test_async_backward_search_invisibility (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+
+	static SearchResult ignore_invisible_a_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 1, TRUE, FALSE },
+		/* a|b|   */ { 0, 1, TRUE, FALSE },
+		/* a|ba|  */ { 0, 1, TRUE, FALSE },
+		/* a|ba|b */ { 0, 1, TRUE, FALSE },
+	};
+
+	static SearchResult include_invisible_a_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 1, TRUE, FALSE },
+		/* a|b|   */ { 0, 1, TRUE, FALSE },
+		/* a|ba|  */ { 2, 3, TRUE, FALSE },
+		/* a|ba|b */ { 2, 3, TRUE, FALSE },
+	};
+
+	static SearchResult ignore_invisible_ab_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 0, FALSE, FALSE },
+		/* a|b|   */ { 0, 0, FALSE, FALSE },
+		/* a|ba|  */ { 0, 0, FALSE, FALSE },
+		/* a|ba|b */ { 0, 4, TRUE, FALSE },
+	};
+
+	static SearchResult include_invisible_ab_results[] =
+	{
+		/*        */ { 0, 0, /* found = */ FALSE, /* wrapped = */ FALSE },
+		/* a      */ { 0, 0, FALSE, FALSE },
+		/* a|b|   */ { 0, 2, TRUE, FALSE },
+		/* a|ba|  */ { 0, 2, TRUE, FALSE },
+		/* a|ba|b */ { 2, 4, TRUE, FALSE },
+	};
+
+	setup_invisible_text_buffer (source_buffer);
+
+	gtk_source_search_settings_set_search_text (settings, "a");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_async_search_results (context, ignore_invisible_a_results, /* forward = */ FALSE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_async_search_results (context, include_invisible_a_results, /* forward = */ FALSE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_search_text (settings, "ab");
+	gtk_source_search_settings_set_visible_only (settings, TRUE);
+	check_async_search_results (context, ignore_invisible_ab_results, /* forward = */ FALSE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
+	gtk_source_search_settings_set_visible_only (settings, FALSE);
+	check_async_search_results (context, include_invisible_ab_results, /* forward = */ FALSE, /* start = */ TRUE);
+	g_main_loop_run (main_loop);
+
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -1342,9 +1623,13 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/forward", test_forward_search);
 	g_test_add_func ("/Search/forward/subprocess/async-normal", test_async_forward_search_normal);
 	g_test_add_func ("/Search/forward/subprocess/async-wrap-around", test_async_forward_search_wrap_around);
+	g_test_add_func ("/Search/forward/invisible", test_sync_forward_search_invisibility);
+	g_test_add_func ("/Search/forward/async-invisible", test_async_forward_search_invisibility);
 	g_test_add_func ("/Search/backward", test_backward_search);
 	g_test_add_func ("/Search/backward/subprocess/async-normal", test_async_backward_search_normal);
 	g_test_add_func ("/Search/backward/subprocess/async-wrap-around", test_async_backward_search_wrap_around);
+	g_test_add_func ("/Search/backward/invisible", test_sync_backward_search_invisibility);
+	g_test_add_func ("/Search/backward/async-invisible", test_async_backward_search_invisibility);
 	g_test_add_func ("/Search/highlight", test_highlight);
 	g_test_add_func ("/Search/get-search-text", test_get_search_text);
 	g_test_add_func ("/Search/occurrence-position", test_occurrence_position);
