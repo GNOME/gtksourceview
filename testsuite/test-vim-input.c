@@ -66,7 +66,7 @@ run_test (const char *text,
 		 */
 		string[g_unichar_to_utf8 (ch, string)] = 0;
 
-		if (ch == '\e')
+		if (ch == '\033')
 		{
 			string[0] = '^';
 			string[1] = '[';
@@ -111,18 +111,18 @@ test_yank (void)
 static void
 test_insert (void)
 {
-	run_test ("line1", "o\e", "line1\n");
-	run_test ("line1", "O\e", "\nline1");
-	run_test ("", "itesting\ea this.\e", "testing this.");
-	run_test ("", "3iz\e", "zzz");
-	run_test ("\tPROP_0,\n", "3IPROP\e", "\tPROPPROPPROPPROP_0,\n");
+	run_test ("line1", "o\033", "line1\n");
+	run_test ("line1", "O\033", "\nline1");
+	run_test ("", "itesting\033" "a this.\033", "testing this.");
+	run_test ("", "3iz\033", "zzz");
+	run_test ("\tPROP_0,\n", "3IPROP\033", "\tPROPPROPPROPPROP_0,\n");
 }
 
 static void
 test_change (void)
 {
-	run_test ("word here", "ciwnot\e", "not here");
-	run_test ("word here", "wc$\e", "word ");
+	run_test ("word here", "ciwnot\033", "not here");
+	run_test ("word here", "wc$\033", "word ");
 }
 
 static void
