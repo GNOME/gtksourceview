@@ -106,7 +106,7 @@ gtk_source_vim_state_keyval_unescaped (guint           keyval,
 	str[0] = 0;
 
 	if (keyval == GDK_KEY_Escape)
-		return_str ("\e");
+		return_str ("\033");
 
 	if ((mods & GDK_CONTROL_MASK) != 0)
 	{
