@@ -341,8 +341,19 @@
           <keyword>async</keyword>
           <keyword>await</keyword>
           <keyword>nonlocal</keyword>
-          <keyword>match</keyword>
-          <keyword>case</keyword>
+        </context>
+
+        <context id="3x-soft-keywords">
+          <!-- Soft keywords "match" and "case" are only reserved under specific contexts.
+               Use refined regex to eliminate most false positives. -->
+          <match extended="true">
+            ^[ \t]*
+            (match|case)
+            \b(?![ \t]*[:,;=^&amp;|@~\)\]\}])
+          </match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword"/>
+          </include>
         </context>
 
         <context ref="python:builtin-constants"/>
