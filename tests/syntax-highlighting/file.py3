@@ -23,3 +23,11 @@ valid_numbers = (1000 + 1_000 + 1_000_000 +
 invalid_numbers = (1000l + 1000L + 0x10L + 0b10L + 0o10L +
                    0100 + 1__000 + _100 + 100_ +
                    0x10_ + 0b10_ + + 0o10_)
+
+# Soft keywords
+match 1:
+    case 1:
+        match = "abc"
+        case()
+    case _:
+        re.match(r"*", case)
