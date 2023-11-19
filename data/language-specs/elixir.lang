@@ -4,7 +4,7 @@
  This file is to be used with GtkSourceView
 
  Author: Steffen Bauer <steffen.aus.karlsruhe@gmail.com>
- Copyright (C) 2013-2020 Steffen Bauer
+ Copyright (C) 2013-2023 Steffen Bauer
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.10.x
+ Covers Elixir 1.15.x
 
 -->
 
@@ -258,13 +258,14 @@
         <keyword>throw|raise|reraise</keyword>
         <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
         <keyword>to_(string|charlist)</keyword>
-        <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|map_key|nil|number|pid|port|reference|struct|tuple)</keyword>
+        <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|map|map_key|nil|number|pid|port|reference|struct|tuple)</keyword>
         <keyword>(bit|byte|map|tuple)_size</keyword>
-        <keyword>binary_part</keyword>
+        <keyword>binary_(part|slice)</keyword>
         <keyword>def(delegate|exception|guard|guardp|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
         <keyword>sigil_[crswCRSWDNTU]</keyword>
         <keyword>if|else|unless|cond</keyword>
-        <keyword>binding</keyword>
+        <keyword>binding|dbg</keyword>
+        <keyword>tap|then</keyword>
         <keyword>node|self|spawn|spawn_link|spawn_monitor|send|exit</keyword>
         <keyword>struct|get_and_update_in|get_in|put_in|pop_in|update_in</keyword>
         <keyword>apply|inspect|make_ref|use</keyword>
@@ -283,18 +284,22 @@
     <start>ExUnit</start>
     <include>
       <context id="exunit" style-ref="builtin-name">
-        <keyword>(doc)?test</keyword>
-        <keyword>describe</keyword>
+        <keyword>test|doctest|doctest_file</keyword>
+        <keyword>describe|get_last_registered_test</keyword>
+        <keyword>register_(describe_attribute|module_attribute|attribute|test)</keyword>
         <keyword>assert(_in_delta|_raise|_receive|_received)?</keyword>
         <keyword>refute(_in_delta|_receive|_received)?</keyword>
+        <keyword>catch_(error|exit|throw)</keyword>
         <keyword>flunk</keyword>
-        <keyword>catch(_error|_exit|_throw)</keyword>
-        <keyword>setup(_all)?</keyword>
         <keyword>on_exit</keyword>
-        <keyword>capture(_io|_log)</keyword>
-        <keyword>register(_attribute|_test)</keyword>
+        <keyword>setup(_all)?</keyword>
+        <keyword>start_(link_supervised|supervised)</keyword>
+        <keyword>stop_supervised</keyword>
+        <keyword>capture_(io|log)</keyword>
+        <keyword>with_(io|log)</keyword>
         <keyword>using</keyword>
-        <keyword>(start|stop)_supervised</keyword>
+        <keyword>eval|failure_info|normalize|parse|parse_path</keyword>
+        <keyword>format_(assertion_diff|filters|test_all_failure|test_failure|times)</keyword>
       </context>
       <context ref="elixir-std"/>
     </include>
