@@ -360,19 +360,46 @@
         <context ref="python:builtin-objects"/>
         <context id="3x-only-builtin-objects" style-ref="builtin-object">
           <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>BaseException</keyword>
+          <keyword>BaseExceptionGroup</keyword>
+          <keyword>BlockingIOError</keyword>
+          <keyword>BrokenPipeError</keyword>
+          <keyword>BufferError</keyword>
+          <keyword>BytesWarning</keyword>
+          <keyword>ChildProcessError</keyword>
+          <keyword>ConnectionAbortedError</keyword>
+          <keyword>ConnectionError</keyword>
+          <keyword>ConnectionRefusedError</keyword>
+          <keyword>ConnectionResetError</keyword>
+          <keyword>EncodingWarning</keyword>
+          <keyword>ExceptionGroup</keyword>
+          <keyword>FileExistsError</keyword>
+          <keyword>FileNotFoundError</keyword>
+          <keyword>GeneratorExit</keyword>
+          <keyword>ImportWarning</keyword>
+          <keyword>InterruptedError</keyword>
+          <keyword>IsADirectoryError</keyword>
+          <keyword>ModuleNotFoundError</keyword>
+          <keyword>NotADirectoryError</keyword>
+          <keyword>PermissionError</keyword>
+          <keyword>ProcessLookupError</keyword>
+          <keyword>RecursionError</keyword>
           <keyword>ResourceWarning</keyword>
+          <keyword>StopAsyncIteration</keyword>
+          <keyword>TimeoutError</keyword>
+          <keyword>UnicodeWarning</keyword>
         </context>
 
         <context ref="python:builtin-functions"/>
         <context id="3x-only-builtin-functions" style-ref="builtin-function">
           <prefix>(?&lt;![\w\.])</prefix>
+          <keyword>aiter</keyword>
+          <keyword>anext</keyword>
           <keyword>ascii</keyword>
-          <keyword>bin</keyword>
           <keyword>breakpoint</keyword>
           <keyword>bytearray</keyword>
           <keyword>bytes</keyword>
           <keyword>exec</keyword>
-          <keyword>format</keyword>
           <keyword>memoryview</keyword>
           <keyword>next</keyword>
           <keyword>print</keyword>

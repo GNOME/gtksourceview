@@ -27,7 +27,6 @@ invalid_numbers = (1000l + 1000L + 0x10L + 0b10L + 0o10L +
 # Soft keywords
 match 1:
     case 1:
-        match = "abc"
-        case()
+        case = match()
     case _:
         re.match(r"*", case)
