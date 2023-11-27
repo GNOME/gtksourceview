@@ -276,7 +276,7 @@ do_redraw (GtkSourceGutter *gutter)
 static void
 gtk_source_gutter_map (GtkWidget *widget)
 {
-	gtk_widget_set_cursor_from_name (widget, "arrow");
+	gtk_widget_set_cursor_from_name (widget, "default");
 	GTK_WIDGET_CLASS (gtk_source_gutter_parent_class)->map (widget);
 }
 
