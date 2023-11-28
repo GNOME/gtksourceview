@@ -146,3 +146,30 @@ Here are some general advices:
   - When transfering ownership of an object or struct, use g_steal_pointer()
     to make it clear when reading that ownership was transfered.
 
+Language Specifications
+-----------------------
+
+The GtkSourceView project attempts to "upstream" a number of language
+specifications as part of GtkSourceView itself. This is primarily to ease the
+burden of community maintainership but also so that we can be relatively
+certain that changes to the internals of GtkSourceView do not break your
+favoriate language.
+
+But there are many (175 at the time of writing) and we cannot possibly maintain
+correctness for every language specification. Maintenance of these are at a
+best-effort and rely on community members to contribute improvements to
+languages they care about.
+
+Additionally, there is a user burden to the files being bundled with
+GtkSourceView as GtkSourceView must load them when loading the
+GtkSourceLanguageManager. That has memory and CPU overhead parsing them when
+the process loads. We must balance inclusion of every language against the
+overhead placed on users.
+
+To strike this balance, we ask that there are multiple contributors available
+for the language specification you would like to add and that you'll be around
+to help maintain it. Adding a language specification and then not returning to
+maintain it does nobody any favors and simply transfers burden onto overworked
+maintainers.
+
+It must also match the license of GtkSourceView itself (LGPLv2.1+).
