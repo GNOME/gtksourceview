@@ -462,9 +462,13 @@ get_newline_type (GtkTextIter *end)
 			res = GTK_SOURCE_NEWLINE_TYPE_CR;
 		}
 	}
-	else
+	else if (c)
 	{
 		res = GTK_SOURCE_NEWLINE_TYPE_LF;
+	}
+	else
+	{
+		res = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
 	}
 
 	return res;
