@@ -113,7 +113,7 @@ static void
 test_big_char (void)
 {
 	test_consecutive_write ("\343\203\200\343\203\200", "\343\203\200\343\203\200", 2,
-				GTK_SOURCE_NEWLINE_TYPE_LF);
+				GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
 }
 
 static void
