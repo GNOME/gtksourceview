@@ -537,6 +537,89 @@ test_move_lines__move_several_lines (void)
 	g_object_unref (view);
 }
 
+/* There was a bug with the undo operation that moved the cursor to the last
+ * line of the buffer, even if the moved line(s) were unrelated to the end of
+ * the buffer. That was problematic for lengthy files, of course.
+ */
+static void
+test_move_line_down_then_undo (void)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buffer;
+	GtkTextIter start_iter;
+	GtkTextIter end_iter;
+	GtkTextIter selection_start_iter;
+	GtkTextIter selection_end_iter;
+
+	view = GTK_SOURCE_VIEW (gtk_source_view_new ());
+	g_object_ref_sink (view);
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_set_text (buffer,
+				  "line1\n"
+				  "line2\n"
+				  "line3\n"
+				  "line4",
+				  -1);
+
+	/* Move the first line down. */
+	gtk_text_buffer_get_start_iter (buffer, &start_iter);
+	gtk_text_buffer_place_cursor (buffer, &start_iter);
+	g_signal_emit_by_name (view, "move-lines", TRUE);
+
+	/* Undo. */
+	g_assert_true (gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)));
+	gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
+
+	/* The cursor must not have been moved to the last line. */
+	gtk_text_buffer_get_selection_bounds (buffer, &selection_start_iter, &selection_end_iter);
+	gtk_text_buffer_get_end_iter (buffer, &end_iter);
+	g_assert_cmpint (gtk_text_iter_get_line (&selection_start_iter), !=, gtk_text_iter_get_line (&end_iter));
+	g_assert_cmpint (gtk_text_iter_get_line (&selection_end_iter), !=, gtk_text_iter_get_line (&end_iter));
+
+	g_object_unref (view);
+}
+
+/* See the comment for test_move_line_down_then_undo(). */
+static void
+test_move_line_up_then_undo (void)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter end_iter;
+	GtkTextIter selection_start_iter;
+	GtkTextIter selection_end_iter;
+
+	view = GTK_SOURCE_VIEW (gtk_source_view_new ());
+	g_object_ref_sink (view);
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_set_text (buffer,
+				  "line1\n"
+				  "line2\n"
+				  "line3\n"
+				  "line4",
+				  -1);
+
+	/* Move the second line up. */
+	gtk_text_buffer_get_iter_at_line (buffer, &iter, 1);
+	gtk_text_buffer_place_cursor (buffer, &iter);
+	g_signal_emit_by_name (view, "move-lines", FALSE);
+
+	/* Undo. */
+	g_assert_true (gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)));
+	gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
+
+	/* The cursor must not have been moved to the last line. */
+	gtk_text_buffer_get_selection_bounds (buffer, &selection_start_iter, &selection_end_iter);
+	gtk_text_buffer_get_end_iter (buffer, &end_iter);
+	g_assert_cmpint (gtk_text_iter_get_line (&selection_start_iter), !=, gtk_text_iter_get_line (&end_iter));
+	g_assert_cmpint (gtk_text_iter_get_line (&selection_end_iter), !=, gtk_text_iter_get_line (&end_iter));
+
+	g_object_unref (view);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -544,6 +627,8 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/view/move-lines/move-single-line", test_move_lines__move_single_line);
 	g_test_add_func ("/view/move-lines/move-several-lines", test_move_lines__move_several_lines);
+	g_test_add_func ("/view/move-lines/move-line-down-then-undo", test_move_line_down_then_undo);
+	g_test_add_func ("/view/move-lines/move-line-up-then-undo", test_move_line_up_then_undo);
 
 	return g_test_run();
 }
