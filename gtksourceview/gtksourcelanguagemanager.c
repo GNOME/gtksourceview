@@ -599,7 +599,8 @@ pick_langs_for_filename (GtkSourceLanguageManager *lm,
 	}
 
 	g_free (filename_utf8);
-	return langs;
+
+	return g_slist_reverse (langs);
 }
 
 static GtkSourceLanguage *
