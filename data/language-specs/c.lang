@@ -71,19 +71,21 @@
       U[0-9A-Fa-f]{8}       # 'U' followed by 8 hex digits
       )
     </define-regex>
+    <define-regex id="integer-suffix">(?:ll?|LL?)[uU]|[uU]?(?:ll?|LL?)|[uU]?</define-regex>
 
     <!--contexts NOT used on the main context-->
-    <!-- TODO: what about scanf ? -->
+    <!-- TODO: what about scanf? -->
     <!-- man 3 printf -->
     <context id="printf" style-ref="printf" extend-parent="false">
       <match extended="true">
         \%\%|\%
-        (?:[1-9][0-9]*\$)?      # argument
-        [#0\-\ \+\'I]*          # flags
-        (?:[1-9][0-9]*|\*)?     # width
-        (?:\.\-?(?:[0-9]+|\*))? # precision
-        (?:hh|ll|[hlLqjzt])?    # length modifier
-        [diouxXeEfFgGaAcsCSpnm] # conversion specifier
+        (?:[1-9][0-9]*\$)?        # argument
+        [#0\-\ \+\'I]*            # flags
+        (?:[1-9][0-9]*|\*)?       # width
+        (?:\.\-?(?:[0-9]+|\*))?   # precision
+        (?:hh|ll|[hlLqjzt])?      # length modifier
+        ([diouxXeEfFgGaAcsCSpnm]| # conversion specifier
+          \[\^?\]?[^\]]*\])         # specific to scanf
       </match>
     </context>
 
@@ -105,40 +107,64 @@
       </include>
     </context>
 
-    <context id="include" style-ref="preprocessor">
-      <match extended="true">
-        \%{preproc-start}
-        (include|import)\s*
-        (&lt;.*?&gt;)
-      </match>
-      <include>
-        <context id="included-file" sub-pattern="2" style-ref="included-file" class="path"/>
-      </include>
-    </context>
-
-    <context id="include-relative" style-ref="preprocessor">
-      <match extended="true">
-        \%{preproc-start}
-        (include|import)\s*
-        (".*?")
-      </match>
-      <include>
-        <context id="included-relative-file" sub-pattern="2" style-ref="included-relative-file" class="path"/>
-      </include>
-    </context>
-
-    <context id="preprocessor" style-ref="preprocessor" end-at-line-end="true">
+    <context id="include-relative" end-at-line-end="true">
       <start extended="true">
-        \%{preproc-start}
-        (define|undef|error|pragma|ident|if(n?def)?|else|elif(n?def)?|endif|line|warning|embed)
-        \b
+        (\%{preproc-start}(include|import))\s*
+        (".*?")
       </start>
       <include>
-        <context ref="def:line-continue" ignore-style="true"/>
-        <context ref="string" ignore-style="true"/>
+        <context sub-pattern="1" where="start" style-ref="preprocessor"/>
+        <context id="included-relative-file" sub-pattern="3" where="start" style-ref="included-relative-file" class="path"/>
+        <context ref="def:line-continue"/>
         <context ref="def:c-like-comment"/>
         <context ref="def:c-like-comment-multiline"/>
       </include>
+    </context>
+    <context id="include" end-at-line-end="true">
+      <start extended="true">
+        (\%{preproc-start}(include|import))\s*
+        (&lt;.*?&gt;)?
+      </start>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="preprocessor"/>
+        <context id="included-file" sub-pattern="3" where="start" style-ref="included-file" class="path"/>
+        <context ref="def:line-continue"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
+      </include>
+    </context>
+
+    <context id="preprocessor-with-c-code" end-at-line-end="true">
+      <start extended="true">
+        \%{preproc-start}
+          ((el)?if|
+            define(\s+\w+(\([^)]*\)?)?)?
+          )
+      </start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="preprocessor"/>
+        <context ref="def:line-continue"/>
+        <context ref="comments:*"/>
+        <context ref="no-preprocessor:*"/>
+      </include>
+    </context>
+
+    <context id="preprocessor" end-at-line-end="true">
+      <start extended="true">
+        (\%{preproc-start}
+          (undef|pragma|ident|(el)?ifn?def|else|endif|line|error|warning|embed)
+        )\b
+      </start>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="preprocessor"/>
+        <context ref="def:line-continue"/>
+        <context ref="comments:*"/>
+        <context ref="string"/>
+      </include>
+    </context>
+
+    <context id="misplaced-char" style-ref="error">
+      <match>[#\\]</match>
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
@@ -158,71 +184,67 @@
     </context>
 
     <!-- http://www.lysator.liu.se/c/ANSI-C-grammar-l.html -->
-    <context id="float" style-ref="floating-point">
-      <match extended="true">
+    <context id="float">
+      <match extended="true" case-sensitive="false">
         (?&lt;![\w\.])
-        ((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]+)? |
-         ([0-9]+[Ee][+-]?[0-9]+) |
-         (0[xX][a-fA-F0-9]*\.?[a-fA-F0-9]*[pP][+-]?[0-9]+))
-        [fFlL]?
-        (?![\w\.])
+        (((\.\d+ | \d+\.\d*) (e[+-]?\d+)? |
+          (\d+e[+-]?\d+) |
+          (0x[a-f\d]*\.?[a-f\d]*p[+-]?\d+))
+         [fl]?)
+        (\w*)
       </match>
+      <include>
+        <context sub-pattern="1" style-ref="floating-point"/>
+        <context sub-pattern="7" style-ref="error"/>
+      </include>
     </context>
 
-    <context id="hexadecimal" style-ref="hexadecimal">
-      <match extended="true">
+    <context id="hexadecimal">
+      <match extended="true" case-sensitive="false">
         (?&lt;![\w\.])
-        0[xX][a-fA-F0-9]+[uUlL]*
-        (?![\w\.])
+        (0x[a-f\d]+\%{integer-suffix})
+        (\w*)
       </match>
+      <include>
+        <context sub-pattern="1" style-ref="hexadecimal"/>
+        <context sub-pattern="2" style-ref="error"/>
+      </include>
     </context>
 
-    <context id="invalid-hexadecimal" style-ref="error">
+    <context id="octal">
       <match extended="true">
         (?&lt;![\w\.])
-        0[xX][a-fA-F0-9]*[g-zG-Z][a-zA-Z0-9]*[uUlL]*
-        (?![\w\.])
+        (0[0-7]+\%{integer-suffix})
+        (\w*)
       </match>
+      <include>
+        <context sub-pattern="1" style-ref="octal"/>
+        <context sub-pattern="2" style-ref="error"/>
+      </include>
     </context>
 
-    <context id="octal" style-ref="octal">
+    <context id="binary">
       <match extended="true">
         (?&lt;![\w\.])
-        0[0-7]+[uUlL]*
-        (?![\w\.])
+        (0[bB][01]+\%{integer-suffix})
+        (\w*)
       </match>
+      <include>
+        <context sub-pattern="1" style-ref="binary"/>
+        <context sub-pattern="2" style-ref="error"/>
+      </include>
     </context>
 
-    <context id="invalid-octal" style-ref="error">
+    <context id="decimal">
       <match extended="true">
         (?&lt;![\w\.])
-        0[0-7]*[89][0-9]*[uUlL]*
-        (?![\w\.])
+        ((?:0|[1-9]\d*)\%{integer-suffix})
+        (\w*)
       </match>
-    </context>
-
-    <context id="binary" style-ref="binary">
-      <match extended="true">
-        (?&lt;![\w\.])
-        0[bB][01]+[uUlL]*
-        (?![\w\.])
-      </match>
-    </context>
-
-    <context id="invalid-binary" style-ref="error">
-      <match extended="true">
-        (?&lt;![\w\.])
-        0[bB][01]*[2-9][a-zA-Z0-9]*[uUlL]*
-        (?![\w\.])
-      </match>
-    </context>
-
-    <context id="decimal" style-ref="decimal">
-      <match extended="true">
-        (?&lt;![\w\.])
-        (0|[1-9][0-9]*)[uUlL]*
-        (?![\w\.])
-      </match>
+      <include>
+        <context sub-pattern="1" style-ref="decimal"/>
+        <context sub-pattern="2" style-ref="error"/>
+      </include>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -252,10 +274,12 @@
 
     <context id="operators" style-ref="operator">
       <keyword>(_A|a)lignof</keyword>
+      <keyword>defined</keyword>
       <keyword>_Generic</keyword>
       <keyword>offsetof</keyword>
-      <keyword>(_S|s)tatic_assert</keyword>
+      <keyword>_Pragma</keyword>
       <keyword>sizeof</keyword>
+      <keyword>(_S|s)tatic_assert</keyword>
       <keyword>typeof</keyword>
     </context>
 
@@ -271,6 +295,7 @@
       <keyword>short</keyword>
       <keyword>signed</keyword>
       <keyword>unsigned</keyword>
+      <keyword>va_list</keyword>
       <keyword>void</keyword>
       <keyword>[a-z_][0-9a-z_]+(_t|_T)</keyword>
     </context>
@@ -311,7 +336,8 @@
       <keyword>__FILE__</keyword>
       <keyword>__func__</keyword>
       <keyword>__TIME__</keyword>
-      <keyword>__STDC__</keyword>
+      <keyword>__STDC(_VERSION)?__</keyword>
+      <keyword>__VA_ARGS__</keyword>
     </context>
 
     <context id="standard-streams" style-ref="standard-stream">
@@ -343,26 +369,23 @@
       <keyword>SIGUSR2</keyword>
     </context>
 
-    <!--Main context-->
-    <context id="c" class="no-spell-check">
+    <context id="comments">
       <include>
         <context ref="gtk-doc:inline-docs-section"/>
         <context ref="def:c-like-comment" style-ref="comment"/>
         <context ref="def:c-like-comment-multiline" style-ref="comment"/>
-        <context ref="def:c-like-close-comment-outside-comment" style-ref="comment"/>
-        <context ref="if0-comment"/>
-        <context ref="include"/>
-        <context ref="include-relative"/>
-        <context ref="preprocessor"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
+      </include>
+    </context>
+
+    <context id="no-preprocessor">
+      <include>
         <context ref="string"/>
         <context ref="char"/>
         <context ref="float"/>
         <context ref="hexadecimal"/>
-        <context ref="invalid-hexadecimal"/>
         <context ref="octal"/>
-        <context ref="invalid-octal"/>
         <context ref="binary"/>
-        <context ref="invalid-binary"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
         <context ref="type-keywords"/>
@@ -374,6 +397,21 @@
         <context ref="common-defines"/>
         <context ref="standard-streams"/>
         <context ref="signals"/>
+      </include>
+    </context>
+
+    <!--Main context-->
+    <context id="c" class="no-spell-check">
+      <include>
+        <context ref="def:line-continue" ignore-style="true"/>
+        <context ref="comments:*"/>
+        <context ref="if0-comment"/>
+        <context ref="include-relative"/>
+        <context ref="include"/>
+        <context ref="preprocessor"/>
+        <context ref="preprocessor-with-c-code"/>
+        <context ref="no-preprocessor:*"/>
+        <context ref="misplaced-char"/>
       </include>
     </context>
 
