@@ -1,3 +1,18 @@
+News in 5.11.0, 2024-01-08
+--------------------------
+
+This is a development release for GNOME 46.alpha
+
+ * Fixes for searching invisible text
+ * Sort ordering fixes for guessing languages which fixes loading
+   Python 3 before Python 2.
+ * Various Vim emulation fixes
+ * Updated Languages: Elixir, Python3, C
+ * Updated Style Schemes: Oblivion
+ * Cursor fixes for source gutter
+ * Fix undo after alt+up/down
+ * Fix newline detection fallback on some systems
+
 News in 5.10.0, 2023-09-16
 --------------------------
 
