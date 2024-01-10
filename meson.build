@@ -107,12 +107,6 @@ else
   vapigen_dep = []
 endif
 
-if build_gtk_doc
-  gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req)
-else
-  gtk_doc_dep = []
-endif
-
 # Look for the libxml2 library manually on Visual Studio if
 # its pkg-config file could not be found, as the NMake
 # Makefiles of libxml2 do not generate the pkg-config files
