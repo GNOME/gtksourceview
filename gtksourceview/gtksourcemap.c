@@ -252,8 +252,6 @@ load_override_font (GtkSourceMap *map)
 			{
 				char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
 
-				g_print ("%s\n", font_path);
-
 				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
 				{
 #ifdef G_OS_WIN32
