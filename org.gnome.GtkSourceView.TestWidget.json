@@ -62,6 +62,7 @@
                 "-Dsysprof=true",
                 "-Dintrospection=enabled",
                 "-Dvapi=true",
+                "-Dbuild-testsuite=false",
                 "-Dinstall-tests=true"
             ],
             "sources" : [

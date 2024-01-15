@@ -333,10 +333,14 @@ subdir('data')
 subdir('docs')
 subdir('po')
 subdir('tests')
-subdir('testsuite')
+
+if get_option('build-testsuite')
+  subdir('testsuite')
+endif
 
 summary({
   'Documentation': build_documentation,
+  'Build Testsuite': get_option('build-testsuite'),
   'Install tests': get_option('install-tests'),
   'Introspection': generate_gir,
   'Vala vapi': generate_vapi,

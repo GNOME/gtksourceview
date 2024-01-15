@@ -1,3 +1,7 @@
+option('build-testsuite',
+       type: 'boolean', value: true,
+       description: 'Build GtkSourceView testsuite')
+
 option('install-tests',
        type: 'boolean', value: false,
        description: 'Install test programs')
