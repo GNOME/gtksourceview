@@ -243,13 +243,34 @@ load_override_font (GtkSourceMap *map)
 
 	if (g_once_init_enter (&map_font_config))
 	{
-		const gchar *font_path = PACKAGE_DATADIR"/fonts/BuilderBlocks.ttf";
+		char **font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
 		FcConfig *config = FcInitLoadConfigAndFonts ();
 
-		if (!g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
-			g_debug ("\"%s\" is missing or inaccessible", font_path);
+		if (font_dirs != NULL)
+		{
+			for (guint i = 0; font_dirs[i]; i++)
+			{
+				char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
 
-		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+				g_print ("%s\n", font_path);
+
+				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+				{
+#ifdef G_OS_WIN32
+					/* Reformat the path as expected by fontconfig */
+					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
+					FcConfigAppFontAddFile (config, win32_path);
+					FcStrFree (win32_path);
+#else
+					FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+#endif
+				}
+
+				g_free (font_path);
+			}
+		}
+
+		g_strfreev (font_dirs);
 
 		g_once_init_leave (&map_font_config, config);
 	}
