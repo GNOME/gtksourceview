@@ -63,7 +63,7 @@ docpath = join_paths(datadir, 'gtk-doc', 'html', package_string)
 gir = find_program('g-ir-scanner', required : get_option('introspection'))
 generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
 generate_vapi = generate_gir and get_option('vapi')
-build_gtk_doc = get_option('gtk_doc')
+build_documentation = get_option('documentation')
 
 # Dependencies
 cc = meson.get_compiler('c')
@@ -336,7 +336,7 @@ subdir('tests')
 subdir('testsuite')
 
 summary({
-  'Documentation': build_gtk_doc,
+  'Documentation': build_documentation,
   'Install tests': get_option('install_tests'),
   'Introspection': generate_gir,
   'Vala vapi': generate_vapi,

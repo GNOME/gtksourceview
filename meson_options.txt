@@ -10,9 +10,9 @@ option('vapi',
        type: 'boolean', value: true,
        description: 'Generate vapi data (requires vapigen)')
 
-option('gtk_doc',
+option('documentation',
        type: 'boolean', value: false,
-       description: 'Build reference manual (requires gtk-doc)')
+       description: 'Build reference manual (requires gi-doc)')
 
 option('sysprof',
        type: 'boolean', value: false,

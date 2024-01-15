@@ -58,7 +58,7 @@
             "builddir" : true,
             "config-opts" : [
                 "--libdir=lib",
-                "-Dgtk_doc=false",
+                "-Ddocumentation=false",
                 "-Dsysprof=true",
                 "-Dintrospection=enabled",
                 "-Dvapi=true",
