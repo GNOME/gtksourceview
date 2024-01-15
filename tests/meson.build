@@ -31,7 +31,7 @@ foreach test_name, test_sources: tests_sources
   endif
 
   # Special case for installed tests
-  if get_option('install_tests')
+  if get_option('install-tests')
     if test_name == 'widget'
       executable('gtksourceview@0@-widget'.format(api_version), test_sources,
               c_args: tests_c_args + deprecated_c_args,

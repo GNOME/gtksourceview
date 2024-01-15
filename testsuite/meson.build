@@ -50,7 +50,7 @@ testsuite_sources = [
 
 foreach test: testsuite_sources
   test_name = test.get(0)
-  install_test = test.get(1, true) and get_option('install_tests')
+  install_test = test.get(1, true) and get_option('install-tests')
   test_sources = gtksource_res + testsuite_res + [
     '@0@.c'.format(test_name),
   ]

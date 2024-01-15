@@ -337,7 +337,7 @@ subdir('testsuite')
 
 summary({
   'Documentation': build_documentation,
-  'Install tests': get_option('install_tests'),
+  'Install tests': get_option('install-tests'),
   'Introspection': generate_gir,
   'Vala vapi': generate_vapi,
   }, bool_yn: true,
