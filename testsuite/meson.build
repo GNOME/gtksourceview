@@ -89,7 +89,7 @@ foreach test: testsuite_sources
   endif
 endforeach
 
-if get_option('install_tests')
+if get_option('install-tests')
   install_subdir('language-specs', install_dir: testexecdir)
   install_subdir('styles', install_dir: testexecdir)
 endif
