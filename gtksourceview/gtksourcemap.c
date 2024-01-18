@@ -21,12 +21,6 @@
 #include <math.h>
 #include <string.h>
 
-#if ENABLE_FONT_CONFIG
-# include <fontconfig/fontconfig.h>
-# include <pango/pangocairo.h>
-# include <pango/pangofc-fontmap.h>
-#endif
-
 #include "gtksourcemap.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
@@ -231,63 +225,6 @@ enum
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_SOURCE_TYPE_VIEW)
 
 static GParamSpec *properties[N_PROPERTIES];
-
-#if ENABLE_FONT_CONFIG
-static FcConfig *map_font_config;
-
-static void
-load_override_font (GtkSourceMap *map)
-{
-	PangoFontDescription *font_desc;
-	PangoFontMap *font_map;
-
-	if (g_once_init_enter (&map_font_config))
-	{
-		char **font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
-		FcConfig *config = FcInitLoadConfigAndFonts ();
-
-		if (font_dirs != NULL)
-		{
-			for (guint i = 0; font_dirs[i]; i++)
-			{
-				char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
-
-				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
-				{
-#ifdef G_OS_WIN32
-					/* Reformat the path as expected by fontconfig */
-					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
-					FcConfigAppFontAddFile (config, win32_path);
-					FcStrFree (win32_path);
-#else
-					FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
-#endif
-				}
-
-				g_free (font_path);
-			}
-		}
-
-		g_strfreev (font_dirs);
-
-		g_once_init_leave (&map_font_config, config);
-	}
-
-	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
-	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
-	gtk_widget_set_font_map (GTK_WIDGET (map), font_map);
-	font_desc = pango_font_description_from_string ("BuilderBlocks");
-
-	g_assert (map_font_config != NULL);
-	g_assert (font_map != NULL);
-	g_assert (font_desc != NULL);
-
-	g_object_set (map, "font-desc", font_desc, NULL);
-
-	pango_font_description_free (font_desc);
-	g_object_unref (font_map);
-}
-#endif
 
 static void
 get_slider_position (GtkSourceMap *map,
@@ -1295,11 +1232,16 @@ gtk_source_map_snapshot (GtkWidget   *widget,
 static void
 gtk_source_map_constructed (GObject *object)
 {
+	PangoFontMap *font_map;
+
 	G_OBJECT_CLASS (gtk_source_map_parent_class)->constructed (object);
 
-#if ENABLE_FONT_CONFIG
-	load_override_font (GTK_SOURCE_MAP (object));
-#endif
+	font_map = _gtk_source_utils_get_builder_blocks ();
+
+	if (font_map != NULL)
+	{
+		gtk_widget_set_font_map (GTK_WIDGET (object), font_map);
+	}
 }
 
 static void

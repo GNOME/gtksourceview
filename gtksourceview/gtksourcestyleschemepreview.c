@@ -34,10 +34,11 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyleschemepreview.h"
 #include "gtksourceview.h"
+#include "gtksourceutils-private.h"
 
 /**
  * GtkSourceStyleSchemePreview:
- * 
+ *
  * A preview widget for [class@StyleScheme].
  *
  * This widget provides a convenient [class@Gtk.Widget] to preview a [class@StyleScheme].
@@ -82,27 +83,15 @@ static GParamSpec *properties [N_PROPS];
 static guint signals [N_SIGNALS];
 
 static GtkCssProvider *css_provider;
-#if ENABLE_FONT_CONFIG
-static FcConfig *map_font_config;
-#endif
 
 static void
-load_override_font (GtkSourceView *view)
+load_override_font (GtkSourceView *view,
+                    PangoFontMap  *font_map)
 {
 	static gsize initialized;
-	PangoFontMap *font_map;
 
 	if (g_once_init_enter (&initialized))
 	{
-#if ENABLE_FONT_CONFIG
-		const gchar *font_path = PACKAGE_DATADIR"/fonts/BuilderBlocks.ttf";
-		FcConfig *config = FcInitLoadConfigAndFonts ();
-		if (!g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
-			g_debug ("\"%s\" is missing or inaccessible", font_path);
-		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
-		map_font_config = config;
-#endif
-
 		css_provider = gtk_css_provider_new ();
 		gtk_css_provider_load_from_data (css_provider,
 		                                 "textview, textview text { font-family: BuilderBlocks; font-size: 4px; line-height: 8px; }\n"
@@ -116,16 +105,10 @@ load_override_font (GtkSourceView *view)
 	                                GTK_STYLE_PROVIDER (css_provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
 
-#if ENABLE_FONT_CONFIG
-	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
-	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
-	gtk_widget_set_font_map (GTK_WIDGET (view), font_map);
-
-	g_assert (map_font_config != NULL);
-	g_assert (font_map != NULL);
-
-	g_object_unref (font_map);
-#endif
+	if (font_map != NULL)
+	{
+		gtk_widget_set_font_map (GTK_WIDGET (view), font_map);
+	}
 }
 
 static void
@@ -259,6 +242,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	GtkSourceStyleSchemePreview *self = (GtkSourceStyleSchemePreview *)object;
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
+	PangoFontMap *font_map;
 	const char *name;
 	GtkLabel *label;
 
@@ -302,7 +286,13 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 
 	gtk_source_buffer_set_style_scheme (buffer, self->scheme);
 	add_text (buffer, self->scheme);
-	load_override_font (view);
+
+	font_map = _gtk_source_utils_get_builder_blocks ();
+
+	if (font_map != NULL)
+	{
+		load_override_font (view, font_map);
+	}
 
 	gtk_widget_set_parent (GTK_WIDGET (view), GTK_WIDGET (self));
 	gtk_widget_set_parent (GTK_WIDGET (label), GTK_WIDGET (self));
