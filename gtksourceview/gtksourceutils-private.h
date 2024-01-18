@@ -61,5 +61,7 @@ G_GNUC_INTERNAL
 void     _gtk_source_utils_aligned_free                  (gpointer                     data);
 G_GNUC_INTERNAL
 gsize    _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
+G_GNUC_INTERNAL
+PangoFontMap *_gtk_source_utils_get_builder_blocks       (void);
 
 G_END_DECLS

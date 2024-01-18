@@ -56,6 +56,12 @@
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 
+#if ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+#endif
+
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
 
@@ -948,4 +954,70 @@ void
 _gtk_source_utils_aligned_free (gpointer data)
 {
 	aligned_free (data);
+}
+
+#if ENABLE_FONT_CONFIG
+static PangoFontMap *builder_blocks_font_map;
+static FcConfig *map_font_config;
+
+static PangoFontMap *
+load_override_font (void)
+{
+	PangoFontMap *font_map;
+
+	if (g_once_init_enter (&map_font_config))
+	{
+		char **font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
+		FcConfig *config = FcInitLoadConfigAndFonts ();
+
+		if (font_dirs != NULL)
+		{
+			for (guint i = 0; font_dirs[i]; i++)
+			{
+				char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
+
+				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+				{
+#ifdef G_OS_WIN32
+					/* Reformat the path as expected by fontconfig */
+					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
+					FcConfigAppFontAddFile (config, win32_path);
+					FcStrFree (win32_path);
+#else
+					FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+#endif
+				}
+
+				g_free (font_path);
+			}
+		}
+
+		g_strfreev (font_dirs);
+
+		g_once_init_leave (&map_font_config, config);
+	}
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
+
+	g_assert (map_font_config != NULL);
+	g_assert (font_map != NULL);
+
+	return font_map;
+}
+#endif
+
+PangoFontMap *
+_gtk_source_utils_get_builder_blocks (void)
+{
+#if ENABLE_FONT_CONFIG
+	if (builder_blocks_font_map == NULL)
+	{
+		builder_blocks_font_map = load_override_font ();
+	}
+
+	return builder_blocks_font_map;
+#else
+	return NULL;
+#endif
 }
