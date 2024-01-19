@@ -822,6 +822,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	if (gtk_source_view_get_highlight_current_line (gutter->view) &&
 	    !gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel))
 	{
+		GtkRoot *root;
 		GdkRGBA highlight;
 		guint cursor_line;
 
@@ -829,7 +830,10 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 
 		if (cursor_line >= gtk_source_gutter_lines_get_first (gutter->lines) &&
 		    cursor_line <= gtk_source_gutter_lines_get_last (gutter->lines) &&
-		    _gtk_source_view_get_current_line_number_background (gutter->view, &highlight))
+		    _gtk_source_view_get_current_line_number_background (gutter->view, &highlight) &&
+		    (root = gtk_widget_get_root (GTK_WIDGET (gutter->view))) &&
+		    GTK_IS_WINDOW (root) &&
+		    gtk_window_is_active (GTK_WINDOW (root)))
 		{
 			int width = gtk_widget_get_width (widget);
 			int height;
