@@ -19,7 +19,7 @@
 
 #include "config.h"
 
-#include "gtksourcegutterrenderertext.h"
+#include "gtksourcegutterrenderertext-private.h"
 #include "gtksourcegutterlines.h"
 #include "gtksourceview-private.h"
 
@@ -44,6 +44,8 @@ typedef struct
 	PangoLayout    *cached_layout;
 	PangoAttribute *current_line_bold;
 	PangoAttribute *current_line_color;
+	GdkRGBA         current_line_color_rgba;
+	GdkRGBA         foreground_rgba;
 	gsize           text_len;
 	Size            cached_sizes[5];
 	guint           is_markup : 1;
@@ -117,8 +119,15 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 	g_clear_object (&priv->cached_layout);
 	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (renderer), NULL);
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
+		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (renderer));
+		gtk_style_context_get_color (style_context, &priv->foreground_rgba);
+		priv->current_line_color_rgba = priv->foreground_rgba;
+	} G_GNUC_END_IGNORE_DEPRECATIONS
+
 	if (_gtk_source_view_get_current_line_number_color (view, &current))
 	{
+		priv->current_line_color_rgba = current;
 		priv->current_line_color = pango_attr_foreground_new (current.red * 65535,
 		                                                      current.green * 65535,
 		                                                      current.blue * 65535);
@@ -521,4 +530,17 @@ gtk_source_gutter_renderer_text_set_text (GtkSourceGutterRendererText *renderer,
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_TEXT (renderer));
 
 	set_text (renderer, text, length, FALSE);
+}
+
+void
+_gtk_source_gutter_renderer_text_get_draw (GtkSourceGutterRendererText *self,
+                                           GdkRGBA                     *foreground_color,
+                                           GdkRGBA                     *current_line_color,
+                                           gboolean                    *current_line_bold)
+{
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (self);
+
+	*foreground_color = priv->foreground_rgba;
+	*current_line_color = priv->current_line_color_rgba;
+	*current_line_bold = !priv->has_selection && priv->current_line_bold != NULL;
 }

@@ -20,6 +20,7 @@
 #include "config.h"
 
 #include "gtksourcegutterrendererlines-private.h"
+#include "gtksourcegutterrenderertext-private.h"
 #include "gtksourcegutterlines.h"
 #include "gtksourceutils-private.h"
 #include "gtksourceview.h"
@@ -27,13 +28,85 @@
 struct _GtkSourceGutterRendererLines
 {
 	GtkSourceGutterRendererText parent_instance;
-	gint num_line_digits;
-	gint prev_line_num;
+	PangoFont *cached_font;
+	PangoFont *cached_bold_font;
+	PangoGlyphInfo cached_infos[10];
+	PangoGlyphInfo cached_bold_infos[10];
+	GdkRGBA foreground_color;
+	GdkRGBA current_line_color;
+	int cached_baseline;
+	int cached_bold_baseline;
+	int cached_height;
+	int num_line_digits;
+	int prev_line_num;
 	guint highlight_current_line : 1;
 	guint cursor_visible : 1;
+	guint current_line_bold : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererLines, _gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
+G_DEFINE_FINAL_TYPE (GtkSourceGutterRendererLines, _gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
+
+static void
+update_cached_items (GtkSourceGutterRendererLines *self)
+{
+	PangoLayout *layout;
+	PangoAttrList *attrs;
+	PangoLayoutLine *line;
+	int width, height;
+
+	g_assert (GTK_SOURCE_IS_GUTTER_RENDERER_LINES (self));
+
+	layout = gtk_widget_create_pango_layout (GTK_WIDGET (self), "0123456789");
+	self->cached_baseline = pango_layout_get_baseline (layout) / PANGO_SCALE;
+
+	if ((line = pango_layout_get_line_readonly (layout, 0)))
+	{
+		if (line->runs != NULL)
+		{
+			const PangoGlyphItem *glyph_item = line->runs->data;
+			const PangoGlyphString *glyphs = glyph_item->glyphs;
+			PangoFont *font = glyph_item->item->analysis.font;
+			guint n_chars = MIN (10, glyph_item->item->num_chars);
+
+			g_set_object (&self->cached_font, font);
+
+			for (guint i = 0; i < n_chars; i++)
+			{
+				self->cached_infos[i] = glyphs->glyphs[i];
+			}
+		}
+	}
+
+	pango_layout_get_pixel_size (layout, &width, &height);
+	self->cached_height = height;
+
+	attrs = pango_attr_list_new ();
+	pango_attr_list_insert (attrs, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
+	pango_layout_set_attributes (layout, attrs);
+
+	self->cached_bold_baseline = pango_layout_get_baseline (layout) / PANGO_SCALE;
+
+	if ((line = pango_layout_get_line_readonly (layout, 0)))
+	{
+		if (line->runs != NULL)
+		{
+			const PangoGlyphItem *glyph_item = line->runs->data;
+			const PangoGlyphString *glyphs = glyph_item->glyphs;
+			PangoFont *font = glyph_item->item->analysis.font;
+			guint n_chars = MIN (10, glyph_item->item->num_chars);
+
+			g_set_object (&self->cached_bold_font, font);
+
+			for (guint i = 0; i < n_chars; i++)
+			{
+				self->cached_bold_infos[i] = glyphs->glyphs[i];
+			}
+		}
+	}
+
+	pango_attr_list_unref (attrs);
+	g_object_unref (layout);
+}
 
 static inline gint
 count_num_digits (gint num_lines)
@@ -158,6 +231,8 @@ gtk_source_gutter_renderer_lines_css_changed (GtkWidget         *widget,
 	GtkSourceGutterRendererLines *renderer = GTK_SOURCE_GUTTER_RENDERER_LINES (widget);
 
 	GTK_WIDGET_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->css_changed (widget, change);
+
+	update_cached_items (renderer);
 
 	/* Force to recalculate the size. */
 	renderer->num_line_digits = -1;
@@ -373,15 +448,119 @@ gtk_source_gutter_renderer_lines_measure (GtkWidget      *widget,
 }
 
 static void
+gtk_source_gutter_renderer_lines_snapshot_line (GtkSourceGutterRenderer *renderer,
+                                                GtkSnapshot             *snapshot,
+                                                GtkSourceGutterLines    *lines,
+                                                guint                    line)
+{
+	GtkSourceGutterRendererLines *self = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
+	const PangoGlyphInfo *cached_infos;
+	PangoGlyphString glyph_string = {0};
+	PangoGlyphInfo glyph_info[12];
+	GskRenderNode *node;
+	const GdkRGBA *color;
+	const gchar *text;
+	PangoFont *font;
+	float x, y;
+	int height, width;
+	int baseline;
+	int len;
+
+	if (self->cached_font == NULL)
+	{
+		return;
+	}
+
+	cached_infos = self->cached_infos;
+	font = self->cached_font;
+	baseline = self->cached_baseline;
+
+	if (gtk_source_gutter_lines_is_cursor (lines, line))
+	{
+		color = &self->current_line_color;
+
+		if (self->current_line_bold)
+		{
+			cached_infos = self->cached_bold_infos;
+			font = self->cached_bold_font;
+			baseline = self->cached_bold_baseline;
+		}
+	}
+	else
+	{
+		color = &self->foreground_color;
+	}
+
+	len = _gtk_source_utils_int_to_string (line + 1, &text);
+
+	glyph_string.num_glyphs = len;
+	glyph_string.log_clusters = 0;
+	glyph_string.glyphs = glyph_info;
+
+	width = 0;
+	height = self->cached_height;
+
+	for (int i = 0; i < len; i++)
+	{
+		int index = text[i] - '0';
+
+		g_assert (index >= 0);
+		g_assert (index < 10);
+
+		glyph_info[i] = cached_infos[index];
+
+		width += glyph_info[i].geometry.width / PANGO_SCALE;
+	}
+
+	gtk_source_gutter_renderer_align_cell (renderer, line, width, height, &x, &y);
+
+	gtk_snapshot_save (snapshot);
+	gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (ceilf (x), ceilf (y)));
+	node = gsk_text_node_new (font,
+	                          &glyph_string,
+	                          color,
+	                          &GRAPHENE_POINT_INIT (0, baseline));
+	gtk_snapshot_append_node (snapshot, node);
+	gsk_render_node_unref (node);
+	gtk_snapshot_restore (snapshot);
+}
+
+static void
+gtk_source_gutter_renderer_lines_begin (GtkSourceGutterRenderer *renderer,
+                                        GtkSourceGutterLines    *lines)
+{
+	GtkSourceGutterRendererLines *self = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
+	gboolean current_line_bold;
+
+	g_assert (GTK_SOURCE_IS_GUTTER_RENDERER_LINES (self));
+	g_assert (GTK_SOURCE_IS_GUTTER_LINES (lines));
+
+	GTK_SOURCE_GUTTER_RENDERER_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->begin (renderer, lines);
+
+	_gtk_source_gutter_renderer_text_get_draw (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
+						   &self->foreground_color,
+						   &self->current_line_color,
+						   &current_line_bold);
+
+	self->current_line_bold = !!current_line_bold;
+}
+
+static void
 gtk_source_gutter_renderer_lines_query_data (GtkSourceGutterRenderer *renderer,
                                              GtkSourceGutterLines    *lines,
                                              guint                    line)
 {
-	const gchar *text;
-	gint len;
+}
 
-	len = _gtk_source_utils_int_to_string (line + 1, &text);
-	gtk_source_gutter_renderer_text_set_text (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer), text, len);
+static void
+gtk_source_gutter_renderer_lines_dispose (GObject *object)
+{
+	GtkSourceGutterRendererLines *self = GTK_SOURCE_GUTTER_RENDERER_LINES (object);
+
+	g_clear_object (&self->cached_font);
+	g_clear_object (&self->cached_bold_font);
+
+	G_OBJECT_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->dispose (object);
 }
 
 static void
@@ -389,15 +568,20 @@ _gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass 
 {
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->dispose = gtk_source_gutter_renderer_lines_dispose;
 
 	widget_class->measure = gtk_source_gutter_renderer_lines_measure;
 	widget_class->css_changed = gtk_source_gutter_renderer_lines_css_changed;
 
-	renderer_class->query_activatable = gutter_renderer_query_activatable;
-	renderer_class->query_data = gtk_source_gutter_renderer_lines_query_data;
 	renderer_class->activate = gutter_renderer_activate;
+	renderer_class->begin = gtk_source_gutter_renderer_lines_begin;
 	renderer_class->change_buffer = gutter_renderer_change_buffer;
 	renderer_class->change_view = gutter_renderer_change_view;
+	renderer_class->query_activatable = gutter_renderer_query_activatable;
+	renderer_class->query_data = gtk_source_gutter_renderer_lines_query_data;
+	renderer_class->snapshot_line = gtk_source_gutter_renderer_lines_snapshot_line;
 }
 
 static void

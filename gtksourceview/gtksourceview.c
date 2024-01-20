@@ -343,6 +343,26 @@ gtk_source_view_constructed (GObject *object)
 }
 
 static void
+gtk_source_view_focus_leave (GtkSourceView           *view,
+                             GtkEventControllerFocus *focus)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (focus));
+
+	if (priv->left_gutter)
+	{
+		gtk_widget_queue_draw (GTK_WIDGET (priv->left_gutter));
+	}
+
+	if (priv->right_gutter)
+	{
+		gtk_widget_queue_draw (GTK_WIDGET (priv->right_gutter));
+	}
+}
+
+static void
 gtk_source_view_move_to_matching_bracket (GtkSourceView *view,
                                           gboolean       extend_selection)
 {
@@ -1428,6 +1448,7 @@ gtk_source_view_init (GtkSourceView *view)
 	GtkStyleContext *context;
 	GtkEventController *key;
 	GtkEventController *scroll;
+	GtkEventController *focus;
 	GtkDropTarget *dest;
 
 	gtk_widget_add_css_class (GTK_WIDGET (view), "GtkSourceView");
@@ -1466,6 +1487,13 @@ gtk_source_view_init (GtkSourceView *view)
 	                          G_CALLBACK (gtk_source_view_key_pressed),
 	                          view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&key));
+
+	focus = gtk_event_controller_focus_new ();
+	g_signal_connect_swapped (focus,
+	                          "leave",
+	                          G_CALLBACK (gtk_source_view_focus_leave),
+	                          view);
+	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&focus));
 
 	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
 	gtk_event_controller_set_propagation_phase (scroll, GTK_PHASE_CAPTURE);
