@@ -197,6 +197,9 @@ typedef struct
 	GtkSourceHover *hover;
 	GtkSourceIndenter *indenter;
 
+	char im_commit_text[32];
+	guint im_commit_len;
+
 	guint right_margin_pos;
 	gint cached_right_margin_pos;
 	guint tab_width;
@@ -281,6 +284,11 @@ static void           gtk_source_view_scroll               (GtkSourceView       
                                                             double                   x,
                                                             double                   y,
                                                             GtkEventControllerScroll*scroll);
+static gboolean       gtk_source_view_key_released         (GtkSourceView           *view,
+                                                            guint                    key,
+                                                            guint                    keycode,
+                                                            guint                    state,
+                                                            GtkEventControllerKey   *controller);
 static gint           calculate_real_tab_width             (GtkSourceView           *view,
                                                             guint                    tab_size,
                                                             gchar                    c);
@@ -1486,6 +1494,10 @@ gtk_source_view_init (GtkSourceView *view)
 	                          "key-pressed",
 	                          G_CALLBACK (gtk_source_view_key_pressed),
 	                          view);
+	g_signal_connect_swapped (key,
+	                          "key-released",
+	                          G_CALLBACK (gtk_source_view_key_released),
+	                          view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&key));
 
 	focus = gtk_event_controller_focus_new ();
@@ -1528,6 +1540,9 @@ gtk_source_view_dispose (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	priv->im_commit_text[0] = 0;
+	priv->im_commit_len = 0;
 
 	if (priv->completion != NULL)
 	{
@@ -1730,6 +1745,38 @@ buffer_has_selection_changed_cb (GtkSourceBuffer *buffer,
 }
 
 static void
+buffer_insert_text_cb (GtkTextBuffer *buffer,
+                       GtkTextIter   *iter,
+                       const char    *text,
+                       int            len,
+                       GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_IS_TEXT_BUFFER (buffer));
+	g_assert (iter != NULL);
+	g_assert (text != NULL);
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	if (len < 0)
+	{
+		len = strnlen (text, G_N_ELEMENTS (priv->im_commit_text));
+	}
+
+	if (len < G_N_ELEMENTS (priv->im_commit_text))
+	{
+		memcpy (priv->im_commit_text, text, len);
+		priv->im_commit_text[len] = 0;
+		priv->im_commit_len = len;
+	}
+	else
+	{
+		priv->im_commit_text[0] = 0;
+		priv->im_commit_len = 0;
+	}
+}
+
+static void
 implicit_trailing_newline_changed_cb (GtkSourceBuffer *buffer,
                                       GParamSpec      *pspec,
                                       GtkSourceView   *view)
@@ -1761,6 +1808,10 @@ remove_source_buffer (GtkSourceView *view)
 
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      buffer_has_selection_changed_cb,
+						      view);
+
+		g_signal_handlers_disconnect_by_func (priv->source_buffer,
+						      buffer_insert_text_cb,
 						      view);
 
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
@@ -1823,6 +1874,11 @@ set_source_buffer (GtkSourceView *view,
 				  "notify::has-selection",
 				  G_CALLBACK (buffer_has_selection_changed_cb),
 				  view);
+
+		g_signal_connect (buffer,
+		                  "insert-text",
+		                  G_CALLBACK (buffer_insert_text_cb),
+		                  view);
 
 		buffer_internal = _gtk_source_buffer_internal_get_from_buffer (priv->source_buffer);
 
@@ -4166,14 +4222,19 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
                              GtkEventControllerKey *controller)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	gboolean retval = GDK_EVENT_PROPAGATE;
 	GtkTextBuffer *buf;
 	GtkTextIter cur;
 	GtkTextMark *mark;
+	gint64 insertion_count;
 	guint modifiers;
 	gboolean editable;
 
-	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_EVENT_CONTROLLER (controller));
 
+	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	insertion_count = _gtk_source_buffer_get_insertion_count (priv->source_buffer);
 	editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (view));
 
 	/* Be careful when testing for modifier state equality:
@@ -4183,18 +4244,47 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
+	if (editable)
+	{
+		GdkEvent *event = gtk_event_controller_get_current_event (GTK_EVENT_CONTROLLER (controller));
+
+		g_assert (event != NULL);
+		g_assert (gdk_event_get_event_type (event) == GDK_KEY_PRESS);
+
+		priv->im_commit_text[0] = 0;
+		priv->im_commit_len = 0;
+
+		/* We need to query the input-method first as we might be using
+		 * ibus or similar with pinyin, etc.
+		 */
+		if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
+		{
+			gunichar expected = gdk_keyval_to_unicode (key);
+			char keyval_str[8];
+
+			retval = GDK_EVENT_STOP;
+			keyval_str[g_unichar_to_utf8 (expected, keyval_str)] = '\0';
+
+			if (!g_str_equal (priv->im_commit_text, keyval_str))
+			{
+				priv->im_commit_text[0] = 0;
+				priv->im_commit_len = 0;
+
+				return retval;
+			}
+		}
+
+		priv->im_commit_text[0] = 0;
+		priv->im_commit_len = 0;
+	}
+
 	if (editable &&
 	    priv->auto_indent &&
 	    priv->indenter != NULL &&
 	    gtk_source_indenter_is_trigger (priv->indenter, view, &cur, state, key))
 	{
-		GdkEvent *event = gtk_event_controller_get_current_event (GTK_EVENT_CONTROLLER (controller));
-		gint64 insertion_count = _gtk_source_buffer_get_insertion_count (priv->source_buffer);
 		gunichar expected;
-		gboolean filtered;
 		gboolean did_insert;
-
-		g_assert (gdk_event_get_event_type (event) == GDK_KEY_PRESS);
 
 		/* To make this work as close to how GTK will commit text to the
 		 * buffer as possible, we deliver the event information to the input
@@ -4214,34 +4304,28 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 		 */
 		expected = gdk_keyval_to_unicode (key);
 
-		/* We need to query the input-method first as we might be using
-		 * ibus or similar with pinyin, etc.
-		 */
-		filtered = gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event);
-
 		/* If our change count incremented, then something was inserted.
 		 * The change count is not incremented if only pre-edit changed.
 		 */
 		did_insert = insertion_count != _gtk_source_buffer_get_insertion_count (priv->source_buffer);
 
-		/* If we didn't filter, then GTK would have inserted a \n for
-		 * Return/KP_Enter if it's key-press handler would have fired.
+		/* If we didn't filter with
+                 * gtk_text_view_im_context_filter_keypress(), then GTK would
+                 * have inserted a \n for Return/KP_Enter if it's key-press
+                 * handler would have fired.
 		 * We need to emulate that.
 		 */
-		if (!filtered)
+		gtk_text_buffer_begin_user_action (buf);
+
+		if (key == GDK_KEY_Return || key == GDK_KEY_KP_Enter)
 		{
-			gtk_text_buffer_begin_user_action (buf);
-
-			if (key == GDK_KEY_Return || key == GDK_KEY_KP_Enter)
-			{
-				gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
-				gtk_text_buffer_insert (buf, &cur, "\n", 1);
-				did_insert = TRUE;
-				expected = '\n';
-			}
-
-			gtk_text_buffer_end_user_action (buf);
+			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+			gtk_text_buffer_insert (buf, &cur, "\n", 1);
+			did_insert = TRUE;
+			expected = '\n';
 		}
+
+		gtk_text_buffer_end_user_action (buf);
 
 		/* If we inserted something, then we are free to query the
 		 * indenter, so long as what was entered is what we expected
@@ -4335,6 +4419,32 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 			{
 				return GDK_EVENT_STOP;
 			}
+		}
+	}
+
+	return retval;
+}
+
+static gboolean
+gtk_source_view_key_released (GtkSourceView         *view,
+                              guint                  key,
+                              guint                  keycode,
+                              guint                  state,
+                              GtkEventControllerKey *controller)
+{
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (controller));
+
+	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)))
+	{
+		GdkEvent *event = gtk_event_controller_get_current_event (GTK_EVENT_CONTROLLER (controller));
+
+		g_assert (event != NULL);
+		g_assert (gdk_event_get_event_type (event) == GDK_KEY_RELEASE);
+
+		if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
+		{
+			return GDK_EVENT_STOP;
 		}
 	}
 
