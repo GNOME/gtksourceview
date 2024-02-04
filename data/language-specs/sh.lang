@@ -24,7 +24,7 @@
 <language id="sh" name="sh" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-shellscript;application/x-shellscript;text/x-sh</property>
-    <property name="globs">*.sh;*bashrc;.profile;.bash_profile</property>
+    <property name="globs">*.sh;*bashrc;.profile;.bash_profile;.bash_login;.bash_logout</property>
     <property name="line-comment-start">#</property>
     <property name="suggested-suffix">.sh</property>
   </metadata>
@@ -156,7 +156,7 @@
         <context ref="logical-operator"/>
       </include>
     </context>
-    
+
     <!-- Defined like this, "precedence" also emulates the inclusion of
     "arithmetic-evaluation" and "arithmetic-expansion" -->
     <context id="evaluation-precedence">
