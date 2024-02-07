@@ -21,12 +21,6 @@
 
 #include "config.h"
 
-#if ENABLE_FONT_CONFIG
-# include <fontconfig/fontconfig.h>
-# include <pango/pangocairo.h>
-# include <pango/pangofc-fontmap.h>
-#endif
-
 #include "gtksourcebuffer.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguagemanager.h"
