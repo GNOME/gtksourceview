@@ -55,18 +55,27 @@
 
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-
-#if ENABLE_FONT_CONFIG
-# include <fontconfig/fontconfig.h>
-# include <pango/pangocairo.h>
-# include <pango/pangofc-fontmap.h>
-#endif
+#include <pango/pango.h>
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
 
 #ifdef G_OS_WIN32
-#include <windows.h>
+# include <windows.h>
+#endif
+
+#ifdef G_OS_WIN32
+# if PANGO_VERSION_CHECK(1, 52, 0)
+#  include <pango/pangowin32.h>
+#  define FONTLOADING_WITH_PANGOWIN32
+# endif
+#endif
+
+#ifdef ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+# define FONTLOADING_WITH_FONTCONFIG
 #endif
 
 /**
@@ -956,14 +965,19 @@ _gtk_source_utils_aligned_free (gpointer data)
 	aligned_free (data);
 }
 
-#if ENABLE_FONT_CONFIG
-static PangoFontMap *builder_blocks_font_map;
-static FcConfig *map_font_config;
-
 static PangoFontMap *
-load_override_font (void)
+load_override_font_fc (void)
 {
-	PangoFontMap *font_map;
+	static FcConfig *map_font_config;
+	PangoFontMap *font_map = NULL;
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+
+	if (!font_map)
+	{
+		g_error ("Unable to create new fontmap");
+		return NULL;
+	}
 
 	if (g_once_init_enter (&map_font_config))
 	{
@@ -979,7 +993,7 @@ load_override_font (void)
 				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
 				{
 #ifdef G_OS_WIN32
-					/* Reformat the path as expected by fontconfig */
+					/* Reformat the path as expected by win32 FontConfig */
 					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
 					FcConfigAppFontAddFile (config, win32_path);
 					FcStrFree (win32_path);
@@ -997,11 +1011,54 @@ load_override_font (void)
 		g_once_init_leave (&map_font_config, config);
 	}
 
-	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+	g_assert (map_font_config != NULL);
+
 	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
 
-	g_assert (map_font_config != NULL);
-	g_assert (font_map != NULL);
+	return font_map;
+}
+
+#ifdef FONTLOADING_WITH_PANGOWIN32
+static PangoFontMap *
+load_override_font_win32 (void)
+{
+	PangoFontMap *font_map;
+	char **font_dirs;
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_WIN32);
+
+	if (!font_map)
+	{
+		g_error ("Unable to create new fontmap");
+		return NULL;
+	}
+
+	font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
+
+	if (font_dirs != NULL)
+	{
+		for (guint i = 0; font_dirs[i]; i++)
+		{
+			char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
+
+			if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+			{
+				GError *error = NULL;
+
+				pango_win32_font_map_add_font_file (font_map, font_path, &error);
+
+				if (error)
+				{
+					g_warning("Font loading error: %s", error->message);
+					g_clear_error (&error);
+				}
+			}
+
+			g_free (font_path);
+		}
+	}
+
+	g_strfreev (font_dirs);
 
 	return font_map;
 }
@@ -1010,14 +1067,27 @@ load_override_font (void)
 PangoFontMap *
 _gtk_source_utils_get_builder_blocks (void)
 {
-#if ENABLE_FONT_CONFIG
-	if (builder_blocks_font_map == NULL)
+	static PangoFontMap *builder_blocks_font_map;
+	static gboolean loaded;
+
+	if (!loaded)
 	{
-		builder_blocks_font_map = load_override_font ();
+		loaded = TRUE;
+
+#ifdef FONTLOADING_WITH_PANGOWIN32
+		if (builder_blocks_font_map == NULL)
+		{
+			builder_blocks_font_map = load_override_font_win32 ();
+		}
+#endif
+
+#ifdef FONTLOADING_WITH_FONTCONFIG
+		if (builder_blocks_font_map == NULL)
+		{
+			builder_blocks_font_map = load_override_font_fc ();
+		}
+#endif
 	}
 
 	return builder_blocks_font_map;
-#else
-	return NULL;
-#endif
 }
