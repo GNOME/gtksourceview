@@ -55,30 +55,27 @@
 
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-
-
-/* Custom fonts loading */
 #include <pango/pango.h>
-#if defined(G_OS_WIN32) && PANGO_VERSION_CHECK(1, 52, 0)
-# define FONTLOADING_WITH_PANGOWIN32
-#elif defined(ENABLE_FONT_CONFIG)
-# define FONTLOADING_WITH_FONTCONFIG
-#endif
-
-#ifdef FONTLOADING_WITH_PANGOWIN32
-# include <pango/pangowin32.h>
-#endif
-#ifdef FONTLOADING_WITH_FONTCONFIG
-# include <fontconfig/fontconfig.h>
-# include <pango/pangocairo.h>
-# include <pango/pangofc-fontmap.h>
-#endif
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
 
 #ifdef G_OS_WIN32
-#include <windows.h>
+# include <windows.h>
+#endif
+
+#ifdef G_OS_WIN32
+# if PANGO_VERSION_CHECK(1, 52, 0)
+#  include <pango/pangowin32.h>
+#  define FONTLOADING_WITH_PANGOWIN32
+# endif
+#endif
+
+#ifdef ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+# define FONTLOADING_WITH_FONTCONFIG
 #endif
 
 /**
@@ -968,37 +965,24 @@ _gtk_source_utils_aligned_free (gpointer data)
 	aligned_free (data);
 }
 
-static PangoFontMap *builder_blocks_font_map;
-#ifdef FONTLOADING_WITH_FONTCONFIG
-static FcConfig *map_font_config;
-#endif
-
 static PangoFontMap *
-load_override_font (void)
+load_override_font_fc (void)
 {
+	static FcConfig *map_font_config;
 	PangoFontMap *font_map = NULL;
 
-#ifdef FONTLOADING_WITH_PANGOWIN32
-	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_WIN32);
-#endif
-#ifdef FONTLOADING_WITH_FONTCONFIG
 	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
-#endif
 
 	if (!font_map)
 	{
 		g_error ("Unable to create new fontmap");
-		goto failed;
+		return NULL;
 	}
 
-#ifdef FONTLOADING_WITH_FONTCONFIG
 	if (g_once_init_enter (&map_font_config))
-#endif
 	{
 		char **font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
-#ifdef FONTLOADING_WITH_FONTCONFIG
 		FcConfig *config = FcInitLoadConfigAndFonts ();
-#endif
 
 		if (font_dirs != NULL)
 		{
@@ -1008,26 +992,13 @@ load_override_font (void)
 
 				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
 				{
-#ifdef FONTLOADING_WITH_PANGOWIN32
-					GError *error = NULL;
-
-					pango_win32_font_map_add_font_file (font_map, font_path, &error);
-
-					if (error)
-					{
-						g_warning("Font loading error: %s", error->message);
-						g_clear_error (&error);
-					}
-#endif
-#ifdef FONTLOADING_WITH_FONTCONFIG
-# ifdef G_OS_WIN32
-					/* Reformat the path as expected by fontconfig */
+#ifdef G_OS_WIN32
+					/* Reformat the path as expected by win32 FontConfig */
 					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
 					FcConfigAppFontAddFile (config, win32_path);
 					FcStrFree (win32_path);
-# else
+#else
 					FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
-# endif
 #endif
 				}
 
@@ -1037,26 +1008,85 @@ load_override_font (void)
 
 		g_strfreev (font_dirs);
 
-#ifdef FONTLOADING_WITH_FONTCONFIG
 		g_once_init_leave (&map_font_config, config);
-#endif
 	}
 
-#ifdef FONTLOADING_WITH_FONTCONFIG
 	g_assert (map_font_config != NULL);
-	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
-#endif
 
-failed:
+	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
+
 	return font_map;
 }
+
+#ifdef FONTLOADING_WITH_PANGOWIN32
+static PangoFontMap *
+load_override_font_win32 (void)
+{
+	PangoFontMap *font_map;
+	char **font_dirs;
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_WIN32);
+
+	if (!font_map)
+	{
+		g_error ("Unable to create new fontmap");
+		return NULL;
+	}
+
+	font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
+
+	if (font_dirs != NULL)
+	{
+		for (guint i = 0; font_dirs[i]; i++)
+		{
+			char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
+
+			if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+			{
+				GError *error = NULL;
+
+				pango_win32_font_map_add_font_file (font_map, font_path, &error);
+
+				if (error)
+				{
+					g_warning("Font loading error: %s", error->message);
+					g_clear_error (&error);
+				}
+			}
+
+			g_free (font_path);
+		}
+	}
+
+	g_strfreev (font_dirs);
+
+	return font_map;
+}
+#endif
 
 PangoFontMap *
 _gtk_source_utils_get_builder_blocks (void)
 {
-	if (builder_blocks_font_map == NULL)
+	static PangoFontMap *builder_blocks_font_map;
+	static gboolean loaded;
+
+	if (!loaded)
 	{
-		builder_blocks_font_map = load_override_font ();
+		loaded = TRUE;
+
+#ifdef FONTLOADING_WITH_PANGOWIN32
+		if (builder_blocks_font_map == NULL)
+		{
+			builder_blocks_font_map = load_override_font_win32 ();
+		}
+#endif
+
+#ifdef FONTLOADING_WITH_FONTCONFIG
+		if (builder_blocks_font_map == NULL)
+		{
+			builder_blocks_font_map = load_override_font_fc ();
+		}
+#endif
 	}
 
 	return builder_blocks_font_map;
