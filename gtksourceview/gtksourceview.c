@@ -55,6 +55,7 @@
 #include "gtksourcesnippet.h"
 #include "gtksourcesnippetcontext.h"
 #include "gtksourcetrace.h"
+#include "gtksourceutils-private.h"
 
 /**
  * GtkSourceView:
@@ -1760,7 +1761,7 @@ buffer_insert_text_cb (GtkTextBuffer *buffer,
 
 	if (len < 0)
 	{
-		len = strnlen (text, G_N_ELEMENTS (priv->im_commit_text));
+		len = _gtk_source_utils_strnlen (text, G_N_ELEMENTS (priv->im_commit_text));
 	}
 
 	if (len < G_N_ELEMENTS (priv->im_commit_text))

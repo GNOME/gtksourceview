@@ -30,6 +30,8 @@
 
 #include "config.h"
 
+#define _GNU_SOURCE
+
 #if defined(HAVE_POSIX_MEMALIGN) && !defined(_XOPEN_SOURCE)
 # define _XOPEN_SOURCE 600
 #endif
@@ -1090,4 +1092,34 @@ _gtk_source_utils_get_builder_blocks (void)
 	}
 
 	return builder_blocks_font_map;
+}
+
+gsize
+_gtk_source_utils_strnlen (const char *str,
+			   gsize       maxlen)
+{
+#ifdef HAVE_STRNLEN
+	return strnlen (str, maxlen);
+#else
+	gsize i = 0;
+
+	for (;;)
+	{
+		if (str[i] == 0)
+		{
+			return i;
+		}
+
+		if (i == maxlen)
+		{
+			return maxlen;
+		}
+
+		i++;
+	}
+
+	g_assert_not_reached ();
+
+	return 0;
+#endif
 }

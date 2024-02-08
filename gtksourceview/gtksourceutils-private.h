@@ -63,5 +63,8 @@ G_GNUC_INTERNAL
 gsize    _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
 G_GNUC_INTERNAL
 PangoFontMap *_gtk_source_utils_get_builder_blocks       (void);
+G_GNUC_INTERNAL
+gsize    _gtk_source_utils_strnlen                       (const char                  *str,
+                                                          gsize                        maxlen);
 
 G_END_DECLS

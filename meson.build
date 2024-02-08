@@ -175,6 +175,10 @@ else
   error('No aligned malloc function could be found.')
 endif
 
+if cc.has_function('strnlen', prefix: '#define _GNU_SOURCE\n')
+  config_h.set10('HAVE_STRNLEN', true, description: 'Define if strnlen() is available')
+endif
+
 # libsysprof-capture support
 if get_option('sysprof')
   libsysprof_capture_dep = dependency('sysprof-capture-4',
