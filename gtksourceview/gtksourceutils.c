@@ -967,6 +967,7 @@ _gtk_source_utils_aligned_free (gpointer data)
 	aligned_free (data);
 }
 
+#ifdef ENABLE_FONT_CONFIG
 static PangoFontMap *
 load_override_font_fc (void)
 {
@@ -1019,6 +1020,7 @@ load_override_font_fc (void)
 
 	return font_map;
 }
+#endif
 
 #ifdef FONTLOADING_WITH_PANGOWIN32
 static PangoFontMap *
