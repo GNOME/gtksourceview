@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2023-09-16 23:29+0000\n"
-"PO-Revision-Date: 2023-10-14 10:42+0300\n"
+"POT-Creation-Date: 2024-01-28 12:46+0000\n"
+"PO-Revision-Date: 2024-02-08 01:31+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -411,30 +411,30 @@ msgstr "Kırıntılar"
 msgid "Document Words"
 msgstr "Belge Sözcükleri"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:916
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Girişte geçersiz bayt dizisi"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:922
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Dönüştürme esnasında hata: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1015
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "“%s” karakter setinden “UTF-8”e dönüştürme desteklenmiyor"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1021
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "“%s”den “UTF-8”e dönüştürücü açılamadı"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1081
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Geçersiz nesne, ilklendirilmemiş"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1283
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Girdide eksik UTF-8 dizisi"
@@ -460,7 +460,7 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Tüm çevirimler için regex oluşturulamıyor, sözdizimi vurgulama işlemi "
+"Tüm çevirimler için regex oluşturulamıyor, söz dizimi vurgulama işlemi "
 "olağandan daha uzun sürecek.\n"
 "Hata: %s"
 
@@ -709,23 +709,23 @@ msgstr "İ_ptal"
 msgid "_Select"
 msgstr "_Seç"
 
-#: gtksourceview/gtksourceview.c:1833
+#: gtksourceview/gtksourceview.c:1861
 msgid "All _Upper Case"
 msgstr "Tümü _Büyük Harf"
 
-#: gtksourceview/gtksourceview.c:1837
+#: gtksourceview/gtksourceview.c:1865
 msgid "All _Lower Case"
 msgstr "Tümü _Küçük Harf"
 
-#: gtksourceview/gtksourceview.c:1841
+#: gtksourceview/gtksourceview.c:1869
 msgid "_Invert Case"
 msgstr "Durum Değ_iştir"
 
-#: gtksourceview/gtksourceview.c:1845
+#: gtksourceview/gtksourceview.c:1873
 msgid "_Title Case"
 msgstr "Başlık _Durumu"
 
-#: gtksourceview/gtksourceview.c:1849
+#: gtksourceview/gtksourceview.c:1877
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
 
