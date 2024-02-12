@@ -588,7 +588,7 @@ pick_langs_for_filename (GtkSourceLanguageManager *lm,
 			/* FIXME g_pattern_match is wrong: there are no '[...]'
 			 * character ranges and '*' and '?' can not be escaped
 			 * to include them literally in a pattern.  */
-			if (g_pattern_match_simple (*gptr, filename_utf8))
+			if (**gptr != '\0' && g_pattern_match_simple (*gptr, filename_utf8))
 			{
 				langs = g_slist_prepend (langs, lang);
 				break;
