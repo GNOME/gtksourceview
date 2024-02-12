@@ -1,3 +1,31 @@
+News in 5.11.1, 2024-02-12
+--------------------------
+
+This is a development release for GNOME 46.beta
+
+ * A new -Dbuild-testsuite configuration option
+ * Some build options were renamed to follow more closely
+   what GTK itself uses now.
+
+   -Dgtk_doc became -Ddocumentation
+   -Dinstall_tests became -Dinstall-tests
+
+ * Improvements to BuilderBlocks font to support Windows
+   - This supports FontConfig on Windows currently
+   - With Pango 1.52.0 it will support win32 font loader
+ * Fix a rendering issue where the gutter would not highlight
+   the same as the current-line-highlight.
+ * An optimization for line number drawing which avoids using
+   PangoLayout when drawing.
+ * Ensure the gutter is redrawn when focus leaves text view
+ * Improved support for input methods when X11 and ibus are
+   used by making it behave closer to Wayland input methods.
+ * Ignore the current-line highlight when out of view which
+   improves the damage area calculation in GTK.
+ * A new Wren language spec
+ * Updates for the sh language-spec
+ * Translation updates
+
 News in 5.11.0, 2024-01-08
 --------------------------
 
