@@ -2520,7 +2520,7 @@ gtk_source_view_paint_line_background (GtkSourceView *view,
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 
-	if (y < visible_rect.y || y >= (visible_rect.y + visible_rect.height))
+	if ((y + height) <= visible_rect.y || y >= (visible_rect.y + visible_rect.height))
 	{
 		return;
 	}
