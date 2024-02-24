@@ -5009,6 +5009,13 @@ update_current_line_color (GtkSourceView *view)
 		priv->current_line_number_bold =
 			_gtk_source_style_scheme_get_current_line_number_bold (priv->style_scheme);
 	}
+	else
+	{
+		priv->current_line_background_color_set = FALSE;
+		priv->current_line_number_background_color_set = FALSE;
+		priv->current_line_number_color_set = FALSE;
+		priv->current_line_number_bold = FALSE;
+	}
 
 	/* If we failed to get a highlight-current-line color, then premix the foreground
 	 * and the background to give something relatively useful (and avoid alpha-composite
