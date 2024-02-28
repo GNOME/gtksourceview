@@ -350,7 +350,7 @@
     </context>
 
     <context id="generic-command" style-ref="command" class="no-spell-check" extend-parent="false">
-      <match>\\\@?[[:alnum:]]+\*?</match>
+      <match>\\((\@|[[:alpha:]])+|.|$)</match>
     </context>
 
     <context id="specific-commands">
