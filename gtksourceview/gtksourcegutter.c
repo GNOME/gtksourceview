@@ -881,7 +881,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	gtk_snapshot_push_clip (snapshot,
 	                        &GRAPHENE_RECT_INIT (0,
 	                                             0,
-						     clip_width,
+                                                     clip_width,
 	                                             gtk_widget_get_height (widget)));
 
 	/* Now let the renderers draw the content for each line. Because
