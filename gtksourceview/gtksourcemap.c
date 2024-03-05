@@ -1209,7 +1209,7 @@ gtk_source_map_size_allocate (GtkWidget *widget,
 	get_slider_position (map, width, height, &area);
 	gtk_widget_measure (GTK_WIDGET (priv->slider),
 	                    GTK_ORIENTATION_VERTICAL,
-			    width, &min, &nat, NULL, NULL);
+	                    width, &min, &nat, NULL, NULL);
 	area.height = MAX (nat, area.height);
 	gtk_widget_size_allocate (GTK_WIDGET (priv->slider), &area, -1);
 }
