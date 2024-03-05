@@ -322,6 +322,9 @@ static void           gtk_source_view_populate_extra_menu  (GtkSourceView       
 static void           gtk_source_view_real_push_snippet    (GtkSourceView           *view,
                                                             GtkSourceSnippet        *snippet,
                                                             GtkTextIter             *location);
+static void           gtk_source_view_ensure_redrawn_rect_is_highlighted
+                                                           (GtkSourceView           *view,
+                                                            GdkRectangle            *clip);
 
 static GtkSourceCompletion *
 get_completion (GtkSourceView *self)
@@ -544,10 +547,14 @@ gtk_source_view_size_allocate (GtkWidget *widget,
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GdkRectangle visible_rect;
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->size_allocate (widget, width, height, baseline);
 
 	_gtk_source_view_assistants_size_allocate (&priv->assistants, width, height, baseline);
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
+	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 }
 
 static void
@@ -2880,10 +2887,6 @@ gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
-	GdkRectangle visible_rect;
-
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
