@@ -2887,6 +2887,10 @@ gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
+	GdkRectangle visible_rect;
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
+	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
