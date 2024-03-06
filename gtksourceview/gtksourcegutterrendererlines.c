@@ -514,15 +514,12 @@ gtk_source_gutter_renderer_lines_snapshot_line (GtkSourceGutterRenderer *rendere
 
 	gtk_source_gutter_renderer_align_cell (renderer, line, width, height, &x, &y);
 
-	gtk_snapshot_save (snapshot);
-	gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (ceilf (x), ceilf (y)));
 	node = gsk_text_node_new (font,
 	                          &glyph_string,
 	                          color,
-	                          &GRAPHENE_POINT_INIT (0, baseline));
+	                          &GRAPHENE_POINT_INIT (x, y + baseline));
 	gtk_snapshot_append_node (snapshot, node);
 	gsk_render_node_unref (node);
-	gtk_snapshot_restore (snapshot);
 }
 
 static void
