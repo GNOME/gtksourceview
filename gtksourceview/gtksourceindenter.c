@@ -151,7 +151,14 @@ trigger_on_newline (GtkSourceIndenter *self,
 	if ((state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_SUPER_MASK)) != 0)
 		return FALSE;
 
-	return (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter);
+	if (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter)
+        {
+                GtkTextBuffer *buffer = gtk_text_iter_get_buffer (location);
+
+                return !gtk_text_buffer_get_has_selection (buffer);
+        }
+
+        return FALSE;
 }
 
 G_DEFINE_INTERFACE (GtkSourceIndenter, gtk_source_indenter, G_TYPE_OBJECT)
