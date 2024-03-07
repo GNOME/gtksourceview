@@ -1224,9 +1224,12 @@ gtk_source_map_snapshot (GtkWidget   *widget,
 	g_assert (GTK_IS_WIDGET (widget));
 	g_assert (GTK_IS_SNAPSHOT (snapshot));
 
-	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->snapshot (widget, snapshot);
-
+	/* Render the slider behind the contents so they are more legible and
+	 * we can avoid an RGBA blend on top of the contents.
+	 */
 	gtk_widget_snapshot_child (GTK_WIDGET (map), GTK_WIDGET (priv->slider), snapshot);
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->snapshot (widget, snapshot);
 }
 
 static void
