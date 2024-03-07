@@ -278,12 +278,18 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	GtkSourceMapPrivate *priv;
 	GtkSourceStyleScheme *style_scheme;
 	GtkSourceStyle *style = NULL;
+	GtkSourceStyle *text = NULL;
 	GtkTextBuffer *buffer;
+	GdkRGBA real_bg;
 	const char *color;
 	gboolean use_fg = FALSE;
 	GString *gstr;
 	char *background = NULL;
 	char *foreground = NULL;
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	GtkStyleContext *style_context;
+	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	priv = gtk_source_map_get_instance_private (map);
 
@@ -332,8 +338,29 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->view));
 	style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+	if (!gtk_style_context_lookup_color (style_context, "view_bg_color", &real_bg))
+		memset (&real_bg, 0, sizeof (real_bg));
+	G_GNUC_END_IGNORE_DEPRECATIONS
+
 	if (style_scheme != NULL)
 	{
+		if ((text = gtk_source_style_scheme_get_style (style_scheme, "text")))
+		{
+			char *str;
+
+			g_object_get (text,
+				      "background", &str,
+				      NULL);
+
+			if (str != NULL)
+			{
+				gdk_rgba_parse (&real_bg, str);
+				g_free (str);
+			}
+		}
+
 		if (!(style = gtk_source_style_scheme_get_style (style_scheme, "map-overlay")) &&
 		    !(style = gtk_source_style_scheme_get_style (style_scheme, "selection")))
 		{
@@ -417,18 +444,40 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	if (color != NULL)
 	{
+		GdkRGBA to_mix;
+		GdkRGBA normal;
+		GdkRGBA hover;
+		GdkRGBA active;
+		char *normal_str;
+		char *hover_str;
+		char *active_str;
+
+		gdk_rgba_parse (&to_mix, color);
+
+		premix_colors (&normal, &to_mix, &real_bg, real_bg.alpha > 0., .25);
+		premix_colors (&hover, &to_mix, &real_bg, real_bg.alpha > 0., .35);
+		premix_colors (&active, &to_mix, &real_bg, real_bg.alpha > 0., .5);
+
+		normal_str = gdk_rgba_to_string (&normal);
+		hover_str = gdk_rgba_to_string (&hover);
+		active_str = gdk_rgba_to_string (&active);
+
 		g_string_append_printf (gstr,
 		                        "slider {"
-		                        " background-color: alpha(%s,.25);"
+		                        " background-color: %s;"
 		                        " transition-duration: 300ms;"
 		                        "}\n"
 		                        "slider:hover {"
-		                        " background-color: alpha(%s,.35);"
+		                        " background-color: %s;"
 		                        "}\n"
 		                        "slider.dragging:hover {"
-		                        " background-color: alpha(%s,.5);"
+		                        " background-color: %s;"
 		                        "}\n",
-		                        color, color, color);
+					normal_str, hover_str, active_str);
+
+		g_free (normal_str);
+		g_free (hover_str);
+		g_free (active_str);
 	}
 
 	g_free (background);
