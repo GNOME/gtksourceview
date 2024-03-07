@@ -4983,32 +4983,6 @@ update_background_pattern_color (GtkSourceView *view)
 								       &priv->background_pattern_color);
 }
 
-static inline void
-premix_colors (GdkRGBA       *dest,
-               const GdkRGBA *fg,
-               const GdkRGBA *bg,
-               gboolean       bg_set,
-               double         alpha)
-{
-	g_assert (dest != NULL);
-	g_assert (fg != NULL);
-	g_assert (bg != NULL || bg_set == FALSE);
-	g_assert (alpha >= 0.0 && alpha <= 1.0);
-
-	if (bg_set)
-	{
-		dest->red = ((1 - alpha) * bg->red) + (alpha * fg->red);
-		dest->green = ((1 - alpha) * bg->green) + (alpha * fg->green);
-		dest->blue = ((1 - alpha) * bg->blue) + (alpha * fg->blue);
-		dest->alpha = 1.0;
-	}
-	else
-	{
-		*dest = *fg;
-		dest->alpha = alpha;
-	}
-}
-
 static void
 update_current_line_color (GtkSourceView *view)
 {
