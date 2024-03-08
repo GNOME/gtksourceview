@@ -273,6 +273,30 @@ get_slider_position (GtkSourceMap *map,
 }
 
 static void
+gtk_source_map_allocate_slider (GtkSourceMap *map)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GdkRectangle area;
+	int width, height;
+	int min, nat;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	width = gtk_widget_get_width (GTK_WIDGET (map));
+	height = gtk_widget_get_height (GTK_WIDGET (map));
+
+	if (width == 0 || height == 0)
+		return;
+
+	get_slider_position (map, width, height, &area);
+	gtk_widget_measure (GTK_WIDGET (priv->slider),
+	                    GTK_ORIENTATION_VERTICAL,
+	                    width, &min, &nat, NULL, NULL);
+	area.height = MAX (nat, area.height);
+	gtk_widget_size_allocate (GTK_WIDGET (priv->slider), &area, -1);
+}
+
+static void
 gtk_source_map_rebuild_css (GtkSourceMap *map)
 {
 	GtkSourceMapPrivate *priv;
@@ -530,7 +554,7 @@ update_child_vadjustment (GtkSourceMap *map)
 
 	gtk_adjustment_set_value (child_vadj, new_value);
 
-	gtk_widget_queue_allocate (GTK_WIDGET (map));
+	gtk_source_map_allocate_slider (map);
 }
 
 static gboolean
@@ -1247,20 +1271,12 @@ gtk_source_map_size_allocate (GtkWidget *widget,
                               int        baseline)
 {
 	GtkSourceMap *map = (GtkSourceMap *)widget;
-	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-	GdkRectangle area;
-	int min, nat;
 
 	g_assert (GTK_SOURCE_IS_MAP (map));
 
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->size_allocate (widget, width, height, baseline);
 
-	get_slider_position (map, width, height, &area);
-	gtk_widget_measure (GTK_WIDGET (priv->slider),
-	                    GTK_ORIENTATION_VERTICAL,
-	                    width, &min, &nat, NULL, NULL);
-	area.height = MAX (nat, area.height);
-	gtk_widget_size_allocate (GTK_WIDGET (priv->slider), &area, -1);
+	gtk_source_map_allocate_slider (map);
 }
 
 static void
