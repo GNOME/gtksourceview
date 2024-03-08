@@ -2228,6 +2228,8 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	if (!ce->highlight || ce->disabled)
 		return;
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
+
 	invalid_line = get_invalid_line (ce);
 	end_line = gtk_text_iter_get_line (end);
 
@@ -2256,6 +2258,8 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 		install_first_update (ce);
 	}
+
+	GTK_SOURCE_PROFILER_END_MARK ("ContextEngine::update_highlight", NULL);
 }
 
 /**
