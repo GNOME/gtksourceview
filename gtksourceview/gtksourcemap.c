@@ -746,6 +746,11 @@ gtk_source_map_measure (GtkWidget      *widget,
 
 	priv = gtk_source_map_get_instance_private (map);
 
+	if (priv->view == NULL)
+	{
+		return;
+	}
+
 	if (orientation == GTK_ORIENTATION_HORIZONTAL)
 	{
 		if (priv->font_desc == NULL)
