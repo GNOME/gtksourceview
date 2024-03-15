@@ -1,3 +1,15 @@
+News in 5.12.0, 2024-03-15
+--------------------------
+
+This is a stable release for GNOME 46
+
+ * Do not trigger default indenter for Return when a selection is active
+ * Render overview slider below text rather than above w/ RGBA
+ * Premix certain colors in overview when drawing to avoid RGBA blends on GPU
+ * Avoid round-trip to main loop when map slider needs allocation
+ * Avoid an extra GSK transform for each line number in the gutter
+ * Translation updates
+
 News in 5.11.2, 2024-03-03
 --------------------------
 
