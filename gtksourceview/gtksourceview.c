@@ -43,7 +43,6 @@
 #include "gtksourceindenter-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
-#include "gtksourcemap.h"
 #include "gtksourcemarkattributes.h"
 #include "gtksource-marshal.h"
 #include "gtksourcestylescheme-private.h"
@@ -2890,19 +2889,8 @@ gtk_source_view_snapshot (GtkWidget   *widget,
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
 	GdkRectangle visible_rect;
 
-	/* Avoid ensuring redrawn rect from snapshot because it's extremely
-	 * expensive for the GtkSourceMap given how much it has to
-	 * highlight.  We already try to pick that up in size_allocate()
-	 * which should hit since it mostly scrolls for things not updated
-	 * by the corresponding view.
-	 *
-	 * We might want to address this differently in the future.
-	 */
-	if (!GTK_SOURCE_IS_MAP (widget))
-	{
-		gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-		gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
-	}
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
+	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
