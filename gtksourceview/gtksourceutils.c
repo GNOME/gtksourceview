@@ -73,7 +73,7 @@
 # endif
 #endif
 
-#ifdef ENABLE_FONT_CONFIG
+#if ENABLE_FONT_CONFIG
 # include <fontconfig/fontconfig.h>
 # include <pango/pangocairo.h>
 # include <pango/pangofc-fontmap.h>
@@ -967,7 +967,7 @@ _gtk_source_utils_aligned_free (gpointer data)
 	aligned_free (data);
 }
 
-#ifdef ENABLE_FONT_CONFIG
+#if ENABLE_FONT_CONFIG
 static PangoFontMap *
 load_override_font_fc (void)
 {
