@@ -2758,6 +2758,9 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	int grid_width = 16;
 	int grid_height = 16;
 	int line_y, line_height;
+	int left_margin;
+
+	left_margin = gtk_text_view_get_left_margin (GTK_TEXT_VIEW (view));
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 
@@ -2790,6 +2793,9 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	x2 = realign (x + visible_rect.width + grid_width * 2, grid_width);
 	y2 = realign (y + visible_rect.height + grid_height, grid_height);
 
+	gtk_snapshot_save (snapshot);
+	gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (left_margin, 0));
+
 	gtk_snapshot_push_repeat (snapshot,
 	                          &GRAPHENE_RECT_INIT (x, y, x2 - x, y2 - y),
 	                          &GRAPHENE_RECT_INIT (x, y, grid_width, grid_height));
@@ -2803,6 +2809,8 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	                           &priv->background_pattern_color,
 	                           &GRAPHENE_RECT_INIT (x, y + grid_half_height, grid_width, 1));
 	gtk_snapshot_pop (snapshot);
+
+	gtk_snapshot_restore (snapshot);
 }
 
 static void
