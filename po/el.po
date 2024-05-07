@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2020-11-28 13:37+0000\n"
-"PO-Revision-Date: 2021-03-18 10:16+0200\n"
+"POT-Creation-Date: 2024-01-28 12:46+0000\n"
+"PO-Revision-Date: 2024-05-07 13:03+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -66,6 +66,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -104,8 +105,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -120,6 +121,9 @@ msgstr "Πηγή"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -138,10 +142,10 @@ msgstr "Πηγή"
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
-#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
-#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "Επισήμανση"
 
@@ -171,7 +175,6 @@ msgstr "Επισήμανση"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -185,8 +188,7 @@ msgstr "Επισήμανση"
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
 #: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
 #: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-js-values.lang:23
-#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
 #: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
@@ -221,6 +223,7 @@ msgstr "Γλώσσα CG Shader"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -229,8 +232,8 @@ msgstr "Γλώσσα CG Shader"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
-#: yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Άλλες"
 
@@ -265,9 +268,10 @@ msgstr "Πρότυπο Django"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "Επιστημονική"
 
@@ -301,26 +305,30 @@ msgstr "RPM spec"
 msgid "Tera Template"
 msgstr "Πρότυπο Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita σκούρο"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
-msgid "A dark color scheme matching GTK's default theme"
-msgstr "Ένα σκούρο χρώμα που ταιριάζει με το προεπιλεγμένο θέμα του GTK"
+#: Adwaita-dark.xml:22 Adwaita.xml:22
+msgid "An style scheme for Adwaita"
+msgstr "Στυλ σχήματος για το Adwaita"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Κλασσικό σκούρο"
+
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
-msgid "A color scheme matching GTK's default theme"
-msgstr ""
-"Ένας συνδυασμός χρωμάτων που ταιριάζει με το προεπιλεγμένο θέμα του GTK"
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Σχήμα κλασσικού σκούρου χρώματος"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -332,15 +340,26 @@ msgstr "Κλασσικό"
 msgid "Classic color scheme"
 msgstr "Σχήμα κλασσικού χρώματος"
 
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+msgid "Cobalt Light"
+msgstr "Φωτεινό Cobalt"
+
+#. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22 cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Σχήμα χρωμάτων με βάση το μπλε"
+
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "Σχήμα χρωμάτων με βάση το μπλε"
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr ""
+"Σχήμα σκούρου χρώματος που χρησιμοποιείται στον επεξεργαστή κειμένου Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -348,12 +367,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Σχήμα χρώματος που χρησιμοποιείται στον επεξεργαστή κειμένου Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Σκοτεινό σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
 
@@ -387,49 +406,49 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Σχήμα χρώματος με χρήση παλέτας χρώματος Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Τμήματα"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
 msgstr "Λέξεις εγγράφων"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Άκυρη σειρά byte στην είσοδο μετατροπής"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Σφάλμα κατά τη μετατροπή: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Δεν υποστηρίζεται η μετατροπή από την ομάδα χαρακτήρων «%s» σε «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Αδυναμία ανοίγματος μετατροπέα από «%s» σε «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Άκυρο αντικείμενο, δεν αρχικοποιήθηκε"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Ελλιπής σειρά UTF-8 στην είσοδο"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d από %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "Λ_επτομέρειες"
 
@@ -448,7 +467,7 @@ msgstr ""
 "επισήμανση σύνταξης θα έχει αρκετή καθυστέρηση.\n"
 "Το σφάλμα ήταν: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4456
+#: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -456,19 +475,19 @@ msgstr ""
 "Η επισήμανση μίας γραμμής διήρκεσε υπερβολικά, η επισήμανση της σύνταξης θα "
 "απενεργοποιηθεί"
 
-#: gtksourceview/gtksourcecontextengine.c:5706
+#: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "Το περιεχόμενο «%s» δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5869
-#: gtksourceview/gtksourcecontextengine.c:5959
+#: gtksourceview/gtksourcecontextengine.c:5871
+#: gtksourceview/gtksourcecontextengine.c:5961
 #, c-format
 msgid "duplicated context id “%s”"
-msgstr "Διπλότυπο αναγνωριστικό περιεχομένου «%s»"
+msgstr "διπλότυπο αναγνωριστικό περιεχομένου «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6073
-#: gtksourceview/gtksourcecontextengine.c:6133
+#: gtksourceview/gtksourcecontextengine.c:6075
+#: gtksourceview/gtksourcecontextengine.c:6135
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -477,135 +496,135 @@ msgstr ""
 "Αντικατάσταση στυλ που χρησιμοποιείται με αναφορά περιεχομένου μπαλαντέρ στη "
 "γλώσσα «%s» στην αναφορά «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "Μη έγκυρη αναφορά περιεχομένου «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6166
-#: gtksourceview/gtksourcecontextengine.c:6176
+#: gtksourceview/gtksourcecontextengine.c:6168
+#: gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid "unknown context “%s”"
-msgstr "Άγνωστο περιεχόμενο «%s»"
+msgstr "άγνωστο περιεχόμενο «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6277
+#: gtksourceview/gtksourcecontextengine.c:6279
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Λείπει ο ορισμός κύριας γλώσσας (id = \"%s\")."
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
 msgid "Western"
 msgstr "Δυτική"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:263
 msgid "Central European"
 msgstr "Κεντρικής Ευρώπης"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:154
 msgid "South European"
 msgstr "Νότιας Ευρώπης"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
+#: gtksourceview/gtksourceencoding.c:277
 msgid "Baltic"
 msgstr "Βαλτικά"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
 msgid "Cyrillic"
 msgstr "Κυριλλικά"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Arabic"
 msgstr "Αραβικά"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
 msgstr "Ελληνικά"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
 msgstr "Οπτικά εβραϊκά"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:271
 msgid "Turkish"
 msgstr "Τουρκικά"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Nordic"
 msgstr "Σκανδιναβικά"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Celtic"
 msgstr "Κέλτικα"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Romanian"
 msgstr "Ρουμανικά"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:194
 msgid "Armenian"
 msgstr "Αρμένικα"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:212
 msgid "Chinese Traditional"
 msgstr "Παραδοσιακά Κινεζικά"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:200
 msgid "Cyrillic/Russian"
 msgstr "Κυριλλικά/Ρωσικά"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
+#: gtksourceview/gtksourceencoding.c:252
 msgid "Japanese"
 msgstr "Ιαπωνικά"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
 msgid "Korean"
 msgstr "Κορεάτικα"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:219
 msgid "Chinese Simplified"
 msgstr "Απλοποιημένα Κινεζικά"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
 msgstr "Γεωργιανά"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
 msgid "Hebrew"
 msgstr "Εβραϊκά"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:249
 msgid "Cyrillic/Ukrainian"
 msgstr "Κυριλλικά/Ουκρανικά"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Vietnamese"
 msgstr "Βιετναμέζικα"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
 msgstr "Ταϊλανδέζικα"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:485
 msgid "Unknown"
 msgstr "Άγνωστο"
 
@@ -623,11 +642,11 @@ msgstr "Άγνωστο"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:628
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'WINDOWS-1253', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -635,35 +654,34 @@ msgstr ""
 "Υπήρξε ένα σφάλμα κωδικοποίησης στη μετατροπή του χαρακτήρα και χρειάστηκε "
 "να αντικατασταθεί με έναν εφεδρικό χαρακτήρα."
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "Το αρχείο είναι πολύ μεγάλο."
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "Δεν είναι κανονικό αρχείο."
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "Το αρχείο τροποποιήθηκε εξωτερικά."
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "Η ενδιάμεση μνήμη περιέχει άκυρους χαρακτήρες."
 
 #. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
+#. * GtkSourceLanguage:
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
+#. * Represents a syntax highlighted language.
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
+#. *
+#. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
+#. * [method@Buffer.set_language] to apply it to a [class@Buffer].
 #.
-#: gtksourceview/gtksourcelanguage.c:53
+#: gtksourceview/gtksourcelanguage.c:52
 msgid "Others"
 msgstr "Άλλα"
 
@@ -675,44 +693,113 @@ msgstr "Άγνωστο αναγνωριστικό «%s» στην κανονικ
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr "Στην κανονική έκφραση «%s» : δεν υποστηρίζονται τα backreferences"
+msgstr "στην κανονική έκφραση «%s» : δεν υποστηρίζονται τα backreferences"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr "Η χρήση \\C δεν υποστηρίζεται στους ορισμούς γλώσσας"
+msgstr "η χρήση \\C δεν υποστηρίζεται στους ορισμούς γλώσσας"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:181
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
 msgid "Select a Style"
 msgstr "Επιλογή στυλ"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
 msgstr "Ά_κυρο"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
 msgstr "_Επιλογή"
 
-#: gtksourceview/gtksourceview.c:1774
+#: gtksourceview/gtksourceview.c:1861
 msgid "All _Upper Case"
 msgstr "Όλα κε_φαλαία"
 
-#: gtksourceview/gtksourceview.c:1778
+#: gtksourceview/gtksourceview.c:1865
 msgid "All _Lower Case"
 msgstr "Όλα πε_ζά"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1869
 msgid "_Invert Case"
 msgstr "Εν_αλλαγή πεζών κεφαλαίων"
 
-#: gtksourceview/gtksourceview.c:1786
+#: gtksourceview/gtksourceview.c:1873
 msgid "_Title Case"
 msgstr "Γράμματα _τίτλου"
 
-#: gtksourceview/gtksourceview.c:1790
+#: gtksourceview/gtksourceview.c:1877
 msgid "C_hange Case"
 msgstr "Α_λλαγή κεφαλαίων/πεζών"
+
+#: gtksourceview/implregex.c:615
+msgid "hexadecimal digit or “}” expected"
+msgstr "αναμένεται δεκαεξαδικό ψηφίο ή «}»"
+
+#: gtksourceview/implregex.c:631
+msgid "hexadecimal digit expected"
+msgstr "αναμένεται δεκαεξαδικό ψηφίο"
+
+#: gtksourceview/implregex.c:671
+msgid "missing “<” in symbolic reference"
+msgstr "λείπει το «<» από τη συμβολική αναφορά"
+
+#: gtksourceview/implregex.c:680
+msgid "unfinished symbolic reference"
+msgstr "ημιτελής συμβολική αναφορά"
+
+#: gtksourceview/implregex.c:687
+msgid "zero-length symbolic reference"
+msgstr "συμβολική αναφορά μηδενικού μήκους"
+
+#: gtksourceview/implregex.c:698
+msgid "digit expected"
+msgstr "αναμενόμενο ψηφίο"
+
+#: gtksourceview/implregex.c:716
+msgid "illegal symbolic reference"
+msgstr "παράνομη συμβολική αναφορά"
+
+#: gtksourceview/implregex.c:779
+msgid "stray final “\\”"
+msgstr "αδέσποτο τελικό «\\»"
+
+#: gtksourceview/implregex.c:783
+msgid "unknown escape sequence"
+msgstr "άγνωστη ακολουθία διαφυγής"
+
+#: gtksourceview/implregex.c:793
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr ""
+"Σφάλμα ανάλυσης του κειμένου αντικατάστασης «%s» στον χαρακτήρα %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:502
+msgid "-- INSERT --"
+msgstr "-- ΕΙΣΑΓΩΓΗ --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:125
+msgid "-- REPLACE --"
+msgstr "-- ΑΝΤΙΚΑΤΑΣΤΑΣΗ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL --"
+msgstr "-- ΟΠΤΙΚΗ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:303
+msgid "-- VISUAL LINE --"
+msgstr "-- ΟΠΤΙΚΗ ΓΡΑΜΜΗ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:306
+msgid "-- VISUAL BLOCK --"
+msgstr "-- ΟΠΤΙΚΟ ΜΠΛΟΚ --"
+
+#~ msgid "A dark color scheme matching GTK's default theme"
+#~ msgstr "Ένα σκούρο χρώμα που ταιριάζει με το προεπιλεγμένο θέμα του GTK"
+
+#~ msgid "A color scheme matching GTK's default theme"
+#~ msgstr ""
+#~ "Ένας συνδυασμός χρωμάτων που ταιριάζει με το προεπιλεγμένο θέμα του GTK"
 
 #~ msgid "All"
 #~ msgstr "Όλα"
@@ -2938,9 +3025,6 @@ msgstr "Α_λλαγή κεφαλαίων/πεζών"
 
 #~ msgid "Style scheme filename"
 #~ msgstr "Όνομα αρχείου στυλ σχήματος"
-
-#~ msgid "Style scheme search path"
-#~ msgstr "Διαδρομή αναζήτησης σχήματος"
 
 #~ msgid "List of directories and files where the style schemes are located"
 #~ msgstr "Λίστα από καταλόγους όπου βρίσκονται τα στυλ σχημάτων"
