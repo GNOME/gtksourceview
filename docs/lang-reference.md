@@ -256,7 +256,7 @@ Contained elements:
 
 The syntax highlighting engine of GtkSourceView uses [struct@GLib.Regex],
 which uses the PCRE library. See the
-[Regular expression syntax](https://developer-old.gnome.org/glib/stable/glib-regex-syntax.html)
+[Regular expression syntax](https://docs.gtk.org/glib/struct.Regex.html)
 page in the GLib reference manual.
 
 The `<define-regex>` tag defines a regular expression that can
