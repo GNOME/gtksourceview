@@ -1,3 +1,16 @@
+News in 5.12.1, 2024-05-30
+--------------------------
+
+This is a stable release update
+
+ * Update documentation links
+ * Specify recoloring hex colors for Adwaita-dark
+ * Improve grid drawing positions slightly
+ * Use a weak ref for GtkSourceView backpointer in GtkSourceGutterRenderers
+   which fixes a potential leak of GtkSourceView
+ * Fix a fontconfig check for Windows
+ * Fix section name for elixir
+
 News in 5.12.0, 2024-03-15
 --------------------------
 
