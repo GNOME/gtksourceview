@@ -701,17 +701,12 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (view == NULL || GTK_SOURCE_IS_VIEW (view));
 
-	if (view == priv->view)
+	old_view = priv->view;
+
+	if (g_set_weak_pointer (&priv->view, view))
 	{
-		return;
+		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view (renderer, old_view);
 	}
-
-	old_view = g_steal_pointer (&priv->view);
-	g_set_object (&priv->view, view);
-
-	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view (renderer, old_view);
-
-	g_clear_object (&old_view);
 
 	g_object_notify_by_pspec (G_OBJECT (renderer), properties[PROP_VIEW]);
 }
