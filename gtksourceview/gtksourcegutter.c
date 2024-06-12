@@ -420,6 +420,7 @@ static void
 gtk_source_gutter_dispose (GObject *object)
 {
 	GtkSourceGutter *gutter = (GtkSourceGutter *)object;
+	GtkWidget *child;
 
 	g_clear_pointer (&gutter->target_binding, g_binding_unbind);
 
@@ -427,6 +428,11 @@ gtk_source_gutter_dispose (GObject *object)
 	{
 		g_signal_group_set_target (gutter->signals, NULL);
 		g_clear_object (&gutter->signals);
+	}
+
+	while ((child = gtk_widget_get_first_child (GTK_WIDGET (gutter))))
+	{
+		gtk_widget_unparent (child);
 	}
 
 	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->dispose (object);
