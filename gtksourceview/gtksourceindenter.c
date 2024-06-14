@@ -155,6 +155,18 @@ trigger_on_newline (GtkSourceIndenter *self,
         {
                 GtkTextBuffer *buffer = gtk_text_iter_get_buffer (location);
 
+		/* Ignore if we're at the beginning of the line. If we have
+		 * content after the cursor then it's implied they just want
+		 * to move the line downwards. If there is not content after
+		 * the line then there is nothing to copy anyway.
+		 *
+		 * See https://gitlab.gnome.org/GNOME/gtksourceview/-/issues/366
+		 */
+		if (gtk_text_iter_starts_line (location))
+		{
+			return FALSE;
+		}
+
                 return !gtk_text_buffer_get_has_selection (buffer);
         }
 
