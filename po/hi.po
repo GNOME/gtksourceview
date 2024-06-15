@@ -13,24 +13,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master.hi\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2024-01-28 12:46+0000\n"
-"PO-Revision-Date: 2024-04-17 20:31+0530\n"
+"POT-Creation-Date: 2024-06-02 12:41+0000\n"
+"PO-Revision-Date: 2024-06-02 21:02+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
-"Language-Team: Hindi\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 46.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -301,7 +293,7 @@ msgstr "LLVM IR"
 #. (itstool) path: po.lang/language@_name
 #: po.lang:23
 msgid "gettext translation"
-msgstr "गेटटेक्स्ट अनुवाद"
+msgstr "gettext अनुवाद"
 
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
@@ -351,7 +343,7 @@ msgstr "क्लासिक रंग योजना"
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
 msgid "Cobalt Light"
-msgstr "कोबाल्ट हल्की"
+msgstr "कोबाल्ट लाइट"
 
 #. (itstool) path: style-scheme/_description
 #: cobalt-light.xml:22 cobalt.xml:27
@@ -366,12 +358,12 @@ msgstr "कोबॉल्ट"
 #. (itstool) path: style-scheme/_description
 #: kate-dark.xml:24
 msgid "Dark color scheme used in the Kate text editor"
-msgstr "केट पाठ संपादक में गहरे रंग योजना का उपयोग किया गया"
+msgstr "*केट पाठ संपादक* में प्रयुक्त गहरी रंग योजना"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
-msgstr "केट पाठ संपादक में प्रयुक्त रंग योजना"
+msgstr "*केट पाठ संपादक* में प्रयुक्त रंग योजना"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:23
@@ -381,27 +373,27 @@ msgstr "विस्मरण"
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
-msgstr "टैंगो रंग पैलेट का उपयोग करके गहरे रंग की योजना"
+msgstr "*टेंगो* रंग पैलेट से प्रयुक्त गहरी रंग योजना"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
 msgid "Solarized Dark"
-msgstr "सोलराइज्ड गहरी"
+msgstr "सोलराइज्ड डार्क"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr "सोलराइज्ड गहरे रंग पैलेट का उपयोग करके रंग योजना"
+msgstr "*सोलराइज्ड डार्क* रंग पैलेट से प्रयुक्त रंग योजना"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
 msgid "Solarized Light"
-msgstr "सोलराइज्ड हल्की"
+msgstr "सोलराइज्ड लाइट"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr "सोलराइज्ड हल्की रंग पैलेट का उपयोग करके रंग योजना"
+msgstr "*सोलराइज्ड लाइट* रंग पैलेट से प्रयुक्त रंग योजना"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -411,7 +403,7 @@ msgstr "टेंगो"
 #. (itstool) path: style-scheme/_description
 #: tango.xml:25
 msgid "Color scheme using Tango color palette"
-msgstr "टैंगो रंग पैलेट के प्रयोग से रंग योजना"
+msgstr "*टेंगो* रंग पैलेट से प्रयुक्त रंग योजना"
 
 #: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
@@ -433,12 +425,12 @@ msgstr "रूपांतरण के दौरान त्रुटि: %s"
 #: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
-msgstr "कैरेक्टर सेट “%s” से “UTF-8” में रूपांतरण समर्थित नहीं है"
+msgstr "वर्ण समुचय “%s” से “UTF-8” में रूपांतरण समर्थित नहीं है"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
-msgstr "कनवर्टर को “%s” से “UTF-8” तक नहीं खोला जा सका"
+msgstr "“%s” से “UTF-8” में कनवर्टर नहीं खोला जा सका"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
@@ -463,37 +455,37 @@ msgstr "विवरण (_D)"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"regex सभी अनुवाद के लिए नहीं बना सकता है, वाक्यरचना आलोकन प्रक्रिया धीमा हो जाएगा.\n"
+"सभी संक्रमणों के लिए रेगेक्स नहीं बनाया जा सकता, वाक्यविन्यास चिन्हांकन प्रक्रिया सामान्य से "
+"धीमी होगी।\n"
 "त्रुटि था: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
-"एक पंक्ति को चिन्हांकित करने में बहुत अधिक समय लगा, वाक्यविन्यास चिन्हांकन अक्षम कर दिया "
-"जायेगा"
+"एक पंक्ति का चिन्हांकन अधिक समय लेता है, वाक्यविन्यास चिन्हांकन निष्क्रिय किया जाएगा"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "संदर्भ “%s” में \\%%{...@start} कमांड शामिल नहीं हो सकता"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
-msgstr "डुप्लिकेट संदर्भ id “%s”"
+msgstr "अनुकृत संदर्भ id “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -502,21 +494,21 @@ msgstr ""
 "शैली अध्यारोहण का उपयोग भाषा “%s” में वाइल्डकार्ड प्रसंग के साथ संदर्भ “%s” में किया जाता "
 "है"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "अमान्य प्रसंग संदर्भ “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "अज्ञात प्रसंग “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
-msgstr "मुख्य भाषा परिभाषा गुम है (id=“%s”)।"
+msgstr "मुख्य भाषा परिभाषा अनुपलब्ध (id=“%s”)।"
 
 #: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
 #: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
@@ -557,7 +549,7 @@ msgstr "अरबी"
 
 #: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
-msgstr "यूनानी"
+msgstr "ग्रीक"
 
 #: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
@@ -607,7 +599,7 @@ msgstr "कोरियाई"
 #: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
 #: gtksourceview/gtksourceencoding.c:219
 msgid "Chinese Simplified"
-msgstr "सरलीकृत चीनी"
+msgstr "चीनी सरलीकृत"
 
 #: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
@@ -660,15 +652,15 @@ msgstr "एक वर्ण एन्कोडिंग रूपांतरण
 
 #: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
-msgstr "फ़ाइल बहुत बड़ी है।"
+msgstr "फाइल बहुत बड़ी है।"
 
 #: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
-msgstr "कोई नियमित फ़ाइल नहीं।"
+msgstr "कोई नियमित फाइल नहीं।"
 
 #: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
-msgstr "फ़ाइल को बाहरी रूप से संशोधित किया गया है।"
+msgstr "फाइल को बाहरी रूप से संशोधित किया गया है।"
 
 #: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
@@ -692,12 +684,12 @@ msgstr "अन्य"
 #: gtksourceview/gtksourcelanguage-parser-2.c:946
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
-msgstr "regex “%s” में अज्ञात आईडी “%s”"
+msgstr "रेगेक्स “%2$s” में अज्ञात ID “%1$s”"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr "regex में “%s”: पश्चसंदर्भ समर्थित नहीं है"
+msgstr "रेगेक्स “%s” में: पश्चसंदर्भ समर्थित नहीं है"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
@@ -710,29 +702,29 @@ msgstr "एक शैली चुनें"
 
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
-msgstr "रद्द (_C)"
+msgstr "रद्द करें (_C)"
 
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
 msgstr "चुनें (_S)"
 
-#: gtksourceview/gtksourceview.c:1861
+#: gtksourceview/gtksourceview.c:1925
 msgid "All _Upper Case"
 msgstr "सभी बड़े अक्षर (_U)"
 
-#: gtksourceview/gtksourceview.c:1865
+#: gtksourceview/gtksourceview.c:1929
 msgid "All _Lower Case"
 msgstr "सभी छोटे अक्षर (_L)"
 
-#: gtksourceview/gtksourceview.c:1869
+#: gtksourceview/gtksourceview.c:1933
 msgid "_Invert Case"
-msgstr "उल्टे अक्षर (_I)"
+msgstr "अक्षर उल्टे (_I)"
 
-#: gtksourceview/gtksourceview.c:1873
+#: gtksourceview/gtksourceview.c:1937
 msgid "_Title Case"
 msgstr "शीर्षक अक्षर (_T)"
 
-#: gtksourceview/gtksourceview.c:1877
+#: gtksourceview/gtksourceview.c:1941
 msgid "C_hange Case"
 msgstr "अक्षर बदलें (_h)"
 
@@ -796,1966 +788,3 @@ msgstr "-- दिखाऊ रेखा --"
 #: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- दिखाऊ ब्लॉक --"
-
-#~ msgid "GtkSourceView"
-#~ msgstr "GtkSourceView"
-
-#~ msgid "Disabled"
-#~ msgstr "अक्षम"
-
-#~ msgid "Before"
-#~ msgstr "पहले"
-
-#~ msgid "After"
-#~ msgstr "बाद"
-
-#~ msgid "Always"
-#~ msgstr "हमेशा"
-
-#~ msgid "Space"
-#~ msgstr "स्पेस "
-
-#~ msgid "Tab"
-#~ msgstr "टैब"
-
-#~ msgid "Newline"
-#~ msgstr "नई-पंक्ति"
-
-#~ msgid "Non Breaking Whitespace"
-#~ msgstr "गैर तोड़कर श्वेतस्थान"
-
-#~ msgid "Leading"
-#~ msgstr "अग्रणी"
-
-#~ msgid "Text"
-#~ msgstr "पाठ"
-
-#~ msgid "Trailing"
-#~ msgstr "पीछा करता"
-
-#~ msgid "All"
-#~ msgstr "सभी"
-
-#~| msgid "Scripts"
-#~ msgid "ActionScript"
-#~ msgstr "ActionScript"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "Comment"
-#~ msgstr "टिप्पणी"
-
-#~ msgid "Error"
-#~ msgstr "त्रुटि"
-
-# src/gconf-key-editor.c:94
-#~ msgid "String"
-#~ msgstr "स्ट्रिंग"
-
-#~ msgid "External"
-#~ msgstr "बाहरी"
-
-#~ msgid "Declaration"
-#~ msgstr "घोषणा"
-
-#~ msgid "Storage Class"
-#~ msgstr "भंडार वर्ग"
-
-#~ msgid "Scope Declaration"
-#~ msgstr "स्कोप डिक्लेरेशन्स"
-
-#~ msgid "Keyword"
-#~ msgstr "कीवर्ड"
-
-#~ msgid "Null Value"
-#~ msgstr "रिक्त मान"
-
-#~ msgid "Boolean value"
-#~ msgstr "बूलिए मान"
-
-#~ msgid "Number"
-#~ msgstr "संख्या"
-
-#~ msgid "Future Reserved Keywords"
-#~ msgstr "भविष्य रिजर्व्ड शब्द"
-
-#~ msgid "Data Type"
-#~ msgstr "डेटा प्रकार"
-
-#~ msgid "Ada"
-#~ msgstr "एडीए"
-
-#~ msgid "Decimal number"
-#~ msgstr "दशमलव संख्या"
-
-#~ msgid "Preprocessor"
-#~ msgstr "प्री-प्रोसेसर"
-
-#~ msgid "Arbitrary base number"
-#~ msgstr "यादृच्छिक बेस संख्या"
-
-#~ msgid "Real number"
-#~ msgstr "वास्तविक संख्या"
-
-#~ msgid "Escaped Character"
-#~ msgstr "एस्केप वर्ण"
-
-#~ msgid "ASP"
-#~ msgstr "ASP"
-
-#~ msgid "Function"
-#~ msgstr "फंक्शन"
-
-#~ msgid "Operator"
-#~ msgstr "ऑपरेटर"
-
-#~ msgid "ASP Object"
-#~ msgstr "ASP वस्तु"
-
-#~ msgid "VBScript and ADO constants"
-#~ msgstr "VBScript और ADO स्थिरांक"
-
-#~ msgid "Special constant"
-#~ msgstr "विशेष स्थिरांक"
-
-#~ msgid "Automake"
-#~ msgstr "Automake"
-
-#~| msgid "Global Variable"
-#~ msgid "Automake Variable"
-#~ msgstr "Automake चर"
-
-#~ msgid "Primary"
-#~ msgstr "प्राथमिक"
-
-#~ msgid "Secondary"
-#~ msgstr "द्वितीयक"
-
-#~ msgid "Prefix"
-#~ msgstr "उपसर्ग"
-
-#~| msgid "Option Name"
-#~ msgid "Optional Target"
-#~ msgstr "वैकल्पिक लक्ष्य"
-
-#~| msgid "Builtin Variable"
-#~ msgid "Built-in Target"
-#~ msgstr "अंतर्निमित लक्ष्य"
-
-#~| msgid "Control Keyword"
-#~ msgid "Other Keyword"
-#~ msgstr "अन्य खोजशब्द"
-
-#~ msgid "Substitution"
-#~ msgstr "सबस्टीट्यूशन "
-
-#~ msgid "awk"
-#~ msgstr "awk"
-
-#~ msgid "Pattern"
-#~ msgstr "पैटर्न"
-
-#~ msgid "Variable"
-#~ msgstr "चर"
-
-#~ msgid "Builtin Function"
-#~ msgstr "विल्टइन फंक्शन्स"
-
-#~ msgid "BennuGD"
-#~ msgstr "BennuGD"
-
-#~ msgid "Identifier"
-#~ msgstr "पहचानकर्ता"
-
-#~ msgid "Floating point number"
-#~ msgstr "फ्लोटिंग पाइंट संख्या"
-
-#~ msgid "Hexadecimal number"
-#~ msgstr "हेक्साडेसीमल संख्या"
-
-#~ msgid "BibTeX"
-#~ msgstr "BibTeX"
-
-#~ msgid "Entries"
-#~ msgstr "प्रविष्टियाँ"
-
-#~ msgid "Field"
-#~ msgstr "क्षेत्र"
-
-#~| msgid "SystemVerilog"
-#~ msgid "Bluespec SystemVerilog"
-#~ msgstr "Bluespec SystemVerilog"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "System Task"
-#~ msgstr "तंत्र कार्य"
-
-#~| msgid "Activation"
-#~ msgid "Annotation"
-#~ msgstr "एन्नोटेशन"
-
-#~| msgid "Attribute name"
-#~ msgid "Attribute"
-#~ msgstr "विशेषता"
-
-#~ msgid "Import BVI"
-#~ msgstr "आयात BVI"
-
-#~ msgid "Type"
-#~ msgstr "क़िस्म"
-
-#~ msgid "Boo"
-#~ msgstr "बू"
-
-#~ msgid "Multiline string"
-#~ msgstr "मल्टीलाइन स्ट्रिंग"
-
-#~ msgid "Regular Expression"
-#~ msgstr "नियमित (रेगुलर) एक्सप्रेशन."
-
-#~ msgid "Namespace"
-#~ msgstr "नेमस्पेस"
-
-#~ msgid "Definition"
-#~ msgstr "परिभाषा"
-
-#~ msgid "Special Variable"
-#~ msgstr "विशेष चर"
-
-#~ msgid "Boolean"
-#~ msgstr "बूलियन"
-
-#~ msgid "Bindings"
-#~ msgstr "बाइंडिंग"
-
-#~ msgid "Included File"
-#~ msgstr "इनक्लूड फाइल"
-
-#~ msgid "Octal number"
-#~ msgstr "ऑक्टल संख्या"
-
-#~ msgid "Swizzle operator"
-#~ msgstr "स्विजल ऑपरेटर"
-
-#~ msgid "Builtin"
-#~ msgstr "अंतर्निर्मित"
-
-#~ msgid "ChangeLog"
-#~ msgstr "ChangeLog"
-
-#~ msgid "Date"
-#~ msgstr "तिथि"
-
-#~ msgid "Name"
-#~ msgstr "नाम"
-
-#~ msgid "E-mail address"
-#~ msgstr "ई-मेल पता"
-
-#~ msgid "File"
-#~ msgstr "फ़ाइल"
-
-#~ msgid "Bullet"
-#~ msgstr "बुल्लेट"
-
-#~ msgid "Release"
-#~ msgstr "जारी"
-
-#~ msgid "C"
-#~ msgstr "सी"
-
-#~ msgid "Common Defines"
-#~ msgstr "सामान्य परिभाषा देता है"
-
-#~ msgid "Character"
-#~ msgstr "अक्षर"
-
-#~ msgid "printf Conversion"
-#~ msgstr "printf वार्तालाप"
-
-#~ msgid "Standard stream"
-#~ msgstr "मानक धारा"
-
-#~ msgid "Signal name"
-#~ msgstr "संकेत नाम"
-
-#~ msgid "CMake"
-#~ msgstr "सी-मेक"
-
-#~ msgid "Builtin Command"
-#~ msgstr "अंतर्निहित कमांड"
-
-#~ msgid "Builtin Variable"
-#~ msgstr "अंतर्निमित चर"
-
-#~ msgid "Constant"
-#~ msgstr "स्थिर"
-
-#~ msgid "Control Keyword"
-#~ msgstr "कंट्रोल कीवर्ड"
-
-#~ msgid "Cobol"
-#~ msgstr "कोबोल"
-
-#~ msgid "Statement"
-#~ msgstr "स्टेटमेन्ट"
-
-#~ msgid "C++"
-#~ msgstr "सी++"
-
-#~ msgid "C#"
-#~ msgstr "सी#"
-
-#~ msgid "String Format"
-#~ msgstr "स्ट्रिंग प्रारूप"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "Others 2"
-#~ msgstr "अन्य 2"
-
-#~ msgid "Color"
-#~ msgstr "रंग"
-
-#~ msgid "Others 3"
-#~ msgstr "अन्य 3"
-
-#~ msgid "Decimal"
-#~ msgstr "दशमलव"
-
-#~ msgid "Dimension"
-#~ msgstr "आयाम"
-
-#~ msgid "Known Property Value"
-#~ msgstr "ज्ञात गुण मान"
-
-#~ msgid "at-rules"
-#~ msgstr "नियम पर"
-
-#~ msgid "Class Selector"
-#~ msgstr "वर्ग चयनकर्ता"
-
-#~ msgid "Tag Name Selector"
-#~ msgstr "टैग नाम चयनकर्ता "
-
-#~ msgid "CUDA"
-#~ msgstr "CUDA"
-
-#~ msgid "Global Functions"
-#~ msgstr "वैश्विक फंक्शन्स"
-
-#~ msgid "Device Functions"
-#~ msgstr "युक्ति फंक्शन"
-
-#~ msgid "Global Variables"
-#~ msgstr "वैश्विक चर"
-
-#~ msgid "Defaults"
-#~ msgstr "डिफ़ॉल्ट्स"
-
-#~ msgid "Shebang"
-#~ msgstr "Shebang"
-
-#~ msgid "Documentation comment"
-#~ msgstr "दस्तावेजीकरण टिप्पणी"
-
-#~ msgid "Documentation comment element"
-#~ msgstr "दस्तावेजीकरण टिप्पणी तत्व"
-
-#~ msgid "Special character (inside a string)"
-#~ msgstr "विशेष वर्ण (inside a string)"
-
-#~ msgid "Base-N number"
-#~ msgstr "बेस-एन पूर्णांक"
-
-#~ msgid "Complex number"
-#~ msgstr "कॉम्प्लैक्स संख्या"
-
-#~ msgid "Built-in identifier"
-#~ msgstr "विल्टइन फंक्शन्स"
-
-#~ msgid "Data type"
-#~ msgstr "डाटा प्रकार"
-
-#~ msgid "Preprocessor directive"
-#~ msgstr "प्रीप्रोसेसर दिशा"
-
-#~ msgid "Warning"
-#~ msgstr "चेतावनी"
-
-#~ msgid "Reserved keyword"
-#~ msgstr "रिज़र्व्ड कीशब्द"
-
-#~ msgid "Note (FIXME, TODO, XXX, etc.)"
-#~ msgstr "नोट (FIXME, TODO, XXX, etc.)"
-
-#~ msgid "Underlined"
-#~ msgstr "रेखांकित"
-
-#~ msgid ".desktop"
-#~ msgstr ".डेस्कटॉप"
-
-#~ msgid "Group"
-#~ msgstr "समूह"
-
-#~ msgid "Key"
-#~ msgstr "कुंजी"
-
-#~ msgid "Translation"
-#~ msgstr "अनुवाद "
-
-#~ msgid "Exec parameter"
-#~ msgstr "ईएक्सईसी पैरामीटर"
-
-#~ msgid "Encoding"
-#~ msgstr "एनकोडिंग"
-
-#~ msgid "Main Category"
-#~ msgstr "मुख्य श्रेणी"
-
-#~ msgid "Additional Category"
-#~ msgstr "अतिरिक्त श्रेणी"
-
-#~ msgid "Reserved Category"
-#~ msgstr "आरक्षित श्रेणी"
-
-#~ msgid "Diff"
-#~ msgstr "डिफ़"
-
-#~ msgid "Added line"
-#~ msgstr "जोड़ी गई पंक्ति"
-
-#~ msgid "Removed line"
-#~ msgstr "मिटाई गई पंक्ति"
-
-#~ msgid "Special case"
-#~ msgstr "विशेष केस"
-
-#~ msgid "Location"
-#~ msgstr "स्थान"
-
-#~ msgid "Ignore"
-#~ msgstr "नज़रअंदाज़ करें"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Special Token"
-#~ msgstr "विशेष टोकेन"
-
-#~ msgid "Binary number"
-#~ msgstr "द्विचर संख्या"
-
-#~ msgid "DocBook"
-#~ msgstr "डॉकबुक"
-
-#~ msgid "Header Elements"
-#~ msgstr "हेडर तत्व"
-
-#~ msgid "Formatting Elements"
-#~ msgstr "प्रारूपण तत्व"
-
-#~ msgid "GUI Elements"
-#~ msgstr "GUI तत्व"
-
-#~ msgid "Structural Elements"
-#~ msgstr "संरचनात्मक तत्व"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "Command"
-#~ msgstr "कमांड"
-
-#~ msgid "Graphviz Dot"
-#~ msgstr "Graphviz Dot"
-
-#~ msgid "Attribute name"
-#~ msgstr "गुण नाम"
-
-#~ msgid "DPatch"
-#~ msgstr "तिथि"
-
-#~ msgid "patch-start"
-#~ msgstr "patch-start"
-
-#~ msgid "DTD"
-#~ msgstr "डीटीडी"
-
-#~ msgid "entity"
-#~ msgstr "एंटिटी"
-
-#~ msgid "decl"
-#~ msgstr "decl"
-
-#~ msgid "error"
-#~ msgstr "त्रुटि"
-
-#~ msgid "quoted-value"
-#~ msgstr "उद्धरित मान"
-
-#~ msgid "Eiffel"
-#~ msgstr "एफिल"
-
-#~ msgid "Debug"
-#~ msgstr "दोषसुधार"
-
-#~ msgid "Assertion"
-#~ msgstr "पुनर्प्रेषण"
-
-#~ msgid "Design by Contract"
-#~ msgstr "संविदा से निर्मित"
-
-#~ msgid "Exception Handling"
-#~ msgstr "गलती नियंत्रक"
-
-#~ msgid "Predefined Variable"
-#~ msgstr "पूर्वपरिभाषित चर"
-
-#~ msgid "Void Value"
-#~ msgstr "रिक्त मान"
-
-#~ msgid "Boolean Value"
-#~ msgstr "बूलिये मान"
-
-#~ msgid "Erlang"
-#~ msgstr "Erlang"
-
-#~ msgid "Atom"
-#~ msgstr "अणु"
-
-#~ msgid "Base-N Integer"
-#~ msgstr "बेस-एन पूर्णांक"
-
-#~ msgid "Compiler Directive"
-#~ msgstr "कंपाइलर डायरेक्टिव"
-
-#~ msgid "FCL"
-#~ msgstr "FCL"
-
-#~ msgid "Floating Point"
-#~ msgstr "फ्लोटिंग पाइंट"
-
-#~ msgid "Block"
-#~ msgstr "रोकें"
-
-#~ msgid "Reserved Constant"
-#~ msgstr "आरक्षित स्थिरांक"
-
-#~ msgid "Forth"
-#~ msgstr "Forth"
-
-#~ msgid "Debug Code"
-#~ msgstr "डिबग कोड"
-
-#~ msgid "Error Text"
-#~ msgstr "त्रुटि पाठ"
-
-#~ msgid "Fortran 95"
-#~ msgstr "Fortran 95"
-
-#~ msgid "Intrinsic function"
-#~ msgstr "आंतरिक फंक्शन्स"
-
-#~ msgid "BOZ Literal"
-#~ msgstr "बोज लिटरल्स"
-
-#~ msgid "F#"
-#~ msgstr "F#"
-
-#~ msgid "Floating Point number"
-#~ msgstr "फ्लोटिंग पाइंट संख्या"
-
-#~ msgid "Type, module or object keyword"
-#~ msgstr "प्रकार, वर्ग, और वस्तु कुंजीशब्द"
-
-#~ msgid "Builtin-function keyword"
-#~ msgstr "विल्टइन फंक्शन्स कीवर्ड"
-
-#~ msgid "Labeled argument"
-#~ msgstr "लेबल किया तर्क"
-
-#~ msgid "Polymorphic Variant"
-#~ msgstr "पोलीमॉर्फिक चर"
-
-#~ msgid "Variant Constructor"
-#~ msgstr "चर निर्माता"
-
-#~ msgid "Type Variable"
-#~ msgstr "चर टाइप करें"
-
-#~ msgid "Module Path"
-#~ msgstr "मॉड्यूल पथ"
-
-#~ msgid "GAP"
-#~ msgstr "GAP"
-
-#~ msgid "Thread Action"
-#~ msgstr "लड़ी क्रिया"
-
-#~ msgid "Thread Header"
-#~ msgstr "लड़ी शीर्षिका"
-
-#~ msgid "Frame Number"
-#~ msgstr "फ्रेम संख्या"
-
-#~ msgid "Address"
-#~ msgstr "पता"
-
-#~ msgid "Optimized Out"
-#~ msgstr "अनुकूलित करें"
-
-#~ msgid "Prompt"
-#~ msgstr "संकेत"
-
-#~ msgid "Builtin Constant"
-#~ msgstr "अंतर्निहित स्थिरांक"
-
-#~ msgid "Reserved Keywords"
-#~ msgstr "आरक्षित बीजशब्द"
-
-#~ msgid "Go"
-#~ msgstr "जाएँ"
-
-#~| msgid "Binary number"
-#~ msgid "Imaginary number"
-#~ msgstr "काल्पनिक संख्या"
-
-#~ msgid "gtk-doc"
-#~ msgstr "gtk-doc"
-
-#~ msgid "Inline Documentation Section"
-#~ msgstr "अंतर्रेखीय दस्तावेजीकरण खंड"
-
-#~ msgid "Function Name"
-#~ msgstr "फंक्शन नाम"
-
-#~ msgid "Signal Name"
-#~ msgstr "संकेत नाम"
-
-#~ msgid "Property Name"
-#~ msgstr "गुण नाम"
-
-#~ msgid "Parameter"
-#~ msgstr "पैरामीटर"
-
-#~ msgid "Return"
-#~ msgstr "रिटर्न"
-
-#~ msgid "Since"
-#~ msgstr "जबसे"
-
-#~ msgid "Deprecated"
-#~ msgstr "पदावनत"
-
-#~ msgid "GtkRC"
-#~ msgstr "GtkRC"
-
-#~ msgid "Widget State"
-#~ msgstr "विजेट स्थिति"
-
-#~ msgid "Include directive"
-#~ msgstr "डायरेक्टिव शामिल करें"
-
-#~ msgid "Haddock"
-#~ msgstr "Haddock"
-
-#~ msgid "Inline Haddock Section"
-#~ msgstr "अंतर्रेखीय हैडोक खंड"
-
-#~ msgid "Haddock Directive"
-#~ msgstr "हैडोक डायरेक्टिव"
-
-#~ msgid "Hyperlinked Identifier"
-#~ msgstr "हाइपरलिंक पहचानकर्ता"
-
-#~ msgid "Hyperlinked Module Name"
-#~ msgstr "हाइपरलिंक मॉड्यूल नाम"
-
-#~ msgid "Escape"
-#~ msgstr "एस्केप"
-
-#~ msgid "Emphasis"
-#~ msgstr "एम्फेसिस"
-
-#~ msgid "Monospace"
-#~ msgstr "मोनोस्पेस"
-
-#~ msgid "Code Block"
-#~ msgstr "कोड ब्लॉक"
-
-#~ msgid "Header Property"
-#~ msgstr "शीर्षिका गुण"
-
-#~ msgid "Itemized list"
-#~ msgstr "मदीकृत सूची"
-
-#~ msgid "Enumerated list"
-#~ msgstr "प्रसरित सूची"
-
-#~ msgid "Definition list"
-#~ msgstr "परिभाषा सूची"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Anchor"
-#~ msgstr "एंकर"
-
-#~ msgid "Haskell"
-#~ msgstr "हास्कल"
-
-#~ msgid "Symbol"
-#~ msgstr "प्रतीक"
-
-#~ msgid "Float"
-#~ msgstr "फ्लोट"
-
-#~ msgid "Octal"
-#~ msgstr "ओक्टल"
-
-#~ msgid "Hex"
-#~ msgstr "हेक्स"
-
-#~ msgid "Literate Haskell"
-#~ msgstr "लिटरेट हास्कल"
-
-#~ msgid "HTML"
-#~ msgstr "एचटीएमएल"
-
-#~ msgid "Tag"
-#~ msgstr "टैग"
-
-#~ msgid "Attribute Name"
-#~ msgstr "गुणधर्म नाम"
-
-#~ msgid "Attribute Value"
-#~ msgstr "गुणधर्म मान"
-
-#~ msgid "IDL-Exelis"
-#~ msgstr "आईडीएल-Exelis"
-
-#~ msgid "IDL"
-#~ msgstr "आईडीएल"
-
-#~ msgid "ImageJ"
-#~ msgstr "ImageJ"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "Commands"
-#~ msgstr "कमांड"
-
-#~ msgid "Storage Type"
-#~ msgstr "भंडार प्रकार"
-
-#~ msgid "Escaped Characters"
-#~ msgstr "एस्केप वर्ण"
-
-#~ msgid ".ini"
-#~ msgstr ".ini"
-
-#~ msgid "Java"
-#~ msgstr "जावा"
-
-#~ msgid "JavaScript"
-#~ msgstr "जावास्क्रिप्ट "
-
-#~ msgid "Undefined Value"
-#~ msgstr "अपरिभाषित मान"
-
-#~ msgid "Properties"
-#~ msgstr "गुण"
-
-#~ msgid "Constructors"
-#~ msgstr "निर्माता"
-
-#~ msgid "J"
-#~ msgstr "J"
-
-#~ msgid "Adverb"
-#~ msgstr "क्रियाविशेषण"
-
-#~| msgid "Common Function"
-#~ msgid "Conjunction"
-#~ msgstr "कंजक्शन"
-
-#~ msgid "Control"
-#~ msgstr "नियंत्रण"
-
-#~ msgid "Explicit Argument"
-#~ msgstr "स्पष्ट तर्क"
-
-#~| msgid "Cobalt"
-#~ msgid "Global"
-#~ msgstr "वैश्विक"
-
-#~| msgid "Link Text"
-#~ msgid "Lab Text"
-#~ msgstr "लैब पाठ"
-
-#~| msgid "Location"
-#~ msgid "Local"
-#~ msgstr "स्थानीय"
-
-#~ msgid "Noun"
-#~ msgstr "संज्ञा"
-
-#~ msgid "Explicit Noun Definition"
-#~ msgstr "स्पष्ट संज्ञा परिभाषा"
-
-#~ msgid "Parens"
-#~ msgstr "Parens"
-
-#~ msgid "Primitive"
-#~ msgstr "प्राचीन"
-
-#~| msgid "Verbatim"
-#~ msgid "Verb"
-#~ msgstr "क्रिया"
-
-#~ msgid "LaTeX"
-#~ msgstr "लेटेक्स"
-
-#~ msgid "Math Mode"
-#~ msgstr "मैथ मोड"
-
-#~ msgid "Inline Math Mode"
-#~ msgstr "अंतर्रेखीय मैथ मोड"
-
-#~ msgid "math-bound"
-#~ msgstr "math-bound"
-
-#~ msgid "Include"
-#~ msgstr "इनक्लूड"
-
-#~ msgid "Verbatim"
-#~ msgstr "Verbatim"
-
-#~ msgid "libtool"
-#~ msgstr "libtool"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "Reserved Identifier"
-#~ msgstr "आरक्षित पहचानकर्ता"
-
-#~ msgid "Nil Constant"
-#~ msgstr "निल स्थिरांक"
-
-#~ msgid "m4"
-#~ msgstr "m4"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "m4-comment"
-#~ msgstr "m4-comment"
-
-#~ msgid "m4 Macro"
-#~ msgstr "m4 मैक्रो"
-
-#~ msgid "Autoconf Macro"
-#~ msgstr "Autoconf मैक्रो"
-
-#~ msgid "Obsolete Autoconf Macro"
-#~ msgstr "पुराना Autoconf मैक्रो"
-
-#~ msgid "Makefile"
-#~ msgstr "मेकफाइल"
-
-#~ msgid "Assignment Right Hand Side"
-#~ msgstr "दक्षिण हस्त पक्षीय कार्यभार"
-
-#~ msgid "Assignment Left Hand Side"
-#~ msgstr "वाम हस्त पक्षीय कार्यभार"
-
-#~ msgid "targets"
-#~ msgstr "लक्ष्य"
-
-#~ msgid "prereq"
-#~ msgstr "prereq"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "command"
-#~ msgstr "कमांड"
-
-#~ msgid "Trailing Tab"
-#~ msgstr "पीछा करता टैब"
-
-#~ msgid "function"
-#~ msgstr "फंक्शन"
-
-#~ msgid "keyword"
-#~ msgstr "कीवर्ड"
-
-#~ msgid "Mallard"
-#~ msgstr "मलार्ड"
-
-#~ msgid "Page Elements"
-#~ msgstr "पृष्ठ तत्व"
-
-#~ msgid "Section Elements"
-#~ msgstr "खंड तत्व"
-
-#~ msgid "Block Elements"
-#~ msgstr "ब्लॉक तत्व"
-
-#~ msgid "Inline Elements"
-#~ msgstr "अंतर्रेखीय तत्व"
-
-#~ msgid "Markdown"
-#~ msgstr "मार्कडाउन"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "क्षैतिज नियम"
-
-#~ msgid "List Marker"
-#~ msgstr "सूची मार्कर"
-
-#~ msgid "Code"
-#~ msgstr "कोड"
-
-#~ msgid "Blockquote Marker"
-#~ msgstr "Blockquote मार्कर"
-
-#~ msgid "Link Text"
-#~ msgstr "कड़ी पाठ"
-
-#~ msgid "Label"
-#~ msgstr "लेबल"
-
-#~ msgid "Image Marker"
-#~ msgstr "छवि मार्कर"
-
-#~ msgid "Strong Emphasis"
-#~ msgstr "मजबूत बलाघात"
-
-#~ msgid "Backslash Escape"
-#~ msgstr "बैकस्लैश एस्केप"
-
-#~ msgid "Line Break"
-#~ msgstr "पंक्ति अंतराल"
-
-#~ msgid "Matlab"
-#~ msgstr "मैटलैब"
-
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
-
-#~| msgid "Class"
-#~ msgid "Class type"
-#~ msgstr "वर्ग के प्रकार"
-
-#~| msgid "File Attributes"
-#~ msgid "Default Attribute"
-#~ msgstr "डिफ़ॉल्ट गुणधर्म"
-
-#~ msgid "MXML"
-#~ msgstr "MXML"
-
-#~ msgid "Element name"
-#~ msgstr "तत्व नाम"
-
-#~ msgid "CDATA delimiter"
-#~ msgstr "CDATA परिसीमक"
-
-#~ msgid "Nemerle"
-#~ msgstr "Nemerle"
-
-#~ msgid "NetRexx"
-#~ msgstr "NetRexx"
-
-#~| msgid "External"
-#~ msgid "Externals"
-#~ msgstr " बाहरी"
-
-#~| msgid "Option"
-#~ msgid "Options"
-#~ msgstr " विकल्प"
-
-#~| msgid "Data Type"
-#~ msgid "Data Types"
-#~ msgstr " डेटा प्रकार"
-
-#~ msgid "Special"
-#~ msgstr "विशेष"
-
-#~| msgid "Visible"
-#~ msgid "Visibility"
-#~ msgstr "दृश्यता"
-
-#~| msgid "Identifier"
-#~ msgid "Modifiers"
-#~ msgstr "परिवर्धक:"
-
-#~| msgid "Keyword"
-#~ msgid "Keywords"
-#~ msgstr "की-वर्डस"
-
-#~| msgid "Keyword"
-#~ msgid "Sub Keywords"
-#~ msgstr "उप कीवर्ड"
-
-#~ msgid "NSIS"
-#~ msgstr "NSIS"
-
-#~ msgid "Objective-C"
-#~ msgstr "Objective-C"
-
-#~ msgid "Objective-J"
-#~ msgstr "Objective-J"
-
-#~ msgid "OCaml"
-#~ msgstr "OCaml"
-
-#~ msgid "Ocamldoc Comments"
-#~ msgstr "Ocamldoc टिप्पणी"
-
-#~| msgid "Standart Modules"
-#~ msgid "Standard Modules"
-#~ msgstr "मानक मॉड्यूल "
-
-#~ msgid "OCL"
-#~ msgstr "OCL"
-
-#~ msgid "Type Operators"
-#~ msgstr "प्रकार ऑपरेटर"
-
-#~ msgid "Operation operator"
-#~ msgstr "ऑपरेशन ऑपरेटर्स"
-
-#~ msgid "Octave"
-#~ msgstr "ओक्टेव"
-
-#~ msgid "Package Manager"
-#~ msgstr "संकुल प्रबंधक"
-
-#~ msgid "OOC"
-#~ msgstr "OOC"
-
-#~ msgid "Opal"
-#~ msgstr "ओपल"
-
-#~ msgid "Module Handler"
-#~ msgstr "मॉड्यूल हैंडलर"
-
-#~ msgid "Keysymbol"
-#~ msgstr "बीजसंकेत"
-
-#~ msgid "OpenCL"
-#~ msgstr "OpenCL"
-
-#~ msgid "Global Function"
-#~ msgstr "वैश्विक फंक्शन"
-
-#~ msgid "Device Function"
-#~ msgstr "युक्ति फंक्शन"
-
-#~ msgid "Device Cast"
-#~ msgstr "युक्ति कास्ट"
-
-#~ msgid "OpenCL Constant"
-#~ msgstr "OpenCL स्थिरांक"
-
-#~ msgid "Global Variable"
-#~ msgstr "वैश्विक चर"
-
-#~ msgid "Pascal"
-#~ msgstr "पास्कल"
-
-#~ msgid "Perl"
-#~ msgstr "पर्ल"
-
-#~ msgid "Line Directive"
-#~ msgstr "पंक्ति डायरेक्टिव"
-
-#~ msgid "Include Statement"
-#~ msgstr "कथन शामिल करें"
-
-#~ msgid "Heredoc"
-#~ msgstr "Heredoc"
-
-#~ msgid "Heredoc Bound"
-#~ msgstr "Heredoc बाउंड"
-
-# libgnome-desktop/gnome-ditem-edit.c:626
-# libgnome-desktop/gnome-ditem-edit.c:736
-#~ msgid "System Command"
-#~ msgstr "तंत्र कमांड"
-
-#~ msgid "File Descriptor"
-#~ msgstr "फ़ाइल विवरक"
-
-#~ msgid "POD"
-#~ msgstr "POD"
-
-#~ msgid "POD Escape"
-#~ msgstr "POD Escape"
-
-#~ msgid "POD keyword"
-#~ msgstr "POD बीडशब्द"
-
-#~ msgid "POD heading"
-#~ msgstr "POD शीर्षक"
-
-#~ msgid "PHP"
-#~ msgstr "पीएचपी"
-
-#~ msgid "Common Function"
-#~ msgstr "सामान्य फंक्शन"
-
-#~ msgid "pkg-config"
-#~ msgstr "pkg-config"
-
-#~ msgid "Package Info"
-#~ msgstr "संकुल सूचना"
-
-#~ msgid "Fuzzy"
-#~ msgstr "फजी"
-
-#~ msgid "Prolog"
-#~ msgstr "प्रोलॉग"
-
-#~ msgid "Puppet"
-#~ msgstr "कठपुतली"
-
-#~| msgid "Sources"
-#~ msgid "Resources"
-#~ msgstr "संसाधन "
-
-#~| msgid "Parameter"
-#~ msgid "Parameters"
-#~ msgstr "पैरामीटर्स"
-
-#~| msgid "Exec parameter"
-#~ msgid "Metaparameters"
-#~ msgstr "Metaparameters"
-
-#~| msgid "Function"
-#~ msgid "Functions"
-#~ msgstr "फंक्शन्स"
-
-#~| msgid "Null Value"
-#~ msgid "Values"
-#~ msgstr "मान"
-
-#~| msgid "Variable"
-#~ msgid "Variables"
-#~ msgstr "चर"
-
-#~| msgid "Class"
-#~ msgid "Class names"
-#~ msgstr "वर्ग के नाम"
-
-#~| msgid "Python"
-#~ msgid "Python 3"
-#~ msgstr "पायथन 3"
-
-#~ msgid "Format"
-#~ msgstr "फॉर्मेट"
-
-#~ msgid "Builtin Object"
-#~ msgstr "अंतर्निर्मित वस्तु"
-
-#~ msgid "Python"
-#~ msgstr "पायथन"
-
-#~ msgid "R"
-#~ msgstr "आर"
-
-#~ msgid "Reserved Class"
-#~ msgstr "आरक्षित वर्ग"
-
-#~ msgid "Assignment Operator"
-#~ msgstr "एसाइनमेंट ऑपरेटर्स"
-
-#~ msgid "Delimiter"
-#~ msgstr "परिसीमक"
-
-#~ msgid "Special Constant"
-#~ msgstr "विशेष स्थिरांक"
-
-#~ msgid "Integer Number"
-#~ msgstr "पूर्णांक संख्या"
-
-#~ msgid "Define"
-#~ msgstr "परिभाषा दो"
-
-#~ msgid "Section"
-#~ msgstr "विभाग"
-
-#~ msgid "Spec Macro"
-#~ msgstr "Spec मेक्रो"
-
-#~ msgid "Directory Macro"
-#~ msgstr "निर्देशिका मैक्रो"
-
-#~ msgid "Command Macro"
-#~ msgstr "कमांड मेक्रो"
-
-#~ msgid "Conditional Macro"
-#~ msgstr "सशर्त मेक्रो"
-
-#~ msgid "Other Macro"
-#~ msgstr "अन्य मैक्रो"
-
-#~ msgid "Flow Conditional"
-#~ msgstr "सशर्त प्रवाह"
-
-#~ msgid "RPM Variable"
-#~ msgstr "RPM चर"
-
-#~ msgid "Switch"
-#~ msgstr "बदलें"
-
-#~ msgid "Email"
-#~ msgstr "ईमेल"
-
-#~ msgid "Ruby"
-#~ msgstr "रूबी"
-
-#~ msgid "Attribute Definition"
-#~ msgstr "गुणधर्म परिभाषा"
-
-#~ msgid "Module handler"
-#~ msgstr "मॉड्यूल हैंडलर"
-
-#~ msgid "Numeric literal"
-#~ msgstr "संख्या शाब्दिक"
-
-#~ msgid "Literal"
-#~ msgstr "लिटरल"
-
-#~ msgid "Scheme"
-#~ msgstr "योजना"
-
-#~ msgid "Scilab"
-#~ msgstr "Scilab"
-
-#~ msgid "sh"
-#~ msgstr "sh"
-
-#~ msgid "Variable Definition"
-#~ msgstr "चर परिभाषा"
-
-#~ msgid "Common Commands"
-#~ msgstr "सामान्य कमांड"
-
-#~ msgid "Subshell"
-#~ msgstr "उपशेल"
-
-#~ msgid "Standard ML"
-#~ msgstr "मानक ML"
-
-#~ msgid "Module name, Variant, etc"
-#~ msgstr "मॉडयूल नाम, चर आदि"
-
-#~ msgid "SPARQL"
-#~ msgstr "SPARQL"
-
-#~ msgid "Class"
-#~ msgstr "वर्ग"
-
-#~ msgid "Individual"
-#~ msgstr "व्यक्ति"
-
-#~ msgid "Predicate"
-#~ msgstr "Predicate"
-
-#~ msgid "QName"
-#~ msgstr "QName"
-
-#~ msgid "IRI"
-#~ msgstr "IRI"
-
-#~ msgid "SQL"
-#~ msgstr "SQL"
-
-#~ msgid "No idea what it is"
-#~ msgstr "कोई जानकारी नहीं कि यह क्या है"
-
-#~ msgid "SystemVerilog"
-#~ msgstr "SystemVerilog"
-
-#~ msgid "txt2tags"
-#~ msgstr "txt2tags"
-
-#~ msgid "Option"
-#~ msgstr "विकल्प"
-
-#~ msgid "Option Name"
-#~ msgstr "विकल्प नाम"
-
-#~ msgid "Section 1"
-#~ msgstr "खंड 1"
-
-#~ msgid "Section 2"
-#~ msgstr "खंड 2"
-
-#~ msgid "Section 3"
-#~ msgstr "खंड 3"
-
-#~ msgid "Section 4"
-#~ msgstr "खंड 4"
-
-#~ msgid "Section 5"
-#~ msgstr "खंड 5"
-
-#~ msgid "Italic"
-#~ msgstr "ईटैलिक"
-
-#~ msgid "Bold"
-#~ msgstr "गाढ़ा"
-
-#~ msgid "Verbatim Block"
-#~ msgstr "Verbatim खंड"
-
-#~ msgid "Tcl"
-#~ msgstr "Tcl"
-
-#~ msgid "Texinfo"
-#~ msgstr "Texinfo"
-
-#~ msgid "Macros"
-#~ msgstr "मेक्रोज़"
-
-#~ msgid "File Attributes"
-#~ msgstr "फाइल गुणधर्म"
-
-#~ msgid "Generated Content"
-#~ msgstr "जनित सामग्री"
-
-#~ msgid "Vala"
-#~ msgstr "वाला"
-
-#~ msgid "VB.NET"
-#~ msgstr "VB.NET"
-
-#~ msgid "Verilog"
-#~ msgstr "वेरिलॉग"
-
-#~ msgid "IEEE System Task"
-#~ msgstr "IEEE तंत्र कार्य"
-
-#~ msgid "LRM Additional System Task"
-#~ msgstr "LRM अतिरिक्त तंत्र कार्य"
-
-#~ msgid "Gate"
-#~ msgstr "गेट"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"
-
-#~ msgid "XML"
-#~ msgstr "एक्सएमएल"
-
-#~ msgid "DOCTYPE"
-#~ msgstr "DOCTYPE"
-
-#~ msgid "Processing instruction"
-#~ msgstr "प्रोसेसिंग निर्देश"
-
-#~ msgid "Attribute value"
-#~ msgstr "गुण मान"
-
-#~ msgid "Entity"
-#~ msgstr "एंटिटी"
-
-#~ msgid "XSLT"
-#~ msgstr "XSLT"
-
-#~ msgid "Element"
-#~ msgstr "तत्व"
-
-#~ msgid "Yacc"
-#~ msgstr "Yacc"
-
-#~ msgid "token-type"
-#~ msgstr "टोकन प्रकार"
-
-#~ msgid "rule"
-#~ msgstr "नियम"
-
-#~ msgid "Kate"
-#~ msgstr "केट"
-
-#~ msgid "The provider name"
-#~ msgstr "प्रदाता का नाम"
-
-#~ msgid "Icon"
-#~ msgstr "प्रतीक"
-
-#~ msgid "The provider icon"
-#~ msgstr "प्रदाता चिह्न"
-
-#~ msgid "Proposals Batch Size"
-#~ msgstr "प्रस्ताव बैच आकार"
-
-#~ msgid "Number of proposals added in one batch"
-#~ msgstr "प्रस्तावों की संख्या एक बैच में जोड़ा गया"
-
-#~ msgid "Scan Batch Size"
-#~ msgstr "बैच आकार स्कैन करें"
-
-#~ msgid "Number of lines scanned in one batch"
-#~ msgstr "एक बैच में स्कैन लाइनों की संख्या"
-
-#~ msgid "Minimum Word Size"
-#~ msgstr "न्यूनतम शब्द आकार"
-
-#~ msgid "The minimum word size to complete"
-#~ msgstr "पूरा करने के लिए न्यूनतम शब्द आकार"
-
-#~ msgid "Interactive Delay"
-#~ msgstr "अंतःक्रियात्मक विलंब"
-
-#~ msgid "The delay before initiating interactive completion"
-#~ msgstr "इंटरैक्टिव पूरा होने शुरू करने से पहले देरी"
-
-#~ msgid "Priority"
-#~ msgstr "प्राथमिकता"
-
-#~ msgid "Provider priority"
-#~ msgstr "प्रदाता प्राथमिकता"
-
-#~ msgid "Highlight Syntax"
-#~ msgstr "वाक्यरचना उभारें"
-
-#~ msgid "Whether to highlight syntax in the buffer"
-#~ msgstr "क्या बफ़र में सिंटेक्स उभारना है"
-
-#~ msgid "Highlight Matching Brackets"
-#~ msgstr "मेल खाता कोष्ठकों आलोकित करें"
-
-#~ msgid "Whether to highlight matching brackets"
-#~ msgstr "क्या मेल खाते कोष्ठकों को जाँच कर आलोकित करना है"
-
-#~ msgid "Maximum Undo Levels"
-#~ msgstr "अधिकतम पूर्ववत् करें स्तर"
-
-#~ msgid "Number of undo levels for the buffer"
-#~ msgstr "बफ़र हेतु पूर्ववत् करें स्तरों की संख्या"
-
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
-# libgnome-desktop/gnome-ditem-edit.c:710
-#~ msgid "Language"
-#~ msgstr "भाषा"
-
-#~ msgid "Language object to get highlighting patterns from"
-#~ msgstr "उभारने हेतु पैटर्न्स प्राप्त करने हेतु भाषा ऑब्जैक्ट"
-
-#~ msgid "Can undo"
-#~ msgstr "पहले जैसा नहीं कर सकता है"
-
-#~ msgid "Whether Undo operation is possible"
-#~ msgstr "क्या पहले जैसा करना संभव है"
-
-#~ msgid "Can redo"
-#~ msgstr "पहले जैसा कर सकता है"
-
-#~ msgid "Whether Redo operation is possible"
-#~ msgstr "क्या फिर करें संक्रिया संभव है"
-
-#~ msgid "Style scheme"
-#~ msgstr "शैली योजना"
-
-#~ msgid "Undo manager"
-#~ msgstr "पहले जैसा करने वाला प्रबंधक"
-
-#~ msgid "The buffer undo manager"
-#~ msgstr "बफर पहले जैसा करने वाला प्रबंधक"
-
-#~ msgid "No extra information available"
-#~ msgstr "कोई अतिरिक्त सूचना उपलब्ध नहीं"
-
-#~ msgid "View"
-#~ msgstr "दृश्य"
-
-#~ msgid "The GtkSourceView bound to the completion"
-#~ msgstr "पूरा करने के लिए GtkSourceView बाउंड"
-
-#~ msgid "Remember Info Visibility"
-#~ msgstr "सूचना दृश्यता याद रखें"
-
-#~ msgid "Remember the last info window visibility state"
-#~ msgstr "पिछले जानकारी विंडो दृश्यता अवस्था याद रखें"
-
-#~ msgid "Select first proposal when completion is shown"
-#~ msgstr "जब पूरा होने के दिखाया गया है 1 प्रस्ताव का चयन करें"
-
-#~ msgid "Show Headers"
-#~ msgstr "शीर्षिका दिखाएँ"
-
-#~ msgid ""
-#~ "Show provider headers when proposals from multiple providers are available"
-#~ msgstr "जब कई प्रदाताओं से प्रस्ताव उपलब्ध हैं प्रदाता हेडर दिखाएँ"
-
-#~ msgid "Show Icons"
-#~ msgstr "प्रतीक दिखायें"
-
-#~ msgid "Show provider and proposal icons in the completion popup"
-#~ msgstr "प्रदाता और पूरा होने पॉपअप में प्रस्ताव माउस"
-
-#~ msgid "Accelerators"
-#~ msgstr "त्वरक"
-
-#~ msgid "Number of proposal accelerators to show"
-#~ msgstr "प्रस्ताव गतिवर्धक की संख्या को दिखाने के लिए"
-
-#~ msgid "Auto Complete Delay"
-#~ msgstr "स्वतः पूर्ण विलंब"
-
-#~ msgid "Completion popup delay for interactive completion"
-#~ msgstr "समापन इंटरैक्टिव पूरा करने के लिए पॉपअप देरी"
-
-#~ msgid "Provider Page Size"
-#~ msgstr "प्रदाता पृष्ठ का आकार"
-
-#~ msgid "Provider scrolling page size"
-#~ msgstr "प्रदाता स्क्रॉलिंग पृष्ठ आकार"
-
-#~ msgid "Proposal Page Size"
-#~ msgstr "प्रस्ताव पृष्ठ आकार"
-
-#~ msgid "Proposal scrolling page size"
-#~ msgstr "प्रस्ताव स्क्रॉलिंग पृष्ठ आकार"
-
-#~ msgid "Completion"
-#~ msgstr "पूर्णता"
-
-#~ msgid "The completion object to which the context belongs"
-#~ msgstr "पूरा होने वस्तु जो संदर्भ अंतर्गत आता है"
-
-#~ msgid "Iterator"
-#~ msgstr "Iterator"
-
-#~ msgid "The GtkTextIter at which the completion was invoked"
-#~ msgstr "GtkTextIter जिस पर पूरा लागू किया गया था "
-
-#~ msgid "Activation"
-#~ msgstr "सक्रियकरण"
-
-#~ msgid "The type of activation"
-#~ msgstr "सक्रियकरण प्रकार"
-
-#~ msgid "Completion Info"
-#~ msgstr "पूर्णता सूचना"
-
-#~ msgid "Label to be shown for this item"
-#~ msgstr "इस मद के लिए लेबल दिखाया जाना"
-
-#~ msgid "Markup to be shown for this item"
-#~ msgstr "मार्कअप इस मद के लिए दिखाए जाने के लिए"
-
-#~ msgid "Item text"
-#~ msgstr "मद पाठ"
-
-#~ msgid "Icon to be shown for this item"
-#~ msgstr "इस मद के लिए दिखाए जाने के लिए चिह्न"
-
-#~ msgid "Info"
-#~ msgstr "सूचना"
-
-#~ msgid "Info to be shown for this item"
-#~ msgstr "इस मद के लिए दिखाए जाने के लिए जानकारी"
-
-#~ msgid "Provider"
-#~ msgstr "प्रदाता"
-
-#~ msgid "Show detailed proposal information"
-#~ msgstr "विस्तृत प्रस्ताव जानकारी दिखाएं"
-
-#~ msgid "The gutters' GtkSourceView"
-#~ msgstr "gutters' GtkSourceView"
-
-#~ msgid "Window Type"
-#~ msgstr "विंडो प्रकार"
-
-#~ msgid "The gutters text window type"
-#~ msgstr "gutters पाठ विंडो प्रकार"
-
-#~ msgid "X Padding"
-#~ msgstr "X  पैडिंग"
-
-#~ msgid "The x-padding"
-#~ msgstr "X  पैडिंग"
-
-#~ msgid "Y Padding"
-#~ msgstr "Y पैडिंग"
-
-#~ msgid "The y-padding"
-#~ msgstr "Y पैडिंग"
-
-#~ msgid "Visible"
-#~ msgstr "दृष्टिगोचर"
-
-#~ msgid "X Alignment"
-#~ msgstr "X संरेखन "
-
-#~ msgid "The x-alignment"
-#~ msgstr "X संरेखन "
-
-#~ msgid "Y Alignment"
-#~ msgstr "Y संरेखन "
-
-#~ msgid "The y-alignment"
-#~ msgstr "Y संरेखन "
-
-#~ msgid "The View"
-#~ msgstr "दृश्य"
-
-#~ msgid "The view"
-#~ msgstr "दृश्य"
-
-#~ msgid "Alignment Mode"
-#~ msgstr "संरेखण मोड"
-
-#~ msgid "The alignment mode"
-#~ msgstr "संरेखण मोड"
-
-#~ msgid "The window type"
-#~ msgstr "विंडो प्रकार"
-
-#~ msgid "Size"
-#~ msgstr "आकार"
-
-#~ msgid "The size"
-#~ msgstr "आकार"
-
-#~ msgid "Pixbuf"
-#~ msgstr "Pixbuf"
-
-#~ msgid "The pixbuf"
-#~ msgstr "pixbuf"
-
-#~ msgid "Stock Id"
-#~ msgstr "stock ID"
-
-#~ msgid "The stock id"
-#~ msgstr "स्टॉक आईडी"
-
-#~ msgid "Icon Name"
-#~ msgstr "प्रतीक नाम"
-
-#~ msgid "The icon name"
-#~ msgstr "प्रतीक नाम"
-
-#~ msgid "GIcon"
-#~ msgstr "जीप्रतीक"
-
-#~ msgid "The gicon"
-#~ msgstr "gicon"
-
-# #-#-#-#-#  libgnomecanvas.HEAD.hi.po (libgnomecanvas)  #-#-#-#-# libgnomecanvas/gnome-canvas-text.c:212
-#~ msgid "The markup"
-#~ msgstr "मार्कअप"
-
-#~ msgid "The text"
-#~ msgstr "पाठ"
-
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
-# libgnome-desktop/gnome-ditem-edit.c:710
-#~ msgid "Language id"
-#~ msgstr "भाषा id"
-
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
-# libgnome-desktop/gnome-ditem-edit.c:710
-#~ msgid "Language name"
-#~ msgstr "भाषा नाम"
-
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
-# libgnome-desktop/gnome-ditem-edit.c:710
-#~ msgid "Language section"
-#~ msgstr "भाषा खंड"
-
-#~ msgid "Hidden"
-#~ msgstr "छुपा"
-
-#~ msgid "Whether the language should be hidden from the user"
-#~ msgstr "क्या भाषा को उपयोक्ता के लिए छुपी रहनी चाहिए"
-
-#~ msgid "Language specification directories"
-#~ msgstr "भाषा विशेषताएँ डिरेक्ट्रीज़"
-
-#~ msgid ""
-#~ "List of directories where the language specification files (.lang) are "
-#~ "located"
-#~ msgstr "डिरेक्ट्रीज़ की सूची जहाँ भाषा विशेषताओं की फ़ाइलें (.lang) निर्धारित हैं"
-
-# #-#-#-#-#  gnome-desktop.HEAD.hi.po (gnome-desktop-2.0.hi)  #-#-#-#-#
-# libgnome-desktop/gnome-ditem-edit.c:611
-# libgnome-desktop/gnome-ditem-edit.c:710
-#~ msgid "Language ids"
-#~ msgstr "भाषा आईडी"
-
-#~ msgid "List of the ids of the available languages"
-#~ msgstr "उपलब्ध भाषा के लिए आईडी की सूची"
-
-#~ msgid "Background"
-#~ msgstr "पृष्ठभूमि"
-
-#~ msgid "The background"
-#~ msgstr "पृष्ठभूमि"
-
-#~ msgid "The GIcon"
-#~ msgstr "GIcon"
-
-#~ msgid "category"
-#~ msgstr "श्रेणी"
-
-#~ msgid "The mark category"
-#~ msgstr "चिह्नित श्रेणी"
-
-#~ msgid "Source Buffer"
-#~ msgstr "सोर्स बफ़र"
-
-#~ msgid "The GtkSourceBuffer object to print"
-#~ msgstr "छपाई के लिए जीटीके-सोर्स-बफ़र ऑब्जेक्ट"
-
-#~ msgid "Tab Width"
-#~ msgstr "टैब चौड़ाई"
-
-#~ msgid "Width of a tab character expressed in spaces"
-#~ msgstr "स्थान में टैब वर्ण की चौड़ाई"
-
-#~ msgid "Wrap Mode"
-#~ msgstr "व्रेप मोड"
-
-#~ msgid ""
-#~ "Whether to wrap lines never, at word boundaries, or at character "
-#~ "boundaries."
-#~ msgstr "क्या पंक्ति को लपेटना है, शब्द सीमा पर, या वर्ण सीमा पर."
-
-#~ msgid "Whether to print the document with highlighted syntax"
-#~ msgstr "क्या दस्तावेज़ को उभारे सिंटेक्स के साथ मुद्रित करना है"
-
-#~ msgid "Print Line Numbers"
-#~ msgstr "पंक्ति संख्याएँ मुद्रित करें"
-
-#~ msgid "Interval of printed line numbers (0 means no numbers)"
-#~ msgstr "मुद्रित पंक्ति संख्याओं का अंतराल (0 का अर्थ है कोई संख्या नहीं)"
-
-#~ msgid "Print Header"
-#~ msgstr "हैडर मुद्रित करें"
-
-#~ msgid "Whether to print a header in each page"
-#~ msgstr "क्या प्रत्येक पृष्ठ में हेडर मुद्रित करें या नहीं"
-
-#~ msgid "Print Footer"
-#~ msgstr "पाद-सूचना मुद्रित करें"
-
-#~ msgid "Whether to print a footer in each page"
-#~ msgstr "क्या प्रत्येक पृष्ठ में पाद-सूचना मुद्रित करें या नहीं"
-
-#~ msgid "Body Font Name"
-#~ msgstr "शरीर फॉन्ट नाम"
-
-#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-#~ msgstr "पाठ शरीर के प्रयोग के लिए फॉन्ट का नाम (उदा. \"Monospace 10\")"
-
-#~ msgid "Line Numbers Font Name"
-#~ msgstr "पंक्ति संख्या फ़ॉन्ट नाम"
-
-#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-#~ msgstr "पंक्ति संख्या के लिए प्रयोग हेतु फॉन्ट का नाम (उदा. \"Monospace 10\")"
-
-#~ msgid "Header Font Name"
-#~ msgstr "शीर्षिका फॉन्ट नामनाम"
-
-#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-#~ msgstr "पृष्ठ शीर्षिका के लिए फॉन्ट प्रयोग के लिए नाम (उदा. \"Monospace 10\")"
-
-#~ msgid "Footer Font Name"
-#~ msgstr "पादिका फॉन्ट नाम"
-
-#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-#~ msgstr "पृष्ठ पादिका के लिए प्रयोग के लिए फॉन्ट नाम (उदा. \"Monospace 10\")"
-
-#~ msgid "Number of pages"
-#~ msgstr "पृष्ठों की संख्या"
-
-#~ msgid ""
-#~ "The number of pages in the document (-1 means the document has not been "
-#~ "completely paginated)."
-#~ msgstr ""
-#~ "दस्तावेज में पृष्ठ की संख्या (-1 means the document has not been completely "
-#~ "paginated)."
-
-#~ msgid "Line background"
-#~ msgstr "पंक्ति पृष्ठभूमि"
-
-#~ msgid "Line background color"
-#~ msgstr "पंक्ति पृष्ठभूमि रंग"
-
-#~ msgid "Background color"
-#~ msgstr "पृष्ठभूमि रंग"
-
-#~ msgid "Foreground"
-#~ msgstr "अग्रभूमि"
-
-#~ msgid "Foreground color"
-#~ msgstr "अग्रभूमि रंग"
-
-#~ msgid "Underline"
-#~ msgstr "रेखांकित"
-
-#~ msgid "Strikethrough"
-#~ msgstr "स्ट्रइकत्रु"
-
-#~ msgid "Line background set"
-#~ msgstr "पंक्ति पृष्ठभूमि सेट"
-
-#~ msgid "Whether line background color is set"
-#~ msgstr "क्या पंक्ति पृष्ठभूमि रंग सेट है"
-
-#~ msgid "Foreground set"
-#~ msgstr "अग्रभूमि नियत"
-
-#~ msgid "Whether foreground color is set"
-#~ msgstr "क्या अग्रभूमि रंग सेट है"
-
-#~ msgid "Background set"
-#~ msgstr "पृष्ठभूमि नियत"
-
-#~ msgid "Whether background color is set"
-#~ msgstr "क्या पृष्ठभूमि रंग सेट है"
-
-#~ msgid "Bold set"
-#~ msgstr "बोल्ड सेट"
-
-#~ msgid "Whether bold attribute is set"
-#~ msgstr "क्या गहरी विशेषता सेट है"
-
-#~ msgid "Italic set"
-#~ msgstr "तिरछा सेट"
-
-#~ msgid "Whether italic attribute is set"
-#~ msgstr "क्या इटालिक विशेषता सेट है"
-
-#~ msgid "Underline set"
-#~ msgstr "रेखांकित सेट"
-
-#~ msgid "Whether underline attribute is set"
-#~ msgstr "क्या रेखांकित विशेषता सेट है"
-
-#~ msgid "Strikethrough set"
-#~ msgstr "आरपार काटें सेट"
-
-#~ msgid "Whether strikethrough attribute is set"
-#~ msgstr "क्या आर-पार काटने की विशेषता सेट है"
-
-#~ msgid "Style scheme id"
-#~ msgstr "शैली योजना id"
-
-#~ msgid "Style scheme name"
-#~ msgstr "शैली योजना नाम"
-
-#~ msgid "Style scheme description"
-#~ msgstr "शैली योजना विवरण"
-
-#~ msgid "Style scheme filename"
-#~ msgstr "शैली योजना फाइलनाम"
-
-#~ msgid "List of directories and files where the style schemes are located"
-#~ msgstr "निर्देशिका व फ़ाइल की सूची जहाँ शैली योजना अवस्थित हैं"
-
-#~ msgid "Scheme ids"
-#~ msgstr "योजना आईडी"
-
-#~ msgid "List of the ids of the available style schemes"
-#~ msgstr "उपलब्ध शैली योजना के आईडी की सूची"
-
-#~ msgid "Buffer"
-#~ msgstr "बफ़र"
-
-#~ msgid "The text buffer to add undo support on"
-#~ msgstr "पाठ जोड़ने के बफर पर समर्थन किए हुए कार्य को भ्रष्ट कर देना"
-
-#~ msgid "The completion object associated with the view"
-#~ msgstr "पूरा दृश्य के साथ जुड़े वस्तु"
-
-#~ msgid "Show Line Numbers"
-#~ msgstr "पंक्ति संख्याएँ दिखाएँ"
-
-#~ msgid "Whether to display line numbers"
-#~ msgstr "क्या पंक्ति संख्याएँ दिखाना है"
-
-#~ msgid "Show Line Marks"
-#~ msgstr "पंक्ति मार्कर्स दिखाएँ"
-
-#~ msgid "Whether to display line mark pixbufs"
-#~ msgstr "क्या पंक्ति मार्कर pixbufs प्रदर्शित करना है"
-
-#~ msgid "Indent Width"
-#~ msgstr "टैब पर हाशिया"
-
-#~ msgid "Number of spaces to use for each step of indent"
-#~ msgstr "हाशिया के हर चरण के लिए प्रयोग के लिए स्थान की संख्या"
-
-#~ msgid "Auto Indentation"
-#~ msgstr "स्वचालित हाशिया छोड़ें"
-
-#~ msgid "Whether to enable auto indentation"
-#~ msgstr "क्या स्वचालित हाशिया छोड़ना सक्षम करें"
-
-#~ msgid "Insert Spaces Instead of Tabs"
-#~ msgstr "टैब के बदले मेँ रिक्त स्थान प्रविष्ट करें"
-
-#~ msgid "Whether to insert spaces instead of tabs"
-#~ msgstr "क्या टैब के बदले रिक्त स्थान प्रविष्ट करें"
-
-#~ msgid "Show Right Margin"
-#~ msgstr "दायाँ हाशिया दिखाएँ"
-
-#~ msgid "Whether to display the right margin"
-#~ msgstr "क्या दायाँ हाशिया दिखाना है"
-
-#~ msgid "Right Margin Position"
-#~ msgstr "दाहिना हाशिया स्थिति"
-
-#~ msgid "Position of the right margin"
-#~ msgstr "दाएँ हाशिए की स्थिति"
-
-#~ msgid "Smart Home/End"
-#~ msgstr "Smart Home/End"
-
-#~ msgid ""
-#~ "HOME and END keys move to first/last non whitespace characters on line "
-#~ "before going to the start/end of the line"
-#~ msgstr ""
-#~ "घर तथा अंत कुंजियाँ पंक्ति के प्रारंभ/अंत में जाने से पहले पंक्ति के प्रथम/अंतिम संप्रतीकों पर "
-#~ "जाती हैं "
-
-#~ msgid "Highlight current line"
-#~ msgstr "मौजूदा पंक्ति को उभारें"
-
-#~ msgid "Whether to highlight the current line"
-#~ msgstr "क्या मौजूदा पंक्ति में उभारना है"
-
-#~ msgid "Indent on tab"
-#~ msgstr "टैब पर हाशिया"
-
-#~ msgid "Whether to indent the selected text when the tab key is pressed"
-#~ msgstr "जब टैब कुंजी को दबाया जाता है तो क्या चयनित पाठ में हाशिया दिया जाना है"
-
-#~ msgid "Draw Spaces"
-#~ msgstr "स्थान खींचें"
-
-#~ msgid "Set if and how the spaces should be visualized"
-#~ msgstr "देखें कि क्या स्थान दिखना चाहिए"
-
-#~ msgid "translator-credits"
-#~ msgstr "संगीता कुमारी (sangeeta09@gmail.com)"
-
-#~ msgid "Objective Caml"
-#~ msgstr "वस्तु Caml"
-
-#~ msgid "Object"
-#~ msgstr "वस्तु"
