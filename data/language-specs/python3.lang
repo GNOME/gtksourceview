@@ -89,7 +89,7 @@
       </include>
     </context>
 
-    <context id="f-string-curly-braces" extend-parent="false" class-disabled="string">
+    <context id="f-string-curly-braces" extend-parent="false" class-disabled="string" class="no-spell-check">
       <start>(\{)</start>
       <end>(\})</end>
       <include>
