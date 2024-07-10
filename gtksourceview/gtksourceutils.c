@@ -986,7 +986,7 @@ load_override_font_fc (void)
 	if (g_once_init_enter (&map_font_config))
 	{
 		char **font_dirs = _gtk_source_utils_get_default_dirs ("fonts");
-		FcConfig *config = FcInitLoadConfigAndFonts ();
+		FcConfig *config = FcConfigCreate ();
 
 		if (font_dirs != NULL)
 		{
