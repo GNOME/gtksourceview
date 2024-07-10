@@ -978,7 +978,7 @@ load_override_font_fc (void)
 
 	if (!font_map)
 	{
-		g_error ("Unable to create new fontmap");
+		g_warning ("Unable to create new fontmap");
 		return NULL;
 	}
 
