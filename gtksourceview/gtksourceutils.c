@@ -990,12 +990,16 @@ load_override_font_fc (void)
 
 		if (font_dirs != NULL)
 		{
-			for (guint i = 0; font_dirs[i]; i++)
+			gboolean found = FALSE;
+
+			for (guint i = 0; !found && font_dirs[i]; i++)
 			{
 				char *font_path = g_build_filename (font_dirs[i], "BuilderBlocks.ttf", NULL);
 
 				if (g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
 				{
+					found = TRUE;
+
 #ifdef G_OS_WIN32
 					/* Reformat the path as expected by win32 FontConfig */
 					FcChar8 *win32_path = FcStrCopyFilename ((const FcChar8 *)font_path);
