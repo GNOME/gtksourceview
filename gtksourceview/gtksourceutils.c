@@ -1072,12 +1072,10 @@ PangoFontMap *
 _gtk_source_utils_get_builder_blocks (void)
 {
 	static PangoFontMap *builder_blocks_font_map;
-	static gboolean loaded;
+	static gsize loaded;
 
-	if (!loaded)
+	if (g_once_init_enter (&loaded))
 	{
-		loaded = TRUE;
-
 #ifdef FONTLOADING_WITH_PANGOWIN32
 		if (builder_blocks_font_map == NULL)
 		{
@@ -1091,6 +1089,8 @@ _gtk_source_utils_get_builder_blocks (void)
 			builder_blocks_font_map = load_override_font_fc ();
 		}
 #endif
+
+		g_once_init_leave (&loaded, TRUE);
 	}
 
 	return builder_blocks_font_map;
