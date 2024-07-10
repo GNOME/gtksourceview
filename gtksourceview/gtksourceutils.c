@@ -59,6 +59,7 @@
 #include <glib/gi18n-lib.h>
 #include <pango/pango.h>
 
+#include "gtksourcetrace.h"
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
 
@@ -1076,6 +1077,7 @@ _gtk_source_utils_get_builder_blocks (void)
 
 	if (g_once_init_enter (&loaded))
 	{
+		GTK_SOURCE_PROFILER_BEGIN_MARK
 #ifdef FONTLOADING_WITH_PANGOWIN32
 		if (builder_blocks_font_map == NULL)
 		{
@@ -1089,6 +1091,7 @@ _gtk_source_utils_get_builder_blocks (void)
 			builder_blocks_font_map = load_override_font_fc ();
 		}
 #endif
+		GTK_SOURCE_PROFILER_END_MARK ("Fonts", "Loading BuilderBlocks font...");
 
 		g_once_init_leave (&loaded, TRUE);
 	}
