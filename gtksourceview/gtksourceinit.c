@@ -45,6 +45,7 @@
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestyleschemepreview.h"
+#include "gtksourceutils-private.h"
 #include "gtksourceview.h"
 #include "gtksourcevimimcontext.h"
 
@@ -153,6 +154,12 @@ get_locale_dir (void)
 	return locale_dir;
 }
 
+static gpointer
+load_builder_blocks (gpointer data)
+{
+	return _gtk_source_utils_get_builder_blocks ();
+}
+
 /**
  * gtk_source_init:
  *
@@ -176,6 +183,11 @@ gtk_source_init (void)
 		g_free (locale_dir);
 
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+		/* Start loading our BuilderBlocks font very early on a thread
+		 * so that it doesn't slow down application startup.
+		 */
+		g_thread_unref (g_thread_new ("[gtksourceview-font]", load_builder_blocks, NULL));
 
 		/* Due to potential deadlocks when registering types, we need to
 		 * ensure the dependent private class GtkSourceBufferOutputStream
