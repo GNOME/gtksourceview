@@ -121,7 +121,7 @@
           000D 0000 <!-- format reserved -->
           00000040  <!-- length -->
           00000000  <!-- language -->
-          00000004  <!-- nGroups -->
+          00000007  <!-- nGroups -->
             00000001  <!-- startCharCode -->
             00000020  <!-- endCharCode -->
             00000002  <!-- glyphID -->
@@ -132,7 +132,16 @@
             0000007A  <!-- endCharCode -->
             00000003  <!-- glyphID -->
             0000007B  <!-- startCharCode -->
-            0010FFFE  <!-- endCharCode -->
+            0000FFFF  <!-- endCharCode -->
+            00000001  <!-- glyphID -->
+            00010000  <!-- startCharCode -->
+            0001FFFF  <!-- endCharCode -->
+            00000001  <!-- glyphID -->
+            00020000  <!-- startCharCode -->
+            0002FFFF  <!-- endCharCode -->
+            00000001  <!-- glyphID -->
+            00030000  <!-- startCharCode -->
+            0003FFFF  <!-- endCharCode -->
             00000001  <!-- glyphID -->
     </hexdata>
   </cmap>
