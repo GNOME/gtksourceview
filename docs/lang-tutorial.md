@@ -571,7 +571,3 @@ for this tutorial:
   </definitions>
 </language>
 ```
-
-</refsect1>
-
-</refentry>
