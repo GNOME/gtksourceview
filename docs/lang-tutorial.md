@@ -4,10 +4,6 @@ Guide to the GtkSourceView language definition file format
 
 # A language definition for the C language
 
-The version 2 here refers to the language definition file format,
-not to the version of GtkSourceView. This tutorial is suitable
-for GtkSourceView 2, 3 and 4.
-
 To describe the syntax of a language GtkSourceView uses an XML format which
 defines nested context to be highlighted. Each context roughly corresponds
 to a portion of the syntax which has to be highlighted (e.g. keywords,
