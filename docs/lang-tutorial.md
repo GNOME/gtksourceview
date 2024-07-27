@@ -5,10 +5,10 @@ Guide to the GtkSourceView language definition file format
 # A language definition for the C language
 
 To describe the syntax of a language GtkSourceView uses an XML format which
-defines nested context to be highlighted. Each context roughly corresponds
+defines nested contexts to be highlighted. Each context roughly corresponds
 to a portion of the syntax which has to be highlighted (e.g. keywords,
 strings, comments), and can contain nested contexts (e.g. escaped
-characters.)
+characters).
 
 In this tutorial we will analyze a simple example to highlight a subset of
 C, based on the full C language definition.
@@ -132,7 +132,7 @@ the highlighting engine to enter in the defined context, until the terminating
 regular expression contained in the `<end>` element is found.
 
 Those regular expressions are PCRE regular expressions in the form
-`/regex/options` (see the documentation of PCRE for details.) If
+`/regex/options` (see the documentation of PCRE for details). If
 there are no options to be specified and you don't need to match the spaces at
 the start and at the end of the regular expression, you can omit the slashes,
 putting here only `regex`.
@@ -227,7 +227,7 @@ found, so we use `false` in the `extend-parent` attribute.
 
 For instance in the following comment the string `http://www.gnome.org*/`
 matches the `net-address` context but it contains the end of the parent
-context (`*/`.) As `extend-parent` is false,
+context (`*/`). As `extend-parent` is false,
 only `http://www.gnome.org` is
 highlighted as an address and `*/` is correctly recognized as the end of
 the comment.
@@ -418,7 +418,7 @@ In the `sub-pattern` attribute we could use:
 - 1: the first sub-pattern (a sub-espression enclosed in parenthesis);
 - 2: the second;
 - ...
-- `name`: a named sub-pattern with name `name` (see the PCRE documentation.)
+- `name`: a named sub-pattern with name `name` (see the PCRE documentation).
 
 We could also use a `where` attribute with value
 `start` or `end` to
