@@ -3,8 +3,8 @@ GtkSourceView
 
 GtkSourceView is a GNOME library that extends GtkTextView, the standard GTK
 widget for multiline text editing. GtkSourceView adds support for syntax
-highlighting, undo/redo, file loading and saving, search and replace, a
-completion system, printing, displaying line numbers, and other features
+highlighting, file loading and saving, search and replace, code completion,
+snippets, Vim emulation, printing, displaying line numbers, and other features
 typical of a source code editor.
 
 The GtkSourceView library is free software and is released under the terms of
