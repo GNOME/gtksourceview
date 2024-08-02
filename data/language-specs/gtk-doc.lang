@@ -34,6 +34,7 @@
         <style id="return" name="Return" map-to="def:doc-comment-element"/>
         <style id="since" name="Since" map-to="def:doc-comment-element"/>
         <style id="deprecated" name="Deprecated" map-to="def:doc-comment-element"/>
+        <style id="code-span" name="Code Span" map-to="def:inline-code"/>
     </styles>
 
     <definitions>
@@ -65,6 +66,9 @@
           </context>
           <context style-ref="deprecated">
             <match>Deprecated\:</match>
+          </context>
+          <context id="1-backtick-code-span" class="no-spell-check" style-ref="code-span">
+            <match>(?&lt;!`)`[^`]+(`{2,}[^`]+)*`(?!`)</match>
           </context>
         </include>
       </context>
