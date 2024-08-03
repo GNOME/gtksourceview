@@ -26,8 +26,8 @@
     <property name="light-variant">Adwaita</property>
     <property name="window_bg_color">#242424</property>
     <property name="window_fg_color">#FFFFFF</property>
-    <property name="headerbar_bg_color">#303030</property>
-    <property name="headerbar_fg_color">#FFFFFF</property>
+    <property name="headerbar_bg_color">#1e1e1e</property>
+    <property name="headerbar_fg_color">#f2f2f2</property>
   </metadata>
 
   <!-- Named Colors -->
@@ -44,12 +44,13 @@
   <color name="brown_4"                    value="#865E3C"/>
   <color name="brown_5"                    value="#63452C"/>
   <color name="chameleon_3"                value="#4E9A06"/>
-  <color name="dark_1"                     value="#77767B"/>
-  <color name="dark_2"                     value="#5E5C64"/>
-  <color name="dark_3"                     value="#504E55"/>
-  <color name="dark_4"                     value="#3D3846"/>
-  <color name="dark_5"                     value="#241F31"/>
-  <color name="dark_6"                     value="#000000"/>
+  <color name="dark_1"                     value="#777777"/>
+  <color name="dark_2"                     value="#5E5E5E"/>
+  <color name="dark_3"                     value="#505050"/>
+  <color name="dark_4"                     value="#3D3D3D"/>
+  <color name="dark_5"                     value="#242424"/>
+  <color name="dark_6"                     value="#121212"/>
+  <color name="dark_7"                     value="#000000"/>
   <color name="green_1"                    value="#8FF0A4"/>
   <color name="green_2"                    value="#57E389"/>
   <color name="green_3"                    value="#33D17A"/>
@@ -57,8 +58,8 @@
   <color name="green_5"                    value="#26A269"/>
   <color name="green_6"                    value="#1F7F56"/>
   <color name="green_7"                    value="#1C6849"/>
-  <color name="libadwaita-dark"            value="#262626"/>
-  <color name="libadwaita-dark-alt"        value="#303030"/>
+  <color name="libadwaita-dark"            value="#101010"/>
+  <color name="libadwaita-dark-alt"        value="#202020"/>
   <color name="light_1"                    value="#FFFFFF"/>
   <color name="light_2"                    value="#FCFCFC"/>
   <color name="light_3"                    value="#F6F5F4"/>
@@ -97,10 +98,10 @@
   <color name="yellow_6"                   value="#D38B09"/>
 
   <!-- Global Styles -->
-  <style name="background-pattern"         background="libadwaita-dark-alt"/>
+  <style name="background-pattern"         background="#141414"/>
   <style name="bracket-match"              bold="true"/>
   <style name="current-line"               background="libadwaita-dark-alt"/>
-  <style name="current-line-number"        background="libadwaita-dark-alt" foreground="light_7"/>
+  <style name="current-line-number"        background="libadwaita-dark-alt" foreground="dark_1"/>
   <style name="cursor"                     foreground="light_5"/>
   <style name="draw-spaces"                foreground="dark_3"/>
   <style name="line-numbers"               background="libadwaita-dark" foreground="dark_2"/>

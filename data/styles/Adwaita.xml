@@ -24,6 +24,8 @@
   <metadata>
     <property name="variant">light</property>
     <property name="dark-variant">Adwaita-dark</property>
+    <property name="headerbar_bg_color">#f2f2f2</property>
+    <property name="headerbar_fg_color">#1e1e1e</property>
   </metadata>
 
   <!-- Named Colors -->
@@ -91,17 +93,17 @@
   <color name="yellow_6"                   value="#D38B09"/>
 
   <!-- Global Styles -->
-  <style name="background-pattern"         background="light_3"/>
+  <style name="background-pattern"         background="#FAFAFA"/>
   <style name="bracket-match"              bold="true"/>
   <style name="current-line"               background="light_3"/>
   <style name="current-line-number"        background="light_3" foreground="light_7"/>
   <style name="cursor"                     foreground="dark_1"/>
   <style name="draw-spaces"                foreground="light_6"/>
-  <style name="line-numbers"               background="light_2" foreground="light_6"/>
+  <style name="line-numbers"               background="light_1" foreground="light_6"/>
   <style name="map-overlay"                background="dark_1"/>
   <style name="right-margin"               background="dark_1" foreground="dark_1"/>
   <style name="search-match"               background="#rgba(252,247,181,.5)" foreground="dark_4"/>
-  <style name="text"                       background="light_2" foreground="dark_3"/>
+  <style name="text"                       background="light_1" foreground="dark_3"/>
 
   <!-- Defaults -->
   <style name="def:base-n-integer"         foreground="violet_4"/>
