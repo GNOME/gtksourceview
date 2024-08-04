@@ -1,3 +1,19 @@
+News in 5.13.1, 2024-08-04
+--------------------------
+
+This is an unstable release update for GNOME 47.beta
+
+ * Documentation improvements
+ * Improve performance of BuilderBlocks font loading. Some of this
+   effort required changes to the TTF, so user testing with a wide
+   variety of languages is desired. This should reduce startup time
+   of GtkSourceView using applications.
+ * gtk-doc.lang: highlight `backtick` spans
+ * c.lang: highlight [[]] style attributes
+ * java.lang: improve escaped character matching
+ * Adwaita.xml, Adwaita-dark.xml: style updates to track platform
+   changes for GNOME 47.
+
 News in 5.13.0, 2024-06-28
 --------------------------
 
