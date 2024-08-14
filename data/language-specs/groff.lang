@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+COPYRIGHT:
+==========
+Gedit groff syntax highlight. A definition of the groff syntax for
+GtkSourceView.
+
+Copyright (C) 2022 - Daniel Dias Rodrigues. All rights reserved.
+Copyright (C) 2020 - Sciancisco. All rights reserved.
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2.1 of the License, or (at your option) any
+later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along
+with this library; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA.
+
+AVAILABILITY:
+=============
+Originally available at:
+    * https://gist.github.com/nerun/6f57b9a0dd6681d3ea9a5886e418e9b9
+
+Sciancisco's version originally available at:
+    * https://gitlab.com/-/snippets/1984415
+    * https://gist.github.com/Sciancisco/d1f5f1ea50481633ee1a2d270416543b
+
+CHANGES against Sciancisco's version:
+=====================================
+    * <language>
+        * name: the "G" of "Groff" was capitalized.
+    * <metadata>
+        * mimetypes and globs: completely changed based upon "All known MIME
+          types" and their filename patterns, available at
+          https://www.digipres.org/formats/mime-types/
+    * <definitions><context>
+        * comment-new and comment-old: the "." (dot) was included as part of the
+          comment. Added "\.".
+-->
+<language id="groff" name="Groff" version="2.0" _section="Markup">
+
+    <metadata>
+        <property name="mimetypes">application/x-troff;application/x-troff-man;text/troff</property>
+        <property name="globs">*.groff;*.man</property>
+    </metadata>
+
+    <styles>
+        <style id="comment" name="Comment" map-to="def:comment"/>
+        <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+        <style id="macro" name="Macro" map-to="def:function"/>
+        <style id="request" name="Request" map-to="def:builtin"/>
+        <style id="preprocessor" name="Preprocessor Macro" map-to="def:preprocessor"/>
+    </styles>
+
+    <definitions>
+        <context id="groff">
+            <include>
+
+            <context id="comment-new" style-ref="comment" class="comment">
+                <start>\.\\#</start>
+                <end>$</end>
+            </context>
+
+            <context id="comment-old" style-ref="comment" class="comment">
+                <start>\.\\"</start>
+                <end>$</end>
+            </context>
+
+            <!-- Here starts the escape sequences mimicking the groff spec.
+            If one wants to implement the entire spec, have fun:
+            https://web.cecs.pdx.edu/~trent/gnu/groff/groff.html#SEC52
+            -->
+            <context id="escape-bracket" style-ref="escaped-character" class="no-spell-check">
+                <start>\\[[]</start>
+                <end>[]]</end>
+            </context>
+
+            <context id="escape-bracket-parameter" style-ref="escaped-character" class="no-spell-check">
+                <start>\\.[[]</start>
+                <end>[]]</end>
+            </context>
+
+            <context id="escape-parenthesis" style-ref="escaped-character" class="no-spell-check">
+                <match>\\[(]..</match>
+            </context>
+
+            <context id="escape-parenthesis-parameter" style-ref="escaped-character" class="no-spell-check">
+                <match>\\.[(]..</match>
+            </context>
+
+            <context id="escape-simple-parameter" style-ref="escaped-character" class="no-spell-check">
+                <match>\\..</match>
+            </context>
+
+            <context id="escape-simple" style-ref="escaped-character" class="no-spell-check">
+                <match>\\.</match>
+            </context>
+
+            <!-- Highlight preprocessors -->
+            <!-- Maybe add preprocessor syntax coloring. -->
+            <!-- Many preprocessors are missing. -->
+            <context id="eqn" style-ref="preprocessor" class="no-spell-check">
+            <!-- Could be nice to add in line highlight with "delim" eqn command -->
+                <start>^\.EQ(\s|$)</start>
+                <end>^\.EN</end>
+            </context>
+
+            <context id="pic" style-ref="preprocessor" class="no-spell-check">
+                <start>^\.PS(\s|$)</start>
+                <end>^\.PE</end>
+            </context>
+
+            <context id="tbl" style-ref="preprocessor" class="no-spell-check">
+                <start>^\.TS(\s|$)</start>
+                <end>^\.TE</end>
+            </context>
+
+            <context id="chem" style-ref="preprocessor" class="no-spell-check">
+                <start>^\.cstart(\s|$)</start>
+                <end>^\.cend</end>
+            </context>
+
+            <context id="refer-opt" style-ref="preprocessor" class="no-spell-check">
+                <start>^\.R1(\s|$)</start>
+                <end>^\.R2</end>
+            </context>
+
+            <context id="refer-cite" style-ref="preprocessor">
+                <start>^\.[[]</start>
+                <end>^\.[]]</end>
+            </context>
+
+            <!-- General macro and request matching -->
+            <context id="macro" style-ref="macro" class="no-spell-check">
+                <match>^\.[A-Z0-9_]+</match>
+            </context>
+
+            <context id="request" style-ref="request" class="no-spell-ckeck">
+                <match>^\.[a-z]+</match>
+            </context>
+
+            </include>
+        </context>
+    </definitions>
+
+</language>
