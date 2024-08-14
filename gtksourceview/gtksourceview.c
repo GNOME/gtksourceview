@@ -355,8 +355,8 @@ gtk_source_view_constructed (GObject *object)
 }
 
 static void
-gtk_source_view_focus_leave (GtkSourceView           *view,
-                             GtkEventControllerFocus *focus)
+gtk_source_view_focus_changed (GtkSourceView           *view,
+                               GtkEventControllerFocus *focus)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
@@ -1510,8 +1510,12 @@ gtk_source_view_init (GtkSourceView *view)
 
 	focus = gtk_event_controller_focus_new ();
 	g_signal_connect_swapped (focus,
+	                          "enter",
+	                          G_CALLBACK (gtk_source_view_focus_changed),
+	                          view);
+	g_signal_connect_swapped (focus,
 	                          "leave",
-	                          G_CALLBACK (gtk_source_view_focus_leave),
+	                          G_CALLBACK (gtk_source_view_focus_changed),
 	                          view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&focus));
 
