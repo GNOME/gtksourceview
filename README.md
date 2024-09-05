@@ -30,14 +30,15 @@ Installation
 
 Simple install procedure from a tarball:
 ```
-  $ mkdir build
-  $ meson build
+  $ meson setup build .
   $ cd build
-  [ Become root if necessary ]
   $ ninja install
 ```
 
-See the file 'INSTALL' for more detailed information.
+To run the test suite:
+```
+  $ ninja test
+```
 
 To build the latest version of GtkSourceView plus its dependencies from Git,
 [Jhbuild](https://wiki.gnome.org/Projects/Jhbuild) is recommended.
