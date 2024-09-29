@@ -1427,6 +1427,7 @@ gtk_source_map_init (GtkSourceMap *map)
 	gtk_widget_add_controller (GTK_WIDGET (map), g_steal_pointer (&scroll));
 
 	press = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (press), 0);
 	g_signal_connect_swapped (press,
 	                          "pressed",
 	                          G_CALLBACK (gtk_source_map_click_pressed),
