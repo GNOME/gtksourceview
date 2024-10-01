@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2024-09-03 06:31+0000\n"
-"PO-Revision-Date: 2024-03-16 01:55+0700\n"
+"POT-Creation-Date: 2024-09-14 19:03+0000\n"
+"PO-Revision-Date: 2024-10-01 11:25+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -87,21 +87,18 @@ msgstr ""
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
-#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
-#: chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24 cpphdr.lang:24
-#: cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29
-#: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
-#: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
-#: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
-#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
-#: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
-#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
-#: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
-#: solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
-#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
-#: verilog.lang:23 vhdl.lang:23
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23 automake.lang:23
+#: bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23 chdr.lang:24 c.lang:24 cobol.lang:26
+#: commonlisp.lang:24 cpphdr.lang:24 cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29
+#: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24 fsharp.lang:24
+#: genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
+#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24
+#: lean.lang:23 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23
+#: nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23 opal.lang:23
+#: opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23 prolog.lang:23 rust.lang:35
+#: scala.lang:24 scheme.lang:23 sml.lang:23 solidity.lang:28 sparql.lang:23 sql.lang:23
+#: swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23
+#: vhdl.lang:23
 msgid "Source"
 msgstr "ซอร์สโค้ด"
 
@@ -130,11 +127,10 @@ msgstr "ซอร์สโค้ด"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
-#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
-#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 erb-html.lang:20
+#: erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24
+#: jsdoc.lang:23 latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22 mxml.lang:23
+#: rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "มาร์กอัป"
 
@@ -169,17 +165,14 @@ msgstr "มาร์กอัป"
 #. (itstool) path: typescript-type-expressions.lang/language@_section
 #. (itstool) path: typescript-type-generics.lang/language@_section
 #. (itstool) path: typescript-type-literals.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22
-#: javascript-expressions.lang:27 javascript-functions-classes.lang:27
-#: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
-#: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
-#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
-#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
-#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
-#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
-#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
-#: typescript-type-literals.lang:23
+#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22 javascript-expressions.lang:27
+#: javascript-functions-classes.lang:27 javascript.lang:27 javascript-literals.lang:27
+#: javascript-modules.lang:27 javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:27
+#: sh.lang:24 tcl.lang:23 typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23 typescript-js-modules.lang:23 typescript-js-statements.lang:23
+#: typescript-jsx.lang:23 typescript.lang:23 typescript-type-expressions.lang:23
+#: typescript-type-generics.lang:23 typescript-type-literals.lang:23
 msgid "Script"
 msgstr "สคริปต์"
 
@@ -217,12 +210,11 @@ msgstr "ภาษา Shader CG"
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
 #. (itstool) path: yara.lang/language@_section
-#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
-#: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
-#: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
-#: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
-#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24 diff.lang:23 dot.lang:23
+#: dpatch.lang:23 ftl.lang:23 gdb-log.lang:18 gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23
+#: libtool.lang:23 logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 terraform.lang:23 toml.lang:23
+#: yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "อื่นๆ"
 
@@ -258,9 +250,8 @@ msgstr "แม่แบบ Django"
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
 #. (itstool) path: star.lang/language@_section
-#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
-#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23 star.lang:28
+#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23 matlab.lang:25
+#: maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25 scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "วิทยาศาสตร์"
 
@@ -294,31 +285,6 @@ msgstr "สเปค RPM"
 msgid "Tera Template"
 msgstr "แม่แบบ Tera"
 
-#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
-#: Adwaita-dark.xml:20
-msgid "Adwaita Dark"
-msgstr "Adwaita แบบมืด"
-
-#. (itstool) path: style-scheme/_description
-#: Adwaita-dark.xml:22 Adwaita.xml:22
-msgid "An style scheme for Adwaita"
-msgstr "ชุดรูปแบบสีสำหรับ Adwaita"
-
-#. (itstool) path: Adwaita.xml/style-scheme@_name
-#: Adwaita.xml:20
-msgid "Adwaita"
-msgstr "Adwaita"
-
-#. (itstool) path: classic-dark.xml/style-scheme@_name
-#: classic-dark.xml:22
-msgid "Classic Dark"
-msgstr "ดั้งเดิมแบบมืด"
-
-#. (itstool) path: style-scheme/_description
-#: classic-dark.xml:24
-msgid "Classic dark color scheme"
-msgstr "ชุดสีแบบดั้งเดิมแบบมืด"
-
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
 msgid "Classic"
@@ -329,25 +295,15 @@ msgstr "ดั้งเดิม"
 msgid "Classic color scheme"
 msgstr "ชุดสีแบบดั้งเดิม"
 
-#. (itstool) path: cobalt-light.xml/style-scheme@_name
-#: cobalt-light.xml:20
-msgid "Cobalt Light"
-msgstr "Cobalt แบบสว่าง"
-
-#. (itstool) path: style-scheme/_description
-#: cobalt-light.xml:22 cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "ชุดสีโทนน้ำเงิน"
-
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: kate-dark.xml:24
-msgid "Dark color scheme used in the Kate text editor"
-msgstr "ชุดสีแบบมืดที่ใช้ในโปรแกรมแก้ไขข้อความ Kate"
+#: cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "ชุดสีโทนน้ำเงิน"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -355,12 +311,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "ชุดสีที่ใช้ในโปรแกรมแก้ไขข้อความ Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:23
+#: oblivion.xml:24
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:25
+#: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
 msgstr "ชุดสีเข้มซึ่งใช้สีจากจานสีของ Tango"
 
@@ -394,221 +350,222 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "ชุดสีซึ่งใช้สีจากจานสีของ Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
-msgid "Snippets"
-msgstr "ส่วนโค้ด"
-
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
 msgid "Document Words"
 msgstr "คำในเอกสาร"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:920
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "ลำดับไบต์ไม่ถูกต้องในข้อมูลเข้าการแปลง"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:926
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "เกิดข้อผิดพลาดขณะการแปลง: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1019
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "ไม่รองรับการแปลงจากชุดอักขระ “%s” เป็น “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1025
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "ไม่สามารถเปิดเครื่องมือสำหรับแปลงจาก “%s” เป็น “UTF-8” ได้"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1085
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "ออบเจกต์ไม่ถูกต้อง จึงไม่ได้กำหนดค่าเริ่มต้น"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1287
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "ลำดับ UTF-8 ไม่สมบูรณ์ในข้อมูลเข้า"
 
-#: gtksourceview/gtksourcecompletionlist.c:248
-#: gtksourceview/gtksourcecompletionlist.c:252
-#, c-format
-msgid "%d of %u"
-msgstr "%d จาก %u"
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
+#: gtksourceview/gtksourcecompletion.c:838
+msgid "All"
+msgstr "ทั้งหมด"
 
-#: gtksourceview/gtksourcecompletionlist.ui:56
-msgid "_Details"
-msgstr "_รายละเอียด"
+#. Tooltip style
+#: gtksourceview/gtksourcecompletioninfo.c:262
+msgid "Completion Info"
+msgstr "ข้อมูลของการเติมเต็มคำ"
+
+#: gtksourceview/gtksourcecompletionmodel.c:494
+msgid "Provider"
+msgstr "แหล่งที่มา"
+
+#: gtksourceview/gtksourcecompletion.ui:86
+msgid "Show detailed proposal information"
+msgstr "แสดงข้อมูลของคำเสนอโดยละเอียด"
+
+#: gtksourceview/gtksourcecompletion.ui:88
+msgid "_Details…"
+msgstr "_รายละเอียด…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3128
+#: gtksourceview/gtksourcecontextengine.c:3140
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process will be slower "
+"than usual.\n"
 "The error was: %s"
 msgstr ""
-"ไม่สามารถสร้าง regex สำหรับทุก transition ได้ "
-"การเน้นข้อความตามไวยากรณ์อาจทำงานช้ากว่าปกติ\n"
+"ไม่สามารถสร้าง regex สำหรับทุก transition ได้ การเน้นข้อความตามไวยากรณ์อาจทำงานช้ากว่าปกติ\n"
 "ข้อผิดพลาดคือ: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4462
-msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
+#: gtksourceview/gtksourcecontextengine.c:4474
+msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "การเน้นไวยากรณ์เพียงบรรทัดเดียวใช้เวลานานเกินไป จะปิดการเน้นไวยากรณ์"
 
-#: gtksourceview/gtksourcecontextengine.c:5712
+#: gtksourceview/gtksourcecontextengine.c:5724
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "บริบท “%s” จะมีคำสั่ง \\%%{...@start} ไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:5875
-#: gtksourceview/gtksourcecontextengine.c:5965
+#: gtksourceview/gtksourcecontextengine.c:5887 gtksourceview/gtksourcecontextengine.c:5977
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "id ของบริบท “%s” ซ้ำกัน"
 
-#: gtksourceview/gtksourcecontextengine.c:6079
-#: gtksourceview/gtksourcecontextengine.c:6139
+#: gtksourceview/gtksourcecontextengine.c:6091 gtksourceview/gtksourcecontextengine.c:6151
 #, c-format
-msgid ""
-"style override used with wildcard context reference in language “%s” in ref "
-"“%s”"
+msgid "style override used with wildcard context reference in language “%s” in ref “%s”"
 msgstr "มีการทับค่าสไตล์ในตัวอ้างอิงบริบทที่เป็น wildcard ในภาษา “%s” ที่ตัวอ้างอิง “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6153
+#: gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "ตัวอ้างอิงบริบท “%s” ใช้การไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:6172
-#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6184 gtksourceview/gtksourcecontextengine.c:6194
 #, c-format
 msgid "unknown context “%s”"
 msgstr "ไม่รู้จักบริบท “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6283
+#: gtksourceview/gtksourcecontextengine.c:6293
 #, c-format
-msgid "Missing main language definition (id = “%s”)."
-msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = “%s”)"
+msgid "Missing main language definition (id = \"%s\".)"
+msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = \"%s\")"
 
-#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
-#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:140 gtksourceview/gtksourceencoding.c:183
 #: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
 #: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
+#: gtksourceview/gtksourceencoding.c:193 gtksourceview/gtksourceencoding.c:195
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
-#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
+#: gtksourceview/gtksourceencoding.c:154 gtksourceview/gtksourceencoding.c:178
+#: gtksourceview/gtksourceencoding.c:228 gtksourceview/gtksourceencoding.c:271
 msgid "Western"
 msgstr "ตะวันตก"
 
-#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:267
 msgid "Central European"
 msgstr "ยุโรปกลาง"
 
-#: gtksourceview/gtksourceencoding.c:154
+#: gtksourceview/gtksourceencoding.c:158
 msgid "South European"
 msgstr "ยุโรปใต้"
 
-#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
-#: gtksourceview/gtksourceencoding.c:277
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Baltic"
 msgstr "บอลติก"
 
-#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
-#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
-#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:232
+#: gtksourceview/gtksourceencoding.c:245 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:269
 msgid "Cyrillic"
 msgstr "ซีริลลิก"
 
-#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
-#: gtksourceview/gtksourceencoding.c:275
+#: gtksourceview/gtksourceencoding.c:164 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Arabic"
 msgstr "อาหรับ"
 
-#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:273
 msgid "Greek"
 msgstr "กรีก"
 
-#: gtksourceview/gtksourceencoding.c:164
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Hebrew Visual"
 msgstr "ฮีบรูซ้ายไปขวา"
 
-#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
-#: gtksourceview/gtksourceencoding.c:271
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Turkish"
 msgstr "ตุรกี"
 
-#: gtksourceview/gtksourceencoding.c:168
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Nordic"
 msgstr "นอร์ดิก"
 
-#: gtksourceview/gtksourceencoding.c:172
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Celtic"
 msgstr "เซลติก"
 
-#: gtksourceview/gtksourceencoding.c:176
+#: gtksourceview/gtksourceencoding.c:180
 msgid "Romanian"
 msgstr "โรมาเนีย"
 
-#: gtksourceview/gtksourceencoding.c:194
+#: gtksourceview/gtksourceencoding.c:198
 msgid "Armenian"
 msgstr "อาร์เมเนีย"
 
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
-#: gtksourceview/gtksourceencoding.c:212
+#: gtksourceview/gtksourceencoding.c:200 gtksourceview/gtksourceencoding.c:202
+#: gtksourceview/gtksourceencoding.c:216
 msgid "Chinese Traditional"
 msgstr "จีนตัวเต็ม"
 
-#: gtksourceview/gtksourceencoding.c:200
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Cyrillic/Russian"
 msgstr "ซีริลลิก/รัสเซีย"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:252
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:209
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:241
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Japanese"
 msgstr "ญี่ปุ่น"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
-#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
+#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:243
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:262
 msgid "Korean"
 msgstr "เกาหลี"
 
-#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:219 gtksourceview/gtksourceencoding.c:221
+#: gtksourceview/gtksourceencoding.c:223
 msgid "Chinese Simplified"
 msgstr "จีนตัวย่อ"
 
-#: gtksourceview/gtksourceencoding.c:221
+#: gtksourceview/gtksourceencoding.c:225
 msgid "Georgian"
 msgstr "จอร์เจีย"
 
-#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
+#: gtksourceview/gtksourceencoding.c:236 gtksourceview/gtksourceencoding.c:277
 msgid "Hebrew"
 msgstr "ฮีบรู"
 
-#: gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Cyrillic/Ukrainian"
 msgstr "ซีริลลิก/ยูเครน"
 
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
-#: gtksourceview/gtksourceencoding.c:279
+#: gtksourceview/gtksourceencoding.c:258 gtksourceview/gtksourceencoding.c:264
+#: gtksourceview/gtksourceencoding.c:283
 msgid "Vietnamese"
 msgstr "เวียดนาม"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:260
 msgid "Thai"
 msgstr "ไทย"
 
-#: gtksourceview/gtksourceencoding.c:485
+#: gtksourceview/gtksourceencoding.c:494
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
@@ -626,53 +583,53 @@ msgstr "ไม่ทราบ"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:628
+#: gtksourceview/gtksourceencoding.c:638
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'TIS-620', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:502
+#: gtksourceview/gtksourcefileloader.c:515
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was a character encoding conversion error and it was needed to use a fallback character."
 msgstr "เกิดข้อผิดพลาดในการแปลงรหัสอักขระ และจำเป็นต้องใช้อักขระทดแทน"
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:622
 msgid "File too big."
 msgstr "ไฟล์ขนาดใหญ่เกินไป"
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:776
 msgid "Not a regular file."
 msgstr "ไม่ใช่ไฟล์ธรรมดา"
 
-#: gtksourceview/gtksourcefilesaver.c:962
+#: gtksourceview/gtksourcefilesaver.c:975
 msgid "The file is externally modified."
 msgstr "ไฟล์ถูกแก้ไขด้วยโปรแกรมอื่น"
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1427
 msgid "The buffer contains invalid characters."
 msgstr "บัฟเฟอร์มีอักขระไม่ถูกต้อง"
 
 #. *
-#. * GtkSourceLanguage:
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * Represents a syntax highlighted language.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
 #. *
-#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
-#. *
-#. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
-#. * [method@Buffer.set_language] to apply it to a [class@Buffer].
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: gtksourceview/gtksourcelanguage.c:52
+#: gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "อื่นๆ"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:946
+#: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "ไม่รู้จัก id “%s” ใน regex “%s”"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "ใน regex “%s”: ไม่รองรับการอ้างอิงกลับ"
@@ -682,119 +639,128 @@ msgid "using \\C is not supported in language definitions"
 msgstr "ไม่รองรับการใช้ \\C ในข้อกำหนดภาษา"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "Select a Style"
 msgstr "เลือกลักษณะ"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:189
 msgid "_Cancel"
 msgstr "_ยกเลิก"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:190
 msgid "_Select"
 msgstr "เ_ลือก"
-
-#: gtksourceview/gtksourceview.c:1929
-msgid "All _Upper Case"
-msgstr "ตัวพิมพ์ใ_หญ่หมด"
-
-#: gtksourceview/gtksourceview.c:1933
-msgid "All _Lower Case"
-msgstr "ตัวพิมพ์_เล็กหมด"
-
-#: gtksourceview/gtksourceview.c:1937
-msgid "_Invert Case"
-msgstr "_สลับรูปแบบตัวพิมพ์"
-
-#: gtksourceview/gtksourceview.c:1941
-msgid "_Title Case"
-msgstr "_ขึ้นต้นตัวพิมพ์ใหญ่"
-
-#: gtksourceview/gtksourceview.c:1945
-msgid "C_hange Case"
-msgstr "เ_ปลี่ยนรูปแบบตัวพิมพ์"
-
-#: gtksourceview/implregex.c:615
-msgid "hexadecimal digit or “}” expected"
-msgstr "ต้องการตัวเลขฐานสิบหกหรือ “}”"
-
-#: gtksourceview/implregex.c:631
-msgid "hexadecimal digit expected"
-msgstr "ต้องการตัวเลขฐานสิบหก"
-
-#: gtksourceview/implregex.c:671
-msgid "missing “<” in symbolic reference"
-msgstr "“<“ ขาดไปในส่วนการอ้างอิงเชิงสัญลักษณ์"
-
-#: gtksourceview/implregex.c:680
-msgid "unfinished symbolic reference"
-msgstr "การอ้างอิงเชิงสัญลักษณ์ยังไม่เสร็จสิ้น"
-
-#: gtksourceview/implregex.c:687
-msgid "zero-length symbolic reference"
-msgstr "การอ้างอิงเชิงสัญลักษณ์มีความยาวเป็นศูนย์"
-
-#: gtksourceview/implregex.c:698
-msgid "digit expected"
-msgstr "ต้องการตัวเลข"
-
-#: gtksourceview/implregex.c:716
-msgid "illegal symbolic reference"
-msgstr "การอ้างอิงเชิงสัญลักษณ์ผิดกฎ"
-
-#: gtksourceview/implregex.c:779
-msgid "stray final “\\”"
-msgstr "มีการใช้ “\\” แบบโดดๆ"
-
-#: gtksourceview/implregex.c:783
-msgid "unknown escape sequence"
-msgstr "ไม่รู้จักลำดับหลีก"
-
-#: gtksourceview/implregex.c:793
-#, c-format
-msgid "Error while parsing replacement text “%s” at char %lu: %s"
-msgstr "เกิดข้อผิดพลาดขณะแจงข้อความแทนที่ “%s” ที่อักขระตัวที่ %lu: %s"
-
-#: gtksourceview/vim/gtksourceviminsert.c:502
-msgid "-- INSERT --"
-msgstr "-- แทรก --"
-
-#: gtksourceview/vim/gtksourcevimreplace.c:125
-msgid "-- REPLACE --"
-msgstr "-- แทนที่ --"
-
-#: gtksourceview/vim/gtksourcevimvisual.c:300
-msgid "-- VISUAL --"
-msgstr "-- มองเห็นได้ --"
-
-#: gtksourceview/vim/gtksourcevimvisual.c:303
-msgid "-- VISUAL LINE --"
-msgstr "-- บรรทัดมองเห็นได้ --"
-
-#: gtksourceview/vim/gtksourcevimvisual.c:306
-msgid "-- VISUAL BLOCK --"
-msgstr "-- บล็อกมองเห็นได้ --"
-
-#: gtksourceview/gtksourcecompletion.ui:88
-#, fuzzy
-#| msgid "_Details..."
-msgid "_Details…"
-msgstr "_รายละเอียด..."
-
-#: gtksourceview/gtksourcecontextengine.c:6293
-#, c-format
-msgid "Missing main language definition (id = \"%s\".)"
-msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = \"%s\")"
 
 #. create redo menu_item.
 #: gtksourceview/gtksourceview.c:1810
 msgid "_Redo"
-msgstr ""
+msgstr "_ทำซ้ำ"
 
 #. create undo menu_item.
 #: gtksourceview/gtksourceview.c:1821
 msgid "_Undo"
-msgstr ""
+msgstr "เ_รียกคืน"
+
+#: gtksourceview/gtksourceview.c:1840
+msgid "All _Upper Case"
+msgstr "ตัวพิมพ์ใ_หญ่หมด"
+
+#: gtksourceview/gtksourceview.c:1850
+msgid "All _Lower Case"
+msgstr "ตัวพิมพ์_เล็กหมด"
+
+#: gtksourceview/gtksourceview.c:1860
+msgid "_Invert Case"
+msgstr "_สลับรูปแบบตัวพิมพ์"
+
+#: gtksourceview/gtksourceview.c:1870
+msgid "_Title Case"
+msgstr "_ขึ้นต้นตัวพิมพ์ใหญ่"
+
+#: gtksourceview/gtksourceview.c:1880
+msgid "C_hange Case"
+msgstr "เ_ปลี่ยนรูปแบบตัวพิมพ์"
+
+#~ msgid "Adwaita Dark"
+#~ msgstr "Adwaita แบบมืด"
+
+#~ msgid "An style scheme for Adwaita"
+#~ msgstr "ชุดรูปแบบสีสำหรับ Adwaita"
+
+#~ msgid "Adwaita"
+#~ msgstr "Adwaita"
+
+#~ msgid "Classic Dark"
+#~ msgstr "ดั้งเดิมแบบมืด"
+
+#~ msgid "Classic dark color scheme"
+#~ msgstr "ชุดสีแบบดั้งเดิมแบบมืด"
+
+#~ msgid "Cobalt Light"
+#~ msgstr "Cobalt แบบสว่าง"
+
+#~ msgid "Dark color scheme used in the Kate text editor"
+#~ msgstr "ชุดสีแบบมืดที่ใช้ในโปรแกรมแก้ไขข้อความ Kate"
+
+#~ msgid "Snippets"
+#~ msgstr "ส่วนโค้ด"
+
+#, c-format
+#~ msgid "%d of %u"
+#~ msgstr "%d จาก %u"
+
+#~ msgid "_Details"
+#~ msgstr "_รายละเอียด"
+
+#, c-format
+#~ msgid "Missing main language definition (id = “%s”)."
+#~ msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = “%s”)"
+
+#~ msgid "hexadecimal digit or “}” expected"
+#~ msgstr "ต้องการตัวเลขฐานสิบหกหรือ “}”"
+
+#~ msgid "hexadecimal digit expected"
+#~ msgstr "ต้องการตัวเลขฐานสิบหก"
+
+#~ msgid "missing “<” in symbolic reference"
+#~ msgstr "“<“ ขาดไปในส่วนการอ้างอิงเชิงสัญลักษณ์"
+
+#~ msgid "unfinished symbolic reference"
+#~ msgstr "การอ้างอิงเชิงสัญลักษณ์ยังไม่เสร็จสิ้น"
+
+#~ msgid "zero-length symbolic reference"
+#~ msgstr "การอ้างอิงเชิงสัญลักษณ์มีความยาวเป็นศูนย์"
+
+#~ msgid "digit expected"
+#~ msgstr "ต้องการตัวเลข"
+
+#~ msgid "illegal symbolic reference"
+#~ msgstr "การอ้างอิงเชิงสัญลักษณ์ผิดกฎ"
+
+#~ msgid "stray final “\\”"
+#~ msgstr "มีการใช้ “\\” แบบโดดๆ"
+
+#~ msgid "unknown escape sequence"
+#~ msgstr "ไม่รู้จักลำดับหลีก"
+
+#, c-format
+#~ msgid "Error while parsing replacement text “%s” at char %lu: %s"
+#~ msgstr "เกิดข้อผิดพลาดขณะแจงข้อความแทนที่ “%s” ที่อักขระตัวที่ %lu: %s"
+
+#~ msgid "-- INSERT --"
+#~ msgstr "-- แทรก --"
+
+#~ msgid "-- REPLACE --"
+#~ msgstr "-- แทนที่ --"
+
+#~ msgid "-- VISUAL --"
+#~ msgstr "-- มองเห็นได้ --"
+
+#~ msgid "-- VISUAL LINE --"
+#~ msgstr "-- บรรทัดมองเห็นได้ --"
+
+#~ msgid "-- VISUAL BLOCK --"
+#~ msgstr "-- บล็อกมองเห็นได้ --"
 
 #~ msgid "GtkSourceView"
 #~ msgstr "GtkSourceView"
@@ -831,9 +797,6 @@ msgstr ""
 
 #~ msgid "Trailing"
 #~ msgstr "ท้ายบรรทัด"
-
-#~ msgid "All"
-#~ msgstr "ทั้งหมด"
 
 #~ msgid "ActionScript"
 #~ msgstr "แอกชันสคริปต์"
@@ -2182,8 +2145,7 @@ msgstr ""
 #~ msgid "Show Headers"
 #~ msgstr "แสดงหัวเรื่อง"
 
-#~ msgid ""
-#~ "Show provider headers when proposals from multiple providers are available"
+#~ msgid "Show provider headers when proposals from multiple providers are available"
 #~ msgstr "แสดงหัวเรื่องของแหล่งที่มาเมื่อมีคำเสนอมากจากหลายแหล่ง"
 
 #~ msgid "Show Icons"
@@ -2216,12 +2178,6 @@ msgstr ""
 #~ msgid "Proposal scrolling page size"
 #~ msgstr "ขนาดของการเลื่อนหน้าคำเสนอ"
 
-#~ msgid "Provider"
-#~ msgstr "แหล่งที่มา"
-
-#~ msgid "Show detailed proposal information"
-#~ msgstr "แสดงข้อมูลของคำเสนอโดยละเอียด"
-
 #~ msgid "Completion"
 #~ msgstr "ตัวเติมเต็มคำ"
 
@@ -2239,9 +2195,6 @@ msgstr ""
 
 #~ msgid "The type of activation"
 #~ msgstr "ชนิดของการเรียกทำงาน"
-
-#~ msgid "Completion Info"
-#~ msgstr "ข้อมูลของการเติมเต็มคำ"
 
 #~ msgid "Label to be shown for this item"
 #~ msgstr "ป้ายชื่อที่จะแสดงสำหรับรายการนี้"
@@ -2366,9 +2319,7 @@ msgstr ""
 #~ msgid "Language specification directories"
 #~ msgstr "ไดเรกทอรีข้อกำหนดภาษา"
 
-#~ msgid ""
-#~ "List of directories where the language specification files (.lang) are "
-#~ "located"
+#~ msgid "List of directories where the language specification files (.lang) are located"
 #~ msgstr "รายชื่อไดเรกทอรีที่เก็บแฟ้มข้อกำหนดภาษา (.lang)"
 
 #~ msgid "Language ids"
@@ -2407,9 +2358,7 @@ msgstr ""
 #~ msgid "Wrap Mode"
 #~ msgstr "โหมดการตัดบรรทัด"
 
-#~ msgid ""
-#~ "Whether to wrap lines never, at word boundaries, or at character "
-#~ "boundaries."
+#~ msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
 #~ msgstr "กำหนดว่าจะไม่ตัดบรรทัด, ตัดบรรทัดระหว่างคำ หรือจะตัดบรรทัดระหว่างอักขระ"
 
 #~ msgid "Whether to print the document with highlighted syntax"
@@ -2461,8 +2410,7 @@ msgstr ""
 #~ msgstr "จำนวนหน้า"
 
 #~ msgid ""
-#~ "The number of pages in the document (-1 means the document has not been "
-#~ "completely paginated)."
+#~ "The number of pages in the document (-1 means the document has not been completely paginated)."
 #~ msgstr "จำนวนหน้าในเอกสาร (-1 หมายถึงเอกสารยังแบ่งหน้าไม่เสร็จ)"
 
 #~ msgid "Line background"
@@ -2604,11 +2552,9 @@ msgstr ""
 #~ msgstr "ใช้ home/end พิเศษ"
 
 #~ msgid ""
-#~ "HOME and END keys move to first/last non whitespace characters on line "
-#~ "before going to the start/end of the line"
-#~ msgstr ""
-#~ "ปุ่ม HOME และ END จะเคลื่อนไปที่อักขระแรก/สุดท้ายที่ไม่ใช่ช่องว่างของบรรทัด ก่อนที่จะไปที่ต้น/"
-#~ "ท้ายบรรทัด"
+#~ "HOME and END keys move to first/last non whitespace characters on line before going to the "
+#~ "start/end of the line"
+#~ msgstr "ปุ่ม HOME และ END จะเคลื่อนไปที่อักขระแรก/สุดท้ายที่ไม่ใช่ช่องว่างของบรรทัด ก่อนที่จะไปที่ต้น/ท้ายบรรทัด"
 
 #~ msgid "Highlight current line"
 #~ msgstr "เน้นบรรทัดปัจจุบัน"
