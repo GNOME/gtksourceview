@@ -395,9 +395,9 @@ gtk_source_file_get_compression_type (GtkSourceFile *file)
 /**
  * gtk_source_file_set_mount_operation_factory:
  * @file: a #GtkSourceFile.
- * @callback: (scope notified): a #GtkSourceMountOperationFactory to call when a
- *   #GMountOperation is needed.
- * @user_data: (closure): the data to pass to the @callback function.
+ * @callback: (scope notified) (closure user_data): a
+ *   #GtkSourceMountOperationFactory to call when a #GMountOperation is needed.
+ * @user_data: the data to pass to the @callback function.
  * @notify: (nullable): function to call on @user_data when the @callback is no
  *   longer needed, or %NULL.
  *

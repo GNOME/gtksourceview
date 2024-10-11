@@ -1066,9 +1066,10 @@ gtk_source_file_loader_get_input_stream (GtkSourceFileLoader *loader)
  * @io_priority: the I/O priority of the request. E.g. %G_PRIORITY_LOW,
  *   %G_PRIORITY_DEFAULT or %G_PRIORITY_HIGH.
  * @cancellable: (nullable): optional #GCancellable object, %NULL to ignore.
- * @progress_callback: (scope notified) (nullable): function to call back with
- *   progress information, or %NULL if progress information is not needed.
- * @progress_callback_data: (closure): user data to pass to @progress_callback.
+ * @progress_callback: (scope notified) (closure progress_callback_data) (nullable):
+ *   function to call back with progress information, or %NULL if progress
+ *   information is not needed.
+ * @progress_callback_data: user data to pass to @progress_callback.
  * @progress_callback_notify: (nullable): function to call on
  *   @progress_callback_data when the @progress_callback is no longer needed, or
  *   %NULL.
