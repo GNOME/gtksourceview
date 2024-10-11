@@ -61,7 +61,7 @@ reference:
                 vulkan-headers
                 vulkan-loader-devel
         - mkdir -p pfx/
-        - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Ddocumentation=true _build
+        - meson --prefix=${PWD}/pfx -Ddocumentation=true _build
                 -Dc_std=c11
                 -Dcpp_std=c++11
                 -Dwerror=true
@@ -74,7 +74,7 @@ reference:
                 -Dgtk:werror=false
                 -Dlibsass:werror=false
                 -Dsassc:werror=false
-                -Dlibadwaita:werror=false"
+                -Dlibadwaita:werror=false
         - ninja -C _build install
         - mkdir -p _reference/
         - mv pfx/share/doc/gtksourceview5/ _reference/
