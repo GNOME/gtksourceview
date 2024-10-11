@@ -6,7 +6,7 @@ stages:
     - deploy
 
 variables:
-    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
+    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:41"
 
 flatpak:
     variables:
