@@ -1821,6 +1821,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 
 	filename = _gtk_source_language_get_file_name (language);
 
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	/* TODO: as an optimization tell the parser to merge CDATA
 	 * as text nodes (XML_PARSE_NOCDATA), and to ignore blank
 	 * nodes (XML_PARSE_NOBLANKS), if it is possible with
@@ -1829,6 +1830,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	xmlLineNumbersDefault (1);
 	xmlSubstituteEntitiesDefault (1);
 	DEBUG (xmlPedanticParserDefault (1));
+        G_GNUC_END_IGNORE_DEPRECATIONS
 
 	defined_regexes = g_hash_table_new_full (g_str_hash, g_str_equal,
 						 g_free, g_free);
