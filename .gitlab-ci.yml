@@ -22,10 +22,59 @@ reference:
     stage: docs
     needs: []
     variables:
-        MESON_FLAGS: "-Dc_std=c11 -Dcpp_std=c++11 -Dwerror=true --buildtype=release -Dglib:tests=false -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dlibsass:werror=false -Dsassc:werror=false -Dlibadwaita:werror=false"
     script:
+        - sudo dnf install -y gtk4-devel
+                ccache
+                desktop-file-utils
+                expat-devel
+                gcc
+                gcc-c++
+                gettext
+                gi-docgen
+                gi-docgen-fonts
+                git
+                glib2-devel
+                gobject-introspection-devel
+                gtk4-devel
+                itstool
+                libadwaita-devel
+                libicu-devel
+                libjpeg-turbo-devel
+                libpng-devel
+                libxkbcommon-devel
+                libXrandr-devel
+                libXi-devel
+                libXcursor-devel
+                libXdamage-devel
+                libXinerama-devel
+                libdrm-devel
+                libglvnd-devel
+                glslc
+                mesa-vulkan-drivers
+                meson
+                ninja-build
+                redhat-rpm-config
+                shared-mime-info
+                vala
+                xorg-x11-server-Xvfb
+                vulkan-devel
+                vulkan-headers
+                vulkan-loader-devel
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Ddocumentation=true _build
+                -Dc_std=c11
+                -Dcpp_std=c++11
+                -Dwerror=true
+                -Dglib:tests=false
+                -Dgtk:media-gstreamer=disabled
+                -Dgtk:broadway-backend=false
+                -Dgtk:demos=false
+                -Dgtk:build-examples=false
+                -Dgtk:build-tests=false
+                -Dgtk:werror=false
+                -Dlibsass:werror=false
+                -Dsassc:werror=false
+                -Dlibadwaita:werror=false"
         - ninja -C _build install
         - mkdir -p _reference/
         - mv pfx/share/doc/gtksourceview5/ _reference/
