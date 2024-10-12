@@ -415,6 +415,10 @@ notify_search_path (GtkSourceStyleSchemeManager *mgr)
  * style scheme files.
  *
  * If @path is %NULL, the search path is reset to default.
+ *
+ * Since GtkSourceView 5.16 this function will allow you to provide
+ * paths in the form of "resource:///" URIs to embedded `GResource`s.
+ * They must contain the path of a directory within the `GResource`.
  */
 void
 gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager *manager,

@@ -1484,59 +1484,72 @@ GtkSourceStyleScheme *
 _gtk_source_style_scheme_new_from_file (const gchar *filename)
 {
 	GtkSourceStyleScheme *scheme;
-	gchar *text;
+	const char *text;
+	GFile *file;
 	gsize text_len;
 	xmlDoc *doc;
 	xmlNode *node;
 	GError *error = NULL;
+	GBytes *bytes = NULL;
 
 	g_return_val_if_fail (filename != NULL, NULL);
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK
 
-	if (!g_file_get_contents (filename, &text, &text_len, &error))
+	if (g_str_has_prefix (filename, "resource://"))
+	{
+		file = g_file_new_for_uri (filename);
+	}
+	else
+	{
+		file = g_file_new_for_path (filename);
+	}
+
+	bytes = g_file_load_bytes (file, NULL, NULL, &error);
+	if (error != NULL)
 	{
 		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not load style scheme file '%s': %s",
 			   filename_utf8, error->message);
 		g_free (filename_utf8);
 		g_clear_error (&error);
+		g_clear_object (&file);
 		return NULL;
 	}
 
-	doc = xmlParseMemory (text, text_len);
+	text = (const char *)g_bytes_get_data (bytes, &text_len);
 
+	doc = xmlParseMemory (text, text_len);
 	if (!doc)
 	{
 		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not parse scheme file '%s'", filename_utf8);
 		g_free (filename_utf8);
-		g_free (text);
+		g_bytes_unref (bytes);
+		g_clear_object (&file);
 		return NULL;
 	}
 
 	node = xmlDocGetRootElement (doc);
-
 	if (node == NULL)
 	{
 		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not load scheme file '%s': empty document", filename_utf8);
 		g_free (filename_utf8);
 		xmlFreeDoc (doc);
-		g_free (text);
+		g_bytes_unref (bytes);
+		g_clear_object (&file);
 		return NULL;
 	}
 
 	scheme = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME, NULL);
 	scheme->filename = g_strdup (filename);
-
 	parse_style_scheme_element (scheme, node, &error);
-
 	if (error != NULL)
 	{
 		gchar *filename_utf8 = g_filename_display_name (filename);
 		g_warning ("could not load style scheme file '%s': %s",
-			   filename_utf8, error->message);
+		           filename_utf8, error->message);
 		g_free (filename_utf8);
 		g_clear_error (&error);
 		g_clear_object (&scheme);
@@ -1548,10 +1561,10 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 	}
 
 	xmlFreeDoc (doc);
-	g_free (text);
+	g_bytes_unref (bytes);
+	g_clear_object (&file);
 
 	GTK_SOURCE_PROFILER_END_MARK ("StyleScheme.new", filename);
-
 	return scheme;
 }
 
