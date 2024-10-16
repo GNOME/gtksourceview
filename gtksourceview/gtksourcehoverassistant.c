@@ -75,6 +75,7 @@ gtk_source_hover_assistant_should_dismiss (GtkSourceHoverAssistant *self)
 		GdkRectangle popup_area, root_area;
 		double popup_x, popup_y;
 		double transform_x, transform_y;
+		GtkWidget *view;
 		GtkRoot *root;
 
 		popup_x = gdk_popup_get_position_x (GDK_POPUP (surface));
@@ -96,6 +97,34 @@ gtk_source_hover_assistant_should_dismiss (GtkSourceHoverAssistant *self)
 		    gdk_rectangle_contains_point (&popup_area, self->root_x, self->root_y))
 		{
 			return FALSE;
+		}
+
+		/* If our cursor is still within the hovered_at area we
+		 * do not want to dismiss yet either.
+		 */
+		if ((view = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW)))
+		{
+			graphene_point_t point;
+			int buffer_x;
+			int buffer_y;
+
+			if (gtk_widget_compute_point (GTK_WIDGET (root),
+			                              view,
+			                              &GRAPHENE_POINT_INIT (self->root_x, self->root_y),
+			                              &point))
+			{
+				gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
+				                                       GTK_TEXT_WINDOW_WIDGET,
+				                                       point.x,
+				                                       point.y,
+				                                       &buffer_x,
+				                                       &buffer_y);
+
+				if (gdk_rectangle_contains_point (&self->hovered_at, buffer_x, buffer_y))
+				{
+					return FALSE;
+				}
+			}
 		}
 	}
 
