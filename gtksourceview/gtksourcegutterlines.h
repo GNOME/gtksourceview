@@ -85,7 +85,14 @@ void           gtk_source_gutter_lines_get_line_yrange  (GtkSourceGutterLines   
                                                          guint                                 line,
                                                          GtkSourceGutterRendererAlignmentMode  mode,
                                                          gint                                 *y,
-                                                         gint                                 *height);
+                                                         gint                                 *height)
+  G_GNUC_DEPRECATED_FOR (gtk_source_gutter_lines_get_line_extent);
+GTK_SOURCE_AVAILABLE_IN_5_16
+void           gtk_source_gutter_lines_get_line_extent  (GtkSourceGutterLines                 *lines,
+                                                         guint                                 line,
+                                                         GtkSourceGutterRendererAlignmentMode  mode,
+                                                         double                               *y,
+                                                         double                               *height);
 GTK_SOURCE_AVAILABLE_IN_5_6
 gboolean       gtk_source_gutter_lines_has_any_class    (GtkSourceGutterLines                 *lines,
                                                          guint                                 line);
