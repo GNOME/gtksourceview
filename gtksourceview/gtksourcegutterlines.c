@@ -40,13 +40,13 @@
 
 struct _GtkSourceGutterLines
 {
-	GObject       parent_instance;
-	GtkTextView  *view;
-	GArray       *lines;
-	GdkRectangle  visible_rect;
-	guint         first;
-	guint         last;
-	guint         cursor_line;
+	GObject           parent_instance;
+	GtkTextView      *view;
+	GArray           *lines;
+	double            visible_offset;
+	guint             first;
+	guint             last;
+	guint             cursor_line;
 };
 
 typedef struct
@@ -156,7 +156,8 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 	                                  sizeof (LineInfo),
 	                                  lines->last - lines->first + 1);
 	g_array_set_clear_func (lines->lines, clear_line_info);
-	gtk_text_view_get_visible_rect (text_view, &lines->visible_rect);
+
+	gtk_text_view_get_visible_offset (text_view, NULL, &lines->visible_offset);
 
 	/* No need to calculate special wrapping if wrap mode is none */
 	if (gtk_text_view_get_wrap_mode (text_view) == GTK_WRAP_NONE)
@@ -593,7 +594,7 @@ gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
 }
 
 /**
- * gtk_source_gutter_lines_get_line_yrange:
+ * gtk_source_gutter_lines_get_line_extent:
  * @lines: a #GtkSourceGutterLines
  * @line: a line number starting from zero
  * @mode: a #GtkSourceGutterRendererAlignmentMode
@@ -605,11 +606,11 @@ gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
  * The value for @y is relative to the renderers widget coordinates.
  */
 void
-gtk_source_gutter_lines_get_line_yrange (GtkSourceGutterLines                 *lines,
+gtk_source_gutter_lines_get_line_extent (GtkSourceGutterLines                 *lines,
                                          guint                                 line,
                                          GtkSourceGutterRendererAlignmentMode  mode,
-                                         gint                                 *y,
-                                         gint                                 *height)
+                                         double                               *y,
+                                         double                               *height)
 {
 	LineInfo *info;
 
@@ -639,7 +640,41 @@ gtk_source_gutter_lines_get_line_yrange (GtkSourceGutterLines                 *l
 		g_return_if_reached ();
 	}
 
-	*y -= lines->visible_rect.y;
+	*y -= lines->visible_offset;
+}
+
+/**
+ * gtk_source_gutter_lines_get_line_yrange:
+ * @lines: a #GtkSourceGutterLines
+ * @line: a line number starting from zero
+ * @mode: a #GtkSourceGutterRendererAlignmentMode
+ * @y: (out): a location for the Y position in widget coordinates
+ * @height: (out): the line height based on @mode
+ *
+ * Gets the Y range for a line based on @mode.
+ *
+ * The value for @y is relative to the renderers widget coordinates.
+ */
+void
+gtk_source_gutter_lines_get_line_yrange (GtkSourceGutterLines                 *lines,
+                                         guint                                 line,
+                                         GtkSourceGutterRendererAlignmentMode  mode,
+                                         gint                                 *y,
+                                         gint                                 *height)
+{
+	double d_y, d_height;
+
+	gtk_source_gutter_lines_get_line_extent (lines, line, mode, &d_y, &d_height);
+
+	if (y != NULL)
+	{
+		*y = floor (d_y);
+	}
+
+	if (height != NULL)
+	{
+		*height = ceil (d_height);
+	}
 }
 
 guint

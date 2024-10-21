@@ -181,8 +181,8 @@ gtk_source_gutter_renderer_snapshot (GtkWidget   *widget,
 	guint first;
 	guint last;
 	guint line;
-	gint y;
-	gint h;
+	double y;
+	double h;
 
 	if (lines == NULL || klass->snapshot_line == NULL)
 	{
@@ -196,7 +196,7 @@ gtk_source_gutter_renderer_snapshot (GtkWidget   *widget,
 	{
 		for (line = first; line <= last; line++)
 		{
-			gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
+			gtk_source_gutter_lines_get_line_extent (lines, line, mode, &y, &h);
 			klass->query_data (renderer, lines, line);
 			klass->snapshot_line (renderer, snapshot, lines, line);
 		}
@@ -205,7 +205,7 @@ gtk_source_gutter_renderer_snapshot (GtkWidget   *widget,
 	{
 		for (line = first; line <= last; line++)
 		{
-			gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
+			gtk_source_gutter_lines_get_line_extent (lines, line, mode, &y, &h);
 			klass->snapshot_line (renderer, snapshot, lines, line);
 		}
 	}
@@ -714,7 +714,7 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
 static void
 get_line_rect (GtkSourceGutterRenderer *renderer,
                guint                    line,
-               GdkRectangle            *rect)
+               graphene_rect_t         *rect)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 	GtkSourceGutterLines *lines = NULL;
@@ -726,29 +726,29 @@ get_line_rect (GtkSourceGutterRenderer *renderer,
 
 	if (lines != NULL)
 	{
-		gint y;
-		gint height;
+		double y;
+		double height;
 
-		gtk_source_gutter_lines_get_line_yrange (lines,
+		gtk_source_gutter_lines_get_line_extent (lines,
 		                                         line,
 		                                         priv->alignment_mode,
 		                                         &y,
 		                                         &height);
 
-		rect->x = priv->xpad;
-		rect->y = y + priv->ypad;
-		rect->width = gtk_widget_get_width (GTK_WIDGET (renderer));
-		rect->height = height;
+		rect->origin.x = priv->xpad;
+		rect->origin.y = y + priv->ypad;
+		rect->size.width = gtk_widget_get_width (GTK_WIDGET (renderer));
+		rect->size.height = height;
 
-		rect->width -= 2 * priv->xpad;
-		rect->height -= 2 * priv->ypad;
+		rect->size.width -= 2 * priv->xpad;
+		rect->size.height -= 2 * priv->ypad;
 	}
 	else
 	{
-		rect->x = 0;
-		rect->y = 0;
-		rect->width = 0;
-		rect->height = 0;
+		rect->origin.x = 0;
+		rect->origin.y = 0;
+		rect->size.width = 0;
+		rect->size.height = 0;
 	}
 }
 
@@ -779,14 +779,14 @@ gtk_source_gutter_renderer_align_cell (GtkSourceGutterRenderer *renderer,
                                        gfloat                  *y)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-	GdkRectangle rect;
+	graphene_rect_t rect;
 
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	get_line_rect (renderer, line, &rect);
 
-	*x = rect.x + MAX (0, (rect.width - width)) * priv->xalign;
-	*y = rect.y + MAX (0, (rect.height - height)) * priv->yalign;
+	*x = rect.origin.x + MAX (0, (rect.size.width - width)) * priv->xalign;
+	*y = rect.origin.y + MAX (0, (rect.size.height - height)) * priv->yalign;
 }
 
 /**
