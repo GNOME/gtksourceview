@@ -842,10 +842,10 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 		    gtk_window_is_active (GTK_WINDOW (root)))
 		{
 			int width = gtk_widget_get_width (widget);
-			int height;
-			int y;
+			double height;
+			double y;
 
-			gtk_source_gutter_lines_get_line_yrange (gutter->lines,
+			gtk_source_gutter_lines_get_line_extent (gutter->lines,
 			                                         cursor_line,
 			                                         GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
 			                                         &y,
