@@ -331,42 +331,42 @@ mark_set_cb (GtkTextBuffer *buffer,
 
 static void
 highlight_toggled_cb (TestSearch      *search,
-		      GtkToggleButton *button)
+		      GtkCheckButton *button)
 {
 	gtk_source_search_context_set_highlight (search->priv->search_context,
-						 gtk_toggle_button_get_active (button));
+						 gtk_check_button_get_active (button));
 }
 
 static void
 match_case_toggled_cb (TestSearch      *search,
-		       GtkToggleButton *button)
+		       GtkCheckButton *button)
 {
 	gtk_source_search_settings_set_case_sensitive (search->priv->search_settings,
-						       gtk_toggle_button_get_active (button));
+						       gtk_check_button_get_active (button));
 }
 
 static void
 at_word_boundaries_toggled_cb (TestSearch      *search,
-			       GtkToggleButton *button)
+			       GtkCheckButton *button)
 {
 	gtk_source_search_settings_set_at_word_boundaries (search->priv->search_settings,
-							   gtk_toggle_button_get_active (button));
+							   gtk_check_button_get_active (button));
 }
 
 static void
 wrap_around_toggled_cb (TestSearch      *search,
-			GtkToggleButton *button)
+			GtkCheckButton *button)
 {
 	gtk_source_search_settings_set_wrap_around (search->priv->search_settings,
-						    gtk_toggle_button_get_active (button));
+						    gtk_check_button_get_active (button));
 }
 
 static void
 regex_toggled_cb (TestSearch      *search,
-		  GtkToggleButton *button)
+		  GtkCheckButton *button)
 {
 	gtk_source_search_settings_set_regex_enabled (search->priv->search_settings,
-						      gtk_toggle_button_get_active (button));
+						      gtk_check_button_get_active (button));
 }
 
 static void
