@@ -177,7 +177,7 @@ gtk_source_style_scheme_manager_init (GtkSourceStyleSchemeManager *mgr)
  *
  * Creates a new style manager.
  *
- * If you do not need more than one style manager 
+ * If you do not need more than one style manager
  * then use [func@StyleSchemeManager.get_default] instead.
  *
  * Returns: a new #GtkSourceStyleSchemeManager.
@@ -541,8 +541,8 @@ gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *ma
  * @manager: a #GtkSourceStyleSchemeManager.
  *
  * Mark any currently cached information about the available style schems
- * as invalid. 
- * 
+ * as invalid.
+ *
  * All the available style schemes will be reloaded next time the @manager is accessed.
  */
 void
