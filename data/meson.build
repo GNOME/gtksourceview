@@ -1,33 +1,8 @@
-install_subdir('language-specs',
-    install_dir: pkgdatadir,
-  exclude_files: [ 'Makefile.am',
-                   'check-language.sh',
-                   'lang_v1_to_v2.xslt',
-                   'language-specs.its',
-                   'language-specs.pot',
-                   'testv1.lang',
-                   'ue2gsv.pl',
-                   'update-pot.sh' ]
-)
-
-install_subdir('styles',
-    install_dir: pkgdatadir,
-  exclude_files: [ 'Makefile.am',
-                   'check-style.sh',
-                   'styles.its',
-                   'styles.pot',
-                   'testdark.xml',
-                   'update-pot.sh' ]
-)
+# styles/ language-specs/ and snippets/ are included as gresources
 
 install_subdir('fonts',
     install_dir: pkgdatadir,
   exclude_files: [ 'BuilderBlocks.ttx' ]
-)
-
-install_subdir('snippets',
-    install_dir: pkgdatadir,
-  exclude_files: [],
 )
 
 subdir('icons')
