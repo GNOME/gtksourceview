@@ -51,6 +51,7 @@ main (int   argc,
 	search_path[1] = 0;
 
 	g_test_init (&argc, &argv, NULL);
+	gtk_init ();
 	gtk_source_init ();
 
 	skipped = g_hash_table_new (g_str_hash, g_str_equal);
