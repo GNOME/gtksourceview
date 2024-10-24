@@ -466,9 +466,9 @@ gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager 
 
 	len = g_strv_length (manager->search_path);
 
-	manager->search_path = g_renew (gchar *,
-					      manager->search_path,
-					      len + 2); /* old path + new entry + NULL */
+	manager->search_path = g_renew (char *,
+	                                manager->search_path,
+	                                len + 2); /* old path + new entry + NULL */
 
 	manager->search_path[len] = g_strdup (path);
 	manager->search_path[len + 1] = NULL;
