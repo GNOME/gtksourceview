@@ -260,16 +260,6 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 	                                         basename,
 	                                         NULL));
 
-	/* For directories that support resource:// include that */
-	if (g_str_equal (basename, "styles") ||
-	    g_str_equal (basename, "language-specs") ||
-	    g_str_equal (basename, "snippets"))
-	{
-		g_ptr_array_add (dirs,
-		                 g_strconcat ("resource:///org/gnome/gtksourceview/", basename, "/",
-		                              NULL));
-	}
-
 	/* System dirs */
 	for (system_dirs = g_get_system_data_dirs ();
 	     system_dirs != NULL && *system_dirs != NULL;
@@ -280,6 +270,16 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 		                                   GSV_DATA_SUBDIR,
 		                                   basename,
 		                                   NULL));
+	}
+
+	/* For directories that support resource:// include that */
+	if (g_str_equal (basename, "styles") ||
+	    g_str_equal (basename, "language-specs") ||
+	    g_str_equal (basename, "snippets"))
+	{
+		g_ptr_array_add (dirs,
+		                 g_strconcat ("resource:///org/gnome/gtksourceview/", basename, "/",
+		                              NULL));
 	}
 
 	g_ptr_array_add (dirs, NULL);
