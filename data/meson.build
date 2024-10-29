@@ -5,4 +5,7 @@ install_subdir('fonts',
   exclude_files: [ 'BuilderBlocks.ttx' ]
 )
 
+subdir('language-specs')
 subdir('icons')
+subdir('snippets')
+subdir('styles')
