@@ -231,7 +231,7 @@ get_scheduler (void)
 
 /**
  * gtk_source_scheduler_add:
- * @callback: (scope async): the callback to execute
+ * @callback: (scope notified) (closure user_data): the callback to execute
  * @user_data: user data for @callback
  *
  * Simplified version of [func@scheduler_add_full].
@@ -246,8 +246,8 @@ gtk_source_scheduler_add (GtkSourceSchedulerCallback callback,
 }
 
 /**
- * gtk_source_scheduler_add_full:
- * @callback: (scope async): the callback to execute
+ * gtk_source_scheduler_add_full: (rename-to gtk_source_scheduler_add)
+ * @callback: (scope notified) (closure user_data) (destroy notify): the callback to execute
  * @user_data: user data for @callback
  * @notify: closure notify for @user_data
  *
