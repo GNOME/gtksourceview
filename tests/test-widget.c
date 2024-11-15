@@ -253,6 +253,8 @@ load_cb (GtkSourceFileLoader *loader,
 		g_free (path);
 	}
 
+	gtk_source_view_set_mark_preview_text (self->view, NULL, "This is the Preview Text");
+
 end:
 	g_object_unref (loader);
 }

@@ -214,5 +214,13 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_push_snippet                      (GtkSourceView                  *view,
                                                                                    GtkSourceSnippet               *snippet,
                                                                                    GtkTextIter                    *location);
+GTK_SOURCE_AVAILABLE_IN_5_16
+void                            gtk_source_view_set_mark_preview_markup           (GtkSourceView                  *view,
+                                                                                   GtkTextMark                    *mark,
+                                                                                   const char                     *preview_markup);
+GTK_SOURCE_AVAILABLE_IN_5_16
+void                            gtk_source_view_set_mark_preview_text             (GtkSourceView                  *view,
+                                                                                   GtkTextMark                    *mark,
+                                                                                   const char                     *preview_text);
 
 G_END_DECLS

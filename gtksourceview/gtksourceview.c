@@ -170,6 +170,7 @@ enum
 };
 
 static GParamSpec *properties[N_PROPS];
+static GQuark preview_quark;
 
 typedef struct
 {
@@ -1252,6 +1253,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	                                     "change-number",
 	                                     "(i)",
 	                                     -1);
+
+	preview_quark = g_quark_from_static_string ("GTK_SOURCE_VIEW_MARK_PREVIEW");
 }
 
 static GObject *
@@ -5813,5 +5816,138 @@ _gtk_source_view_hide_completion (GtkSourceView *view)
 	if (priv->completion != NULL)
 	{
 		gtk_source_completion_hide (priv->completion);
+	}
+}
+
+static void
+gtk_source_view_release_preview (gpointer user_data)
+{
+	GtkWidget *preview = user_data;
+	GtkWidget *parent;
+
+	g_assert (GTK_IS_WIDGET (preview));
+
+	parent = gtk_widget_get_ancestor (preview, GTK_TYPE_TEXT_VIEW);
+
+	if (parent != NULL)
+	{
+		gtk_text_view_remove (GTK_TEXT_VIEW (parent), preview);
+	}
+
+	g_object_unref (preview);
+}
+
+static GtkLabel *
+get_preview_widget (GtkSourceView *view,
+		    GtkTextMark   *mark,
+		    gboolean       create)
+{
+	GtkLabel *widget;
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_TEXT_MARK (mark));
+
+	widget = g_object_get_qdata (G_OBJECT (mark), preview_quark);
+
+	if (widget == NULL && create)
+	{
+		static const char *classes[] = { "mark-preview", NULL };
+		GtkTextChildAnchor *anchor;
+		GtkTextBuffer *buffer;
+		GtkTextIter iter;
+
+		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+		anchor = gtk_text_child_anchor_new ();
+		widget = g_object_new (GTK_TYPE_LABEL,
+		                       "css-classes", classes,
+		                       NULL);
+
+		gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+
+		g_object_set_qdata_full (G_OBJECT (mark),
+		                         preview_quark,
+		                         g_object_ref (widget),
+		                         gtk_source_view_release_preview);
+		gtk_text_buffer_insert_child_anchor (buffer, &iter, anchor);
+		gtk_text_view_add_child_at_anchor (GTK_TEXT_VIEW (view),
+		                                   GTK_WIDGET (widget),
+		                                   anchor);
+		g_object_unref (anchor);
+	}
+
+	return widget;
+}
+
+void
+gtk_source_view_set_mark_preview_markup (GtkSourceView *view,
+                                         GtkTextMark   *mark,
+                                         const char    *markup)
+{
+	GtkTextBuffer *buffer;
+	GtkLabel *preview;
+	gboolean create;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (!mark || GTK_IS_TEXT_MARK (mark));
+
+	create = markup && markup[0];
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (mark == NULL)
+	{
+		mark = gtk_text_buffer_get_insert (buffer);
+	}
+
+	g_return_if_fail (buffer == gtk_text_mark_get_buffer (mark));
+
+	preview = get_preview_widget (view, mark, create);
+
+	if (!create)
+	{
+		if (preview != NULL)
+		{
+			g_object_set_qdata (G_OBJECT (mark), preview_quark, NULL);
+		}
+	}
+	else
+	{
+		gtk_label_set_markup (preview, markup);
+	}
+}
+
+void
+gtk_source_view_set_mark_preview_text (GtkSourceView *view,
+                                       GtkTextMark   *mark,
+                                       const char    *text)
+{
+	GtkTextBuffer *buffer;
+	GtkLabel *preview;
+	gboolean create;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (!mark || GTK_IS_TEXT_MARK (mark));
+
+	create = text && text[0];
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (mark == NULL)
+	{
+		mark = gtk_text_buffer_get_insert (buffer);
+	}
+
+	g_return_if_fail (buffer == gtk_text_mark_get_buffer (mark));
+
+	preview = get_preview_widget (view, mark, create);
+
+	if (!create)
+	{
+		if (preview != NULL)
+		{
+			g_object_set_qdata (G_OBJECT (mark), preview_quark, NULL);
+		}
+	}
+	else
+	{
+		gtk_label_set_text (preview, text);
 	}
 }

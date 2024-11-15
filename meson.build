@@ -69,7 +69,7 @@ build_documentation = get_option('documentation')
 cc = meson.get_compiler('c')
 
 glib_req_version = '2.72'
-gtk_req_version = '4.6'
+gtk_req_version = '4.12'
 
 libm_dep = cc.find_library('m', required: false)
 
