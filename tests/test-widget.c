@@ -345,7 +345,7 @@ wrap_lines_toggled_cb (TestWidget     *self,
 {
 	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (self->view),
-				     enabled ? GTK_WRAP_WORD : GTK_WRAP_NONE);
+				     enabled ? GTK_WRAP_WORD_CHAR : GTK_WRAP_NONE);
 }
 
 static void
