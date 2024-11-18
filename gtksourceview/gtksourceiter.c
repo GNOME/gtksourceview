@@ -56,16 +56,11 @@ _gtk_source_iter_forward_full_word_end (GtkTextIter *iter)
 	GtkTextIter pos;
 	gboolean non_blank_found = FALSE;
 
-	/* It would be better to use gtk_text_iter_forward_visible_char(), but
-	 * it doesn't exist. So move by cursor position instead, it should be
-	 * equivalent here.
-	 */
-
 	pos = *iter;
 
 	while (g_unichar_isspace (gtk_text_iter_get_char (&pos)))
 	{
-		if (!gtk_text_iter_forward_visible_cursor_position (&pos))
+		if (!gtk_text_iter_forward_visible_char (&pos))
 		{
 			break;
 		}
@@ -76,7 +71,7 @@ _gtk_source_iter_forward_full_word_end (GtkTextIter *iter)
 	{
 		non_blank_found = TRUE;
 
-		if (!gtk_text_iter_forward_visible_cursor_position (&pos))
+		if (!gtk_text_iter_forward_visible_char (&pos))
 		{
 			break;
 		}
@@ -102,7 +97,7 @@ _gtk_source_iter_backward_full_word_start (GtkTextIter *iter)
 	{
 		prev = pos;
 
-		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		if (!gtk_text_iter_backward_visible_char (&prev))
 		{
 			break;
 		}
@@ -119,7 +114,7 @@ _gtk_source_iter_backward_full_word_start (GtkTextIter *iter)
 	{
 		prev = pos;
 
-		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		if (!gtk_text_iter_backward_visible_char (&prev))
 		{
 			break;
 		}
@@ -149,7 +144,7 @@ _gtk_source_iter_starts_full_word (const GtkTextIter *iter)
 		return FALSE;
 	}
 
-	if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+	if (!gtk_text_iter_backward_visible_char (&prev))
 	{
 		return !g_unichar_isspace (gtk_text_iter_get_char (iter));
 	}
@@ -163,7 +158,7 @@ _gtk_source_iter_ends_full_word (const GtkTextIter *iter)
 {
 	GtkTextIter prev = *iter;
 
-	if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+	if (!gtk_text_iter_backward_visible_char (&prev))
 	{
 		return FALSE;
 	}
@@ -262,7 +257,7 @@ _gtk_source_iter_backward_extra_natural_word_start (GtkTextIter *iter)
 	{
 		GtkTextIter prev = *iter;
 
-		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		if (!gtk_text_iter_backward_visible_char (&prev))
 		{
 			break;
 		}
@@ -291,7 +286,7 @@ backward_cursor_position (GtkTextIter *iter,
 {
 	if (visible)
 	{
-		return gtk_text_iter_backward_visible_cursor_position (iter);
+		return gtk_text_iter_backward_visible_char (iter);
 	}
 
 	return gtk_text_iter_backward_cursor_position (iter);
