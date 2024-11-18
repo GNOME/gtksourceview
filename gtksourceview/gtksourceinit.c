@@ -167,6 +167,9 @@ load_builder_blocks (gpointer data)
  *
  * This function can be called several times, but is meant to be called at the
  * beginning of main(), before any other GtkSourceView function call.
+ *
+ * The counterpart to this function is [func@finalize] which can be convenient
+ * when using memory debugging tools.
  */
 void
 gtk_source_init (void)
