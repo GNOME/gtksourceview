@@ -587,6 +587,30 @@ _gtk_source_iter_inside_word (const GtkTextIter *iter)
 {
 	GtkTextIter prev_word_start;
 	GtkTextIter word_end;
+	gunichar ch;
+
+	/* Short-circuit by looking at our current character
+	 * and the previous character. This can save considerable
+	 * time on complex layouts such as JSON formatted latin
+	 * form text.
+	 */
+	ch = gtk_text_iter_get_char (iter);
+	if (g_unichar_isalnum (ch) || ch == '_')
+	{
+		GtkTextIter prev = *iter;
+
+		if (!gtk_text_iter_backward_char (&prev))
+		{
+			return TRUE;
+		}
+
+		ch = gtk_text_iter_get_char (iter);
+
+		if (g_unichar_isalnum (ch) || ch == '_')
+		{
+			return TRUE;
+		}
+	}
 
 	if (_gtk_source_iter_starts_word (iter))
 	{
