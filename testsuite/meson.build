@@ -3,6 +3,7 @@ test_env = [
   'G_TEST_BUILDDIR=@0@'.format(meson.current_build_dir()),
   'G_DEBUG=gc-friendly',
   'GSETTINGS_BACKEND=memory',
+  'GDK_DEBUG=no-portals',
   'MALLOC_CHECK_=2',
   'NO_AT_BRIDGE=1',
 ]
