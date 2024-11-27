@@ -2723,6 +2723,35 @@ compare_line_reversed (gconstpointer aptr,
 	return g_strcmp0 (b->key, a->key);
 }
 
+typedef char *(*SortKeyFunc) (const char *str,
+                              gssize      column);
+
+static char *
+sort_collate_key (const char *str,
+                  gssize      column)
+{
+	while (column > 0 && *str)
+	{
+		str = g_utf8_next_char (str);
+		column--;
+	}
+
+	return g_utf8_collate_key (str, -1);
+}
+
+static char *
+sort_raw_key (const char *str,
+              gssize      column)
+{
+	while (column > 0 && *str)
+	{
+		str = g_utf8_next_char (str);
+		column--;
+	}
+
+	return g_strdup (str);
+}
+
 /**
  * gtk_source_buffer_sort_lines:
  * @buffer: a #GtkSourceBuffer.
@@ -2740,13 +2769,15 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
                               GtkSourceSortFlags  flags,
                               gint                column)
 {
+	SortKeyFunc key_func = NULL;
 	GtkTextBuffer *text_buffer;
+	GHashTable *dedup = NULL;
 	gint start_line;
 	gint end_line;
 	gint num_lines;
 	SortLine *lines;
-	gchar *last_line = NULL;
 	gint i;
+	gint j;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
@@ -2782,50 +2813,43 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 		return;
 	}
 
+	dedup = g_hash_table_new (g_str_hash, g_str_equal);
+
+	if ((flags & GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE) != 0)
+	{
+		key_func = sort_raw_key;
+	}
+	else
+	{
+		key_func = sort_collate_key;
+	}
+
 	num_lines = end_line - start_line + 1;
 	lines = g_new0 (SortLine, num_lines);
 
-	for (i = 0; i < num_lines; i++)
+	for (i = 0, j = 0; i < num_lines; i++)
 	{
-		gchar *line;
-		gboolean free_line = FALSE;
-		glong length;
+		lines[j].line = get_line_slice (text_buffer, start_line + i);
+		lines[j].key = key_func (lines[j].line, column);
 
-		lines[i].line = get_line_slice (text_buffer, start_line + i);
+		if ((flags & GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES) != 0)
+		{
+			if (g_hash_table_contains (dedup, lines[j].line))
+			{
+				g_free (lines[j].line);
+				g_free (lines[j].key);
+				continue;
+			}
 
-		if ((flags & GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE) != 0)
-		{
-			line = lines[i].line;
-		}
-		else
-		{
-			line = g_utf8_casefold (lines[i].line, -1);
-			free_line = TRUE;
-		}
-
-		length = g_utf8_strlen (line, -1);
-
-		if (length < column)
-		{
-			lines[i].key = NULL;
-		}
-		else if (column > 0)
-		{
-			gchar *substring;
-
-			substring = g_utf8_offset_to_pointer (line, column);
-			lines[i].key = g_utf8_collate_key (substring, -1);
-		}
-		else
-		{
-			lines[i].key = g_utf8_collate_key (line, -1);
+			g_hash_table_add (dedup, lines[j].line);
 		}
 
-		if (free_line)
-		{
-			g_free (line);
-		}
+		j++;
 	}
+
+	num_lines = j;
+
+	g_clear_pointer (&dedup, g_hash_table_unref);
 
 	if ((flags & GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER) != 0)
 	{
@@ -2843,16 +2867,8 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 
 	for (i = 0; i < num_lines; i++)
 	{
-		if ((flags & GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES) != 0 &&
-		    g_strcmp0 (last_line, lines[i].line) == 0)
-		{
-			continue;
-		}
-
 		gtk_text_buffer_insert (text_buffer, start, lines[i].line, -1);
 		gtk_text_buffer_insert (text_buffer, start, "\n", -1);
-
-		last_line = lines[i].line;
 	}
 
 	gtk_text_buffer_end_user_action (text_buffer);
