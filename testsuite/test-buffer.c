@@ -253,6 +253,11 @@ do_test_sort_lines (GtkSourceBuffer    *buffer,
 	GtkTextIter start;
 	GtkTextIter end;
 	gchar *changed;
+	char *escaped;
+
+	escaped = g_strescape (text, NULL);
+	g_test_message ("Test case '%s' with flags 0x%x", escaped, flags);
+	g_free (escaped);
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
 
@@ -285,12 +290,12 @@ test_sort_lines (void)
 	do_test_sort_lines (buffer, "ccc\nbbb\naaa\n", "aaa\nbbb\nccc\n", 0, 9, 0, 0);
 	do_test_sort_lines (buffer, "aaa\nbbb\n", "bbb\naaa\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER, 0);
 	do_test_sort_lines (buffer, "aaa\nbbb\naaa\n", "aaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES, 0);
-#if 0
-	/* XXX: This appears to be locale specific and broke with GTK 4 */
 	do_test_sort_lines (buffer, "bbb\naaa\nCCC\n", "CCC\naaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE, 0);
-#endif
+	do_test_sort_lines (buffer, "ccc\nCCC\n", "CCC\nccc\n", 0, -1, GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE, 0);
+	do_test_sort_lines (buffer, "É\nÉ\nÉ\nÉ\n", "É\nÉ\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES, 0);
 	do_test_sort_lines (buffer, "aaabbb\nbbbaaa\n", "bbbaaa\naaabbb\n", 0, -1, 0, 3);
 	do_test_sort_lines (buffer, "abcdefghijk\n", "abcdefghijk\n", 2, 6, 0, 0);
+	do_test_sort_lines (buffer, " y\n z\nx\n", "x\n y\n z\n", 0, -1, 0, 1);
 
 	g_object_unref (buffer);
 }
