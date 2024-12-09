@@ -301,6 +301,8 @@ test_sort_lines (void)
 	do_test_sort_lines (buffer, "aaabbb\nbbbaaa\n", "bbbaaa\naaabbb\n", 0, -1, 0, 3);
 	do_test_sort_lines (buffer, "abcdefghijk\n", "abcdefghijk\n", 2, 6, 0, 0);
 	do_test_sort_lines (buffer, " y\n z\nx\n", "x\n y\n z\n", 0, -1, 0, 1);
+	do_test_sort_lines (buffer, "event.c\neventgenerator.c\nevent.h\n", "event.c\nevent.h\neventgenerator.c\n", 0, -1, GTK_SOURCE_SORT_FLAGS_FILENAME, 0);
+	do_test_sort_lines (buffer, "file1\nfile10\nfile5\n", "file1\nfile5\nfile10\n", 0, -1, GTK_SOURCE_SORT_FLAGS_FILENAME, 0);
 
 	g_object_unref (buffer);
 }
