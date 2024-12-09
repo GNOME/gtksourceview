@@ -2730,7 +2730,7 @@ static char *
 sort_collate_key (const char *str,
                   gssize      column)
 {
-	g_autofree gchar *casefolded = NULL;
+	gchar *casefolded, *collated;
 
 	while (column > 0 && *str)
 	{
@@ -2739,8 +2739,10 @@ sort_collate_key (const char *str,
 	}
 
 	casefolded = g_utf8_casefold (str, -1);
+	collated = g_utf8_collate_key (casefolded, -1);
+	g_free (casefolded);
 
-	return g_utf8_collate_key (casefolded, -1);
+	return collated;
 }
 
 static char *
