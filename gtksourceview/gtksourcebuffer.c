@@ -2730,7 +2730,7 @@ static char *
 sort_collate_key (const char *str,
                   gssize      column)
 {
-	g_autofree gchar *casefolded = NULL;
+	gchar *casefolded, *collated;
 
 	while (column > 0 && *str)
 	{
@@ -2739,8 +2739,23 @@ sort_collate_key (const char *str,
 	}
 
 	casefolded = g_utf8_casefold (str, -1);
+	collated = g_utf8_collate_key (casefolded, -1);
+	g_free (casefolded);
 
-	return g_utf8_collate_key (casefolded, -1);
+	return collated;
+}
+
+static char *
+sort_filename_key (const char *str,
+                   gssize      column)
+{
+	while (column > 0 && *str)
+	{
+		str = g_utf8_next_char (str);
+		column--;
+	}
+
+	return g_utf8_collate_key_for_filename (str, -1);
 }
 
 static char *
@@ -2822,6 +2837,10 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 	if ((flags & GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE) != 0)
 	{
 		key_func = sort_raw_key;
+	}
+	else if ((flags & GTK_SOURCE_SORT_FLAGS_FILENAME) != 0)
+	{
+		key_func = sort_filename_key;
 	}
 	else
 	{
