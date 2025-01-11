@@ -1870,6 +1870,7 @@ gtk_source_vim_motion_handle_keypress (GtkSourceVimState *state,
 			return gtk_source_vim_motion_complete (self, motion_forward_paragraph_end, EXCLUSIVE, CHARWISE);
 
 		case GDK_KEY_asterisk:
+		case GDK_KEY_KP_Multiply:
 			return gtk_source_vim_motion_complete (self, motion_forward_search_word, EXCLUSIVE, CHARWISE);
 
 		case GDK_KEY_numbersign:

@@ -952,6 +952,7 @@ key_handler_search (GtkSourceVimNormal *self,
 	switch (keyval)
 	{
 		case GDK_KEY_slash:
+		case GDK_KEY_KP_Divide:
 			text = "/";
 			break;
 
@@ -1222,6 +1223,7 @@ key_handler_initial (GtkSourceVimNormal *self,
 			case GDK_KEY_j:
 			case GDK_KEY_k:
 			case GDK_KEY_KP_Enter:
+			case GDK_KEY_KP_Multiply:
 			case GDK_KEY_l:
 			case GDK_KEY_L:
 			case GDK_KEY_Left:
@@ -1320,6 +1322,7 @@ key_handler_initial (GtkSourceVimNormal *self,
 				return gtk_source_vim_normal_replace_one (self);
 
 			case GDK_KEY_slash:
+			case GDK_KEY_KP_Divide:
 			case GDK_KEY_question:
 				self->handler = key_handler_search;
 				break;

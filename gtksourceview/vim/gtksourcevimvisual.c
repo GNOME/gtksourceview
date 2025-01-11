@@ -678,11 +678,12 @@ key_handler_initial (GtkSourceVimVisual *self,
 			return gtk_source_vim_visual_begin_command (self, "filter", FALSE);
 
 		case GDK_KEY_slash:
+		case GDK_KEY_KP_Divide:
 		case GDK_KEY_question:
 		{
 			GtkSourceVimState *new_state = gtk_source_vim_command_bar_new ();
 			gtk_source_vim_command_bar_set_text (GTK_SOURCE_VIM_COMMAND_BAR (new_state),
-			                                     keyval == GDK_KEY_slash ? "/" : "?");
+			                                     keyval == GDK_KEY_question ? "?" : "/");
 			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), new_state);
 			return TRUE;
 		}
