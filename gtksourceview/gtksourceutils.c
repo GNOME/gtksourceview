@@ -290,7 +290,7 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 	     system_dirs != NULL && *system_dirs != NULL;
 	     system_dirs++)
 	{
-		if (g_str_has_prefix (*system_dirs, DATADIR"/"))
+		if (g_str_has_prefix (*system_dirs, DATADIR G_DIR_SEPARATOR_S))
 			continue;
 
 		g_ptr_array_add (dirs,
