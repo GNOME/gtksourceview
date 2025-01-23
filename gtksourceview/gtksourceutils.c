@@ -254,25 +254,28 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 
 	dirs = g_ptr_array_new ();
 
+	/* Priorities are as follows:
+	 *
+	 *  - User data dir
+	 *  - Installation data dir (which allows overriding resources)
+	 *  - Bundled resources
+	 *  - Other data dirs (which sometimes may include other installations)
+	 */
+
 	/* User dir */
 	g_ptr_array_add (dirs, g_build_filename (g_get_user_data_dir (),
 	                                         GSV_DATA_SUBDIR,
 	                                         basename,
 	                                         NULL));
 
-	/* System dirs */
-	for (system_dirs = g_get_system_data_dirs ();
-	     system_dirs != NULL && *system_dirs != NULL;
-	     system_dirs++)
-	{
-		g_ptr_array_add (dirs,
-		                 g_build_filename (*system_dirs,
-		                                   GSV_DATA_SUBDIR,
-		                                   basename,
-		                                   NULL));
-	}
+	/* Our installation data dir */
+	g_ptr_array_add (dirs,
+	                 g_build_filename (DATADIR,
+	                                   GSV_DATA_SUBDIR,
+	                                   basename,
+	                                   NULL));
 
-	/* For directories that support resource:// include that */
+	/* For directories that support resource:// include that next */
 	if (g_str_equal (basename, "styles") ||
 	    g_str_equal (basename, "language-specs") ||
 	    g_str_equal (basename, "snippets"))
@@ -280,6 +283,21 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 		g_ptr_array_add (dirs,
 		                 g_strconcat ("resource:///org/gnome/gtksourceview/", basename, "/",
 		                              NULL));
+	}
+
+	/* Rest of the system dirs */
+	for (system_dirs = g_get_system_data_dirs ();
+	     system_dirs != NULL && *system_dirs != NULL;
+	     system_dirs++)
+	{
+		if (g_str_has_prefix (*system_dirs, DATADIR"/"))
+			continue;
+
+		g_ptr_array_add (dirs,
+		                 g_build_filename (*system_dirs,
+		                                   GSV_DATA_SUBDIR,
+		                                   basename,
+		                                   NULL));
 	}
 
 	g_ptr_array_add (dirs, NULL);
