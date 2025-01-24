@@ -268,12 +268,14 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 	                                         basename,
 	                                         NULL));
 
+#ifdef DATADIR
 	/* Our installation data dir */
 	g_ptr_array_add (dirs,
 	                 g_build_filename (DATADIR,
 	                                   GSV_DATA_SUBDIR,
 	                                   basename,
 	                                   NULL));
+#endif
 
 	/* For directories that support resource:// include that next */
 	if (g_str_equal (basename, "styles") ||
@@ -290,8 +292,10 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 	     system_dirs != NULL && *system_dirs != NULL;
 	     system_dirs++)
 	{
+#ifdef DATADIR
 		if (g_str_has_prefix (*system_dirs, DATADIR G_DIR_SEPARATOR_S))
 			continue;
+#endif
 
 		g_ptr_array_add (dirs,
 		                 g_build_filename (*system_dirs,
