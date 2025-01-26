@@ -75,7 +75,7 @@ reference:
                 -Dglib:tests=false
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:broadway-backend=false
-                -Dgtk:demos=false
+                -Dgtk:build-demos=false
                 -Dgtk:build-examples=false
                 -Dgtk:build-tests=false
                 -Dgtk:werror=false
