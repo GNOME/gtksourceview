@@ -2830,7 +2830,8 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	/* Don't paint line if the selection cross multiple lines */
-	if (gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel))
+	if (gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel) &&
+            gtk_text_iter_get_line (&cur) != gtk_text_iter_get_line (&sel))
 	{
 		return;
 	}

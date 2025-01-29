@@ -824,9 +824,12 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 		}
 	}
 
-	/* Draw the current-line highlight if necessary */
+	/* Draw the current-line highlight if necessary. Keep this in sync
+         * with gtk_source_view_paint_current_line_highlight().
+         */
 	if (gtk_source_view_get_highlight_current_line (gutter->view) &&
-	    !gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel))
+	    (!gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel) ||
+             gtk_text_iter_get_line (&cur) == gtk_text_iter_get_line (&sel)))
 	{
 		GtkRoot *root;
 		GdkRGBA highlight;
