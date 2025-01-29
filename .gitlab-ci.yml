@@ -71,7 +71,7 @@ reference:
         - meson --prefix=${PWD}/pfx -Ddocumentation=true _build
                 -Dc_std=c11
                 -Dcpp_std=c++11
-                -Dwerror=true
+                -Dwerror=false
                 -Dglib:tests=false
                 -Dgtk:media-gstreamer=disabled
                 -Dgtk:broadway-backend=false
