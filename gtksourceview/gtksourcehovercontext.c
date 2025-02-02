@@ -330,6 +330,15 @@ _gtk_source_hover_context_populate_finish (GtkSourceHoverContext  *self,
 	return g_task_propagate_boolean (G_TASK (result), error);
 }
 
+/**
+ * gtk_source_hover_context_get_iter:
+ * @self: an #GtkSourceHoverContext
+ * @iter: (out): a #GtkTextIter
+ *
+ * Gets the location of the pointer where the request was made.
+ *
+ * Returns: %TRUE if the mark is still valid and @iter was set.
+ */
 gboolean
 gtk_source_hover_context_get_iter (GtkSourceHoverContext *self,
                                    GtkTextIter           *iter)
