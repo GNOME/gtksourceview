@@ -1461,7 +1461,6 @@ static void
 gtk_source_view_init (GtkSourceView *view)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	GtkStyleContext *context;
 	GtkEventController *key;
 	GtkEventController *scroll;
 	GtkEventController *focus;
@@ -1539,8 +1538,10 @@ gtk_source_view_init (GtkSourceView *view)
 			  G_CALLBACK (notify_buffer_cb),
 			  NULL);
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (view));
-	gtk_style_context_add_class (context, "sourceview");
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
+		GtkStyleContext *context = gtk_widget_get_style_context (GTK_WIDGET (view));
+		gtk_style_context_add_class (context, "sourceview");
+	} G_GNUC_END_IGNORE_DEPRECATIONS
 
 	gtk_source_view_populate_extra_menu (view);
 
@@ -5017,6 +5018,8 @@ update_current_line_color (GtkSourceView *view)
 	 */
 	if (!priv->current_line_background_color_set)
 	{
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 		gboolean has_bg = FALSE;
 		GdkRGBA fg, bg;
@@ -5028,6 +5031,8 @@ update_current_line_color (GtkSourceView *view)
 
 		premix_colors (&priv->current_line_background_color, &fg, &bg, has_bg, 0.05);
 		priv->current_line_background_color_set = TRUE;
+
+		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 }
 
@@ -5108,6 +5113,8 @@ update_right_margin_colors (GtkSourceView *view)
 
 	if (!priv->right_margin_line_color_set)
 	{
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 		GtkStyleContext *context;
 		GdkRGBA color;
 
@@ -5120,6 +5127,8 @@ update_right_margin_colors (GtkSourceView *view)
 		priv->right_margin_line_color = color;
 		priv->right_margin_line_color.alpha = RIGHT_MARGIN_LINE_ALPHA / 255.;
 		priv->right_margin_line_color_set = TRUE;
+
+		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 }
 
