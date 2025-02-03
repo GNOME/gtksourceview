@@ -35,6 +35,7 @@
 #include "gtksourcebuffer-private.h"
 #include "gtksourcebufferinternal-private.h"
 #include "gtksourcecompletion.h"
+#include "gtksourcedriver-private.h"
 #include "gtksourcegutter.h"
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterrendererlines-private.h"
@@ -212,6 +213,8 @@ typedef struct
 
 	GtkSourceViewSnippets snippets;
 
+	GtkSourceDriver driver;
+
 	guint background_pattern_color_set : 1;
 	guint current_line_background_color_set : 1;
 	guint current_line_number_bold : 1;
@@ -322,9 +325,6 @@ static void           gtk_source_view_populate_extra_menu  (GtkSourceView       
 static void           gtk_source_view_real_push_snippet    (GtkSourceView           *view,
                                                             GtkSourceSnippet        *snippet,
                                                             GtkTextIter             *location);
-static void           gtk_source_view_ensure_redrawn_rect_is_highlighted
-                                                           (GtkSourceView           *view,
-                                                            GdkRectangle            *clip);
 
 static GtkSourceCompletion *
 get_completion (GtkSourceView *self)
@@ -547,14 +547,12 @@ gtk_source_view_size_allocate (GtkWidget *widget,
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	GdkRectangle visible_rect;
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->size_allocate (widget, width, height, baseline);
 
 	_gtk_source_view_assistants_size_allocate (&priv->assistants, width, height, baseline);
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
+	_gtk_source_driver_size_allocated (&priv->driver);
 }
 
 static void
@@ -1546,6 +1544,8 @@ gtk_source_view_init (GtkSourceView *view)
 	gtk_source_view_populate_extra_menu (view);
 
 	_gtk_source_view_assistants_init (&priv->assistants, view);
+
+	_gtk_source_driver_init (&priv->driver, view);
 }
 
 static void
@@ -1587,6 +1587,8 @@ gtk_source_view_dispose (GObject *object)
 	g_signal_handlers_disconnect_by_func (view, notify_buffer_cb, NULL);
 
 	_gtk_source_view_assistants_shutdown (&priv->assistants);
+
+	_gtk_source_driver_clear (&priv->driver);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
@@ -1839,6 +1841,8 @@ remove_source_buffer (GtkSourceView *view)
 
 		_gtk_source_view_snippets_set_buffer (&priv->snippets, NULL);
 
+		_gtk_source_driver_set_buffer (&priv->driver, NULL);
+
 		g_object_unref (priv->source_buffer);
 		priv->source_buffer = NULL;
 	}
@@ -1903,6 +1907,8 @@ set_source_buffer (GtkSourceView *view,
 		buffer_has_selection_changed_cb (GTK_SOURCE_BUFFER (buffer), NULL, view);
 
 		_gtk_source_view_snippets_set_buffer (&priv->snippets, priv->source_buffer);
+
+		_gtk_source_driver_set_buffer (&priv->driver, priv->source_buffer);
 	}
 
 	gtk_source_view_update_style_scheme (view);
@@ -2398,9 +2404,9 @@ gtk_source_view_extend_selection (GtkTextView            *text_view,
 										     end);
 }
 
-static void
-gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
-                                                    GdkRectangle  *clip)
+void
+_gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
+                                                     GdkRectangle  *clip)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextIter iter1, iter2;
@@ -2901,10 +2907,8 @@ gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
-	GdkRectangle visible_rect;
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
+	_gtk_source_driver_begin_snapshot (&priv->driver);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
@@ -2930,6 +2934,8 @@ gtk_source_view_snapshot (GtkWidget   *widget,
 	}
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->snapshot (widget, snapshot);
+
+	_gtk_source_driver_end_snapshot (&priv->driver);
 }
 
 /* This is a pretty important function... We call it when the tab_stop is changed,

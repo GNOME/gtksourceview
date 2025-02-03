@@ -94,5 +94,7 @@ gboolean _gtk_source_view_get_current_line_number_background (GtkSourceView *vie
 gboolean _gtk_source_view_get_current_line_number_color      (GtkSourceView *view,
                                                               GdkRGBA       *rgba);
 gboolean _gtk_source_view_get_current_line_number_bold       (GtkSourceView *view);
+void     _gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
+                                                              GdkRectangle  *clip);
 
 G_END_DECLS
