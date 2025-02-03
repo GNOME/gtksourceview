@@ -1,3 +1,19 @@
+News in 5.15.0, 2025-02-02
+--------------------------
+
+This is a beta release for GNOME 48.beta
+
+ * Various introspection fixes
+ * Improvements to GtkSourceAssistants
+ * Various GtkTextIter performance improvements
+ * Deduplication fixes when sorting
+ * Alter paths for resource:// usage so that resources take priority
+   over system installations other than the current one
+ * Adwaita.xml, Adwaita-dark.xml style updates
+ * Quantize Y position for gutter line numbers
+ * New and updated languages: meson.lang, zig.lang
+ * Translation updates
+
 News in 5.14.1, 2024-10-04
 --------------------------
 
