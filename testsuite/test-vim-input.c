@@ -29,6 +29,8 @@
 #include <gtksourceview/vim/gtksourcevimregisters.h>
 #include <gtksourceview/vim/gtksourcevimstate.h>
 
+#include "gtksourceview/gtksourcelanguagemanager-private.h"
+
 static void
 run_test (const char *text,
           const char *input,
@@ -244,12 +246,17 @@ main (int argc,
 	const char *srcdir = g_getenv ("G_TEST_SRCDIR");
 	char *schemes_search_path[2] = { NULL };
 	GtkSourceStyleSchemeManager *schemes;
+	char *rng;
 	int ret;
 
 	g_assert_true (g_file_test (srcdir, G_FILE_TEST_IS_DIR));
 
 	gtk_init ();
 	gtk_source_init ();
+
+	rng = g_build_filename (TOP_SRCDIR, "data", "language-specs", "language2.rng", NULL);
+	_gtk_source_language_manager_set_rng_file (rng);
+	g_free (rng);
 
 	schemes = gtk_source_style_scheme_manager_get_default ();
 	schemes_search_path[0] = g_build_filename (srcdir, "..", "data", "styles", NULL);
