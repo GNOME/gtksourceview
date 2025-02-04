@@ -31,6 +31,7 @@ reference:
     variables:
     script:
         - sudo dnf install -y gtk4-devel
+                dbus-daemon
                 ccache
                 desktop-file-utils
                 expat-devel
@@ -63,6 +64,7 @@ reference:
                 redhat-rpm-config
                 shared-mime-info
                 vala
+                weston
                 xorg-x11-server-Xvfb
                 vulkan-devel
                 vulkan-headers
@@ -78,10 +80,14 @@ reference:
                 -Dgtk:build-demos=false
                 -Dgtk:build-examples=false
                 -Dgtk:build-tests=false
+                -Dgtk:build-testsuite=false
                 -Dgtk:werror=false
                 -Dlibsass:werror=false
                 -Dsassc:werror=false
                 -Dlibadwaita:werror=false
+        - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
+        - weston --backend=headless-backend.so --socket=wayland-5 --idle-time=0 &
+        - dbus-run-session -- env WAYLAND_DISPLAY=wayland-5 ninja -C _build test
         - ninja -C _build install
         - mkdir -p _reference/
         - mv pfx/share/doc/gtksourceview5/ _reference/
