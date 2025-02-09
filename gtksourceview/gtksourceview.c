@@ -113,6 +113,15 @@
  *                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
  * g_object_unref (provider);
  * ```
+ * ```python
+ * provider = Gtk.CssProvider()
+ * provider.load_from_data("textview { font-family: Monospace; font-size: 8pt; }".encode())
+ * style_context = view.get_style_context()
+ * style_context.add_provider(
+ *     provider,
+ *     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
+ * )
+ * ```
  *
  * If you need to adjust the font or size of font within a portion of the
  * document only, you should use a [class@Gtk.TextTag] with the [property@Gtk.TextTag:family] or

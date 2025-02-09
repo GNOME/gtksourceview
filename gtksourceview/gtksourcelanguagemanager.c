@@ -724,6 +724,11 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * lang = gtk_source_language_manager_guess_language (manager, filename, NULL);
  * gtk_source_buffer_set_language (buffer, lang);
  * ```
+ * ```python
+ * manager = GtkSource.LanguageManager.get_default()
+ * language = manager.guess_language(filename=filename, content_type=None)
+ * buffer.set_language(language=language)
+ * ```
  *
  * or
  *
@@ -745,6 +750,15 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * gtk_source_buffer_set_language (buffer, lang);
  *
  * g_free (content_type);
+ * ```
+ * ```python
+ * content_type, uncertain = Gio.content_type_guess(filename=filename, data=None)
+ * if uncertain:
+ *     content_type = None
+ *
+ * manager = GtkSource.LanguageManager.get_default()
+ * language = manager.guess_language(filename=filename, content_type=content_type)
+ * buffer.set_language(language=language)
  * ```
  *
  * etc. Use [method@Language.get_mime_types] and [method@Language.get_globs]
