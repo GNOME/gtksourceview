@@ -2459,6 +2459,18 @@ set_pango_layouts_width (GtkSourcePrintCompositor *compositor)
  *     return FALSE;
  * }
  * ```
+ * ```python
+ * def on_paginate(
+ *     operation: Gtk.PrintOperation,
+ *     context: Gtk.PrintContext,
+ *     compositor: GtkSource.PrintCompositor,
+ * ) -> bool:
+ *     if compositor.paginate(context=context):
+ *         n_pages = compositor.get_n_pages()
+ *         operation.set_n_pages(n_pages=n_pages)
+ *         return True
+ *     return False
+ * ```
  *
  * If you don't need to do pagination in chunks, you can simply do it all in the
  * [signal@Gtk.PrintOperation::begin-print] handler, and set the number of pages from there, like
@@ -2482,6 +2494,19 @@ set_pango_layouts_width (GtkSourcePrintCompositor *compositor)
  *     n_pages = gtk_source_print_compositor_get_n_pages (compositor);
  *     gtk_print_operation_set_n_pages (operation, n_pages);
  * }
+ * ```
+ * ```python
+ * def on_begin_print(
+ *     operation: Gtk.PrintOperation,
+ *     context: Gtk.PrintContext,
+ *     compositor: GtkSource.PrintCompositor,
+ * ) -> None:
+ *     # Paginate until complete
+ *     while not compositor.paginate(context=context):
+ *         pass
+ *
+ *     n_pages = compositor.get_n_pages()
+ *     operation.set_n_pages(n_pages=n_pages)
  * ```
  *
  * Return value: %TRUE if the document has been completely paginated, %FALSE otherwise.
@@ -3041,6 +3066,16 @@ print_footer (GtkSourcePrintCompositor *compositor,
  *                                            context,
  *                                            page_nr);
  * }
+ * ```
+ * ```python
+ * def on_draw_page(
+ *     operation: Gtk.PrintOperation,
+ *     context: Gtk.PrintContext,
+ *     page_nr: int,
+ *     compositor: GtkSource.PrintCompositor,
+ * ) -> None:
+ *     """Signal handler for draw-page that renders a single page."""
+ *     compositor.draw_page(context=context, page_nr=page_nr)
  * ```
  */
 void
