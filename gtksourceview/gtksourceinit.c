@@ -241,10 +241,9 @@ gtk_source_init (void)
 			 * details on why we draw the right-margin from gtk_source_view_snapshot().
 			 */
 			css_provider = gtk_css_provider_new ();
-			gtk_css_provider_load_from_data (css_provider,
-			                                 "textview.GtkSourceView text {background: transparent;}\n"
-			                                 "textview.GtkSourceMap text {background: transparent;}\n",
-			                                 -1);
+			gtk_css_provider_load_from_string (css_provider,
+			                                   "textview.GtkSourceView text {background: transparent;}\n"
+			                                   "textview.GtkSourceMap text {background: transparent;}\n");
 			gtk_style_context_add_provider_for_display (display,
 			                                            GTK_STYLE_PROVIDER (css_provider),
 			                                            G_MAXINT);

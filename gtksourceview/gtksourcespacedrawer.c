@@ -776,10 +776,7 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 
 	if (!drawer->color_set)
 	{
-		GtkStyleContext *context;
-
-		context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		gtk_style_context_get_color (context, &drawer->color);
+		gtk_widget_get_color (GTK_WIDGET (view), &drawer->color);
 		drawer->color.alpha *= .5;
 		drawer->color_set = TRUE;
 	}

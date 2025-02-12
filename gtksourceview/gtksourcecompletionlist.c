@@ -127,7 +127,7 @@ _gtk_source_completion_list_show (GtkWidget *widget)
 
 	if (_gtk_source_completion_list_get_show_details (self))
 	{
-		gtk_widget_show (GTK_WIDGET (self->info));
+		gtk_widget_set_visible (GTK_WIDGET (self->info), TRUE);
 	}
 
 	g_signal_handler_unblock (self->key, self->key_press_handler);
@@ -146,11 +146,11 @@ _gtk_source_completion_list_show_details_notify_active_cb (GtkSourceCompletionLi
 	if (gtk_widget_get_visible (GTK_WIDGET (self)) &&
 	    _gtk_source_completion_list_get_show_details (self))
 	{
-		gtk_widget_show (GTK_WIDGET (self->info));
+		gtk_widget_set_visible (GTK_WIDGET (self->info), TRUE);
 	}
 	else
 	{
-		gtk_widget_hide (GTK_WIDGET (self->info));
+		gtk_widget_set_visible (GTK_WIDGET (self->info), FALSE);
 	}
 
 	g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SHOW_DETAILS]);
@@ -192,24 +192,24 @@ _gtk_source_completion_list_update_comment (GtkSourceCompletionList *self)
 	if (_gtk_source_completion_cell_is_empty (self->comments) &&
 	    (info == NULL || _gtk_source_completion_cell_is_empty (info)))
 	{
-		gtk_widget_hide (GTK_WIDGET (self->details));
+		gtk_widget_set_visible (GTK_WIDGET (self->details), FALSE);
 	}
 	else
 	{
-		gtk_widget_show (GTK_WIDGET (self->details));
+		gtk_widget_set_visible (GTK_WIDGET (self->details), TRUE);
 	}
 
 	if (info != NULL)
 	{
 		if (_gtk_source_completion_cell_is_empty (info))
 		{
-			gtk_widget_hide (GTK_WIDGET (self->info));
+			gtk_widget_set_visible (GTK_WIDGET (self->info), FALSE);
 		}
 		else if (_gtk_source_completion_list_get_show_details (self))
 		{
 			if (gtk_widget_get_visible (GTK_WIDGET (self)))
 			{
-				gtk_widget_show (GTK_WIDGET (self->info));
+				gtk_widget_set_visible (GTK_WIDGET (self->info), TRUE);
 			}
 		}
 	}
@@ -311,7 +311,7 @@ key_press_propagate_cb (GtkSourceCompletionList *self,
 	if (keyval == GDK_KEY_Escape)
 	{
 		/* Still propagate after hiding */
-		gtk_widget_hide (GTK_WIDGET (self));
+		gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
 	}
 	else if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
 	{

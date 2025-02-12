@@ -104,10 +104,8 @@
  *
  * ```c
  * GtkCssProvider *provider = gtk_css_provider_new ();
- * gtk_css_provider_load_from_data (provider,
- *                                  "textview { font-family: Monospace; font-size: 8pt; }",
- *                                  -1,
- *                                  NULL);
+ * gtk_css_provider_load_from_string (provider,
+ *                                   "textview { font-family: Monospace; font-size: 8pt; }");
  * gtk_style_context_add_provider (gtk_widget_get_style_context (view),
  *                                 GTK_STYLE_PROVIDER (provider),
  *                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -115,12 +113,9 @@
  * ```
  * ```python
  * provider = Gtk.CssProvider()
- * provider.load_from_data("textview { font-family: Monospace; font-size: 8pt; }".encode())
+ * provider.load_from_string("textview { font-family: Monospace; font-size: 8pt; }")
  * style_context = view.get_style_context()
- * style_context.add_provider(
- *     provider,
- *     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION,
- * )
+ * style_context.add_provider(provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
  * ```
  *
  * If you need to adjust the font or size of font within a portion of the
@@ -1547,10 +1542,7 @@ gtk_source_view_init (GtkSourceView *view)
 			  G_CALLBACK (notify_buffer_cb),
 			  NULL);
 
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
-		GtkStyleContext *context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		gtk_style_context_add_class (context, "sourceview");
-	} G_GNUC_END_IGNORE_DEPRECATIONS
+	gtk_widget_add_css_class (GTK_WIDGET (view), "sourceview");
 
 	gtk_source_view_populate_extra_menu (view);
 
@@ -5027,21 +5019,16 @@ update_current_line_color (GtkSourceView *view)
 	 */
 	if (!priv->current_line_background_color_set)
 	{
-		G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-
-		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 		gboolean has_bg = FALSE;
 		GdkRGBA fg, bg;
 
 		if (priv->style_scheme != NULL)
 			has_bg = _gtk_source_style_scheme_get_background_color (priv->style_scheme, &bg);
 
-		gtk_style_context_get_color (style_context, &fg);
+		gtk_widget_get_color (GTK_WIDGET (view), &fg);
 
 		premix_colors (&priv->current_line_background_color, &fg, &bg, has_bg, 0.05);
 		priv->current_line_background_color_set = TRUE;
-
-		G_GNUC_END_IGNORE_DEPRECATIONS
 	}
 }
 

@@ -142,7 +142,7 @@ dialog_response (GtkDialog *dialog,
 {
 	if (response == GTK_RESPONSE_CANCEL)
 	{
-		gtk_widget_hide (GTK_WIDGET (dialog));
+		gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 	}
 	else if (response == GTK_RESPONSE_OK)
 	{
@@ -152,7 +152,7 @@ dialog_response (GtkDialog *dialog,
 
 		scheme = gtk_source_style_scheme_chooser_get_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (priv->chooser));
 
-		gtk_widget_hide (GTK_WIDGET (dialog));
+		gtk_widget_set_visible (GTK_WIDGET (dialog), FALSE);
 
 		gtk_source_style_scheme_chooser_set_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (button),
 		                                                  scheme);
@@ -186,7 +186,7 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 
 	scrolled_window = gtk_scrolled_window_new ();
 	gtk_widget_set_size_request (scrolled_window, 325, 350);
-	gtk_widget_show (scrolled_window);
+	gtk_widget_set_visible (scrolled_window, TRUE);
 	gtk_widget_set_hexpand (scrolled_window, TRUE);
 	gtk_widget_set_vexpand (scrolled_window, TRUE);
 	content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));

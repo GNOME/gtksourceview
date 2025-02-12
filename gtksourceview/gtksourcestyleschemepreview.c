@@ -87,10 +87,9 @@ load_override_font (GtkSourceView *view,
 	if (g_once_init_enter (&initialized))
 	{
 		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider,
-		                                 "textview, textview text { font-family: BuilderBlocks; font-size: 4px; line-height: 8px; }\n"
-		                                 "textview border.left gutter { padding-left: 2px; }\n",
-		                                 -1);
+		gtk_css_provider_load_from_string (css_provider,
+		                                   "textview, textview text { font-family: BuilderBlocks; font-size: 4px; line-height: 8px; }\n"
+		                                   "textview border.left gutter { padding-left: 2px; }\n");
 
 		g_once_init_leave (&initialized, TRUE);
 	}
@@ -495,12 +494,12 @@ gtk_source_style_scheme_preview_set_selected (GtkSourceStyleSchemePreview *self,
 		if (selected)
 		{
 			gtk_widget_add_css_class (GTK_WIDGET (self), "selected");
-			gtk_widget_show (GTK_WIDGET (self->image));
+			gtk_widget_set_visible (GTK_WIDGET (self->image), TRUE);
 		}
 		else
 		{
 			gtk_widget_remove_css_class (GTK_WIDGET (self), "selected");
-			gtk_widget_hide (GTK_WIDGET (self->image));
+			gtk_widget_set_visible (GTK_WIDGET (self->image), FALSE);
 		}
 
 		g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SELECTED]);

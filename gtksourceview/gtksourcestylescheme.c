@@ -1014,9 +1014,8 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		GError *error = NULL;
 
-		gtk_css_provider_load_from_data (scheme->css_provider,
-		                                 final_style->str,
-		                                 final_style->len);
+		gtk_css_provider_load_from_string (scheme->css_provider,
+		                                   final_style->str);
 
 		if (error != NULL)
 		{

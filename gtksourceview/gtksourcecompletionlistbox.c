@@ -908,11 +908,11 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 				gtk_widget_remove_css_class (GTK_WIDGET (iter), "group-leader");
 			}
 
-			gtk_widget_show (iter);
+			gtk_widget_set_visible (iter, TRUE);
 		}
 		else
 		{
-			gtk_widget_hide (iter);
+			gtk_widget_set_visible (iter, FALSE);
 			_gtk_source_completion_list_box_row_display (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (iter),
 			                                             NULL, NULL, NULL, self->show_icons, FALSE);
 		}

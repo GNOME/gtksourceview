@@ -119,11 +119,8 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 	g_clear_object (&priv->cached_layout);
 	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (renderer), NULL);
 
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
-		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (renderer));
-		gtk_style_context_get_color (style_context, &priv->foreground_rgba);
-		priv->current_line_color_rgba = priv->foreground_rgba;
-	} G_GNUC_END_IGNORE_DEPRECATIONS
+	gtk_widget_get_color (GTK_WIDGET (renderer), &priv->foreground_rgba);
+	priv->current_line_color_rgba = priv->foreground_rgba;
 
 	if (_gtk_source_view_get_current_line_number_color (view, &current))
 	{
