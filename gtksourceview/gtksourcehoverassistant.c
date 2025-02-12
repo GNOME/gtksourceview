@@ -496,7 +496,7 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 
 	if (n_providers == 0)
 	{
-		gtk_widget_hide (GTK_WIDGET (self));
+		gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
 		return;
 	}
 
@@ -510,7 +510,7 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 
 	if (!gdk_rectangle_intersect (&location_rect, &visible_rect, &location_rect))
 	{
-		gtk_widget_hide (GTK_WIDGET (self));
+		gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
 		return;
 	}
 
@@ -544,7 +544,7 @@ _gtk_source_hover_assistant_dismiss (GtkSourceHoverAssistant *self)
 	g_cancellable_cancel (self->cancellable);
 	g_clear_object (&self->cancellable);
 
-	gtk_widget_hide (GTK_WIDGET (self));
+	gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
 
 	_gtk_source_hover_display_clear (self->display);
 }

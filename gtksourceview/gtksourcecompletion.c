@@ -143,7 +143,7 @@ struct _GtkSourceCompletion
 	guint page_size;
 
 	/* Handler for gtk_widget_add_tick_callback() to do delayed calls to
-	 * gtk_widget_hide() (so that we don't potentially flap between
+	 * gtk_widget_set_visible(FALSE) (so that we don't potentially flap between
 	 * hide/show while typing.
 	 */
 	guint hide_tick_handler;
@@ -209,7 +209,7 @@ display_show (GtkSourceCompletion *self)
 
 	if (gtk_widget_get_mapped (GTK_WIDGET (self->view)))
 	{
-		gtk_widget_show (GTK_WIDGET (_gtk_source_completion_get_display (self)));
+		gtk_widget_set_visible (GTK_WIDGET (_gtk_source_completion_get_display (self)), TRUE);
 	}
 }
 
@@ -228,7 +228,7 @@ display_hide_cb (GtkWidget     *widget,
 
 	if (self->display != NULL)
 	{
-		gtk_widget_hide (GTK_WIDGET (self->display));
+		gtk_widget_set_visible (GTK_WIDGET (self->display), FALSE);
 	}
 
 	return G_SOURCE_REMOVE;
@@ -422,7 +422,7 @@ gtk_source_completion_cancel (GtkSourceCompletion *self)
 		if (self->display != NULL)
 		{
 			_gtk_source_completion_list_set_context (self->display, NULL);
-			gtk_widget_hide (GTK_WIDGET (self->display));
+			gtk_widget_set_visible (GTK_WIDGET (self->display), FALSE);
 		}
 	}
 }
@@ -628,7 +628,7 @@ gtk_source_completion_real_hide (GtkSourceCompletion *self)
 
 	if (self->display != NULL)
 	{
-		gtk_widget_hide (GTK_WIDGET (self->display));
+		gtk_widget_set_visible (GTK_WIDGET (self->display), FALSE);
 	}
 }
 

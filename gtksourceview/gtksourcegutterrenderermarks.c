@@ -219,7 +219,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		{
 			grid = GTK_GRID (gtk_grid_new ());
 			gtk_grid_set_column_spacing (grid, 4);
-			gtk_widget_show (GTK_WIDGET (grid));
+			gtk_widget_set_visible (GTK_WIDGET (grid), TRUE);
 		}
 
 		label = gtk_label_new (NULL);
@@ -235,7 +235,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 		gtk_widget_set_halign (label, GTK_ALIGN_START);
 		gtk_widget_set_valign (label, GTK_ALIGN_START);
-		gtk_widget_show (label);
+		gtk_widget_set_visible (label, TRUE);
 
 		paintable = gtk_source_mark_attributes_render_icon (attrs,
 		                                                    GTK_WIDGET (view),
@@ -253,7 +253,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 			gtk_widget_set_halign (image, GTK_ALIGN_START);
 			gtk_widget_set_valign (image, GTK_ALIGN_START);
-			gtk_widget_show (image);
+			gtk_widget_set_visible (image, TRUE);
 
 			gtk_grid_attach (grid, image, 0, row_num, 1, 1);
 			gtk_grid_attach (grid, label, 1, row_num, 1, 1);
@@ -267,7 +267,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 
 			separator = gtk_separator_new (GTK_ORIENTATION_HORIZONTAL);
 
-			gtk_widget_show (separator);
+			gtk_widget_set_visible (separator, TRUE);
 
 			gtk_grid_attach (grid, separator, 0, row_num, 2, 1);
 			row_num++;

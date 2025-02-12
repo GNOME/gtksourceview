@@ -251,7 +251,7 @@ buffer_cursor_moved_cb (GtkSourceBuffer       *buffer,
 		{
 			if (snippets->informative != NULL)
 			{
-				gtk_widget_hide (GTK_WIDGET (snippets->informative));
+				gtk_widget_set_visible (GTK_WIDGET (snippets->informative), FALSE);
 			}
 		}
 	}
@@ -374,7 +374,7 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 	{
 		if (gtk_widget_get_mapped (GTK_WIDGET (snippets->view)))
 		{
-			gtk_widget_show (GTK_WIDGET (snippets->informative));
+			gtk_widget_set_visible (GTK_WIDGET (snippets->informative), TRUE);
 		}
 	}
 
@@ -383,7 +383,7 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 hide_informative:
 	if (snippets->informative != NULL)
 	{
-		gtk_widget_hide (GTK_WIDGET (snippets->informative));
+		gtk_widget_set_visible (GTK_WIDGET (snippets->informative), FALSE);
 	}
 }
 
@@ -650,7 +650,7 @@ cleanup:
 	{
 		if (snippets->informative)
 		{
-			gtk_widget_hide (GTK_WIDGET (snippets->informative));
+			gtk_widget_set_visible (GTK_WIDGET (snippets->informative), FALSE);
 		}
 	}
 
@@ -739,7 +739,7 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 	{
 		if (snippets->informative != NULL)
 		{
-			gtk_widget_hide (GTK_WIDGET (snippets->informative));
+			gtk_widget_set_visible (GTK_WIDGET (snippets->informative), FALSE);
 		}
 	}
 }

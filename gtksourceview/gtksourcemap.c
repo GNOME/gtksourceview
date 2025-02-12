@@ -509,8 +509,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	if (gstr->len > 0)
 	{
-		/* use -1 to avoid a copy of the string */
-		gtk_css_provider_load_from_data (priv->css_provider, gstr->str, -1);
+		gtk_css_provider_load_from_string (priv->css_provider, gstr->str);
 	}
 
 	g_string_free (gstr, TRUE);

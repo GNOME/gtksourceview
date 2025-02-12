@@ -59,7 +59,7 @@ _gtk_source_assistant_hide_action (GtkWidget   *widget,
 {
 	g_assert (GTK_SOURCE_IS_ASSISTANT (widget));
 
-	gtk_widget_hide (widget);
+	gtk_widget_set_visible (widget, FALSE);
 }
 
 static void
