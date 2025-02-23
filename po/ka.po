@@ -1,14 +1,14 @@
 # Georgian translation for gtksourceview.
 # Copyright (C) 2022 gtksourceview authors
 # This file is distributed under the same license as the gtksourceview package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2022.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-12-18 11:28+0000\n"
-"PO-Revision-Date: 2022-12-26 18:14+0100\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-02-23 07:45+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -403,30 +403,30 @@ msgstr "ფრაგმენტები"
 msgid "Document Words"
 msgstr "დოკუმენტის სიტყვები"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:915
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "შეტანილ ტექსტში ბაიტების მიმდევრობა მცდარია"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:921
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "გარდაქმნის შეცდომა: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1014
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "%s-დან UTF-8-ზე გარდაქმნა მხარდაუჭერელია"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1020
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "%s-დან UTF-8-ზე გარდაქმნის შეცდომა"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1080
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "ობიექტი არასწორია. ინიციალიზებული არაა"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1282
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "შეყვანილია UTF-8-ის არასწორი მიმდევრობა"
@@ -445,7 +445,7 @@ msgstr "_დეტალები"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -456,7 +456,7 @@ msgstr ""
 "გამოკვეთის პროცესი ჩვეულებრივზე ნელი იქნება.\n"
 "შეცდომა: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -464,19 +464,19 @@ msgstr ""
 "ერთი ხაზის გამოკვეთამ მეტისმეტად დიდი დრო წაიღო. სინტაქსის გამოკვეთა "
 "გაითიშება"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "\"%s\" კონტექსტი %%{..@start} ბრძანებას არ შეიძლება შეიცავდეს"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "კონტექსტის დუბლირებული ID: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -485,18 +485,18 @@ msgstr ""
 "ენაში \"%s\" მიმართვაში \"%s\" ვაილდკარდის კონტექსტის მიმართვა სტილის "
 "გადაფარვასთან ერთად გამოიყენება"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "არასწორი კონტექსტის მიმართვა \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "უცნობი კონტექსტი %s"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "აკლია მთავარი ენის აღწერა (id = %s)"
@@ -637,17 +637,16 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
 "დაფიქსირდა სიმბოლოების კოდირების გადაყვანის შეცდომა და ის გადასართავი "
 "სიმბოლოს გამოსაყენებლად იყო საჭირო."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "ფაილი .ძალიან დიდია."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "ფაილი ჩვეულებრივი არაა."
 
@@ -655,7 +654,7 @@ msgstr "ფაილი ჩვეულებრივი არაა."
 msgid "The file is externally modified."
 msgstr "ფაილი გარედან შეიცვალა."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "ბაფერი არასწორ სიმბოლოებს შეიცავს."
 
@@ -701,23 +700,23 @@ msgstr "_გაუქმება"
 msgid "_Select"
 msgstr "_აირჩიეთ"
 
-#: gtksourceview/gtksourceview.c:1831
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "დიდ ასოებში გადაყვანა"
 
-#: gtksourceview/gtksourceview.c:1835
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "პატარა ასოებში გადაყვანა"
 
-#: gtksourceview/gtksourceview.c:1839
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "ზომის ინვერსია"
 
-#: gtksourceview/gtksourceview.c:1843
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "სათაურის ზომა"
 
-#: gtksourceview/gtksourceview.c:1847
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "ზომის შეცვლა"
 
@@ -771,14 +770,14 @@ msgstr "-- ჩასმა --"
 msgid "-- REPLACE --"
 msgstr "-- ჩანაცვლება --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- ვიზუალური --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- ვიზუალური ხაზი--"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- ვიზუალური ბლოკი --"
