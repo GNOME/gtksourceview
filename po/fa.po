@@ -4,21 +4,21 @@
 # Roozbeh Pournader <roozbeh@farsiweb.info>, 2004, 2005.
 # Alireza Kheirkhahan <kheirkhahan@gmail.com> 2005.
 # Meelad Zakaria <meelad@farsiweb.info>, 2005.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2022.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2022-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-18 12:08+0000\n"
-"PO-Revision-Date: 2022-02-20 15:18+0330\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-02-24 23:58+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -395,7 +395,7 @@ msgstr "تانگو"
 msgid "Color scheme using Tango color palette"
 msgstr "شمای رنگی با استفاده از تختهٔ رنگی تانگو"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "قطعه‌ها"
 
@@ -403,41 +403,41 @@ msgstr "قطعه‌ها"
 msgid "Document Words"
 msgstr "واژگان سند"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "دنبالهٔ بایتی نامعتبر در ورودی تبدیل"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "خطا هنگام تبدیل: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "تبدیل از نویسگان %s به UTF-8 پشتیانی نمی‌شود"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "نتوانست تبدیلگر از %s به UTF-8 را بگشاید"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "شی نامعتبر. آغاز نشد"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "دنبالهٔ UTF-8 نامعتبر در ورودی تبدیل"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%Id از %Iu"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_جزییات"
 
@@ -445,7 +445,7 @@ msgstr "_جزییات"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process "
@@ -456,42 +456,42 @@ msgstr ""
 "از معمول خواهد بود.\n"
 "خطا این بود: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "مشخّص کردن یک تک خط زمان زیادی طول کشید. مشخّص کردن ترکیب از کار خواهد افتاد"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "بافتار «%s» نمی‌تواند شامل دستور \\%%{...@start} باشد"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "شناسهٔ بافتار تکراری «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref “%s”"
 msgstr "پایمالی سبک استفاده شده با مرجع بافتار وایلدکارت در زبان «%s» در مرجع «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "مرجع بافتار نامعتبر «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "بافتار ناشناخته «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "تعریف زبان اصلی ناموجود (شناسه = %s)."
@@ -631,16 +631,14 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
-msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
-msgstr "یک خطای تبدیل رمزگذاری رخ داد و نیاز بود از یک نویسهٔ جایگزین استفاده شود."
+msgid "There was an encoding conversion error so a fallback character was used."
+msgstr "خطای تبدیل کدگذاری رخ داد و نویسه‌ای حایگزین استفاده شد."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "پرونده بیش از حد بزرگ."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "یک پروندهٔ عادی نیست."
 
@@ -648,7 +646,7 @@ msgstr "یک پروندهٔ عادی نیست."
 msgid "The file is externally modified."
 msgstr "پرونده از خارج دستکاری شده."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "میانگیر شامل نویسه‌های نامعتبر است."
 
@@ -694,68 +692,68 @@ msgstr "_لغو"
 msgid "_Select"
 msgstr "_گزینش"
 
-#: gtksourceview/gtksourceview.c:1806
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "همه حروف _بزرگ"
 
-#: gtksourceview/gtksourceview.c:1810
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "همه حروف _کوچک"
 
-#: gtksourceview/gtksourceview.c:1814
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_معکوس کردن کوچکی و بزرگی حروف"
 
-#: gtksourceview/gtksourceview.c:1818
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "حالت _عنوان"
 
-#: gtksourceview/gtksourceview.c:1822
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "_تغییر بزرگی و کوچیکی"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "انتظار رقم شانزده‌شانزدهی یا { می‌رفت"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "انتظار رقم شانزده‌شانزدهی می‌رفت"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "> ناموجود در مرجع نشان"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "مرجع نشان ناتمام"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "مرجع نشان بی‌طول"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "انتظار رقم می‌رفت"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "مرجع نشان غیرقانونی"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "\\ پایانی سرگردان"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "دنبالهٔ گریز ناشناخته"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "خطا هنگام تجزیهٔ متن جایگزین «%s» در نویسهٔ %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- درج --"
 
@@ -763,15 +761,15 @@ msgstr "-- درج --"
 msgid "-- REPLACE --"
 msgstr "-- جایگزینی --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- دیداری --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- دیداری خطی --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- دیداری بلوکی --"
 
