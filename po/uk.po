@@ -4,21 +4,22 @@
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2003-2008.
 # wanderlust <wanderlust@ukr.net>, 2009.
 # Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-04 20:07+0000\n"
-"PO-Revision-Date: 2022-02-04 22:53+0200\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-02-24 16:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -305,8 +306,7 @@ msgstr "Темна Adwaita"
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
 msgid "An style scheme for Adwaita"
-msgstr ""
-"Схема стилів для Adwaita"
+msgstr "Схема стилів для Adwaita"
 
 #. (itstool) path: Adwaita.xml/style-scheme@_name
 #: Adwaita.xml:20
@@ -335,7 +335,6 @@ msgstr "Класична схема кольорів"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
-#| msgid "Cobalt"
 msgid "Cobalt Light"
 msgstr "Світла Cobalt"
 
@@ -399,7 +398,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Кольорова схема, що використовує палітру Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Фрагменти"
 
@@ -407,42 +406,42 @@ msgstr "Фрагменти"
 msgid "Document Words"
 msgstr "Слова документу"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Некоректна послідовність байтів у вхідних даних перетворення"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Помилка під час спроби перетворення: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
 "Підтримки перетворення з набору символів «%s» до «UTF-8» не передбачено"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Не вдалося запустити засіб перетворення з «%s» до «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Некоректний об'єкт, не ініціалізовано"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Незавершена послідовність байтів UTF-8 у вхідних даних"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d з %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_Подробиці"
 
@@ -450,7 +449,7 @@ msgstr "_Подробиці"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -461,7 +460,7 @@ msgstr ""
 "синтаксису кольором буде виконуватися значно повільніше.\n"
 "Помилка: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -469,19 +468,19 @@ msgstr ""
 "Виділення кольором одного рядка займає багато часу, виділення кольором буде "
 "вимкнено"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "контекст «%s» не може містити команду \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "дублювання ідентифікатора контексту «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -490,18 +489,18 @@ msgstr ""
 "використано перевизначення стилю із посиланням на контекст замінника у мові "
 "«%s», посилання «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "некоректне посилання на контекст «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "невідомий контекст «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Немає визначення основної мови (id=«%s»)."
@@ -641,18 +640,20 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
+#| msgid ""
+#| "There was a character encoding conversion error and it was needed to use "
+#| "a fallback character."
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
-"Під час спроби перетворення кодування символів сталася помилка. Виникла "
-"потреба у використанні резервного символу."
+"Під час спроби перетворення кодування символів сталася помилка. Через це"
+" було використано резервний символ."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "Файл є надто великим."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Не є звичайним файлом."
 
@@ -660,7 +661,7 @@ msgstr "Не є звичайним файлом."
 msgid "The file is externally modified."
 msgstr "До файла внесено зміни сторонньою програмою."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "У буфері містяться некоректні символи."
 
@@ -687,7 +688,8 @@ msgstr "Невідомий ідентифікатор «%s» у формальн
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr "у формальному виразі «%s»: підтримки зворотних посилань не передбачено"
+msgstr ""
+"у формальному виразі «%s»: підтримки зворотних посилань не передбачено"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
@@ -706,70 +708,70 @@ msgstr "_Скасувати"
 msgid "_Select"
 msgstr "_Вибрати"
 
-#: gtksourceview/gtksourceview.c:1804
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "Усі _великі літери"
 
-#: gtksourceview/gtksourceview.c:1808
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "Усі _малі літери"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_Інвертувати регістр"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "Зробити _першу букву велику"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "З_мінити регістр"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "мало бути використано шістнадцяткову цифру або символ «}»"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "очікується шістнадцяткова цифра"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "у символічному посиланні пропущено «<»"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "незакінчене символьне посилання"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "символьне посилання нульової довжини"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "очікується цифра"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "некоректне символьне посилання"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "відкидати кінцеві «\\»"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "невідома escape-послідовність"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
 "Під час розбору тексту заміни «%s» сталася помилка у символі з номером %lu: "
 "%s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- ВСТАВЛЕННЯ --"
 
@@ -777,15 +779,15 @@ msgstr "-- ВСТАВЛЕННЯ --"
 msgid "-- REPLACE --"
 msgstr "-- ЗАМІНА --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- ВІЗУАЛЬНИЙ --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- ВІЗУАЛЬНИЙ РЯДКОВИЙ --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- ВІЗУАЛЬНИЙ БЛОКОВИЙ --"
 
