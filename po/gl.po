@@ -17,22 +17,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-04 20:07+0000\n"
-"PO-Revision-Date: 2022-02-07 07:25+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-02-28 13:02+0100\n"
+"Last-Translator: Fran Dieguez <fran.dieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 41.0\n"
-"X-Project-Style: gnome\n"
-"X-DL-Team: gl\n"
-"X-DL-Module: gtksourceview\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-DL-Branch: master\n"
 "X-DL-Domain: po\n"
+"X-DL-Module: gtksourceview\n"
 "X-DL-State: Translating\n"
+"X-DL-Team: gl\n"
+"X-Generator: Poedit 3.5\n"
+"X-Project-Style: gnome\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -107,18 +107,17 @@ msgstr ""
 #: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
 #: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
 #: chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24 cpphdr.lang:24
-#: cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29
-#: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
-#: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
-#: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
-#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
-#: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
-#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
-#: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
-#: solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
-#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
-#: verilog.lang:23 vhdl.lang:23
+#: cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29 docker.lang:21
+#: eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24 fsharp.lang:24
+#: genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21 groovy.lang:24
+#: haskell.lang:24 haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24
+#: j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24 llvm.lang:22 logtalk.lang:23
+#: makefile.lang:22 meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23
+#: objj.lang:26 ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23
+#: pascal.lang:24 pig.lang:26 powershell.lang:23 prolog.lang:23 rust.lang:35
+#: scala.lang:24 scheme.lang:23 sml.lang:23 solidity.lang:28 sparql.lang:23
+#: sql.lang:23 swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
+#: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Código fonte"
 
@@ -190,13 +189,12 @@ msgstr "Marcación"
 #: javascript-expressions.lang:27 javascript-functions-classes.lang:27
 #: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
 #: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
-#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
-#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
-#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
-#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
-#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
-#: typescript-type-literals.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23 python.lang:27
+#: ruby.lang:27 sh.lang:24 tcl.lang:23 typescript-js-expressions.lang:23
+#: typescript-js-functions-classes.lang:23 typescript-js-literals.lang:23
+#: typescript-js-modules.lang:23 typescript-js-statements.lang:23
+#: typescript-jsx.lang:23 typescript.lang:23 typescript-type-expressions.lang:23
+#: typescript-type-generics.lang:23 typescript-type-literals.lang:23
 msgid "Script"
 msgstr "Scripts"
 
@@ -238,8 +236,8 @@ msgstr "Idioma do shader GC"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
-#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 terraform.lang:23
+#: toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Outro"
 
@@ -318,7 +316,6 @@ msgstr "Adwaita escuro"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
-#| msgid "Style scheme search path"
 msgid "An style scheme for Adwaita"
 msgstr "Un esquema de estilo para Adwaita"
 
@@ -349,7 +346,6 @@ msgstr "Esquema de cor clásico"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
-#| msgid "Cobalt"
 msgid "Cobalt Light"
 msgstr "Cobalto claro"
 
@@ -413,7 +409,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Esquema de cor usando a paleta de cor Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Fragmentos"
 
@@ -421,41 +417,41 @@ msgstr "Fragmentos"
 msgid "Document Words"
 msgstr "Palabras do documento"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Secuencia de bytes non válida na entrada de conversión"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Erro durante a conversión: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Non se admite a conversión do conxunto de caracteres «%s» a «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Non foi posíbel abrir o conversor de «%s» a «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Obxecto non válido, non inicializado"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Secuencia UTF-8 non completa na entrada"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d de %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_Detalles"
 
@@ -463,18 +459,18 @@ msgstr "_Detalles"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process "
+"will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
 "Non é posíbel crear unha expresión regular para todas as transicións; o "
 "proceso de realce de sintaxe será máis lento do normal.\n"
 "O erro foi: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -482,39 +478,39 @@ msgstr ""
 "Realzar unha única liña levou demasiado tempo, a opción de realce da sintaxe "
 "será desactivada"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "o contexto «%s» non pode conter unha orde \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "id de contexto «%s» duplicado"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr ""
-"o estilo sobrepúxose ao usado cunha referencia de contexto comodín na "
-"linguaxe «%s», na referencia «%s»"
+"o estilo sobrepúxose ao usado cunha referencia de contexto comodín na linguaxe "
+"«%s», na referencia «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "referencia de contexto «%s» non válida"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "contexto «%s» descoñecido"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Falta a definición principal de linguaxe (id = «%s»)."
@@ -645,27 +641,25 @@ msgstr "Descoñecido"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
+#. *
+#. https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
-#.
 #: gtksourceview/gtksourceencoding.c:628
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
-msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+msgid "There was an encoding conversion error so a fallback character was used."
 msgstr ""
 "Houbo un erro na conversión da codificación de caracteres e foi preciso usar "
 "un carácter alternativo."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "Ficheiro demasiado grande."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Non é un ficheiro normal."
 
@@ -673,7 +667,7 @@ msgstr "Non é un ficheiro normal."
 msgid "The file is externally modified."
 msgstr "O ficheiro foi modificado externamente."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "O búfer contén caracteres non válidos."
 
@@ -682,12 +676,13 @@ msgstr "O búfer contén caracteres non válidos."
 #. *
 #. * Represents a syntax highlighted language.
 #. *
-#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
+#. * A `GtkSourceLanguage` represents a programming or markup language,
+#. affecting
+#. * syntax highlighting and [context classes](./class.Buffer.html#context-
+#. classes).
 #. *
 #. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
 #. * [method@Buffer.set_language] to apply it to a [class@Buffer].
-#.
 #: gtksourceview/gtksourcelanguage.c:52
 msgid "Others"
 msgstr "Outros"
@@ -719,70 +714,69 @@ msgstr "_Cancelar"
 msgid "_Select"
 msgstr "_Seleccionar"
 
-#: gtksourceview/gtksourceview.c:1804
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "Todo en _maiúsculas"
 
-#: gtksourceview/gtksourceview.c:1808
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "Todo en m_inúsculas"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_Inverter capitalización"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "Capitalización como _título"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "C_ambiar capitalización"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "agardábase un díxito hexadecimal ou «}»"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "agardábase un díxito hexadecimal"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
-msgstr "falta un «<» na referencia simbólica "
+msgstr "falta un «<» na referencia simbólica"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "referencia simbólica non rematada"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "referencia simbólica con lonxitude 0"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "agardábase un díxito"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "referencia simbólica ilegal"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "«\\» final perdido"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "secuencia de escape descoñecida"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
-"Produciuse un erro ao analicar o texto de substitución «%s» no carácter %lu: "
-"%s"
+"Produciuse un erro ao analicar o texto de substitución «%s» no carácter %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- INSERIR --"
 
@@ -790,15 +784,15 @@ msgstr "-- INSERIR --"
 msgid "-- REPLACE --"
 msgstr "-- REEMPRAZAR --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- VISUAL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- LIÑA VISUAL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- BLOQUE VISUAL --"
 
@@ -2308,15 +2302,12 @@ msgstr "-- BLOQUE VISUAL --"
 #~ msgid "Swift"
 #~ msgstr "Swift"
 
-#~| msgid "Builtin Variable"
 #~ msgid "Builtin Value"
 #~ msgstr "Valor embebido"
 
-#~| msgid "Completion"
 #~ msgid "Compiler Control"
 #~ msgstr "Control do compilador"
 
-#~| msgid "Regular Expression"
 #~ msgid "Interpolated Expression"
 #~ msgstr "Expresión interpolada"
 
@@ -2478,8 +2469,8 @@ msgstr "-- BLOQUE VISUAL --"
 #~ "Fran Diéguez <frandieguez@gnome.org>, 2009-2015.\n"
 #~ "Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.\n"
 #~ "Antón Méixome <meixome@certima.net>, 2009, 2010.\n"
-#~ "Mancomún - Centro de Referencia e Servizos de Software Libre "
-#~ "<g11n@mancomun.org>, 2009.\n"
+#~ "Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun."
+#~ "org>, 2009.\n"
 #~ "Suso Baleato <suso.baleato@xunta.es>, 2009.\n"
 #~ "Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006."
 
@@ -2615,8 +2606,7 @@ msgstr "-- BLOQUE VISUAL --"
 
 #~ msgid "Show provider and proposal icons in the completion popup"
 #~ msgstr ""
-#~ "Mostrar o fornecedor e as iconas propostas na xanela emerxente de "
-#~ "completado"
+#~ "Mostrar o fornecedor e as iconas propostas na xanela emerxente de completado"
 
 #~ msgid "Accelerators"
 #~ msgstr "Atallos"
@@ -2710,13 +2700,13 @@ msgstr "-- BLOQUE VISUAL --"
 #~ msgstr "Aliñamento X"
 
 #~ msgid "The x-alignment"
-#~ msgstr "O aliñamento x"
+#~ msgstr "O aliñamento x"
 
 #~ msgid "Y Alignment"
-#~ msgstr "Aliñamento Y"
+#~ msgstr "Aliñamento Y"
 
 #~ msgid "The y-alignment"
-#~ msgstr "O aliñamento y"
+#~ msgstr "O aliñamento y"
 
 #~ msgid "The View"
 #~ msgstr "A vista"
@@ -2831,8 +2821,7 @@ msgstr "-- BLOQUE VISUAL --"
 #~ msgstr "Modo de axuste"
 
 #~ msgid ""
-#~ "Whether to wrap lines never, at word boundaries, or at character "
-#~ "boundaries."
+#~ "Whether to wrap lines never, at word boundaries, or at character boundaries."
 #~ msgstr ""
 #~ "Indica se as liñas non se axustan nunca, se se axustan só aos límites da "
 #~ "palabra ou aos límites dos caracteres."
@@ -2897,8 +2886,8 @@ msgstr "-- BLOQUE VISUAL --"
 #~ "The number of pages in the document (-1 means the document has not been "
 #~ "completely paginated)."
 #~ msgstr ""
-#~ "O número de páxinas do documento (-1 indica que non se acabou de paxinar "
-#~ "o documento)."
+#~ "O número de páxinas do documento (-1 indica que non se acabou de paxinar o "
+#~ "documento)."
 
 #~ msgid "Buffer"
 #~ msgstr "Búfer"
@@ -3043,8 +3032,7 @@ msgstr "-- BLOQUE VISUAL --"
 
 #~ msgid "List of directories and files where the style schemes are located"
 #~ msgstr ""
-#~ "Lista de cartafoles e ficheiros onde están localizados os esquemas de "
-#~ "estilo"
+#~ "Lista de cartafoles e ficheiros onde están localizados os esquemas de estilo"
 
 #~ msgid "Scheme ids"
 #~ msgstr "Id de esquemas"
@@ -3107,9 +3095,8 @@ msgstr "-- BLOQUE VISUAL --"
 #~ "HOME and END keys move to first/last non whitespace characters on line "
 #~ "before going to the start/end of the line"
 #~ msgstr ""
-#~ "As teclas INICIO e FIN situarán o cursor no primeiro ou último carácter "
-#~ "da liña que non sexa un espazo en branco antes de ir ao inicio ou fin da "
-#~ "liña"
+#~ "As teclas INICIO e FIN situarán o cursor no primeiro ou último carácter da "
+#~ "liña que non sexa un espazo en branco antes de ir ao inicio ou fin da liña"
 
 #~ msgid "Highlight current line"
 #~ msgstr "Realzar a liña actual"
@@ -3198,8 +3185,7 @@ msgstr "-- BLOQUE VISUAL --"
 #~ msgstr "Reducir algo"
 
 #~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr ""
-#~ "Indica se a xanela debería reducir o alto para axustarse aos contidos"
+#~ msgstr "Indica se a xanela debería reducir o alto para axustarse aos contidos"
 
 #~ msgid "Stock Detail"
 #~ msgstr "Detalle de inventario"
