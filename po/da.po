@@ -8,7 +8,7 @@
 # flemming christensen <fc@stromata.dk>, 2011.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 09, 10, 11, 12, 13, 14, 16, 17, 18.
 # scootergrisen, 2015.
-# Alan Mortensen <alanmortensen.am@gmail.com>, 2017, 2021-22.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2017, 2021-22, 25.
 #
 # Konventioner:
 #
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-18 12:08+0000\n"
-"PO-Revision-Date: 2022-02-27 16:25+0100\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-03-06 19:14+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Language: da_DK\n"
 "X-Source-Language: C\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -418,7 +418,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Farveskema der bruger Tango-farvepaletten"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Tekststumper"
 
@@ -427,41 +427,41 @@ msgstr "Tekststumper"
 msgid "Document Words"
 msgstr "Dokumentord"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Ugyldig bytesekvens i konverteringsinput"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Fejl under konvertering: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Konvertering fra tegnsæt “%s” til “UTF-8” understøttes ikke"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Kunne ikke åbne konvertering fra “%s” til “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Ugyldigt objekt, ikke klargjort"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Ufuldstændig UTF-8-sekvens i input"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d af %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_Detaljer"
 
@@ -469,7 +469,7 @@ msgstr "_Detaljer"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -480,7 +480,7 @@ msgstr ""
 "vil derfor være langsommere end sædvanligt.\n"
 "Fejlen var: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -488,19 +488,19 @@ msgstr ""
 "Syntaksfremhævning af en enkelt linje tog for lang tid, syntaksfremhævning "
 "vil blive slået fra"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "konteksten “%s” kan ikke indeholder en \\%%{…@start}-kommando"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "duplikeret kontekst-id “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -509,18 +509,18 @@ msgstr ""
 "stiltilsidesættelse benyttet i forbindelse med wildcard-kontekstreference i "
 "sproget “%s” i ref “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "ugyldig kontekstreference “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "ukendt kontekst “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Mangler hovedsprogsdefinition (id = “%s”)."
@@ -661,17 +661,16 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
-"Der opstod en fejl ved konvertering af tegnkodning, og det var nødvendigt at "
-"bruge et erstatningstegn."
+"Der opstod en fejl ved kodningskonvertering, så et erstatningstegn blev "
+"brugt."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "Filen er for stor."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Ikke en almindelig fil."
 
@@ -679,7 +678,7 @@ msgstr "Ikke en almindelig fil."
 msgid "The file is externally modified."
 msgstr "Filen er ændret udefra."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "Bufferen indeholder ugyldige tegn."
 
@@ -725,68 +724,68 @@ msgstr "_Annullér"
 msgid "_Select"
 msgstr "_Vælg"
 
-#: gtksourceview/gtksourceview.c:1806
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "Alle med _store bogstaver"
 
-#: gtksourceview/gtksourceview.c:1810
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "Alle med s_må bogstaver"
 
-#: gtksourceview/gtksourceview.c:1814
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_Omvendte store/små bogstaver"
 
-#: gtksourceview/gtksourceview.c:1818
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "Ord _begynder med stort"
 
-#: gtksourceview/gtksourceview.c:1822
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "_Ændr mellem store/små bogstaver"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "hexadecimalt ciffer eller “}” forventet"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "hexadecimalt ciffer forventet"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "manglende “<” i symbolsk reference"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "ufærdig symbolsk reference"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "symbolsk reference med længde nul"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "ciffer forventet"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "ugyldig symbolsk reference"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "løst afsluttende “\\”"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "ukendt undvigesekvens"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Fejl under fortolkning af erstatningstekst “%s” ved tegn %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- INDSÆT --"
 
@@ -794,15 +793,15 @@ msgstr "-- INDSÆT --"
 msgid "-- REPLACE --"
 msgstr "-- ERSTAT --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- VISUEL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- VISUEL LINJE --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- VISUEL BLOK --"
 
