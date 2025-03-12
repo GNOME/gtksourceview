@@ -4,23 +4,23 @@
 # Ahmad Riza H Nst <ari@160c.afraid.org>, 2003, 2004, 2006.
 # Imam Musthaqim <imam@infoflow.co.id>, 2005.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010.
-# Andika Triwidada <andika@gmail.com>, 2009-2015.
+# Andika Triwidada <andika@gmail.com>, 2009-2015, 2025.
 # Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-02-04 20:07+0000\n"
-"PO-Revision-Date: 2022-02-09 10:12+0700\n"
-"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"POT-Creation-Date: 2025-03-10 23:23+0000\n"
+"PO-Revision-Date: 2025-03-12 18:32+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -399,7 +399,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Skema warna yang memakai palet warna Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
 msgstr "Potongan"
 
@@ -407,41 +407,41 @@ msgstr "Potongan"
 msgid "Document Words"
 msgstr "Kata Dokumen"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Sekuens byte yang tak valid dalam masukan konversi"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Galat saat konversi: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Konversi dari set karakter \"%s\" ke \"UTF-8\" tidak didukung"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Tidak bisa membuka pengonversi dari \"%s\" ke \"UTF-8\""
 
-#: gtksourceview/gtksourcebufferoutputstream.c:991
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Objek tak valid, tidak diinisialisasi"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1183
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Sekuens UTF-8 yang tak lengkap pada masukan"
 
-#: gtksourceview/gtksourcecompletionlist.c:206
-#: gtksourceview/gtksourcecompletionlist.c:210
+#: gtksourceview/gtksourcecompletionlist.c:248
+#: gtksourceview/gtksourcecompletionlist.c:252
 #, c-format
 msgid "%d of %u"
 msgstr "%d dari %u"
 
-#: gtksourceview/gtksourcecompletionlist.ui:59
+#: gtksourceview/gtksourcecompletionlist.ui:56
 msgid "_Details"
 msgstr "_Detail"
 
@@ -449,7 +449,7 @@ msgstr "_Detail"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -460,7 +460,7 @@ msgstr ""
 "lebih lambat dari biasanya.\n"
 "Galatnya: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -468,19 +468,19 @@ msgstr ""
 "Penandaan suatu baris makan waktu terlalu lama, penandaan sintaks akan "
 "dimatikan"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "konteks \"%s\" tidak boleh memuat suatu perintah \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "id konteks \"%s\" duplikat"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -489,18 +489,18 @@ msgstr ""
 "penimpaan gaya dipakai dengan acuan konteks wildcard pada bahasa \"%s\" di "
 "acuan \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "acuan konteks \"%s\" tidak valid"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "konteks \"%s\" tidak dikenal"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Kehilangan definisi bahasa utama (id = \"%s\")."
@@ -641,17 +641,16 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
-"Ada kesalahan konversi pengkodean karakter dan perlu memakai karakter "
-"fallback."
+"Ada kesalahan konversi pengkodean karakter sehingga sebuah karakter fallback "
+"dipakai."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "Berkas terlalu besar."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Bukan berkas biasa."
 
@@ -659,7 +658,7 @@ msgstr "Bukan berkas biasa."
 msgid "The file is externally modified."
 msgstr "Berkas ini diubah secara eksternal."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "Penyangga memuat karakter tak valid."
 
@@ -705,68 +704,68 @@ msgstr "_Batal"
 msgid "_Select"
 msgstr "_Pilih"
 
-#: gtksourceview/gtksourceview.c:1804
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "Semua H_uruf Besar"
 
-#: gtksourceview/gtksourceview.c:1808
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "Semua Huruf Keci_l"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "Balikkan Besar Kecil Huruf"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "Huruf Besar _Judul"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "Uba_h Besar Kecil Huruf"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "digit heksadesimal atau \"}\" diharapkan"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "digit heksadesimal diharapkan"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "kurang \"<\" dalam acuan simbolis"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "acuan simbolis yang belum selesai"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "acuan simbolis dengan panjang nol"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "digit yang diharapkan"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "acuan simbolis yang tak legal"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "\"\\\" akhir yang tersesat"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "urutan escape tak dikenal"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Galat saat mengurai teks pengganti \"%s\" pada karakter %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- SISIPKAN --"
 
@@ -774,1640 +773,14 @@ msgstr "-- SISIPKAN --"
 msgid "-- REPLACE --"
 msgstr "-- GANTI --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- VISUAL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- GARIS VISUAL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- BLOK VISUAL --"
-
-#~ msgid "A dark color scheme matching GTK's default theme"
-#~ msgstr "Skema warna gelap yang cocok dengan tema bawaan GTK"
-
-#~ msgid "A color scheme matching GTK's default theme"
-#~ msgstr "Skema warna yang cocok dengan tema bawaan GTK"
-
-#~ msgid "All"
-#~ msgstr "Semua"
-
-#~ msgid "Completion Info"
-#~ msgstr "Info Pelengkapan"
-
-#~ msgid "Provider"
-#~ msgstr "Penyedia"
-
-#~ msgid "Show detailed proposal information"
-#~ msgstr "Tampilkan informasi proposal terrinci"
-
-#~ msgid "_Redo"
-#~ msgstr "_Jadi Lagi"
-
-#~ msgid "_Undo"
-#~ msgstr "_Tak Jadi"
-
-#~ msgid "Disabled"
-#~ msgstr "Dimatikan"
-
-#~ msgid "Before"
-#~ msgstr "Sebelum"
-
-#~ msgid "After"
-#~ msgstr "Setelah"
-
-#~ msgid "Always"
-#~ msgstr "Selalu"
-
-#~ msgid "ABNF"
-#~ msgstr "ABNF"
-
-#~ msgid "Comment"
-#~ msgstr "Komentar"
-
-#~ msgid "Rule Name"
-#~ msgstr "Nama Aturan"
-
-#~ msgid "Binary number"
-#~ msgstr "Bilangan biner"
-
-#~ msgid "Decimal number"
-#~ msgstr "Bilangan desimal"
-
-#~ msgid "Hexadecimal number"
-#~ msgstr "Angka heksadesimal"
-
-#~ msgid "String"
-#~ msgstr "String"
-
-#~ msgid "ActionScript"
-#~ msgstr "ActionScript"
-
-#~ msgid "Error"
-#~ msgstr "Galat"
-
-#~ msgid "External"
-#~ msgstr "Eksternal"
-
-#~ msgid "Declaration"
-#~ msgstr "Deklarasi"
-
-#~ msgid "Storage Class"
-#~ msgstr "Kelas Penyimpanan"
-
-#~ msgid "Scope Declaration"
-#~ msgstr "Deklarasi Scope"
-
-#~ msgid "Keyword"
-#~ msgstr "Kata-kunci"
-
-#~ msgid "Null Value"
-#~ msgstr "Nilai Null"
-
-#~ msgid "Boolean value"
-#~ msgstr "Nilai boolean"
-
-#~ msgid "Number"
-#~ msgstr "Nomor"
-
-#~ msgid "Future Reserved Keywords"
-#~ msgstr "Kata Kunci Cadangan Masa Depan"
-
-#~ msgid "Data Type"
-#~ msgstr "Tipe Data"
-
-#~ msgid "Ada"
-#~ msgstr "Ada"
-
-#~ msgid "Preprocessor"
-#~ msgstr "Preprosesor"
-
-#~ msgid "Arbitrary base number"
-#~ msgstr "Dasar bilangan sebarang"
-
-#~ msgid "Real number"
-#~ msgstr "Bilangan pecahan"
-
-#~ msgid "Escaped Character"
-#~ msgstr "Karakter Di-Escape"
-
-#~ msgid "ANS-Forth94"
-#~ msgstr "ANS-Forth94"
-
-#~ msgid "Obsolete Keyword"
-#~ msgstr "Kata Kunci Usang"
-
-#~ msgid "Alert"
-#~ msgstr "Waspada"
-
-#~ msgid "Character"
-#~ msgstr "Karakter"
-
-#~ msgid "Word"
-#~ msgstr "Kata"
-
-#~ msgid "Constant"
-#~ msgstr "Konstanta"
-
-#~ msgid "Variable"
-#~ msgstr "Variabel"
-
-#~ msgid "Local Variable"
-#~ msgstr "Variabel Lokal"
-
-#~ msgid "Single Number"
-#~ msgstr "Bilangan Pecahan Presisi Tunggal"
-
-#~ msgid "Double Number"
-#~ msgstr "Bilangan Pecahan Presisi Ganda"
-
-#~ msgid "Float"
-#~ msgstr "Float"
-
-#~ msgid "ASP"
-#~ msgstr "ASP"
-
-#~ msgid "Function"
-#~ msgstr "Fungsi"
-
-#~ msgid "Operator"
-#~ msgstr "Operator"
-
-#~ msgid "ASP Object"
-#~ msgstr "Objek ASP"
-
-#~ msgid "VBScript and ADO constants"
-#~ msgstr "Konstanta VBScript dan ADO"
-
-#~ msgid "Special constant"
-#~ msgstr "Konstanta khusus"
-
-#~ msgid "Automake"
-#~ msgstr "Automake"
-
-#~ msgid "Automake Variable"
-#~ msgstr "Variabel Automake"
-
-#~ msgid "Primary"
-#~ msgstr "Primer"
-
-#~ msgid "Secondary"
-#~ msgstr "Sekunder"
-
-#~ msgid "Prefix"
-#~ msgstr "Prefiks"
-
-#~ msgid "Optional Target"
-#~ msgstr "Target Opsional"
-
-#~ msgid "Built-in Target"
-#~ msgstr "Target Bawaan"
-
-#~ msgid "Other Keyword"
-#~ msgstr "Kata Kunci Lain"
-
-#~ msgid "Substitution"
-#~ msgstr "Substitusi"
-
-#~ msgid "awk"
-#~ msgstr "awk"
-
-#~ msgid "Pattern"
-#~ msgstr "Pola"
-
-#~ msgid "Builtin Function"
-#~ msgstr "Fungsi Bawaan"
-
-#~ msgid "BennuGD"
-#~ msgstr "BennuGD"
-
-#~ msgid "Identifier"
-#~ msgstr "Identifier"
-
-#~ msgid "Floating point number"
-#~ msgstr "Bilangan floating point"
-
-#~ msgid "BibTeX"
-#~ msgstr "BibTeX"
-
-#~ msgid "Entries"
-#~ msgstr "Entri"
-
-#~ msgid "Field"
-#~ msgstr "Ruas"
-
-#~ msgid "Bluespec SystemVerilog"
-#~ msgstr "SystemVerilog Bluespec"
-
-#~ msgid "System Task"
-#~ msgstr "Tugas Sistem"
-
-#~ msgid "Annotation"
-#~ msgstr "Anotasi"
-
-#~ msgid "Attribute"
-#~ msgstr "Atribut"
-
-#~ msgid "Import BVI"
-#~ msgstr "Impor BVI"
-
-#~ msgid "Type"
-#~ msgstr "Tipe"
-
-#~ msgid "Boo"
-#~ msgstr "Boo"
-
-#~ msgid "Multiline string"
-#~ msgstr "String multi-baris"
-
-#~ msgid "Regular Expression"
-#~ msgstr "Ekspresi Reguler"
-
-#~ msgid "Namespace"
-#~ msgstr "Namespace"
-
-#~ msgid "Definition"
-#~ msgstr "Definisi"
-
-#~ msgid "Special Variable"
-#~ msgstr "Variabel Khusus"
-
-#~ msgid "Boolean"
-#~ msgstr "Boolean"
-
-#~ msgid "Bindings"
-#~ msgstr "Pengikatan"
-
-#~ msgid "Included File"
-#~ msgstr "Berkas Sertaan"
-
-#~ msgid "Octal number"
-#~ msgstr "Angka Oktal"
-
-#~ msgid "Swizzle operator"
-#~ msgstr "Operator swizzle"
-
-#~ msgid "Builtin"
-#~ msgstr "Bawaan"
-
-#~ msgid "ChangeLog"
-#~ msgstr "ChangeLog"
-
-#~ msgid "Date"
-#~ msgstr "Tanggal"
-
-#~ msgid "Name"
-#~ msgstr "Nama"
-
-#~ msgid "E-mail address"
-#~ msgstr "Alamat surel"
-
-#~ msgid "File"
-#~ msgstr "Berkas"
-
-#~ msgid "Bullet"
-#~ msgstr "Bulet"
-
-#~ msgid "Release"
-#~ msgstr "Rilis"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Common Defines"
-#~ msgstr "Definisi Umum"
-
-#~ msgid "printf Conversion"
-#~ msgstr "Konversi printf"
-
-#~ msgid "Standard stream"
-#~ msgstr "Stream standar"
-
-#~ msgid "Signal name"
-#~ msgstr "Nama sinyal"
-
-#~ msgid "CMake"
-#~ msgstr "CMake"
-
-#~ msgid "Builtin Command"
-#~ msgstr "Perintah Bawaan"
-
-#~ msgid "Deprecated Builtin Command"
-#~ msgstr "Perintah Bawaan Yang Tak Berlaku Lagi"
-
-#~ msgid "Builtin Variable"
-#~ msgstr "Variabel Bawaan"
-
-#~ msgid "Control Keyword"
-#~ msgstr "Kata Kunci Kendali"
-
-#~ msgid "COBOL"
-#~ msgstr "COBOL"
-
-#~ msgid "Statement"
-#~ msgstr "Pernyataan"
-
-#~ msgid "C++"
-#~ msgstr "C++"
-
-#~ msgid "C#"
-#~ msgstr "C#"
-
-#~ msgid "String Format"
-#~ msgstr "Format String"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "Others 2"
-#~ msgstr "Lainnya 2"
-
-#~ msgid "Color"
-#~ msgstr "Warna"
-
-#~ msgid "Others 3"
-#~ msgstr "Lainnya 3"
-
-#~ msgid "Decimal"
-#~ msgstr "Desimal"
-
-#~ msgid "Dimension"
-#~ msgstr "Dimensi"
-
-#~ msgid "Property Value"
-#~ msgstr "Nilai Properti"
-
-#~ msgid "at-rules"
-#~ msgstr "at-rules"
-
-#~ msgid "ID Selector"
-#~ msgstr "Selektor ID"
-
-#~ msgid "Class Selector"
-#~ msgstr "Selektor Kelas"
-
-#~ msgid "Tag Name Selector"
-#~ msgstr "Selektor Nama Tag"
-
-#~ msgid "CSV"
-#~ msgstr "CSV"
-
-#~ msgid "Escaped character"
-#~ msgstr "Karakter yang di-escape"
-
-#~ msgid "CUDA"
-#~ msgstr "CUDA"
-
-#~ msgid "Global Functions"
-#~ msgstr "Fungsi Global"
-
-#~ msgid "Device Functions"
-#~ msgstr "Fungsi Perangkat"
-
-#~ msgid "Global Variables"
-#~ msgstr "Variabel Global"
-
-#~ msgid "Defaults"
-#~ msgstr "Bawaan"
-
-#~ msgid "Shebang"
-#~ msgstr "Shebang"
-
-#~ msgid "Documentation comment"
-#~ msgstr "Komentar dokumentasi"
-
-#~ msgid "Documentation comment element"
-#~ msgstr "Elemen komentar dokumentasi"
-
-#~ msgid "Special character (inside a string)"
-#~ msgstr "Karakter khusus (di tengah string)"
-
-#~ msgid "Base-N number"
-#~ msgstr "Bilangan berbasis-N"
-
-#~ msgid "Complex number"
-#~ msgstr "Bilangan kompleks"
-
-#~ msgid "Built-in identifier"
-#~ msgstr "Identifier bawaan"
-
-#~ msgid "Data type"
-#~ msgstr "Jenis data"
-
-#~ msgid "Preprocessor directive"
-#~ msgstr "Direktif preprosesor"
-
-#~ msgid "Warning"
-#~ msgstr "Peringatan"
-
-#~ msgid "Reserved keyword"
-#~ msgstr "Kata kunci yang dicadangkan"
-
-#~ msgid "Note (FIXME, TODO, XXX, etc.)"
-#~ msgstr "Catatan (FIXME, TODO, XXX, dsb.)"
-
-#~ msgid "Underlined"
-#~ msgstr "Digarisbawahi"
-
-#~ msgid "Heading 0"
-#~ msgstr "Tajuk 0"
-
-#~ msgid "Heading 1"
-#~ msgstr "Tajuk 1"
-
-#~ msgid "Heading 2"
-#~ msgstr "Tajuk 2"
-
-#~ msgid "Heading 3"
-#~ msgstr "Tajuk 3"
-
-#~ msgid "Heading 4"
-#~ msgstr "Tajuk 4"
-
-#~ msgid "Heading 5"
-#~ msgstr "Tajuk 5"
-
-#~ msgid "Heading 6"
-#~ msgstr "Tajuk 6"
-
-#~ msgid ".desktop"
-#~ msgstr ".desktop"
-
-#~ msgid "Group"
-#~ msgstr "Grup"
-
-#~ msgid "Key"
-#~ msgstr "Kunci"
-
-#~ msgid "Translation"
-#~ msgstr "Terjemahan"
-
-#~ msgid "Exec parameter"
-#~ msgstr "Parameter exec"
-
-#~ msgid "Encoding"
-#~ msgstr "Pengkodean"
-
-#~ msgid "Main Category"
-#~ msgstr "Kategori Utama"
-
-#~ msgid "Additional Category"
-#~ msgstr "Kategori Tambahan"
-
-#~ msgid "Reserved Category"
-#~ msgstr "Kategori Dicadangkan"
-
-#~ msgid "Diff"
-#~ msgstr "Diff"
-
-#~ msgid "Added line"
-#~ msgstr "Baris yang ditambahkan"
-
-#~ msgid "Removed line"
-#~ msgstr "Baris yang dibuang"
-
-#~ msgid "Changed line"
-#~ msgstr "Baris yang diubah"
-
-#~ msgid "Special case"
-#~ msgstr "Kasus khusus"
-
-#~ msgid "Location"
-#~ msgstr "Lokasi"
-
-#~ msgid "Ignore"
-#~ msgstr "Abaikan"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Special Token"
-#~ msgstr "Token Khusus"
-
-#~ msgid "DocBook"
-#~ msgstr "DocBook"
-
-#~ msgid "Header Elements"
-#~ msgstr "Elemen Header"
-
-#~ msgid "Formatting Elements"
-#~ msgstr "Elemen Pemformatan"
-
-#~ msgid "GUI Elements"
-#~ msgstr "Elemen GUI"
-
-#~ msgid "Structural Elements"
-#~ msgstr "Elemen Struktural"
-
-#~ msgid "Command"
-#~ msgstr "Perintah"
-
-#~ msgid "Graphviz Dot"
-#~ msgstr "Graphviz Dot"
-
-#~ msgid "Attribute name"
-#~ msgstr "Nama atribut"
-
-#~ msgid "DPatch"
-#~ msgstr "DPatch"
-
-#~ msgid "Patch Start"
-#~ msgstr "Mulai Patch"
-
-#~ msgid "DTD"
-#~ msgstr "DTD"
-
-#~ msgid "entity"
-#~ msgstr "entitas"
-
-#~ msgid "decl"
-#~ msgstr "decl"
-
-#~ msgid "error"
-#~ msgstr "galat"
-
-#~ msgid "Quoted Value"
-#~ msgstr "Nilai Dalam Kutipan"
-
-#~ msgid "Eiffel"
-#~ msgstr "Eiffel"
-
-#~ msgid "Debug"
-#~ msgstr "Awakutu"
-
-#~ msgid "Assertion"
-#~ msgstr "Asersi"
-
-#~ msgid "Design by Contract"
-#~ msgstr "Disain berdasar Kontrak"
-
-#~ msgid "Exception Handling"
-#~ msgstr "Penanganan Eksepsi"
-
-#~ msgid "Predefined Variable"
-#~ msgstr "Variabel Terpradefinisi"
-
-#~ msgid "Void Value"
-#~ msgstr "Nilai Void"
-
-#~ msgid "Boolean Value"
-#~ msgstr "Nilai Boolean"
-
-#~ msgid "Erlang"
-#~ msgstr "Erlang"
-
-#~ msgid "Atom"
-#~ msgstr "Atom"
-
-#~ msgid "Base-N Integer"
-#~ msgstr "Integer berbasis-N"
-
-#~ msgid "Compiler Directive"
-#~ msgstr "Direktif Kompailer"
-
-#~ msgid "FCL"
-#~ msgstr "FCL"
-
-#~ msgid "Floating Point"
-#~ msgstr "Titik Ambang"
-
-#~ msgid "Block"
-#~ msgstr "Blok"
-
-#~ msgid "Reserved Constant"
-#~ msgstr "Konstanta Yang Telah Dicadangkan"
-
-#~ msgid "Forth"
-#~ msgstr "Forth"
-
-#~ msgid "Debug Code"
-#~ msgstr "Kode Awakutu"
-
-#~ msgid "Error Text"
-#~ msgstr "Teks Galat"
-
-#~ msgid "Fortran 95"
-#~ msgstr "Fortran 95"
-
-#~ msgid "Intrinsic function"
-#~ msgstr "Fungsi intrinsik"
-
-#~ msgid "BOZ Literal"
-#~ msgstr "Literal BOZ"
-
-#~ msgid "OpenMP directives"
-#~ msgstr "Direktif OpenMP"
-
-#~ msgid "F#"
-#~ msgstr "F#"
-
-#~ msgid "Floating Point number"
-#~ msgstr "Bilangan floating point"
-
-#~ msgid "Type, module or object keyword"
-#~ msgstr "Kata-kunci objek, modul, atau tipe"
-
-#~ msgid "Builtin-function keyword"
-#~ msgstr "Kata kunci fungsi bawaan"
-
-#~ msgid "Labeled argument"
-#~ msgstr "Argumen berlabel"
-
-#~ msgid "Polymorphic Variant"
-#~ msgstr "Varian Polimorfik"
-
-#~ msgid "Variant Constructor"
-#~ msgstr "Konstruktor Varian"
-
-#~ msgid "Type Variable"
-#~ msgstr "Variabel Type"
-
-#~ msgid "Module Path"
-#~ msgstr "Path Modul"
-
-#~ msgid "GAP"
-#~ msgstr "GAP"
-
-#~ msgid "Thread Action"
-#~ msgstr "Aksi Thread"
-
-#~ msgid "Thread Header"
-#~ msgstr "Header Thread"
-
-#~ msgid "Frame Number"
-#~ msgstr "Nomor Rangka"
-
-#~ msgid "Address"
-#~ msgstr "Alamat"
-
-#~ msgid "Filename"
-#~ msgstr "Nama berkas"
-
-#~ msgid "Optimized Out"
-#~ msgstr "Teroptimasi"
-
-#~ msgid "Incomplete Sequence"
-#~ msgstr "Sekuens Tak Lengkap"
-
-#~ msgid "Prompt"
-#~ msgstr "Prompt"
-
-#~ msgid "Genie"
-#~ msgstr "Genie"
-
-#~ msgid "Builtin Constant"
-#~ msgstr "Konstanta Bawaan"
-
-#~ msgid "Reserved Keywords"
-#~ msgstr "Kata Kunci Yang Dicadangkan"
-
-#~ msgid "Go"
-#~ msgstr "Go"
-
-#~ msgid "Imaginary number"
-#~ msgstr "Bilangan imajiner"
-
-#~ msgid "gtk-doc"
-#~ msgstr "gtk-doc"
-
-#~ msgid "Inline Documentation Section"
-#~ msgstr "Bagian Dokumentasi Inline"
-
-#~ msgid "Function Name"
-#~ msgstr "Nama Fungsi"
-
-#~ msgid "Signal Name"
-#~ msgstr "Nama Sinyal"
-
-#~ msgid "Property Name"
-#~ msgstr "Nama Properti"
-
-#~ msgid "Parameter"
-#~ msgstr "Parameter"
-
-#~ msgid "Return"
-#~ msgstr "Return"
-
-#~ msgid "Since"
-#~ msgstr "Sejak"
-
-#~ msgid "Deprecated"
-#~ msgstr "Tak Dipakai Lagi"
-
-#~ msgid "GtkRC"
-#~ msgstr "GtkRC"
-
-#~ msgid "Widget State"
-#~ msgstr "Keadaan Widget"
-
-#~ msgid "Include directive"
-#~ msgstr "Direktif inklusi"
-
-#~ msgid "Haddock"
-#~ msgstr "Haddock"
-
-#~ msgid "Inline Haddock Section"
-#~ msgstr "Bagian Haddock Inline"
-
-#~ msgid "Haddock Directive"
-#~ msgstr "Direktif Haddock"
-
-#~ msgid "Hyperlinked Identifier"
-#~ msgstr "Identifier Terhiperlink"
-
-#~ msgid "Hyperlinked Module Name"
-#~ msgstr "Nama Modul Terhiperlink"
-
-#~ msgid "Escape"
-#~ msgstr "Escape"
-
-#~ msgid "Emphasis"
-#~ msgstr "Penekanan"
-
-#~ msgid "Monospace"
-#~ msgstr "Lebar seragam"
-
-#~ msgid "Code Block"
-#~ msgstr "Blok Kode"
-
-#~ msgid "Header Property"
-#~ msgstr "Properti Header"
-
-#~ msgid "Itemized list"
-#~ msgstr "Senarai terbutirkan"
-
-#~ msgid "Enumerated list"
-#~ msgstr "Senarai terenumerasi"
-
-#~ msgid "Definition list"
-#~ msgstr "Senarai definisi"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Anchor"
-#~ msgstr "Jangkar"
-
-#~ msgid "Haskell"
-#~ msgstr "Haskell"
-
-#~ msgid "Symbol"
-#~ msgstr "Simbol"
-
-#~ msgid "Octal"
-#~ msgstr "Oktal"
-
-#~ msgid "Hex"
-#~ msgstr "Hex"
-
-#~ msgid "Literate Haskell"
-#~ msgstr "Literate Haskell"
-
-#~ msgid "Haxe"
-#~ msgstr "Haxe"
-
-#~ msgid "Scope"
-#~ msgstr "Cakupan"
-
-#~ msgid "Metadata"
-#~ msgstr "Metadata"
-
-#~ msgid "Macro"
-#~ msgstr "Makro"
-
-#~ msgid "Identifier Prefix"
-#~ msgstr "Prefiks Identifier"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "Tag"
-#~ msgstr "Tag"
-
-#~ msgid "Attribute Name"
-#~ msgstr "Nama Atribut"
-
-#~ msgid "Attribute Value"
-#~ msgstr "Nilai Atribut"
-
-#~ msgid "Page title"
-#~ msgstr "Judul halaman"
-
-#~ msgid "Heading level 1"
-#~ msgstr "Tajuk tingkat 1"
-
-#~ msgid "Heading level 2"
-#~ msgstr "Tajuk tingkat 2"
-
-#~ msgid "Heading level 3"
-#~ msgstr "Tajuk tingkat 3"
-
-#~ msgid "Heading level 4"
-#~ msgstr "Tajuk tingkar 4"
-
-#~ msgid "Heading level 5"
-#~ msgstr "Tajuk tingkat 5"
-
-#~ msgid "IDL-Exelis"
-#~ msgstr "IDL-Exelis"
-
-#~ msgid "IDL"
-#~ msgstr "IDL"
-
-#~ msgid "ImageJ"
-#~ msgstr "ImageJ"
-
-#~ msgid "Commands"
-#~ msgstr "Perintah"
-
-#~ msgid "Storage Type"
-#~ msgstr "Tipe Penyimpanan"
-
-#~ msgid ".ini"
-#~ msgstr ".ini"
-
-#~ msgid "Jade"
-#~ msgstr "Jade"
-
-#~ msgid "DOCTYPE"
-#~ msgstr "DOCTYPE"
-
-#~ msgid "Processing instruction"
-#~ msgstr "Memroses instruksi"
-
-#~ msgid "Element name"
-#~ msgstr "Nama elemen"
-
-#~ msgid "Attribute value"
-#~ msgstr "Nilai atribut"
-
-#~ msgid "Tags"
-#~ msgstr "Tag"
-
-#~ msgid "Entity"
-#~ msgstr "Entiti"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "Undefined Value"
-#~ msgstr "Nilai Tak Terdefinisi"
-
-#~ msgid "Properties"
-#~ msgstr "Properti"
-
-#~ msgid "Constructors"
-#~ msgstr "Konstruktor"
-
-#~ msgid "J"
-#~ msgstr "J"
-
-#~ msgid "Adverb"
-#~ msgstr "Kata Keterangan"
-
-#~ msgid "Conjunction"
-#~ msgstr "Kata Sambung"
-
-#~ msgid "Control"
-#~ msgstr "Kendali"
-
-#~ msgid "Explicit Argument"
-#~ msgstr "Argumen Eksplisit"
-
-#~ msgid "Global"
-#~ msgstr "Global"
-
-#~ msgid "Lab Text"
-#~ msgstr "Teks Lab"
-
-#~ msgid "Local"
-#~ msgstr "Lokal"
-
-#~ msgid "Noun"
-#~ msgstr "Kata Benda"
-
-#~ msgid "Explicit Noun Definition"
-#~ msgstr "Definisi Kata Benda Eksplisit"
-
-#~ msgid "Parens"
-#~ msgstr "Kurung"
-
-#~ msgid "Primitive"
-#~ msgstr "Primitif"
-
-#~ msgid "Verb"
-#~ msgstr "Kata Kerja"
-
-#~ msgid "Julia"
-#~ msgstr "Julia"
-
-#~ msgid "Math Constant"
-#~ msgstr "Konstanta Matematika"
-
-#~ msgid "Special Constant"
-#~ msgstr "Konstanta Khusus"
-
-#~ msgid "External Command"
-#~ msgstr "Perintah Eksternal"
-
-#~ msgid "Built-in Function"
-#~ msgstr "Fungsi Bawaan"
-
-#~ msgid "Module"
-#~ msgstr "Modul"
-
-#~ msgid "LaTeX"
-#~ msgstr "LaTeX"
-
-#~ msgid "Math Mode"
-#~ msgstr "Mode Matematika"
-
-#~ msgid "Inline Math Mode"
-#~ msgstr "Mode Matematika Inline"
-
-#~ msgid "Math Boundary"
-#~ msgstr "Batas Matematika"
-
-#~ msgid "Include"
-#~ msgstr "Termasuk"
-
-#~ msgid "Verbatim"
-#~ msgstr "Verbatim"
-
-#~ msgid "Special Character"
-#~ msgstr "Karakter Khusus"
-
-#~ msgid "Part Heading"
-#~ msgstr "Tajuk Bagian"
-
-#~ msgid "Chapter Heading"
-#~ msgstr "Tajuk Bab"
-
-#~ msgid "Section Heading"
-#~ msgstr "Tajuk Seksi"
-
-#~ msgid "SubSection Heading"
-#~ msgstr "Tajuk Sub Seksi"
-
-#~ msgid "SubSubSection Heading"
-#~ msgstr "Tajuk Sub Sub Seksi"
-
-#~ msgid "Paragraph Heading"
-#~ msgstr "Tajuk Paragraf"
-
-#~ msgid "SubParagraph Heading"
-#~ msgstr "Tajuk Sub Paragraf"
-
-#~ msgid "Lex"
-#~ msgstr "Lex"
-
-#~ msgid "Token"
-#~ msgstr "Token"
-
-#~ msgid "Expression"
-#~ msgstr "Ekspresi"
-
-#~ msgid "libtool"
-#~ msgstr "libtool"
-
-#~ msgid "Constants"
-#~ msgstr "Konstanta"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "Reserved Identifier"
-#~ msgstr "Identifier Yang Dicadangkan"
-
-#~ msgid "Label"
-#~ msgstr "Label"
-
-#~ msgid "Nil Constant"
-#~ msgstr "Konstanta Nil"
-
-#~ msgid "m4"
-#~ msgstr "m4"
-
-#~ msgid "m4 Comment"
-#~ msgstr "Komentar m4"
-
-#~ msgid "m4 Macro"
-#~ msgstr "Makro m4"
-
-#~ msgid "Autoconf Macro"
-#~ msgstr "Makro Autoconf"
-
-#~ msgid "Obsolete Autoconf Macro"
-#~ msgstr "Makro Autoconf Kadaluarsa"
-
-#~ msgid "Makefile"
-#~ msgstr "Makefile"
-
-#~ msgid "Assignment Right Hand Side"
-#~ msgstr "Pengisian Nilai Sisi Kanan"
-
-#~ msgid "Assignment Left Hand Side"
-#~ msgstr "Pengisian Nilai Sisi Kiri"
-
-#~ msgid "targets"
-#~ msgstr "target"
-
-#~ msgid "prereq"
-#~ msgstr "prereq"
-
-#~ msgid "command"
-#~ msgstr "perintah"
-
-#~ msgid "Trailing Tab"
-#~ msgstr "Tab di Ekor"
-
-#~ msgid "function"
-#~ msgstr "fungsi"
-
-#~ msgid "keyword"
-#~ msgstr "kata kunci"
-
-#~ msgid "Mallard"
-#~ msgstr "Mallard"
-
-#~ msgid "Page Elements"
-#~ msgstr "Elemen Halaman"
-
-#~ msgid "Section Elements"
-#~ msgstr "Elemen Bagian"
-
-#~ msgid "Block Elements"
-#~ msgstr "Elemen Blok"
-
-#~ msgid "Inline Elements"
-#~ msgstr "Elemen Inline"
-
-#~ msgid "Markdown"
-#~ msgstr "Markdown"
-
-#~ msgid "Header"
-#~ msgstr "Tajuk"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "Garis Horisontal"
-
-#~ msgid "List Marker"
-#~ msgstr "Penanda Daftar"
-
-#~ msgid "Code"
-#~ msgstr "Kode"
-
-#~ msgid "Blockquote Marker"
-#~ msgstr "Penanda Blockquote"
-
-#~ msgid "Link Text"
-#~ msgstr "Teks Taut"
-
-#~ msgid "Image Marker"
-#~ msgstr "Penanda Gambar"
-
-#~ msgid "Strong Emphasis"
-#~ msgstr "Penegasan Kuat"
-
-#~ msgid "Backslash Escape"
-#~ msgstr "Escape Backslash"
-
-#~ msgid "Line Break"
-#~ msgstr "Ganti Baris"
-
-#~ msgid "Matlab"
-#~ msgstr "Matlab"
-
-#~ msgid "Maxima"
-#~ msgstr "Maxima"
-
-#~ msgid "MediaWiki"
-#~ msgstr "MediaWiki"
-
-#~ msgid "Light Emphasis"
-#~ msgstr "Penekanan Ringan"
-
-#~ msgid "Signature"
-#~ msgstr "Tanda Tangan"
-
-#~ msgid "Link"
-#~ msgstr "Taut"
-
-#~ msgid "Symbol on a Link"
-#~ msgstr "Simbol pada Taut"
-
-#~ msgid "Line"
-#~ msgstr "Garis"
-
-#~ msgid "List"
-#~ msgstr "Daftar"
-
-#~ msgid "Magic Word"
-#~ msgstr "Kata Magis"
-
-#~ msgid "Symbol of a Table"
-#~ msgstr "Simbol dari Tabel"
-
-#~ msgid "Preformatted"
-#~ msgstr "Terpraformat"
-
-#~ msgid "Redirect"
-#~ msgstr "Pengalihan"
-
-#~ msgid "Title"
-#~ msgstr "Judul"
-
-#~ msgid "Meson"
-#~ msgstr "Meson"
-
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
-
-#~ msgid "Class type"
-#~ msgstr "Tipe kelas"
-
-#~ msgid "Default Attribute"
-#~ msgstr "Atribut Baku"
-
-#~ msgid "MXML"
-#~ msgstr "MXML"
-
-#~ msgid "CDATA delimiter"
-#~ msgstr "Pembatas CDATA"
-
-#~ msgid "Nemerle"
-#~ msgstr "Nemerle"
-
-#~ msgid "NetRexx"
-#~ msgstr "NetRexx"
-
-#~ msgid "Externals"
-#~ msgstr "Eksternal"
-
-#~ msgid "Options"
-#~ msgstr "Opsi"
-
-#~ msgid "Data Types"
-#~ msgstr "Tipe Data"
-
-#~ msgid "Special"
-#~ msgstr "Khusus"
-
-#~ msgid "Visibility"
-#~ msgstr "Kenampakan"
-
-#~ msgid "Modifiers"
-#~ msgstr "Pengubah"
-
-#~ msgid "Keywords"
-#~ msgstr "Kata-kunci"
-
-#~ msgid "Sub Keywords"
-#~ msgstr "Sub Kata-kunci"
-
-#~ msgid "NSIS"
-#~ msgstr "NSIS"
-
-#~ msgid "Objective-C"
-#~ msgstr "Objective-C"
-
-#~ msgid "Objective-J"
-#~ msgstr "Objective-J"
-
-#~ msgid "OCaml"
-#~ msgstr "OCaml"
-
-#~ msgid "Ocamldoc Comments"
-#~ msgstr "Komentar Ocamldoc"
-
-#~ msgid "Standard Modules"
-#~ msgstr "Modul Standar"
-
-#~ msgid "OCL"
-#~ msgstr "OCL"
-
-#~ msgid "Type Operators"
-#~ msgstr "Operator Tipe"
-
-#~ msgid "Operation operator"
-#~ msgstr "Operator operasi"
-
-#~ msgid "Octave"
-#~ msgstr "Octave"
-
-#~ msgid "Package Manager"
-#~ msgstr "Manajer Paket"
-
-#~ msgid "OOC"
-#~ msgstr "OOC"
-
-#~ msgid "Opal"
-#~ msgstr "Opal"
-
-#~ msgid "Module Handler"
-#~ msgstr "Handler Modul"
-
-#~ msgid "Keysymbol"
-#~ msgstr "Simbol kunci"
-
-#~ msgid "OpenCL"
-#~ msgstr "OpenCL"
-
-#~ msgid "Global Function"
-#~ msgstr "Fungsi Global"
-
-#~ msgid "Device Function"
-#~ msgstr "Fungsi Perangkat"
-
-#~ msgid "Device Cast"
-#~ msgstr "Cast Perangkat"
-
-#~ msgid "OpenCL Constant"
-#~ msgstr "Konstanta OpenCL"
-
-#~ msgid "Global Variable"
-#~ msgstr "Variabel Global"
-
-#~ msgid "Pascal"
-#~ msgstr "Pascal"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Line Directive"
-#~ msgstr "Direktif Baris"
-
-#~ msgid "Include Statement"
-#~ msgstr "Pernyataan Inklusi"
-
-#~ msgid "Heredoc"
-#~ msgstr "Heredoc"
-
-#~ msgid "Heredoc Bound"
-#~ msgstr "Terikat Heredoc"
-
-#~ msgid "System Command"
-#~ msgstr "Perintah Sistem"
-
-#~ msgid "File Descriptor"
-#~ msgstr "Deskriptor Berkas"
-
-#~ msgid "POD"
-#~ msgstr "POD"
-
-#~ msgid "POD Escape"
-#~ msgstr "Escape POD"
-
-#~ msgid "POD keyword"
-#~ msgstr "Kata kunci POD"
-
-#~ msgid "POD heading"
-#~ msgstr "Heading POD"
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
-
-#~ msgid "Preprocessor tags"
-#~ msgstr "Tag preprosesor"
-
-#~ msgid "Common Function"
-#~ msgstr "Fungsi Umum"
-
-#~ msgid "Pig"
-#~ msgstr "Pig"
-
-#~ msgid "Reserved Words"
-#~ msgstr "Kata Yang Dicadangkan"
-
-#~ msgid "Built In Functions"
-#~ msgstr "Fungsi Bawaan"
-
-#~ msgid "Boolean values"
-#~ msgstr "Nilai boolean"
-
-#~ msgid "Null"
-#~ msgstr "Null"
-
-#~ msgid "pkg-config"
-#~ msgstr "pkg-config"
-
-#~ msgid "Package Info"
-#~ msgstr "Info Paket"
-
-#~ msgid "Fuzzy"
-#~ msgstr "Ragu"
-
-#~ msgid "Prolog"
-#~ msgstr "Prolog"
-
-#~ msgid "Puppet"
-#~ msgstr "Puppet"
-
-#~ msgid "Resources"
-#~ msgstr "Sumber daya"
-
-#~ msgid "Parameters"
-#~ msgstr "Parameter"
-
-#~ msgid "Metaparameters"
-#~ msgstr "Metaparameter"
-
-#~ msgid "Functions"
-#~ msgstr "Fungsi"
-
-#~ msgid "Values"
-#~ msgstr "Nilai"
-
-#~ msgid "Variables"
-#~ msgstr "Variabel"
-
-#~ msgid "Class names"
-#~ msgstr "Nama kelas"
-
-#~ msgid "Python 3"
-#~ msgstr "Python 3"
-
-#~ msgid "Format"
-#~ msgstr "Format"
-
-#~ msgid "Builtin Object"
-#~ msgstr "Objek Bawaan"
-
-#~ msgid "Python"
-#~ msgstr "Python"
-
-#~ msgid "String Conversion"
-#~ msgstr "Konversi String"
-
-#~ msgid "Class Name"
-#~ msgstr "Nama Kelas"
-
-#~ msgid "Decorator"
-#~ msgstr "Dekorator"
-
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgid "Reserved Class"
-#~ msgstr "Kelas yang Telah Dicadangkan"
-
-#~ msgid "Assignment Operator"
-#~ msgstr "Operator Penugasan"
-
-#~ msgid "Delimiter"
-#~ msgstr "Pembatas"
-
-#~ msgid "Integer Number"
-#~ msgstr "Angka Integer"
-
-#~ msgid "Define"
-#~ msgstr "Define"
-
-#~ msgid "Section"
-#~ msgstr "Bagian"
-
-#~ msgid "Spec Macro"
-#~ msgstr "Spek Makro"
-
-#~ msgid "Directory Macro"
-#~ msgstr "Makro Direktori"
-
-#~ msgid "Command Macro"
-#~ msgstr "Makro Perintah"
-
-#~ msgid "Conditional Macro"
-#~ msgstr "Makro Bersyarat"
-
-#~ msgid "Other Macro"
-#~ msgstr "Makro Lainnya"
-
-#~ msgid "Flow Conditional"
-#~ msgstr "Flow Bersyarat"
-
-#~ msgid "RPM Variable"
-#~ msgstr "Variabel RPM"
-
-#~ msgid "Switch"
-#~ msgstr "Switch"
-
-#~ msgid "Email"
-#~ msgstr "Email"
-
-#~ msgid "reStructuredText"
-#~ msgstr "reStructuredText"
-
-#~ msgid "Directive"
-#~ msgstr "Direktif"
-
-#~ msgid "Ruby"
-#~ msgstr "Ruby"
-
-#~ msgid "Attribute Definition"
-#~ msgstr "Definisi Atribut"
-
-#~ msgid "Module handler"
-#~ msgstr "Penangan modul"
-
-#~ msgid "Numeric literal"
-#~ msgstr "Literal angka"
-
-#~ msgid "Literal"
-#~ msgstr "Literal"
-
-#~ msgid "Rust"
-#~ msgstr "Rust"
-
-#~ msgid "Scala"
-#~ msgstr "Scala"
-
-#~ msgid "Modifier"
-#~ msgstr "Pengubah"
-
-#~ msgid "Built In"
-#~ msgstr "Bawaan"
-
-#~ msgid "XML Tag"
-#~ msgstr "Tag XML"
-
-#~ msgid "Scheme"
-#~ msgstr "Scheme"
-
-#~ msgid "Scilab"
-#~ msgstr "Scilab"
-
-#~ msgid "sh"
-#~ msgstr "sh"
-
-#~ msgid "Variable Definition"
-#~ msgstr "Definisi Variabel"
-
-#~ msgid "Common Commands"
-#~ msgstr "Perintah Umum"
-
-#~ msgid "Subshell"
-#~ msgstr "Subshell"
-
-#~ msgid "Standard ML"
-#~ msgstr "ML standar"
-
-#~ msgid "Module name, Variant, etc"
-#~ msgstr "Nama modul, Varian, dsb"
-
-#~ msgid "SPARQL"
-#~ msgstr "SPARQL"
-
-#~ msgid "Class"
-#~ msgstr "Kelas"
-
-#~ msgid "Individual"
-#~ msgstr "Pribadi"
-
-#~ msgid "Predicate"
-#~ msgstr "Predikat"
-
-#~ msgid "QName"
-#~ msgstr "QName"
-
-#~ msgid "IRI"
-#~ msgstr "IRI"
-
-#~ msgid "SQL"
-#~ msgstr "SQL"
-
-#~ msgid "No idea what it is"
-#~ msgstr "Tak tahu ini apa"
-
-#~ msgid "Sweave"
-#~ msgstr "Sweave"
-
-#~ msgid "Swift"
-#~ msgstr "Swift"
-
-#~ msgid "Builtin Value"
-#~ msgstr "Nilai Bawaan"
-
-#~ msgid "Compiler Control"
-#~ msgstr "Kendali Kompailer"
-
-#~ msgid "Interpolated Expression"
-#~ msgstr "Ekspresi Terinterpolasi"
-
-#~ msgid "SystemVerilog"
-#~ msgstr "SystemVerilog"
-
-#~ msgid "txt2tags"
-#~ msgstr "txt2tags"
-
-#~ msgid "Option"
-#~ msgstr "Opsi"
-
-#~ msgid "Option Name"
-#~ msgstr "Nama Opsi"
-
-#~ msgid "Section 1"
-#~ msgstr "Bagian 1"
-
-#~ msgid "Section 2"
-#~ msgstr "Bagian 2"
-
-#~ msgid "Section 3"
-#~ msgstr "Bagian 3"
-
-#~ msgid "Section 4"
-#~ msgstr "Bagian 4"
-
-#~ msgid "Section 5"
-#~ msgstr "Bagian 5"
-
-#~ msgid "Italic"
-#~ msgstr "Miring"
-
-#~ msgid "Bold"
-#~ msgstr "Tebal"
-
-#~ msgid "Verbatim Block"
-#~ msgstr "Blok Verbatim"
-
-#~ msgid "Tcl"
-#~ msgstr "Tcl"
-
-#~ msgid "Texinfo"
-#~ msgstr "Texinfo"
-
-#~ msgid "Macros"
-#~ msgstr "Makro"
-
-#~ msgid "File Attributes"
-#~ msgstr "Atribut File"
-
-#~ msgid "Generated Content"
-#~ msgstr "Konten Yang Dihasilkan"
-
-#~ msgid "Thrift"
-#~ msgstr "Thrift"
-
-#~ msgid "Vala"
-#~ msgstr "Vala"
-
-#~ msgid "VB.NET"
-#~ msgstr "VB.NET"
-
-#~ msgid "Verilog"
-#~ msgstr "Verilog"
-
-#~ msgid "IEEE System Task"
-#~ msgstr "Tugas Sistem IEEE"
-
-#~ msgid "LRM Additional System Task"
-#~ msgstr "Tugas Sistem Tambahan LRM"
-
-#~ msgid "Gate"
-#~ msgstr "Gerbang"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"
-
-#~ msgid "XML"
-#~ msgstr "XML"
-
-#~ msgid "XSLT"
-#~ msgstr "XSLT"
-
-#~ msgid "Element"
-#~ msgstr "Elemen"
-
-#~ msgid "Yacc"
-#~ msgstr "Yacc"
-
-#~ msgid "token type"
-#~ msgstr "tipe token"
-
-#~ msgid "rule"
-#~ msgstr "aturan"
-
-#~ msgid "YAML"
-#~ msgstr "YAML"
-
-#~ msgid "Block literal"
-#~ msgstr "Literal blok"
-
-#~ msgid "Alias"
-#~ msgstr "Alias"
-
-#~ msgid "Map key"
-#~ msgstr "Kunci peta"
-
-#~ msgid "Integer"
-#~ msgstr "Integer"
-
-#~ msgid "Floating point"
-#~ msgstr "Bilangan pecahan"
-
-#~ msgid "Kate"
-#~ msgstr "Kate"
