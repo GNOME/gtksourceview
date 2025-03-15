@@ -1,5 +1,5 @@
 project('gtksourceview', 'c',
-          version: '5.15.2',
+          version: '5.16.0',
           license: 'LGPL-2.1-or-later',
     meson_version: '>= 1.0.0',
   default_options: [ 'c_std=gnu99',
