@@ -282,6 +282,17 @@ if generate_gir
     gtksourceversion_h,
   ]
 
+  gir_args = [
+    '--c-include=gtksourceview/gtksource.h',
+    '--warn-all'
+  ]
+  gir_dep = dependency('gobject-introspection-1.0')
+  if gir_dep.version().version_compare('>=1.83.2')
+    gir_args += [
+     '--doc-format=gi-docgen',
+    ]
+  endif
+
   gtksource_gir = gnome.generate_gir(gtksource_lib,
                 sources: gtksource_gir_sources,
               nsversion: api_version,
@@ -295,8 +306,7 @@ if generate_gir
                 install: true,
         install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
-             extra_args: [ '--c-include=gtksourceview/gtksource.h',
-                           '--warn-all' ],
+             extra_args: gir_args,
   )
 
   gtksource_dep_sources += [
