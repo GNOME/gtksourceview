@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.gnome-2-20.ne\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-09-18 08:04+0000\n"
-"PO-Revision-Date: 2022-09-19 12:14+0545\n"
+"POT-Creation-Date: 2025-03-10 23:23+0000\n"
+"PO-Revision-Date: 2025-03-16 15:20+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "Language: ne\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -401,30 +401,30 @@ msgstr "स्निप्पेटस्"
 msgid "Document Words"
 msgstr "कागजात शब्दहरू"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:915
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "रूपान्तरण आगतमा अवैध बाइट अनुक्रम"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:921
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "रूपान्तरण अवधिमा त्रुटि: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1014
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "क्यारेक्टर सेट \"%s\" बाट \"UTF-8\" मा रुपान्तरण समर्थित छैन"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1020
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "\"%s\" बाट \"UTF-8\" मा रूपान्तरणकर्ता खोल्न सकेन"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1080
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "अमान्य वस्तु, प्रारम्भ गरिएको छैन"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1282
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "आगतमा अपूर्ण UTF-8 अनुक्रम"
@@ -442,7 +442,7 @@ msgstr "विस्तृत"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be "
@@ -453,36 +453,36 @@ msgstr ""
 "।\n"
 "त्रुटि यस प्रकारको थियो: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "एकल रेखा हाइलाइट गर्न धेरै समय लाग्यो, वाक्य संरचना हाइलाइटिङ अक्षम गरिनेछ"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "सन्दर्भ '%s' ले \\%%{...@start} आदेश समावेश गर्न सक्दैन"
 
-#: gtksourceview/gtksourcecontextengine.c:5871 gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875 gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "\"%s\" प्रसङ्ग आईडी नक्कल गरियो"
 
-#: gtksourceview/gtksourcecontextengine.c:6075 gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079 gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid "style override used with wildcard context reference in language “%s” in ref “%s”"
 msgstr "भाषा '%s' को '%s' सन्दर्भमा वाइल्डकार्ड विषय सन्दर्भसँग शैलि अधिरोहण प्रयोग गरियो"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "अवैध विषयवस्तु सन्दर्भ \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6168 gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172 gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "अज्ञात सन्दर्भ “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "हराइरहेको मूख्य भाषा परिभाषा (id = \"%s\")."
@@ -622,17 +622,14 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
-msgid ""
-"There was a character encoding conversion error and it was needed to use a fallback "
-"character."
-msgstr ""
-"त्यहाँ एउटा क्यारेक्टर सङ्केतन रूपान्तरण त्रुटि थियो र यसलाई फलब्याक क्यारेक्टर प्रयोग गर्न आवश्यक थियो ।."
+msgid "There was an encoding conversion error so a fallback character was used."
+msgstr "त्यहाँ सङ्केतन रूपान्तरण त्रुटि थियो त्यसैले फलब्याक क्यारेक्टर प्रयोग गरिएको थियो ।."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "यो फाइल निकै ठूलो छ ।."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "नियमित फाइल होइन."
 
@@ -640,7 +637,7 @@ msgstr "नियमित फाइल होइन."
 msgid "The file is externally modified."
 msgstr "फाइल लाई बाहिरी तरिकाले परिमार्जित गरियो."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "बफरले अवैध क्यारेक्टरहरू समाविष्ट गर्दछ ।."
 
@@ -686,68 +683,68 @@ msgstr "रद्द गर्नुहोस्"
 msgid "_Select"
 msgstr "चयन गर्नुहोस्"
 
-#: gtksourceview/gtksourceview.c:1819
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "सबै माथिल्लो बर्ण"
 
-#: gtksourceview/gtksourceview.c:1823
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "सबै तल्लो बर्ण"
 
-#: gtksourceview/gtksourceview.c:1827
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "वर्ण उल्टाउनुहोस्"
 
-#: gtksourceview/gtksourceview.c:1831
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "शीर्षक वर्ण"
 
-#: gtksourceview/gtksourceview.c:1835
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "परिवर्तन वर्ण"
 
-#: gtksourceview/implregex.c:609
+#: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
 msgstr "हेक्साडेसिमल अंक वा \"}\" अपेक्षित छ"
 
-#: gtksourceview/implregex.c:625
+#: gtksourceview/implregex.c:631
 msgid "hexadecimal digit expected"
 msgstr "हेक्साडेसिमल अङ्क अपेक्षित छ"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:671
 msgid "missing “<” in symbolic reference"
 msgstr "प्रतीकात्मक सन्दर्भमा \"<\" छुटेको छ"
 
-#: gtksourceview/implregex.c:674
+#: gtksourceview/implregex.c:680
 msgid "unfinished symbolic reference"
 msgstr "अधूरो प्रतीकात्मक सन्दर्भ"
 
-#: gtksourceview/implregex.c:681
+#: gtksourceview/implregex.c:687
 msgid "zero-length symbolic reference"
 msgstr "शून्य लम्बाइको सांकेतिक सन्दर्भ"
 
-#: gtksourceview/implregex.c:692
+#: gtksourceview/implregex.c:698
 msgid "digit expected"
 msgstr "अङ्क अपेक्षित"
 
-#: gtksourceview/implregex.c:710
+#: gtksourceview/implregex.c:716
 msgid "illegal symbolic reference"
 msgstr "अवैध प्रतीकात्मक सन्दर्भ"
 
-#: gtksourceview/implregex.c:773
+#: gtksourceview/implregex.c:779
 msgid "stray final “\\”"
 msgstr "“\\” अन्तिम हो"
 
-#: gtksourceview/implregex.c:777
+#: gtksourceview/implregex.c:783
 msgid "unknown escape sequence"
 msgstr "अज्ञात इस्केप अनुक्रम"
 
-#: gtksourceview/implregex.c:787
+#: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "पाठ \"%s\" वर्ण %lu मा प्रतिस्थापन पद वर्णन गर्दा त्रुटि: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:489
+#: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
 msgstr "-- घुसाउनुहोस् --"
 
@@ -755,15 +752,15 @@ msgstr "-- घुसाउनुहोस् --"
 msgid "-- REPLACE --"
 msgstr "-- प्रतिस्थापन --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- दृश्य --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- दृश्य-रेखा--"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- दृश्यात्मक ब्लॉक --"
 
