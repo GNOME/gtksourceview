@@ -179,7 +179,7 @@
           \(
           # Helps disambiguate arithmetic evaluation from two nested subshells:
           # a typical use of nested subshells is to perform tests
-          | .*\[.+\]
+          | (.*[^a-zA-Z0-9_])? \[.+\]
           # No orphan closing parenthesis: that would mean the two opening
           # parentheses above are actually nested subshells. If multi-line
           # regexes were allowed, this would be enough to remove the ambiguity.
