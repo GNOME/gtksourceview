@@ -88,6 +88,7 @@ EOF
 var1=$((var2+2#101+$(cmd)+($var3+ \
   "$var4")/0x1f))
 let var1='1'+010-23+`cmd`+var2 # Comment
+((${#arr[@]} == size))
 
 # Nested subshells (should not match arithmetic evaluation)
 (([ -f f ] && [ -f g ]) || ([ -f h ] && [ -f i ]))
