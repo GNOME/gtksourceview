@@ -1,11 +1,14 @@
 @define-color selected_border_color shade(@theme_selected_bg_color, 0.9);
 @define-color shadow_color rgba(0,0,0,0.09);
 
-GtkSourceAssistant {
-  background-color: @theme_bg_color;
-  border-radius: 11px;
+GtkSourceAssistant.background {
+  background-color: transparent;
   font: initial;
   margin: 20px;
+}
+
+GtkSourceAssistant > contents {
+  border-radius: 11px;
   box-shadow: 0 3px 14px 7px @shadow_color,
               0 0 0 1px alpha(@shadow_color, 1);
   outline: 1px solid alpha(@shadow_color, 0.1);
@@ -13,7 +16,7 @@ GtkSourceAssistant {
   background: @theme_bg_color;
 }
 
-GtkSourceAssistant.completion {
+GtkSourceAssistant.completion > contents {
   background-color: @theme_base_color;
   border: none;
   min-width: 150px;
@@ -102,7 +105,7 @@ GtkSourceAssistant.completion box.details button.flat {
   padding: 3px 6px;
 }
 
-GtkSourceAssistant.completion-info {
+GtkSourceAssistant.completion-info > contents {
   padding: 6px;
 }
 
@@ -119,7 +122,7 @@ GtkSourceAssistant.informative image {
   background-color: @borders;
 }
 
-GtkSourceAssistant.informative.warning {
+GtkSourceAssistant.informative.warning > contents {
   background-color: @warning_color;
   color: @theme_selected_fg_color;
   border-color: shade(@warning_color, 0.8);
@@ -130,7 +133,7 @@ GtkSourceAssistant.informative.warning image {
   background-color: shade(@warning_color, 0.8);
 }
 
-GtkSourceAssistant.informative.error {
+GtkSourceAssistant.informative.error > contents {
   background-color: @error_color;
   color: @theme_selected_fg_color;
   border-color: shade(@error_color, 0.8);
@@ -141,7 +144,7 @@ GtkSourceAssistant.informative.error image {
   background-color: shade(@error_color, 0.8);
 }
 
-GtkSourceAssistant.informative.other {
+GtkSourceAssistant.informative.other > contents {
   background-color: @success_color;
   color: @theme_selected_fg_color;
   border-color: shade(@success_color, 0.8);
@@ -152,7 +155,7 @@ GtkSourceAssistant.informative.other image {
   background-color: shade(@success_color, 0.8);
 }
 
-GtkSourceAssistant.informative.question {
+GtkSourceAssistant.informative.question > contents {
   background-color: @theme_bg_color;
   color: @theme_fg_color;
   border-color: @borders;
