@@ -1586,7 +1586,7 @@ set_source_buffer (GtkSourceView *view,
 	{
 		GtkSourceBufferInternal *buffer_internal;
 
-		view->priv->source_buffer = g_object_ref (buffer);
+		view->priv->source_buffer = g_object_ref (GTK_SOURCE_BUFFER (buffer));
 
 		g_signal_connect (buffer,
 				  "highlight-updated",
