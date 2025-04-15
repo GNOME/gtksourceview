@@ -198,6 +198,7 @@
     <context id="expansion-nesting">
       <include>
         <context ref="def:line-continue"/>
+        <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="backtick-subshell"/>
         <context ref="command-substitution"/>
