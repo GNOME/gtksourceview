@@ -119,8 +119,24 @@
       </include>
     </context>
 
-    <context id="reference-by-name" style-ref="variable">
-      <match>\%{identifier}</match>
+    <context id="array-part" once-only="true">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="expansion-nesting"/>
+        <context ref="expansion-precedence"/>
+      </include>
+    </context>
+
+    <context id="reference-by-name">
+      <start>(\%{identifier})(?=(\[.*\])?)</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="variable"/>
+        <context ref="array-part"/>
+      </include>
     </context>
 
     <context id="numeral-system">
@@ -462,16 +478,7 @@
           <include>
             <context sub-pattern="1" where="start" style-ref="keyword"/>
             <context sub-pattern="2" where="start" style-ref="variable"/>
-            <context id="array-part" once-only="true">
-              <start>\[</start>
-              <end>\]</end>
-              <include>
-                <context sub-pattern="0" where="start" style-ref="keyword"/>
-                <context sub-pattern="0" where="end" style-ref="keyword"/>
-                <context ref="expansion-nesting"/>
-                <context ref="expansion-precedence"/>
-              </include>
-            </context>
+            <context ref="array-part"/>
           </include>
         </context>
         <!-- Must be included first, to ensure unescaped boundaries -->
