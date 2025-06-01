@@ -181,9 +181,12 @@
 
     <context id="special-variables" style-ref="special-variable">
       <prefix>(?&lt;![\w\.])</prefix>
-      <keyword>self</keyword>
-      <keyword>__name__</keyword>
       <keyword>__debug__</keyword>
+      <keyword>__doc__</keyword>
+      <keyword>__package__</keyword>
+      <keyword>__name__</keyword>
+      <keyword>cls</keyword>
+      <keyword>self</keyword>
     </context>
 
     <context id="boolean" style-ref="boolean">
