@@ -52,6 +52,7 @@
     <style id="function-name"     name="Function Name"         map-to="def:function"/>
     <style id="class-name"        name="Class Name"            map-to="def:function"/>
     <style id="decorator"         name="Decorator"             map-to="def:preprocessor"/>
+    <style id="operator"          name="Operator"              map-to="def:operator"/>
   </styles>
 
   <definitions>
@@ -267,7 +268,11 @@
     </context>
 
     <context id="decorator" style-ref="decorator">
-      <match>@\%{identifier-path}</match>
+      <match>(?:^\s*)(@\%{identifier-path})</match>
+    </context>
+
+    <context id="operator" style-ref="operator">
+      <match>[!%\&amp;\*\+\-/&lt;=&gt;@\^\|\~]+</match>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -467,6 +472,7 @@
         <context ref="function-definition"/>
         <context ref="class-definition"/>
         <context ref="decorator"/>
+        <context ref="operator"/>
         <context ref="keywords"/>
         <context ref="2x-only-keywords"/>
         <context ref="builtin-constants"/>

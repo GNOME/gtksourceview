@@ -48,6 +48,7 @@
     <style id="function-name"         name="Function Name"         map-to="python:function-name"/>
     <style id="class-name"            name="Class Name"            map-to="python:class-name"/>
     <style id="decorator"             name="Decorator"             map-to="python:decorator"/>
+    <style id="operator"              name="Operator"              map-to="python:operator"/>
     <style id="f-string-curly-braces" name="f-string curly braces" map-to="def:special-char"/>
   </styles>
 
@@ -345,10 +346,6 @@
       </include>
     </context>
 
-    <context id="decorator" style-ref="decorator">
-      <match>@\%{identifier-path}</match>
-    </context>
-
     <context id="python3" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
@@ -415,7 +412,12 @@
         <context ref="python:module-handler"/>
         <context ref="function-definition"/>
         <context ref="class-definition"/>
-        <context ref="decorator"/>
+        <context ref="python:decorator"/>
+
+        <context ref="python:operator"/>
+        <context id="3x-only-operators" style-ref="operator">
+          <match>:=</match>
+        </context>
 
         <context ref="python:keywords"/>
         <context id="3x-only-keywords" style-ref="keyword">
