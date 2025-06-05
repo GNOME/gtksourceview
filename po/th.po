@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 1.1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2024-01-28 12:46+0000\n"
-"PO-Revision-Date: 2024-03-16 01:55+0700\n"
+"POT-Creation-Date: 2025-05-10 19:40+0000\n"
+"PO-Revision-Date: 2025-06-05 16:44+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -434,7 +434,7 @@ msgstr "_รายละเอียด"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower "
@@ -444,36 +444,36 @@ msgstr ""
 "ไม่สามารถสร้าง regex สำหรับทุก transition ได้ การเน้นข้อความตามไวยากรณ์อาจทำงานช้ากว่าปกติ\n"
 "ข้อผิดพลาดคือ: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "การเน้นไวยากรณ์เพียงบรรทัดเดียวใช้เวลานานเกินไป จะปิดการเน้นไวยากรณ์"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "บริบท “%s” จะมีคำสั่ง \\%%{...@start} ไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:5871 gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875 gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "id ของบริบท “%s” ซ้ำกัน"
 
-#: gtksourceview/gtksourcecontextengine.c:6075 gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079 gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid "style override used with wildcard context reference in language “%s” in ref “%s”"
 msgstr "มีการทับค่าสไตล์ในตัวอ้างอิงบริบทที่เป็น wildcard ในภาษา “%s” ที่ตัวอ้างอิง “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "ตัวอ้างอิงบริบท “%s” ใช้การไม่ได้"
 
-#: gtksourceview/gtksourcecontextengine.c:6168 gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172 gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "ไม่รู้จักบริบท “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "ไม่มีข้อกำหนดภาษาหลัก (id = “%s”)"
@@ -613,15 +613,14 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'TIS-620', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
-msgid ""
-"There was a character encoding conversion error and it was needed to use a fallback character."
-msgstr "เกิดข้อผิดพลาดในการแปลงรหัสอักขระ และจำเป็นต้องใช้อักขระทดแทน"
+msgid "There was an encoding conversion error so a fallback character was used."
+msgstr "เกิดข้อผิดพลาดในการแปลงรหัสอักขระ จึงใช้อักขระทดแทน"
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "ไฟล์ขนาดใหญ่เกินไป"
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "ไม่ใช่ไฟล์ธรรมดา"
 
@@ -629,7 +628,7 @@ msgstr "ไม่ใช่ไฟล์ธรรมดา"
 msgid "The file is externally modified."
 msgstr "ไฟล์ถูกแก้ไขด้วยโปรแกรมอื่น"
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "บัฟเฟอร์มีอักขระไม่ถูกต้อง"
 
@@ -675,23 +674,23 @@ msgstr "_ยกเลิก"
 msgid "_Select"
 msgstr "เ_ลือก"
 
-#: gtksourceview/gtksourceview.c:1861
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "ตัวพิมพ์ใ_หญ่หมด"
 
-#: gtksourceview/gtksourceview.c:1865
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "ตัวพิมพ์_เล็กหมด"
 
-#: gtksourceview/gtksourceview.c:1869
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_สลับรูปแบบตัวพิมพ์"
 
-#: gtksourceview/gtksourceview.c:1873
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "_ขึ้นต้นตัวพิมพ์ใหญ่"
 
-#: gtksourceview/gtksourceview.c:1877
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "เ_ปลี่ยนรูปแบบตัวพิมพ์"
 
