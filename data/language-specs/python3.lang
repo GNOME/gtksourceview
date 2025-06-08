@@ -393,7 +393,7 @@
         </context>
 
         <context id="decimal" style-ref="decimal">
-          <match>(?&lt;![\w\.])([1-9](_?[0-9])*)|(0(_?0)*)(?![\w\.])</match>
+          <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0(_?0)*)(?![\w\.])</match>
         </context>
 
         <context id="binary" style-ref="base-n-integer">
