@@ -186,6 +186,8 @@ typedef struct
 	GBinding *buffer_binding;
 	GBinding *indent_width_binding;
 	GBinding *tab_width_binding;
+	GBinding *bottom_margin_binding;
+	GBinding *top_margin_binding;
 
 	/* Our signal handler for view changes */
 	gulong view_notify_buffer_handler;
@@ -212,6 +214,9 @@ typedef struct
 
 	/* If we dragged enough to reach a drag threshold */
 	guint reached_drag_threshold : 1;
+
+	/* How much the slider should be shifted from the position of the cursor */
+	double slider_y_shift;
 } GtkSourceMapPrivate;
 
 enum
@@ -829,6 +834,18 @@ scroll_to_child_point (GtkSourceMap *map,
 	}
 }
 
+static gboolean
+scale_margin (GBinding *binding,
+		const GValue *source_value,
+		GValue *target_value,
+		gpointer user_data)
+{
+	int source_value_int = g_value_get_int (source_value);
+	int scaled_margin = source_value_int / 4.35;
+	g_value_set_int (target_value, scaled_margin);
+	return TRUE;
+}
+
 static void
 connect_view (GtkSourceMap  *map,
               GtkSourceView *view)
@@ -863,6 +880,30 @@ connect_view (GtkSourceMap  *map,
 		                        G_BINDING_SYNC_CREATE);
 	g_object_add_weak_pointer (G_OBJECT (priv->tab_width_binding),
 	                           (gpointer *)&priv->tab_width_binding);
+
+	priv->bottom_margin_binding =
+		g_object_bind_property_full (view, "bottom-margin",
+		                             map, "bottom-margin",
+		                             G_BINDING_SYNC_CREATE,
+		                             scale_margin,
+		                             NULL,
+		                             NULL,
+		                             NULL);
+
+	g_object_add_weak_pointer (G_OBJECT (priv->bottom_margin_binding),
+				   (gpointer *)&priv->bottom_margin_binding);
+
+	priv->top_margin_binding =
+		g_object_bind_property_full (view, "top-margin",
+		                             map, "top-margin",
+		                             G_BINDING_SYNC_CREATE,
+		                             scale_margin,
+		                             NULL,
+		                             NULL,
+		                             NULL);
+
+	g_object_add_weak_pointer (G_OBJECT (priv->top_margin_binding),
+				   (gpointer *)&priv->top_margin_binding);
 
 	priv->view_notify_buffer_handler =
 		g_signal_connect_object (view,
@@ -940,6 +981,22 @@ disconnect_view (GtkSourceMap *map)
 		                              (gpointer *)&priv->tab_width_binding);
 		g_binding_unbind (priv->tab_width_binding);
 		priv->tab_width_binding = NULL;
+	}
+
+	if (priv->bottom_margin_binding != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (priv->bottom_margin_binding),
+		                              (gpointer *)&priv->bottom_margin_binding);
+		g_binding_unbind (priv->bottom_margin_binding);
+		priv->bottom_margin_binding = NULL;
+	}
+
+	if (priv->top_margin_binding != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (priv->top_margin_binding),
+		                              (gpointer *)&priv->top_margin_binding);
+		g_binding_unbind (priv->top_margin_binding);
+		priv->top_margin_binding = NULL;
 	}
 
 	g_clear_signal_handler (&priv->view_notify_buffer_handler, priv->view);
@@ -1076,13 +1133,13 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 								 gtk_widget_get_width (GTK_WIDGET (map)),
 								 &ignored, &real_height, &ignored, &ignored);
 
-	height = MIN (real_height, alloc.height);
+	height = MIN (real_height, alloc.height) - gtk_text_view_get_bottom_margin (GTK_TEXT_VIEW (map));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
 	gtk_text_buffer_get_end_iter (buffer, &iter);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &area);
 
-	yratio = y / (double)height;
+	yratio = (y - priv->slider_y_shift) / (double)height;
 
 	scroll_to_child_point (map, 0, real_height * yratio);
 }
@@ -1094,13 +1151,40 @@ gtk_source_map_drag_begin (GtkSourceMap   *map,
                            GtkGestureDrag *drag)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GtkWidget *slider_widget = GTK_WIDGET (priv->slider);
+	GtkWidget *map_widget = GTK_WIDGET (map);
+	double slider_y;
+	double slider_height;
+	graphene_rect_t bounds;
 
 	priv->reached_drag_threshold = FALSE;
-
 	gtk_gesture_set_state (GTK_GESTURE (drag), GTK_EVENT_SEQUENCE_CLAIMED);
 	gtk_source_map_drag_update (map, 0, 0, drag);
 
-	gtk_widget_add_css_class (GTK_WIDGET (priv->slider), "dragging");
+	/* Check if the cursor is inside the slider, if true shift it by the cursor
+	 * position relative to it, so the cursor stays in the same position.
+	 * Otherwise shift the slider by half it's width
+	 */
+	if (gtk_widget_compute_bounds (slider_widget, map_widget, &bounds))
+	{
+		slider_y = bounds.origin.y;
+		slider_height = bounds.size.height;
+
+		if (start_y >= slider_y && start_y <= slider_y + slider_height)
+		{
+			priv->slider_y_shift = start_y - slider_y;
+		}
+		else
+		{
+			priv->slider_y_shift = slider_height / 2;
+		}
+	}
+	else
+	{
+		priv->slider_y_shift = 0;
+	}
+
+	gtk_widget_add_css_class (slider_widget, "dragging");
 }
 
 static void
@@ -1122,6 +1206,11 @@ gtk_source_map_click_pressed (GtkSourceMap *map,
                               GtkGesture   *click)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GtkWidget *slider_widget = GTK_WIDGET(priv->slider);
+	GtkWidget *map_widget = GTK_WIDGET(map);
+	double slider_y;
+	double slider_height;
+	graphene_rect_t bounds;
 	GtkTextIter iter;
 	int buffer_x, buffer_y;
 
@@ -1131,6 +1220,19 @@ gtk_source_map_click_pressed (GtkSourceMap *map,
 	if (priv->view == NULL)
 	{
 		return;
+	}
+
+	/* If the cursor is inside the slider do nothing */
+
+	if (gtk_widget_compute_bounds (slider_widget, map_widget, &bounds))
+	{
+		slider_y = bounds.origin.y;
+		slider_height = bounds.size.height;
+
+		if (y >= slider_y && y <= slider_y + slider_height)
+		{
+			return;
+		}
 	}
 
 	gtk_gesture_set_state (click, GTK_EVENT_SEQUENCE_CLAIMED);

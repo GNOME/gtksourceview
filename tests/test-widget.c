@@ -316,6 +316,15 @@ right_margin_position_value_changed_cb (TestWidget    *self,
 }
 
 static void
+bottom_margin_value_changed_cb (TestWidget    *self,
+			        GtkSpinButton *button)
+{
+	gint margin = gtk_spin_button_get_value_as_int (button);
+
+	gtk_text_view_set_bottom_margin (GTK_TEXT_VIEW (self->view), margin);
+}
+
+static void
 highlight_syntax_toggled_cb (TestWidget     *self,
 			     GtkCheckButton *button)
 {
@@ -1056,6 +1065,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, show_line_marks_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, show_right_margin_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, right_margin_position_value_changed_cb);
+	gtk_widget_class_bind_template_callback (widget_class, bottom_margin_value_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, highlight_current_line_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, wrap_lines_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, auto_indent_toggled_cb);

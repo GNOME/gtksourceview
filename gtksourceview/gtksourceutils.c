@@ -785,6 +785,7 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   int current_x_scroll;
   int current_y_scroll;
   int top_margin;
+  int yoffset;
 
   g_return_if_fail (GTK_IS_TEXT_VIEW (text_view));
   g_return_if_fail (iter != NULL);
@@ -825,6 +826,13 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   screen_bottom = screen.y + screen.height;
 
 
+  /* Since it is very common having a large bottom margin and a small top margin,
+   * we scroll to an eight of the screen size, this way we can scroll using the map
+   * all the way to the bottom if there is a large bottom margin
+   */
+  yoffset = screen.height / 8;
+
+
   /* The alignment affects the point in the target character that we
    * choose to align. If we're doing right/bottom alignment, we align
    * the right/bottom edge of the character the mark is at; if we're
@@ -837,11 +845,7 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   scroll_dest = current_y_scroll;
   if (use_align)
     {
-      scroll_dest = rect.y + (rect.height * yalign) - (screen.height * yalign);
-
-      /* if scroll_dest < screen.y, we move a negative increment (up),
-       * else a positive increment (down)
-       */
+      scroll_dest = rect.y - yoffset;
       yvalue = scroll_dest - screen.y + screen_yoffset;
     }
   else
@@ -849,13 +853,13 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
       /* move minimum to get onscreen */
       if (rect.y < screen.y)
         {
-          scroll_dest = rect.y;
+          scroll_dest = rect.y - yoffset;
           yvalue = scroll_dest - screen.y - screen_yoffset;
         }
       else if ((rect.y + rect.height) > screen_bottom)
         {
-          scroll_dest = rect.y + rect.height;
-          yvalue = scroll_dest - screen_bottom + screen_yoffset;
+          scroll_dest = rect.y - yoffset;
+          yvalue = scroll_dest - screen.y + screen_yoffset;
         }
     }
   yvalue += current_y_scroll;
