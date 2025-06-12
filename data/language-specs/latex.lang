@@ -236,117 +236,25 @@
 
     <context id="common-commands" style-ref="common-commands" class="no-spell-check">
       <prefix>\\</prefix>
-      <!-- We need to special case "_" since it is not considered a
-        boundary but it is allowed in latex -->
-      <suffix>(\b|(?=_))</suffix>
-      <keyword>Alpha</keyword>
-      <keyword>Beta</keyword>
-      <keyword>Chi</keyword>
-      <keyword>Delta</keyword>
-      <keyword>Epsilon</keyword>
-      <keyword>Eta</keyword>
-      <keyword>Gamma</keyword>
-      <keyword>Iota</keyword>
-      <keyword>Kappa</keyword>
-      <keyword>Lambda</keyword>
-      <keyword>Leftarrow</keyword>
-      <keyword>Leftrightarrow</keyword>
-      <keyword>Mu</keyword>
-      <keyword>Nu</keyword>
-      <keyword>Omega</keyword>
-      <keyword>Phi</keyword>
-      <keyword>Pi</keyword>
-      <keyword>Psi</keyword>
-      <keyword>Rho</keyword>
-      <keyword>Rightarrow</keyword>
-      <keyword>Sigma</keyword>
-      <keyword>Tau</keyword>
-      <keyword>Zeta</keyword>
-      <keyword>alpha</keyword>
+      <suffix>((?=[^\@[:alpha:]])|$)</suffix>
       <keyword>appendix</keyword>
       <keyword>begin</keyword>
-      <keyword>beta</keyword>
-      <keyword>bigcap</keyword>
-      <keyword>bigcup</keyword>
-      <keyword>cap</keyword>
-      <keyword>cdot</keyword>
-      <keyword>chapter</keyword>
-      <keyword>chi</keyword>
       <keyword>cite</keyword>
-      <keyword>cup</keyword>
-      <keyword>delta</keyword>
-      <keyword>documentclass</keyword>
       <keyword>end</keyword>
-      <keyword>enumi</keyword>
-      <keyword>enumii</keyword>
-      <keyword>enumiii</keyword>
-      <keyword>enumiv</keyword>
-      <keyword>epsilon</keyword>
-      <keyword>equation</keyword>
-      <keyword>eta</keyword>
-      <keyword>exists</keyword>
-      <keyword>figure</keyword>
       <keyword>footnote</keyword>
       <keyword>footnotemark</keyword>
       <keyword>footnotetext</keyword>
-      <keyword>forall</keyword>
-      <keyword>gamma</keyword>
-      <keyword>geq</keyword>
-      <keyword>in</keyword>
-      <keyword>int</keyword>
-      <keyword>iota</keyword>
-      <keyword>kappa</keyword>
       <keyword>label</keyword>
-      <keyword>lambda</keyword>
       <keyword>ldots</keyword>
-      <keyword>leftarrow</keyword>
-      <keyword>leq</keyword>
-      <keyword>mpfootnote</keyword>
-      <keyword>mu</keyword>
-      <keyword>neq</keyword>
       <keyword>newcommand</keyword>
       <keyword>newenvironment</keyword>
-      <keyword>newfont</keyword>
       <keyword>newtheorem</keyword>
-      <keyword>not</keyword>
-      <keyword>notin</keyword>
-      <keyword>nu</keyword>
-      <keyword>omega</keyword>
       <keyword>onecolumn</keyword>
-      <keyword>page</keyword>
       <keyword>pageref</keyword>
-      <keyword>paragraph</keyword>
-      <keyword>part</keyword>
-      <keyword>phi</keyword>
-      <keyword>pi</keyword>
-      <keyword>prod</keyword>
-      <keyword>psi</keyword>
       <keyword>qquad</keyword>
       <keyword>quad</keyword>
       <keyword>ref</keyword>
-      <keyword>rho</keyword>
-      <keyword>rightarrow</keyword>
-      <keyword>section</keyword>
-      <keyword>setminus</keyword>
-      <keyword>sigma</keyword>
-      <keyword>subparagraph</keyword>
-      <keyword>subsection</keyword>
-      <keyword>subset</keyword>
-      <keyword>subseteq</keyword>
-      <keyword>subsetneq</keyword>
-      <keyword>subsubsection</keyword>
-      <keyword>subsubsubsection</keyword>
-      <keyword>sum</keyword>
-      <keyword>supset</keyword>
-      <keyword>supseteq</keyword>
-      <keyword>supsetneq</keyword>
-      <keyword>table</keyword>
-      <keyword>tau</keyword>
-      <keyword>times</keyword>
       <keyword>twocolumn</keyword>
-      <keyword>varepsilon</keyword>
-      <keyword>varphi</keyword>
-      <keyword>zeta</keyword>
     </context>
 
     <context id="generic-command" style-ref="command" class="no-spell-check" extend-parent="false">
@@ -513,7 +421,8 @@
       <match extended="true">
         \\(
           frac | sqrt | sum | (co)?prod | o?int |           #-Functions
-          infty | (c|d|v)dots | nonumber |                  #-special in math mode
+          exists | forall | infty | (c|d|v)dots |           #-special in math mode
+          nonumber | not |                                  ##
           mathnormal | math(rm|sf|tt|it|bf|cal) |           #-Math font commands
           (display|text|script(script)?)style |             #-Math size commands
           alpha | beta | (g|G)amma | (d|D)elta |            #-Greek letters
@@ -523,14 +432,17 @@
           tau | (u|U)psilon | ((varp)|p|P)hi | chi |        ##
           (p|P)si | (o|O)mega |                             ##
           pm | mp | times | div | cdot | ast | star |       #-Binary operators
-          dd?agger | amalg | (sq)?c(a|u)p | uplus | vee |   ##
-          wedge | o(plus|minus|times) | (big)?circ |        ##
+          dd?agger | amalg | (big|sq)?c(a|u)p | uplus |     ##
+          vee | wedge | o(plus|minus|times) | (big)?circ |  ##
           bullet | (d|D)iamond | (un)?(l|r)hd |             ##
           o(slash|dot) | Box | bigtriangle(up|down) |       ##
           triangle(left|right) | setminus | wr |            ##
+          (g|l)eq(slant)? | (not)?in | neq |                ##
+          su(b|p)set((n)?eq)? |                             ##
           gets | to | ((u|U)p(down)? | (d|D)own)arrow |     #-Arrows and pointers
-          ((l|L)eft(right)?|(r|R)ight)arrow | (long)mapsto |##
-          hook(left|right)arrow | (ne|se|sw|nw)arrow |      ##
+          ((l|L)eft(right)? | (r|R)ight)arrow |             ##
+          (long)mapsto | hook(left|right)arrow |            ##
+          (ne|se|sw|nw)arrow |                              ##
           (left|right)harpoon(up|down) | rightleftharpoons |##
           (l|L)ong(left(right)?|right)arrow |               ##
           (wide)hat | check | dd?ot | breve | acute |       #-Accents in math mode
@@ -540,7 +452,7 @@
           deg | det | dim | exp | gcd | hom | inf | ker |   ##
           lg | lim(inf|sup)? | ln | log | max | min | Pr |  ##
           sec | sup                                         ##
-        )(?=\b)
+        )((?=[^\@[:alpha:]])|$)
       </match>
     </context>
 
