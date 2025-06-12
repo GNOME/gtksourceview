@@ -15,6 +15,13 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
+  <object class="GtkAdjustment" id="adjustment_bottom_margin">
+    <property name="lower">0</property>
+    <property name="upper">600</property>
+    <property name="value">300</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">50</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment_tab_width">
     <property name="lower">1</property>
     <property name="upper">16</property>
@@ -250,6 +257,30 @@
               </object>
             </child>
             <child>
+              <object class="GtkGrid" id="grid11">
+                <property name="column_spacing">4</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="label">Bottom margin:</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="bottom_margin">
+                    <property name="can-focus">1</property>
+                    <property name="adjustment">adjustment_bottom_margin</property>
+                    <signal name="value-changed" handler="bottom_margin_value_changed_cb" object="TestWidget" swapped="yes"/>
+                    <layout>
+                      <property name="column">1</property>
+                    </layout>
+                  </object>
+                </child>
+                <layout>
+                  <property name="row">16</property>
+                  <property name="column">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
               <object class="GtkGrid" id="grid10">
                 <layout>
                   <property name="column">0</property>
@@ -466,7 +497,7 @@
                 <property name="monospace">True</property>
                 <property name="left-margin">12</property>
                 <property name="top-margin">12</property>
-                <property name="bottom-margin">12</property>
+                <property name="bottom-margin">400</property>
                 <property name="right-margin">12</property>
               </object>
             </child>
