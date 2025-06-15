@@ -42,7 +42,6 @@ void _gtk_source_annotation_render              (GtkSourceAnnotation *self,
                                                  int                  x,
                                                  int                  y,
                                                  int                  line_height,
-                                                 const GdkRGBA       *color,
-                                                 int                  spacing);
+                                                 const GdkRGBA       *color);
 
 G_END_DECLS

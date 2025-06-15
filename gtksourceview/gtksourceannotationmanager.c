@@ -231,7 +231,6 @@ draw_annotation (GtkSourceAnnotationManager *manager,
 	GtkTextIter line_start_iter;
 	GtkTextIter line_end_iter;
 	GdkRectangle rect;
-	int spacing = 6;
 	int draw_x;
 	int draw_y;
 	int line_number;
@@ -270,8 +269,7 @@ draw_annotation (GtkSourceAnnotationManager *manager,
 	                               draw_x,
 	                               draw_y,
 	                               rect.height,
-	                               &manager->color,
-	                               spacing);
+	                               &manager->color);
 }
 
 void

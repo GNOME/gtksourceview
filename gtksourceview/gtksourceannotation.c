@@ -89,9 +89,9 @@ gtk_source_annotation_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		/* case PROP_COLOR: */
-		/* 	g_value_set_boxed (value, gtk_source_annotation_get_color (self)); */
-		/* 	break; */
+		case PROP_COLOR:
+			g_value_set_boxed(value, &self->color);
+			break;
 
 		case PROP_TEXT:
 			g_value_set_string (value, gtk_source_annotation_get_text (self));
@@ -152,7 +152,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	 *
 	 * The line where to display the annotation
 	 */
-	properties [PROP_ICON_NAME] =
+	properties [PROP_LINE] =
 		g_param_spec_uint ("line",
 		                   "Line",
 		                   "",
@@ -161,6 +161,15 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 		                   1,
 		                   (G_PARAM_READABLE |
 		                    G_PARAM_STATIC_STRINGS));
+
+	properties[PROP_COLOR] =
+	g_param_spec_boxed("color",
+	                   "Color",
+	                   "",
+	                   GDK_TYPE_RGBA,
+	                   G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties(object_class, N_PROPS, properties);
 }
 
 static void
@@ -340,8 +349,7 @@ _gtk_source_annotation_render (GtkSourceAnnotation *self,
                                int                  x,
                                int                  y,
                                int                  line_height,
-                               const GdkRGBA       *color,
-                               int                  spacing)
+                               const GdkRGBA       *color)
 {
 	GtkIconTheme *icon_theme;
 	GtkIconPaintable *icon_paintable;
@@ -350,6 +358,7 @@ _gtk_source_annotation_render (GtkSourceAnnotation *self,
 	int text_width, text_height;
 	int window_x, window_y;
 	int icon_size;
+	int spacing;
 	GdkRectangle bounds;
 	graphene_matrix_t color_matrix;
 	graphene_vec4_t color_vector;
@@ -373,6 +382,8 @@ _gtk_source_annotation_render (GtkSourceAnnotation *self,
 	bounds.height = line_height;
 
 	icon_size = line_height * 0.8;
+
+	spacing = line_height * 0.4;
 
 	if (self->icon_name)
 	{
