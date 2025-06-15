@@ -231,7 +231,7 @@ draw_annotation (GtkSourceAnnotationManager *manager,
 	GtkTextIter line_start_iter;
 	GtkTextIter line_end_iter;
 	GdkRectangle rect;
-	int spacing = 5;
+	int spacing = 6;
 	int draw_x;
 	int draw_y;
 	int line_number;
@@ -261,7 +261,7 @@ draw_annotation (GtkSourceAnnotationManager *manager,
 		gtk_text_view_get_iter_location (text_view, &line_end_iter, &rect);
 	}
 
-	draw_x = rect.x + spacing;
+	draw_x = rect.x + rect.height * 2;
 	draw_y = rect.y;
 
 	_gtk_source_annotation_render (annotation,
