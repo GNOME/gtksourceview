@@ -1536,7 +1536,7 @@ gtk_source_view_init (GtkSourceView *view)
 				 view,
 				 0);
 
-	priv->annotation_manager = gtk_source_annotation_manager_new ();
+	priv->annotation_manager = g_object_new (GTK_SOURCE_TYPE_ANNOTATION_MANAGER, NULL);
 	g_signal_connect_object (priv->annotation_manager,
 				 "changed",
 				 G_CALLBACK (annotation_manager_notify_cb),

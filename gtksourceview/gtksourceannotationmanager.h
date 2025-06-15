@@ -39,12 +39,10 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceAnnotationManager, gtk_source_annotation_manager, GTK_SOURCE, ANNOTATION_MANAGER, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceAnnotationManager *gtk_source_annotation_manager_new                         (void);
+void     gtk_source_annotation_manager_add_provider    (GtkSourceAnnotationManager        *self,
+                                                        GtkSourceAnnotationProvider       *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void gtk_source_annotation_manager_add_provider    (GtkSourceAnnotationManager        *self,
-                                                    GtkSourceAnnotationProvider       *provider);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager        *self,
-                                                    GtkSourceAnnotationProvider       *provider);
+gboolean gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager        *self,
+                                                        GtkSourceAnnotationProvider       *provider);
 
 G_END_DECLS

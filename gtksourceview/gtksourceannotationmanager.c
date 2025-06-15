@@ -40,18 +40,20 @@
 /**
  * GtkSourceAnnotationManager:
  *
+ * Use this object to manage [class@Annotation]s. Each [class@View] has a single annotation
+ * manager and it is guaranteed to be the same for the lifetime of [class@View].
+ *
+ * Add [class@AnnotationProvider]s with [method@AnnotationManager.add_provider] to
+ * display all the annotations added to a [class@AnnotationProvider].
  */
 
 struct _GtkSourceAnnotationManager
 {
-	GObject                  parent_instance;
-
-	GdkRGBA                  color;
-
-	GPtrArray               *providers;
-	int                      next_id;
-
-	guint                    color_set : 1;
+	GObject     parent_instance;
+	GdkRGBA     color;
+	GPtrArray  *providers;
+	int         next_id;
+	guint       color_set : 1;
 };
 
 enum {
@@ -95,12 +97,6 @@ gtk_source_annotation_manager_init (GtkSourceAnnotationManager *self)
 	self->providers = g_ptr_array_new_with_free_func (g_object_unref);
 }
 
-GtkSourceAnnotationManager *
-gtk_source_annotation_manager_new (void)
-{
-	return g_object_new (GTK_SOURCE_TYPE_ANNOTATION_MANAGER, NULL);
-}
-
 static void
 on_provider_changed (GtkSourceAnnotationManager  *self)
 {
@@ -109,6 +105,13 @@ on_provider_changed (GtkSourceAnnotationManager  *self)
 	g_signal_emit (self, signals[CHANGED], 0);
 }
 
+/**
+ * gtk_source_annotation_manager_add_provider:
+ * @self: a #GtkSourceAnnotationManager
+ * @provider: a #GtkSourceAnnotationProvider.
+ *
+ * Adds a new annotation provider.
+ */
 void
 gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
                                             GtkSourceAnnotationProvider *provider)
@@ -134,12 +137,21 @@ gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
 	g_signal_emit (self, signals[CHANGED], 0);
 }
 
-void
+/**
+ * gtk_source_annotation_manager_remove_provider:
+ * @self: a #GtkSourceAnnotationManager
+ * @provider: a #GtkSourceAnnotationProvider.
+ *
+ * Removes a provider.
+ *
+ * Returns: %TRUE if the provider was found and removed
+ */
+gboolean
 gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager  *self,
                                                GtkSourceAnnotationProvider *provider)
 {
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider), FALSE);
 
 	for (guint i = 0; i < self->providers->len; i++)
 	{
@@ -149,9 +161,11 @@ gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager  *self
 
 			g_signal_emit (self, signals[CHANGED], 0);
 
-			return;
+			return TRUE;
 		}
 	}
+
+	return FALSE;
 }
 
 void

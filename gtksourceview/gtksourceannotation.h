@@ -49,10 +49,11 @@ GtkSourceAnnotation * gtk_source_annotation_new_with_color   (char     *text,
 GTK_SOURCE_AVAILABLE_IN_ALL
 const char *          gtk_source_annotation_get_text         (GtkSourceAnnotation *self);
 GTK_SOURCE_AVAILABLE_IN_ALL
-char *                gtk_source_annotation_get_icon_name    (GtkSourceAnnotation *self);
+const char *          gtk_source_annotation_get_icon_name    (GtkSourceAnnotation *self);
 GTK_SOURCE_AVAILABLE_IN_ALL
 int                   gtk_source_annotation_get_line         (GtkSourceAnnotation *self);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GdkRGBA               gtk_source_annotation_get_color        (GtkSourceAnnotation *self);
+gboolean              gtk_source_annotation_get_color        (GtkSourceAnnotation *self,
+			                                      GdkRGBA             *color);
 
 G_END_DECLS

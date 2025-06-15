@@ -28,7 +28,7 @@
  *
  * Represents an annotation added to [class@View], it has a [property@Annotation:line] property,
  * [property@Annotation:text], icon-name and optionally a [property@Annotation:color] if you make
- * it with [method@Annotation:new_with_color].
+ * it with [method@Annotation.new_with_color].
  *
  * It will be displayed always at the end of a line.
  *
@@ -168,6 +168,17 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
 {
 }
 
+/**
+ * gtk_source_annotation_new:
+ * @text: (nullable): the text to display or %NULL.
+ * @icon_name: (nullable): the icon name to display or %NULL.
+ * @line: the line where to display the annotation.
+ *
+ * Used to create a new annotation, use [method@Annotation.new_with_color]
+ * if you want to use a color.
+ *
+ * Returns: a new [class@Annotation]
+ */
 GtkSourceAnnotation *
 gtk_source_annotation_new (char *text,
                            char *icon_name,
@@ -185,6 +196,17 @@ gtk_source_annotation_new (char *text,
 	return self;
 }
 
+/**
+ * gtk_source_annotation_new_with_color:
+ * @text: (nullable): the text to display or %NULL.
+ * @icon_name: (nullable): the icon name to display or %NULL.
+ * @line: the line where to display the annotation.
+ * @color: the color of the annotation.
+ *
+ * Used to create a new annotation with a color.
+ *
+ * Returns: a new [class@Annotation]
+ */
 GtkSourceAnnotation *
 gtk_source_annotation_new_with_color (char   *text,
                                       char   *icon_name,
@@ -204,6 +226,12 @@ gtk_source_annotation_new_with_color (char   *text,
 	return self;
 }
 
+/**
+ * gtk_source_annotation_get_text:
+ * @self: a #GtkSourceAnnotation
+ *
+ * Returns: the annotation text.
+ */
 const char *
 gtk_source_annotation_get_text (GtkSourceAnnotation *self)
 {
@@ -212,7 +240,13 @@ gtk_source_annotation_get_text (GtkSourceAnnotation *self)
 	return self->text ? self->text : "";
 }
 
-char *
+/**
+ * gtk_source_annotation_get_icon_name:
+ * @self: a #GtkSourceAnnotation
+ *
+ * Returns: the icon name.
+ */
+const char *
 gtk_source_annotation_get_icon_name (GtkSourceAnnotation *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), NULL);
@@ -220,6 +254,12 @@ gtk_source_annotation_get_icon_name (GtkSourceAnnotation *self)
 	return self->icon_name;
 }
 
+/**
+ * gtk_source_annotation_get_line:
+ * @self: a #GtkSourceAnnotation
+ *
+ * Returns: the line number.
+ */
 int
 gtk_source_annotation_get_line (GtkSourceAnnotation *self)
 {
@@ -228,12 +268,30 @@ gtk_source_annotation_get_line (GtkSourceAnnotation *self)
 	return self->line;
 }
 
-GdkRGBA *
-gtk_source_annotation_get_color (GtkSourceAnnotation *self)
+/**
+ * gtk_source_annotation_get_color:
+ * @self: a #GtkSourceAnnotation
+ * @color: a #GdkRGBA.
+ *
+ * Sets color as the color of this annotation.
+ *
+ * Returns: %TRUE if this annotation has a color, %FALSE otherwise.
+ */
+gboolean
+gtk_source_annotation_get_color (GtkSourceAnnotation *self,
+				 GdkRGBA             *color)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), FALSE);
 
-	return &self->color;
+	if (self->color_set)
+	{
+		color = &self->color;
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
 }
 
 gboolean
