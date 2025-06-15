@@ -272,6 +272,17 @@
               </object>
             </child>
             <child>
+              <object class="GtkCheckButton" id="enable_annotations">
+                <property name="label">Enable annotations</property>
+                <property name="can-focus">1</property>
+                <signal name="toggled" handler="enable_annotations_toggled_cb" object="TestWidget" swapped="yes"/>
+                <layout>
+                  <property name="row">16</property>
+                  <property name="column">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
               <object class="GtkGrid" id="grid11">
                 <property name="column_spacing">4</property>
                 <child>
@@ -290,7 +301,7 @@
                   </object>
                 </child>
                 <layout>
-                  <property name="row">16</property>
+                  <property name="row">17</property>
                   <property name="column">0</property>
                 </layout>
               </object>

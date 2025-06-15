@@ -23,6 +23,8 @@
 
 #include <string.h>
 
+#include "gtksourceannotation-private.h"
+#include "gtksourceannotationprovider.h"
 #include "gtksourceassistant-private.h"
 #include "gtksourcehoverassistant-private.h"
 #include "gtksourcehovercontext-private.h"
@@ -538,6 +540,82 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 	                                          g_object_ref (self));
 
 	g_object_unref (context);
+}
+
+static void
+gtk_source_hover_assistant_populate_annotation_cb (GObject      *object,
+                                                   GAsyncResult *result,
+                                                   gpointer      user_data)
+{
+	GtkSourceAnnotationProvider *provider = (GtkSourceAnnotationProvider *)object;
+	GtkSourceHoverAssistant *self = user_data;
+	GError *error = NULL;
+
+	g_assert (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
+	g_assert (G_IS_ASYNC_RESULT (result));
+	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+
+	g_print("finished populating\n");
+
+	if (gtk_source_annotation_provider_populate_hover_finish (provider, result, &error))
+	{
+		if (!self->disposed)
+		{
+			GtkWidget *parent = gtk_widget_get_parent (GTK_WIDGET (self));
+			gboolean mapped = parent && gtk_widget_get_mapped (parent);
+			gboolean empty = _gtk_source_hover_display_is_empty (self->display);
+
+			gtk_widget_set_visible (GTK_WIDGET (self), mapped && !empty);
+		}
+	}
+
+	g_clear_object (&self);
+	g_clear_error (&error);
+}
+
+void
+_gtk_source_hover_assistant_display_annotation (GtkSourceHoverAssistant     *self,
+                                                GtkSourceAnnotationProvider *provider,
+                                                GtkSourceAnnotation         *annotation)
+{
+	GtkSourceView *view;
+	GdkRectangle location_rect;
+	GdkRectangle visible_rect;
+	int buffer_x, buffer_y;
+
+	memset (&self->hovered_at, 0, sizeof self->hovered_at);
+
+	_gtk_source_annotation_get_rect (annotation, &location_rect);
+
+	view = GTK_SOURCE_VIEW (gtk_widget_get_parent (GTK_WIDGET (self)));
+
+	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
+	                                       GTK_TEXT_WINDOW_TEXT,
+	                                       location_rect.x, location_rect.y,
+	                                       &buffer_x, &buffer_y);
+	location_rect.x = buffer_x;
+	location_rect.y = buffer_y;
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
+
+	if (!gdk_rectangle_intersect (&location_rect, &visible_rect, &location_rect))
+	{
+		gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
+		return;
+	}
+
+	self->hovered_at = location_rect;
+
+	_gtk_source_hover_display_clear (self->display);
+
+	self->cancellable = g_cancellable_new ();
+
+	gtk_source_annotation_provider_populate_hover_async (provider,
+							     annotation,
+							     self->display,
+							     self->cancellable,
+							     gtk_source_hover_assistant_populate_annotation_cb,
+							     g_object_ref (self));
 }
 
 void

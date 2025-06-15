@@ -39,5 +39,8 @@ void                _gtk_source_hover_assistant_display (GtkSourceHoverAssistant
                                                          const GtkTextIter        *begin,
                                                          const GtkTextIter        *end,
                                                          const GtkTextIter        *location);
+void     _gtk_source_hover_assistant_display_annotation (GtkSourceHoverAssistant     *self,
+                                                         GtkSourceAnnotationProvider *provider,
+                                                         GtkSourceAnnotation         *annotation);
 
 G_END_DECLS

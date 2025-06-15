@@ -51,6 +51,8 @@ struct _TestWidget
 	GtkScrolledWindow *scrolledwindow1;
 	GtkEventController *vim_controller;
 	GtkLabel *command_bar;
+	GtkSourceAnnotationProvider *annotation_provider;
+	GtkSourceAnnotationProvider *error_provider;
 };
 
 struct _TestHoverProvider
@@ -1001,6 +1003,101 @@ enable_hover_toggled_cb (TestWidget     *self,
 }
 
 static void
+on_cursor_moved (TestWidget *self)
+{
+	GtkSourceAnnotation *annotation;
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	gint line;
+	gchar *line_text;
+
+	if (self->annotation_provider == NULL)
+	{
+		return;
+	}
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view));
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter,
+		                      gtk_text_buffer_get_insert (buffer));
+
+	line = gtk_text_iter_get_line (&iter);
+
+	line_text = g_strdup_printf ("Line %d annotation", line + 1);
+
+	annotation = gtk_source_annotation_new (line_text,
+						"dialog-information-symbolic",
+						line);
+
+	gtk_source_annotation_provider_remove_all (self->annotation_provider);
+
+	gtk_source_annotation_provider_add_annotation (self->annotation_provider, annotation);
+
+	g_object_unref (annotation);
+	g_free (line_text);
+}
+
+static void
+on_annotation_populate_hover (GtkSourceAnnotationProvider *provider,
+			      GtkSourceAnnotation         *annotation,
+			      GtkSourceHoverDisplay       *display,
+			      TestWidget                  *self)
+{
+	g_assert (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
+	g_assert (GTK_SOURCE_IS_ANNOTATION (annotation));
+	g_assert (GTK_SOURCE_IS_HOVER_DISPLAY (display));
+	g_assert (TEST_IS_WIDGET (self));
+
+	gtk_source_hover_display_append (display,
+					 g_object_new (GTK_TYPE_LABEL,
+						       "label", gtk_source_annotation_get_text (annotation),
+						       "margin-start", 12,
+						       "margin-end", 12,
+						       NULL));
+}
+
+static void
+enable_annotations_toggled_cb (TestWidget     *self,
+                               GtkCheckButton *button)
+{
+	GtkSourceAnnotationManager *annotation_manager = gtk_source_view_get_annotation_manager (self->view);
+	gboolean enabled = gtk_check_button_get_active (button);
+
+	if (self->annotation_provider == NULL)
+	{
+		self->annotation_provider = gtk_source_annotation_provider_new ();
+		g_signal_connect (self->annotation_provider,
+				  "populate",
+				  G_CALLBACK (on_annotation_populate_hover),
+				  self);
+	}
+
+	if (self->error_provider == NULL)
+	{
+		GtkSourceAnnotation *annotation;
+
+		self->error_provider = gtk_source_annotation_provider_new ();
+
+		annotation = gtk_source_annotation_new_with_color ("Error!",
+								   "emblem-important-symbolic",
+								   0,
+								   (GdkRGBA) {1, 0, 0, 0.6});
+
+		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+	}
+
+	if (enabled)
+	{
+		gtk_source_annotation_manager_add_provider (annotation_manager, self->annotation_provider);
+		gtk_source_annotation_manager_add_provider (annotation_manager, self->error_provider);
+	}
+	else
+	{
+		gtk_source_annotation_manager_remove_provider (annotation_manager, self->annotation_provider);
+		gtk_source_annotation_manager_remove_provider (annotation_manager, self->error_provider);
+	}
+}
+
+static void
 vim_checkbutton_toggled_cb (TestWidget     *self,
                             GtkCheckButton *button)
 {
@@ -1078,6 +1175,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_selected_notify_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_annotations_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, vim_checkbutton_toggled_cb);
 
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, view);
@@ -1227,6 +1325,13 @@ test_widget_init (TestWidget *self)
 	g_object_bind_property (self->draw_spaces_checkbutton, "active",
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+
+	g_signal_connect_swapped (self->buffer,
+				"notify::cursor-position",
+				G_CALLBACK (on_cursor_moved),
+				self);
+
+	g_print("connected!!\n");
 
 	if (cmd_filename)
 		file = g_file_new_for_commandline_arg (cmd_filename);
