@@ -135,15 +135,60 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 		GdkRectangle rect;
 		int old_x, old_y;
 		int x, y;
+		GtkRoot *root;
 
 		gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (parent), &visible_rect);
 
-		_gtk_source_assistant_get_offset (assistant, &x, &y);
 		_gtk_source_assistant_get_target_location (assistant, &rect);
 
 		rect.x -= visible_rect.x;
 		rect.y -= visible_rect.y;
 		rect.x += get_gutter_width (GTK_SOURCE_VIEW (parent));
+
+		if (rect.x < 0 || rect.x + rect.width > visible_rect.width ||
+		    rect.y < 0 || rect.y + rect.height > visible_rect.height)
+		{
+			gtk_widget_set_visible (GTK_WIDGET (assistant), FALSE);
+			return FALSE;
+		}
+
+		root = gtk_widget_get_root (parent);
+
+		if (GTK_IS_WINDOW (root))
+		{
+			GtkPositionType position;
+			graphene_point_t point;
+			graphene_point_t root_point;
+			int window_height;
+			GtkRequisition natural_height;
+
+			point.x = rect.x;
+			point.y = rect.y;
+
+			gtk_widget_get_preferred_size (GTK_WIDGET(assistant), NULL, &natural_height);
+
+			if (gtk_widget_compute_point (parent, GTK_WIDGET (root), &point, &root_point))
+			{
+				window_height = gtk_widget_get_height (GTK_WIDGET (root));
+
+				position = GTK_POS_BOTTOM;
+				gtk_widget_remove_css_class (GTK_WIDGET (assistant), "above-line");
+
+				if ((root_point.y + rect.height + natural_height.height) > window_height)
+				{
+					position = GTK_POS_TOP;
+					gtk_widget_add_css_class (GTK_WIDGET (assistant), "above-line");
+				}
+
+				if (gtk_popover_get_position (GTK_POPOVER (assistant)) != position)
+				{
+					gtk_popover_set_position (GTK_POPOVER (assistant), position);
+					changed = TRUE;
+				}
+			}
+		}
+
+		_gtk_source_assistant_get_offset (assistant, &x, &y);
 
 		gtk_popover_get_offset (GTK_POPOVER (assistant), &old_x, &old_y);
 
@@ -275,7 +320,6 @@ _gtk_source_assistant_init (GtkSourceAssistant *self)
 
 	gtk_widget_set_halign (GTK_WIDGET (self), GTK_ALIGN_START);
 	gtk_widget_set_valign (GTK_WIDGET (self), GTK_ALIGN_START);
-	gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_BOTTOM);
 	gtk_popover_set_has_arrow (GTK_POPOVER (self), FALSE);
 	gtk_popover_set_autohide (GTK_POPOVER (self), TRUE);
 

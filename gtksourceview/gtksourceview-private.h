@@ -70,6 +70,7 @@ void     _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *ass
 gboolean _gtk_source_view_assistants_handle_key    (GtkSourceViewAssistants *assistant,
                                                     guint                    keyval,
                                                     GdkModifierType          state);
+void     _gtk_source_view_assistants_update_all    (GtkSourceViewAssistants *assistants);
 
 void     _gtk_source_view_snippets_init        (GtkSourceViewSnippets *snippets,
                                                 GtkSourceView         *view);
