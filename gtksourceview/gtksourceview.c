@@ -845,7 +845,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:space-drawer:
 	 *
-	 * The [class@SpaceDrawer] object associated with the view.4
+	 * The [class@SpaceDrawer] object associated with the view.
 	 */
 	properties [PROP_SPACE_DRAWER] =
 		g_param_spec_object ("space-drawer",
@@ -858,7 +858,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:annotation-manager:
 	 *
-	 * The [class@InlineDrawer] object associated with the view.4
+	 * The [class@AnnotationManager] object associated with the view.
+	 *
+	 * Since: 5.18
 	 */
 	properties [PROP_ANNOTATION_MANAGER] =
 		g_param_spec_object ("annotation-manager",
