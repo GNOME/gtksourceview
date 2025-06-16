@@ -1083,7 +1083,7 @@ enable_annotations_toggled_cb (TestWidget     *self,
 		annotation = gtk_source_annotation_new_with_color ("Error!",
 		                                                   "emblem-important-symbolic",
 		                                                   0,
-		                                                   (GdkRGBA) {1, 0, 0, 0.6});
+		                                                   &(GdkRGBA) {1, 0, 0, 0.6});
 
 		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
 	}

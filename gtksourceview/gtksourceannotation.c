@@ -173,7 +173,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	properties[PROP_COLOR] =
 		g_param_spec_boxed ("color", NULL, NULL,
 		                    GDK_TYPE_RGBA,
-		                    (G_PARAM_READWRITE |
+		                    (G_PARAM_READABLE |
 		                     G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
@@ -197,17 +197,15 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
  * Returns: a new [class@Annotation]
  */
 GtkSourceAnnotation *
-gtk_source_annotation_new (char *text,
-                           char *icon_name,
-                           int   line)
+gtk_source_annotation_new (const char *text,
+                           const char *icon_name,
+                           int         line)
 {
 	GtkSourceAnnotation *self = g_object_new (GTK_SOURCE_TYPE_ANNOTATION, NULL);
 
 	self->text = g_strdup (text);
 	self->icon_name = g_strdup (icon_name);
-
 	self->line = line;
-
 	self->color_set = FALSE;
 
 	return self;
@@ -225,20 +223,22 @@ gtk_source_annotation_new (char *text,
  * Returns: a new [class@Annotation]
  */
 GtkSourceAnnotation *
-gtk_source_annotation_new_with_color (char   *text,
-                                      char   *icon_name,
-                                      int     line,
-                                      GdkRGBA color)
+gtk_source_annotation_new_with_color (const char    *text,
+                                      const char    *icon_name,
+                                      int            line,
+                                      const GdkRGBA *color)
 {
 	GtkSourceAnnotation *self = g_object_new (GTK_SOURCE_TYPE_ANNOTATION, NULL);
 
 	self->text = g_strdup (text);
 	self->icon_name = g_strdup (icon_name);
-
 	self->line = line;
-	self->color = color;
 
-	self->color_set = TRUE;
+	if (color != NULL)
+	{
+		self->color = *color;
+		self->color_set = TRUE;
+	}
 
 	return self;
 }
