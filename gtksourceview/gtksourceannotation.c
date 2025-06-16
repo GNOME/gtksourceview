@@ -176,7 +176,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 static void
 gtk_source_annotation_init (GtkSourceAnnotation *self)
 {
-	self->font_string = "";
+	self->font_string = g_strdup ("");
 }
 
 /**
@@ -336,16 +336,17 @@ _gtk_source_annotation_ensure_updated_layout (GtkSourceAnnotation *self,
 	font_desc = pango_font_description_copy (pango_context_get_font_description (gtk_widget_get_pango_context (widget)));
 	font_string = pango_font_description_to_string (font_desc);
 
-	if (!g_str_equal (self->font_string, font_string))
+	if (g_set_str (&self->font_string, font_string))
 	{
+		g_clear_object (&self->layout);
+
 		self->layout = gtk_widget_create_pango_layout (widget, self->text);
-		self->font_string = font_string;
 		pango_layout_set_font_description (self->layout, font_desc);
-		pango_font_description_free (font_desc);
 		pango_layout_get_pixel_size (self->layout, &self->text_width, &self->text_height);
 	}
 
-	g_free (font_string);
+	g_clear_pointer (&font_string, g_free);
+	g_clear_pointer (&font_desc, pango_font_description_free);
 }
 
 void
