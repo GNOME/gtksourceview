@@ -233,6 +233,9 @@ typedef struct
 	guint show_right_margin  : 1;
 	guint smart_backspace : 1;
 	guint enable_snippets : 1;
+
+	GtkAdjustment *vadj;
+	GtkAdjustment *hadj;
 } GtkSourceViewPrivate;
 
 typedef struct
@@ -285,10 +288,12 @@ static gboolean       gtk_source_view_key_pressed          (GtkSourceView       
                                                             guint                    keycode,
                                                             guint                    state,
                                                             GtkEventControllerKey   *controller);
-static void           gtk_source_view_scroll               (GtkSourceView           *view,
-                                                            double                   x,
-                                                            double                   y,
-                                                            GtkEventControllerScroll*scroll);
+static void 	      gtk_source_view_adjustment_changed   (GtkSourceView *view,
+                                                            GtkAdjustment *adjustment);
+static void           gtk_source_view_adj_property_changed (GObject    *object,
+                                                            GParamSpec *pspec,
+                                                            gpointer    user_data);
+static void           gtk_source_view_clicked              (GtkSourceView           *view);
 static gboolean       gtk_source_view_key_released         (GtkSourceView           *view,
                                                             guint                    key,
                                                             guint                    keycode,
@@ -356,6 +361,13 @@ gtk_source_view_constructed (GObject *object)
 	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed (object);
+
+	g_signal_connect (view, "notify::vadjustment",
+		     	  G_CALLBACK (gtk_source_view_adj_property_changed),
+		          NULL);
+	g_signal_connect (view, "notify::hadjustment",
+		          G_CALLBACK (gtk_source_view_adj_property_changed),
+		          NULL);
 }
 
 static void
@@ -1466,7 +1478,7 @@ gtk_source_view_init (GtkSourceView *view)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkEventController *key;
-	GtkEventController *scroll;
+	GtkEventController *click;
 	GtkEventController *focus;
 	GtkDropTarget *dest;
 
@@ -1522,13 +1534,14 @@ gtk_source_view_init (GtkSourceView *view)
 	                          view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&focus));
 
-	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
-	gtk_event_controller_set_propagation_phase (scroll, GTK_PHASE_CAPTURE);
-	g_signal_connect_swapped (scroll,
-	                          "scroll",
-	                          G_CALLBACK (gtk_source_view_scroll),
+	click = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
+	gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (click), 0);
+	gtk_event_controller_set_propagation_phase (click, GTK_PHASE_BUBBLE);
+	g_signal_connect_swapped (click,
+	                          "pressed",
+	                          G_CALLBACK (gtk_source_view_clicked),
 	                          view);
-	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&scroll));
+	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&click));
 
 	dest = gtk_drop_target_new (GDK_TYPE_RGBA, GDK_ACTION_COPY);
 	gtk_drop_target_set_preload (dest, TRUE);
@@ -4481,15 +4494,88 @@ gtk_source_view_key_released (GtkSourceView         *view,
 }
 
 static void
-gtk_source_view_scroll (GtkSourceView            *view,
-                        double                    x,
-                        double                    y,
-			GtkEventControllerScroll *scroll)
+gtk_source_view_update_adjustment_connections (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GtkAdjustment *vadj, *hadj;
+	GtkAdjustment *old_vadj = priv->vadj;
+	GtkAdjustment *old_hadj = priv->hadj;
+
+	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
+	hadj = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
+
+	if (old_vadj == vadj && old_hadj == hadj)
+		return;
+
+	if (old_vadj != NULL)
+	{
+		g_signal_handlers_disconnect_by_func (old_vadj,
+		                                      G_CALLBACK (gtk_source_view_adjustment_changed),
+		                                      view);
+		g_object_unref (old_vadj);
+	}
+
+	if (old_hadj != NULL)
+	{
+		g_signal_handlers_disconnect_by_func (old_hadj,
+		                                      G_CALLBACK (gtk_source_view_adjustment_changed),
+		                                      view);
+		g_object_unref (old_hadj);
+	}
+
+	if (vadj != NULL)
+	{
+		g_signal_connect_swapped (vadj, "value-changed",
+		                          G_CALLBACK (gtk_source_view_adjustment_changed),
+		                          view);
+		priv->vadj = g_object_ref (vadj);
+	}
+	else
+	{
+		priv->vadj = NULL;
+	}
+
+	if (hadj != NULL)
+	{
+		g_signal_connect_swapped (hadj, "value-changed",
+		                          G_CALLBACK (gtk_source_view_adjustment_changed),
+		                          view);
+		priv->hadj = g_object_ref (hadj);
+	}
+	else
+	{
+		priv->hadj = NULL;
+	}
+}
+
+static void
+gtk_source_view_adj_property_changed  (GObject    *object,
+                                       GParamSpec *pspec,
+                                       gpointer    user_data)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (object);
+
+	gtk_source_view_update_adjustment_connections (view);
+}
+
+static void
+gtk_source_view_adjustment_changed (GtkSourceView *view,
+                                    GtkAdjustment *adjustment)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
 	g_assert (GTK_SOURCE_IS_VIEW (view));
-	g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (scroll));
+	g_assert (GTK_IS_ADJUSTMENT (adjustment));
+
+	_gtk_source_view_assistants_update_all (&priv->assistants);
+}
+
+static void
+gtk_source_view_clicked (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
 
 	_gtk_source_view_assistants_hide_all (&priv->assistants);
 }

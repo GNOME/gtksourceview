@@ -155,3 +155,21 @@ _gtk_source_view_assistants_handle_key (GtkSourceViewAssistants *assistants,
 
 	return FALSE;
 }
+
+void
+_gtk_source_view_assistants_update_all (GtkSourceViewAssistants *assistants)
+{
+	g_assert (assistants != NULL);
+
+	for (const GList *iter = assistants->queue.head; iter; iter = iter->next)
+	{
+		GtkSourceAssistant *assistant = iter->data;
+
+		g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
+
+		if (gtk_widget_get_visible (GTK_WIDGET (assistant)))
+		{
+			_gtk_source_assistant_update_position (assistant);
+		}
+	}
+}
