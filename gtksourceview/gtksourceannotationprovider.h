@@ -41,44 +41,44 @@ struct _GtkSourceAnnotationProviderClass
 {
 	GObjectClass parent_class;
 
-	void     (*populate_hover_async)  (GtkSourceAnnotationProvider   *self,
-					   GtkSourceAnnotation          *annotation,
-					   GtkSourceHoverDisplay        *display,
-					   GCancellable        *cancellable,
-					   GAsyncReadyCallback  callback,
-					   gpointer             user_data);
+	void     (*populate_hover_async)  (GtkSourceAnnotationProvider  *self,
+	                                   GtkSourceAnnotation          *annotation,
+	                                   GtkSourceHoverDisplay        *display,
+	                                   GCancellable                 *cancellable,
+	                                   GAsyncReadyCallback           callback,
+	                                   gpointer                      user_data);
 	gboolean (*populate_hover_finish) (GtkSourceAnnotationProvider  *self,
-					   GAsyncResult       *result,
-					   GError            **error);
+	                                   GAsyncResult                 *result,
+	                                   GError                      **error);
 	gboolean (*populate)              (GtkSourceAnnotationProvider  *self,
-					   GTask              *task);
+	                                   GTask                        *task);
 };
 
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotationProvider *gtk_source_annotation_provider_new (void);
+GtkSourceAnnotationProvider *gtk_source_annotation_provider_new                   (void);
 GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean gtk_source_annotation_provider_populate_hover                    (GtkSourceAnnotationProvider  *provider,
-									   GtkSourceAnnotation          *annotation,
-									   GtkSourceHoverDisplay        *display,
-									   GError                      **error);
+gboolean                     gtk_source_annotation_provider_populate_hover        (GtkSourceAnnotationProvider  *self,
+                                                                                   GtkSourceAnnotation          *annotation,
+                                                                                   GtkSourceHoverDisplay        *display,
+                                                                                   GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_5_18
-void     gtk_source_annotation_provider_populate_hover_async              (GtkSourceAnnotationProvider  *self,
-									   GtkSourceAnnotation          *annotation,
-									   GtkSourceHoverDisplay        *display,
-									   GCancellable                 *cancellable,
-									   GAsyncReadyCallback           callback,
-									   gpointer                      user_data);
+void                         gtk_source_annotation_provider_populate_hover_async  (GtkSourceAnnotationProvider  *self,
+                                                                                   GtkSourceAnnotation          *annotation,
+                                                                                   GtkSourceHoverDisplay        *display,
+                                                                                   GCancellable                 *cancellable,
+                                                                                   GAsyncReadyCallback           callback,
+                                                                                   gpointer                      user_data);
 GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean gtk_source_annotation_provider_populate_hover_finish             (GtkSourceAnnotationProvider  *self,
-									   GAsyncResult                 *result,
-									   GError                      **error);
+gboolean                     gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvider  *self,
+                                                                                   GAsyncResult                 *result,
+                                                                                   GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_5_18
-void     gtk_source_annotation_provider_add_annotation                    (GtkSourceAnnotationProvider   *provider,
-									   GtkSourceAnnotation           *annotation);
+void                         gtk_source_annotation_provider_add_annotation        (GtkSourceAnnotationProvider  *self,
+                                                                                   GtkSourceAnnotation          *annotation);
 GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean gtk_source_annotation_provider_remove_annotation                 (GtkSourceAnnotationProvider   *provider,
-									   GtkSourceAnnotation           *annotation);
+gboolean                     gtk_source_annotation_provider_remove_annotation     (GtkSourceAnnotationProvider  *self,
+                                                                                   GtkSourceAnnotation          *annotation);
 GTK_SOURCE_AVAILABLE_IN_5_18
-void     gtk_source_annotation_provider_remove_all                        (GtkSourceAnnotationProvider  *self);
+void                         gtk_source_annotation_provider_remove_all            (GtkSourceAnnotationProvider  *self);
 
 G_END_DECLS

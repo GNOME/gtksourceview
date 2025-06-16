@@ -239,16 +239,14 @@ gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvide
 
 /**
  * gtk_source_annotation_provider_add_annotation:
- * @self: a #GtkSourceAnnotationProvider
- * @annotation: a #GtkSourceAnnotation
  *
  * Add an annotation to the provider.
  *
  * Since: 5.18
  */
 void
-gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *self,
-                                               GtkSourceAnnotation          *annotation)
+gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider *self,
+                                               GtkSourceAnnotation         *annotation)
 {
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 
@@ -262,8 +260,6 @@ gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *se
 
 /**
  * gtk_source_annotation_provider_remove_annotation:
- * @provider: a #GtkSourceAnnotationProvider
- * @annotation: a #GtkSourceAnnotation
  *
  * Remove an annotation from the provider.
  *
@@ -272,8 +268,8 @@ gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *se
  * Since: 5.18
  */
 gboolean
-gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider   *self,
-                                                  GtkSourceAnnotation          *annotation)
+gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider *self,
+                                                  GtkSourceAnnotation         *annotation)
 {
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 	gboolean result;
@@ -289,8 +285,7 @@ gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider   
 }
 
 /**
- * gtk_source_annotation_provider_remove_annotation:
- * @provider: a #GtkSourceAnnotationProvider
+ * gtk_source_annotation_provider_remove_all:
  *
  * Removes all annotations from the provider.
  *
