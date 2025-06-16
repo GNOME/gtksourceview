@@ -19,8 +19,8 @@ Nightly documentation can be [found here](https://gnome.pages.gitlab.gnome.org/g
 Dependencies
 ------------
 
-* GLib >= 2.70
-* GTK >= 4.6
+* GLib >= 2.72
+* GTK >= 4.17
 * libxml2 >= 2.6
 * fribidi >= 0.19.7
 * libpcre2-8 >= 10.21
