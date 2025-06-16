@@ -45,6 +45,10 @@ struct _GtkSourceAnnotation
 	int             line;
 	gboolean        color_set;
 	GdkRectangle    bounds;
+	PangoLayout    *layout;
+	char           *font_string;
+	int             text_width;
+	int             text_height;
 };
 
 enum
@@ -172,6 +176,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 static void
 gtk_source_annotation_init (GtkSourceAnnotation *self)
 {
+	self->font_string = "";
 }
 
 /**
@@ -321,21 +326,26 @@ _gtk_source_annotation_contains_point (GtkSourceAnnotation *self,
 	return gdk_rectangle_contains_point (&self->bounds, x, y);
 }
 
-static PangoLayout *
-_gtk_source_annotation_get_layout (GtkSourceAnnotation *self,
-                                   GtkWidget           *widget)
+static void
+_gtk_source_annotation_ensure_updated_layout (GtkSourceAnnotation *self,
+                                              GtkWidget           *widget)
 {
 	PangoFontDescription *font_desc;
-	PangoLayout *layout;
+	char *font_string;
 
-	layout = gtk_widget_create_pango_layout (widget, self->text);
+	font_desc = pango_font_description_copy (pango_context_get_font_description (gtk_widget_get_pango_context (widget)));
+	font_string = pango_font_description_to_string (font_desc);
 
-	font_desc = pango_font_description_copy (
-		pango_context_get_font_description (gtk_widget_get_pango_context (widget)));
-	pango_layout_set_font_description (layout, font_desc);
-	pango_font_description_free (font_desc);
+	if (!g_str_equal (self->font_string, font_string))
+	{
+		self->layout = gtk_widget_create_pango_layout (widget, self->text);
+		self->font_string = font_string;
+		pango_layout_set_font_description (self->layout, font_desc);
+		pango_font_description_free (font_desc);
+		pango_layout_get_pixel_size (self->layout, &self->text_width, &self->text_height);
+	}
 
-	return g_object_ref (layout);
+	g_free (font_string);
 }
 
 void
@@ -435,22 +445,17 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 	if (self->text && strlen (self->text) > 0)
 	{
-		PangoLayout *layout;
-		int text_width, text_height;
-
-		layout = _gtk_source_annotation_get_layout (self, GTK_WIDGET (view));
-		pango_layout_get_pixel_size (layout, &text_width, &text_height);
+		_gtk_source_annotation_ensure_updated_layout (self, GTK_WIDGET (view));
 
 		gtk_snapshot_save (snapshot);
 		gtk_snapshot_translate (snapshot,
 		                        &GRAPHENE_POINT_INIT (rect.x + icon_size + spacing,
 		                                              rect.y));
 		gtk_snapshot_append_layout (snapshot,
-		                            layout,
+		                            self->layout,
 		                            &choosen_color);
 		gtk_snapshot_restore (snapshot);
-		g_object_unref (layout);
 
-		self->bounds.width += text_width;
+		self->bounds.width += self->text_width;
 	}
 }

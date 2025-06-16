@@ -274,23 +274,45 @@ _gtk_source_annotation_manager_draw (GtkSourceAnnotationManager *self,
                                      GtkSourceView              *view,
                                      GtkSnapshot                *snapshot)
 {
+	GdkRectangle visible_rect;
+	GtkTextIter start_visible, end_visible;
+	gint first_visible_line, last_visible_line;
 	guint i, j;
 
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (snapshot != NULL);
 
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
+
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view),
+	                                    &start_visible,
+	                                    visible_rect.x,
+	                                    visible_rect.y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view),
+	                                    &end_visible,
+	                                    visible_rect.x,
+	                                    visible_rect.y + visible_rect.height);
+
+	first_visible_line = gtk_text_iter_get_line (&start_visible);
+	last_visible_line = gtk_text_iter_get_line (&end_visible);
+
 	for (i = 0; i < self->providers->len; i++)
 	{
 		GtkSourceAnnotationProvider *provider = g_ptr_array_index (self->providers, i);
-
 		GPtrArray *annotations = _gtk_source_annotation_provider_get_annotations (provider);
 
 		for (j = 0; j < annotations->len; j++)
 		{
 			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations, j);
 
-			_gtk_source_annotation_manager_draw_annotation (self, view, snapshot, annotation);
+			gint annotation_line = gtk_source_annotation_get_line (annotation);
+
+			if (annotation_line >= first_visible_line &&
+			    annotation_line <= last_visible_line)
+			{
+				_gtk_source_annotation_manager_draw_annotation (self, view, snapshot, annotation);
+			}
 		}
 	}
 }
