@@ -1492,10 +1492,12 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
 }
 
 static void
-annotation_manager_notify_cb (GtkSourceAnnotationManager *annotation_manager,
-                              GParamSpec                 *pspec,
-                              GtkSourceView              *view)
+annotation_manager_changed_cb (GtkSourceAnnotationManager *annotation_manager,
+                               GtkSourceView              *view)
 {
+	g_assert (GTK_SOURCE_IS_ANNOTATION_MANAGER (annotation_manager));
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
 	gtk_source_view_queue_draw (view);
 }
 
@@ -1541,7 +1543,7 @@ gtk_source_view_init (GtkSourceView *view)
 	priv->annotation_manager = g_object_new (GTK_SOURCE_TYPE_ANNOTATION_MANAGER, NULL);
 	g_signal_connect_object (priv->annotation_manager,
 				 "changed",
-				 G_CALLBACK (annotation_manager_notify_cb),
+				 G_CALLBACK (annotation_manager_changed_cb),
 				 view,
 				 0);
 
