@@ -21,7 +21,7 @@ Links
 Dependencies
 ------------
 
-* GLib >= 2.72
+* GLib >= 2.76
 * GTK >= 4.17
 * libxml2 >= 2.6
 * fribidi >= 0.19.7
