@@ -1017,16 +1017,17 @@ on_cursor_moved (TestWidget *self)
 	}
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view));
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter,
-		                      gtk_text_buffer_get_insert (buffer));
+	gtk_text_buffer_get_iter_at_mark (buffer,
+	                                  &iter,
+	                                  gtk_text_buffer_get_insert (buffer));
 
 	line = gtk_text_iter_get_line (&iter);
 
 	line_text = g_strdup_printf ("Line %d annotation", line + 1);
 
 	annotation = gtk_source_annotation_new (line_text,
-						"dialog-information-symbolic",
-						line);
+	                                        "dialog-information-symbolic",
+	                                        line);
 
 	gtk_source_annotation_provider_remove_all (self->annotation_provider);
 
@@ -1036,11 +1037,11 @@ on_cursor_moved (TestWidget *self)
 	g_free (line_text);
 }
 
-static void
+static gboolean
 on_annotation_populate_hover (GtkSourceAnnotationProvider *provider,
-			      GtkSourceAnnotation         *annotation,
-			      GtkSourceHoverDisplay       *display,
-			      TestWidget                  *self)
+                              GtkSourceAnnotation         *annotation,
+                              GtkSourceHoverDisplay       *display,
+                              TestWidget                  *self)
 {
 	g_assert (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
 	g_assert (GTK_SOURCE_IS_ANNOTATION (annotation));
@@ -1049,10 +1050,12 @@ on_annotation_populate_hover (GtkSourceAnnotationProvider *provider,
 
 	gtk_source_hover_display_append (display,
 					 g_object_new (GTK_TYPE_LABEL,
-						       "label", gtk_source_annotation_get_text (annotation),
-						       "margin-start", 12,
-						       "margin-end", 12,
-						       NULL));
+					               "label", gtk_source_annotation_get_text (annotation),
+					               "margin-start", 12,
+					               "margin-end", 12,
+					               NULL));
+
+	return TRUE;
 }
 
 static void
@@ -1078,9 +1081,9 @@ enable_annotations_toggled_cb (TestWidget     *self,
 		self->error_provider = gtk_source_annotation_provider_new ();
 
 		annotation = gtk_source_annotation_new_with_color ("Error!",
-								   "emblem-important-symbolic",
-								   0,
-								   (GdkRGBA) {1, 0, 0, 0.6});
+		                                                   "emblem-important-symbolic",
+		                                                   0,
+		                                                   (GdkRGBA) {1, 0, 0, 0.6});
 
 		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
 	}

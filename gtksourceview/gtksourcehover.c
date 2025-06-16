@@ -224,12 +224,12 @@ gtk_source_hover_get_bounds (GtkSourceHover *self,
 
 static gboolean
 gtk_source_hover_get_annotation (GtkSourceHover               *self,
-				 GtkSourceAnnotationProvider **provider_out,
+                                 GtkSourceAnnotationProvider **provider_out,
                                  GtkSourceAnnotation         **annotation_out)
 {
 	GtkSourceAnnotationManager *annotation_manager;
-	guint i, j;
 	GPtrArray *providers;
+	guint i, j;
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (!self->view || GTK_SOURCE_IS_VIEW (self->view));
@@ -239,10 +239,7 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
 		return FALSE;
 	}
 
-	g_assert (GTK_SOURCE_IS_VIEW (self->view));
-
 	annotation_manager = gtk_source_view_get_annotation_manager (self->view);
-
 	providers = _gtk_source_annotation_manager_get_providers (annotation_manager);
 
 	for (i = 0; i < providers->len; i++)
@@ -289,8 +286,8 @@ gtk_source_hover_settled_cb (GtkSourceHover *self)
 	else if (gtk_source_hover_get_annotation (self, &provider, &annotation))
 	{
 		_gtk_source_hover_assistant_display_annotation (GTK_SOURCE_HOVER_ASSISTANT (self->assistant),
-				                                provider,
-				                                annotation);
+		                                                provider,
+		                                                annotation);
 	}
 
 	return G_SOURCE_REMOVE;

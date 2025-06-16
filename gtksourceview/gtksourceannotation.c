@@ -156,18 +156,18 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 		g_param_spec_uint ("line",
 		                   "Line",
 		                   "",
-		                   1,
+		                   0,
 		                   G_MAXUINT,
 		                   1,
 		                   (G_PARAM_READABLE |
 		                    G_PARAM_STATIC_STRINGS));
 
 	properties[PROP_COLOR] =
-	g_param_spec_boxed("color",
-	                   "Color",
-	                   "",
-	                   GDK_TYPE_RGBA,
-	                   G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+		g_param_spec_boxed("color",
+			           "Color",
+			           "",
+			           GDK_TYPE_RGBA,
+			           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties(object_class, N_PROPS, properties);
 }
@@ -210,7 +210,7 @@ gtk_source_annotation_new (char *text,
  * @text: (nullable): the text to display or %NULL.
  * @icon_name: (nullable): the icon name to display or %NULL.
  * @line: the line where to display the annotation.
- * @color: the color of the annotation.
+ * @color: a #GdkRGBA, the color of the annotation.
  *
  * Used to create a new annotation with a color.
  *
@@ -282,7 +282,7 @@ gtk_source_annotation_get_line (GtkSourceAnnotation *self)
  * @self: a #GtkSourceAnnotation
  * @color: a #GdkRGBA.
  *
- * Sets color as the color of this annotation.
+ * Sets `color` as the color of this annotation.
  *
  * Returns: %TRUE if this annotation has a color, %FALSE otherwise.
  */
@@ -321,8 +321,7 @@ _gtk_source_annotation_contains_point (GtkSourceAnnotation *self,
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), FALSE);
 
-	return (x >= self->bounds.x && x < self->bounds.x + self->bounds.width &&
-	        y >= self->bounds.y && y < self->bounds.y + self->bounds.height);
+	return gdk_rectangle_contains_point (&self->bounds, x, y);
 }
 
 static PangoLayout *
@@ -343,29 +342,26 @@ _gtk_source_annotation_get_layout (GtkSourceAnnotation *self,
 }
 
 void
-_gtk_source_annotation_render (GtkSourceAnnotation *self,
-                               GtkSnapshot         *snapshot,
-                               GtkSourceView       *view,
-                               int                  x,
-                               int                  y,
-                               int                  line_height,
-                               const GdkRGBA       *color)
+_gtk_source_annotation_draw (GtkSourceAnnotation *self,
+                             GtkSnapshot         *snapshot,
+                             GtkSourceView       *view,
+                             GdkRectangle         rect,
+                             const GdkRGBA       *color)
 {
-	GtkIconTheme *icon_theme;
-	GtkIconPaintable *icon_paintable;
-	PangoLayout *layout;
-	int draw_x = x;
-	int text_width, text_height;
+	GdkRGBA choosen_color;
+	graphene_matrix_t color_matrix;
+	graphene_vec4_t color_vector;
 	int window_x, window_y;
 	int icon_size;
 	int spacing;
-	GdkRectangle bounds;
-	graphene_matrix_t color_matrix;
-	graphene_vec4_t color_vector;
-	GdkRGBA choosen_color;
 
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (self));
 	g_return_if_fail (snapshot != NULL);
+
+	if (!self->text && !self->icon_name)
+	{
+		return;
+	}
 
 	if (self->color_set)
 	{
@@ -376,90 +372,88 @@ _gtk_source_annotation_render (GtkSourceAnnotation *self,
 		choosen_color = *color;
 	}
 
-	bounds.x = x;
-	bounds.y = y;
-	bounds.width = 0;
-	bounds.height = line_height;
+	spacing = rect.height * 0.4;
+	icon_size = rect.height * 0.8;
 
-	icon_size = line_height * 0.8;
+	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (view),
+	                                       GTK_TEXT_WINDOW_TEXT,
+	                                       rect.x,
+	                                       rect.y,
+	                                       &window_x,
+	                                       &window_y);
 
-	spacing = line_height * 0.4;
+	self->bounds = (GdkRectangle) {window_x, window_y, rect.width, rect.height};
 
 	if (self->icon_name)
 	{
+		GtkIconTheme *icon_theme;
+		GtkIconPaintable *icon_paintable;
+
 		icon_theme = gtk_icon_theme_get_for_display (gdk_display_get_default ());
 		icon_paintable = gtk_icon_theme_lookup_icon (icon_theme,
-			                                    self->icon_name,
-			                                    NULL,
-			                                    icon_size,
-			                                    1,
-			                                    GTK_TEXT_DIR_NONE,
-			                                    GTK_ICON_LOOKUP_PRELOAD);
+		                                             self->icon_name,
+		                                             NULL,
+		                                             icon_size,
+		                                             1,
+		                                             GTK_TEXT_DIR_NONE,
+		                                             GTK_ICON_LOOKUP_PRELOAD);
 		if (icon_paintable != NULL)
 		{
 			int icon_y_offset;
+
 			gtk_snapshot_save (snapshot);
 
-			icon_y_offset = (line_height - icon_size) / 2;
+			icon_y_offset = (rect.height - icon_size) / 2;
 			gtk_snapshot_translate (snapshot,
-				               &GRAPHENE_POINT_INIT (draw_x, y + icon_y_offset));
+			                        &GRAPHENE_POINT_INIT (rect.x, rect.y + icon_y_offset));
 
 			graphene_matrix_init_from_float (&color_matrix,
-							 (float[16]) {0, 0, 0, 0,
-							              0, 0, 0, 0,
-				                                      0, 0, 0, 0,
-				                                      0, 0, 0, choosen_color.alpha});
+			                                 (float[16]) {0, 0, 0, 0,
+			                                              0, 0, 0, 0,
+			                                              0, 0, 0, 0,
+			                                              0, 0, 0, choosen_color.alpha});
 
 			graphene_vec4_init (&color_vector,
-					    choosen_color.red,
-					    choosen_color.green,
-					    choosen_color.blue,
-					    0);
+			                    choosen_color.red,
+			                    choosen_color.green,
+			                    choosen_color.blue,
+			                    0);
 
 			gtk_snapshot_push_color_matrix (snapshot,
-				                        &color_matrix,
-				                        &color_vector);
+			                                &color_matrix,
+			                                &color_vector);
 
 			gdk_paintable_snapshot (GDK_PAINTABLE (icon_paintable),
-				               snapshot,
-				               icon_size,
-				               icon_size);
+			                        snapshot,
+			                        icon_size,
+			                        icon_size);
 
 			gtk_snapshot_pop (snapshot);
-
 			gtk_snapshot_restore (snapshot);
-
-			bounds.width += icon_size;
-			draw_x += icon_size + spacing;
 			g_object_unref (icon_paintable);
+
+			self->bounds.width += icon_size + spacing;
 		}
 	}
 
 	if (self->text && strlen (self->text) > 0)
 	{
+		PangoLayout *layout;
+		int text_width, text_height;
+
 		layout = _gtk_source_annotation_get_layout (self, GTK_WIDGET (view));
 		pango_layout_get_pixel_size (layout, &text_width, &text_height);
 
-		if (line_height > 0 && bounds.width > 0)
-			bounds.width += spacing;
-
 		gtk_snapshot_save (snapshot);
-		gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (draw_x, y));
-		gtk_snapshot_append_layout (snapshot, layout, &choosen_color);
+		gtk_snapshot_translate (snapshot,
+		                        &GRAPHENE_POINT_INIT (rect.x + icon_size + spacing,
+		                                              rect.y));
+		gtk_snapshot_append_layout (snapshot,
+		                            layout,
+		                            &choosen_color);
 		gtk_snapshot_restore (snapshot);
-
-		bounds.width += text_width;
-		bounds.height = MAX (bounds.height, text_height);
-
 		g_object_unref (layout);
+
+		self->bounds.width += text_width;
 	}
-
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (view),
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       bounds.x, bounds.y,
-	                                       &window_x, &window_y);
-	bounds.x = window_x;
-	bounds.y = window_y;
-
-	self->bounds = bounds;
 }

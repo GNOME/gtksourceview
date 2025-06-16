@@ -5424,6 +5424,7 @@ gtk_source_view_get_hover (GtkSourceView *view)
 
 	if (priv->hover == NULL)
 	{
+		g_print ("Adding hover!\n");
 		priv->hover = _gtk_source_hover_new (view);
 	}
 
@@ -5644,6 +5645,7 @@ gtk_source_view_get_annotation_manager (GtkSourceView *view)
 
 	if (priv->hover == NULL)
 	{
+		g_print ("Adding hover!\n");
 		priv->hover = _gtk_source_hover_new (view);
 	}
 

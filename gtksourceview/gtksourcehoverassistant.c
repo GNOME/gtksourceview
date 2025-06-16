@@ -555,8 +555,6 @@ gtk_source_hover_assistant_populate_annotation_cb (GObject      *object,
 	g_assert (G_IS_ASYNC_RESULT (result));
 	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
 
-	g_print("finished populating\n");
-
 	if (gtk_source_annotation_provider_populate_hover_finish (provider, result, &error))
 	{
 		if (!self->disposed)
@@ -591,8 +589,10 @@ _gtk_source_hover_assistant_display_annotation (GtkSourceHoverAssistant     *sel
 
 	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
 	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       location_rect.x, location_rect.y,
-	                                       &buffer_x, &buffer_y);
+	                                       location_rect.x,
+	                                       location_rect.y,
+	                                       &buffer_x,
+	                                       &buffer_y);
 	location_rect.x = buffer_x;
 	location_rect.y = buffer_y;
 
@@ -611,11 +611,11 @@ _gtk_source_hover_assistant_display_annotation (GtkSourceHoverAssistant     *sel
 	self->cancellable = g_cancellable_new ();
 
 	gtk_source_annotation_provider_populate_hover_async (provider,
-							     annotation,
-							     self->display,
-							     self->cancellable,
-							     gtk_source_hover_assistant_populate_annotation_cb,
-							     g_object_ref (self));
+	                                                     annotation,
+	                                                     self->display,
+	                                                     self->cancellable,
+	                                                     gtk_source_hover_assistant_populate_annotation_cb,
+	                                                     g_object_ref (self));
 }
 
 void

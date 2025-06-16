@@ -44,7 +44,7 @@
  * manager and it is guaranteed to be the same for the lifetime of [class@View].
  *
  * Add [class@AnnotationProvider]s with [method@AnnotationManager.add_provider] to
- * display all the annotations added to a [class@AnnotationProvider].
+ * display all the annotations added to each [class@AnnotationProvider].
  */
 
 struct _GtkSourceAnnotationManager
@@ -62,6 +62,7 @@ enum {
 };
 
 G_DEFINE_TYPE (GtkSourceAnnotationManager, gtk_source_annotation_manager, G_TYPE_OBJECT)
+
 static guint signals[N_SIGNALS];
 
 static void
@@ -98,7 +99,7 @@ gtk_source_annotation_manager_init (GtkSourceAnnotationManager *self)
 }
 
 static void
-on_provider_changed (GtkSourceAnnotationManager  *self)
+on_provider_changed (GtkSourceAnnotationManager *self)
 {
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
 
@@ -130,9 +131,9 @@ gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
 	g_ptr_array_add (self->providers, g_object_ref (provider));
 
 	g_signal_connect_swapped (provider,
-				  "changed",
-				  G_CALLBACK (on_provider_changed),
-				  self);
+	                          "changed",
+	                          G_CALLBACK (on_provider_changed),
+	                          self);
 
 	g_signal_emit (self, signals[CHANGED], 0);
 }
@@ -196,9 +197,9 @@ _gtk_source_annotation_manager_update_color (GtkSourceAnnotationManager *self,
 			GdkRGBA color;
 
 			g_object_get (style,
-				      "foreground", &color_str,
-				      "foreground-set", &color_set,
-				      NULL);
+			              "foreground", &color_str,
+			              "foreground-set", &color_set,
+			              NULL);
 
 			if (color_set &&
 			    color_str != NULL &&
@@ -221,18 +222,16 @@ _gtk_source_annotation_manager_update_color (GtkSourceAnnotationManager *self,
 }
 
 static void
-draw_annotation (GtkSourceAnnotationManager *manager,
-                 GtkSourceView              *view,
-                 GtkSnapshot                *snapshot,
-                 GtkSourceAnnotation        *annotation)
+_gtk_source_annotation_manager_draw_annotation (GtkSourceAnnotationManager *manager,
+                                                GtkSourceView              *view,
+                                                GtkSnapshot                *snapshot,
+                                                GtkSourceAnnotation        *annotation)
 {
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
 	GtkTextIter line_start_iter;
 	GtkTextIter line_end_iter;
 	GdkRectangle rect;
-	int draw_x;
-	int draw_y;
 	int line_number;
 
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (manager));
@@ -260,16 +259,14 @@ draw_annotation (GtkSourceAnnotationManager *manager,
 		gtk_text_view_get_iter_location (text_view, &line_end_iter, &rect);
 	}
 
-	draw_x = rect.x + rect.height * 2;
-	draw_y = rect.y;
+	/* Ensure the annotation is not drawn over the space drawer new line */
+	rect.x += rect.height * 2;
 
-	_gtk_source_annotation_render (annotation,
-	                               snapshot,
-	                               GTK_SOURCE_VIEW (view),
-	                               draw_x,
-	                               draw_y,
-	                               rect.height,
-	                               &manager->color);
+	_gtk_source_annotation_draw (annotation,
+	                             snapshot,
+	                             GTK_SOURCE_VIEW (view),
+	                             rect,
+	                             &manager->color);
 }
 
 void
@@ -293,7 +290,7 @@ _gtk_source_annotation_manager_draw (GtkSourceAnnotationManager *self,
 		{
 			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations, j);
 
-			draw_annotation (self, view, snapshot, annotation);
+			_gtk_source_annotation_manager_draw_annotation (self, view, snapshot, annotation);
 		}
 	}
 }

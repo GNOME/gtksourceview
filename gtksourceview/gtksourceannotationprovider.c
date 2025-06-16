@@ -34,28 +34,41 @@ static guint signals [N_SIGNALS];
 
 void
 gtk_source_annotation_provider_real_populate_hover_async (GtkSourceAnnotationProvider *self,
-						     GtkSourceAnnotation         *annotation,
-						     GtkSourceHoverDisplay       *display,
-						     GCancellable                *cancellable,
-						     GAsyncReadyCallback          callback,
-						     gpointer                     user_data)
+                                                          GtkSourceAnnotation         *annotation,
+                                                          GtkSourceHoverDisplay       *display,
+                                                          GCancellable                *cancellable,
+                                                          GAsyncReadyCallback          callback,
+                                                          gpointer                     user_data)
 {
-	GTask *task;
+	GTask *task = NULL;
+	gboolean ret = FALSE;
+
+	g_assert (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self));
+	g_assert (GTK_SOURCE_IS_HOVER_DISPLAY (display));
+	g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
 
 	task = g_task_new (self, cancellable, callback, user_data);
 	g_task_set_source_tag (task, gtk_source_annotation_provider_populate_hover_async);
 
-	g_signal_emit (self, signals[POPULATE], 0, annotation, display);
+	g_signal_emit (self, signals[POPULATE], 0, annotation, display, &ret);
 
-	g_task_return_boolean (task, TRUE);
+	if (!ret)
+	{
+		g_task_return_new_error (task,
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_FAILED,
+		                         "Provider has not implemented populate");
+	}
+
+	g_task_return_boolean (task, ret);
 
 	g_object_unref (task);
 }
 
 gboolean
 gtk_source_annotation_provider_real_populate_hover_finish (GtkSourceAnnotationProvider  *self,
-						      GAsyncResult                 *result,
-						      GError                      **error)
+                                                           GAsyncResult                 *result,
+                                                           GError                      **error)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self), FALSE);
 	g_return_val_if_fail (G_IS_ASYNC_RESULT (result), FALSE);
@@ -102,17 +115,19 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
 	* This signal can be used when subclassing #GtkSourceAnnotationProvider is not
 	* possible or not useful. The default implementation of
 	* #GtkSourceAnnotationProvider.populate_hover_async() will emit this signal to allow
-	* the consumer to implement asynchronous save in a flexible manner.
+	* the consumer to implement asynchronous population of the #GtkSourceHoverDisplay
+	* in a flexible manner.
 	*
 	* Returns: %TRUE if the operation was handled.
 	*/
-	signals [POPULATE] = g_signal_new ("populate",
-					   G_TYPE_FROM_CLASS (klass),
-					   G_SIGNAL_RUN_LAST,
-					   G_STRUCT_OFFSET (GtkSourceAnnotationProviderClass, populate),
-					   g_signal_accumulator_true_handled, NULL,
-					   NULL,
-					   G_TYPE_BOOLEAN, 2, G_TYPE_TASK, GTK_SOURCE_TYPE_HOVER_DISPLAY);
+	signals [POPULATE] =
+		g_signal_new ("populate",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              G_STRUCT_OFFSET (GtkSourceAnnotationProviderClass, populate),
+		              g_signal_accumulator_true_handled, NULL,
+		              NULL,
+		              G_TYPE_BOOLEAN, 2, G_TYPE_TASK, GTK_SOURCE_TYPE_HOVER_DISPLAY);
 
 	signals[CHANGED] =
 		g_signal_new ("changed",
@@ -129,7 +144,7 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
  *
  * Used to create a new annotation provider.
  *
- * Returns: a new [class@AnnotationProvider]
+ * Returns: a new #GtkSourceAnnotationProvider
  */
 GtkSourceAnnotationProvider *
 gtk_source_annotation_provider_new (void)
@@ -144,15 +159,15 @@ gtk_source_annotation_provider_new (void)
  * @display: a #GtkSourceHoverDisplay to populate
  * @error: a #GError
  *
- * Used to populate the [class@HoverDisplay].
+ * Used to populate the #GtkSourceHoverDisplay.
  *
  * Returns: %TRUE if it should be populated, %FALSE otherwise.
  */
 gboolean
 gtk_source_annotation_provider_populate_hover (GtkSourceAnnotationProvider  *self,
-					       GtkSourceAnnotation          *annotation,
-					       GtkSourceHoverDisplay        *display,
-					       GError                      **error)
+                                               GtkSourceAnnotation          *annotation,
+                                               GtkSourceHoverDisplay        *display,
+                                               GError                      **error)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (display), FALSE);
@@ -173,22 +188,22 @@ gtk_source_annotation_provider_populate_hover (GtkSourceAnnotationProvider  *sel
  */
 void
 gtk_source_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider *self,
-						     GtkSourceAnnotation         *annotation,
-						     GtkSourceHoverDisplay       *display,
-						     GCancellable                *cancellable,
-						     GAsyncReadyCallback          callback,
-						     gpointer                     user_data)
+                                                     GtkSourceAnnotation         *annotation,
+                                                     GtkSourceHoverDisplay       *display,
+                                                     GCancellable                *cancellable,
+                                                     GAsyncReadyCallback          callback,
+                                                     gpointer                     user_data)
 {
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self));
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (display));
 	g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
 	GTK_SOURCE_ANNOTATION_PROVIDER_GET_CLASS (self)->populate_hover_async (self,
-									       annotation,
-									       display,
-									       cancellable,
-									       callback,
-									       user_data);
+	                                                                       annotation,
+	                                                                       display,
+	                                                                       cancellable,
+	                                                                       callback,
+	                                                                       user_data);
 }
 
 /**
@@ -204,8 +219,8 @@ gtk_source_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider
  */
 gboolean
 gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvider  *self,
-						      GAsyncResult                 *result,
-						      GError                      **error)
+                                                      GAsyncResult                 *result,
+                                                      GError                      **error)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self), FALSE);
 	g_return_val_if_fail (G_IS_ASYNC_RESULT (result), FALSE);
@@ -222,7 +237,7 @@ gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvide
  */
 void
 gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *self,
-					       GtkSourceAnnotation          *annotation)
+                                               GtkSourceAnnotation          *annotation)
 {
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 
@@ -245,7 +260,7 @@ gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *se
  */
 gboolean
 gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider   *self,
-						  GtkSourceAnnotation          *annotation)
+                                                  GtkSourceAnnotation          *annotation)
 {
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 	gboolean result;
