@@ -34,25 +34,25 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_TYPE_ANNOTATION (gtk_source_annotation_get_type())
 
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 G_DECLARE_FINAL_TYPE (GtkSourceAnnotation, gtk_source_annotation, GTK_SOURCE, ANNOTATION, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 GtkSourceAnnotation * gtk_source_annotation_new             (char     *text,
 			                                     char     *icon_name,
 			                                     int       line);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 GtkSourceAnnotation * gtk_source_annotation_new_with_color   (char     *text,
 			                                      char     *icon_name,
 			                                      int       line,
 			                                      GdkRGBA   color);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 const char *          gtk_source_annotation_get_text         (GtkSourceAnnotation *self);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 const char *          gtk_source_annotation_get_icon_name    (GtkSourceAnnotation *self);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 int                   gtk_source_annotation_get_line         (GtkSourceAnnotation *self);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 gboolean              gtk_source_annotation_get_color        (GtkSourceAnnotation *self,
 			                                      GdkRGBA             *color);
 

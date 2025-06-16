@@ -34,7 +34,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_ANNOTATION_PROVIDER (gtk_source_annotation_provider_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 G_DECLARE_DERIVABLE_TYPE (GtkSourceAnnotationProvider, gtk_source_annotation_provider, GTK_SOURCE, ANNOTATION_PROVIDER, GObject)
 
 struct _GtkSourceAnnotationProviderClass
@@ -54,31 +54,31 @@ struct _GtkSourceAnnotationProviderClass
 					   GTask              *task);
 };
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 GtkSourceAnnotationProvider *gtk_source_annotation_provider_new (void);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 gboolean gtk_source_annotation_provider_populate_hover                    (GtkSourceAnnotationProvider  *provider,
 									   GtkSourceAnnotation          *annotation,
 									   GtkSourceHoverDisplay        *display,
 									   GError                      **error);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 void     gtk_source_annotation_provider_populate_hover_async              (GtkSourceAnnotationProvider  *self,
 									   GtkSourceAnnotation          *annotation,
 									   GtkSourceHoverDisplay        *display,
 									   GCancellable                 *cancellable,
 									   GAsyncReadyCallback           callback,
 									   gpointer                      user_data);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 gboolean gtk_source_annotation_provider_populate_hover_finish             (GtkSourceAnnotationProvider  *self,
 									   GAsyncResult                 *result,
 									   GError                      **error);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 void     gtk_source_annotation_provider_add_annotation                    (GtkSourceAnnotationProvider   *provider,
 									   GtkSourceAnnotation           *annotation);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 gboolean gtk_source_annotation_provider_remove_annotation                 (GtkSourceAnnotationProvider   *provider,
 									   GtkSourceAnnotation           *annotation);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_18
 void     gtk_source_annotation_provider_remove_all                        (GtkSourceAnnotationProvider  *self);
 
 G_END_DECLS

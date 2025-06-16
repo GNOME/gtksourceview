@@ -1491,8 +1491,8 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
 
 static void
 annotation_manager_notify_cb (GtkSourceAnnotationManager *annotation_manager,
-                         GParamSpec            *pspec,
-                         GtkSourceView         *view)
+                              GParamSpec                 *pspec,
+                              GtkSourceView              *view)
 {
 	gtk_source_view_queue_draw (view);
 }
@@ -5424,7 +5424,6 @@ gtk_source_view_get_hover (GtkSourceView *view)
 
 	if (priv->hover == NULL)
 	{
-		g_print ("Adding hover!\n");
 		priv->hover = _gtk_source_hover_new (view);
 	}
 
