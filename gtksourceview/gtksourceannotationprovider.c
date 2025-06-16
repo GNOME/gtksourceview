@@ -3,7 +3,7 @@
 #include "gtksourceannotation.h"
 #include "gtksourceannotation-private.h"
 #include "gtksourcehoverdisplay.h"
-#include "gtksourceannotationprovider.h"
+#include "gtksourceannotationprovider-private.h"
 
 /**
  * GtkSourceAnnotationProvider:
@@ -32,7 +32,7 @@ enum {
 
 static guint signals [N_SIGNALS];
 
-void
+static void
 gtk_source_annotation_provider_real_populate_hover_async (GtkSourceAnnotationProvider *self,
                                                           GtkSourceAnnotation         *annotation,
                                                           GtkSourceHoverDisplay       *display,
@@ -65,7 +65,7 @@ gtk_source_annotation_provider_real_populate_hover_async (GtkSourceAnnotationPro
 	g_object_unref (task);
 }
 
-gboolean
+static gboolean
 gtk_source_annotation_provider_real_populate_hover_finish (GtkSourceAnnotationProvider  *self,
                                                            GAsyncResult                 *result,
                                                            GError                      **error)
@@ -119,6 +119,8 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
 	* in a flexible manner.
 	*
 	* Returns: %TRUE if the operation was handled.
+	*
+	* Since: 5.18
 	*/
 	signals [POPULATE] =
 		g_signal_new ("populate",
@@ -129,6 +131,11 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
 		              NULL,
 		              G_TYPE_BOOLEAN, 2, G_TYPE_TASK, GTK_SOURCE_TYPE_HOVER_DISPLAY);
 
+	/**
+	 * GtkSourceAnnotationProvider::changed:
+	 *
+	 * Since: 5.18
+	 */
 	signals[CHANGED] =
 		g_signal_new ("changed",
 		              G_TYPE_FROM_CLASS (klass),
@@ -145,6 +152,8 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
  * Used to create a new annotation provider.
  *
  * Returns: a new #GtkSourceAnnotationProvider
+ *
+ * Since: 5.18
  */
 GtkSourceAnnotationProvider *
 gtk_source_annotation_provider_new (void)
@@ -162,6 +171,8 @@ gtk_source_annotation_provider_new (void)
  * Used to populate the #GtkSourceHoverDisplay.
  *
  * Returns: %TRUE if it should be populated, %FALSE otherwise.
+ *
+ * Since: 5.18
  */
 gboolean
 gtk_source_annotation_provider_populate_hover (GtkSourceAnnotationProvider  *self,
@@ -176,15 +187,15 @@ gtk_source_annotation_provider_populate_hover (GtkSourceAnnotationProvider  *sel
 }
 
 /**
- * gtk_source_annotation_provider_populate_hover:
+ * gtk_source_annotation_provider_populate_hover_async:
  * @self: a #GtkSourceAnnotationProvider
  * @annotation: a #GtkSourceAnnotation
  * @display: a #GtkSourceHoverDisplay to populate
- * @cancellable: a #GCancellable
- * @callback: a #GAsyncReadyCallback
  *
  * Used to populate the [class@HoverDisplay] asynchronously, use
  * [method@AnnotationProvider.populate_hover] to do it synchronously.
+ *
+ * Since: 5.18
  */
 void
 gtk_source_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider *self,
@@ -207,15 +218,13 @@ gtk_source_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider
 }
 
 /**
- * gtk_source_annotation_provider_populate_hover:
- * @annotation: a #GtkSourceAnnotation
- * @display: a #GtkSourceHoverDisplay to populate
- * @cancellable: a #GCancellable
- * @callback: a #GAsyncReadyCallback
+ * gtk_source_annotation_provider_populate_hover_finish:
  *
  * Finishes populating the [class@HoverDisplay] asynchronously.
  *
- * Returns: %TRUE if it should be populated, %FALSE otherwise.
+ * Returns: %TRUE if successful; otherwise %FALSE and @error is set.
+ *
+ * Since: 5.18
  */
 gboolean
 gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvider  *self,
@@ -234,6 +243,8 @@ gtk_source_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvide
  * @annotation: a #GtkSourceAnnotation
  *
  * Add an annotation to the provider.
+ *
+ * Since: 5.18
  */
 void
 gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *self,
@@ -257,6 +268,8 @@ gtk_source_annotation_provider_add_annotation (GtkSourceAnnotationProvider   *se
  * Remove an annotation from the provider.
  *
  * Returns: %TRUE if the annotation was found and removed
+ *
+ * Since: 5.18
  */
 gboolean
 gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider   *self,
@@ -280,6 +293,8 @@ gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider   
  * @provider: a #GtkSourceAnnotationProvider
  *
  * Removes all annotations from the provider.
+ *
+ * Since: 5.18
  */
 void
 gtk_source_annotation_provider_remove_all (GtkSourceAnnotationProvider  *self)

@@ -21,7 +21,7 @@
 
 #include "config.h"
 
-#include "gtksourceannotation.h"
+#include "gtksourceannotation-private.h"
 
 /**
  * GtkSourceAnnotation:

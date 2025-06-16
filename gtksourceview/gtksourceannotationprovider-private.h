@@ -19,12 +19,10 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-
 #pragma once
 
 #include "gtksourcetypes.h"
-
-#include "gtksourceannotationprovider-private.h"
+#include "gtksourceannotationprovider.h"
 
 G_BEGIN_DECLS
 

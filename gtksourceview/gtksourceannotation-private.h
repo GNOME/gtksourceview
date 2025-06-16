@@ -23,23 +23,23 @@
 
 #include <gtk/gtk.h>
 
-#include "gtksourcetypes.h"
+#include "gtksourceannotation.h"
 #include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
 GTK_SOURCE_INTERNAL
-gboolean _gtk_source_annotation_get_rect        (GtkSourceAnnotation *self,
-                                                 GdkRectangle        *rect);
+gboolean _gtk_source_annotation_get_rect       (GtkSourceAnnotation *self,
+                                                GdkRectangle        *rect);
 GTK_SOURCE_INTERNAL
-gboolean _gtk_source_annotation_contains_point  (GtkSourceAnnotation *self,
-                                                 int                  x,
-                                                 int                  y);
+gboolean _gtk_source_annotation_contains_point (GtkSourceAnnotation *self,
+                                                int                  x,
+                                                int                  y);
 GTK_SOURCE_INTERNAL
-void _gtk_source_annotation_draw                (GtkSourceAnnotation *self,
-                                                 GtkSnapshot         *snapshot,
-                                                 GtkSourceView       *view,
-                                                 GdkRectangle         rectangle,
-                                                 const GdkRGBA       *color);
+void     _gtk_source_annotation_draw           (GtkSourceAnnotation *self,
+                                                GtkSnapshot         *snapshot,
+                                                GtkSourceView       *view,
+                                                GdkRectangle         rectangle,
+                                                const GdkRGBA       *color);
 
 G_END_DECLS
