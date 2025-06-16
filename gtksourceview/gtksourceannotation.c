@@ -296,19 +296,16 @@ gtk_source_annotation_get_line (GtkSourceAnnotation *self)
  */
 gboolean
 gtk_source_annotation_get_color (GtkSourceAnnotation *self,
-				 GdkRGBA             *color)
+                                 GdkRGBA             *color)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), FALSE);
 
-	if (self->color_set)
+	if (color != NULL)
 	{
-		color = &self->color;
-		return TRUE;
+		*color = self->color;
 	}
-	else
-	{
-		return FALSE;
-	}
+
+	return self->color_set;
 }
 
 gboolean
@@ -319,6 +316,7 @@ _gtk_source_annotation_get_rect (GtkSourceAnnotation *self,
 	g_return_val_if_fail (rect != NULL, FALSE);
 
 	*rect = self->bounds;
+
 	return TRUE;
 }
 
