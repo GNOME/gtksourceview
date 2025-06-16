@@ -5629,10 +5629,10 @@ gtk_source_view_get_space_drawer (GtkSourceView *view)
  * gtk_source_view_get_annotation_manager:
  * @view: a #GtkSourceView.
  *
- * Gets the [class@InlineDrawer] associated with @view.
+ * Gets the [class@AnnotationManager] associated with @view.
  *
  * The returned object is guaranteed to be the same for the lifetime of @view.
- * Each [class@View] object has a different [class@InlineDrawer].
+ * Each [class@View] object has a different [class@AnnotationManager].
  *
  * Returns: (transfer none): the #GtkSourceAnnotationManager associated with @view.
  */
@@ -5645,7 +5645,6 @@ gtk_source_view_get_annotation_manager (GtkSourceView *view)
 
 	if (priv->hover == NULL)
 	{
-		g_print ("Adding hover!\n");
 		priv->hover = _gtk_source_hover_new (view);
 	}
 

@@ -39,14 +39,11 @@
 struct _GtkSourceAnnotation
 {
 	GObject         parent_instance;
-
 	GdkRGBA         color;
 	char           *text;
 	char           *icon_name;
 	int             line;
-
 	gboolean        color_set;
-
 	GdkRectangle    bounds;
 };
 
@@ -135,7 +132,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	/**
 	 * GtkSourceAnnotation:icon-name:
 	 *
-	 * The name of the icon displayed at [property@Annotation:icon-name]
+	 * The name of the icon displayed at [property@Annotation:line]
 	 *
 	 * It will be displayed before the text
 	 */
