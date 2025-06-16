@@ -28,7 +28,7 @@
  *
  * Represents an annotation added to [class@View], it has a [property@Annotation:line] property,
  * [property@Annotation:text], icon-name and optionally a [property@Annotation:color] if you make
- * it with [method@Annotation.new_with_color].
+ * it with [ctor@Annotation.new_with_color].
  *
  * It will be displayed always at the end of a line.
  *
@@ -185,7 +185,7 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
  * @icon_name: (nullable): the icon name to display or %NULL.
  * @line: the line where to display the annotation.
  *
- * Used to create a new annotation, use [method@Annotation.new_with_color]
+ * Used to create a new annotation, use [ctor@Annotation.new_with_color]
  * if you want to use a color.
  *
  * Returns: a new [class@Annotation]
