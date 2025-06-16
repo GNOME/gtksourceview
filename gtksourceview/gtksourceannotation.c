@@ -124,11 +124,11 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	 * GtkSourceAnnotation:text:
 	 *
 	 * The text displayed at [property@Annotation:line]
+	 *
+	 * Since: 5.18
 	 */
-	properties [PROP_TEXT] =
-		g_param_spec_string ("text",
-		                     "Text",
-		                     "",
+	properties[PROP_TEXT] =
+		g_param_spec_string ("text", NULL, NULL,
 		                     NULL,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
@@ -139,38 +139,44 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	 * The name of the icon displayed at [property@Annotation:line]
 	 *
 	 * It will be displayed before the text
+	 *
+	 * Since: 5.18
 	 */
-	properties [PROP_ICON_NAME] =
-		g_param_spec_string ("icon-name",
-		                     "Icon Name",
-		                     "",
+	properties[PROP_ICON_NAME] =
+		g_param_spec_string ("icon-name", NULL, NULL,
 		                     NULL,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GtkSourceAnnotation:icon-name:
+	 * GtkSourceAnnotation:line:
 	 *
 	 * The line where to display the annotation
+	 *
+	 * Since: 5.18
 	 */
-	properties [PROP_LINE] =
-		g_param_spec_uint ("line",
-		                   "Line",
-		                   "",
+	properties[PROP_LINE] =
+		g_param_spec_uint ("line", NULL, NULL,
 		                   0,
 		                   G_MAXUINT,
 		                   1,
 		                   (G_PARAM_READABLE |
 		                    G_PARAM_STATIC_STRINGS));
 
+	/**
+	 * GtkSourceAnnotation:color:
+	 *
+	 * The color for the annotation
+	 *
+	 * Since: 5.18
+	 */
 	properties[PROP_COLOR] =
-		g_param_spec_boxed("color",
-			           "Color",
-			           "",
-			           GDK_TYPE_RGBA,
-			           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+		g_param_spec_boxed ("color", NULL, NULL,
+		                    GDK_TYPE_RGBA,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_properties(object_class, N_PROPS, properties);
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
