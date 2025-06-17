@@ -21,7 +21,7 @@
 
 #include "gtksourcetypes.h"
 #include "gtksourceannotation.h"
-#include "gtksourceannotationmanager.h"
+#include "gtksourceannotations.h"
 #include "gtksourceannotationprovider.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"

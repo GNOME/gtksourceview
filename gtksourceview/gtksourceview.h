@@ -211,7 +211,7 @@ GtkSourceBackgroundPatternType  gtk_source_view_get_background_pattern          
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSpaceDrawer           *gtk_source_view_get_space_drawer                  (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotationManager     *gtk_source_view_get_annotation_manager            (GtkSourceView                  *view);
+GtkSourceAnnotations           *gtk_source_view_get_annotations                   (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_push_snippet                      (GtkSourceView                  *view,
                                                                                    GtkSourceSnippet               *snippet,

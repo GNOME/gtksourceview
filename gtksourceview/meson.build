@@ -10,7 +10,7 @@ subdir('vim')
 core_public_h = files([
   'gtksource.h',
   'gtksourceannotation.h',
-  'gtksourceannotationmanager.h',
+  'gtksourceannotations.h',
   'gtksourceannotationprovider.h',
   'gtksourcebuffer.h',
   'gtksourcecompletion.h',
@@ -64,7 +64,7 @@ core_public_h = files([
 
 core_public_c = files([
   'gtksourceannotation.c',
-  'gtksourceannotationmanager.c',
+  'gtksourceannotations.c',
   'gtksourceannotationprovider.c',
   'gtksourcebuffer.c',
   'gtksourcecompletion.c',

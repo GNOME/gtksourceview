@@ -52,8 +52,8 @@
 #include "gtksourcesearchcontext-private.h"
 #include "gtksourcespacedrawer.h"
 #include "gtksourcespacedrawer-private.h"
-#include "gtksourceannotationmanager.h"
-#include "gtksourceannotationmanager-private.h"
+#include "gtksourceannotations.h"
+#include "gtksourceannotations-private.h"
 #include "gtksourcesnippet.h"
 #include "gtksourcesnippetcontext.h"
 #include "gtksourcetrace.h"
@@ -171,7 +171,7 @@ enum
 	PROP_SMART_BACKSPACE,
 	PROP_SMART_HOME_END,
 	PROP_SPACE_DRAWER,
-	PROP_ANNOTATION_MANAGER,
+	PROP_ANNOTATIONS,
 	PROP_TAB_WIDTH,
 	N_PROPS
 };
@@ -184,7 +184,7 @@ typedef struct
 
 	GtkSourceSpaceDrawer *space_drawer;
 
-	GtkSourceAnnotationManager *annotation_manager;
+	GtkSourceAnnotations *annotations;
 
 	GHashTable *mark_categories;
 
@@ -858,15 +858,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:annotation-manager:
 	 *
-	 * The [class@AnnotationManager] object associated with the view.
+	 * The [class@Annotations] object associated with the view.
 	 *
 	 * Since: 5.18
 	 */
-	properties [PROP_ANNOTATION_MANAGER] =
-		g_param_spec_object ("annotation-manager",
-		                     "Annotation Manager",
-		                     "",
-		                     GTK_SOURCE_TYPE_ANNOTATION_MANAGER,
+	properties [PROP_ANNOTATIONS] =
+		g_param_spec_object ("annotation-manager", NULL, NULL,
+		                     GTK_SOURCE_TYPE_ANNOTATIONS,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
 
@@ -1469,8 +1467,8 @@ gtk_source_view_get_property (GObject    *object,
 			g_value_set_object (value, gtk_source_view_get_space_drawer (view));
 			break;
 
-		case PROP_ANNOTATION_MANAGER:
-			g_value_set_object (value, gtk_source_view_get_annotation_manager (view));
+		case PROP_ANNOTATIONS:
+			g_value_set_object (value, gtk_source_view_get_annotations (view));
 			break;
 
 		case PROP_ENABLE_SNIPPETS:
@@ -1492,10 +1490,10 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
 }
 
 static void
-annotation_manager_changed_cb (GtkSourceAnnotationManager *annotation_manager,
+annotations_changed_cb (GtkSourceAnnotations *annotations,
                                GtkSourceView              *view)
 {
-	g_assert (GTK_SOURCE_IS_ANNOTATION_MANAGER (annotation_manager));
+	g_assert (GTK_SOURCE_IS_ANNOTATIONS (annotations));
 	g_assert (GTK_SOURCE_IS_VIEW (view));
 
 	gtk_source_view_queue_draw (view);
@@ -1540,10 +1538,10 @@ gtk_source_view_init (GtkSourceView *view)
 				 view,
 				 0);
 
-	priv->annotation_manager = g_object_new (GTK_SOURCE_TYPE_ANNOTATION_MANAGER, NULL);
-	g_signal_connect_object (priv->annotation_manager,
+	priv->annotations = g_object_new (GTK_SOURCE_TYPE_ANNOTATIONS, NULL);
+	g_signal_connect_object (priv->annotations,
 				 "changed",
-				 G_CALLBACK (annotation_manager_changed_cb),
+				 G_CALLBACK (annotations_changed_cb),
 				 view,
 				 0);
 
@@ -1627,7 +1625,7 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&priv->indenter);
 	g_clear_object (&priv->style_scheme);
 	g_clear_object (&priv->space_drawer);
-	g_clear_object (&priv->annotation_manager);
+	g_clear_object (&priv->annotations);
 
 	remove_source_buffer (view);
 
@@ -2946,9 +2944,9 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 			_gtk_source_space_drawer_draw (priv->space_drawer, view, snapshot);
 		}
 
-		if (priv->annotation_manager != NULL)
+		if (priv->annotations != NULL)
 		{
-			_gtk_source_annotation_manager_draw (priv->annotation_manager, view, snapshot);
+			_gtk_source_annotations_draw (priv->annotations, view, snapshot);
 		}
 	}
 
@@ -5273,9 +5271,9 @@ update_style (GtkSourceView *view)
 		_gtk_source_space_drawer_update_color (priv->space_drawer, view);
 	}
 
-	if (priv->annotation_manager != NULL)
+	if (priv->annotations != NULL)
 	{
-		_gtk_source_annotation_manager_update_color (priv->annotation_manager, view);
+		_gtk_source_annotations_update_color (priv->annotations, view);
 	}
 
 	gtk_source_view_queue_draw (view);
@@ -5629,18 +5627,18 @@ gtk_source_view_get_space_drawer (GtkSourceView *view)
 }
 
 /**
- * gtk_source_view_get_annotation_manager:
+ * gtk_source_view_get_annotations:
  * @view: a #GtkSourceView.
  *
- * Gets the [class@AnnotationManager] associated with @view.
+ * Gets the [class@Annotations] associated with @view.
  *
  * The returned object is guaranteed to be the same for the lifetime of @view.
- * Each [class@View] object has a different [class@AnnotationManager].
+ * Each [class@View] object has a different [class@Annotations].
  *
- * Returns: (transfer none): the #GtkSourceAnnotationManager associated with @view.
+ * Returns: (transfer none): the #GtkSourceAnnotations associated with @view.
  */
-GtkSourceAnnotationManager *
-gtk_source_view_get_annotation_manager (GtkSourceView *view)
+GtkSourceAnnotations *
+gtk_source_view_get_annotations (GtkSourceView *view)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
@@ -5651,7 +5649,7 @@ gtk_source_view_get_annotation_manager (GtkSourceView *view)
 		priv->hover = _gtk_source_hover_new (view);
 	}
 
-	return priv->annotation_manager;
+	return priv->annotations;
 }
 
 static void

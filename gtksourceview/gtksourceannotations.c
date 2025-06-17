@@ -1,5 +1,5 @@
 /*
- * gtksourceannotationmanager.c
+ * gtksourceannotations.c
  *
  * Copyright 2025 Nokse <nokse@posteo.com>
  *
@@ -24,8 +24,8 @@
 
 #include "gtksourceannotation.h"
 #include "gtksourceannotation-private.h"
-#include "gtksourceannotationmanager.h"
-#include "gtksourceannotationmanager-private.h"
+#include "gtksourceannotations.h"
+#include "gtksourceannotations-private.h"
 #include "gtksourceannotationprovider.h"
 #include "gtksourceannotationprovider-private.h"
 #include "gtksourcebuffer.h"
@@ -38,16 +38,16 @@
 #include "gtksourceview.h"
 
 /**
- * GtkSourceAnnotationManager:
+ * GtkSourceAnnotations:
  *
  * Use this object to manage [class@Annotation]s. Each [class@View] has a single annotation
  * manager and it is guaranteed to be the same for the lifetime of [class@View].
  *
- * Add [class@AnnotationProvider]s with [method@AnnotationManager.add_provider] to
+ * Add [class@AnnotationProvider]s with [method@Annotations.add_provider] to
  * display all the annotations added to each [class@AnnotationProvider].
  */
 
-struct _GtkSourceAnnotationManager
+struct _GtkSourceAnnotations
 {
 	GObject     parent_instance;
 	GdkRGBA     color;
@@ -61,26 +61,26 @@ enum {
 	N_SIGNALS
 };
 
-G_DEFINE_TYPE (GtkSourceAnnotationManager, gtk_source_annotation_manager, G_TYPE_OBJECT)
+G_DEFINE_TYPE (GtkSourceAnnotations, gtk_source_annotations, G_TYPE_OBJECT)
 
 static guint signals[N_SIGNALS];
 
 static void
-gtk_source_annotation_manager_finalize (GObject *object)
+gtk_source_annotations_finalize (GObject *object)
 {
-	GtkSourceAnnotationManager *self = GTK_SOURCE_ANNOTATION_MANAGER (object);
+	GtkSourceAnnotations *self = GTK_SOURCE_ANNOTATIONS (object);
 
 	g_clear_pointer (&self->providers, g_ptr_array_unref);
 
-	G_OBJECT_CLASS (gtk_source_annotation_manager_parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_source_annotations_parent_class)->finalize (object);
 }
 
 static void
-gtk_source_annotation_manager_class_init (GtkSourceAnnotationManagerClass *klass)
+gtk_source_annotations_class_init (GtkSourceAnnotationsClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = gtk_source_annotation_manager_finalize;
+	object_class->finalize = gtk_source_annotations_finalize;
 
 	signals[CHANGED] =
 		g_signal_new ("changed",
@@ -93,31 +93,31 @@ gtk_source_annotation_manager_class_init (GtkSourceAnnotationManagerClass *klass
 }
 
 static void
-gtk_source_annotation_manager_init (GtkSourceAnnotationManager *self)
+gtk_source_annotations_init (GtkSourceAnnotations *self)
 {
 	self->providers = g_ptr_array_new_with_free_func (g_object_unref);
 }
 
 static void
-on_provider_changed (GtkSourceAnnotationManager *self)
+on_provider_changed (GtkSourceAnnotations *self)
 {
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self));
 
 	g_signal_emit (self, signals[CHANGED], 0);
 }
 
 /**
- * gtk_source_annotation_manager_add_provider:
- * @self: a #GtkSourceAnnotationManager
+ * gtk_source_annotations_add_provider:
+ * @self: a #GtkSourceAnnotations
  * @provider: a #GtkSourceAnnotationProvider.
  *
  * Adds a new annotation provider.
  */
 void
-gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
+gtk_source_annotations_add_provider (GtkSourceAnnotations  *self,
                                             GtkSourceAnnotationProvider *provider)
 {
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self));
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
 
 	for (guint i = 0; i < self->providers->len; i++)
@@ -139,8 +139,8 @@ gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
 }
 
 /**
- * gtk_source_annotation_manager_remove_provider:
- * @self: a #GtkSourceAnnotationManager
+ * gtk_source_annotations_remove_provider:
+ * @self: a #GtkSourceAnnotations
  * @provider: a #GtkSourceAnnotationProvider.
  *
  * Removes a provider.
@@ -148,10 +148,10 @@ gtk_source_annotation_manager_add_provider (GtkSourceAnnotationManager  *self,
  * Returns: %TRUE if the provider was found and removed
  */
 gboolean
-gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager  *self,
+gtk_source_annotations_remove_provider (GtkSourceAnnotations  *self,
                                                GtkSourceAnnotationProvider *provider)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider), FALSE);
 
 	for (guint i = 0; i < self->providers->len; i++)
@@ -170,13 +170,13 @@ gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager  *self
 }
 
 void
-_gtk_source_annotation_manager_update_color (GtkSourceAnnotationManager *self,
-                                             GtkSourceView              *view)
+_gtk_source_annotations_update_color (GtkSourceAnnotations *self,
+                                      GtkSourceView              *view)
 {
 	GtkSourceBuffer *buffer;
 	GtkSourceStyleScheme *style_scheme;
 
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
 	self->color_set = FALSE;
@@ -222,7 +222,7 @@ _gtk_source_annotation_manager_update_color (GtkSourceAnnotationManager *self,
 }
 
 static void
-_gtk_source_annotation_manager_draw_annotation (GtkSourceAnnotationManager *manager,
+_gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
                                                 GtkSourceView              *view,
                                                 GtkSnapshot                *snapshot,
                                                 GtkSourceAnnotation        *annotation)
@@ -234,7 +234,7 @@ _gtk_source_annotation_manager_draw_annotation (GtkSourceAnnotationManager *mana
 	GdkRectangle rect;
 	int line_number;
 
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (manager));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (manager));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (annotation));
 
@@ -270,7 +270,7 @@ _gtk_source_annotation_manager_draw_annotation (GtkSourceAnnotationManager *mana
 }
 
 void
-_gtk_source_annotation_manager_draw (GtkSourceAnnotationManager *self,
+_gtk_source_annotations_draw (GtkSourceAnnotations *self,
                                      GtkSourceView              *view,
                                      GtkSnapshot                *snapshot)
 {
@@ -279,7 +279,7 @@ _gtk_source_annotation_manager_draw (GtkSourceAnnotationManager *self,
 	gint first_visible_line, last_visible_line;
 	guint i, j;
 
-	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (snapshot != NULL);
 
@@ -311,16 +311,16 @@ _gtk_source_annotation_manager_draw (GtkSourceAnnotationManager *self,
 			if (annotation_line >= first_visible_line &&
 			    annotation_line <= last_visible_line)
 			{
-				_gtk_source_annotation_manager_draw_annotation (self, view, snapshot, annotation);
+				_gtk_source_annotations_draw_annotation (self, view, snapshot, annotation);
 			}
 		}
 	}
 }
 
 GPtrArray *
-_gtk_source_annotation_manager_get_providers (GtkSourceAnnotationManager *self)
+_gtk_source_annotations_get_providers (GtkSourceAnnotations *self)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_MANAGER (self), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self), NULL);
 
 	return self->providers;
 }

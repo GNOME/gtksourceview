@@ -50,14 +50,15 @@ gtk_source_annotation_provider_real_populate_hover_async (GtkSourceAnnotationPro
 	task = g_task_new (self, cancellable, callback, user_data);
 	g_task_set_source_tag (task, gtk_source_annotation_provider_populate_hover_async);
 
-	g_signal_emit (self, signals[POPULATE], 0, annotation, display, &ret);
-
 	if (!ret)
 	{
 		g_task_return_new_error (task,
 		                         G_IO_ERROR,
 		                         G_IO_ERROR_FAILED,
 		                         "Provider has not implemented populate");
+
+		g_object_unref (task);
+		return;
 	}
 
 	g_task_return_boolean (task, ret);
@@ -83,7 +84,9 @@ gtk_source_annotation_provider_finalize (GObject *object)
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 
 	if (priv->annotations)
-		g_ptr_array_unref (priv->annotations);
+	{
+		g_clear_pointer (&priv->annotations, g_ptr_array_unref);
+	}
 
 	G_OBJECT_CLASS (gtk_source_annotation_provider_parent_class)->finalize (object);
 }
@@ -105,31 +108,6 @@ gtk_source_annotation_provider_class_init (GtkSourceAnnotationProviderClass *kla
 
 	klass->populate_hover_async = gtk_source_annotation_provider_real_populate_hover_async;
 	klass->populate_hover_finish = gtk_source_annotation_provider_real_populate_hover_finish;
-
-	/**
-	* GtkSourceAnnotationProvider::populate:
-	* @self: a #GtkSourceAnnotationProvider
-	* @task: a #GTask
-	* @display: a #GtkSourceHoverDisplay
-	*
-	* This signal can be used when subclassing #GtkSourceAnnotationProvider is not
-	* possible or not useful. The default implementation of
-	* #GtkSourceAnnotationProvider.populate_hover_async() will emit this signal to allow
-	* the consumer to implement asynchronous population of the #GtkSourceHoverDisplay
-	* in a flexible manner.
-	*
-	* Returns: %TRUE if the operation was handled.
-	*
-	* Since: 5.18
-	*/
-	signals [POPULATE] =
-		g_signal_new ("populate",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceAnnotationProviderClass, populate),
-		              g_signal_accumulator_true_handled, NULL,
-		              NULL,
-		              G_TYPE_BOOLEAN, 2, G_TYPE_TASK, GTK_SOURCE_TYPE_HOVER_DISPLAY);
 
 	/**
 	 * GtkSourceAnnotationProvider::changed:
@@ -162,31 +140,6 @@ gtk_source_annotation_provider_new (void)
 }
 
 /**
- * gtk_source_annotation_provider_populate_hover:
- * @self: a #GtkSourceAnnotationProvider
- * @annotation: a #GtkSourceAnnotation
- * @display: a #GtkSourceHoverDisplay to populate
- * @error: a #GError
- *
- * Used to populate the #GtkSourceHoverDisplay.
- *
- * Returns: %TRUE if it should be populated, %FALSE otherwise.
- *
- * Since: 5.18
- */
-gboolean
-gtk_source_annotation_provider_populate_hover (GtkSourceAnnotationProvider  *self,
-                                               GtkSourceAnnotation          *annotation,
-                                               GtkSourceHoverDisplay        *display,
-                                               GError                      **error)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self), FALSE);
-	g_return_val_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (display), FALSE);
-
-	return FALSE;
-}
-
-/**
  * gtk_source_annotation_provider_populate_hover_async:
  * @self: a #GtkSourceAnnotationProvider
  * @annotation: a #GtkSourceAnnotation
@@ -206,6 +159,7 @@ gtk_source_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider
                                                      gpointer                     user_data)
 {
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self));
+	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (annotation));
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (display));
 	g_return_if_fail (!cancellable || G_IS_CANCELLABLE (cancellable));
 
@@ -278,8 +232,6 @@ gtk_source_annotation_provider_remove_annotation (GtkSourceAnnotationProvider *s
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (annotation), FALSE);
 
 	result = g_ptr_array_remove (priv->annotations, annotation);
-
-	g_signal_emit (self, signals[CHANGED], 0);
 
 	return result;
 }

@@ -31,6 +31,21 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GtkSourceAnnotationStyle:
+ * @GTK_SOURCE_ANNOTATION_STYLE_NONE: no pattern
+ * @GTK_SOURCE_ANNOTATION_STYLE_WARNING: warning
+ * @GTK_SOURCE_ANNOTATION_STYLE_ERROR: error
+ * @GTK_SOURCE_ANNOTATION_STYLE_ACCENT: accent
+ */
+typedef enum _GtkSourceAnnotationStyle
+{
+	GTK_SOURCE_ANNOTATION_STYLE_NONE,
+	GTK_SOURCE_ANNOTATION_STYLE_WARNING,
+	GTK_SOURCE_ANNOTATION_STYLE_ERROR,
+	GTK_SOURCE_ANNOTATION_STYLE_ACCENT
+} GtkSourceAnnotationStyle;
+
 #define GTK_SOURCE_TYPE_ANNOTATION (gtk_source_annotation_get_type())
 
 
@@ -38,22 +53,17 @@ GTK_SOURCE_AVAILABLE_IN_5_18
 G_DECLARE_FINAL_TYPE (GtkSourceAnnotation, gtk_source_annotation, GTK_SOURCE, ANNOTATION, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotation *gtk_source_annotation_new            (const char          *text,
-                                                           const char          *icon_name,
-                                                           int                  line);
+GtkSourceAnnotation     *gtk_source_annotation_new            (const char              *description,
+                                                               GIcon                   *icon,
+                                                               int                      line,
+                                                               GtkSourceAnnotationStyle style);
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotation *gtk_source_annotation_new_with_color (const char          *text,
-                                                           const char          *icon_name,
-                                                           int                  line,
-                                                           const GdkRGBA       *color);
+const char              *gtk_source_annotation_get_text       (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-const char          *gtk_source_annotation_get_text       (GtkSourceAnnotation *self);
+GIcon                   *gtk_source_annotation_get_icon       (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-const char          *gtk_source_annotation_get_icon_name  (GtkSourceAnnotation *self);
+int                      gtk_source_annotation_get_line       (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-int                  gtk_source_annotation_get_line       (GtkSourceAnnotation *self);
-GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean             gtk_source_annotation_get_color      (GtkSourceAnnotation *self,
-                                                           GdkRGBA             *color);
+GtkSourceAnnotationStyle gtk_source_annotation_get_style      (GtkSourceAnnotation     *self);
 
 G_END_DECLS

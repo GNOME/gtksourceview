@@ -32,17 +32,17 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_ANNOTATION_MANAGER (gtk_source_annotation_manager_get_type())
+#define GTK_SOURCE_TYPE_ANNOTATIONS (gtk_source_annotations_get_type())
 
 
 GTK_SOURCE_AVAILABLE_IN_5_18
-G_DECLARE_FINAL_TYPE (GtkSourceAnnotationManager, gtk_source_annotation_manager, GTK_SOURCE, ANNOTATION_MANAGER, GObject)
+G_DECLARE_FINAL_TYPE (GtkSourceAnnotations, gtk_source_annotations, GTK_SOURCE, ANNOTATIONS, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_5_18
-void     gtk_source_annotation_manager_add_provider    (GtkSourceAnnotationManager        *self,
-                                                        GtkSourceAnnotationProvider       *provider);
+void     gtk_source_annotations_add_provider    (GtkSourceAnnotations        *self,
+                                                 GtkSourceAnnotationProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean gtk_source_annotation_manager_remove_provider (GtkSourceAnnotationManager        *self,
-                                                        GtkSourceAnnotationProvider       *provider);
+gboolean gtk_source_annotations_remove_provider (GtkSourceAnnotations        *self,
+                                                 GtkSourceAnnotationProvider *provider);
 
 G_END_DECLS

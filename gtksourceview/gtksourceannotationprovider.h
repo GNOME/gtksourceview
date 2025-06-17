@@ -50,17 +50,10 @@ struct _GtkSourceAnnotationProviderClass
 	gboolean (*populate_hover_finish) (GtkSourceAnnotationProvider  *self,
 	                                   GAsyncResult                 *result,
 	                                   GError                      **error);
-	gboolean (*populate)              (GtkSourceAnnotationProvider  *self,
-	                                   GTask                        *task);
 };
 
 GTK_SOURCE_AVAILABLE_IN_5_18
 GtkSourceAnnotationProvider *gtk_source_annotation_provider_new                   (void);
-GTK_SOURCE_AVAILABLE_IN_5_18
-gboolean                     gtk_source_annotation_provider_populate_hover        (GtkSourceAnnotationProvider  *self,
-                                                                                   GtkSourceAnnotation          *annotation,
-                                                                                   GtkSourceHoverDisplay        *display,
-                                                                                   GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_5_18
 void                         gtk_source_annotation_provider_populate_hover_async  (GtkSourceAnnotationProvider  *self,
                                                                                    GtkSourceAnnotation          *annotation,

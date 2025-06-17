@@ -30,6 +30,7 @@ typedef struct
 	GtkTextMark             *mark;
 	GtkSourceAssistantChild *child;
 	guint                    reposition_handler;
+	GtkPositionType          preferred_position;
 } GtkSourceAssistantPrivate;
 
 static void buildable_iface_init (GtkBuildableIface *iface);
@@ -171,13 +172,20 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 			{
 				window_height = gtk_widget_get_height (GTK_WIDGET (root));
 
-				position = GTK_POS_BOTTOM;
-				gtk_widget_remove_css_class (GTK_WIDGET (assistant), "above-line");
+				position = priv->preferred_position;
 
 				if ((root_point.y + rect.height + natural_height.height) > window_height)
 				{
-					position = GTK_POS_TOP;
-					gtk_widget_add_css_class (GTK_WIDGET (assistant), "above-line");
+					if (position == GTK_POS_TOP)
+					{
+						position = GTK_POS_BOTTOM;
+						gtk_widget_remove_css_class (GTK_WIDGET (assistant), "above-line");
+					}
+					else if (position == GTK_POS_BOTTOM)
+					{
+						position = GTK_POS_TOP;
+						gtk_widget_add_css_class (GTK_WIDGET (assistant), "above-line");
+					}
 				}
 
 				if (gtk_popover_get_position (GTK_POPOVER (assistant)) != position)
@@ -329,6 +337,8 @@ _gtk_source_assistant_init (GtkSourceAssistant *self)
 
 	priv->child = _gtk_source_assistant_child_new ();
 	gtk_popover_set_child (GTK_POPOVER (self), GTK_WIDGET (priv->child));
+
+	priv->preferred_position = GTK_POS_BOTTOM;
 }
 
 GtkSourceAssistant *
@@ -477,4 +487,13 @@ _gtk_source_assistant_destroy (GtkSourceAssistant *self)
 		g_warning ("Cannot remove assistant from type %s",
 			   G_OBJECT_TYPE_NAME (parent));
 	}
+}
+
+void
+_gtk_source_assistant_set_pref_position (GtkSourceAssistant *self,
+                                         GtkPositionType     position)
+{
+	GtkSourceAssistantPrivate *priv = _gtk_source_assistant_get_instance_private (self);
+
+	priv->preferred_position = position;
 }

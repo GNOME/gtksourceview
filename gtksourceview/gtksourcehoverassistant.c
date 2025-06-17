@@ -400,6 +400,8 @@ gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 
 	gtk_widget_add_css_class (GTK_WIDGET (self), "hover-assistant");
 
+	_gtk_source_assistant_set_pref_position (GTK_SOURCE_ASSISTANT (self), GTK_POS_TOP);
+
 	gtk_popover_set_autohide (GTK_POPOVER (self), FALSE);
 	gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_TOP);
 

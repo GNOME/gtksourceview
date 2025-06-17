@@ -22,7 +22,7 @@
 #include "config.h"
 
 #include "gtksourceannotation-private.h"
-#include "gtksourceannotationmanager-private.h"
+#include "gtksourceannotations-private.h"
 #include "gtksourceannotationprovider-private.h"
 #include "gtksourceassistant-private.h"
 #include "gtksourcebuffer.h"
@@ -227,7 +227,7 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
                                  GtkSourceAnnotationProvider **provider_out,
                                  GtkSourceAnnotation         **annotation_out)
 {
-	GtkSourceAnnotationManager *annotation_manager;
+	GtkSourceAnnotations *annotations;
 	GPtrArray *providers;
 	guint i, j;
 
@@ -239,17 +239,17 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
 		return FALSE;
 	}
 
-	annotation_manager = gtk_source_view_get_annotation_manager (self->view);
-	providers = _gtk_source_annotation_manager_get_providers (annotation_manager);
+	annotations = gtk_source_view_get_annotations (self->view);
+	providers = _gtk_source_annotations_get_providers (annotations);
 
 	for (i = 0; i < providers->len; i++)
 	{
 		GtkSourceAnnotationProvider *provider = g_ptr_array_index (providers, i);
-		GPtrArray *annotations = _gtk_source_annotation_provider_get_annotations (provider);
+		GPtrArray *annotations_array = _gtk_source_annotation_provider_get_annotations (provider);
 
-		for (j = 0; j < annotations->len; j++)
+		for (j = 0; j < annotations_array->len; j++)
 		{
-			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations, j);
+			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations_array, j);
 
 			if (_gtk_source_annotation_contains_point (annotation, self->motion_x, self->motion_y))
 			{

@@ -21,42 +21,43 @@
 
 #include "config.h"
 
+#include "gtksource.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourceannotation-private.h"
+#include "gtksource-enumtypes.h"
 
 /**
  * GtkSourceAnnotation:
  *
  * Represents an annotation added to [class@View], it has a [property@Annotation:line] property,
- * [property@Annotation:text], icon-name and optionally a [property@Annotation:color] if you make
- * it with [ctor@Annotation.new_with_color].
+ * [property@Annotation:text], icon and a style.
  *
  * It will be displayed always at the end of a line.
  *
- * If the color is not set it will use the same color as [class@SpaceDrawer].
+ * If the style is GTK_SOURCE_ANNOTATION_STYLE_NONE it will use the same color as [class@SpaceDrawer].
  *
  */
 
 struct _GtkSourceAnnotation
 {
-	GObject         parent_instance;
-	GdkRGBA         color;
-	char           *text;
-	char           *icon_name;
-	int             line;
-	gboolean        color_set;
-	GdkRectangle    bounds;
-	PangoLayout    *layout;
-	char           *font_string;
-	int             text_width;
-	int             text_height;
+	GObject                  parent_instance;
+	char                    *description;
+	GIcon                   *icon;
+	int                      line;
+	GtkSourceAnnotationStyle style;
+	GdkRectangle             bounds;
+	PangoLayout             *layout;
+	char                    *font_string;
+	int                      description_width;
+	int                      description_height;
 };
 
 enum
 {
 	PROP_0,
-	PROP_COLOR,
+	PROP_STYLE,
 	PROP_TEXT,
-	PROP_ICON_NAME,
+	PROP_ICON,
 	PROP_LINE,
 	N_PROPS
 };
@@ -70,8 +71,8 @@ gtk_source_annotation_finalize (GObject *object)
 {
 	GtkSourceAnnotation *self = GTK_SOURCE_ANNOTATION (object);
 
-	g_free (self->text);
-	g_free (self->icon_name);
+	g_free (self->description);
+	g_free (self->icon);
 
 	G_OBJECT_CLASS (gtk_source_annotation_parent_class)->finalize (object);
 }
@@ -90,16 +91,16 @@ gtk_source_annotation_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_COLOR:
-			g_value_set_boxed(value, &self->color);
+		case PROP_STYLE:
+			g_value_set_boxed (value, &self->style);
 			break;
 
 		case PROP_TEXT:
 			g_value_set_string (value, gtk_source_annotation_get_text (self));
 			break;
 
-		case PROP_ICON_NAME:
-			g_value_set_string (value, gtk_source_annotation_get_icon_name (self));
+		case PROP_ICON:
+			g_value_set_object (value, gtk_source_annotation_get_icon (self));
 			break;
 
 		case PROP_LINE:
@@ -134,17 +135,17 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 		                      G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GtkSourceAnnotation:icon-name:
+	 * GtkSourceAnnotation:icon:
 	 *
-	 * The name of the icon displayed at [property@Annotation:line]
+	 * The icon displayed at [property@Annotation:line]
 	 *
 	 * It will be displayed before the text
 	 *
 	 * Since: 5.18
 	 */
-	properties[PROP_ICON_NAME] =
-		g_param_spec_string ("icon-name", NULL, NULL,
-		                     NULL,
+	properties[PROP_ICON] =
+		g_param_spec_object ("icon", NULL, NULL,
+				     G_TYPE_ICON,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
 
@@ -170,11 +171,12 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	 *
 	 * Since: 5.18
 	 */
-	properties[PROP_COLOR] =
-		g_param_spec_boxed ("color", NULL, NULL,
-		                    GDK_TYPE_RGBA,
-		                    (G_PARAM_READABLE |
-		                     G_PARAM_STATIC_STRINGS));
+	properties[PROP_STYLE] =
+		g_param_spec_enum ("style", NULL, NULL,
+		                   GTK_SOURCE_TYPE_ANNOTATION_STYLE,
+		                   GTK_SOURCE_ANNOTATION_STYLE_NONE,
+		                   (G_PARAM_READABLE |
+		                    G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
@@ -187,9 +189,10 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
 
 /**
  * gtk_source_annotation_new:
- * @text: (nullable): the text to display or %NULL.
- * @icon_name: (nullable): the icon name to display or %NULL.
+ * @description: (nullable): the text to display or %NULL.
+ * @icon: (nullable): the icon name to display or %NULL.
  * @line: the line where to display the annotation.
+ * @style: #GtkSourceAnnotationStyle
  *
  * Used to create a new annotation, use [ctor@Annotation.new_with_color]
  * if you want to use a color.
@@ -197,48 +200,17 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
  * Returns: a new [class@Annotation]
  */
 GtkSourceAnnotation *
-gtk_source_annotation_new (const char *text,
-                           const char *icon_name,
-                           int         line)
+gtk_source_annotation_new (const char              *description,
+                           GIcon                   *icon,
+                           int                      line,
+                           GtkSourceAnnotationStyle style)
 {
 	GtkSourceAnnotation *self = g_object_new (GTK_SOURCE_TYPE_ANNOTATION, NULL);
 
-	self->text = g_strdup (text);
-	self->icon_name = g_strdup (icon_name);
+	self->description = g_strdup (description);
+	self->icon = icon;
 	self->line = line;
-	self->color_set = FALSE;
-
-	return self;
-}
-
-/**
- * gtk_source_annotation_new_with_color:
- * @text: (nullable): the text to display or %NULL.
- * @icon_name: (nullable): the icon name to display or %NULL.
- * @line: the line where to display the annotation.
- * @color: a #GdkRGBA, the color of the annotation.
- *
- * Used to create a new annotation with a color.
- *
- * Returns: a new [class@Annotation]
- */
-GtkSourceAnnotation *
-gtk_source_annotation_new_with_color (const char    *text,
-                                      const char    *icon_name,
-                                      int            line,
-                                      const GdkRGBA *color)
-{
-	GtkSourceAnnotation *self = g_object_new (GTK_SOURCE_TYPE_ANNOTATION, NULL);
-
-	self->text = g_strdup (text);
-	self->icon_name = g_strdup (icon_name);
-	self->line = line;
-
-	if (color != NULL)
-	{
-		self->color = *color;
-		self->color_set = TRUE;
-	}
+	self->style = style;
 
 	return self;
 }
@@ -254,7 +226,7 @@ gtk_source_annotation_get_text (GtkSourceAnnotation *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), NULL);
 
-	return self->text ? self->text : "";
+	return self->description ? self->description : "";
 }
 
 /**
@@ -263,12 +235,12 @@ gtk_source_annotation_get_text (GtkSourceAnnotation *self)
  *
  * Returns: the icon name.
  */
-const char *
-gtk_source_annotation_get_icon_name (GtkSourceAnnotation *self)
+GIcon *
+gtk_source_annotation_get_icon (GtkSourceAnnotation *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), NULL);
 
-	return self->icon_name;
+	return self->icon;
 }
 
 /**
@@ -288,24 +260,15 @@ gtk_source_annotation_get_line (GtkSourceAnnotation *self)
 /**
  * gtk_source_annotation_get_color:
  * @self: a #GtkSourceAnnotation
- * @color: a #GdkRGBA.
  *
- * Sets `color` as the color of this annotation.
- *
- * Returns: %TRUE if this annotation has a color, %FALSE otherwise.
+ * Returns: the style of the annotation
  */
-gboolean
-gtk_source_annotation_get_color (GtkSourceAnnotation *self,
-                                 GdkRGBA             *color)
+GtkSourceAnnotationStyle
+gtk_source_annotation_get_style (GtkSourceAnnotation *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), FALSE);
 
-	if (color != NULL)
-	{
-		*color = self->color;
-	}
-
-	return self->color_set;
+	return self->style;
 }
 
 gboolean
@@ -344,9 +307,9 @@ _gtk_source_annotation_ensure_updated_layout (GtkSourceAnnotation *self,
 	{
 		g_clear_object (&self->layout);
 
-		self->layout = gtk_widget_create_pango_layout (widget, self->text);
+		self->layout = gtk_widget_create_pango_layout (widget, self->description);
 		pango_layout_set_font_description (self->layout, font_desc);
-		pango_layout_get_pixel_size (self->layout, &self->text_width, &self->text_height);
+		pango_layout_get_pixel_size (self->layout, &self->description_width, &self->description_height);
 	}
 
 	g_clear_pointer (&font_string, g_free);
@@ -370,18 +333,37 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (self));
 	g_return_if_fail (snapshot != NULL);
 
-	if (!self->text && !self->icon_name)
+	if (!self->description && !self->icon)
 	{
 		return;
 	}
 
-	if (self->color_set)
+	if (self->style == GTK_SOURCE_ANNOTATION_STYLE_NONE)
 	{
-		choosen_color = self->color;
+		choosen_color = *color;
 	}
 	else
 	{
-		choosen_color = *color;
+		GtkTextBuffer *buffer;
+		GtkSourceStyleScheme *style_scheme;
+
+		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
+
+		switch (self->style)
+			{
+			case GTK_SOURCE_ANNOTATION_STYLE_WARNING:
+				_gtk_source_style_scheme_get_warning_color (style_scheme, &choosen_color);
+				break;
+
+			case GTK_SOURCE_ANNOTATION_STYLE_ERROR:
+				_gtk_source_style_scheme_get_error_color (style_scheme, &choosen_color);
+				break;
+
+			case GTK_SOURCE_ANNOTATION_STYLE_ACCENT:
+				_gtk_source_style_scheme_get_accent_color (style_scheme, &choosen_color);
+				break;
+			}
 	}
 
 	spacing = rect.height * 0.4;
@@ -396,19 +378,18 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 	self->bounds = (GdkRectangle) {window_x, window_y, rect.width, rect.height};
 
-	if (self->icon_name)
+	if (self->icon)
 	{
 		GtkIconTheme *icon_theme;
 		GtkIconPaintable *icon_paintable;
 
 		icon_theme = gtk_icon_theme_get_for_display (gdk_display_get_default ());
-		icon_paintable = gtk_icon_theme_lookup_icon (icon_theme,
-		                                             self->icon_name,
-		                                             NULL,
-		                                             icon_size,
-		                                             1,
-		                                             GTK_TEXT_DIR_NONE,
-		                                             GTK_ICON_LOOKUP_PRELOAD);
+		icon_paintable = gtk_icon_theme_lookup_by_gicon (icon_theme,
+		                                                 self->icon,
+		                                                 icon_size,
+		                                                 1,
+		                                                 GTK_TEXT_DIR_NONE,
+		                                                 GTK_ICON_LOOKUP_PRELOAD);
 		if (icon_paintable != NULL)
 		{
 			int icon_y_offset;
@@ -448,7 +429,7 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 		}
 	}
 
-	if (self->text && strlen (self->text) > 0)
+	if (self->description && strlen (self->description) > 0)
 	{
 		_gtk_source_annotation_ensure_updated_layout (self, GTK_WIDGET (view));
 
@@ -461,6 +442,6 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 		                            &choosen_color);
 		gtk_snapshot_restore (snapshot);
 
-		self->bounds.width += self->text_width;
+		self->bounds.width += self->description_width;
 	}
 }

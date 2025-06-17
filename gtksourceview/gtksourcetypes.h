@@ -36,7 +36,7 @@ G_BEGIN_DECLS
  */
 
 typedef struct _GtkSourceAnnotation                GtkSourceAnnotation;
-typedef struct _GtkSourceAnnotationManager         GtkSourceAnnotationManager;
+typedef struct _GtkSourceAnnotations               GtkSourceAnnotations;
 typedef struct _GtkSourceAnnotationProvider        GtkSourceAnnotationProvider;
 typedef struct _GtkSourceBuffer                    GtkSourceBuffer;
 typedef struct _GtkSourceCompletion                GtkSourceCompletion;
