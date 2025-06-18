@@ -30,7 +30,7 @@
  * GtkSourceAnnotation:
  *
  * Represents an annotation added to [class@View], it has a [property@Annotation:line] property,
- * [property@Annotation:text], icon and a style.
+ * [property@Annotation:description], icon and a style.
  *
  * It will be displayed always at the end of a line.
  *
@@ -56,7 +56,7 @@ enum
 {
 	PROP_0,
 	PROP_STYLE,
-	PROP_TEXT,
+	PROP_DESCRIPTION,
 	PROP_ICON,
 	PROP_LINE,
 	N_PROPS
@@ -97,7 +97,7 @@ gtk_source_annotation_get_property (GObject    *object,
 			g_value_set_enum (value, gtk_source_annotation_get_style (self));
 			break;
 
-		case PROP_TEXT:
+		case PROP_DESCRIPTION:
 			g_value_set_string (value, gtk_source_annotation_get_description (self));
 			break;
 
@@ -124,14 +124,14 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	object_class->get_property = gtk_source_annotation_get_property;
 
 	/**
-	 * GtkSourceAnnotation:text:
+	 * GtkSourceAnnotation:description:
 	 *
-	 * The text displayed at [property@Annotation:line]
+	 * The text description displayed at [property@Annotation:line]
 	 *
 	 * Since: 5.18
 	 */
-	properties[PROP_TEXT] =
-		g_param_spec_string ("text", NULL, NULL,
+	properties[PROP_DESCRIPTION] =
+		g_param_spec_string ("description", NULL, NULL,
 		                     NULL,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
@@ -141,7 +141,7 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 	 *
 	 * The icon displayed at [property@Annotation:line]
 	 *
-	 * It will be displayed before the text
+	 * It will be displayed before the text description
 	 *
 	 * Since: 5.18
 	 */

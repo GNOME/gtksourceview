@@ -33,10 +33,10 @@ G_BEGIN_DECLS
 
 /**
  * GtkSourceAnnotationStyle:
- * @GTK_SOURCE_ANNOTATION_STYLE_NONE: no pattern
- * @GTK_SOURCE_ANNOTATION_STYLE_WARNING: warning
- * @GTK_SOURCE_ANNOTATION_STYLE_ERROR: error
- * @GTK_SOURCE_ANNOTATION_STYLE_ACCENT: accent
+ * @GTK_SOURCE_ANNOTATION_STYLE_NONE: same color as drawn spaces
+ * @GTK_SOURCE_ANNOTATION_STYLE_WARNING: same as the diff:changed-line foreground color
+ * @GTK_SOURCE_ANNOTATION_STYLE_ERROR: same as the diff:removed-line foreground color
+ * @GTK_SOURCE_ANNOTATION_STYLE_ACCENT: same as the diff:added-line foreground color
  */
 typedef enum _GtkSourceAnnotationStyle
 {
