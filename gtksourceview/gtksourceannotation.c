@@ -72,7 +72,9 @@ gtk_source_annotation_finalize (GObject *object)
 	GtkSourceAnnotation *self = GTK_SOURCE_ANNOTATION (object);
 
 	g_free (self->description);
-	g_free (self->icon);
+	g_clear_object (&self->icon);
+	g_clear_object (&self->layout);
+	g_free (self->font_string);
 
 	G_OBJECT_CLASS (gtk_source_annotation_parent_class)->finalize (object);
 }
@@ -92,11 +94,11 @@ gtk_source_annotation_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_STYLE:
-			g_value_set_boxed (value, &self->style);
+			g_value_set_enum (value, gtk_source_annotation_get_style (self));
 			break;
 
 		case PROP_TEXT:
-			g_value_set_string (value, gtk_source_annotation_get_text (self));
+			g_value_set_string (value, gtk_source_annotation_get_description (self));
 			break;
 
 		case PROP_ICON:
@@ -216,13 +218,13 @@ gtk_source_annotation_new (const char              *description,
 }
 
 /**
- * gtk_source_annotation_get_text:
+ * gtk_source_annotation_get_description:
  * @self: a #GtkSourceAnnotation
  *
  * Returns: the annotation text.
  */
 const char *
-gtk_source_annotation_get_text (GtkSourceAnnotation *self)
+gtk_source_annotation_get_description (GtkSourceAnnotation *self)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), NULL);
 
@@ -324,6 +326,7 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
                              const GdkRGBA       *color)
 {
 	GdkRGBA choosen_color;
+	GdkRectangle draw_rect;
 	graphene_matrix_t color_matrix;
 	graphene_vec4_t color_vector;
 	int window_x, window_y;
@@ -353,15 +356,18 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 		switch (self->style)
 			{
 			case GTK_SOURCE_ANNOTATION_STYLE_WARNING:
-				_gtk_source_style_scheme_get_warning_color (style_scheme, &choosen_color);
+				_gtk_source_style_scheme_get_warning_color (style_scheme,
+				                                            &choosen_color);
 				break;
 
 			case GTK_SOURCE_ANNOTATION_STYLE_ERROR:
-				_gtk_source_style_scheme_get_error_color (style_scheme, &choosen_color);
+				_gtk_source_style_scheme_get_error_color (style_scheme,
+				                                          &choosen_color);
 				break;
 
 			case GTK_SOURCE_ANNOTATION_STYLE_ACCENT:
-				_gtk_source_style_scheme_get_accent_color (style_scheme, &choosen_color);
+				_gtk_source_style_scheme_get_accent_color (style_scheme,
+				                                           &choosen_color);
 				break;
 			}
 	}
@@ -378,7 +384,9 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 	self->bounds = (GdkRectangle) {window_x, window_y, rect.width, rect.height};
 
-	if (self->icon)
+	draw_rect = rect;
+
+	if (self->icon != NULL)
 	{
 		GtkIconTheme *icon_theme;
 		GtkIconPaintable *icon_paintable;
@@ -396,9 +404,10 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 			gtk_snapshot_save (snapshot);
 
-			icon_y_offset = (rect.height - icon_size) / 2;
+			icon_y_offset = (draw_rect.height - icon_size) / 2;
 			gtk_snapshot_translate (snapshot,
-			                        &GRAPHENE_POINT_INIT (rect.x, rect.y + icon_y_offset));
+			                        &GRAPHENE_POINT_INIT (draw_rect.x,
+			                                              draw_rect.y + icon_y_offset));
 
 			graphene_matrix_init_from_float (&color_matrix,
 			                                 (float[16]) {0, 0, 0, 0,
@@ -426,6 +435,8 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 			g_object_unref (icon_paintable);
 
 			self->bounds.width += icon_size + spacing;
+
+			draw_rect.x += icon_size + spacing;
 		}
 	}
 
@@ -435,8 +446,8 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 		gtk_snapshot_save (snapshot);
 		gtk_snapshot_translate (snapshot,
-		                        &GRAPHENE_POINT_INIT (rect.x + icon_size + spacing,
-		                                              rect.y));
+		                        &GRAPHENE_POINT_INIT (draw_rect.x,
+		                                              draw_rect.y));
 		gtk_snapshot_append_layout (snapshot,
 		                            self->layout,
 		                            &choosen_color);

@@ -157,35 +157,33 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 
 		if (GTK_IS_WINDOW (root))
 		{
-			GtkPositionType position;
 			graphene_point_t point;
 			graphene_point_t root_point;
-			int window_height;
-			GtkRequisition natural_height;
 
 			point.x = rect.x;
 			point.y = rect.y;
 
-			gtk_widget_get_preferred_size (GTK_WIDGET(assistant), NULL, &natural_height);
-
 			if (gtk_widget_compute_point (parent, GTK_WIDGET (root), &point, &root_point))
 			{
+				GtkRequisition natural_height;
+				GtkPositionType position;
+				int window_height;
+
+				gtk_widget_get_preferred_size (GTK_WIDGET(assistant), NULL, &natural_height);
+
 				window_height = gtk_widget_get_height (GTK_WIDGET (root));
 
 				position = priv->preferred_position;
 
-				if ((root_point.y + rect.height + natural_height.height) > window_height)
+				if (position == GTK_POS_BOTTOM &&
+				    (root_point.y + rect.height + natural_height.height) > window_height)
 				{
-					if (position == GTK_POS_TOP)
-					{
-						position = GTK_POS_BOTTOM;
-						gtk_widget_remove_css_class (GTK_WIDGET (assistant), "above-line");
-					}
-					else if (position == GTK_POS_BOTTOM)
-					{
-						position = GTK_POS_TOP;
-						gtk_widget_add_css_class (GTK_WIDGET (assistant), "above-line");
-					}
+					position = GTK_POS_TOP;
+					gtk_widget_add_css_class (GTK_WIDGET (assistant), "above-line");
+				}
+				else
+				{
+					gtk_widget_remove_css_class (GTK_WIDGET (assistant), "above-line");
 				}
 
 				if (gtk_popover_get_position (GTK_POPOVER (assistant)) != position)

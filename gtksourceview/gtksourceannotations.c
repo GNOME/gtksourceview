@@ -115,7 +115,7 @@ on_provider_changed (GtkSourceAnnotations *self)
  */
 void
 gtk_source_annotations_add_provider (GtkSourceAnnotations  *self,
-                                            GtkSourceAnnotationProvider *provider)
+                                     GtkSourceAnnotationProvider *provider)
 {
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self));
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider));
@@ -149,7 +149,7 @@ gtk_source_annotations_add_provider (GtkSourceAnnotations  *self,
  */
 gboolean
 gtk_source_annotations_remove_provider (GtkSourceAnnotations  *self,
-                                               GtkSourceAnnotationProvider *provider)
+                                        GtkSourceAnnotationProvider *provider)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATIONS (self), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (provider), FALSE);
@@ -223,9 +223,9 @@ _gtk_source_annotations_update_color (GtkSourceAnnotations *self,
 
 static void
 _gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
-                                                GtkSourceView              *view,
-                                                GtkSnapshot                *snapshot,
-                                                GtkSourceAnnotation        *annotation)
+                                         GtkSourceView              *view,
+                                         GtkSnapshot                *snapshot,
+                                         GtkSourceAnnotation        *annotation)
 {
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
@@ -271,8 +271,8 @@ _gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
 
 void
 _gtk_source_annotations_draw (GtkSourceAnnotations *self,
-                                     GtkSourceView              *view,
-                                     GtkSnapshot                *snapshot)
+                              GtkSourceView              *view,
+                              GtkSnapshot                *snapshot)
 {
 	GdkRectangle visible_rect;
 	GtkTextIter start_visible, end_visible;

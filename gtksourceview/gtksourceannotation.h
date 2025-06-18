@@ -53,17 +53,17 @@ GTK_SOURCE_AVAILABLE_IN_5_18
 G_DECLARE_FINAL_TYPE (GtkSourceAnnotation, gtk_source_annotation, GTK_SOURCE, ANNOTATION, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotation     *gtk_source_annotation_new            (const char              *description,
-                                                               GIcon                   *icon,
-                                                               int                      line,
-                                                               GtkSourceAnnotationStyle style);
+GtkSourceAnnotation     *gtk_source_annotation_new             (const char              *description,
+                                                                GIcon                   *icon,
+                                                                int                      line,
+                                                                GtkSourceAnnotationStyle style);
 GTK_SOURCE_AVAILABLE_IN_5_18
-const char              *gtk_source_annotation_get_text       (GtkSourceAnnotation     *self);
+const char              *gtk_source_annotation_get_description (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-GIcon                   *gtk_source_annotation_get_icon       (GtkSourceAnnotation     *self);
+GIcon                   *gtk_source_annotation_get_icon        (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-int                      gtk_source_annotation_get_line       (GtkSourceAnnotation     *self);
+int                      gtk_source_annotation_get_line        (GtkSourceAnnotation     *self);
 GTK_SOURCE_AVAILABLE_IN_5_18
-GtkSourceAnnotationStyle gtk_source_annotation_get_style      (GtkSourceAnnotation     *self);
+GtkSourceAnnotationStyle gtk_source_annotation_get_style       (GtkSourceAnnotation     *self);
 
 G_END_DECLS

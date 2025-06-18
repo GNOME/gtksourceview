@@ -1066,24 +1066,27 @@ enable_annotations_toggled_cb (TestWidget     *self,
 
 		annotation = gtk_source_annotation_new ("Error Style!",
 		                                        g_icon_new_for_string ("emblem-important-symbolic", NULL),
-		                                        0,
+		                                        23,
 		                                        GTK_SOURCE_ANNOTATION_STYLE_ERROR);
 
 		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
 
 		annotation = gtk_source_annotation_new ("Warning Style!",
-		                                        g_icon_new_for_string ("emblem-important-symbolic", NULL),
-		                                        2,
+		                                        g_icon_new_for_string ("dialog-warning-symbolic", NULL),
+		                                        25,
 		                                        GTK_SOURCE_ANNOTATION_STYLE_WARNING);
 
 		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
 
-		annotation = gtk_source_annotation_new ("Accent Style!",
-		                                        g_icon_new_for_string ("emblem-important-symbolic", NULL),
-		                                        8,
+		annotation = gtk_source_annotation_new ("Accent Style without an icon",
+		                                        NULL,
+		                                        21,
 		                                        GTK_SOURCE_ANNOTATION_STYLE_ACCENT);
 
 		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
 	}
 
 	if (enabled)
@@ -1410,7 +1413,7 @@ test_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider  *sel
 
 	gtk_source_hover_display_append (display,
 	                                 g_object_new (GTK_TYPE_LABEL,
-	                                               "label", g_strconcat (gtk_source_annotation_get_text (annotation), "\n\n\n\n\n\n\n\n\n\n\n\n", NULL),
+	                                               "label", gtk_source_annotation_get_description (annotation),
 	                                               "margin-start", 12,
 	                                               "margin-end", 12,
 	                                               NULL));
