@@ -167,9 +167,9 @@ gtk_source_annotation_class_init (GtkSourceAnnotationClass *klass)
 		                    G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GtkSourceAnnotation:color:
+	 * GtkSourceAnnotation:style:
 	 *
-	 * The color for the annotation
+	 * The style of the annotation
 	 *
 	 * Since: 5.18
 	 */
@@ -196,9 +196,6 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
  * @line: the line where to display the annotation.
  * @style: #GtkSourceAnnotationStyle
  *
- * Used to create a new annotation, use [ctor@Annotation.new_with_color]
- * if you want to use a color.
- *
  * Returns: a new [class@Annotation]
  */
 GtkSourceAnnotation *
@@ -221,7 +218,7 @@ gtk_source_annotation_new (const char              *description,
  * gtk_source_annotation_get_description:
  * @self: a #GtkSourceAnnotation
  *
- * Returns: the annotation text.
+ * Returns: the description text displayed
  */
 const char *
 gtk_source_annotation_get_description (GtkSourceAnnotation *self)
@@ -232,10 +229,10 @@ gtk_source_annotation_get_description (GtkSourceAnnotation *self)
 }
 
 /**
- * gtk_source_annotation_get_icon_name:
+ * gtk_source_annotation_get_icon:
  * @self: a #GtkSourceAnnotation
  *
- * Returns: the icon name.
+ * Returns: (transfer none) (nullable): a #GIcon or %NULL
  */
 GIcon *
 gtk_source_annotation_get_icon (GtkSourceAnnotation *self)
@@ -260,7 +257,7 @@ gtk_source_annotation_get_line (GtkSourceAnnotation *self)
 }
 
 /**
- * gtk_source_annotation_get_color:
+ * gtk_source_annotation_get_style:
  * @self: a #GtkSourceAnnotation
  *
  * Returns: the style of the annotation
