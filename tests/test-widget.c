@@ -474,71 +474,47 @@ forward_string_clicked_cb (TestWidget *self)
 }
 
 static void
-on_chooser_response_cb (TestWidget           *self,
-                        gint                  response,
-                        GtkFileChooserDialog *chooser)
+on_file_dialog_response_cb (GObject      *source,
+                            GAsyncResult *result,
+                            gpointer      user_data)
 {
+	TestWidget *self = user_data;
+	GtkFileDialog *dialog = GTK_FILE_DIALOG (source);
+	GError *error = NULL;
+	GFile *file;
+
 	g_assert (TEST_IS_WIDGET (self));
-	g_assert (GTK_IS_FILE_CHOOSER_DIALOG (chooser));
+	g_assert (GTK_IS_FILE_DIALOG (dialog));
 
-	if (response == GTK_RESPONSE_OK)
+	file = gtk_file_dialog_open_finish (dialog, result, &error);
+
+	if (file != NULL)
 	{
-		GFile *folder;
-		GFile *file;
-
-		file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
-		folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
-
-		if (file != NULL && folder != NULL)
-		{
-			g_free (last_dir);
-			last_dir = g_file_get_path (folder);
-			open_file (self, file);
-		}
-
-		g_clear_object (&folder);
-		g_clear_object (&file);
+		open_file (self, file);
+		g_object_unref (file);
 	}
-
-	gtk_window_destroy (GTK_WINDOW (chooser));
 }
 
 static void
 open_button_clicked_cb (TestWidget *self)
 {
 	GtkWidget *main_window;
-	GtkWidget *chooser;
+	GtkFileDialog *dialog;
 
 	main_window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (self->view)));
 
-	chooser = gtk_file_chooser_dialog_new ("Open file...",
-					       GTK_WINDOW (main_window),
-					       GTK_FILE_CHOOSER_ACTION_OPEN,
-					       "Cancel", GTK_RESPONSE_CANCEL,
-					       "Open", GTK_RESPONSE_OK,
-					       NULL);
+	dialog = gtk_file_dialog_new ();
 
-	if (last_dir == NULL)
-	{
-		last_dir = g_strdup (TOP_SRCDIR "/gtksourceview");
-	}
+	gtk_file_dialog_set_title (dialog, "Open file...");
+	gtk_file_dialog_set_accept_label (dialog, "Open");
 
-	if (last_dir != NULL && g_path_is_absolute (last_dir))
-	{
-		GFile *folder;
+	gtk_file_dialog_open (dialog,
+	                      GTK_WINDOW (main_window),
+	                      NULL,
+	                      on_file_dialog_response_cb,
+	                      self);
 
-		folder = g_file_new_for_path (last_dir);
-		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (chooser), folder, NULL);
-		g_object_unref (folder);
-	}
-
-	g_signal_connect_object (chooser,
-				 "response",
-				 G_CALLBACK (on_chooser_response_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-
-	gtk_window_present (GTK_WINDOW (chooser));
+	g_object_unref (dialog);
 }
 
 #define NON_BLOCKING_PAGINATION
