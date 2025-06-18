@@ -83,10 +83,7 @@ gtk_source_annotation_provider_finalize (GObject *object)
 	GtkSourceAnnotationProvider *self = GTK_SOURCE_ANNOTATION_PROVIDER (object);
 	GtkSourceAnnotationProviderPrivate *priv = gtk_source_annotation_provider_get_instance_private (self);
 
-	if (priv->annotations)
-	{
-		g_clear_pointer (&priv->annotations, g_ptr_array_unref);
-	}
+	g_clear_pointer (&priv->annotations, g_ptr_array_unref);
 
 	G_OBJECT_CLASS (gtk_source_annotation_provider_parent_class)->finalize (object);
 }
