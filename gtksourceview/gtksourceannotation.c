@@ -369,6 +369,9 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 			}
 	}
 
+	if (gdk_rgba_is_clear (&choosen_color))
+		choosen_color = *color;
+
 	spacing = rect.height * 0.4;
 	icon_size = rect.height * 0.8;
 
