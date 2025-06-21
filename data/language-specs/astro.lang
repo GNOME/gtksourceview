@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Nokse <nokse@posteo.com>
+ Copyright (C) 2025 Nokse <nokse@posteo.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="astro" name="Astro" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/x-astro;application/x-astro</property>
+    <property name="globs">*.astro</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+    <property name="suggested-suffix">.astro</property>
+  </metadata>
+
+  <definitions>
+
+    <context id="frontmatter" once-only="true">
+      <start>^(---)$</start>
+      <end>^(---)$</end>
+      <include>
+        <!-- From js without js-st catch-all -->
+        <context ref="def:shebang"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+        <context ref="js-st:directives"/>
+        <context ref="js-mod:export-declarations"/>
+        <context ref="js-mod:import-declarations"/>
+        <context ref="js-st:_block-statements"/>
+        <context ref="js-st:_break-statements"/>
+        <context ref="js-st:_class-declarations"/>
+        <context ref="js-st:_continue-statements"/>
+        <context ref="js-st:_debugger-statements"/>
+        <context ref="js-st:_for-statements"/>
+        <context ref="js-st:_function-declarations"/>
+        <context ref="js-st:_if-statements"/>
+        <context ref="js-st:_else-statements"/>
+        <context ref="js-st:_label-statements"/>
+        <context ref="js-st:_return-statements"/>
+        <context ref="js-st:_switch-statements"/>
+        <context ref="js-st:_throw-statements"/>
+        <context ref="js-st:_try-statements"/>
+        <context ref="js-st:_catch-statements"/>
+        <context ref="js-st:_finally-statements"/>
+        <context ref="js-st:_variable-declarations"/>
+        <context ref="js-st:_while-statements"/>
+        <context ref="js-st:_do-statements"/>
+        <context ref="js-st:_with-statements"/>
+      </include>
+    </context>
+
+    <context id="astro" class="no-spell-check">
+      <include>
+        <context ref="frontmatter"/>
+        <!-- From JSX -->
+        <context ref="jsx:_spread-attributes"/>
+        <context ref="jsx:_choice-attribute-value-expression"/>
+        <context ref="jsx:_child-expressions"/>
+        <!-- From HTML -->
+        <context ref="xml:entity"/>
+        <context ref="xml:character-reference"/>
+        <context ref="xml:cdata"/>
+        <context ref="html:comment"/>
+        <context ref="html:dtd"/>
+        <context ref="html:headings"/>
+        <context ref="html:style"/>
+        <context ref="html:script"/>
+        <context ref="html:tag"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
