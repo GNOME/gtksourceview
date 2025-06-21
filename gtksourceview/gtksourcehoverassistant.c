@@ -610,6 +610,7 @@ _gtk_source_hover_assistant_display_annotation (GtkSourceHoverAssistant     *sel
 
 	_gtk_source_hover_display_clear (self->display);
 
+	g_clear_object (&self->cancellable);
 	self->cancellable = g_cancellable_new ();
 
 	gtk_source_annotation_provider_populate_hover_async (provider,

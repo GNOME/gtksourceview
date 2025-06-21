@@ -856,14 +856,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                      G_PARAM_STATIC_STRINGS));
 
 	/**
-	 * GtkSourceView:annotation-manager:
+	 * GtkSourceView:annotations:
 	 *
 	 * The [class@Annotations] object associated with the view.
 	 *
 	 * Since: 5.18
 	 */
 	properties [PROP_ANNOTATIONS] =
-		g_param_spec_object ("annotation-manager", NULL, NULL,
+		g_param_spec_object ("annotations", NULL, NULL,
 		                     GTK_SOURCE_TYPE_ANNOTATIONS,
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
@@ -1491,7 +1491,7 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
 
 static void
 annotations_changed_cb (GtkSourceAnnotations *annotations,
-                               GtkSourceView              *view)
+                        GtkSourceView        *view)
 {
 	g_assert (GTK_SOURCE_IS_ANNOTATIONS (annotations));
 	g_assert (GTK_SOURCE_IS_VIEW (view));

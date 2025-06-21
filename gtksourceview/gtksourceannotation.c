@@ -71,10 +71,10 @@ gtk_source_annotation_finalize (GObject *object)
 {
 	GtkSourceAnnotation *self = GTK_SOURCE_ANNOTATION (object);
 
-	g_free (self->description);
+	g_clear_pointer (&self->description, g_free);
 	g_clear_object (&self->icon);
 	g_clear_object (&self->layout);
-	g_free (self->font_string);
+	g_clear_pointer (&self->font_string, g_free);
 
 	G_OBJECT_CLASS (gtk_source_annotation_parent_class)->finalize (object);
 }
