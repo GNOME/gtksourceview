@@ -345,7 +345,7 @@ gtksource_pc_reqs = [
 
 gtksource_pc = pkg.generate(gtksource_lib,
               name: package_string,
-       description: 'Source code editing Gtk+ widget.',
+       description: 'Source code editing GTK widget',
           requires: gtksource_pc_reqs,
            version: version,
            subdirs: package_string,
