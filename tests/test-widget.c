@@ -68,7 +68,6 @@ G_DEFINE_TYPE_WITH_CODE (TestHoverProvider, test_hover_provider, G_TYPE_OBJECT,
 #define MARK_TYPE_2      "two"
 
 static GMainLoop *main_loop;
-static gchar *last_dir;
 static const char *cmd_filename;
 
 static void
