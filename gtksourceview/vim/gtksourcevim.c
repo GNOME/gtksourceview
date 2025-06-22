@@ -71,16 +71,6 @@ gtk_source_vim_new (GtkSourceView *view)
 	                     NULL);
 }
 
-static inline gboolean
-compare_position (const GtkTextIter *iter,
-		  GtkTextMark       *mark)
-{
-	GtkTextIter mark_iter;
-	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (mark),
-	                                  &mark_iter, mark);
-	return gtk_text_iter_compare (iter, &mark_iter);
-}
-
 static gboolean
 gtk_source_vim_real_format (GtkSourceVim *self,
                             GtkTextIter  *begin,
