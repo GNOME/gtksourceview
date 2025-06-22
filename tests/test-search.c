@@ -141,12 +141,12 @@ update_label_regex_error (TestSearch *search)
 	if (error == NULL)
 	{
 		gtk_label_set_text (search->priv->label_regex_error, "");
-		gtk_widget_hide (GTK_WIDGET (search->priv->label_regex_error));
+		gtk_widget_set_visible (GTK_WIDGET (search->priv->label_regex_error), FALSE);
 	}
 	else
 	{
 		gtk_label_set_text (search->priv->label_regex_error, error->message);
-		gtk_widget_show (GTK_WIDGET (search->priv->label_regex_error));
+		gtk_widget_set_visible (GTK_WIDGET (search->priv->label_regex_error), TRUE);
 		g_clear_error (&error);
 	}
 }
