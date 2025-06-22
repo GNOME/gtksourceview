@@ -394,13 +394,14 @@ update_indent_width (TestWidget *self)
 }
 
 static void
-smart_home_end_changed_cb (TestWidget  *self,
-			   GtkComboBox *combo)
+smart_home_end_selected_notify_cb (TestWidget  *self,
+				   GParamSpec  *pspec,
+				   GtkDropDown *drop_down)
 {
 	GtkSourceSmartHomeEndType type;
-	gint active = gtk_combo_box_get_active (combo);
+	guint selected = gtk_drop_down_get_selected (drop_down);
 
-	switch (active)
+	switch (selected)
 	{
 		case 0:
 			type = GTK_SOURCE_SMART_HOME_END_DISABLED;
@@ -1052,7 +1053,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, tab_width_value_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, backward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, forward_string_clicked_cb);
-	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
+	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_selected_notify_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, vim_checkbutton_toggled_cb);

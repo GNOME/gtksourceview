@@ -204,15 +204,18 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkComboBoxText" id="smart_home_end">
-                    <property name="active">0</property>
-                    <items>
-                      <item id="0">Disabled</item>
-                      <item id="1">Before</item>
-                      <item id="2">After</item>
-                      <item id="3">Always</item>
-                    </items>
-                    <signal name="changed" handler="smart_home_end_changed_cb" object="TestWidget" swapped="yes"/>
+                  <object class="GtkDropDown" id="smart_home_end">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <items>
+                          <item>Disabled</item>
+                          <item>Before</item>
+                          <item>After</item>
+                          <item>Always</item>
+                        </items>
+                      </object>
+                    </property>
+                    <signal name="notify::selected" handler="smart_home_end_selected_notify_cb" object="TestWidget" swapped="yes"/>
                     <layout>
                       <property name="column">1</property>
                     </layout>
