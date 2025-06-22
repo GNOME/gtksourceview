@@ -8,13 +8,15 @@ snippets, Vim emulation, printing, displaying line numbers, and other features
 typical of a source code editor.
 
 The GtkSourceView library is free software and is released under the terms of
-the GNU Lesser General Public License, see the 'COPYING' file for more details.
-The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
+the GNU Lesser General Public License, see the [COPYING](COPYING) file for more
+details.
 
-Documentation
--------------
+Links
+-----
 
-Nightly documentation can be [found here](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/).
+* [Git repository](https://gitlab.gnome.org/GNOME/gtksourceview)
+* [Nightly documentation](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/)
+* [Old wiki pages](https://wiki.gnome.org/Projects/GtkSourceView)
 
 Dependencies
 ------------
@@ -41,10 +43,9 @@ To run the test suite:
 ```
 
 To build the latest version of GtkSourceView plus its dependencies from Git,
-[Jhbuild](https://wiki.gnome.org/Projects/Jhbuild) is recommended.
-
+[JHBuild](https://gitlab.gnome.org/GNOME/jhbuild) is recommended.
 
 How to contribute
 -----------------
 
-See the 'HACKING' file.
+See the [HACKING](HACKING) file.
