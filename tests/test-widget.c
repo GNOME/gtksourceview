@@ -1300,7 +1300,7 @@ main (int argc, char *argv[])
 	test_widget = test_widget_new ();
 	gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (test_widget));
 
-	gtk_widget_show (window);
+	gtk_window_present (GTK_WINDOW (window));
 
 	g_main_loop_run (main_loop);
 
