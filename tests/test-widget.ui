@@ -305,12 +305,15 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkComboBoxText" id="background_pattern">
-                    <property name="active">0</property>
-                    <items>
-                      <item translatable="yes">None</item>
-                      <item translatable="yes">Grid</item>
-                    </items>
+                  <object class="GtkDropDown" id="background_pattern">
+                    <property name="model">
+                      <object class="GtkStringList">
+                        <items>
+                          <item translatable="yes">None</item>
+                          <item translatable="yes">Grid</item>
+                        </items>
+                      </object>
+                    </property>
                     <layout>
                       <property name="column">2</property>
                       <property name="row">0</property>

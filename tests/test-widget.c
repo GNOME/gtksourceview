@@ -46,7 +46,7 @@ struct _TestWidget
 	GtkLabel *cursor_position_info;
 	GtkSourceStyleSchemeChooserButton *chooser_button;
 	GtkIMContext *vim_im_context;
-	GtkComboBoxText *background_pattern;
+	GtkDropDown *background_pattern;
 	GtkWidget *top;
 	GtkScrolledWindow *scrolledwindow1;
 	GtkEventController *vim_controller;
@@ -920,14 +920,20 @@ add_source_mark_attributes (GtkSourceView *view)
 }
 
 static void
-on_background_pattern_changed (GtkComboBox *combobox,
-                               TestWidget  *self)
+background_pattern_selected_item_notify_cb (GtkDropDown *drop_down,
+					    GParamSpec  *pspec,
+					    TestWidget  *self)
 {
-	gchar *text;
+	GObject *selected_item;
+	const char *selected_item_str = NULL;
 
-	text = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (combobox));
+	selected_item = gtk_drop_down_get_selected_item (drop_down);
+	if (selected_item != NULL)
+	{
+		selected_item_str = gtk_string_object_get_string (GTK_STRING_OBJECT (selected_item));
+	}
 
-	if (g_strcmp0 (text, "Grid") == 0)
+	if (g_strcmp0 (selected_item_str, "Grid") == 0)
 	{
 		gtk_source_view_set_background_pattern (self->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID);
@@ -937,8 +943,6 @@ on_background_pattern_changed (GtkComboBox *combobox,
 		gtk_source_view_set_background_pattern (self->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
 	}
-
-	g_free (text);
 }
 
 static void
@@ -1192,8 +1196,8 @@ test_widget_init (TestWidget *self)
 	                        G_BINDING_SYNC_CREATE);
 
 	g_signal_connect (self->background_pattern,
-	                  "changed",
-	                  G_CALLBACK (on_background_pattern_changed),
+	                  "notify::selected-item",
+	                  G_CALLBACK (background_pattern_selected_item_notify_cb),
 	                  self);
 
 	space_drawer = gtk_source_view_get_space_drawer (self->view);
