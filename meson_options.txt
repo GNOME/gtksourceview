@@ -16,7 +16,7 @@ option('vapi',
 
 option('documentation',
        type: 'boolean', value: false,
-       description: 'Build reference manual (requires gi-doc)')
+       description: 'Build reference manual (requires gi-docgen)')
 
 option('sysprof',
        type: 'boolean', value: false,
