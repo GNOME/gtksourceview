@@ -228,8 +228,10 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
                                  GtkSourceAnnotation         **annotation_out)
 {
 	GtkSourceAnnotations *annotations;
+	GtkSourceGutter *left;
 	GPtrArray *providers;
 	guint i, j;
+	int gutter_width = 0;
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (!self->view || GTK_SOURCE_IS_VIEW (self->view));
@@ -237,6 +239,13 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
 	if (self->view == NULL || provider_out == NULL || annotation_out == NULL)
 	{
 		return FALSE;
+	}
+
+	left = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
+
+	if (left != NULL)
+	{
+		gutter_width = gtk_widget_get_width (GTK_WIDGET (left));
 	}
 
 	annotations = gtk_source_view_get_annotations (self->view);
@@ -251,7 +260,7 @@ gtk_source_hover_get_annotation (GtkSourceHover               *self,
 		{
 			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations_array, j);
 
-			if (_gtk_source_annotation_contains_point (annotation, self->motion_x, self->motion_y))
+			if (_gtk_source_annotation_contains_point (annotation, self->motion_x - gutter_width, self->motion_y))
 			{
 				*provider_out = provider;
 				*annotation_out = annotation;
