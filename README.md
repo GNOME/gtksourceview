@@ -48,4 +48,4 @@ To build the latest version of GtkSourceView plus its dependencies from Git,
 How to contribute
 -----------------
 
-See the [HACKING](HACKING) file.
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file.

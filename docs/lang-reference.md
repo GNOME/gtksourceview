@@ -48,7 +48,7 @@ GtkSourceView.
 - Add an example in tests/syntax-highlighting/.
 - LGPL v2.1+ license (copy/paste the license header from c.lang, for example).
 - Add the e-mail address of the language definition file author(s).
-- Refer to the HACKING file for submitting your language definition
+- Refer to the CONTRIBUTING.md file for submitting your language definition
   file upstream. If the file is not included upstream, you can also
   add the language definition file to the GtkSourceView wiki, so
   users can easily find it.
