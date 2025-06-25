@@ -1,14 +1,14 @@
 How to contribute to GtkSourceView
 ==================================
 
-GtkSourceView is hosted on the GNOME GitLab instance, you can fork the
-repository and then do a merge request:
+For general guidance, you can refer to the
+[Development section of the GNOME handbook](https://handbook.gnome.org/development.html).
 
-    https://gitlab.gnome.org/GNOME/gtksourceview
-
-Read the following wiki page to know the conventions for the commit messages:
-
-    https://wiki.gnome.org/Git/CommitMessages
+In short, the
+[GtkSourceView repository](https://gitlab.gnome.org/GNOME/gtksourceview) is
+hosted on the GNOME GitLab instance. You can fork it and then open a merge
+request. Please follow the
+[conventions for Git commit messages](https://handbook.gnome.org/development/commit-messages.html).
 
 If you have write access to the Git repository, please don't push your commits
 directly unless you have been given the green light to commit freely to
@@ -25,48 +25,48 @@ C code conventions
 You may encounter old code that doesn't follow all the following code
 conventions, but for new code it is better to follow them, for consistency.
 
-  - Avoid trailing whitespace.
+- Avoid trailing whitespace.
 
-  - Indent the C code with tabulations with a width of eight characters.
-    However, alignment after matching the current scope should be done
-    with spaces.
+- Indent the C code with tabulations with a width of eight characters. However,
+  alignment after matching the current scope should be done with spaces.
 
-  - All blocks should be surrounded by curly braces, even one-line blocks. The
-    curly braces must be placed on their own lines. Like this:
+- All blocks should be surrounded by curly braces, even one-line blocks. The
+  curly braces must be placed on their own lines. Like this:
 
-	if (foo)
-	{
-		call_foo ();
-	}
-	else
-	{
-		call_bar ();
-	}
+```
+if (foo)
+{
+	call_foo ();
+}
+else
+{
+	call_bar ();
+}
+```
 
-    Rationale: it spaces out the code, to have a better readability. And when
-    modifying a block of code, if it switches between one and two lines, we
-    don't need to add/remove the curly braces all the time.
+Rationale: it spaces out the code, to have a better readability. And when
+modifying a block of code, if it switches between one and two lines, we don't
+need to add/remove the curly braces all the time.
 
-  - Follow the C99 standard but without "//"-style comments and with all
-    declarations at the top, before statements.
-    Some restrictions apply but relatively should match GTK and GLib.
+- Follow the C99 standard but without `//`-style comments and with all
+  declarations at the top, before statements. Some restrictions apply but
+  relatively should match GTK and GLib.
 
-  - The files should not have modelines included. A .editorconfig file is
-    provided for configuration indentation and many editors have support for
-    using them.
+- The files should not have modelines included. A `.editorconfig` file is
+  provided for configuring indentation and many editors have support for using
+  them.
 
-  - Do not be cheap about blank lines, spacing the code vertically helps
-    readability. However never use two consecutive blank lines, there is really
-    no need.
+- Do not be cheap about blank lines, spacing the code vertically helps
+  readability. However never use two consecutive blank lines, there is really no
+  need.
 
-  - As a general rule of thumb, follow the same coding style as the surrounding
-    code.
+- As a general rule of thumb, follow the same coding style as the surrounding
+  code.
 
 See also:
-
-  - https://developer.gnome.org/programming-guidelines/stable/
-  - https://wiki.gnome.org/Projects/GTK%2B/BestPractices
-  - https://wiki.gnome.org/Projects/GLib/CompilerRequirements
+- https://developer.gnome.org/programming-guidelines/stable/
+- https://wiki.gnome.org/Projects/GTK%2B/BestPractices
+- https://wiki.gnome.org/Projects/GLib/CompilerRequirements
 
 Programming best-practices
 --------------------------
@@ -77,74 +77,76 @@ old. So when editing the code, we should try to make it better, not worse.
 
 Here are some general advices:
 
-  - Simplicity: the simpler code the better. Any trick that seem smart when you
-    write it is going to bite you later when reading the code. In fact, the
-    code is read far more often than it is written: for fixing a bug, adding a
-    feature, or simply see how it is implemented. Making the code harder to
-    read is a net loss.
+- Simplicity: the simpler code the better. Any trick that seem smart when you
+  write it is going to bite you later when reading the code. In fact, the code
+  is read far more often than it is written: for fixing a bug, adding a feature,
+  or simply see how it is implemented. Making the code harder to read is a net
+  loss.
 
-  - Avoid code duplication, make an effort to refactor common code into utility
-    functions.
+- Avoid code duplication, make an effort to refactor common code into utility
+  functions.
 
-  - Write self-documented code when possible: instead of writing comments, it
-    is often possible to make the code self-documented by choosing good names
-    for the variables, functions and types.
+- Write self-documented code when possible: instead of writing comments, it is
+  often possible to make the code self-documented by choosing good names for the
+  variables, functions and types.
 
-    Please avoid lots of one-letter variable names, it makes the code hard to
-    understand. Don't be afraid to write long variable names. Also, a variable
-    should be used for only one purpose.
+  Please avoid lots of one-letter variable names, it makes the code hard to
+  understand. Don't be afraid to write long variable names. Also, a variable
+  should be used for only one purpose.
 
-    A good function name is one that explain clearly all what its code really
-    does. There shouldn't be hidden features. If you can not find easily a good
-    function name, you should probably split the function in smaller pieces. A
-    function should do only one thing, but do it well.
+  A good function name is one that explain clearly all what its code really
+  does. There shouldn't be hidden features. If you can not find easily a good
+  function name, you should probably split the function in smaller pieces. A
+  function should do only one thing, but do it well.
 
-  - About comments:
+- About comments:
 
-    Do not write comments to state the obvious, for example avoid:
-    i = 0; /* assign 0 to i */
+  Do not write comments to state the obvious, for example avoid:
+```
+i = 0; /* assign 0 to i */
+```
 
-    Of course, write GTK-Doc comments to document the public API, especially
-    the class descriptions. The class descriptions gives a nice overview when
-    someone discovers the library.
+  Of course, write GTK-Doc comments to document the public API, especially the
+  class descriptions. The class descriptions gives a nice overview when someone
+  discovers the library.
 
-    For a private class, it is useful to write a comment at the top describing
-    in a few lines what the class does.
+  For a private class, it is useful to write a comment at the top describing in
+  a few lines what the class does.
 
-    Document well the data structures: the invariants (what is or should be
-    always true about certain data fields); for a list, what is the element
-    type; for a hash table, what are the key and value types; etc. It is more
-    important to document the data structures than the functions, because when
-    understanding well the data structures, the functions implementation should
-    be for the most part obvious.
+  Document well the data structures: the invariants (what is or should be
+  always true about certain data fields); for a list, what is the element type;
+  for a hash table, what are the key and value types; etc. It is more important
+  to document the data structures than the functions, because when understanding
+  well the data structures, the functions implementation should be for the most
+  part obvious.
 
-    When it isn't obvious, it is more important to explain *why* something is
-    implemented in this way, not the *how*. You can deduce the *how* from the
-    code, but not the *why*.
+  When it isn't obvious, it is more important to explain *why* something is
+  implemented in this way, not the *how*. You can deduce the *how* from the
+  code, but not the *why*.
 
-    If a non-trivial feature was previously implemented in a different way,
-    it's useful to write a comment to describe in a few lines the previous
-    implementation(s), and why it has been changed (for example to fix some
-    problems). It permits to avoid repeating history, otherwise a new developer
-    might wonder why a certain feature is implemented in "this complicated way"
-    and not in "that simpler obvious way". For such things, a comment in the
-    code has more chances to be read than an old commit message (especially if
-    the code has been copied from one repository to another).
+  If a non-trivial feature was previously implemented in a different way,
+  it's useful to write a comment to describe in a few lines the previous
+  implementation(s), and why it has been changed (for example to fix some
+  problems). It permits to avoid repeating history, otherwise a new developer
+  might wonder why a certain feature is implemented in "this complicated way"
+  and not in "that simpler obvious way". For such things, a comment in the
+  code has more chances to be read than an old commit message (especially if
+  the code has been copied from one repository to another).
 
-  - Contribute below on the stack. Fix a problem at the right place, instead of
-    writing hacks or heuristics to work around a bug or a lack of feature in an
-    underlying library.
+- Contribute below on the stack. Fix a problem at the right place, instead of
+  writing hacks or heuristics to work around a bug or a lack of feature in an
+  underlying library.
 
-  - Public API should have precondition guards using g_return_if_fail() or
-    g_return_val_if_fail(). Optionally, you may do this before returning values
-    from the function to help catch bugs earlier in the development cycle.
+- Public API should have precondition guards using `g_return_if_fail()` or
+  `g_return_val_if_fail()`. Optionally, you may do this before returning values
+  from the function to help catch bugs earlier in the development cycle.
 
-    Private functions (such as those with static) should use g_assert() to
-    validate invariants. These are used in debug builds but can be compiled
-    out of production/release builds.
+  Private functions (such as those with static) should use `g_assert()` to
+  validate invariants. These are used in debug builds but can be compiled out of
+  production/release builds.
 
-  - When transfering ownership of an object or struct, use g_steal_pointer()
-    to make it clear when reading that ownership was transfered.
+- When transfering ownership of an object or struct, use `g_steal_pointer()` to
+  make it clear when reading that ownership was transfered.
 
 Language Specifications
 -----------------------
