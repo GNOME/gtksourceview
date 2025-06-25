@@ -48,6 +48,7 @@
     <style id="function-name"         name="Function Name"         map-to="python:function-name"/>
     <style id="class-name"            name="Class Name"            map-to="python:class-name"/>
     <style id="decorator"             name="Decorator"             map-to="python:decorator"/>
+    <style id="operator"              name="Operator"              map-to="python:operator"/>
     <style id="f-string-curly-braces" name="f-string curly braces" map-to="def:special-char"/>
   </styles>
 
@@ -107,6 +108,7 @@
     <define-regex id="string-prefix">(b|B)?</define-regex>
     <define-regex id="raw-string-prefix">(r|R|rb|RB|rB|Rb|br|BR|bR|Br)</define-regex>
     <define-regex id="f-string-prefix">(f|F)</define-regex>
+    <define-regex id="raw-f-string-prefix">(rf|RF|rF|Rf|fr|FR|fR|Fr)</define-regex>
 
     <context id="multiline-double-quoted-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{string-prefix}"""</start>
@@ -145,6 +147,7 @@
         <context ref="def:line-continue"/>
       </include>
     </context>
+
     <context id="multiline-double-quoted-f-string" class="string" class-disabled="no-spell-check">
       <start>(\%{f-string-prefix}""")</start>
       <end>(""")</end>
@@ -243,6 +246,66 @@
       </include>
     </context>
 
+    <context id="multiline-double-quoted-raw-f-string" class="string" class-disabled="no-spell-check">
+      <start>(\%{raw-f-string-prefix}""")</start>
+      <end>(""")</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="multiline-string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="multiline-single-quoted-raw-f-string" class="string" class-disabled="no-spell-check">
+      <start>(\%{raw-f-string-prefix}''')</start>
+      <end>(''')</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="multiline-string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="double-quoted-raw-f-string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>(\%{raw-f-string-prefix}")</start>
+      <end>(")</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="single-quoted-raw-f-string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>(\%{raw-f-string-prefix}')</start>
+      <end>(')</end>
+      <include>
+        <context ref="escaped-curly-brace"/>
+        <context ref="f-string-curly-braces"/>
+        <context ref="def:line-continue"/>
+        <context style-ref="string" extend-parent="false" class="string">
+          <match>.</match>
+        </context>
+        <context sub-pattern="1" where="start" style-ref="string"/>
+        <context sub-pattern="1" where="end" style-ref="string"/>
+      </include>
+    </context>
+
     <context id="module-handler-from">
       <match extended="true">
         (from)
@@ -283,10 +346,6 @@
       </include>
     </context>
 
-    <context id="decorator" style-ref="decorator">
-      <match>@\%{identifier-path}</match>
-    </context>
-
     <context id="python3" class="no-spell-check">
       <include>
         <context ref="def:shebang"/>
@@ -307,15 +366,34 @@
         <context ref="double-quoted-raw-string"/>
         <context ref="single-quoted-raw-string"/>
 
+        <context ref="multiline-double-quoted-raw-f-string"/>
+        <context ref="multiline-single-quoted-raw-f-string"/>
+        <context ref="double-quoted-raw-f-string"/>
+        <context ref="single-quoted-raw-f-string"/>
+
         <context ref="python:special-variables"/>
+
+        <context id="3x-only-special-variables" style-ref="special-variable">
+          <keyword>__spec__</keyword>
+        </context>
+
         <context ref="python:boolean"/>
 
-        <context ref="python:complex"/>
+        <define-regex id="float" extended="true">
+          ( (\d(_?\d)*)?\.\d(_?\d)* | \d(_?\d)*\. ) |
+          ( (\d(_?\d)*|(\d(_?\d)*)?\.\d(_?\d)*|\d(_?\d)*\.)[eE][+-]?\d(_?\d)* )
+        </define-regex>
 
-        <context ref="python:float"/>
+        <context id="complex" style-ref="complex">
+          <match>(?&lt;![\w\.])(\%{float}|\d+)[jJ]\b</match>
+        </context>
+
+        <context id="float" style-ref="floating-point">
+          <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
+        </context>
 
         <context id="decimal" style-ref="decimal">
-          <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0)(?![\w\.])</match>
+          <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0(_?0)*)(?![\w\.])</match>
         </context>
 
         <context id="binary" style-ref="base-n-integer">
@@ -334,7 +412,12 @@
         <context ref="python:module-handler"/>
         <context ref="function-definition"/>
         <context ref="class-definition"/>
-        <context ref="decorator"/>
+        <context ref="python:decorator"/>
+
+        <context ref="python:operator"/>
+        <context id="3x-only-operators" style-ref="operator">
+          <match>:=</match>
+        </context>
 
         <context ref="python:keywords"/>
         <context id="3x-only-keywords" style-ref="keyword">
@@ -383,6 +466,7 @@
           <keyword>NotADirectoryError</keyword>
           <keyword>PermissionError</keyword>
           <keyword>ProcessLookupError</keyword>
+          <keyword>PythonFinalizationError</keyword>
           <keyword>RecursionError</keyword>
           <keyword>ResourceWarning</keyword>
           <keyword>StopAsyncIteration</keyword>
