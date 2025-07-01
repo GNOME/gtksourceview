@@ -197,6 +197,9 @@ GtkTextTag            *gtk_source_buffer_create_source_tag                     (
                                                                                 const gchar             *tag_name,
                                                                                 const gchar             *first_property_name,
                                                                                 ...);
-
+GTK_SOURCE_AVAILABLE_IN_5_18
+char                  *gtk_source_buffer_get_markup                            (GtkSourceBuffer         *buffer,
+										GtkTextIter             *start,
+										GtkTextIter             *end);
 
 G_END_DECLS
