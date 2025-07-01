@@ -3229,7 +3229,7 @@ add_attributes_for_tag (GtkTextTag *tag,
 		return;
 
 	/* Handle background color */
-	if (!g_strstr_len(attrs->str, -1, "bgcolor"))
+	if (!strstr(attrs->str, "bgcolor"))
 	{
 		gboolean background_rgba_set;
 		g_object_get (tag, "background-set", &background_rgba_set, NULL);
@@ -3239,23 +3239,21 @@ add_attributes_for_tag (GtkTextTag *tag,
 			g_object_get (tag, "background-rgba", &bg_color, NULL);
 			if (bg_color != NULL)
 			{
-				g_autofree char *color_str = NULL;
-
 				if (attrs->len > 0)
 					g_string_append_c (attrs, ' ');
 
-				color_str = g_strdup_printf ("bgcolor=\"#%02x%02x%02x%02x\"",
-				                             (int)(bg_color->red * 255),
-				                             (int)(bg_color->green * 255),
-				                             (int)(bg_color->blue * 255),
-				                             (int)(bg_color->alpha * 255));
-				g_string_append (attrs, color_str);
+				g_string_printf (attrs,
+				                 "bgcolor=\"#%02x%02x%02x%02x\"",
+				                 (int)(bg_color->red * 255),
+				                 (int)(bg_color->green * 255),
+				                 (int)(bg_color->blue * 255),
+				                 (int)(bg_color->alpha * 255));
 			}
 		}
 	}
 
 	/* Handle foreground color */
-	if (!g_strstr_len(attrs->str, -1, "color"))
+	if (!strstr(attrs->str, "color"))
 	{
 		gboolean foreground_rgba_set;
 		g_object_get (tag, "foreground-set", &foreground_rgba_set, NULL);
@@ -3265,23 +3263,21 @@ add_attributes_for_tag (GtkTextTag *tag,
 			g_object_get (tag, "foreground-rgba", &fg_color, NULL);
 			if (fg_color != NULL)
 			{
-				g_autofree char *color_str = NULL;
-
 				if (attrs->len > 0)
 					g_string_append_c (attrs, ' ');
 
-				color_str = g_strdup_printf ("color=\"#%02x%02x%02x%02x\"",
-				                             (int)(fg_color->red * 255),
-				                             (int)(fg_color->green * 255),
-				                             (int)(fg_color->blue * 255),
-				                             (int)(fg_color->alpha * 255));
-				g_string_append (attrs, color_str);
+				g_string_printf (attrs,
+				                 "color=\"#%02x%02x%02x%02x\"",
+				                 (int)(fg_color->red * 255),
+				                 (int)(fg_color->green * 255),
+				                 (int)(fg_color->blue * 255),
+				                 (int)(fg_color->alpha * 255));
 			}
 		}
 	}
 
 	/* Handle underline color */
-	if (!g_strstr_len(attrs->str, -1, "underline_color"))
+	if (!strstr(attrs->str, "underline_color"))
 	{
 		gboolean underline_rgba_set;
 		g_object_get (tag, "underline-rgba-set", &underline_rgba_set, NULL);
@@ -3291,23 +3287,21 @@ add_attributes_for_tag (GtkTextTag *tag,
 			g_object_get (tag, "underline-rgba", &underline_color, NULL);
 			if (underline_color != NULL)
 			{
-				g_autofree char *color_str = NULL;
-
 				if (attrs->len > 0)
 					g_string_append_c (attrs, ' ');
 
-				color_str = g_strdup_printf ("underline_color=\"#%02x%02x%02x%02x\"",
-				                             (int)(underline_color->red * 255),
-				                             (int)(underline_color->green * 255),
-				                             (int)(underline_color->blue * 255),
-				                             (int)(underline_color->alpha * 255));
-				g_string_append (attrs, color_str);
+				g_string_printf (attrs,
+				                 "underline_color=\"#%02x%02x%02x%02x\"",
+				                 (int)(underline_color->red * 255),
+				                 (int)(underline_color->green * 255),
+				                 (int)(underline_color->blue * 255),
+				                 (int)(underline_color->alpha * 255));
 			}
 		}
 	}
 
 	/* Handle font weight */
-	if (!g_strstr_len(attrs->str, -1, "weight"))
+	if (!strstr(attrs->str, "weight"))
 	{
 		gboolean weight_set;
 		g_object_get (tag, "weight-set", &weight_set, NULL);
@@ -3348,7 +3342,7 @@ add_attributes_for_tag (GtkTextTag *tag,
 	}
 
 	/* Handle font style */
-	if (!g_strstr_len(attrs->str, -1, "style"))
+	if (!strstr(attrs->str, "style"))
 	{
 		gboolean style_set;
 		g_object_get (tag, "style-set", &style_set, NULL);
@@ -3362,16 +3356,16 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append_c (attrs, ' ');
 
 			if (style == PANGO_STYLE_NORMAL)
-				g_string_append_printf (attrs, "style=\"normal\"");
+				g_string_append (attrs, "style=\"normal\"");
 			else if (style == PANGO_STYLE_OBLIQUE)
-				g_string_append_printf (attrs, "style=\"oblique\"");
+				g_string_append (attrs, "style=\"oblique\"");
 			else if (style == PANGO_STYLE_ITALIC)
-				g_string_append_printf (attrs, "style=\"italic\"");
+				g_string_append (attrs, "style=\"italic\"");
 		}
 	}
 
 	/* Handle underline */
-	if (!g_strstr_len(attrs->str, -1, "underline"))
+	if (!strstr(attrs->str, "underline"))
 	{
 		gboolean underline_set;
 		g_object_get (tag, "underline-set", &underline_set, NULL);
@@ -3385,20 +3379,20 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append_c (attrs, ' ');
 
 			if (underline == PANGO_UNDERLINE_NONE)
-				g_string_append_printf (attrs, "underline=\"none\"");
+				g_string_append (attrs, "underline=\"none\"");
 			else if (underline == PANGO_UNDERLINE_DOUBLE)
-				g_string_append_printf (attrs, "underline=\"double\"");
+				g_string_append (attrs, "underline=\"double\"");
 			else if (underline == PANGO_UNDERLINE_SINGLE)
-				g_string_append_printf (attrs, "underline=\"single\"");
+				g_string_append (attrs, "underline=\"single\"");
 			else if (underline == PANGO_UNDERLINE_LOW)
-				g_string_append_printf (attrs, "underline=\"low\"");
+				g_string_append (attrs, "underline=\"low\"");
 			else if (underline == PANGO_UNDERLINE_ERROR)
-				g_string_append_printf (attrs, "underline=\"error\"");
+				g_string_append (attrs, "underline=\"error\"");
 		}
 	}
 
 	/* Handle strikethrough */
-	if (!g_strstr_len(attrs->str, -1, "strikethrough"))
+	if (!strstr(attrs->str, "strikethrough"))
 	{
 		gboolean strikethrough_set;
 		g_object_get (tag, "strikethrough-set", &strikethrough_set, NULL);
@@ -3419,7 +3413,7 @@ add_attributes_for_tag (GtkTextTag *tag,
 	}
 
 	/* Handle font scale */
-	if (!g_strstr_len(attrs->str, -1, "scale"))
+	if (!strstr(attrs->str, "scale"))
 	{
 		gboolean scale_set;
 		g_object_get (tag, "scale-set", &scale_set, NULL);
@@ -3480,7 +3474,7 @@ add_styled_segment (GtkTextBuffer *buffer,
  * This allows the styled text to be displayed in other widgets that support
  * Pango markup, such as #GtkLabel.
  *
- * For very long sections (> 3000 lines) this function can take a few hundreds of a second.
+ * For very long ranges this function can take a few hundreds milliseconds.
  *
  * Returns: (transfer full): a newly-allocated string containing the text
  *   with Pango markup, or %NULL if @start and @end are invalid.
