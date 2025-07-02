@@ -932,14 +932,14 @@ renderer_at_x (GtkSourceGutter *gutter,
 	for (item = gutter->renderers; item; item = g_list_next (item))
 	{
 		Renderer *renderer = item->data;
-		GtkAllocation alloc;
+		graphene_rect_t grect;
 
-		gtk_widget_get_allocation (GTK_WIDGET (renderer->renderer),
-		                           &alloc);
-
-		if (x >= alloc.x && x <= alloc.x + alloc.width)
+		if (gtk_widget_compute_bounds (GTK_WIDGET (gutter), GTK_WIDGET (renderer->renderer), &grect))
 		{
-			return renderer;
+			if (x >= grect.origin.x && x <= grect.origin.x + grect.size.width)
+			{
+				return renderer;
+			}
 		}
 	}
 
@@ -953,27 +953,32 @@ get_renderer_rect (GtkSourceGutter *gutter,
                    gint             line,
                    GdkRectangle    *rectangle)
 {
-	gint y;
-	gint ypad;
+	graphene_rect_t grect;
 
-	gtk_widget_get_allocation (GTK_WIDGET (renderer->renderer), rectangle);
+	if (gtk_widget_compute_bounds (GTK_WIDGET (gutter), GTK_WIDGET (renderer->renderer), &grect))
+	{
+		int ypad;
+		int height;
+		int y;
 
-	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (gutter->view),
-	                               iter,
-	                               &y,
-	                               &rectangle->height);
+		gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (gutter->view),
+		                               iter,
+		                               &y,
+		                               &height);
+		gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (gutter->view),
+		                                       gutter->window_type,
+		                                       0,
+		                                       y,
+		                                       NULL,
+		                                       &y);
 
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (gutter->view),
-	                                       gutter->window_type,
-	                                       0,
-	                                       y,
-	                                       NULL,
-	                                       &rectangle->y);
+		ypad = gtk_source_gutter_renderer_get_ypad (renderer->renderer);
 
-	ypad = gtk_source_gutter_renderer_get_ypad (renderer->renderer);
-
-	rectangle->y += ypad;
-	rectangle->height -= 2 * ypad;
+		rectangle->y = y + ypad;
+		rectangle->x = grect.origin.x;
+		rectangle->height = height - (2 * ypad);
+		rectangle->width = grect.size.width;
+	}
 }
 
 static gboolean
