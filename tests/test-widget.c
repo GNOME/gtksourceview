@@ -524,8 +524,10 @@ markup_button_clicked_cb (TestWidget *self)
 	GtkTextIter start, end;
 	g_autofree char *markup = NULL;
 
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self->buffer), &start);
-	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (self->buffer), &end);
+	if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (self->buffer), &start, &end))
+	{
+		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self->buffer), &start, &end);
+	}
 
 	markup = gtk_source_buffer_get_markup (self->buffer, &start, &end);
 
