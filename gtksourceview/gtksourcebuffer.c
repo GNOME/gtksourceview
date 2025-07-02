@@ -3221,15 +3221,31 @@ gtk_source_buffer_get_loading (GtkSourceBuffer *buffer)
 	return priv->loading_count > 0;
 }
 
+enum {
+	FLAGS_0,
+	FLAGS_BGCOLOR         = 1 << 0,
+	FLAGS_COLOR           = 1 << 1,
+	FLAGS_UNDERLINE_COLOR = 1 << 2,
+	FLAGS_WEIGHT          = 1 << 3,
+	FLAGS_STYLE           = 1 << 4,
+	FLAGS_UNDERLINE       = 1 << 5,
+	FLAGS_STRIKETHROUGH   = 1 << 6,
+	FLAGS_SCALE           = 1 << 7,
+};
+
+#define GET_FLAG(f, F) (*(f) & (F))
+#define SET_FLAG(f, F) (*(f) |= (F))
+
 static void
 add_attributes_for_tag (GtkTextTag *tag,
-                        GString    *attrs)
+                        GString    *attrs,
+			guint      *flags)
 {
 	if (gtk_text_tag_get_priority (tag) < 0)
 		return;
 
 	/* Handle background color */
-	if (strstr (attrs->str, "bgcolor") == NULL)
+	if (!GET_FLAG (flags, FLAGS_BGCOLOR))
 	{
 		gboolean background_rgba_set;
 
@@ -3257,13 +3273,15 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(bg_color->blue * 255),
 				                 (int)(bg_color->alpha * 255));
 
+				SET_FLAG (flags, FLAGS_BGCOLOR);
+
 				gdk_rgba_free (bg_color);
 			}
 		}
 	}
 
 	/* Handle foreground color */
-	if (strstr (attrs->str, "color") == NULL)
+	if (!GET_FLAG (flags, FLAGS_COLOR))
 	{
 		gboolean foreground_rgba_set;
 
@@ -3291,13 +3309,15 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(fg_color->blue * 255),
 				                 (int)(fg_color->alpha * 255));
 
+				SET_FLAG (flags, FLAGS_COLOR);
+
 				gdk_rgba_free (fg_color);
 			}
 		}
 	}
 
 	/* Handle underline color */
-	if (strstr (attrs->str, "underline_color") == NULL)
+	if (!GET_FLAG (flags, FLAGS_UNDERLINE_COLOR))
 	{
 		gboolean underline_rgba_set;
 
@@ -3325,13 +3345,15 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(underline_color->blue * 255),
 				                 (int)(underline_color->alpha * 255));
 
+				SET_FLAG (flags, FLAGS_UNDERLINE_COLOR);
+
 				gdk_rgba_free (underline_color);
 			}
 		}
 	}
 
 	/* Handle font weight */
-	if (strstr (attrs->str, "weight") == NULL)
+	if (!GET_FLAG (flags, FLAGS_WEIGHT))
 	{
 		gboolean weight_set;
 
@@ -3374,11 +3396,15 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append (attrs, "weight=\"heavy\"");
 			else if (weight == PANGO_WEIGHT_ULTRAHEAVY)
 				g_string_append (attrs, "weight=\"ultraheavy\"");
+			else
+				g_string_append_printf (attrs, "weight=\"%u\"", weight);
+
+			SET_FLAG (flags, FLAGS_WEIGHT);
 		}
 	}
 
 	/* Handle font style */
-	if (strstr (attrs->str, "style") == NULL)
+	if (!GET_FLAG (flags, FLAGS_STYLE))
 	{
 		gboolean style_set;
 
@@ -3403,11 +3429,13 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append (attrs, "style=\"oblique\"");
 			else if (style == PANGO_STYLE_ITALIC)
 				g_string_append (attrs, "style=\"italic\"");
+
+			SET_FLAG (flags, FLAGS_STYLE);
 		}
 	}
 
 	/* Handle underline */
-	if (strstr (attrs->str, "underline") == NULL)
+	if (!GET_FLAG (flags, FLAGS_UNDERLINE))
 	{
 		gboolean underline_set;
 
@@ -3436,11 +3464,13 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append (attrs, "underline=\"low\"");
 			else if (underline == PANGO_UNDERLINE_ERROR)
 				g_string_append (attrs, "underline=\"error\"");
+
+			SET_FLAG (flags, FLAGS_UNDERLINE);
 		}
 	}
 
 	/* Handle strikethrough */
-	if (strstr (attrs->str, "strikethrough") == NULL)
+	if (!GET_FLAG (flags, FLAGS_STRIKETHROUGH))
 	{
 		gboolean strikethrough_set;
 
@@ -3462,12 +3492,14 @@ add_attributes_for_tag (GtkTextTag *tag,
 					g_string_append_c (attrs, ' ');
 
 				g_string_append (attrs, "strikethrough=\"true\"");
+
+				SET_FLAG (flags, FLAGS_STRIKETHROUGH);
 			}
 		}
 	}
 
 	/* Handle font scale */
-	if (strstr (attrs->str, "scale") == NULL)
+	if (!GET_FLAG (flags, FLAGS_SCALE))
 	{
 		gboolean scale_set;
 
@@ -3487,6 +3519,8 @@ add_attributes_for_tag (GtkTextTag *tag,
 				g_string_append_c (attrs, ' ');
 
 			g_string_append_printf (attrs, "size=%d%%", (int)(scale * 100));
+
+			SET_FLAG (flags, FLAGS_SCALE);
 		}
 	}
 }
@@ -3497,11 +3531,13 @@ get_attrs_at_iter (GtkTextTagTable *tag_table,
 {
 	g_autoptr (GSList) tags_at_iter = gtk_text_iter_get_tags (iter);
 	GString *combined_attrs = g_string_new (NULL);
+	guint flags = 0;
 
 	for (GSList *i = g_slist_reverse (tags_at_iter); i != NULL; i = i->next)
 	{
 		GtkTextTag *tag = GTK_TEXT_TAG (i->data);
-		add_attributes_for_tag (tag, combined_attrs);
+
+		add_attributes_for_tag (tag, combined_attrs, &flags);
 	}
 
 	return g_string_free (combined_attrs, FALSE);
