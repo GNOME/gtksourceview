@@ -208,11 +208,13 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 	gtk_source_gutter_renderer_text_get_size (priv, layout, priv->text_len, &width, &height);
 	gtk_source_gutter_renderer_align_cell (renderer, line, width, height, &x, &y);
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 	gtk_snapshot_render_layout (snapshot,
 	                            gtk_widget_get_style_context (GTK_WIDGET (text)),
 	                            ceilf (x),
 	                            ceilf (y),
 	                            layout);
+	G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (clear_attributes)
 	{

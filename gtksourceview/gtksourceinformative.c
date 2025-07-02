@@ -147,6 +147,8 @@ gtk_source_informative_get_offset (GtkSourceAssistant *assistant,
                                    int                *x_offset,
                                    int                *y_offset)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkSourceInformative *self = GTK_SOURCE_INFORMATIVE (assistant);
 	GtkSourceInformativePrivate *priv = gtk_source_informative_get_instance_private (self);
 	GtkStyleContext *style_context;
@@ -168,6 +170,8 @@ gtk_source_informative_get_offset (GtkSourceAssistant *assistant,
 
 	*x_offset -= min_width;
 	*x_offset += margin.right;
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void

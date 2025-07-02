@@ -138,9 +138,13 @@ get_margin_and_border (GtkWidget *widget,
                        GtkBorder *margin,
                        GtkBorder *border)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkStyleContext *style_context = gtk_widget_get_style_context (widget);
 	gtk_style_context_get_margin (style_context, margin);
 	gtk_style_context_get_border (style_context, border);
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 gint

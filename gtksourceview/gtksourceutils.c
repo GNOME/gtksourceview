@@ -1169,3 +1169,46 @@ _gtk_source_utils_strnlen (const char *str,
 	return 0;
 #endif
 }
+
+void
+_gtk_source_widget_add_css_provider (GtkWidget      *widget,
+                                     GtkCssProvider *provider,
+                                     guint           priority)
+{
+	g_return_if_fail (GTK_WIDGET (widget));
+	g_return_if_fail (GTK_IS_CSS_PROVIDER (provider));
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	gtk_style_context_add_provider (gtk_widget_get_style_context (widget),
+	                                GTK_STYLE_PROVIDER (provider),
+	                                priority);
+	G_GNUC_END_IGNORE_DEPRECATIONS
+}
+
+void
+_gtk_source_widget_remove_css_provider (GtkWidget      *widget,
+                                        GtkCssProvider *provider)
+{
+	g_return_if_fail (GTK_WIDGET (widget));
+	g_return_if_fail (GTK_IS_CSS_PROVIDER (provider));
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	gtk_style_context_remove_provider (gtk_widget_get_style_context (widget),
+	                                   GTK_STYLE_PROVIDER (provider));
+	G_GNUC_END_IGNORE_DEPRECATIONS
+}
+
+void
+_gtk_source_add_css_provider (GdkDisplay     *display,
+                              GtkCssProvider *provider,
+                              guint           priority)
+{
+	g_return_if_fail (GDK_IS_DISPLAY (display));
+	g_return_if_fail (GTK_IS_CSS_PROVIDER (provider));
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	gtk_style_context_add_provider_for_display (display,
+	                                            GTK_STYLE_PROVIDER (provider),
+	                                            priority);
+	G_GNUC_END_IGNORE_DEPRECATIONS
+}

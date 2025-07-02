@@ -312,6 +312,8 @@ static void
 gtk_source_hover_assistant_get_target_location (GtkSourceAssistant *assistant,
                                                 GdkRectangle       *rect)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkSourceHoverAssistant *self = GTK_SOURCE_HOVER_ASSISTANT (assistant);
 	GtkStyleContext *style_context;
 	GtkBorder padding;
@@ -322,6 +324,8 @@ gtk_source_hover_assistant_get_target_location (GtkSourceAssistant *assistant,
 	gtk_style_context_get_padding (style_context, &padding);
 
 	rect->x -= padding.left;
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void

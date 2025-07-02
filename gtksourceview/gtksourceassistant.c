@@ -254,6 +254,8 @@ _gtk_source_assistant_real_get_offset (GtkSourceAssistant *assistant,
                                        int                *x,
                                        int                *y)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkStyleContext *style_context;
 	GtkBorder margin;
 	GtkPositionType pos;
@@ -277,6 +279,8 @@ _gtk_source_assistant_real_get_offset (GtkSourceAssistant *assistant,
 	{
 		*y = margin.bottom - 1;
 	}
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void

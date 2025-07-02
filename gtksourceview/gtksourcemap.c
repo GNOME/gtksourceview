@@ -240,7 +240,6 @@ get_slider_position (GtkSourceMap *map,
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GdkRectangle them_visible_rect, us_visible_rect;
 	GdkRectangle us_alloc;
-	GtkStyleContext *style_context;
 	GtkTextBuffer *buffer;
 	GtkTextIter end_iter;
 	GdkRectangle end_rect;
@@ -256,8 +255,13 @@ get_slider_position (GtkSourceMap *map,
 	gtk_widget_get_allocation (GTK_WIDGET (map), &us_alloc);
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
-	gtk_style_context_get_border (style_context, &border);
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
+		GtkStyleContext *style_context;
+
+		style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+		gtk_style_context_get_border (style_context, &border);
+	} G_GNUC_END_IGNORE_DEPRECATIONS
 
 	gtk_text_buffer_get_end_iter (buffer, &end_iter);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &end_iter, &end_rect);
@@ -316,10 +320,6 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	char *background = NULL;
 	char *foreground = NULL;
 
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-	GtkStyleContext *style_context;
-	G_GNUC_END_IGNORE_DEPRECATIONS
-
 	priv = gtk_source_map_get_instance_private (map);
 
 	if (priv->view == NULL)
@@ -367,11 +367,13 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->view));
 	style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
 
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
-	if (!gtk_style_context_lookup_color (style_context, "view_bg_color", &real_bg))
-		memset (&real_bg, 0, sizeof (real_bg));
-	G_GNUC_END_IGNORE_DEPRECATIONS
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS {
+		GtkStyleContext *style_context;
+
+		style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+		if (!gtk_style_context_lookup_color (style_context, "view_bg_color", &real_bg))
+			memset (&real_bg, 0, sizeof (real_bg));
+	} G_GNUC_END_IGNORE_DEPRECATIONS
 
 	if (style_scheme != NULL)
 	{
@@ -1478,12 +1480,12 @@ gtk_source_map_init (GtkSourceMap *map)
 				     NULL);
 	gtk_widget_set_parent (GTK_WIDGET (priv->slider), GTK_WIDGET (map));
 
-	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (map)),
-	                                GTK_STYLE_PROVIDER (priv->css_provider),
-	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
-	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (priv->slider)),
-	                                GTK_STYLE_PROVIDER (priv->css_provider),
-	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
+	_gtk_source_widget_add_css_provider (GTK_WIDGET (map),
+	                                     priv->css_provider,
+	                                     GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
+	_gtk_source_widget_add_css_provider (GTK_WIDGET (priv->slider),
+	                                     priv->css_provider,
+	                                     GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
 
 	g_object_set (map,
 	              "auto-indent", FALSE,

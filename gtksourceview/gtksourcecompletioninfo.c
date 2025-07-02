@@ -38,6 +38,8 @@ _gtk_source_completion_info_get_offset (GtkSourceAssistant *assistant,
                                         int                *x_offset,
                                         int                *y_offset)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkStyleContext *style_context;
 	GtkBorder margin;
 
@@ -48,6 +50,8 @@ _gtk_source_completion_info_get_offset (GtkSourceAssistant *assistant,
 
 	*x_offset = -margin.left + 1;
 	*y_offset = -margin.top;
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void

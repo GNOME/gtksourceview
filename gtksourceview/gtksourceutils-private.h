@@ -66,6 +66,17 @@ PangoFontMap *_gtk_source_utils_get_builder_blocks       (void);
 G_GNUC_INTERNAL
 gsize    _gtk_source_utils_strnlen                       (const char                  *str,
                                                           gsize                        maxlen);
+G_GNUC_INTERNAL
+void     _gtk_source_widget_add_css_provider             (GtkWidget                   *widget,
+                                                          GtkCssProvider              *provider,
+							  guint                        priority);
+G_GNUC_INTERNAL
+void     _gtk_source_widget_remove_css_provider          (GtkWidget                   *widget,
+                                                          GtkCssProvider              *provider);
+G_GNUC_INTERNAL
+void     _gtk_source_add_css_provider                    (GdkDisplay                  *display,
+                                                          GtkCssProvider              *provider,
+							  guint                        priority);
 
 static inline void
 premix_colors (GdkRGBA       *dest,

@@ -31,6 +31,7 @@
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcetrace.h"
+#include "gtksourceutils-private.h"
 
 /**
  * GtkSourceStyleScheme:
@@ -816,8 +817,6 @@ void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
                                 GtkWidget            *widget)
 {
-	GtkStyleContext *context;
-
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (!widget || GTK_IS_WIDGET (widget));
 
@@ -826,10 +825,9 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		return;
 	}
 
-	context = gtk_widget_get_style_context (widget);
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (scheme->css_provider),
-	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
+	_gtk_source_widget_add_css_provider (widget,
+	                                     scheme->css_provider,
+	                                     GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 }
 
 /**
@@ -843,8 +841,6 @@ void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
                                   GtkWidget            *widget)
 {
-	GtkStyleContext *context;
-
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (!widget || GTK_IS_WIDGET (widget));
 
@@ -853,9 +849,7 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 		return;
 	}
 
-	context = gtk_widget_get_style_context (widget);
-	gtk_style_context_remove_provider (context,
-	                                   GTK_STYLE_PROVIDER (scheme->css_provider));
+	_gtk_source_widget_remove_css_provider (widget, scheme->css_provider);
 }
 
 /* --- PARSER ---------------------------------------------------------------- */

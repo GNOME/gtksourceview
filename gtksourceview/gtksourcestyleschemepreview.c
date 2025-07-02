@@ -94,9 +94,8 @@ load_override_font (GtkSourceView *view,
 		g_once_init_leave (&initialized, TRUE);
 	}
 
-	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (view)),
-	                                GTK_STYLE_PROVIDER (css_provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+	_gtk_source_widget_add_css_provider (GTK_WIDGET (view), css_provider,
+	                                     GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
 
 	if (font_map != NULL)
 	{
