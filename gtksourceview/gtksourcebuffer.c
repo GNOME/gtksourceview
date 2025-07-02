@@ -3229,14 +3229,22 @@ add_attributes_for_tag (GtkTextTag *tag,
 		return;
 
 	/* Handle background color */
-	if (!strstr(attrs->str, "bgcolor"))
+	if (strstr (attrs->str, "bgcolor") == NULL)
 	{
 		gboolean background_rgba_set;
-		g_object_get (tag, "background-set", &background_rgba_set, NULL);
+
+		g_object_get (tag,
+		              "background-set", &background_rgba_set,
+		              NULL);
+
 		if (background_rgba_set)
 		{
-			g_autoptr (GdkRGBA) bg_color = NULL;
-			g_object_get (tag, "background-rgba", &bg_color, NULL);
+			GdkRGBA *bg_color = NULL;
+
+			g_object_get (tag,
+			              "background-rgba", &bg_color,
+			              NULL);
+
 			if (bg_color != NULL)
 			{
 				if (attrs->len > 0)
@@ -3248,19 +3256,29 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(bg_color->green * 255),
 				                 (int)(bg_color->blue * 255),
 				                 (int)(bg_color->alpha * 255));
+
+				gdk_rgba_free (bg_color);
 			}
 		}
 	}
 
 	/* Handle foreground color */
-	if (!strstr(attrs->str, "color"))
+	if (strstr (attrs->str, "color") == NULL)
 	{
 		gboolean foreground_rgba_set;
-		g_object_get (tag, "foreground-set", &foreground_rgba_set, NULL);
+
+		g_object_get (tag,
+		              "foreground-set", &foreground_rgba_set,
+		              NULL);
+
 		if (foreground_rgba_set)
 		{
-			g_autoptr (GdkRGBA) fg_color = NULL;
-			g_object_get (tag, "foreground-rgba", &fg_color, NULL);
+			GdkRGBA *fg_color = NULL;
+
+			g_object_get (tag,
+			              "foreground-rgba", &fg_color,
+			              NULL);
+
 			if (fg_color != NULL)
 			{
 				if (attrs->len > 0)
@@ -3272,19 +3290,29 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(fg_color->green * 255),
 				                 (int)(fg_color->blue * 255),
 				                 (int)(fg_color->alpha * 255));
+
+				gdk_rgba_free (fg_color);
 			}
 		}
 	}
 
 	/* Handle underline color */
-	if (!strstr(attrs->str, "underline_color"))
+	if (strstr (attrs->str, "underline_color") == NULL)
 	{
 		gboolean underline_rgba_set;
-		g_object_get (tag, "underline-rgba-set", &underline_rgba_set, NULL);
+
+		g_object_get (tag,
+		              "underline-rgba-set", &underline_rgba_set,
+		              NULL);
+
 		if (underline_rgba_set)
 		{
-			g_autoptr (GdkRGBA) underline_color = NULL;
-			g_object_get (tag, "underline-rgba", &underline_color, NULL);
+			GdkRGBA *underline_color = NULL;
+
+			g_object_get (tag,
+			              "underline-rgba", &underline_color,
+			              NULL);
+
 			if (underline_color != NULL)
 			{
 				if (attrs->len > 0)
@@ -3296,61 +3324,75 @@ add_attributes_for_tag (GtkTextTag *tag,
 				                 (int)(underline_color->green * 255),
 				                 (int)(underline_color->blue * 255),
 				                 (int)(underline_color->alpha * 255));
+
+				gdk_rgba_free (underline_color);
 			}
 		}
 	}
 
 	/* Handle font weight */
-	if (!strstr(attrs->str, "weight"))
+	if (strstr (attrs->str, "weight") == NULL)
 	{
 		gboolean weight_set;
-		g_object_get (tag, "weight-set", &weight_set, NULL);
+
+		g_object_get (tag,
+			      "weight-set", &weight_set,
+			      NULL);
+
 		if (weight_set)
 		{
 			PangoWeight weight;
 
-			g_object_get (tag, "weight", &weight, NULL);
+			g_object_get (tag,
+			              "weight", &weight,
+			              NULL);
 
 			if (attrs->len > 0)
 				g_string_append_c (attrs, ' ');
 
 			if (weight == PANGO_WEIGHT_THIN)
-				g_string_append(attrs, "weight=\"thin\"");
+				g_string_append (attrs, "weight=\"thin\"");
 			else if (weight == PANGO_WEIGHT_ULTRALIGHT)
-				g_string_append(attrs, "weight=\"ultralight\"");
+				g_string_append (attrs, "weight=\"ultralight\"");
 			else if (weight == PANGO_WEIGHT_LIGHT)
-				g_string_append(attrs, "weight=\"light\"");
+				g_string_append (attrs, "weight=\"light\"");
 			else if (weight == PANGO_WEIGHT_SEMILIGHT)
-				g_string_append(attrs, "weight=\"semilight\"");
+				g_string_append (attrs, "weight=\"semilight\"");
 			else if (weight == PANGO_WEIGHT_BOOK)
-				g_string_append(attrs, "weight=\"book\"");
+				g_string_append (attrs, "weight=\"book\"");
 			else if (weight == PANGO_WEIGHT_NORMAL)
-				g_string_append(attrs, "weight=\"normal\"");
+				g_string_append (attrs, "weight=\"normal\"");
 			else if (weight == PANGO_WEIGHT_MEDIUM)
-				g_string_append(attrs, "weight=\"medium\"");
+				g_string_append (attrs, "weight=\"medium\"");
 			else if (weight == PANGO_WEIGHT_SEMIBOLD)
-				g_string_append(attrs, "weight=\"semibold\"");
+				g_string_append (attrs, "weight=\"semibold\"");
 			else if (weight == PANGO_WEIGHT_BOLD)
-				g_string_append(attrs, "weight=\"bold\"");
+				g_string_append (attrs, "weight=\"bold\"");
 			else if (weight == PANGO_WEIGHT_ULTRABOLD)
-				g_string_append(attrs, "weight=\"ultrabold\"");
+				g_string_append (attrs, "weight=\"ultrabold\"");
 			else if (weight == PANGO_WEIGHT_HEAVY)
-				g_string_append(attrs, "weight=\"heavy\"");
+				g_string_append (attrs, "weight=\"heavy\"");
 			else if (weight == PANGO_WEIGHT_ULTRAHEAVY)
-				g_string_append(attrs, "weight=\"ultraheavy\"");
+				g_string_append (attrs, "weight=\"ultraheavy\"");
 		}
 	}
 
 	/* Handle font style */
-	if (!strstr(attrs->str, "style"))
+	if (strstr (attrs->str, "style") == NULL)
 	{
 		gboolean style_set;
-		g_object_get (tag, "style-set", &style_set, NULL);
+
+		g_object_get (tag,
+		              "style-set", &style_set,
+		              NULL);
+
 		if (style_set)
 		{
 			PangoStyle style;
 
-			g_object_get (tag, "style", &style, NULL);
+			g_object_get (tag,
+			              "style", &style,
+			              NULL);
 
 			if (attrs->len > 0)
 				g_string_append_c (attrs, ' ');
@@ -3365,15 +3407,21 @@ add_attributes_for_tag (GtkTextTag *tag,
 	}
 
 	/* Handle underline */
-	if (!strstr(attrs->str, "underline"))
+	if (strstr (attrs->str, "underline") == NULL)
 	{
 		gboolean underline_set;
-		g_object_get (tag, "underline-set", &underline_set, NULL);
+
+		g_object_get (tag,
+		              "underline-set", &underline_set,
+		              NULL);
+
 		if (underline_set)
 		{
 			PangoUnderline underline;
 
-			g_object_get (tag, "underline", &underline, NULL);
+			g_object_get (tag,
+			              "underline", &underline,
+			              NULL);
 
 			if (attrs->len > 0)
 				g_string_append_c (attrs, ' ');
@@ -3392,15 +3440,21 @@ add_attributes_for_tag (GtkTextTag *tag,
 	}
 
 	/* Handle strikethrough */
-	if (!strstr(attrs->str, "strikethrough"))
+	if (strstr (attrs->str, "strikethrough") == NULL)
 	{
 		gboolean strikethrough_set;
-		g_object_get (tag, "strikethrough-set", &strikethrough_set, NULL);
+
+		g_object_get (tag,
+		              "strikethrough-set", &strikethrough_set,
+		              NULL);
+
 		if (strikethrough_set)
 		{
 			gboolean strikethrough;
 
-			g_object_get (tag, "strikethrough", &strikethrough, NULL);
+			g_object_get (tag,
+			              "strikethrough", &strikethrough,
+			              NULL);
 
 			if (strikethrough)
 			{
@@ -3413,20 +3467,26 @@ add_attributes_for_tag (GtkTextTag *tag,
 	}
 
 	/* Handle font scale */
-	if (!strstr(attrs->str, "scale"))
+	if (strstr (attrs->str, "scale") == NULL)
 	{
 		gboolean scale_set;
-		g_object_get (tag, "scale-set", &scale_set, NULL);
+
+		g_object_get (tag,
+		              "scale-set", &scale_set,
+		              NULL);
+
 		if (scale_set)
 		{
-			gdouble scale;
+			double scale;
 
-			g_object_get (tag, "scale", &scale, NULL);
+			g_object_get (tag,
+			              "scale", &scale,
+			              NULL);
 
 			if (attrs->len > 0)
 				g_string_append_c (attrs, ' ');
 
-			g_string_append_printf (attrs, "size=%d%c", (int)(scale * 100), '%');
+			g_string_append_printf (attrs, "size=%d%%", (int)(scale * 100));
 		}
 	}
 }
