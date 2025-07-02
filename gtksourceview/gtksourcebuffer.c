@@ -3526,19 +3526,16 @@ add_attributes_for_tag (GtkTextTag *tag,
 }
 
 static char *
-get_attrs_at_iter (GtkTextTagTable *tag_table,
-                   GtkTextIter     *iter)
+get_attrs_at_iter (GtkTextIter *iter)
 {
-	g_autoptr (GSList) tags_at_iter = gtk_text_iter_get_tags (iter);
+	GSList *tags_at_iter = g_slist_reverse (gtk_text_iter_get_tags (iter));
 	GString *combined_attrs = g_string_new (NULL);
 	guint flags = 0;
 
-	for (GSList *i = g_slist_reverse (tags_at_iter); i != NULL; i = i->next)
-	{
-		GtkTextTag *tag = GTK_TEXT_TAG (i->data);
+	for (const GSList *cur = tags_at_iter; cur; cur = cur->next)
+		add_attributes_for_tag (cur->data, combined_attrs, &flags);
 
-		add_attributes_for_tag (tag, combined_attrs, &flags);
-	}
+	g_slist_free (tags_at_iter);
 
 	return g_string_free (combined_attrs, FALSE);
 }
@@ -3550,13 +3547,16 @@ add_styled_segment (GtkTextBuffer *buffer,
                     const char    *attrs,
                     GString       *result)
 {
-	g_autofree char *text = gtk_text_buffer_get_text (buffer, start, end, FALSE);
-	g_autofree char *escaped = g_markup_escape_text (text, -1);
+	char *text = gtk_text_buffer_get_text (buffer, start, end, FALSE);
+	char *escaped = g_markup_escape_text (text, -1);
 
-	if (attrs)
+	if (attrs && attrs[0])
 		g_string_append_printf (result, "<span %s>%s</span>", attrs, escaped);
 	else
 		g_string_append (result, escaped);
+
+	g_free (text);
+	g_free (escaped);
 }
 
 /**
@@ -3583,9 +3583,8 @@ gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
                               GtkTextIter     *end)
 {
 	GtkTextBuffer *text_buffer;
-	GtkTextTagTable *tag_table;
 	GtkTextIter current_iter, segment_start;
-	g_autofree char *prev_attrs = NULL;
+	char *prev_attrs = NULL;
 	GString *result;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
@@ -3595,37 +3594,43 @@ gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
 	gtk_source_buffer_ensure_highlight (buffer, start, end);
 
 	text_buffer = GTK_TEXT_BUFFER (buffer);
-	tag_table = gtk_text_buffer_get_tag_table (text_buffer);
 	result = g_string_new (NULL);
 
 	current_iter = *start;
 	segment_start = *start;
-	prev_attrs = get_attrs_at_iter (tag_table, &current_iter);
+	prev_attrs = get_attrs_at_iter (&current_iter);
 
 	while (gtk_text_iter_compare (&current_iter, end) < 0)
 	{
 		GtkTextIter next_iter = current_iter;
-		g_autofree char *curr_attrs = NULL;
+		char *curr_attrs = NULL;
 
 		if (!gtk_text_iter_forward_char (&next_iter))
 			break;
 
-		curr_attrs = get_attrs_at_iter (tag_table, &next_iter);
+		curr_attrs = get_attrs_at_iter (&next_iter);
 
 		if ((prev_attrs && !curr_attrs) ||
 		    (!prev_attrs && curr_attrs) ||
 		    (prev_attrs && curr_attrs && g_strcmp0 (prev_attrs, curr_attrs) != 0))
 		{
 			add_styled_segment (text_buffer, &segment_start, &next_iter, prev_attrs, result);
+
 			segment_start = next_iter;
-			prev_attrs = g_strdup (curr_attrs);
+
+			g_free (prev_attrs);
+			prev_attrs = g_steal_pointer (&curr_attrs);
 		}
+
+		g_free (curr_attrs);
 
 		current_iter = next_iter;
 	}
 
 	if (gtk_text_iter_compare (&segment_start, end) < 0)
 		add_styled_segment (text_buffer, &segment_start, end, prev_attrs, result);
+
+	g_free (prev_attrs);
 
 	return g_string_free (result, result->len == 0);
 }
