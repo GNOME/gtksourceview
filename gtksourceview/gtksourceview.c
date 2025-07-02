@@ -2697,9 +2697,7 @@ get_left_gutter_size (GtkSourceView *view)
 
 	if (priv->left_gutter != NULL)
 	{
-		GtkAllocation alloc;
-		gtk_widget_get_allocation (GTK_WIDGET (priv->left_gutter), &alloc);
-		return alloc.width;
+		return gtk_widget_get_width (GTK_WIDGET (priv->left_gutter));
 	}
 
 	return 0;
