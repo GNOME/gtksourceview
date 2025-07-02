@@ -3570,7 +3570,8 @@ add_styled_segment (GtkTextBuffer *buffer,
  * This allows the styled text to be displayed in other widgets that support
  * Pango markup, such as #GtkLabel.
  *
- * For very long ranges this function can take a few hundreds milliseconds.
+ * For very long ranges this function can take long enough that you could
+ * potentially miss frame renderings.
  *
  * Returns: (transfer full): a newly-allocated string containing the text
  *   with Pango markup, or %NULL if @start and @end are invalid.
@@ -3603,6 +3604,7 @@ gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
 	while (gtk_text_iter_compare (&current_iter, end) < 0)
 	{
 		GtkTextIter next_iter = current_iter;
+		GtkTextIter scan_iter;
 		char *curr_attrs = NULL;
 
 		if (!gtk_text_iter_forward_char (&next_iter))
@@ -3623,6 +3625,24 @@ gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
 		}
 
 		g_free (curr_attrs);
+
+		/* Scan forward until there is a tag toggled on/off */
+		scan_iter = next_iter;
+		while (gtk_text_iter_forward_char (&scan_iter))
+		{
+			GSList *tags;
+
+			if (!(tags = gtk_text_iter_get_toggled_tags (&scan_iter, TRUE)) &&
+			    !(tags = gtk_text_iter_get_toggled_tags (&scan_iter, FALSE)))
+			{
+				next_iter = scan_iter;
+				continue;
+			}
+
+			g_slist_free (tags);
+
+			break;
+		}
 
 		current_iter = next_iter;
 	}
