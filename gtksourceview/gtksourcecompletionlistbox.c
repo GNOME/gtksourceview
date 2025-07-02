@@ -350,21 +350,20 @@ static guint
 get_row_at_y (GtkSourceCompletionListBox *self,
               double                      y)
 {
-	GtkAllocation alloc;
 	guint offset;
 	guint n_items;
+	int height;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 	g_assert (G_IS_LIST_MODEL (self->context));
 
-	gtk_widget_get_allocation (GTK_WIDGET (self), &alloc);
-
+	height = gtk_widget_get_height (GTK_WIDGET (self));
 	offset = gtk_source_completion_list_box_get_offset (self);
 
 	n_items = g_list_model_get_n_items (G_LIST_MODEL (self->context));
 	n_items = MAX (1, MIN (self->n_rows, n_items));
 
-	return offset + (y / (alloc.height / n_items));
+	return offset + (y / (height / n_items));
 }
 
 static void
