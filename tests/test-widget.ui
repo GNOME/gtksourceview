@@ -59,6 +59,18 @@
           </object>
         </child>
         <child>
+          <object class="GtkButton" id="markup_button">
+            <property name="label">Copy Markup</property>
+            <property name="can-focus">1</property>
+            <property name="receives_default">1</property>
+            <signal name="clicked" handler="markup_button_clicked_cb" object="TestWidget" swapped="yes"/>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">18</property>
+            </layout>
+          </object>
+        </child>
+        <child>
           <object class="GtkLabel" id="label1">
             <property name="halign">start</property>
             <property name="label">General options</property>

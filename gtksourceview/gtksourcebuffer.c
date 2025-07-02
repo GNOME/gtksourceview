@@ -3220,3 +3220,437 @@ gtk_source_buffer_get_loading (GtkSourceBuffer *buffer)
 
 	return priv->loading_count > 0;
 }
+
+enum {
+	FLAGS_0,
+	FLAGS_BGCOLOR         = 1 << 0,
+	FLAGS_COLOR           = 1 << 1,
+	FLAGS_UNDERLINE_COLOR = 1 << 2,
+	FLAGS_WEIGHT          = 1 << 3,
+	FLAGS_STYLE           = 1 << 4,
+	FLAGS_UNDERLINE       = 1 << 5,
+	FLAGS_STRIKETHROUGH   = 1 << 6,
+	FLAGS_SCALE           = 1 << 7,
+};
+
+#define GET_FLAG(f, F) (*(f) & (F))
+#define SET_FLAG(f, F) (*(f) |= (F))
+
+static void
+add_attributes_for_tag (GtkTextTag *tag,
+                        GString    *attrs,
+			guint      *flags)
+{
+	if (gtk_text_tag_get_priority (tag) < 0)
+		return;
+
+	/* Handle background color */
+	if (!GET_FLAG (flags, FLAGS_BGCOLOR))
+	{
+		gboolean background_rgba_set;
+
+		g_object_get (tag,
+		              "background-set", &background_rgba_set,
+		              NULL);
+
+		if (background_rgba_set)
+		{
+			GdkRGBA *bg_color = NULL;
+
+			g_object_get (tag,
+			              "background-rgba", &bg_color,
+			              NULL);
+
+			if (bg_color != NULL)
+			{
+				if (attrs->len > 0)
+					g_string_append_c (attrs, ' ');
+
+				g_string_printf (attrs,
+				                 "bgcolor=\"#%02x%02x%02x%02x\"",
+				                 (int)(bg_color->red * 255),
+				                 (int)(bg_color->green * 255),
+				                 (int)(bg_color->blue * 255),
+				                 (int)(bg_color->alpha * 255));
+
+				SET_FLAG (flags, FLAGS_BGCOLOR);
+
+				gdk_rgba_free (bg_color);
+			}
+		}
+	}
+
+	/* Handle foreground color */
+	if (!GET_FLAG (flags, FLAGS_COLOR))
+	{
+		gboolean foreground_rgba_set;
+
+		g_object_get (tag,
+		              "foreground-set", &foreground_rgba_set,
+		              NULL);
+
+		if (foreground_rgba_set)
+		{
+			GdkRGBA *fg_color = NULL;
+
+			g_object_get (tag,
+			              "foreground-rgba", &fg_color,
+			              NULL);
+
+			if (fg_color != NULL)
+			{
+				if (attrs->len > 0)
+					g_string_append_c (attrs, ' ');
+
+				g_string_printf (attrs,
+				                 "color=\"#%02x%02x%02x%02x\"",
+				                 (int)(fg_color->red * 255),
+				                 (int)(fg_color->green * 255),
+				                 (int)(fg_color->blue * 255),
+				                 (int)(fg_color->alpha * 255));
+
+				SET_FLAG (flags, FLAGS_COLOR);
+
+				gdk_rgba_free (fg_color);
+			}
+		}
+	}
+
+	/* Handle underline color */
+	if (!GET_FLAG (flags, FLAGS_UNDERLINE_COLOR))
+	{
+		gboolean underline_rgba_set;
+
+		g_object_get (tag,
+		              "underline-rgba-set", &underline_rgba_set,
+		              NULL);
+
+		if (underline_rgba_set)
+		{
+			GdkRGBA *underline_color = NULL;
+
+			g_object_get (tag,
+			              "underline-rgba", &underline_color,
+			              NULL);
+
+			if (underline_color != NULL)
+			{
+				if (attrs->len > 0)
+					g_string_append_c (attrs, ' ');
+
+				g_string_printf (attrs,
+				                 "underline_color=\"#%02x%02x%02x%02x\"",
+				                 (int)(underline_color->red * 255),
+				                 (int)(underline_color->green * 255),
+				                 (int)(underline_color->blue * 255),
+				                 (int)(underline_color->alpha * 255));
+
+				SET_FLAG (flags, FLAGS_UNDERLINE_COLOR);
+
+				gdk_rgba_free (underline_color);
+			}
+		}
+	}
+
+	/* Handle font weight */
+	if (!GET_FLAG (flags, FLAGS_WEIGHT))
+	{
+		gboolean weight_set;
+
+		g_object_get (tag,
+			      "weight-set", &weight_set,
+			      NULL);
+
+		if (weight_set)
+		{
+			PangoWeight weight;
+
+			g_object_get (tag,
+			              "weight", &weight,
+			              NULL);
+
+			if (attrs->len > 0)
+				g_string_append_c (attrs, ' ');
+
+			if (weight == PANGO_WEIGHT_THIN)
+				g_string_append (attrs, "weight=\"thin\"");
+			else if (weight == PANGO_WEIGHT_ULTRALIGHT)
+				g_string_append (attrs, "weight=\"ultralight\"");
+			else if (weight == PANGO_WEIGHT_LIGHT)
+				g_string_append (attrs, "weight=\"light\"");
+			else if (weight == PANGO_WEIGHT_SEMILIGHT)
+				g_string_append (attrs, "weight=\"semilight\"");
+			else if (weight == PANGO_WEIGHT_BOOK)
+				g_string_append (attrs, "weight=\"book\"");
+			else if (weight == PANGO_WEIGHT_NORMAL)
+				g_string_append (attrs, "weight=\"normal\"");
+			else if (weight == PANGO_WEIGHT_MEDIUM)
+				g_string_append (attrs, "weight=\"medium\"");
+			else if (weight == PANGO_WEIGHT_SEMIBOLD)
+				g_string_append (attrs, "weight=\"semibold\"");
+			else if (weight == PANGO_WEIGHT_BOLD)
+				g_string_append (attrs, "weight=\"bold\"");
+			else if (weight == PANGO_WEIGHT_ULTRABOLD)
+				g_string_append (attrs, "weight=\"ultrabold\"");
+			else if (weight == PANGO_WEIGHT_HEAVY)
+				g_string_append (attrs, "weight=\"heavy\"");
+			else if (weight == PANGO_WEIGHT_ULTRAHEAVY)
+				g_string_append (attrs, "weight=\"ultraheavy\"");
+			else
+				g_string_append_printf (attrs, "weight=\"%u\"", weight);
+
+			SET_FLAG (flags, FLAGS_WEIGHT);
+		}
+	}
+
+	/* Handle font style */
+	if (!GET_FLAG (flags, FLAGS_STYLE))
+	{
+		gboolean style_set;
+
+		g_object_get (tag,
+		              "style-set", &style_set,
+		              NULL);
+
+		if (style_set)
+		{
+			PangoStyle style;
+
+			g_object_get (tag,
+			              "style", &style,
+			              NULL);
+
+			if (attrs->len > 0)
+				g_string_append_c (attrs, ' ');
+
+			if (style == PANGO_STYLE_NORMAL)
+				g_string_append (attrs, "style=\"normal\"");
+			else if (style == PANGO_STYLE_OBLIQUE)
+				g_string_append (attrs, "style=\"oblique\"");
+			else if (style == PANGO_STYLE_ITALIC)
+				g_string_append (attrs, "style=\"italic\"");
+
+			SET_FLAG (flags, FLAGS_STYLE);
+		}
+	}
+
+	/* Handle underline */
+	if (!GET_FLAG (flags, FLAGS_UNDERLINE))
+	{
+		gboolean underline_set;
+
+		g_object_get (tag,
+		              "underline-set", &underline_set,
+		              NULL);
+
+		if (underline_set)
+		{
+			PangoUnderline underline;
+
+			g_object_get (tag,
+			              "underline", &underline,
+			              NULL);
+
+			if (attrs->len > 0)
+				g_string_append_c (attrs, ' ');
+
+			if (underline == PANGO_UNDERLINE_NONE)
+				g_string_append (attrs, "underline=\"none\"");
+			else if (underline == PANGO_UNDERLINE_DOUBLE)
+				g_string_append (attrs, "underline=\"double\"");
+			else if (underline == PANGO_UNDERLINE_SINGLE)
+				g_string_append (attrs, "underline=\"single\"");
+			else if (underline == PANGO_UNDERLINE_LOW)
+				g_string_append (attrs, "underline=\"low\"");
+			else if (underline == PANGO_UNDERLINE_ERROR)
+				g_string_append (attrs, "underline=\"error\"");
+
+			SET_FLAG (flags, FLAGS_UNDERLINE);
+		}
+	}
+
+	/* Handle strikethrough */
+	if (!GET_FLAG (flags, FLAGS_STRIKETHROUGH))
+	{
+		gboolean strikethrough_set;
+
+		g_object_get (tag,
+		              "strikethrough-set", &strikethrough_set,
+		              NULL);
+
+		if (strikethrough_set)
+		{
+			gboolean strikethrough;
+
+			g_object_get (tag,
+			              "strikethrough", &strikethrough,
+			              NULL);
+
+			if (strikethrough)
+			{
+				if (attrs->len > 0)
+					g_string_append_c (attrs, ' ');
+
+				g_string_append (attrs, "strikethrough=\"true\"");
+
+				SET_FLAG (flags, FLAGS_STRIKETHROUGH);
+			}
+		}
+	}
+
+	/* Handle font scale */
+	if (!GET_FLAG (flags, FLAGS_SCALE))
+	{
+		gboolean scale_set;
+
+		g_object_get (tag,
+		              "scale-set", &scale_set,
+		              NULL);
+
+		if (scale_set)
+		{
+			double scale;
+
+			g_object_get (tag,
+			              "scale", &scale,
+			              NULL);
+
+			if (attrs->len > 0)
+				g_string_append_c (attrs, ' ');
+
+			g_string_append_printf (attrs, "size=%d%%", (int)(scale * 100));
+
+			SET_FLAG (flags, FLAGS_SCALE);
+		}
+	}
+}
+
+static char *
+get_attrs_at_iter (GtkTextIter *iter)
+{
+	GSList *tags_at_iter = g_slist_reverse (gtk_text_iter_get_tags (iter));
+	GString *combined_attrs = g_string_new (NULL);
+	guint flags = 0;
+
+	for (const GSList *cur = tags_at_iter; cur; cur = cur->next)
+		add_attributes_for_tag (cur->data, combined_attrs, &flags);
+
+	g_slist_free (tags_at_iter);
+
+	return g_string_free (combined_attrs, FALSE);
+}
+
+static void
+add_styled_segment (GtkTextBuffer *buffer,
+                    GtkTextIter   *start,
+                    GtkTextIter   *end,
+                    const char    *attrs,
+                    GString       *result)
+{
+	char *text = gtk_text_buffer_get_text (buffer, start, end, FALSE);
+	char *escaped = g_markup_escape_text (text, -1);
+
+	if (attrs && attrs[0])
+		g_string_append_printf (result, "<span %s>%s</span>", attrs, escaped);
+	else
+		g_string_append (result, escaped);
+
+	g_free (text);
+	g_free (escaped);
+}
+
+/**
+ * gtk_source_buffer_get_markup:
+ * @buffer: a #GtkSourceBuffer
+ * @start: start of range as a #GtkTextIter
+ * @end: end of range as a #GtkTextIter
+ *
+ * Returns the text in the specified range converting any text formatting
+ * to equivalent Pango markup tags.
+ * This allows the styled text to be displayed in other widgets that support
+ * Pango markup, such as #GtkLabel.
+ *
+ * For very long ranges this function can take long enough that you could
+ * potentially miss frame renderings.
+ *
+ * Returns: (transfer full): a newly-allocated string containing the text
+ *   with Pango markup, or %NULL if @start and @end are invalid.
+ *
+ * Since: 5.18
+ */
+char *
+gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
+                              GtkTextIter     *start,
+                              GtkTextIter     *end)
+{
+	GtkTextBuffer *text_buffer;
+	GtkTextIter current_iter, segment_start;
+	char *prev_attrs = NULL;
+	GString *result;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+	g_return_val_if_fail (start != NULL, NULL);
+	g_return_val_if_fail (end != NULL, NULL);
+
+	gtk_source_buffer_ensure_highlight (buffer, start, end);
+
+	text_buffer = GTK_TEXT_BUFFER (buffer);
+	result = g_string_new (NULL);
+
+	current_iter = *start;
+	segment_start = *start;
+	prev_attrs = get_attrs_at_iter (&current_iter);
+
+	while (gtk_text_iter_compare (&current_iter, end) < 0)
+	{
+		GtkTextIter next_iter = current_iter;
+		GtkTextIter scan_iter;
+		char *curr_attrs = NULL;
+
+		if (!gtk_text_iter_forward_char (&next_iter))
+			break;
+
+		curr_attrs = get_attrs_at_iter (&next_iter);
+
+		if ((prev_attrs && !curr_attrs) ||
+		    (!prev_attrs && curr_attrs) ||
+		    (prev_attrs && curr_attrs && g_strcmp0 (prev_attrs, curr_attrs) != 0))
+		{
+			add_styled_segment (text_buffer, &segment_start, &next_iter, prev_attrs, result);
+
+			segment_start = next_iter;
+
+			g_free (prev_attrs);
+			prev_attrs = g_steal_pointer (&curr_attrs);
+		}
+
+		g_free (curr_attrs);
+
+		/* Scan forward until there is a tag toggled on/off */
+		scan_iter = next_iter;
+		while (gtk_text_iter_forward_char (&scan_iter))
+		{
+			GSList *tags;
+
+			if (!(tags = gtk_text_iter_get_toggled_tags (&scan_iter, TRUE)) &&
+			    !(tags = gtk_text_iter_get_toggled_tags (&scan_iter, FALSE)))
+			{
+				next_iter = scan_iter;
+				continue;
+			}
+
+			g_slist_free (tags);
+
+			break;
+		}
+
+		current_iter = next_iter;
+	}
+
+	if (gtk_text_iter_compare (&segment_start, end) < 0)
+		add_styled_segment (text_buffer, &segment_start, end, prev_attrs, result);
+
+	g_free (prev_attrs);
+
+	return g_string_free (result, result->len == 0);
+}

@@ -517,6 +517,27 @@ open_button_clicked_cb (TestWidget *self)
 	g_object_unref (dialog);
 }
 
+static void
+markup_button_clicked_cb (TestWidget *self)
+{
+	GdkClipboard *clipboard;
+	GtkTextIter start, end;
+	char *markup;
+
+	if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (self->buffer), &start, &end))
+	{
+		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (self->buffer), &start, &end);
+	}
+
+	markup = gtk_source_buffer_get_markup (self->buffer, &start, &end);
+
+	clipboard = gdk_display_get_clipboard (gtk_widget_get_display(GTK_WIDGET(self)));
+	gdk_clipboard_set_text (clipboard, markup);
+
+	g_free (markup);
+}
+
+
 #define NON_BLOCKING_PAGINATION
 
 #ifndef NON_BLOCKING_PAGINATION
@@ -1039,6 +1060,7 @@ test_widget_class_init (TestWidgetClass *klass)
 
 	gtk_widget_class_bind_template_callback (widget_class, open_button_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, print_button_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, markup_button_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, highlight_syntax_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, highlight_matching_bracket_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, show_line_numbers_toggled_cb);
