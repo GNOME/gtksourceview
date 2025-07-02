@@ -239,12 +239,12 @@ get_slider_position (GtkSourceMap *map,
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GdkRectangle them_visible_rect, us_visible_rect;
-	GdkRectangle us_alloc;
 	GtkTextBuffer *buffer;
 	GtkTextIter end_iter;
 	GdkRectangle end_rect;
 	GtkBorder border;
 	int us_height;
+	int us_width;
 	int them_height;
 
 	if (priv->view == NULL)
@@ -252,7 +252,7 @@ get_slider_position (GtkSourceMap *map,
 		return;
 	}
 
-	gtk_widget_get_allocation (GTK_WIDGET (map), &us_alloc);
+	us_width = gtk_widget_get_width (GTK_WIDGET (map));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
 
@@ -273,7 +273,7 @@ get_slider_position (GtkSourceMap *map,
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (map), &us_visible_rect);
 
 	slider_area->x = 0;
-	slider_area->width = us_alloc.width - border.left - border.right;
+	slider_area->width = us_width - border.left - border.right;
 	slider_area->height = 100;
 	slider_area->y = (double)them_visible_rect.y / (double)them_height * (double)us_height;
 	slider_area->height = ((double)(them_visible_rect.y + them_visible_rect.height) / (double)them_height * (double)us_height) - slider_area->y;
@@ -826,10 +826,8 @@ scroll_to_child_point (GtkSourceMap *map,
 
 	if (priv->view != NULL)
 	{
-		GtkAllocation alloc;
 		GtkTextIter iter;
 
-		gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map), &iter, x, y);
 		_gtk_source_view_jump_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
 		                               0.0, TRUE, 1.0, 0.5);
@@ -1109,7 +1107,6 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GtkTextBuffer *buffer;
-	GtkAllocation alloc;
 	GdkRectangle area;
 	GtkTextIter iter;
 	double yratio;
@@ -1118,6 +1115,7 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	int ignored;
 	int real_height;
 	int height;
+	int widget_height;
 
 	if (!priv->reached_drag_threshold && ABS (y) < DRAG_THRESHOLD)
 	{
@@ -1126,16 +1124,17 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 
 	priv->reached_drag_threshold = TRUE;
 
-	gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
+	widget_height = gtk_widget_get_height (GTK_WIDGET (map));
+
 	gtk_gesture_drag_get_start_point (drag, &begin_x, &begin_y);
-	y = CLAMP (ceil (begin_y + y), 0, alloc.height);
+	y = CLAMP (ceil (begin_y + y), 0, widget_height);
 
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->measure (GTK_WIDGET (map),
-								 GTK_ORIENTATION_VERTICAL,
-								 gtk_widget_get_width (GTK_WIDGET (map)),
-								 &ignored, &real_height, &ignored, &ignored);
+	                                                         GTK_ORIENTATION_VERTICAL,
+	                                                         gtk_widget_get_width (GTK_WIDGET (map)),
+	                                                         &ignored, &real_height, &ignored, &ignored);
 
-	height = MIN (real_height, alloc.height) - gtk_text_view_get_bottom_margin (GTK_TEXT_VIEW (map));
+	height = MIN (real_height, widget_height) - gtk_text_view_get_bottom_margin (GTK_TEXT_VIEW (map));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
 	gtk_text_buffer_get_end_iter (buffer, &iter);
