@@ -29,7 +29,7 @@
 
 /**
  * GtkSourceStyleSchemeChooserButton:
- * 
+ *
  * A button to launch a style scheme selection dialog.
  *
  * The `GtkSourceStyleSchemeChooserButton` is a button which displays
@@ -163,6 +163,8 @@ dialog_response (GtkDialog *dialog,
 static void
 ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 {
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 	GtkSourceStyleSchemeChooserButtonPrivate *priv = gtk_source_style_scheme_chooser_button_get_instance_private (button);
 	GtkWidget *parent, *dialog, *scrolled_window;
 	GtkWidget *content_area;
@@ -218,6 +220,8 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	                         G_CALLBACK (dialog_response), button, 0);
 	g_signal_connect_object (dialog, "destroy",
 	                         G_CALLBACK (dialog_destroy), button, 0);
+
+	G_GNUC_END_IGNORE_DEPRECATIONS
 }
 
 static void
