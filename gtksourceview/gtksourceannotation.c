@@ -351,22 +351,23 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
 
 		switch (self->style)
-			{
-			case GTK_SOURCE_ANNOTATION_STYLE_WARNING:
-				_gtk_source_style_scheme_get_warning_color (style_scheme,
-				                                            &choosen_color);
-				break;
+		{
+		case GTK_SOURCE_ANNOTATION_STYLE_WARNING:
+			_gtk_source_style_scheme_get_warning_color (style_scheme, &choosen_color);
+			break;
 
-			case GTK_SOURCE_ANNOTATION_STYLE_ERROR:
-				_gtk_source_style_scheme_get_error_color (style_scheme,
-				                                          &choosen_color);
-				break;
+		case GTK_SOURCE_ANNOTATION_STYLE_ERROR:
+			_gtk_source_style_scheme_get_error_color (style_scheme, &choosen_color);
+			break;
 
-			case GTK_SOURCE_ANNOTATION_STYLE_ACCENT:
-				_gtk_source_style_scheme_get_accent_color (style_scheme,
-				                                           &choosen_color);
-				break;
-			}
+		case GTK_SOURCE_ANNOTATION_STYLE_ACCENT:
+			_gtk_source_style_scheme_get_accent_color (style_scheme, &choosen_color);
+			break;
+
+		case GTK_SOURCE_ANNOTATION_STYLE_NONE:
+		default:
+			g_assert_not_reached ();
+		}
 	}
 
 	if (gdk_rgba_is_clear (&choosen_color))
