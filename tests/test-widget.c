@@ -1393,7 +1393,7 @@ test_annotation_provider_dispose (GObject *object)
 	G_OBJECT_CLASS (test_annotation_provider_parent_class)->dispose (object);
 }
 
-void
+static void
 test_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider  *self,
                                                GtkSourceAnnotation          *annotation,
                                                GtkSourceHoverDisplay        *display,
@@ -1422,7 +1422,7 @@ test_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider  *sel
 	g_object_unref (task);
 }
 
-gboolean
+static gboolean
 test_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvider  *self,
                                                 GAsyncResult                 *result,
                                                 GError                      **error)
