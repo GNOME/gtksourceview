@@ -1390,7 +1390,6 @@ test_hover_provider_init (TestHoverProvider *self)
 static void
 test_annotation_provider_dispose (GObject *object)
 {
-	TestAnnotationProvider *p = TEST_ANNOTATION_PROVIDER (object);
 	G_OBJECT_CLASS (test_annotation_provider_parent_class)->dispose (object);
 }
 
