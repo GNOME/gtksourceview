@@ -68,7 +68,7 @@ build_documentation = get_option('documentation')
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.72'
+glib_req_version = '2.76'
 gtk_req_version = '4.17'
 
 libm_dep = cc.find_library('m', required: false)

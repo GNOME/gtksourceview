@@ -22,11 +22,13 @@
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 
+#define TEST_TYPE_ANNOTATION_PROVIDER (test_annotation_provider_get_type())
 #define TEST_TYPE_WIDGET (test_widget_get_type())
 #define TEST_TYPE_HOVER_PROVIDER (test_hover_provider_get_type())
 
 G_DECLARE_FINAL_TYPE (TestWidget, test_widget, TEST, WIDGET, GtkGrid)
 G_DECLARE_FINAL_TYPE (TestHoverProvider, test_hover_provider, TEST, HOVER_PROVIDER, GObject)
+G_DECLARE_FINAL_TYPE (TestAnnotationProvider, test_annotation_provider, TEST, ANNOTATION_PROVIDER, GtkSourceAnnotationProvider)
 
 struct _TestWidget
 {
@@ -51,9 +53,16 @@ struct _TestWidget
 	GtkScrolledWindow *scrolledwindow1;
 	GtkEventController *vim_controller;
 	GtkLabel *command_bar;
+	GtkSourceAnnotationProvider *annotation_provider;
+	GtkSourceAnnotationProvider *error_provider;
 };
 
 struct _TestHoverProvider
+{
+	GObject parent_instance;
+};
+
+struct _TestAnnotationProvider
 {
 	GObject parent_instance;
 };
@@ -63,6 +72,7 @@ static void hover_provider_iface_init (GtkSourceHoverProviderInterface *iface);
 G_DEFINE_TYPE (TestWidget, test_widget, GTK_TYPE_GRID)
 G_DEFINE_TYPE_WITH_CODE (TestHoverProvider, test_hover_provider, G_TYPE_OBJECT,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_HOVER_PROVIDER, hover_provider_iface_init))
+G_DEFINE_TYPE (TestAnnotationProvider, test_annotation_provider, GTK_SOURCE_TYPE_ANNOTATION_PROVIDER)
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
@@ -1001,6 +1011,97 @@ enable_hover_toggled_cb (TestWidget     *self,
 }
 
 static void
+on_cursor_moved (TestWidget *self)
+{
+	GtkSourceAnnotation *annotation;
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	gint line;
+	gchar *line_text;
+
+	if (self->annotation_provider == NULL)
+	{
+		return;
+	}
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view));
+	gtk_text_buffer_get_iter_at_mark (buffer,
+	                                  &iter,
+	                                  gtk_text_buffer_get_insert (buffer));
+
+	line = gtk_text_iter_get_line (&iter);
+
+	line_text = g_strdup_printf ("Line %d annotation", line + 1);
+
+	annotation = gtk_source_annotation_new (line_text,
+	                                        g_icon_new_for_string ("dialog-information-symbolic", NULL),
+	                                        line,
+	                                        GTK_SOURCE_ANNOTATION_STYLE_NONE);
+
+	gtk_source_annotation_provider_remove_all (self->annotation_provider);
+
+	gtk_source_annotation_provider_add_annotation (self->annotation_provider, annotation);
+
+	g_object_unref (annotation);
+	g_free (line_text);
+}
+
+static void
+enable_annotations_toggled_cb (TestWidget     *self,
+                               GtkCheckButton *button)
+{
+	GtkSourceAnnotations *annotations = gtk_source_view_get_annotations (self->view);
+	gboolean enabled = gtk_check_button_get_active (button);
+
+	if (self->annotation_provider == NULL)
+	{
+		self->annotation_provider = GTK_SOURCE_ANNOTATION_PROVIDER (g_object_new (TEST_TYPE_ANNOTATION_PROVIDER, NULL));
+	}
+
+	if (self->error_provider == NULL)
+	{
+		GtkSourceAnnotation *annotation;
+
+		self->error_provider = GTK_SOURCE_ANNOTATION_PROVIDER (g_object_new (TEST_TYPE_ANNOTATION_PROVIDER, NULL));
+
+		annotation = gtk_source_annotation_new ("Error Style!",
+		                                        g_icon_new_for_string ("emblem-important-symbolic", NULL),
+		                                        23,
+		                                        GTK_SOURCE_ANNOTATION_STYLE_ERROR);
+
+		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
+
+		annotation = gtk_source_annotation_new ("Warning Style!",
+		                                        g_icon_new_for_string ("dialog-warning-symbolic", NULL),
+		                                        25,
+		                                        GTK_SOURCE_ANNOTATION_STYLE_WARNING);
+
+		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
+
+		annotation = gtk_source_annotation_new ("Accent Style without an icon",
+		                                        NULL,
+		                                        21,
+		                                        GTK_SOURCE_ANNOTATION_STYLE_ACCENT);
+
+		gtk_source_annotation_provider_add_annotation (self->error_provider, annotation);
+		g_object_unref (annotation);
+	}
+
+	if (enabled)
+	{
+		gtk_source_annotations_add_provider (annotations, self->annotation_provider);
+		gtk_source_annotations_add_provider (annotations, self->error_provider);
+	}
+	else
+	{
+		gtk_source_annotations_remove_provider (annotations, self->annotation_provider);
+		gtk_source_annotations_remove_provider (annotations, self->error_provider);
+	}
+}
+
+static void
 vim_checkbutton_toggled_cb (TestWidget     *self,
                             GtkCheckButton *button)
 {
@@ -1078,6 +1179,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_selected_notify_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_annotations_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, vim_checkbutton_toggled_cb);
 
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, view);
@@ -1228,6 +1330,13 @@ test_widget_init (TestWidget *self)
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
+	g_signal_connect_swapped (self->buffer,
+				"notify::cursor-position",
+				G_CALLBACK (on_cursor_moved),
+				self);
+
+	g_print("connected!!\n");
+
 	if (cmd_filename)
 		file = g_file_new_for_commandline_arg (cmd_filename);
 	else
@@ -1275,6 +1384,69 @@ test_hover_provider_class_init (TestHoverProviderClass *klass)
 
 static void
 test_hover_provider_init (TestHoverProvider *self)
+{
+}
+
+static void
+test_annotation_provider_dispose (GObject *object)
+{
+	G_OBJECT_CLASS (test_annotation_provider_parent_class)->dispose (object);
+}
+
+static void
+test_annotation_provider_populate_hover_async (GtkSourceAnnotationProvider  *self,
+                                               GtkSourceAnnotation          *annotation,
+                                               GtkSourceHoverDisplay        *display,
+                                               GCancellable                 *cancellable,
+                                               GAsyncReadyCallback           callback,
+                                               gpointer                      user_data)
+{
+	GTask *task = NULL;
+
+	g_assert (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self));
+	g_assert (GTK_SOURCE_IS_HOVER_DISPLAY (display));
+	g_assert (!cancellable || G_IS_CANCELLABLE (cancellable));
+
+	task = g_task_new (self, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gtk_source_annotation_provider_populate_hover_async);
+
+	gtk_source_hover_display_append (display,
+	                                 g_object_new (GTK_TYPE_LABEL,
+	                                               "label", gtk_source_annotation_get_description (annotation),
+	                                               "margin-start", 12,
+	                                               "margin-end", 12,
+	                                               NULL));
+
+	g_task_return_boolean (task, TRUE);
+
+	g_object_unref (task);
+}
+
+static gboolean
+test_annotation_provider_populate_hover_finish (GtkSourceAnnotationProvider  *self,
+                                                GAsyncResult                 *result,
+                                                GError                      **error)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION_PROVIDER (self), FALSE);
+	g_return_val_if_fail (G_IS_ASYNC_RESULT (result), FALSE);
+
+	return g_task_propagate_boolean (G_TASK (result), error);
+}
+
+static void
+test_annotation_provider_class_init (TestAnnotationProviderClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GtkSourceAnnotationProviderClass *provider_class = GTK_SOURCE_ANNOTATION_PROVIDER_CLASS (klass);
+
+	object_class->dispose = test_annotation_provider_dispose;
+
+	provider_class->populate_hover_async = test_annotation_provider_populate_hover_async;
+	provider_class->populate_hover_finish = test_annotation_provider_populate_hover_finish;
+}
+
+static void
+test_annotation_provider_init (TestAnnotationProvider *self)
 {
 }
 

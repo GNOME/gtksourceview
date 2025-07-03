@@ -56,5 +56,7 @@ void                _gtk_source_assistant_set_child          (GtkSourceAssistant
                                                               GtkWidget          *child);
 gboolean            _gtk_source_assistant_update_position    (GtkSourceAssistant *assistant);
 void                _gtk_source_assistant_destroy            (GtkSourceAssistant *assistant);
+void                _gtk_source_assistant_set_pref_position  (GtkSourceAssistant *self,
+                                                              GtkPositionType     position);
 
 G_END_DECLS

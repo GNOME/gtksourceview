@@ -20,6 +20,9 @@
 #define GTK_SOURCE_H_INSIDE
 
 #include "gtksourcetypes.h"
+#include "gtksourceannotation.h"
+#include "gtksourceannotations.h"
+#include "gtksourceannotationprovider.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletioncell.h"

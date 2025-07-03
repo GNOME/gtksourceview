@@ -66,5 +66,14 @@ gboolean              _gtk_source_style_scheme_get_background_color             
 G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_text_color                           (GtkSourceStyleScheme *scheme,
                                                                                          GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_warning_color                        (GtkSourceStyleScheme *scheme,
+                                                                                         GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_error_color                          (GtkSourceStyleScheme *scheme,
+                                                                                         GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_accent_color                         (GtkSourceStyleScheme *scheme,
+                                                                                         GdkRGBA              *color);
 
 G_END_DECLS

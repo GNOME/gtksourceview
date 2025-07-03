@@ -21,6 +21,9 @@
 
 #include "config.h"
 
+#include "gtksourceannotation-private.h"
+#include "gtksourceannotations-private.h"
+#include "gtksourceannotationprovider-private.h"
 #include "gtksourceassistant-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcehover-private.h"
@@ -220,11 +223,63 @@ gtk_source_hover_get_bounds (GtkSourceHover *self,
 }
 
 static gboolean
+gtk_source_hover_get_annotation (GtkSourceHover               *self,
+                                 GtkSourceAnnotationProvider **provider_out,
+                                 GtkSourceAnnotation         **annotation_out)
+{
+	GtkSourceAnnotations *annotations;
+	GtkSourceGutter *left;
+	GPtrArray *providers;
+	guint i, j;
+	int gutter_width = 0;
+
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+	g_assert (!self->view || GTK_SOURCE_IS_VIEW (self->view));
+
+	if (self->view == NULL || provider_out == NULL || annotation_out == NULL)
+	{
+		return FALSE;
+	}
+
+	left = gtk_source_view_get_gutter (self->view, GTK_TEXT_WINDOW_LEFT);
+
+	if (left != NULL)
+	{
+		gutter_width = gtk_widget_get_width (GTK_WIDGET (left));
+	}
+
+	annotations = gtk_source_view_get_annotations (self->view);
+	providers = _gtk_source_annotations_get_providers (annotations);
+
+	for (i = 0; i < providers->len; i++)
+	{
+		GtkSourceAnnotationProvider *provider = g_ptr_array_index (providers, i);
+		GPtrArray *annotations_array = _gtk_source_annotation_provider_get_annotations (provider);
+
+		for (j = 0; j < annotations_array->len; j++)
+		{
+			GtkSourceAnnotation *annotation = g_ptr_array_index (annotations_array, j);
+
+			if (_gtk_source_annotation_contains_point (annotation, self->motion_x - gutter_width, self->motion_y))
+			{
+				*provider_out = provider;
+				*annotation_out = annotation;
+				return TRUE;
+			}
+		}
+	}
+
+	return FALSE;
+}
+
+static gboolean
 gtk_source_hover_settled_cb (GtkSourceHover *self)
 {
 	GtkTextIter begin;
 	GtkTextIter end;
 	GtkTextIter location;
+	GtkSourceAnnotation *annotation;
+	GtkSourceAnnotationProvider *provider;
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
@@ -236,6 +291,12 @@ gtk_source_hover_settled_cb (GtkSourceHover *self)
 		                                     (GtkSourceHoverProvider **)self->providers->pdata,
 		                                     self->providers->len,
 		                                     &begin, &end, &location);
+	}
+	else if (gtk_source_hover_get_annotation (self, &provider, &annotation))
+	{
+		_gtk_source_hover_assistant_display_annotation (GTK_SOURCE_HOVER_ASSISTANT (self->assistant),
+		                                                provider,
+		                                                annotation);
 	}
 
 	return G_SOURCE_REMOVE;

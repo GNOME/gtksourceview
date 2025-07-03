@@ -67,6 +67,10 @@
 #define STYLE_SNIPPET_FOCUS		"snippet-focus"
 #define STYLE_BACKGROUND_PATTERN	"background-pattern"
 
+#define STYLE_WARNING                   "diff:changed-line"
+#define STYLE_ERROR                     "diff:removed-line"
+#define STYLE_ACCENT                    "diff:added-line"
+
 #define STYLE_SCHEME_VERSION		"1.0"
 
 #define DEFAULT_STYLE_SCHEME		"classic"
@@ -744,6 +748,48 @@ _gtk_source_style_scheme_get_text_color (GtkSourceStyleScheme *scheme,
 	g_return_val_if_fail (color != NULL, FALSE);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
+
+	return get_color (style, TRUE, color);
+}
+
+gboolean
+_gtk_source_style_scheme_get_warning_color (GtkSourceStyleScheme *scheme,
+                                            GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_WARNING);
+
+	return get_color (style, TRUE, color);
+}
+
+gboolean
+_gtk_source_style_scheme_get_error_color (GtkSourceStyleScheme *scheme,
+                                          GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_ERROR);
+
+	return get_color (style, TRUE, color);
+}
+
+gboolean
+_gtk_source_style_scheme_get_accent_color (GtkSourceStyleScheme *scheme,
+                                           GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_ACCENT);
 
 	return get_color (style, TRUE, color);
 }

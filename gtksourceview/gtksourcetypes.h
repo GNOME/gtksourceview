@@ -35,6 +35,9 @@ G_BEGIN_DECLS
  * https://bugzilla.gnome.org/show_bug.cgi?id=679424#c20
  */
 
+typedef struct _GtkSourceAnnotation                GtkSourceAnnotation;
+typedef struct _GtkSourceAnnotations               GtkSourceAnnotations;
+typedef struct _GtkSourceAnnotationProvider        GtkSourceAnnotationProvider;
 typedef struct _GtkSourceBuffer                    GtkSourceBuffer;
 typedef struct _GtkSourceCompletion                GtkSourceCompletion;
 typedef struct _GtkSourceCompletionCell            GtkSourceCompletionCell;
