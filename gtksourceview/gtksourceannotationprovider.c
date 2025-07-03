@@ -25,7 +25,6 @@ typedef struct
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceAnnotationProvider, gtk_source_annotation_provider, G_TYPE_OBJECT)
 
 enum {
-	POPULATE,
 	CHANGED,
 	N_SIGNALS
 };
