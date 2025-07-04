@@ -934,7 +934,7 @@ renderer_at_x (GtkSourceGutter *gutter,
 		Renderer *renderer = item->data;
 		graphene_rect_t grect;
 
-		if (gtk_widget_compute_bounds (GTK_WIDGET (gutter), GTK_WIDGET (renderer->renderer), &grect))
+		if (gtk_widget_compute_bounds (GTK_WIDGET (renderer->renderer), GTK_WIDGET (gutter), &grect))
 		{
 			if (x >= grect.origin.x && x <= grect.origin.x + grect.size.width)
 			{
@@ -955,7 +955,7 @@ get_renderer_rect (GtkSourceGutter *gutter,
 {
 	graphene_rect_t grect;
 
-	if (gtk_widget_compute_bounds (GTK_WIDGET (gutter), GTK_WIDGET (renderer->renderer), &grect))
+	if (gtk_widget_compute_bounds (GTK_WIDGET (renderer->renderer), GTK_WIDGET (gutter), &grect))
 	{
 		int ypad;
 		int height;
