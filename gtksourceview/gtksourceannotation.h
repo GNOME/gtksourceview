@@ -37,6 +37,8 @@ G_BEGIN_DECLS
  * @GTK_SOURCE_ANNOTATION_STYLE_WARNING: same as the diff:changed-line foreground color
  * @GTK_SOURCE_ANNOTATION_STYLE_ERROR: same as the diff:removed-line foreground color
  * @GTK_SOURCE_ANNOTATION_STYLE_ACCENT: same as the diff:added-line foreground color
+ *
+ * Since: 5.18
  */
 typedef enum _GtkSourceAnnotationStyle
 {

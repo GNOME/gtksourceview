@@ -45,6 +45,8 @@
  *
  * Add [class@AnnotationProvider]s with [method@Annotations.add_provider] to
  * display all the annotations added to each [class@AnnotationProvider].
+ *
+ * Since: 5.18
  */
 
 struct _GtkSourceAnnotations

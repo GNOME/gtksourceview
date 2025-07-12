@@ -36,6 +36,7 @@
  *
  * If the style is GTK_SOURCE_ANNOTATION_STYLE_NONE it will use the same color as [class@SpaceDrawer].
  *
+ * Since: 5.18
  */
 
 struct _GtkSourceAnnotation
