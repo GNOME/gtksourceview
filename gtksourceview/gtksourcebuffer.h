@@ -75,9 +75,16 @@ typedef enum _GtkSourceChangeCaseType
  * @GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE: case sensitive sort
  * @GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER: sort in reverse order
  * @GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES: remove duplicates
- * @GTK_SOURCE_SORT_FLAGS_FILENAME: improved sorting for filenames
- *      (see [func@GLib.utf8_collate_key_for_filename])
- *      Since: 5.16
+ */
+
+/**
+ * GTK_SOURCE_SORT_FLAGS_FILENAME:
+ *
+ * improved sorting for filenames.
+ *
+ * see [func@GLib.utf8_collate_key_for_filename]
+ *
+ * Since: 5.16
  */
 typedef enum _GtkSourceSortFlags
 {

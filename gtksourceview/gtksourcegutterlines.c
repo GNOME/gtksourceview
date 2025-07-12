@@ -604,6 +604,8 @@ gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
  * Gets the Y range for a line based on @mode.
  *
  * The value for @y is relative to the renderers widget coordinates.
+ *
+ * Since: 5.18
  */
 void
 gtk_source_gutter_lines_get_line_extent (GtkSourceGutterLines                 *lines,

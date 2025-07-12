@@ -15,6 +15,7 @@
  * [method@AnnotationProvider.populate_hover_finish] or connect to [signal@AnnotationProvider::populate]
  * and call [method@AnnotationProvider.populate] or do it asynchronously.
  *
+ * Since: 5.18
  */
 
 typedef struct

@@ -5636,6 +5636,8 @@ gtk_source_view_get_space_drawer (GtkSourceView *view)
  * Each [class@View] object has a different [class@Annotations].
  *
  * Returns: (transfer none): the #GtkSourceAnnotations associated with @view.
+ *
+ * Since: 5.18
  */
 GtkSourceAnnotations *
 gtk_source_view_get_annotations (GtkSourceView *view)
