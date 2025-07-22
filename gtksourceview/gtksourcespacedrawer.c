@@ -828,94 +828,139 @@ is_whitespace (gunichar ch)
 }
 
 static void
-draw_space_at_pos (cairo_t *cr,
-                   gdouble  w,
-                   gdouble  h)
+path_builder_stroke_and_free (GtkSnapshot    *snapshot,
+                              GskPathBuilder *builder)
 {
-	const gint x = 0;
-	const gint y = h * 2 / 3;
+	GskPath *path;
+	GskStroke *stroke;
 
-	cairo_move_to (cr, x + w * 0.5, y);
-	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
-	cairo_stroke (cr);
+	path = gsk_path_builder_free_to_path (builder);
+	stroke = gsk_stroke_new (0.8);
+	gtk_snapshot_push_stroke (snapshot, path, stroke);
+
+	gsk_stroke_free (stroke);
+	gsk_path_unref (path);
 }
 
 static void
-draw_tab_at_pos (cairo_t *cr,
-                 gdouble  w,
-                 gdouble  h)
+path_builder_fill_and_free (GtkSnapshot    *snapshot,
+                            GskPathBuilder *builder)
 {
-	const gint x = 0;
-	const gint y = h * 2 / 3;
+	GskPath *path;
 
-	cairo_move_to (cr, x + h * 1 / 6, y);
-	cairo_rel_line_to (cr, w - h * 2 / 6, 0);
-	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
-	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
-	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
-	cairo_stroke (cr);
+	path = gsk_path_builder_free_to_path (builder);
+	gtk_snapshot_push_fill (snapshot, path, GSK_FILL_RULE_WINDING);
+
+	gsk_path_unref (path);
 }
 
 static void
-draw_newline_at_pos (cairo_t *cr,
-                     gdouble  w,
-                     gdouble  h)
+draw_space_at_pos (GtkSnapshot *snapshot,
+                   float        w,
+                   float        h)
 {
+	GskPathBuilder *builder;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
+
+	builder = gsk_path_builder_new ();
+
+	gsk_path_builder_add_circle (builder, &GRAPHENE_POINT_INIT (x + w / 2, y), 0.8);
+
+	path_builder_stroke_and_free (snapshot, builder);
+}
+
+static void
+draw_tab_at_pos (GtkSnapshot *snapshot,
+                 float        w,
+                 float        h)
+{
+	GskPathBuilder *builder;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
+
+	builder = gsk_path_builder_new ();
+
+	gsk_path_builder_move_to (builder, x + h * 1 / 6, y);
+	gsk_path_builder_rel_line_to (builder, w - h * 2 / 6, 0);
+	gsk_path_builder_rel_line_to (builder, -h * 1 / 4, -h * 1 / 4);
+	gsk_path_builder_rel_move_to (builder, +h * 1 / 4, +h * 1 / 4);
+	gsk_path_builder_rel_line_to (builder, -h * 1 / 4, +h * 1 / 4);
+
+	path_builder_stroke_and_free (snapshot, builder);
+}
+
+static void
+draw_newline_at_pos (GtkSnapshot *snapshot,
+                     float        w,
+                     float        h)
+{
+	GskPathBuilder *builder;
 	const gint x = 0;
 	const gint y = h / 3;
 
 	w = w * 2;
 
+	builder = gsk_path_builder_new ();
+
 	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
 	{
-		cairo_move_to (cr, x + w * 7 / 8, y);
-		cairo_rel_line_to (cr, 0, h * 1 / 3);
-		cairo_rel_line_to (cr, -w * 6 / 8, 0);
-		cairo_rel_line_to (cr, +h * 1 / 4, -h * 1 / 4);
-		cairo_rel_move_to (cr, -h * 1 / 4, +h * 1 / 4);
-		cairo_rel_line_to (cr, +h * 1 / 4, +h * 1 / 4);
+		gsk_path_builder_move_to (builder, x + w * 7 / 8, y);
+		gsk_path_builder_rel_line_to (builder, 0, h * 1 / 3);
+		gsk_path_builder_rel_line_to (builder, -w * 6 / 8, 0);
+		gsk_path_builder_rel_line_to (builder, +h * 1 / 4, -h * 1 / 4);
+		gsk_path_builder_rel_move_to (builder, -h * 1 / 4, +h * 1 / 4);
+		gsk_path_builder_rel_line_to (builder, +h * 1 / 4, +h * 1 / 4);
 	}
 	else
 	{
-		cairo_move_to (cr, x + w * 1 / 8, y);
-		cairo_rel_line_to (cr, 0, h * 1 / 3);
-		cairo_rel_line_to (cr, w * 6 / 8, 0);
-		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
-		cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
-		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
+		gsk_path_builder_move_to (builder, x + w * 1 / 8, y);
+		gsk_path_builder_rel_line_to (builder, 0, h * 1 / 3);
+		gsk_path_builder_rel_line_to (builder, w * 6 / 8, 0);
+		gsk_path_builder_rel_line_to (builder, -h * 1 / 4, -h * 1 / 4);
+		gsk_path_builder_rel_move_to (builder, +h * 1 / 4, +h * 1 / 4);
+		gsk_path_builder_rel_line_to (builder, -h * 1 / 4, -h * 1 / 4);
 	}
 
-	cairo_stroke (cr);
+	path_builder_stroke_and_free (snapshot, builder);
 }
 
 static void
-draw_narrow_nbsp_at_pos (cairo_t *cr,
-                         gdouble  w,
-                         gdouble  h)
+draw_narrow_nbsp_at_pos (GtkSnapshot *snapshot,
+                         float        w,
+                         float        h)
 {
+	GskPathBuilder *builder;
 	const gint x = 0;
 	const gint y = h / 2;
 
-	cairo_move_to (cr, x + w * 1 / 6, y);
-	cairo_rel_line_to (cr, w * 4 / 6, 0);
-	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
-	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-	cairo_fill (cr);
+	builder = gsk_path_builder_new ();
+
+	gsk_path_builder_move_to (builder, x + w * 1 / 6, y);
+	gsk_path_builder_rel_line_to (builder, w * 4 / 6, 0);
+	gsk_path_builder_rel_line_to (builder, -w * 2 / 6, +h * 1 / 4);
+	gsk_path_builder_rel_line_to (builder, -w * 2 / 6, -h * 1 / 4);
+
+	path_builder_fill_and_free (snapshot, builder);
 }
 
 static void
-draw_nbsp_at_pos (cairo_t *cr,
-                  gdouble  w,
-                  gdouble  h)
+draw_nbsp_at_pos (GtkSnapshot *snapshot,
+                  float        w,
+                  float        h)
 {
+	GskPathBuilder *builder;
 	const gint x = 0;
 	const gint y = h / 2;
 
-	cairo_move_to (cr, x + w * 1 / 6, y);
-	cairo_rel_line_to (cr, w * 4 / 6, 0);
-	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
-	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-	cairo_stroke (cr);
+	builder = gsk_path_builder_new ();
+
+	gsk_path_builder_move_to (builder, x + w * 1 / 6, y);
+	gsk_path_builder_rel_line_to (builder, w * 4 / 6, 0);
+	gsk_path_builder_rel_line_to (builder, -w * 2 / 6, +h * 1 / 4);
+	gsk_path_builder_rel_line_to (builder, -w * 2 / 6, -h * 1 / 4);
+
+	path_builder_stroke_and_free (snapshot, builder);
 }
 
 static void
@@ -925,7 +970,7 @@ draw_whitespace_at_iter (GtkSourceSpaceDrawer *drawer,
                          const GdkRGBA        *color,
                          GtkSnapshot          *snapshot)
 {
-	void (*draw) (cairo_t *cr, gdouble w, gdouble h) = NULL;
+	void (*draw) (GtkSnapshot *snapshot, float w, float h) = NULL;
 	CachedNode *cache = NULL;
 	GdkRectangle rect;
 	gunichar ch;
@@ -985,16 +1030,14 @@ draw_whitespace_at_iter (GtkSourceSpaceDrawer *drawer,
 		if G_UNLIKELY (cache->node == NULL)
 		{
 			GtkSnapshot *to_cache;
-			cairo_t *cr;
 
 			to_cache = gtk_snapshot_new ();
-			cr = gtk_snapshot_append_cairo (to_cache,
-			                                &GRAPHENE_RECT_INIT (0, 0, rect.width * ratio, rect.height));
-			gdk_cairo_set_source_rgba (cr, color);
-			cairo_set_line_width (cr, 0.8);
-			cairo_translate (cr, -0.5, -0.5);
-			draw (cr, rect.width, rect.height);
-			cairo_destroy (cr);
+			gtk_snapshot_translate (to_cache, &GRAPHENE_POINT_INIT (-0.5, -0.5));
+			draw (to_cache, rect.width, rect.height);
+			gtk_snapshot_append_color (to_cache,
+			                           color,
+			                           &GRAPHENE_RECT_INIT (0, 0, rect.width * ratio, rect.height));
+			gtk_snapshot_pop (to_cache);
 
 			cache->node = gtk_snapshot_free_to_node (g_steal_pointer (&to_cache));
 			cache->width = rect.width;
