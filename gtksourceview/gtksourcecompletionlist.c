@@ -613,3 +613,16 @@ _gtk_source_completion_list_set_remember_info_visibility (GtkSourceCompletionLis
 
 	self->remember_info_visibility = !!remember_info_visibility;
 }
+
+void
+_gtk_source_completion_list_move_cursor (GtkSourceCompletionList *self,
+					 GtkMovementStep          step,
+					 int                      direction)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	if (self->listbox != NULL)
+	{
+		_gtk_source_completion_list_box_move_cursor (self->listbox, step, direction);
+	}
+}

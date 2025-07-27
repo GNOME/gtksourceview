@@ -23,6 +23,7 @@
 
 #include <glib/gi18n.h>
 
+#include "gtksourcecompletion-private.h"
 #include "gtksourceindenter.h"
 #include "gtksourceview.h"
 
@@ -133,6 +134,25 @@ gtk_source_vim_insert_handle_keypress (GtkSourceVimState *state,
 				/* For the terminal users out there */
 				g_signal_emit_by_name (view, "paste-clipboard");
 				return TRUE;
+
+			case GDK_KEY_n:
+			case GDK_KEY_p:
+			{
+				GtkSourceCompletion *completion = gtk_source_view_get_completion (view);
+
+				if (_gtk_source_completion_get_visible (completion))
+				{
+					_gtk_source_completion_move_cursor (completion,
+									    GTK_MOVEMENT_DISPLAY_LINES,
+									    keyval == GDK_KEY_n ? 1 : -1);
+				}
+				else
+				{
+					gtk_source_completion_show (completion);
+				}
+
+				return TRUE;
+			}
 
 			default:
 				break;

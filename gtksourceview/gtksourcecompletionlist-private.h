@@ -48,5 +48,8 @@ void                        _gtk_source_completion_list_set_show_icons          
                                                                                       gboolean                    show_icons);
 void                        _gtk_source_completion_list_set_remember_info_visibility (GtkSourceCompletionList    *self,
                                                                                       gboolean                    remember_info_visibility);
+void                        _gtk_source_completion_list_move_cursor                  (GtkSourceCompletionList    *self,
+                                                                                      GtkMovementStep             step,
+                                                                                      int                         direction);
 
 G_END_DECLS

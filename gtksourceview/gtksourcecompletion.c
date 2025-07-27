@@ -148,9 +148,6 @@ struct _GtkSourceCompletion
 	 */
 	guint hide_tick_handler;
 
-	/* If we're currently being displayed */
-	guint shown : 1;
-
 	/* If we have a completion actively in play */
 	guint waiting_for_results : 1;
 
@@ -1686,5 +1683,26 @@ _gtk_source_completion_css_changed (GtkSourceCompletion *self,
 	if (self->display != NULL)
 	{
 		_gtk_source_completion_list_set_font_desc (self->display, self->font_desc);
+	}
+}
+
+gboolean
+_gtk_source_completion_get_visible (GtkSourceCompletion *self)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (self), FALSE);
+
+	return self->display && gtk_widget_get_visible (GTK_WIDGET (self->display));
+}
+
+void
+_gtk_source_completion_move_cursor (GtkSourceCompletion *self,
+                                    GtkMovementStep      step,
+                                    int                  direction)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (self));
+
+	if (self->display != NULL)
+	{
+		_gtk_source_completion_list_move_cursor (self->display, step, direction);
 	}
 }

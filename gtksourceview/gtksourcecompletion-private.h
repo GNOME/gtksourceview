@@ -39,5 +39,9 @@ void                     _gtk_source_completion_activate           (GtkSourceCom
 gboolean                 _gtk_source_completion_get_select_on_show (GtkSourceCompletion         *self);
 void                     _gtk_source_completion_css_changed        (GtkSourceCompletion         *self,
                                                                     GtkCssStyleChange           *change);
+gboolean                 _gtk_source_completion_get_visible        (GtkSourceCompletion         *self);
+void                     _gtk_source_completion_move_cursor        (GtkSourceCompletion         *self,
+                                                                    GtkMovementStep              step,
+                                                                    int                          direction);
 
 G_END_DECLS
