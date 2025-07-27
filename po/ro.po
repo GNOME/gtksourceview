@@ -13,17 +13,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2025-03-10 23:23+0000\n"
-"PO-Revision-Date: 2025-03-18 11:14+0100\n"
+"POT-Creation-Date: 2025-06-05 10:25+0000\n"
+"PO-Revision-Date: 2025-07-25 15:46+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Gtranslator 47.1\n"
+"20)) ? 1 : 2);\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Launchpad-Export-Date: 2009-08-21 13:52+0000\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -306,12 +306,12 @@ msgstr "Șablon Tera"
 #. (itstool) path: Adwaita-dark.xml/style-scheme@_name
 #: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
-msgstr "Adwaita închis"
+msgstr "Adwaita negru"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
 msgid "An style scheme for Adwaita"
-msgstr "O schemă de stil pentru Adwaita"
+msgstr "O combinație de culori pentru Adwaita"
 
 #. (itstool) path: Adwaita.xml/style-scheme@_name
 #: Adwaita.xml:20
@@ -321,12 +321,12 @@ msgstr "Adwaita"
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
 msgid "Classic Dark"
-msgstr "Clasic întunecată"
+msgstr "Clasic negru"
 
 #. (itstool) path: style-scheme/_description
 #: classic-dark.xml:24
 msgid "Classic dark color scheme"
-msgstr "Schemă de culori clasică întunecată"
+msgstr "Combinație clasică de culori pe fond negru"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -336,7 +336,7 @@ msgstr "Clasic"
 #. (itstool) path: style-scheme/_description
 #: classic.xml:25
 msgid "Classic color scheme"
-msgstr "Schemă de culori clasică"
+msgstr "Combinație clasică de culori"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
@@ -346,7 +346,7 @@ msgstr "Cobalt deschis"
 #. (itstool) path: style-scheme/_description
 #: cobalt-light.xml:22 cobalt.xml:27
 msgid "Blue based color scheme"
-msgstr "Schemă de culori bazată pe albastru"
+msgstr "Combinație de culori bazată pe albastru"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
@@ -356,12 +356,12 @@ msgstr "Cobalt"
 #. (itstool) path: style-scheme/_description
 #: kate-dark.xml:24
 msgid "Dark color scheme used in the Kate text editor"
-msgstr "Schema de culori închise utilizată de editorul de text Kate"
+msgstr "Combinație de culori pe fond negru utilizată de editorul de text Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
-msgstr "Schema de culori utilizată de editorul de text Kate"
+msgstr "Combinație de culori utilizată de editorul de text Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:23
@@ -371,27 +371,27 @@ msgstr "Oblivion"
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
-msgstr "Schemă de culori întunecată folosită cu paleta de culori Tango"
+msgstr "Combinație de culori pe fond negru Tango"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
 msgid "Solarized Dark"
-msgstr "Solar întunecat"
+msgstr "Solarized Dark"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr "Schema de culori care utilizează paleta de culori de solar întunecat"
+msgstr "Combinație de culori pe fond negru Solarized dark"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
 msgid "Solarized Light"
-msgstr "Solar luminat"
+msgstr "Solarized Light"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr "Schema de culori care utilizează paleta de culori de solar luminat"
+msgstr "Combinație de culori pe fond alb Solarized light"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -401,7 +401,7 @@ msgstr "Tango"
 #. (itstool) path: style-scheme/_description
 #: tango.xml:25
 msgid "Color scheme using Tango color palette"
-msgstr "Schema de culori folosește paleta de culori Tango"
+msgstr "Combinație de culori Tango"
 
 #: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:461
 msgid "Snippets"
@@ -409,11 +409,11 @@ msgstr "Fragmente de cod"
 
 #: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
-msgstr "Cuvinte document"
+msgstr "Cuvintele documentului"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
-msgstr "Secvență de octeți nevalidă în intrarea de conversie"
+msgstr "Secvență de octeți incorectă pentru conversie"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
@@ -423,7 +423,8 @@ msgstr "Eroare la conversia: %s"
 #: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
-msgstr "Conversia de la setul de caractere „%s” la „UTF-8” nu este suportată"
+msgstr ""
+"Conversia de la tipul de caractere „%s” la „UTF-8” nu este implementată"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
@@ -432,7 +433,7 @@ msgstr "Nu s-a putut deschide convertorul de la „%s” la „UTF-8”"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
-msgstr "Obiect nevalid, neinițializat"
+msgstr "Obiect incorect, neinițializat"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
@@ -461,7 +462,7 @@ msgid ""
 "The error was: %s"
 msgstr ""
 "Nu s-a putut crea o expresie regulată pentru toate tranzițiile, procesul de "
-"evidențiere a sintaxei va fi mai lent decât deobicei.\n"
+"evidențiere a sintaxei va fi mai lent decât de obicei.\n"
 "Eroare a fost: %s"
 
 #: gtksourceview/gtksourcecontextengine.c:4462
@@ -469,7 +470,7 @@ msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
-"Evidențierea sintaxei pentru o singură linie a durat prea mult timp, "
+"Evidențierea sintaxei pentru un singur rând a durat prea mult timp, "
 "evidențierea sintaxei va fi dezactivată"
 
 #: gtksourceview/gtksourcecontextengine.c:5712
@@ -490,13 +491,13 @@ msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr ""
-"suprascrierea stilului folosit cu referința contextului unui metacaracter în "
-"limba „%s” în ref „%s”"
+"în referința „%s” a limbajului „%s”, a fost utilizată o înlocuire de stil "
+"împreună cu o regulă de recunoaștere care folosește caractere de înlocuire"
 
 #: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
-msgstr "referință la context nevalidă „%s”"
+msgstr "referința la context este greșită „%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6172
 #: gtksourceview/gtksourcecontextengine.c:6182
@@ -552,7 +553,7 @@ msgstr "Greacă"
 
 #: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
-msgstr "Ebraică vizual"
+msgstr "Ebraică vizuală"
 
 #: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
 #: gtksourceview/gtksourceencoding.c:271
@@ -582,7 +583,7 @@ msgstr "Chineză tradițională"
 
 #: gtksourceview/gtksourceencoding.c:200
 msgid "Cyrillic/Russian"
-msgstr "Chirilic / rusă"
+msgstr "Chirilic/Rusă"
 
 #: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
 #: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
@@ -610,7 +611,7 @@ msgstr "Ebraică"
 
 #: gtksourceview/gtksourceencoding.c:249
 msgid "Cyrillic/Ukrainian"
-msgstr "Chirilic / ucraineană"
+msgstr "Chirilic/Ucraineană"
 
 #: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
 #: gtksourceview/gtksourceencoding.c:279
@@ -664,7 +665,7 @@ msgstr "Fișierul este modificat extern."
 
 #: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
-msgstr "Preîncărcarea conține caractere nevalide."
+msgstr "Preîncărcarea conține caractere incorecte."
 
 #. *
 #. * GtkSourceLanguage:
@@ -689,24 +690,24 @@ msgstr "Identificator necunoscut „%s” în expresia regulată „%s”"
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr "în expresia regulată „%s”: referințele înapoi nu sunt suportate"
+msgstr "în expresia regulată „%s”: referințele înapoi nu sunt acceptate"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr "utilizarea \\C nu este suportată în definirea limbajelor"
+msgstr "utilizarea \\C nu este acceptată în definirea limbajelor"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:178
 msgid "Select a Style"
-msgstr "Selectați un stil"
+msgstr "Alege un stil"
 
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
-msgstr "_Anulează"
+msgstr "A_nulează"
 
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
-msgstr "_Selectează"
+msgstr "_Alege"
 
 #: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
@@ -722,11 +723,11 @@ msgstr "_Inversează majuscule și minuscule"
 
 #: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
-msgstr "Majuscule semnificative _titlu"
+msgstr "_Majuscule inițiale"
 
 #: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
-msgstr "Modifi_că majuscule semnificative"
+msgstr "Maju_scule/Minuscule"
 
 #: gtksourceview/implregex.c:615
 msgid "hexadecimal digit or “}” expected"
@@ -767,7 +768,7 @@ msgstr "secvență de eludare necunoscută"
 #: gtksourceview/implregex.c:793
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
-msgstr "Eroare la parsarea textului înlocuitor „%s” la caracterul %lu: %s"
+msgstr "Eroare la procesarea textului înlocuitor „%s” la caracterul %lu: %s"
 
 #: gtksourceview/vim/gtksourceviminsert.c:502
 msgid "-- INSERT --"
