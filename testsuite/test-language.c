@@ -25,10 +25,21 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
+#ifdef G_OS_WIN32
+# define WIN32_LEAN_AND_MEAN
+# include <windows.h> /* for SetThreadLocale(), GetThreadLocale() and LCID */
+
+typedef LCID lcid_t;
+#else
+/* just set this to be some common type */
+typedef int lcid_t;
+#endif
+
 typedef struct _TestFixture TestFixture;
 
 struct _TestFixture {
 	GtkSourceLanguageManager *manager;
+	lcid_t old_lcid;
 };
 
 /* If we are running from the source dir (e.g. during make check)
@@ -40,6 +51,11 @@ test_fixture_setup (TestFixture   *fixture,
 {
 	gchar *dir;
 	gchar **lang_dirs;
+
+#ifdef G_OS_WIN32
+	fixture->old_lcid = GetThreadLocale ();
+	SetThreadLocale (MAKELCID (MAKELANGID (LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT));
+#endif
 
 	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
@@ -76,6 +92,9 @@ static void
 test_fixture_teardown (TestFixture   *fixture,
                        gconstpointer  data)
 {
+#ifdef G_OS_WIN32
+	SetThreadLocale (fixture->old_lcid);
+#endif
 }
 
 static int
