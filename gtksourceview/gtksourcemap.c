@@ -1232,6 +1232,8 @@ gtk_source_map_click_pressed (GtkSourceMap *map,
 
 		if (y >= slider_y && y <= slider_y + slider_height)
 		{
+			/* Don't allow click-through to context menu */
+			gtk_gesture_set_state (click, GTK_EVENT_SEQUENCE_CLAIMED);
 			return;
 		}
 	}
