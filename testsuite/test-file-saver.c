@@ -208,6 +208,8 @@ test_saver (const gchar            *filename_or_uri,
 	g_object_unref (file);
 	g_object_unref (saver);
 	g_slice_free (SaverTestData, data);
+
+	g_main_loop_unref (main_loop);
 }
 
 typedef struct

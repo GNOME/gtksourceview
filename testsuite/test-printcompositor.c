@@ -36,6 +36,8 @@ test_buffer_ref (void)
 	g_object_unref (G_OBJECT (buffer_original));
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
 	g_assert_true (GTK_SOURCE_IS_BUFFER (buffer));
+
+	g_object_unref (compositor);
 }
 
 static void

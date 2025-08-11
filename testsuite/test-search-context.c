@@ -721,6 +721,7 @@ setup_invisible_text_buffer (GtkSourceBuffer *source_buffer)
 
 	g_object_set (tag, "invisible", TRUE, NULL);
 	gtk_text_tag_table_add (tags, tag);
+	g_object_unref (tag);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 	gtk_text_buffer_insert (text_buffer, &iter, "a", -1);

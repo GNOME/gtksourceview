@@ -56,6 +56,7 @@ test_parents (void)
 	g_assert_finalize_object (vim);
 	g_assert_finalize_object (normal);
 	g_assert_finalize_object (command);
+	g_assert_finalize_object (view);
 }
 
 int

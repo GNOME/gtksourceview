@@ -559,6 +559,7 @@ _gtk_source_snippet_bundle_merge (GtkSourceSnippetBundle *self,
 const gchar **
 _gtk_source_snippet_bundle_list_groups (GtkSourceSnippetBundle *self)
 {
+	const char **ret;
 	GHashTable *ht;
 	guint len;
 
@@ -580,7 +581,11 @@ _gtk_source_snippet_bundle_list_groups (GtkSourceSnippetBundle *self)
 		}
 	}
 
-	return (const gchar **)g_hash_table_get_keys_as_array (ht, &len);
+	ret = (const gchar **)g_hash_table_get_keys_as_array (ht, &len);
+
+	g_hash_table_unref (ht);
+
+	return ret;
 }
 
 static GtkSourceSnippet *

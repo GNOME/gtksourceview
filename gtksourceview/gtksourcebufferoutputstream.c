@@ -1074,7 +1074,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 
 	if (!ostream->is_utf8)
 	{
-		gchar *outbuf;
+		gchar *outbuf = NULL;
 		gsize outbuf_len;
 
 		/* check if iconv was correctly initializated, this shouldn't
@@ -1124,6 +1124,8 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 
 		if (!convert_text (ostream, text, len, &outbuf, &outbuf_len, error))
 		{
+                        g_assert (outbuf == NULL);
+
 			if (freetext)
 			{
 				g_free (text);
@@ -1137,9 +1139,12 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 			g_free (text);
 		}
 
+                g_assert (outbuf != NULL);
+
 		/* set the converted text as the text to validate */
 		text = outbuf;
 		len = outbuf_len;
+                freetext = TRUE;
 	}
 
 	validate_and_insert (ostream, text, len, freetext);
@@ -1180,7 +1185,7 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 	/* if we have converted something flush residual data, validate and insert */
 	if (ostream->iconv != NULL)
 	{
-		gchar *outbuf;
+		gchar *outbuf = NULL;
 		gsize outbuf_len;
 
 		if (convert_text (ostream, NULL, 0, &outbuf, &outbuf_len, error))
@@ -1190,6 +1195,7 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 		}
 		else
 		{
+                        g_assert (outbuf == NULL);
 			return FALSE;
 		}
 	}

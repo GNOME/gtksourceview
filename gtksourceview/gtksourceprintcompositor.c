@@ -784,9 +784,10 @@ gtk_source_print_compositor_new_from_view (GtkSourceView *view)
 	/* Set the body font directly since the property get a name while body_font is a PangoFontDescription */
 	pango_context = gtk_widget_get_pango_context (GTK_WIDGET (view));
 
-	font_desc = pango_context_get_font_description (pango_context);
+	font_desc = pango_font_description_copy (pango_context_get_font_description (pango_context));
 
-	priv->body_font = pango_font_description_copy (font_desc);
+	g_clear_pointer (&priv->body_font, pango_font_description_free);
+	priv->body_font = font_desc;
 
 	return compositor;
 }

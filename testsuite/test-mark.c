@@ -131,6 +131,7 @@ test_get_source_marks_at_iter (void)
 	g_assert_nonnull (g_slist_find (list, mark1));
 	g_assert_nonnull (g_slist_find (list, mark2));
 	g_assert_nonnull (g_slist_find (list, mark3));
+	g_slist_free (list);
 
 	g_object_unref (source_buffer);
 }

@@ -119,6 +119,7 @@ test_loader (const gchar *filename,
 					   data);
 
 	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
 
 	g_slice_free (LoaderTestData, data);
 	delete_file (location);

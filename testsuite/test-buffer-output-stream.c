@@ -44,6 +44,7 @@ test_consecutive_write (const gchar          *inbuf,
 	source_buffer = gtk_source_buffer_new (NULL);
 	encodings = g_slist_prepend (encodings, (gpointer)gtk_source_encoding_get_utf8 ());
 	out = gtk_source_buffer_output_stream_new (source_buffer, encodings, TRUE);
+	g_slist_free (encodings);
 
 	n = 0;
 
@@ -128,6 +129,7 @@ test_boundary (void)
 	source_buffer = gtk_source_buffer_new (NULL);
 	encodings = g_slist_prepend (encodings, (gpointer)gtk_source_encoding_get_utf8 ());
 	out = gtk_source_buffer_output_stream_new (source_buffer, encodings, TRUE);
+	g_slist_free (encodings);
 
 	g_output_stream_write (G_OUTPUT_STREAM (out), "\r", 1, NULL, NULL);
 	g_output_stream_write (G_OUTPUT_STREAM (out), "\n", 1, NULL, NULL);
@@ -211,6 +213,9 @@ get_encoded_text (const gchar             *text,
 		nread -= bytes_read;
 	} while (res != G_CONVERTER_FINISHED && res != G_CONVERTER_ERROR);
 
+	g_free (out_aux);
+	g_object_unref (converter);
+
 	if (care_about_error)
 	{
 		g_assert_no_error (err);
@@ -218,6 +223,7 @@ get_encoded_text (const gchar             *text,
 	else if (err)
 	{
 		g_printf ("** You don't care, but there was an error: %s", err->message);
+		g_free (out);
 		return NULL;
 	}
 
@@ -227,6 +233,7 @@ get_encoded_text (const gchar             *text,
 	{
 		if (!care_about_error)
 		{
+			g_free (out);
 			return NULL;
 		}
 		else
@@ -250,6 +257,7 @@ do_test (const gchar              *inbuf,
 	GtkSourceBufferOutputStream *out;
 	GError *err = NULL;
 	GtkTextIter start, end;
+	gboolean free_encodings = FALSE;
 	gchar *text;
 	gsize to_write;
 	gssize n, w;
@@ -258,10 +266,16 @@ do_test (const gchar              *inbuf,
 	{
 		encodings = NULL;
 		encodings = g_slist_prepend (encodings, (gpointer)gtk_source_encoding_get_from_charset (enc));
+		free_encodings = TRUE;
 	}
 
 	source_buffer = gtk_source_buffer_new (NULL);
 	out = gtk_source_buffer_output_stream_new (source_buffer, encodings, TRUE);
+
+	if (free_encodings)
+	{
+		g_slist_free (encodings);
+	}
 
 	n = 0;
 
@@ -334,6 +348,8 @@ test_empty_conversion (void)
 
 	out = do_test ("", NULL, encodings, 0, 0, &guessed);
 
+	g_slist_free (encodings);
+
 	g_assert_cmpstr (out, ==, "");
 	g_free (out);
 
@@ -370,6 +386,8 @@ test_guessed (void)
 	g_free (aux);
 	g_free (aux2);
 
+	g_slist_free (encs);
+
 	g_assert_true (guessed == gtk_source_encoding_get_from_charset ("UTF-16"));
 }
 
@@ -392,6 +410,8 @@ test_utf16_utf8 (void)
 	aux = do_test (text, "UTF-16", NULL, aux_len, 1, NULL);
 	g_assert_cmpstr (aux, ==, "\xe2\xb4\xb2");
 	g_free (aux);
+
+	g_free (text);
 }
 
 gint
