@@ -1860,14 +1860,14 @@ gtk_source_vim_command_new_parsed (GtkSourceVimState *current,
 	if (*command_line == '/')
 	{
 		ret = GTK_SOURCE_VIM_COMMAND (gtk_source_vim_command_new ("search"));
-		ret->options = g_strdup (command_line+1);
+		g_set_str (&ret->options, command_line+1);
 
 		goto finish;
 	}
 	else if (*command_line == '?')
 	{
 		ret = GTK_SOURCE_VIM_COMMAND (gtk_source_vim_command_new ("search-reverse"));
-		ret->options = g_strdup (command_line+1);
+		g_set_str (&ret->options, command_line+1);
 
 		goto finish;
 	}
@@ -1880,7 +1880,7 @@ gtk_source_vim_command_new_parsed (GtkSourceVimState *current,
 		if (g_hash_table_contains (commands, name))
 		{
 			ret = GTK_SOURCE_VIM_COMMAND (gtk_source_vim_command_new (name));
-			ret->options = g_strdup (split[1]);
+			g_set_str (&ret->options, split[1]);
 		}
 
 		g_strfreev (split);
@@ -1893,7 +1893,7 @@ gtk_source_vim_command_new_parsed (GtkSourceVimState *current,
 	if (parse_number (command_line, &number))
 	{
 		ret = GTK_SOURCE_VIM_COMMAND (gtk_source_vim_command_new ("line-number"));
-		ret->options = g_strdup (command_line);
+		g_set_str (&ret->options, command_line);
 
 		goto finish;
 	}
@@ -1901,7 +1901,7 @@ gtk_source_vim_command_new_parsed (GtkSourceVimState *current,
 	if (*command_line == 's')
 	{
 		ret = GTK_SOURCE_VIM_COMMAND (gtk_source_vim_command_new ("search-replace"));
-		ret->options = g_strdup (command_line+1);
+		g_set_str (&ret->options, command_line+1);
 
 		goto finish;
 	}
