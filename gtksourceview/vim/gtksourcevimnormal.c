@@ -312,7 +312,8 @@ gtk_source_vim_normal_begin_insert (GtkSourceVimNormal   *self,
 		gtk_source_vim_motion_set_apply_on_leave (GTK_SOURCE_VIM_MOTION (motion), FALSE);
 		gtk_source_vim_insert_set_at (GTK_SOURCE_VIM_INSERT (ret), at);
 		gtk_source_vim_insert_set_motion (GTK_SOURCE_VIM_INSERT (ret),
-			                          GTK_SOURCE_VIM_MOTION (motion));
+		                                  GTK_SOURCE_VIM_MOTION (motion));
+		g_object_unref (motion);
 	}
 
 	gtk_source_vim_state_set_count (ret, count);
