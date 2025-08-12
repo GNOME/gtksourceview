@@ -67,6 +67,8 @@ gtk_source_vim_command_bar_dispose (GObject *object)
 		self->buffer = NULL;
 	}
 
+	g_clear_object (&self->command);
+
 	G_OBJECT_CLASS (gtk_source_vim_command_bar_parent_class)->dispose (object);
 }
 
