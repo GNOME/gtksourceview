@@ -2,3 +2,5 @@ leak:load_override_font_fc
 leak:pango_fc_font_map_load_fontset
 leak:fc_thread_func
 leak:ensure_families
+leak:ensure_languages
+leak:xmlText*

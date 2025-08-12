@@ -6,6 +6,7 @@ test_env = [
   'GDK_DEBUG=no-portals',
   'MALLOC_CHECK_=2',
   'NO_AT_BRIDGE=1',
+  'LSAN_OPTIONS=suppressions=@0@/lsan.supp'.format(meson.current_source_dir()),
 ]
 
 testsuite_c_args = [
