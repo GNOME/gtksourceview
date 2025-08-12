@@ -97,8 +97,8 @@ run_test (const char *text,
 	g_assert_cmpstr (ret, ==, expected);
 	g_free (ret);
 
-	g_object_unref (vim);
-	g_object_unref (view);
+	g_assert_finalize_object (G_OBJECT (vim));
+	g_assert_finalize_object (G_OBJECT (view));
 }
 
 static void
