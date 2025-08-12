@@ -61,7 +61,7 @@ gtk_source_vim_command_bar_dispose (GObject *object)
 
 	g_clear_pointer (&self->typed, g_free);
 
-	if (self->buffer == NULL)
+	if (self->buffer != NULL)
 	{
 		g_string_free (self->buffer, TRUE);
 		self->buffer = NULL;
