@@ -172,7 +172,7 @@ do_execute (GtkSourceVimCommandBar *self,
 
 	if (history->len > MAX_HISTORY)
 	{
-		g_ptr_array_set_size (history, MAX_HISTORY);
+		g_ptr_array_remove_range (history, 0, history->len - MAX_HISTORY);
 	}
 
 	g_ptr_array_add (history, g_strdup (command));
