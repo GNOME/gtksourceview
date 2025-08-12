@@ -503,6 +503,7 @@ gtk_source_vim_insert_dispose (GObject *object)
 	G_OBJECT_CLASS (gtk_source_vim_insert_parent_class)->dispose (object);
 
 	g_clear_pointer (&self->prefix, g_free);
+	g_clear_pointer (&self->suffix, g_free);
 	gtk_source_vim_state_release (&self->history);
 	gtk_source_vim_state_release (&self->motion);
 	gtk_source_vim_state_release (&self->selection_motion);
@@ -565,12 +566,8 @@ gtk_source_vim_insert_set_prefix (GtkSourceVimInsert *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIM_INSERT (self));
 
-	if (g_strcmp0 (self->prefix, prefix) != 0)
-	{
-		g_free (self->prefix);
-		self->prefix = g_strdup (prefix);
+	if (g_set_str (&self->prefix, prefix))
 		g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_PREFIX]);
-	}
 }
 
 void
@@ -579,12 +576,8 @@ gtk_source_vim_insert_set_suffix (GtkSourceVimInsert *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIM_INSERT (self));
 
-	if (g_strcmp0 (self->suffix, suffix) != 0)
-	{
-		g_free (self->suffix);
-		self->suffix = g_strdup (suffix);
+	if (g_set_str (&self->suffix, suffix))
 		g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SUFFIX]);
-	}
 }
 
 void
