@@ -3,4 +3,7 @@ leak:pango_fc_font_map_load_fontset
 leak:fc_thread_func
 leak:ensure_families
 leak:ensure_languages
+
+# Appears to be libxml issue currently and does not occur with 2.12.10
 leak:xmlText*
+leak:xmlReader*

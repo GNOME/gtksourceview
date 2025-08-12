@@ -4,6 +4,14 @@ include:
     - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
       inputs:
         dist-job-name: "flatpak"
+    - component: "gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master"
+      inputs:
+        job-stage: "test"
+        meson-options: >-
+          -Ddocumentation=true
+          -Dsysprof=true
+          -Dinstall-tests=true
+        lsan-options: "suppressions=${CI_PROJECT_DIR}/testsuite/lsan.supp"
 
 stages:
     - test
