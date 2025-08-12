@@ -178,9 +178,13 @@ test_language (TestFixture   *fixture,
 	const gchar *styles[] = { "test-full:keyword", "test-full:string", NULL};
 
 	language = gtk_source_language_manager_get_language (fixture->manager, "test-full");
+	g_assert_nonnull (language);
+	g_assert (GTK_SOURCE_IS_LANGUAGE (language));
 	check_language (language, "test-full", "Test Full", "Sources", FALSE, "extra", mime, glob, styles, "test-full:string", "String");
 
 	language = gtk_source_language_manager_get_language (fixture->manager, "test-empty");
+	g_assert_nonnull (language);
+	g_assert (GTK_SOURCE_IS_LANGUAGE (language));
 	check_language (language, "test-empty", "Test Empty", "Others", TRUE, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
