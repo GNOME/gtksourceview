@@ -32,7 +32,7 @@
 static void
 test_parents (void)
 {
-	GtkWidget *view = gtk_source_view_new ();
+	GtkWidget *view = g_object_ref_sink (gtk_source_view_new ());
 	GtkSourceVim *vim = gtk_source_vim_new (GTK_SOURCE_VIEW (view));
 	GtkSourceVimState *normal = gtk_source_vim_state_get_current (GTK_SOURCE_VIM_STATE (vim));
 	GtkSourceVimState *insert = gtk_source_vim_insert_new ();
