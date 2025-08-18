@@ -1,4 +1,40 @@
-\documentclass{article}
+\documentclass{amsart}
+
+\usepackage{amssymb}\usepackage{mathtools}
+\usepackage
+%Why on Earth...
+%
+[
+T
+	%...would you ever do that?
+  1  
+]
+ %This is still
+  %legal LaTeX code though
+{
+font
+	enc
+%Still legal and spellchecking woorks
+}
+\usepackage		{comment}
+
 \begin{document}
-Hi there!
+
+The three following lines do the same thing, using the textbf command:
+
+\textbf33 \textbf**
+
+\textbf{3}3 \textbf **
+
+\textbf 33 \textbf{*}*
+
+This space command\ is valid in \LaTeX.
+
+So is this newline\
+command and so is this tabular\	command as written in the \TeX book, chapter 3.
+
+\begin{comment}
+Spellchecking woorks too
+\end{comment}
+
 \end{document}

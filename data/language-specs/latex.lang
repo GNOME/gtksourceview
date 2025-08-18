@@ -30,16 +30,17 @@
   </metadata>
 
   <styles>
-    <style id="comment"            name="Comment"              map-to="def:comment"/>
-    <style id="display-math"       name="Math Mode"            map-to="def:string"/>
-    <style id="inline-math"        name="Inline Math Mode"     map-to="latex:display-math"/>
-    <style id="math"               name="Math Mode"            map-to="latex:display-math"/>
-    <style id="math-boundary"      name="Math Boundary"        map-to="latex:display-math"/>
-    <style id="include"            name="Include"              map-to="def:keyword"/>
-    <style id="common-commands"    name="Command"              map-to="def:keyword"/>
-    <style id="command"            name="Command"              map-to="def:keyword"/>
-    <style id="verbatim"           name="Verbatim"             map-to="def:comment"/>
-    <style id="special-char"       name="Special Character"    map-to="def:special-char"/>
+    <style id="comment"            name="Comment"               map-to="def:comment"/>
+    <style id="display-math"       name="Math Mode"             map-to="def:string"/>
+    <style id="inline-math"        name="Inline Math Mode"      map-to="latex:display-math"/>
+    <style id="math"               name="Math Mode"             map-to="latex:display-math"/>
+    <style id="math-boundary"      name="Math Boundary"         map-to="latex:display-math"/>
+    <style id="include"            name="Include"               map-to="def:preprocessor"/>
+    <style id="included-file"      name="Included file"         map-to="def:string"/>
+    <style id="common-commands"    name="Command"               map-to="def:keyword"/>
+    <style id="command"            name="Command"               map-to="def:keyword"/>
+    <style id="verbatim"           name="Verbatim"              map-to="def:comment"/>
+    <style id="special-char"       name="Special Character"     map-to="def:special-char"/>
     <style id="part"               name="Part Heading"          map-to="def:heading0"/>
     <style id="chapter"            name="Chapter Heading"       map-to="def:heading1"/>
     <style id="section"            name="Section Heading"       map-to="def:heading2"/>
@@ -55,18 +56,20 @@
 
     <context id="comment">
       <include>
-        <context id="end-line-comment" style-ref="comment">
+        <context id="end-line-comment" style-ref="comment" class-disabled="no-spell-check">
           <start>%</start>
-          <end>$</end>
+          <end>^</end>
           <include>
             <context ref="def:in-comment"/>
           </include>
         </context>
 
-        <context id="comment-env" style-ref="comment" class="no-spell-check">
+        <context id="comment-env" style-ref="comment" class-disabled="no-spell-check">
           <start>\\begin\{comment\}</start>
           <end>\\end\{comment\}</end>
           <include>
+            <context sub-pattern="0" where="start" class="no-spell-check"/>
+            <context sub-pattern="0" where="end" class="no-spell-check"/>
             <context ref="def:in-comment"/>
           </include>
         </context>
@@ -244,6 +247,7 @@
       <keyword>footnote</keyword>
       <keyword>footnotemark</keyword>
       <keyword>footnotetext</keyword>
+      <keyword>includeonly</keyword>
       <keyword>label</keyword>
       <keyword>ldots</keyword>
       <keyword>newcommand</keyword>
@@ -261,19 +265,74 @@
       <match>\\((\@|[[:alpha:]])+|.|$)</match>
     </context>
 
-    <context id="specific-commands">
+    <context id="line-break" once-only="true">
+      <start>$</start>
+      <end>^</end>
+    </context>
+
+    <context id="bracket-argument" end-at-line-end="true" once-only="true">
+      <start>(?=\[)</start>
       <include>
-        <context id="documentclass" class="no-spell-check">
-          <match>(\\documentclass)(\[.*\])?(\{.*\})?</match>
-          <include>
-            <context sub-pattern="1" style-ref="common-commands"/>
-          </include>
+        <context ref="end-line-comment"/>
+
+        <context id="bracket-argument-content" class="no-spell-check">
+          <start>[^\]%\s]</start>
+          <end>((?=%|\])|^)</end>
         </context>
 
-        <context id="include" class="no-spell-check">
-          <match>(\\(input|include|includeonly|usepackage))\b(\[.*\])?(\{.*\})?</match>
+        <context id="bracket-argument-end" end-parent="true">
+          <start>\]</start>
+          <end>((?=\S)|^)</end>
+        </context>
+      </include>
+    </context>
+
+    <context id="brace-argument" end-at-line-end="true">
+      <start>(?=\{)</start>
+      <include>
+        <context id="brace-argument-start" once-only="true">
+          <start>\{</start>
+          <end>((?=%|\{|\})|^)</end>
+        </context>
+
+        <context ref="end-line-comment"/>
+        <context ref="brace-argument"/>
+
+        <context id="brace-argument-content" class="no-spell-check">
+          <start>[^\}%\s]</start>
+          <end>((?=%|\})|^)</end>
+        </context>
+
+        <context id="brace-argument-end" end-parent="true">
+          <start>\}</start>
+          <end>((?=\S)|^)</end>
+        </context>
+      </include>
+    </context>
+
+    <context id="single-brace-argument" end-at-line-end="true" end-parent="true">
+      <start>(?=\{)</start>
+      <include>
+        <context ref="brace-argument-start"/>
+        <context ref="end-line-comment"/>
+        <context ref="brace-argument"/>
+        <context ref="brace-argument-content"/>
+        <context ref="brace-argument-end"/>
+      </include>
+    </context>
+
+    <context id="specific-commands">
+      <include>
+        <context id="include" end-at-line-end="true">
+          <start>(\\(InputIfFileExists|LoadClassWithOptions|LoadClass|RequirePackageWithOptions|RequirePackage|documentclass|include|input|usepackage))(?=([^\@[:alpha:]]|$))</start>
+          <end>\S</end>
           <include>
-            <context sub-pattern="1" style-ref="include"/>
+            <context sub-pattern="1" where="start" style-ref="include" class="no-spell-check"/>
+            <context sub-pattern="0" where="end" style-ref="included-file" class="no-spell-check"/>
+            <context ref="line-break"/>
+            <context ref="end-line-comment"/>
+            <context ref="bracket-argument"/>
+            <context ref="single-brace-argument" style-ref="included-file"/>
           </include>
         </context>
 
