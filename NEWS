@@ -1,3 +1,20 @@
+News in 5.17.1, 2025-08-30
+--------------------------
+
+This is an unstable release for GNOME 49.rc
+
+ * Improvments to GObject Introspection annotations
+ * A new gtk_source_buffer_get_markup() API addition
+ * A new annotation API for applications
+ * Allocation measurement improvements
+ * Spaces are now drawn using GskPath instead of Cairo
+ * Cleanups for various GTK deprecations
+ * Make ctrl+n/p workin Vim insertion mode
+ * Ensure GtkSourceMap doesn't handle context menus (again)
+ * Testsuite improvements for new GNOME CI
+ * Fix various leaks found by said CI improvements
+ * Translation updates
+
 News in 5.17.0, 2025-06-28
 --------------------------
 
