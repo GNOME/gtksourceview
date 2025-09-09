@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2025-01-23 20:50+0000\n"
-"PO-Revision-Date: 2025-02-09 17:34+0300\n"
+"POT-Creation-Date: 2025-08-19 21:22+0000\n"
+"PO-Revision-Date: 2025-08-29 13:30+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -239,12 +239,12 @@ msgstr "Diğer"
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:24
 msgid "C/ObjC Header"
-msgstr "C/ObjC Üstbilgisi"
+msgstr "C/ObjC Başlığı"
 
 #. (itstool) path: cpphdr.lang/language@_name
 #: cpphdr.lang:24
 msgid "C++ Header"
-msgstr "C++ Üstbilgisi"
+msgstr "C++ Başlığı"
 
 #. (itstool) path: dosbatch.lang/language@_name
 #: dosbatch.lang:23
@@ -435,7 +435,7 @@ msgstr "“%s”den “UTF-8”e dönüştürücü açılamadı"
 msgid "Invalid object, not initialized"
 msgstr "Geçersiz nesne, ilklendirilmemiş"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1287
+#: gtksourceview/gtksourcebufferoutputstream.c:1293
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Girdide eksik UTF-8 dizisi"
@@ -695,35 +695,35 @@ msgid "using \\C is not supported in language definitions"
 msgstr "dil tanımlarında \\C kullanımı desteklenmiyor"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:180
 msgid "Select a Style"
 msgstr "Biçem Seç"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:184
 msgid "_Cancel"
 msgstr "İ_ptal"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "_Select"
 msgstr "_Seç"
 
-#: gtksourceview/gtksourceview.c:1929
+#: gtksourceview/gtksourceview.c:1984
 msgid "All _Upper Case"
 msgstr "Tümü _Büyük Harf"
 
-#: gtksourceview/gtksourceview.c:1933
+#: gtksourceview/gtksourceview.c:1988
 msgid "All _Lower Case"
 msgstr "Tümü _Küçük Harf"
 
-#: gtksourceview/gtksourceview.c:1937
+#: gtksourceview/gtksourceview.c:1992
 msgid "_Invert Case"
 msgstr "Durum Değ_iştir"
 
-#: gtksourceview/gtksourceview.c:1941
+#: gtksourceview/gtksourceview.c:1996
 msgid "_Title Case"
 msgstr "Başlık _Durumu"
 
-#: gtksourceview/gtksourceview.c:1945
+#: gtksourceview/gtksourceview.c:2000
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
 
@@ -768,7 +768,7 @@ msgstr "geçersiz çıkış dizisi"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Yerine koyma metni “%s” işlenirken karakter %lu hatalı: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:502
+#: gtksourceview/vim/gtksourceviminsert.c:523
 msgid "-- INSERT --"
 msgstr "-- YERLEŞTİR --"
 
