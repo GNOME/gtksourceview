@@ -1,14 +1,14 @@
 # Esperanto translation for gtksourceview.
 # Copyright (C) 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011-2023.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2023-05-05 13:27+0000\n"
-"PO-Revision-Date: 2023-09-14 23:26+0200\n"
+"POT-Creation-Date: 2025-09-13 00:34+0000\n"
+"PO-Revision-Date: 2025-09-20 13:31+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -404,30 +404,30 @@ msgstr "Fragmentoj"
 msgid "Document Words"
 msgstr "Dokumentaj vortoj"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:916
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Nevalida bajta sekvenco en konverta enigo"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:922
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Eraro dum konvertiĝo: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1015
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Konvertiĝo de signaro “%s” al “UTF-8” ne estas subtenata"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1021
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Ne eblis malfermi konvertilon de “%s” al “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1081
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Nevalida objekto, ne pravalorigita"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1283
+#: gtksourceview/gtksourcebufferoutputstream.c:1293
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Nekompleta UTF-8-sekvenco en enigo"
@@ -446,7 +446,7 @@ msgstr "_Detaloj"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -457,26 +457,26 @@ msgstr ""
 "malrapida ol kutime.\n"
 "La eraro estis: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
 "Emfazi unu linion prenis tro da tempo, sintaksa emfazo estos malŝaltita"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "kunteksto “%s” ne povas enhavi ordonon \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "duobligita kunteksta id \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -485,18 +485,18 @@ msgstr ""
 "stilanstataŭigo uzata kun ĵokera kunteksta referenco en lingvo \"%s\" en ref "
 "\"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "nevalida kunteksta referenco “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "nekonata kunteksto “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Mankas ĉeflingva difino (id = “%s”)."
@@ -637,16 +637,15 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
-"Estis eraro pri konvertiĝo de signokodigo kaj necesis uzi rezervan signon."
+"Okazis eraro de kodiga konvertiĝo, do anstataŭiga signo estis uzata."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "Dosiero estas tro granda."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Ne estas regula dosiero."
 
@@ -654,7 +653,7 @@ msgstr "Ne estas regula dosiero."
 msgid "The file is externally modified."
 msgstr "La dosiero estas ekstere modifita."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "La bufro enhavas nevalidajn signojn."
 
@@ -688,35 +687,35 @@ msgid "using \\C is not supported in language definitions"
 msgstr "uzado de \\C ne estas subtenata en lingvodifinoj"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:180
 msgid "Select a Style"
 msgstr "Elekti stilon"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:184
 msgid "_Cancel"
 msgstr "_Nuligi"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "_Select"
 msgstr "_Elekti"
 
-#: gtksourceview/gtksourceview.c:1831
+#: gtksourceview/gtksourceview.c:1984
 msgid "All _Upper Case"
 msgstr "Ĉiuj m_ajuskloj"
 
-#: gtksourceview/gtksourceview.c:1835
+#: gtksourceview/gtksourceview.c:1988
 msgid "All _Lower Case"
 msgstr "Ĉiuj m_inusklaj"
 
-#: gtksourceview/gtksourceview.c:1839
+#: gtksourceview/gtksourceview.c:1992
 msgid "_Invert Case"
 msgstr "_Inversa uskleco"
 
-#: gtksourceview/gtksourceview.c:1843
+#: gtksourceview/gtksourceview.c:1996
 msgid "_Title Case"
 msgstr "_Majusklaj komencaj literoj"
 
-#: gtksourceview/gtksourceview.c:1847
+#: gtksourceview/gtksourceview.c:2000
 msgid "C_hange Case"
 msgstr "Ŝ_anĝi majusklan/minusklan"
 
@@ -761,7 +760,7 @@ msgstr "nekonata eskapa sekvenco"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Eraro dum analizado de anstataŭiga teksto \"%s\" ĉe signo %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:502
+#: gtksourceview/vim/gtksourceviminsert.c:523
 msgid "-- INSERT --"
 msgstr "-- ENIGI --"
 
@@ -769,15 +768,15 @@ msgstr "-- ENIGI --"
 msgid "-- REPLACE --"
 msgstr "-- ANSTATAŬIGI --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- VIDA --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- VIDA LINIO --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- VIDA BLOKO --"
 
