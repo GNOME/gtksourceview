@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2023-05-05 13:28+0000\n"
-"PO-Revision-Date: 2023-06-19 22:15+0100\n"
-"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
+"POT-Creation-Date: 2025-02-13 02:30+0000\n"
+"PO-Revision-Date: 2025-02-24 14:16+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English - United Kingdom <en_GB@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -305,7 +305,6 @@ msgstr "Adwaita Dark"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
-#| msgid "Style scheme search path"
 msgid "An style scheme for Adwaita"
 msgstr "An style scheme for Adwaita"
 
@@ -316,13 +315,11 @@ msgstr "Adwaita"
 
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
-#| msgid "Classic"
 msgid "Classic Dark"
 msgstr "Classic Dark"
 
 #. (itstool) path: style-scheme/_description
 #: classic-dark.xml:24
-#| msgid "Classic color scheme"
 msgid "Classic dark color scheme"
 msgstr "Classic dark colour scheme"
 
@@ -338,7 +335,6 @@ msgstr "Classic colour scheme"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
-#| msgid "Cobalt"
 msgid "Cobalt Light"
 msgstr "Cobalt Light"
 
@@ -410,30 +406,30 @@ msgstr "Snippets"
 msgid "Document Words"
 msgstr "Document Words"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:916
+#: gtksourceview/gtksourcebufferoutputstream.c:920
 msgid "Invalid byte sequence in conversion input"
 msgstr "Invalid byte sequence in conversion input"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:922
+#: gtksourceview/gtksourcebufferoutputstream.c:926
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Error during conversion: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1015
+#: gtksourceview/gtksourcebufferoutputstream.c:1019
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Conversion from character set “%s” to “UTF-8” is not supported"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1021
+#: gtksourceview/gtksourcebufferoutputstream.c:1025
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Could not open converter from “%s” to “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1081
+#: gtksourceview/gtksourcebufferoutputstream.c:1085
 msgid "Invalid object, not initialized"
 msgstr "Invalid object, not initialised"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1283
+#: gtksourceview/gtksourcebufferoutputstream.c:1287
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Incomplete UTF-8 sequence in input"
@@ -452,7 +448,7 @@ msgstr "_Details"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3124
+#: gtksourceview/gtksourcecontextengine.c:3128
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -463,7 +459,7 @@ msgstr ""
 "process will be slower than usual.\n"
 "The error was: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4458
+#: gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -471,19 +467,19 @@ msgstr ""
 "Highlighting a single line took too much time: syntax highlighting will be "
 "disabled"
 
-#: gtksourceview/gtksourcecontextengine.c:5708
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "context “%s” cannot contain a \\%%{...@start} command"
 
-#: gtksourceview/gtksourcecontextengine.c:5871
-#: gtksourceview/gtksourcecontextengine.c:5961
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "duplicated context ID “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6075
-#: gtksourceview/gtksourcecontextengine.c:6135
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -492,18 +488,18 @@ msgstr ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6149
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "invalid context reference “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6168
-#: gtksourceview/gtksourcecontextengine.c:6178
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "unknown context “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6279
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Missing main language definition (id = “%s”)."
@@ -643,18 +639,19 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: gtksourceview/gtksourcefileloader.c:502
+#| msgid ""
+#| "There was a character encoding conversion error and it was needed to use "
+#| "a fallback character."
 msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 msgstr ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
+"There was an encoding conversion error so a fallback character was used."
 
-#: gtksourceview/gtksourcefileloader.c:617
+#: gtksourceview/gtksourcefileloader.c:616
 msgid "File too big."
 msgstr "File too big."
 
-#: gtksourceview/gtksourcefileloader.c:772
+#: gtksourceview/gtksourcefileloader.c:771
 msgid "Not a regular file."
 msgstr "Not a regular file."
 
@@ -662,7 +659,7 @@ msgstr "Not a regular file."
 msgid "The file is externally modified."
 msgstr "The file is externally modified."
 
-#: gtksourceview/gtksourcefilesaver.c:1402
+#: gtksourceview/gtksourcefilesaver.c:1403
 msgid "The buffer contains invalid characters."
 msgstr "The buffer contains invalid characters."
 
@@ -708,23 +705,23 @@ msgstr "_Cancel"
 msgid "_Select"
 msgstr "_Select"
 
-#: gtksourceview/gtksourceview.c:1831
+#: gtksourceview/gtksourceview.c:1931
 msgid "All _Upper Case"
 msgstr "All _Upper Case"
 
-#: gtksourceview/gtksourceview.c:1835
+#: gtksourceview/gtksourceview.c:1935
 msgid "All _Lower Case"
 msgstr "All _Lower Case"
 
-#: gtksourceview/gtksourceview.c:1839
+#: gtksourceview/gtksourceview.c:1939
 msgid "_Invert Case"
 msgstr "_Invert Case"
 
-#: gtksourceview/gtksourceview.c:1843
+#: gtksourceview/gtksourceview.c:1943
 msgid "_Title Case"
 msgstr "_Title Case"
 
-#: gtksourceview/gtksourceview.c:1847
+#: gtksourceview/gtksourceview.c:1947
 msgid "C_hange Case"
 msgstr "C_hange Case"
 
@@ -777,15 +774,15 @@ msgstr "-- INSERT --"
 msgid "-- REPLACE --"
 msgstr "-- REPLACE --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:299
+#: gtksourceview/vim/gtksourcevimvisual.c:300
 msgid "-- VISUAL --"
 msgstr "-- VISUAL --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:302
+#: gtksourceview/vim/gtksourcevimvisual.c:303
 msgid "-- VISUAL LINE --"
 msgstr "-- VISUAL LINE --"
 
-#: gtksourceview/vim/gtksourcevimvisual.c:305
+#: gtksourceview/vim/gtksourcevimvisual.c:306
 msgid "-- VISUAL BLOCK --"
 msgstr "-- VISUAL BLOCK --"
 
