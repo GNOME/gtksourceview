@@ -3,6 +3,19 @@ $i = 1;
 $數 = 1;
 $i數 = 1;
 
+#[Attr(['foo'])] $afterAttr;
+
+#[Attr([
+  ['foo']
+])] $afterAttr;
+
+#[Attr([
+  [
+    ['foo']
+  ]
+])] $afterAttr;
+
+
 $str <<<extrémité
 text
 extrémité

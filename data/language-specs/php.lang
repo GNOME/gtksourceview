@@ -99,6 +99,22 @@
       <match>(\[|\])</match>
     </context>
 
+    <context id="attribute" style-ref="preprocessor">
+      <start>#\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="nested-array"/>
+      </include>
+    </context>
+
+    <context id="nested-array">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="nested-array"/>
+      </include>
+    </context>
+
     <context id="string-var">
       <include>
         <context ref="variable"/>
@@ -299,6 +315,7 @@
       <keyword>float</keyword>
       <keyword>int</keyword>
       <keyword>integer</keyword>
+      <keyword>mixed</keyword>
       <keyword>numeric</keyword>
       <keyword>object</keyword>
       <keyword>resource</keyword>
@@ -358,6 +375,7 @@
         <context sub-pattern="0" where="start" style-ref="preprocessor"/>
         <context sub-pattern="0" where="end" style-ref="preprocessor"/>
         <context ref="cpp-line-comment"/>
+        <context ref="attribute"/>
         <context ref="bash-line-comment"/>
         <context ref="c-block-comment"/>
         <context ref="double-quoted-string"/>
