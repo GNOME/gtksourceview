@@ -41,5 +41,9 @@ void     _gtk_source_annotation_draw           (GtkSourceAnnotation *self,
                                                 GtkSourceView       *view,
                                                 GdkRectangle         rectangle,
                                                 const GdkRGBA       *color);
+GTK_SOURCE_INTERNAL
+int      _gtk_source_annotation_get_width      (GtkSourceAnnotation *self,
+                                                GtkWidget           *widget,
+                                                int                  line_height);
 
 G_END_DECLS

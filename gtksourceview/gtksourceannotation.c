@@ -316,6 +316,35 @@ _gtk_source_annotation_ensure_updated_layout (GtkSourceAnnotation *self,
 	g_clear_pointer (&font_desc, pango_font_description_free);
 }
 
+int
+_gtk_source_annotation_get_width (GtkSourceAnnotation *self,
+                                  GtkWidget           *widget,
+                                  int                  line_height)
+{
+	int width = 0;
+	int spacing;
+	int icon_size;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_ANNOTATION (self), 0);
+	g_return_val_if_fail (GTK_IS_WIDGET (widget), 0);
+
+	spacing = line_height * 0.4;
+	icon_size = line_height * 0.8;
+
+	if (self->icon != NULL)
+	{
+		width += icon_size + spacing;
+	}
+
+	if (self->description && self->description[0])
+	{
+		_gtk_source_annotation_ensure_updated_layout (self, widget);
+		width += self->description_width;
+	}
+
+	return width;
+}
+
 void
 _gtk_source_annotation_draw (GtkSourceAnnotation *self,
                              GtkSnapshot         *snapshot,
