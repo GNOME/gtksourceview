@@ -193,7 +193,7 @@ gtk_source_annotation_init (GtkSourceAnnotation *self)
 /**
  * gtk_source_annotation_new:
  * @description: (nullable): the text to display or %NULL.
- * @icon: (nullable): the icon name to display or %NULL.
+ * @icon: (transfer full) (nullable): the icon name to display or %NULL.
  * @line: the line where to display the annotation.
  * @style: #GtkSourceAnnotationStyle
  *
