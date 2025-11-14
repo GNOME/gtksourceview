@@ -359,6 +359,12 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 	int window_x, window_y;
 	int icon_size;
 	int spacing;
+	int total_width;
+	GdkRGBA bg_color;
+	GskRoundedRect rounded_rect;
+	float corner_radius;
+	float bg_x, bg_y, bg_width, bg_height;
+	graphene_size_t top_left_radius, bottom_left_radius, zero_radius;
 
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (self));
 	g_return_if_fail (snapshot != NULL);
@@ -417,6 +423,56 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 
 	draw_rect = rect;
 
+	/* Calculate total annotation width for background */
+	total_width = 0;
+	if (self->icon != NULL)
+	{
+		total_width += icon_size + spacing;
+	}
+	if (self->description && self->description[0])
+	{
+		_gtk_source_annotation_ensure_updated_layout (self, GTK_WIDGET (view));
+		total_width += self->description_width;
+	}
+
+	/* Draw rounded background */
+	if (total_width > 0)
+	{
+		bg_color = choosen_color;
+		corner_radius = floor (rect.height / 2.);
+
+		bg_color.alpha = choosen_color.alpha * 0.1f;
+
+		/* Add padding: 1px top/bottom, 3px left */
+		bg_x = rect.x - 6.0f;
+		bg_y = rect.y - 1.0f;
+		bg_width = total_width + 6.0f;
+		bg_height = rect.height + 2.0f;
+
+		top_left_radius = GRAPHENE_SIZE_INIT (corner_radius, corner_radius);
+		bottom_left_radius = GRAPHENE_SIZE_INIT (corner_radius, corner_radius);
+		zero_radius = GRAPHENE_SIZE_INIT (0.0f, 0.0f);
+
+		gsk_rounded_rect_init (&rounded_rect,
+		                       &GRAPHENE_RECT_INIT (bg_x,
+		                                            bg_y,
+		                                            bg_width,
+		                                            bg_height),
+		                       &top_left_radius,    /* top-left */
+		                       &zero_radius,        /* top-right */
+		                       &zero_radius,        /* bottom-right */
+		                       &bottom_left_radius); /* bottom-left */
+
+		gtk_snapshot_push_rounded_clip (snapshot, &rounded_rect);
+		gtk_snapshot_append_color (snapshot,
+		                           &bg_color,
+		                           &GRAPHENE_RECT_INIT (bg_x,
+		                                                bg_y,
+		                                                bg_width,
+		                                                bg_height));
+		gtk_snapshot_pop (snapshot);
+	}
+
 	if (self->icon != NULL)
 	{
 		GtkIconTheme *icon_theme;
@@ -471,7 +527,7 @@ _gtk_source_annotation_draw (GtkSourceAnnotation *self,
 		}
 	}
 
-	if (self->description && strlen (self->description) > 0)
+	if (self->description && self->description[0])
 	{
 		_gtk_source_annotation_ensure_updated_layout (self, GTK_WIDGET (view));
 
