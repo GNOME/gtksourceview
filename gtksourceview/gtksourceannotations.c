@@ -225,9 +225,10 @@ _gtk_source_annotations_update_color (GtkSourceAnnotations *self,
 
 static void
 _gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
-                                         GtkSourceView              *view,
-                                         GtkSnapshot                *snapshot,
-                                         GtkSourceAnnotation        *annotation)
+                                         GtkSourceView        *view,
+                                         GtkSnapshot          *snapshot,
+                                         GtkSourceAnnotation  *annotation,
+                                         const GdkRectangle   *visible_rect)
 {
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
@@ -235,10 +236,13 @@ _gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
 	GtkTextIter line_end_iter;
 	GdkRectangle rect;
 	int line_number;
+	int annotation_width;
+	int last_char_x;
 
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATIONS (manager));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 	g_return_if_fail (GTK_SOURCE_IS_ANNOTATION (annotation));
+	g_return_if_fail (visible_rect != NULL);
 
 	text_view = GTK_TEXT_VIEW (view);
 	buffer = gtk_text_view_get_buffer (text_view);
@@ -261,8 +265,24 @@ _gtk_source_annotations_draw_annotation (GtkSourceAnnotations *manager,
 		gtk_text_view_get_iter_location (text_view, &line_end_iter, &rect);
 	}
 
-	/* Ensure the annotation is not drawn over the space drawer new line */
-	rect.x += rect.height * 2;
+	last_char_x = rect.x + rect.width;
+
+	/* Calculate annotation width */
+	annotation_width = _gtk_source_annotation_get_width (annotation,
+	                                                     GTK_WIDGET (view),
+	                                                     rect.height);
+
+	/* Check if annotation fits after the last character in the visible rect */
+	if (last_char_x + annotation_width <= visible_rect->x + visible_rect->width)
+	{
+		/* Right-justify the annotation */
+		rect.x = visible_rect->x + visible_rect->width - annotation_width;
+	}
+	else
+	{
+		/* Ensure the annotation is not drawn over the space drawer new line */
+		rect.x += rect.height * 2;
+	}
 
 	_gtk_source_annotation_draw (annotation,
 	                             snapshot,
@@ -310,11 +330,11 @@ _gtk_source_annotations_draw (GtkSourceAnnotations *self,
 
 			gint annotation_line = gtk_source_annotation_get_line (annotation);
 
-			if (annotation_line >= first_visible_line &&
-			    annotation_line <= last_visible_line)
-			{
-				_gtk_source_annotations_draw_annotation (self, view, snapshot, annotation);
-			}
+		if (annotation_line >= first_visible_line &&
+		    annotation_line <= last_visible_line)
+		{
+			_gtk_source_annotations_draw_annotation (self, view, snapshot, annotation, &visible_rect);
+		}
 		}
 	}
 }

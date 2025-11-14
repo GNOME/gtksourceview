@@ -36,6 +36,10 @@ gboolean _gtk_source_annotation_contains_point (GtkSourceAnnotation *self,
                                                 int                  x,
                                                 int                  y);
 GTK_SOURCE_INTERNAL
+int      _gtk_source_annotation_get_width      (GtkSourceAnnotation *self,
+                                                GtkWidget           *widget,
+                                                int                  line_height);
+GTK_SOURCE_INTERNAL
 void     _gtk_source_annotation_draw           (GtkSourceAnnotation *self,
                                                 GtkSnapshot         *snapshot,
                                                 GtkSourceView       *view,
