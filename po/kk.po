@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2018-08-16 20:16+0000\n"
-"PO-Revision-Date: 2018-08-25 22:37+0500\n"
+"POT-Creation-Date: 2025-12-10 19:52+0000\n"
+"PO-Revision-Date: 2026-01-11 14:51+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -30,11 +30,14 @@ msgstr ""
 #. (itstool) path: chdr.lang/language@_section
 #. (itstool) path: c.lang/language@_section
 #. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: commonlisp.lang/language@_section
 #. (itstool) path: cpphdr.lang/language@_section
 #. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: csharp.lang/language@_section
 #. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: dart.lang/language@_section
 #. (itstool) path: d.lang/language@_section
+#. (itstool) path: docker.lang/language@_section
 #. (itstool) path: eiffel.lang/language@_section
 #. (itstool) path: erlang.lang/language@_section
 #. (itstool) path: forth.lang/language@_section
@@ -52,6 +55,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -67,11 +71,13 @@ msgstr ""
 #. (itstool) path: opencl.lang/language@_section
 #. (itstool) path: pascal.lang/language@_section
 #. (itstool) path: pig.lang/language@_section
+#. (itstool) path: powershell.lang/language@_section
 #. (itstool) path: prolog.lang/language@_section
 #. (itstool) path: rust.lang/language@_section
 #. (itstool) path: scala.lang/language@_section
 #. (itstool) path: scheme.lang/language@_section
 #. (itstool) path: sml.lang/language@_section
+#. (itstool) path: solidity.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
 #. (itstool) path: swift.lang/language@_section
@@ -81,48 +87,37 @@ msgstr ""
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
-#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
-#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
-#: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
-#: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
-#: go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
-#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23
-#: kotlin.lang:24 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22
-#: meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:25
-#: ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24
-#: pig.lang:26 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
-#: sml.lang:23 sparql.lang:23 sql.lang:23 swift.lang:24 systemverilog.lang:21
-#: thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23 vhdl.lang:23
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24
+#: asp.lang:23 automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23
+#: cg.lang:23 chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24
+#: cpphdr.lang:24 cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22
+#: d.lang:29 docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23
+#: fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24
+#: gradle.lang:21 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
+#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23
+#: lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23
+#: nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26
+#: ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26
+#: powershell.lang:23 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
+#: sml.lang:23 solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
+#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
+#: verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Бастапқы коды"
 
-#. (itstool) path: awk.lang/language@_section
-#. (itstool) path: dosbatch.lang/language@_section
-#. (itstool) path: javascript.lang/language@_section
-#. (itstool) path: lua.lang/language@_section
-#. (itstool) path: m4.lang/language@_section
-#. (itstool) path: perl.lang/language@_section
-#. (itstool) path: php.lang/language@_section
-#. (itstool) path: python3.lang/language@_section
-#. (itstool) path: python.lang/language@_section
-#. (itstool) path: ruby.lang/language@_section
-#. (itstool) path: sh.lang/language@_section
-#. (itstool) path: tcl.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 javascript.lang:27 lua.lang:23 m4.lang:23
-#: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
-#: sh.lang:24 tcl.lang:23
-msgid "Script"
-msgstr "Скрипт"
-
+#. (itstool) path: asciidoc.lang/language@_section
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
 #. (itstool) path: jade.lang/language@_section
+#. (itstool) path: jsdoc.lang/language@_section
 #. (itstool) path: latex.lang/language@_section
 #. (itstool) path: mallard.lang/language@_section
 #. (itstool) path: markdown.lang/language@_section
@@ -135,17 +130,63 @@ msgstr "Скрипт"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
-#: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
 #: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "Белгілеу"
+
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: fish.lang/language@_section
+#. (itstool) path: gdscript.lang/language@_section
+#. (itstool) path: javascript-expressions.lang/language@_section
+#. (itstool) path: javascript-functions-classes.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: javascript-literals.lang/language@_section
+#. (itstool) path: javascript-modules.lang/language@_section
+#. (itstool) path: javascript-statements.lang/language@_section
+#. (itstool) path: javascript-values.lang/language@_section
+#. (itstool) path: jsx.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#. (itstool) path: typescript-js-expressions.lang/language@_section
+#. (itstool) path: typescript-js-functions-classes.lang/language@_section
+#. (itstool) path: typescript-js-literals.lang/language@_section
+#. (itstool) path: typescript-js-modules.lang/language@_section
+#. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-jsx.lang/language@_section
+#. (itstool) path: typescript.lang/language@_section
+#. (itstool) path: typescript-type-expressions.lang/language@_section
+#. (itstool) path: typescript-type-generics.lang/language@_section
+#. (itstool) path: typescript-type-literals.lang/language@_section
+#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22
+#: javascript-expressions.lang:27 javascript-functions-classes.lang:27
+#: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
+#: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
+#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
+#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
+#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
+#: typescript-type-literals.lang:23
+msgid "Script"
+msgstr "Скрипт"
 
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:23
 msgid "CG Shader Language"
-msgstr ""
+msgstr "CG шейдер тілі"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -155,6 +196,7 @@ msgstr ""
 #. (itstool) path: diff.lang/language@_section
 #. (itstool) path: dot.lang/language@_section
 #. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: ftl.lang/language@_section
 #. (itstool) path: gdb-log.lang/language@_section
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
@@ -170,15 +212,17 @@ msgstr ""
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
+#. (itstool) path: yara.lang/language@_section
 #: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
-#: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
-#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
-#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
-#: yaml.lang:21
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
+#: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
+#: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Басқа"
 
@@ -195,7 +239,7 @@ msgstr "C++ тақырыптамасы"
 #. (itstool) path: dosbatch.lang/language@_name
 #: dosbatch.lang:23
 msgid "DOS Batch"
-msgstr ""
+msgstr "DOS пакеттік файлы"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
@@ -213,9 +257,10 @@ msgstr "Django үлгісі"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "Ғылыми"
 
@@ -227,7 +272,7 @@ msgstr "GDB логы"
 #. (itstool) path: glsl.lang/language@_name
 #: glsl.lang:30
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "OpenGL шейдер тілі"
 
 #. (itstool) path: llvm.lang/language@_name
 #: llvm.lang:22
@@ -242,11 +287,10 @@ msgstr "gettext аудармасы"
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
 msgid "RPM spec"
-msgstr ""
+msgstr "RPM спецификация файлы"
 
 #. (itstool) path: tera.lang/language@_name
 #: tera.lang:23
-#| msgid "Template"
 msgid "Tera Template"
 msgstr "Tera үлгісі"
 
@@ -293,7 +337,7 @@ msgstr "Ақшыл қараңғы"
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr ""
+msgstr "Solarized күңгірт түстер палитрасын қолданатын түстер схемасы"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
@@ -303,7 +347,7 @@ msgstr "Ақшыл жарық"
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr ""
+msgstr "Solarized ашық түстер палитрасын қолданатын түстер схемасы"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -319,36 +363,38 @@ msgstr "Tango түстер палитрасын қолданатын түсте�
 msgid "Document Words"
 msgstr "Құжат сөздері"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "Түрлендіру кірісіндегі жарамсыз байттар тізбегі"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
-msgstr ""
+msgstr "Түрлендіру кезіндегі қате: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
+"“%s” таңбалар жиынынан “UTF-8” жиынына түрлендіруге қолдау көрсетілмейді"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
-msgstr ""
+msgstr "“%s” таңбалар жиынынан “UTF-8” жиынына түрлендіргішті ашу мүмкін емес"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:995
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
-msgstr ""
+msgstr "Жарамсыз объект, инициализацияланбаған"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1187
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
+#, c-format
 msgid "Incomplete UTF-8 sequence in input"
-msgstr ""
+msgstr "Кірістегі толық емес UTF-8 тізбегі"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview/gtksourcecompletion.c:833
+#: gtksourceview/gtksourcecompletion.c:838
 msgid "All"
 msgstr "Барлығы"
 
@@ -363,7 +409,7 @@ msgstr "Провайдер"
 
 #: gtksourceview/gtksourcecompletion.ui:86
 msgid "Show detailed proposal information"
-msgstr ""
+msgstr "Ұсыныс туралы толық ақпаратты көрсету"
 
 #: gtksourceview/gtksourcecompletion.ui:88
 msgid "_Details…"
@@ -380,161 +426,168 @@ msgid ""
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"Барлық ауысулар үшін regex жасау мүмкін емес, синтаксисті түспен ерекшелеу "
+"процесі әдеттегіден баяу болады.\n"
+"Қате келесідей болды: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4472
+#: gtksourceview/gtksourcecontextengine.c:4474
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"Бір жолды түспен ерекшелеу тым көп уақытты алды, синтаксисті түспен "
+"ерекшелеу сөндіріледі"
 
-#: gtksourceview/gtksourcecontextengine.c:5720
+#: gtksourceview/gtksourcecontextengine.c:5724
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
-msgstr ""
+msgstr "“%s” контекстінде \\%%{...@start} командасы болуы мүмкін емес"
 
-#: gtksourceview/gtksourcecontextengine.c:5883
-#: gtksourceview/gtksourcecontextengine.c:5973
+#: gtksourceview/gtksourcecontextengine.c:5887
+#: gtksourceview/gtksourcecontextengine.c:5977
 #, c-format
 msgid "duplicated context id “%s”"
-msgstr ""
+msgstr "қайталанған “%s” контекст идентификаторы"
 
-#: gtksourceview/gtksourcecontextengine.c:6087
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6091
+#: gtksourceview/gtksourcecontextengine.c:6151
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr ""
+"“%s” тіліндегі “%s” сілтемесінде шаблондық контекст сілтемесімен "
+"қолданылған стильді қайта анықтау"
 
-#: gtksourceview/gtksourcecontextengine.c:6161
+#: gtksourceview/gtksourcecontextengine.c:6165
 #, c-format
 msgid "invalid context reference “%s”"
-msgstr ""
+msgstr "жарамсыз “%s” контекст сілтемесі"
 
-#: gtksourceview/gtksourcecontextengine.c:6180
-#: gtksourceview/gtksourcecontextengine.c:6190
+#: gtksourceview/gtksourcecontextengine.c:6184
+#: gtksourceview/gtksourcecontextengine.c:6194
 #, c-format
 msgid "unknown context “%s”"
 msgstr "белгісіз контекст \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6289
+#: gtksourceview/gtksourcecontextengine.c:6293
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "Негізгі тіл анықтамасы жоқ (id = \"%s\".)"
 
-#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
-#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
-#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
-#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:140 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
+#: gtksourceview/gtksourceencoding.c:193 gtksourceview/gtksourceencoding.c:195
 msgid "Unicode"
 msgstr "Юникод"
 
-#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
-#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
+#: gtksourceview/gtksourceencoding.c:154 gtksourceview/gtksourceencoding.c:178
+#: gtksourceview/gtksourceencoding.c:228 gtksourceview/gtksourceencoding.c:271
 msgid "Western"
 msgstr "Батыстық"
 
-#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
-#: gtksourceview/gtksourceencoding.c:273
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:267
 msgid "Central European"
 msgstr "Орта Еуропалық"
 
-#: gtksourceview/gtksourceencoding.c:164
+#: gtksourceview/gtksourceencoding.c:158
 msgid "South European"
 msgstr "Оңтүстік Еуропалық"
 
-#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
-#: gtksourceview/gtksourceencoding.c:287
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Baltic"
 msgstr "Балтық"
 
-#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
-#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
-#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:232
+#: gtksourceview/gtksourceencoding.c:245 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:269
 msgid "Cyrillic"
 msgstr "Кирилл жазуы"
 
-#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:285
+#: gtksourceview/gtksourceencoding.c:164 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Arabic"
 msgstr "Араб"
 
-#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:273
 msgid "Greek"
 msgstr "Грек"
 
-#: gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Hebrew Visual"
 msgstr "Визуалды иврит"
 
-#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
-#: gtksourceview/gtksourceencoding.c:281
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Turkish"
 msgstr "Түрік"
 
-#: gtksourceview/gtksourceencoding.c:178
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Nordic"
 msgstr "Скандинавтік"
 
-#: gtksourceview/gtksourceencoding.c:182
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Celtic"
 msgstr "Келттік"
 
-#: gtksourceview/gtksourceencoding.c:186
+#: gtksourceview/gtksourceencoding.c:180
 msgid "Romanian"
 msgstr "Румын"
 
-#: gtksourceview/gtksourceencoding.c:204
+#: gtksourceview/gtksourceencoding.c:198
 msgid "Armenian"
 msgstr "Армян"
 
-#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
-#: gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:200 gtksourceview/gtksourceencoding.c:202
+#: gtksourceview/gtksourceencoding.c:216
 msgid "Chinese Traditional"
 msgstr "Қытайша дәстүрлі"
 
-#: gtksourceview/gtksourceencoding.c:210
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Cyrillic/Russian"
 msgstr "Кириллица/Ресей"
 
-#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
-#: gtksourceview/gtksourceencoding.c:262
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:209
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:241
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Japanese"
 msgstr "Жапон"
 
-#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
-#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:243
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:262
 msgid "Korean"
 msgstr "Корей"
 
-#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
-#: gtksourceview/gtksourceencoding.c:229
+#: gtksourceview/gtksourceencoding.c:219 gtksourceview/gtksourceencoding.c:221
+#: gtksourceview/gtksourceencoding.c:223
 msgid "Chinese Simplified"
 msgstr "Қытайша оңайлатылған"
 
-#: gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:225
 msgid "Georgian"
 msgstr "Грузин"
 
-#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
+#: gtksourceview/gtksourceencoding.c:236 gtksourceview/gtksourceencoding.c:277
 msgid "Hebrew"
 msgstr "Иврит"
 
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Cyrillic/Ukrainian"
 msgstr "Кириллица/Украин"
 
-#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
-#: gtksourceview/gtksourceencoding.c:289
+#: gtksourceview/gtksourceencoding.c:258 gtksourceview/gtksourceencoding.c:264
+#: gtksourceview/gtksourceencoding.c:283
 msgid "Vietnamese"
 msgstr "Вьетнам"
 
-#: gtksourceview/gtksourceencoding.c:266
+#: gtksourceview/gtksourceencoding.c:260
 msgid "Thai"
 msgstr "Тай"
 
-#: gtksourceview/gtksourceencoding.c:500
+#: gtksourceview/gtksourceencoding.c:494
 msgid "Unknown"
 msgstr "Белгісіз"
 
@@ -548,33 +601,35 @@ msgstr "Белгісіз"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
+#. *
+#. https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
-#.
-#: gtksourceview/gtksourceencoding.c:644
+#: gtksourceview/gtksourceencoding.c:638
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:522
+#: gtksourceview/gtksourcefileloader.c:515
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr ""
+"Таңбаларды кодтауды түрлендіру қатесі орын алды және резервтік таңбаны "
+"қолдану қажет болды."
 
-#: gtksourceview/gtksourcefileloader.c:629
+#: gtksourceview/gtksourcefileloader.c:622
 msgid "File too big."
 msgstr "Файл тым үлкен."
 
-#: gtksourceview/gtksourcefileloader.c:783
+#: gtksourceview/gtksourcefileloader.c:776
 msgid "Not a regular file."
 msgstr "Қалыпты файл емес."
 
-#: gtksourceview/gtksourcefilesaver.c:981
+#: gtksourceview/gtksourcefilesaver.c:975
 msgid "The file is externally modified."
 msgstr "Файл сыртқы түрде өзгертілді."
 
-#: gtksourceview/gtksourcefilesaver.c:1433
+#: gtksourceview/gtksourcefilesaver.c:1427
 msgid "The buffer contains invalid characters."
 msgstr "Буферде жарамсыз таңбалар бар."
 
@@ -584,12 +639,13 @@ msgstr "Буферде жарамсыз таңбалар бар."
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * A #GtkSourceLanguage represents a programming or markup language,
+#. affecting
 #. * syntax highlighting and [context classes][context-classes].
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance,
+#. and
 #. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
-#.
 #: gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Басқалар"
@@ -597,16 +653,16 @@ msgstr "Басқалар"
 #: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
-msgstr ""
+msgstr "“%s” идентификаторы “%s” regex-інде белгісіз"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr ""
+msgstr "“%s” regex ішінде: кері сілтемелерге қолдау көрсетілмейді"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "тіл анықтамаларында \\C қолдануға қолдау көрсетілмейді"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:185
@@ -622,34 +678,34 @@ msgid "_Select"
 msgstr "Таң_дау"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1727
+#: gtksourceview/gtksourceview.c:1810
 msgid "_Redo"
 msgstr "Қай_талау"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1738
+#: gtksourceview/gtksourceview.c:1821
 msgid "_Undo"
 msgstr "Бол_дырмау"
 
-#: gtksourceview/gtksourceview.c:1757
+#: gtksourceview/gtksourceview.c:1840
 msgid "All _Upper Case"
 msgstr "Барлығы _бас әріпті"
 
-#: gtksourceview/gtksourceview.c:1767
+#: gtksourceview/gtksourceview.c:1850
 msgid "All _Lower Case"
 msgstr "Барлығы _кіші әріпті"
 
-#: gtksourceview/gtksourceview.c:1777
+#: gtksourceview/gtksourceview.c:1860
 msgid "_Invert Case"
 msgstr "Регистрді т_ерістеу"
 
-#: gtksourceview/gtksourceview.c:1787
+#: gtksourceview/gtksourceview.c:1870
 msgid "_Title Case"
-msgstr ""
+msgstr "_Бас әріптермен жазу"
 
-#: gtksourceview/gtksourceview.c:1797
+#: gtksourceview/gtksourceview.c:1880
 msgid "C_hange Case"
-msgstr ""
+msgstr "Регистрді ө_згерту"
 
 #~ msgid "Disabled"
 #~ msgstr "Сөндірулі"
