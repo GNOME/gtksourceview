@@ -230,8 +230,8 @@ get_scheduler (void)
 }
 
 /**
- * gtk_source_scheduler_add:
- * @callback: (scope notified) (closure user_data): the callback to execute
+ * gtk_source_scheduler_add: (skip)
+ * @callback: (scope forever) (closure user_data): the callback to execute
  * @user_data: user data for @callback
  *
  * Simplified version of [func@scheduler_add_full].
