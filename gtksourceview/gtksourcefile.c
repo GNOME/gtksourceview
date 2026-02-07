@@ -284,7 +284,7 @@ gtk_source_file_set_location (GtkSourceFile *file,
  * gtk_source_file_get_location:
  * @file: a #GtkSourceFile.
  *
- * Returns: (transfer none): the #GFile.
+ * Returns: (nullable) (transfer none): the #GFile.
  */
 GFile *
 gtk_source_file_get_location (GtkSourceFile *file)
