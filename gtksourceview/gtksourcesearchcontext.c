@@ -2978,7 +2978,7 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
  * gtk_source_search_context_get_match_style:
  * @search: a #GtkSourceSearchContext.
  *
- * Returns: (transfer none): the #GtkSourceStyle to apply on search matches.
+ * Returns: (nullable) (transfer none): the #GtkSourceStyle to apply on search matches.
  */
 GtkSourceStyle *
 gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
