@@ -1,3 +1,17 @@
+News in 5.19.0, 2025-02-23
+--------------------------
+
+This is an unstable release for GNOME 50.rc
+
+ * Annotations: draw a background behind annotations; align to the right
+   when they fit (e.g. for diagnostics)
+ * GObject Introspection: fix nullable and callback destroy annotations
+   (get_location, get_match_style, scheduler, callbacks)
+ * Fix gutter text renderer text layout snapshot deprecation
+ * PHP language: highlight PHP 8.0 attributes and add new keywords
+ * New language: Cornish
+ * Translation updates
+
 News in 5.18.0, 2025-09-12
 --------------------------
 
