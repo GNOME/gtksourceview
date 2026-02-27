@@ -43,6 +43,11 @@
 
   <definitions>
 
+    <context id="multi-line-comment" style-ref="comment" end-at-line-end="false" class="comment" class-disabled="no-spell-check">
+      <start>\/\*</start>
+      <end>\*\/</end>
+    </context>
+
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>--</start>
       <include>
@@ -177,6 +182,8 @@
       <keyword>natural</keyword>
       <keyword>signed</keyword>
       <keyword>unsigned</keyword>
+      <keyword>u_signed</keyword>
+      <keyword>u_unsigned</keyword>
       <keyword>line</keyword>
       <keyword>text</keyword>
       <keyword>std_logic</keyword>
@@ -230,6 +237,7 @@
 
     <context id="vhdl" class="no-spell-check">
       <include>
+        <context ref="multi-line-comment"/>
         <context ref="line-comment"/>
         <context ref="string"/>
         <context ref="character"/>
