@@ -88,6 +88,16 @@
         <context sub-pattern="2" where="end" class="no-spell-check"/>
       </include>
     </context>
+    
+    <!-- environment for fancyvrb and fvextra packages -->
+    <context id="Verbatim-env" style-inside="true" style-ref="verbatim" class="no-spell-check">
+      <start>(\\begin)\{(Verbatim\*?)\}(\[.*?\])?</start>
+      <end>(\\end)\{(\%{2@start})\}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="common-commands"/>
+        <context sub-pattern="1" where="end" style-ref="common-commands" />
+      </include>
+    </context>
 
     <context id="lstlisting-env" style-inside="true" style-ref="verbatim" class="no-spell-check">
       <start>(\\begin)\{(lstlisting|minted)\}</start>
@@ -212,21 +222,43 @@
         <context sub-pattern="1" where="start" style-ref="command"/>
       </include>
     </context>
+    
+    <context id="Verbatim-input">
+      <match>(\\VerbatimInput\*?)(\[.*?\])?(\{.*?\})?</match>
+      <include>
+        <context sub-pattern="1" style-ref="command"/>
+        <context sub-pattern="3" style-ref="included-file" />
+      </include>
+    </context>
 
     <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
-    <context id="verbatim-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+    <context id="verb-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <start>(\\verb)\*?(\S)</start>
       <end>\%{2@start}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
       </include>
     </context>
+    
+    <!-- fvextra package allows curly braces to enclose verbatims -->
+    <!-- using a conditional subpattern (?(?=\{) to detect curly braces -->
+   <context id="Verb-inline">
+      <match>(\\(Save)?Verb)\*?(\[.*?\])?(?(?=\{)\{(.*?)\}|(\S)(.*?)\g{-2})</match>  
+      <include>
+        <context sub-pattern="1" style-ref="command"/>
+        <context sub-pattern="4" style-ref="verbatim"/>
+        <context sub-pattern="6" style-ref="verbatim"/>
+      </include> 
+    </context>
 
     <context id="verbatim">
       <include>
         <context ref="verbatim-env"/>
+        <context ref="Verbatim-env"/>
         <context ref="lstlisting-env"/>
-        <context ref="verbatim-inline"/>
+        <context ref="Verbatim-input"/>
+        <context ref="verb-inline"/>
+        <context ref="Verb-inline"/>
         <context ref="lstinline-curly-brackets"/>
         <context ref="lstinline-square-brackets"/>
         <context ref="lstinline"/>
