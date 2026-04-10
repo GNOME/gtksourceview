@@ -720,7 +720,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * ```c
  * GtkSourceLanguage *lang;
  * GtkSourceLanguageManager *manager;
- * lm = gtk_source_language_manager_get_default ();
+ * manager = gtk_source_language_manager_get_default ();
  * lang = gtk_source_language_manager_guess_language (manager, filename, NULL);
  * gtk_source_buffer_set_language (buffer, lang);
  * ```
