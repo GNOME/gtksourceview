@@ -2461,6 +2461,7 @@ set_pango_layouts_width (GtkSourcePrintCompositor *compositor)
  * }
  * ```
  * ```python
+ * # In Python...
  * def on_paginate(
  *     operation: Gtk.PrintOperation,
  *     context: Gtk.PrintContext,
@@ -2497,6 +2498,7 @@ set_pango_layouts_width (GtkSourcePrintCompositor *compositor)
  * }
  * ```
  * ```python
+ * # In Python...
  * def on_begin_print(
  *     operation: Gtk.PrintOperation,
  *     context: Gtk.PrintContext,
@@ -3069,6 +3071,7 @@ print_footer (GtkSourcePrintCompositor *compositor,
  * }
  * ```
  * ```python
+ * # In Python...
  * def on_draw_page(
  *     operation: Gtk.PrintOperation,
  *     context: Gtk.PrintContext,

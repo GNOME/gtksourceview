@@ -114,6 +114,7 @@
  * g_object_unref (provider);
  * ```
  * ```python
+ * # In Python...
  * provider = Gtk.CssProvider()
  * provider.load_from_string("textview { font-family: Monospace; font-size: 8pt; }")
  * style_context = view.get_style_context()

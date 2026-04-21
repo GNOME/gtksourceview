@@ -725,6 +725,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * gtk_source_buffer_set_language (buffer, lang);
  * ```
  * ```python
+ * # In Python...
  * manager = GtkSource.LanguageManager.get_default()
  * language = manager.guess_language(filename=filename, content_type=None)
  * buffer.set_language(language=language)
@@ -752,6 +753,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * g_free (content_type);
  * ```
  * ```python
+ * # In Python...
  * content_type, uncertain = Gio.content_type_guess(filename=filename, data=None)
  * if uncertain:
  *     content_type = None

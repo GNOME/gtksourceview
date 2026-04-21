@@ -68,6 +68,7 @@
  * }
  * ```
  * ```python
+ * # In Python...
  * buffer: GtkSource.Buffer = GtkSource.Buffer()
  * region: GtkSource.Region = GtkSource.Region(buffer=buffer)
  * region_iter = region.get_start_region_iter()

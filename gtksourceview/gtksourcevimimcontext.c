@@ -78,6 +78,7 @@
  * g_object_bind_property (im_context, "command-text", command_label, "label", 0);
  * ```
  * ```python
+ * # In Python...
  * key = Gtk.EventControllerKey.new()
  * im_context = GtkSource.VimIMContext.new()
  * buffer = GtkSource.Buffer()

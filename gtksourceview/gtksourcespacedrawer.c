@@ -74,6 +74,7 @@
  * gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
  * ```
  * ```python
+ * # In Python...
  * space_drawer.set_types_for_locations(
  *     locations=GtkSource.SpaceLocationFlags.ALL,
  *     types=GtkSource.SpaceTypeFlags.NBSP,

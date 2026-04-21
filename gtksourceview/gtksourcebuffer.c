@@ -96,6 +96,7 @@
  * tag = gtk_text_tag_table_lookup (tag_table, "gtksourceview:context-classes:string");
  * ```
  * ```python
+ * # In Python...
  * buffer = GtkSource.Buffer()
  *
  * tag_table = buffer.get_tag_table()
