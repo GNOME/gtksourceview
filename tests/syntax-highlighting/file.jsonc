@@ -1,0 +1,15 @@
+{
+    /*
+      This is a block comment
+      that spans multiple lines
+    */
+    "string": "Jane Doe", // Single line comment
+    "integer": /* This is a single-line block comment */ 25,
+    "array": [
+      // Start of array
+      "first", // Inline value
+      "second" /*
+        End of array
+      */
+    ]
+}
