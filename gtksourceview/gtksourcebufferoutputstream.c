@@ -1297,3 +1297,32 @@ gtk_source_buffer_output_stream_close (GOutputStream  *stream,
 
 	return TRUE;
 }
+
+void
+gtk_source_buffer_output_stream_abort (GtkSourceBufferOutputStream *stream)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER_OUTPUT_STREAM (stream));
+
+	if (!stream->is_closed && stream->is_initialized)
+	{
+		if (stream->source_buffer != NULL)
+		{
+			gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (stream->source_buffer));
+			gtk_text_buffer_end_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
+		}
+
+		if (stream->iconv != NULL)
+		{
+			g_iconv_close (stream->iconv);
+			stream->iconv = NULL;
+		}
+
+		g_clear_pointer (&stream->buffer, g_free);
+		stream->buflen = 0;
+
+		g_clear_pointer (&stream->iconv_buffer, g_free);
+		stream->iconv_buflen = 0;
+
+		stream->is_closed = TRUE;
+	}
+}

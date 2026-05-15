@@ -35,6 +35,179 @@ typedef struct
 
 static GMainLoop *main_loop;
 
+typedef struct
+{
+	GInputStream parent_instance;
+
+	const guint8 *contents;
+	gsize length;
+	gsize offset;
+	gsize first_chunk_size;
+	guint n_reads;
+
+	guint fail_after_first_read : 1;
+} TestInputStream;
+
+typedef struct
+{
+	GInputStreamClass parent_class;
+} TestInputStreamClass;
+
+GType test_input_stream_get_type (void);
+
+G_DEFINE_TYPE (TestInputStream, test_input_stream, G_TYPE_INPUT_STREAM)
+
+static gssize
+test_input_stream_read (GInputStream  *stream,
+                        void          *buffer,
+                        gsize          count,
+                        GCancellable  *cancellable,
+                        GError       **error)
+{
+	TestInputStream *self = (TestInputStream *)stream;
+	gsize to_read;
+
+	if (g_cancellable_set_error_if_cancelled (cancellable, error))
+	{
+		return -1;
+	}
+
+	if (self->fail_after_first_read && self->n_reads > 0)
+	{
+		g_set_error_literal (error,
+		                     G_IO_ERROR,
+		                     G_IO_ERROR_FAILED,
+		                     "Test stream read failure");
+		return -1;
+	}
+
+	if (self->offset == self->length)
+	{
+		return 0;
+	}
+
+	to_read = MIN (count, self->length - self->offset);
+
+	if (self->n_reads == 0 && self->first_chunk_size > 0)
+	{
+		to_read = MIN (to_read, self->first_chunk_size);
+	}
+
+	memcpy (buffer, self->contents + self->offset, to_read);
+	self->offset += to_read;
+	self->n_reads++;
+
+	return to_read;
+}
+
+static gboolean
+test_input_stream_close (GInputStream  *stream,
+                         GCancellable  *cancellable,
+                         GError       **error)
+{
+	return TRUE;
+}
+
+static void
+test_input_stream_class_init (TestInputStreamClass *klass)
+{
+	GInputStreamClass *stream_class = G_INPUT_STREAM_CLASS (klass);
+
+	stream_class->read_fn = test_input_stream_read;
+	stream_class->close_fn = test_input_stream_close;
+}
+
+static void
+test_input_stream_init (TestInputStream *self)
+{
+}
+
+static GInputStream *
+test_input_stream_new (const guint8 *contents,
+                       gsize         length,
+                       gsize         first_chunk_size,
+                       gboolean      fail_after_first_read)
+{
+	TestInputStream *stream;
+
+	stream = g_object_new (test_input_stream_get_type (), NULL);
+	stream->contents = contents;
+	stream->length = length;
+	stream->first_chunk_size = first_chunk_size;
+	stream->fail_after_first_read = fail_after_first_read;
+
+	return G_INPUT_STREAM (stream);
+}
+
+typedef struct
+{
+	GCancellable *cancellable;
+	GtkSourceBuffer *buffer;
+	GQuark expected_domain;
+	gint expected_code;
+	guint begin_user_action_count;
+	guint end_user_action_count;
+} LoaderFailureTestData;
+
+static void
+begin_user_action_cb (GtkTextBuffer         *buffer,
+                      LoaderFailureTestData *data)
+{
+	data->begin_user_action_count++;
+}
+
+static void
+end_user_action_cb (GtkTextBuffer         *buffer,
+                    LoaderFailureTestData *data)
+{
+	data->end_user_action_count++;
+}
+
+static void
+cancel_on_insert_text_cb (GtkTextBuffer         *buffer,
+                          GtkTextIter           *location,
+                          char                  *text,
+                          int                    len,
+                          LoaderFailureTestData *data)
+{
+	g_cancellable_cancel (data->cancellable);
+}
+
+static gboolean
+load_failure_after_completion_cb (LoaderFailureTestData *data);
+
+static void
+load_failure_cb (GtkSourceFileLoader  *loader,
+                 GAsyncResult         *result,
+                 LoaderFailureTestData *data)
+{
+	GtkSourceBuffer *buffer;
+	GError *error = NULL;
+
+	g_assert_false (gtk_source_file_loader_load_finish (loader, result, &error));
+	g_assert_error (error, data->expected_domain, data->expected_code);
+	g_clear_error (&error);
+
+	buffer = gtk_source_file_loader_get_buffer (loader);
+	data->buffer = g_object_ref (buffer);
+
+	g_idle_add ((GSourceFunc) load_failure_after_completion_cb, data);
+}
+
+static gboolean
+load_failure_after_completion_cb (LoaderFailureTestData *data)
+{
+	GtkSourceBuffer *buffer = g_steal_pointer (&data->buffer);
+
+	g_assert_false (gtk_source_buffer_get_loading (buffer));
+	g_assert_cmpuint (data->begin_user_action_count, ==, data->end_user_action_count);
+
+	g_object_unref (buffer);
+	g_main_loop_quit (main_loop);
+
+	return G_SOURCE_REMOVE;
+}
+
 static void
 delete_file (GFile *location)
 {
@@ -315,6 +488,164 @@ test_begin_new_line_detection (void)
 	             GTK_SOURCE_NEWLINE_TYPE_CR);
 }
 
+static void
+test_failure_after_partial_read (void)
+{
+	static const guint8 contents[] = "first chunk\nsecond chunk\n";
+	GInputStream *stream;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	stream = test_input_stream_new (contents, sizeof contents - 1, 12, TRUE);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+
+	data.expected_domain = G_IO_ERROR;
+	data.expected_code = G_IO_ERROR_FAILED;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_slist_free (candidate_encodings);
+	g_object_unref (stream);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
+static void
+test_cancellation_after_partial_insertion (void)
+{
+	static const guint8 contents[] = "first chunk\nsecond chunk\n";
+	GInputStream *stream;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GCancellable *cancellable;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	stream = test_input_stream_new (contents, sizeof contents - 1, 12, FALSE);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+	cancellable = g_cancellable_new ();
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+
+	data.cancellable = cancellable;
+	data.expected_domain = G_IO_ERROR;
+	data.expected_code = G_IO_ERROR_CANCELLED;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "insert-text",
+	                  G_CALLBACK (cancel_on_insert_text_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   cancellable, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_slist_free (candidate_encodings);
+	g_object_unref (cancellable);
+	g_object_unref (stream);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
+static void
+test_conversion_failure_after_stream_initialization (void)
+{
+	static const guint8 contents[] = {
+		0x41, 0x00,
+		0x00, 0xd8, 0x41, 0x00
+	};
+	GInputStream *stream;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	stream = test_input_stream_new (contents, sizeof contents, 2, FALSE);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_from_charset ("UTF-16LE"));
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+
+	data.expected_domain = G_CONVERT_ERROR;
+	data.expected_code = G_CONVERT_ERROR_ILLEGAL_SEQUENCE;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_slist_free (candidate_encodings);
+	g_object_unref (stream);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
 gint
 main (gint   argc,
       gchar *argv[])
@@ -324,6 +655,9 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/end-line-stripping", test_end_line_stripping);
 	g_test_add_func ("/file-loader/end-new-line-detection", test_end_new_line_detection);
 	g_test_add_func ("/file-loader/begin-new-line-detection", test_begin_new_line_detection);
+	g_test_add_func ("/file-loader/failure-after-partial-read", test_failure_after_partial_read);
+	g_test_add_func ("/file-loader/cancellation-after-partial-insertion", test_cancellation_after_partial_insertion);
+	g_test_add_func ("/file-loader/conversion-failure-after-stream-initialization", test_conversion_failure_after_stream_initialization);
 #ifdef G_OS_UNIX
 	g_test_add_func ("/file-loader/non-regular-file-rejected-before-read",
 	                 test_non_regular_file_rejected_before_read);

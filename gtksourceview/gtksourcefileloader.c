@@ -141,6 +141,25 @@ static void read_file           (GTask *task);
 static void read_file_chunk     (GTask *task);
 static void recover_not_mounted (GTask *task);
 
+static void
+load_task_return_error (GTask  *task,
+                        GError *error)
+{
+	TaskData *task_data;
+
+	g_assert (G_IS_TASK (task));
+	g_assert (error != NULL);
+
+	task_data = g_task_get_task_data (task);
+
+	if (task_data != NULL && task_data->output_stream != NULL)
+	{
+		gtk_source_buffer_output_stream_abort (task_data->output_stream);
+	}
+
+	g_task_return_error (task, error);
+}
+
 static TaskData *
 task_data_new (void)
 {
@@ -475,7 +494,7 @@ close_input_stream_cb (GObject      *source_object,
 	if (error != NULL)
 	{
 		GTK_SOURCE_PROFILER_LOG ("Error closing input stream: %s", error->message);
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -489,7 +508,7 @@ close_input_stream_cb (GObject      *source_object,
 	if (error != NULL)
 	{
 		GTK_SOURCE_PROFILER_LOG ("Error closing output stream: %s", error->message);
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -498,10 +517,10 @@ close_input_stream_cb (GObject      *source_object,
 	 */
 	if (gtk_source_buffer_output_stream_get_num_fallbacks (task_data->output_stream) > 0)
 	{
-		g_task_return_new_error (task,
-					 GTK_SOURCE_FILE_LOADER_ERROR,
-					 GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
-					 _("There was an encoding conversion error so a fallback character was used."));
+		load_task_return_error (task,
+		                        g_error_new_literal (GTK_SOURCE_FILE_LOADER_ERROR,
+		                                             GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
+		                                             _("There was an encoding conversion error so a fallback character was used.")));
 		goto cleanup;
 	}
 
@@ -564,7 +583,7 @@ write_file_chunk (GTask *task)
 		if (error != NULL)
 		{
 			GTK_SOURCE_PROFILER_LOG ("Write error: %s", error->message);
-			g_task_return_error (task, error);
+			load_task_return_error (task, error);
 			return;
 		}
 
@@ -605,17 +624,17 @@ read_cb (GObject      *source_object,
 
 	if (error != NULL)
 	{
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
 	/* Check for the extremely unlikely case where the file size overflows. */
 	if (task_data->total_bytes_read + task_data->chunk_bytes_read < task_data->total_bytes_read)
 	{
-		g_task_return_new_error (task,
-		                         GTK_SOURCE_FILE_LOADER_ERROR,
-		                         GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
-		                         _("File too big."));
+		load_task_return_error (task,
+		                        g_error_new_literal (GTK_SOURCE_FILE_LOADER_ERROR,
+		                                             GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                                             _("File too big.")));
 		goto cleanup;
 	}
 
@@ -644,7 +663,13 @@ read_cb (GObject      *source_object,
 	if (task_data->chunk_bytes_read == 0)
 	{
 		/* Flush the stream to ensure proper line ending detection. */
-		g_output_stream_flush (G_OUTPUT_STREAM (task_data->output_stream), NULL, NULL);
+		if (!g_output_stream_flush (G_OUTPUT_STREAM (task_data->output_stream),
+		                            g_task_get_cancellable (task),
+		                            &error))
+		{
+			load_task_return_error (task, error);
+			goto cleanup;
+		}
 
 		loader->auto_detected_encoding =
 			gtk_source_buffer_output_stream_get_guessed (task_data->output_stream);
@@ -777,13 +802,13 @@ query_info_cb (GObject      *source_object,
 
 	if (error != NULL)
 	{
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
 	if (!check_file_is_regular (task_data->info, &error))
 	{
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -826,13 +851,13 @@ pre_open_query_info_cb (GObject      *source_object,
 			goto cleanup;
 		}
 
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
 	if (!check_file_is_regular (task_data->info, &error))
 	{
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -857,7 +882,7 @@ mount_cb (GObject      *source_object,
 
 	if (error != NULL)
 	{
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 	}
 	else
 	{
@@ -923,7 +948,7 @@ open_file_cb (GObject      *source_object,
 			return;
 		}
 
-		g_task_return_error (task, error);
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -1199,10 +1224,10 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 	    loader->file == NULL ||
 	    (loader->location == NULL && loader->input_stream_property == NULL))
 	{
-		g_task_return_new_error (loader->task,
-		                         G_IO_ERROR,
-		                         G_IO_ERROR_INVALID_ARGUMENT,
-		                         "Invalid argument");
+		load_task_return_error (loader->task,
+		                        g_error_new_literal (G_IO_ERROR,
+		                                             G_IO_ERROR_INVALID_ARGUMENT,
+		                                             "Invalid argument"));
 		return;
 	}
 

@@ -44,5 +44,7 @@ GTK_SOURCE_INTERNAL
 const GtkSourceEncoding     *gtk_source_buffer_output_stream_get_guessed         (GtkSourceBufferOutputStream *stream);
 GTK_SOURCE_INTERNAL
 guint                        gtk_source_buffer_output_stream_get_num_fallbacks   (GtkSourceBufferOutputStream *stream);
+GTK_SOURCE_INTERNAL
+void                         gtk_source_buffer_output_stream_abort               (GtkSourceBufferOutputStream *stream);
 
 G_END_DECLS
