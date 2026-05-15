@@ -1559,7 +1559,7 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 
 	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - loader->load_begin_time,
 				  "GtkSourceFileLoader.load",
-				  g_file_peek_path (loader->location));
+				  loader->location != NULL ? g_file_peek_path (loader->location) : NULL);
 
 	return ok;
 }
