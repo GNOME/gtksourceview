@@ -60,6 +60,28 @@ char    *_gtk_source_utils_aligned_alloc                 (gsize                 
 G_GNUC_INTERNAL
 void     _gtk_source_utils_aligned_free                  (gpointer                     data);
 G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_add_gsize             (gsize                        left,
+                                                          gsize                        right,
+                                                          gsize                       *result);
+G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_add_guint             (guint                        left,
+                                                          guint                        right,
+                                                          guint                       *result);
+G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_mul_gsize             (gsize                        left,
+                                                          gsize                        right,
+                                                          gsize                       *result);
+G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_add_goffset           (goffset                      left,
+                                                          goffset                      right,
+                                                          goffset                     *result);
+G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_gssize_to_gsize       (gssize                       value,
+                                                          gsize                       *result);
+G_GNUC_INTERNAL
+gboolean _gtk_source_utils_checked_gssize_to_goffset     (gssize                       value,
+                                                          goffset                     *result);
+G_GNUC_INTERNAL
 gsize    _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
 G_GNUC_INTERNAL
 PangoFontMap *_gtk_source_utils_get_builder_blocks       (void);

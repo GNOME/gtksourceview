@@ -46,6 +46,7 @@ typedef struct
 	guint n_reads;
 
 	guint fail_after_first_read : 1;
+	guint overflow_after_first_read : 1;
 } TestInputStream;
 
 typedef struct
@@ -79,6 +80,12 @@ test_input_stream_read (GInputStream  *stream,
 		                     G_IO_ERROR_FAILED,
 		                     "Test stream read failure");
 		return -1;
+	}
+
+	if (self->overflow_after_first_read && self->n_reads > 0)
+	{
+		self->n_reads++;
+		return G_MAXSSIZE;
 	}
 
 	if (self->offset == self->length)
@@ -135,6 +142,18 @@ test_input_stream_new (const guint8 *contents,
 	stream->length = length;
 	stream->first_chunk_size = first_chunk_size;
 	stream->fail_after_first_read = fail_after_first_read;
+
+	return G_INPUT_STREAM (stream);
+}
+
+static GInputStream *
+test_input_stream_new_overflow_after_first_read (const guint8 *contents,
+                                                 gsize         length)
+{
+	TestInputStream *stream;
+
+	stream = (TestInputStream *)test_input_stream_new (contents, length, 1, FALSE);
+	stream->overflow_after_first_read = TRUE;
 
 	return G_INPUT_STREAM (stream);
 }
@@ -734,6 +753,56 @@ test_max_size_stream (void)
 }
 
 static void
+test_overflow_size_stream (void)
+{
+	static const guint8 contents[] = "xy";
+	GInputStream *stream;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	stream = test_input_stream_new_overflow_after_first_read (contents, sizeof contents - 1);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+	gtk_source_file_loader_set_max_size (loader, 0);
+
+	data.expected_domain = GTK_SOURCE_FILE_LOADER_ERROR;
+	data.expected_code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_slist_free (candidate_encodings);
+	g_object_unref (stream);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
+static void
 test_max_size_file (void)
 {
 	GFile *location;
@@ -874,6 +943,7 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/cancellation-after-partial-insertion", test_cancellation_after_partial_insertion);
 	g_test_add_func ("/file-loader/conversion-failure-after-stream-initialization", test_conversion_failure_after_stream_initialization);
 	g_test_add_func ("/file-loader/max-size-stream", test_max_size_stream);
+	g_test_add_func ("/file-loader/overflow-size-stream", test_overflow_size_stream);
 	g_test_add_func ("/file-loader/max-size-file", test_max_size_file);
 	g_test_add_func ("/file-loader/max-size-gzip-file", test_max_size_gzip_file);
 #ifdef G_OS_UNIX

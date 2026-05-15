@@ -249,26 +249,26 @@ check_file_size (GtkSourceFileLoader  *loader,
 static gboolean
 check_expanded_size (GtkSourceFileLoader  *loader,
                      TaskData             *task_data,
+                     goffset              *next_total_bytes_read,
                      GError              **error)
 {
-	guint64 total_bytes_read;
-	guint64 chunk_bytes_read;
+	goffset chunk_bytes_read;
+
+	g_assert (next_total_bytes_read != NULL);
+
+	*next_total_bytes_read = task_data->total_bytes_read;
 
 	if (task_data->chunk_bytes_read <= 0)
 	{
 		return TRUE;
 	}
 
-	total_bytes_read = task_data->total_bytes_read;
-	chunk_bytes_read = task_data->chunk_bytes_read;
-
-	if (loader->max_size == 0)
+	if (!_gtk_source_utils_checked_gssize_to_goffset (task_data->chunk_bytes_read,
+	                                                  &chunk_bytes_read) ||
+	    !_gtk_source_utils_checked_add_goffset (task_data->total_bytes_read,
+	                                            chunk_bytes_read,
+	                                            next_total_bytes_read))
 	{
-		if (total_bytes_read + chunk_bytes_read >= total_bytes_read)
-		{
-			return TRUE;
-		}
-
 		g_set_error_literal (error,
 		                     GTK_SOURCE_FILE_LOADER_ERROR,
 		                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
@@ -276,8 +276,8 @@ check_expanded_size (GtkSourceFileLoader  *loader,
 		return FALSE;
 	}
 
-	if (total_bytes_read > loader->max_size ||
-	    chunk_bytes_read > loader->max_size - total_bytes_read)
+	if (loader->max_size > 0 &&
+	    (guint64)*next_total_bytes_read > loader->max_size)
 	{
 		g_set_error_literal (error,
 		                     GTK_SOURCE_FILE_LOADER_ERROR,
@@ -715,6 +715,7 @@ read_cb (GObject      *source_object,
 	GTask *task = G_TASK (user_data);
 	GtkSourceFileLoader *loader;
 	TaskData *task_data;
+	goffset next_total_bytes_read = 0;
 	GError *error = NULL;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
@@ -730,7 +731,7 @@ read_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
-	if (!check_expanded_size (loader, task_data, &error))
+	if (!check_expanded_size (loader, task_data, &next_total_bytes_read, &error))
 	{
 		load_task_return_error (task, error);
 		goto cleanup;
@@ -741,10 +742,22 @@ read_cb (GObject      *source_object,
 	    task_data->total_bytes_read == 0)
 	{
 		gchar *guessed;
+		gsize chunk_bytes_read;
+
+		if (!_gtk_source_utils_checked_gssize_to_gsize (task_data->chunk_bytes_read,
+		                                                &chunk_bytes_read))
+		{
+			g_set_error_literal (&error,
+			                     GTK_SOURCE_FILE_LOADER_ERROR,
+			                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+			                     _("File too big."));
+			load_task_return_error (task, error);
+			goto cleanup;
+		}
 
 		guessed = g_content_type_guess (NULL,
 		                                (guchar *)task_data->chunk_buffer,
-		                                task_data->chunk_bytes_read,
+		                                chunk_bytes_read,
 		                                NULL);
 
 		if (guessed != NULL)
@@ -779,7 +792,7 @@ read_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
-	task_data->total_bytes_read += task_data->chunk_bytes_read;
+	task_data->total_bytes_read = next_total_bytes_read;
 
 	write_file_chunk (task);
 

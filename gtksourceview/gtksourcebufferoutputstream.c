@@ -30,6 +30,7 @@
 #include "gtksourceencoding.h"
 #include "gtksourcefileloader.h"
 #include "gtksourcetrace.h"
+#include "gtksourceutils-private.h"
 
 /* NOTE: never use async methods on this stream, the stream is just
  * a wrapper around GtkTextBuffer api so that we can use GIO Stream
@@ -598,6 +599,15 @@ static const char *hex_fallback[] = {
 };
 
 static void
+set_too_big_error (GError **error)
+{
+	g_set_error_literal (error,
+	                     GTK_SOURCE_FILE_LOADER_ERROR,
+	                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+	                     _("File too big."));
+}
+
+static void
 insert_fallback (GtkSourceBufferOutputStream *stream,
 		 const char                  *buffer,
 		 gsize                        count)
@@ -641,7 +651,13 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 		                        &stream->pos, hex_fallback[c], 3);
 	}
 
-	stream->n_fallback_errors += count;
+	if (count > G_MAXUINT ||
+	    !_gtk_source_utils_checked_add_guint (stream->n_fallback_errors,
+	                                          (guint)count,
+	                                          &stream->n_fallback_errors))
+	{
+		stream->n_fallback_errors = G_MAXUINT;
+	}
 }
 
 static void
@@ -858,7 +874,7 @@ convert_text (GtkSourceBufferOutputStream  *stream,
               GError                      **error)
 {
 	gchar *out, *dest;
-	gsize in_left, out_left, outbuf_size, res;
+	gsize allocation_size, in_left, out_left, outbuf_size, res;
 	gint errsv;
 	gboolean done, have_error;
 
@@ -870,7 +886,13 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 	out_left = outbuf_size;
 
 	/* keep room for null termination */
-	out = dest = g_malloc (sizeof (gchar) * (outbuf_size + 1));
+	if (!_gtk_source_utils_checked_add_gsize (outbuf_size, 1, &allocation_size))
+	{
+		set_too_big_error (error);
+		return FALSE;
+	}
+
+	out = dest = g_malloc (allocation_size);
 
 	done = FALSE;
 	have_error = FALSE;
@@ -903,11 +925,18 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 						/* allocate more space */
 						gsize used = out - dest;
 
-						outbuf_size *= 2;
+						if (!_gtk_source_utils_checked_mul_gsize (outbuf_size, 2, &outbuf_size) ||
+						    !_gtk_source_utils_checked_add_gsize (outbuf_size, 1, &allocation_size) ||
+						    used > outbuf_size)
+						{
+							set_too_big_error (error);
+							have_error = TRUE;
+							break;
+						}
 
 						/* make sure to allocate room for
 						   terminating null byte */
-						dest = g_realloc (dest, outbuf_size + 1);
+						dest = g_realloc (dest, allocation_size);
 
 						out = dest + used;
 						out_left = outbuf_size - used;
@@ -1051,8 +1080,16 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 
 	if (ostream->buflen > 0)
 	{
-		len = ostream->buflen + count;
-		text = g_malloc (len + 1);
+		gsize allocation_size;
+
+		if (!_gtk_source_utils_checked_add_gsize (ostream->buflen, count, &len) ||
+		    !_gtk_source_utils_checked_add_gsize (len, 1, &allocation_size))
+		{
+			set_too_big_error (error);
+			goto failure;
+		}
+
+		text = g_malloc (allocation_size);
 
 		memcpy (text, ostream->buffer, ostream->buflen);
 		memcpy (text + ostream->buflen, buffer, count);
@@ -1096,10 +1133,23 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		if (ostream->iconv_buflen > 0)
 		{
 			gchar *text2;
+			gsize allocation_size;
 			gsize len2;
 
-			len2 = len + ostream->iconv_buflen;
-			text2 = g_malloc (len2 + 1);
+			if (!_gtk_source_utils_checked_add_gsize (len, ostream->iconv_buflen, &len2) ||
+			    !_gtk_source_utils_checked_add_gsize (len2, 1, &allocation_size))
+			{
+				set_too_big_error (error);
+
+				if (freetext)
+				{
+					g_free (text);
+				}
+
+				goto failure;
+			}
+
+			text2 = g_malloc (allocation_size);
 
 			memcpy (text2, ostream->iconv_buffer, ostream->iconv_buflen);
 			memcpy (text2 + ostream->iconv_buflen, text, len);

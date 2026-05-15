@@ -1005,6 +1005,102 @@ _gtk_source_utils_aligned_free (gpointer data)
 	aligned_free (data);
 }
 
+gboolean
+_gtk_source_utils_checked_add_gsize (gsize  left,
+                                     gsize  right,
+                                     gsize *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (right > G_MAXSIZE - left)
+	{
+		return FALSE;
+	}
+
+	*result = left + right;
+	return TRUE;
+}
+
+gboolean
+_gtk_source_utils_checked_add_guint (guint  left,
+                                     guint  right,
+                                     guint *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (right > G_MAXUINT - left)
+	{
+		return FALSE;
+	}
+
+	*result = left + right;
+	return TRUE;
+}
+
+gboolean
+_gtk_source_utils_checked_mul_gsize (gsize  left,
+                                     gsize  right,
+                                     gsize *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (left != 0 && right > G_MAXSIZE / left)
+	{
+		return FALSE;
+	}
+
+	*result = left * right;
+	return TRUE;
+}
+
+gboolean
+_gtk_source_utils_checked_add_goffset (goffset  left,
+                                       goffset  right,
+                                       goffset *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (left < 0 ||
+	    right < 0 ||
+	    right > G_MAXINT64 - left)
+	{
+		return FALSE;
+	}
+
+	*result = left + right;
+	return TRUE;
+}
+
+gboolean
+_gtk_source_utils_checked_gssize_to_gsize (gssize  value,
+                                           gsize  *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (value < 0)
+	{
+		return FALSE;
+	}
+
+	*result = value;
+	return TRUE;
+}
+
+gboolean
+_gtk_source_utils_checked_gssize_to_goffset (gssize   value,
+                                             goffset *result)
+{
+	g_return_val_if_fail (result != NULL, FALSE);
+
+	if (value < 0)
+	{
+		return FALSE;
+	}
+
+	*result = value;
+	return TRUE;
+}
+
 #if ENABLE_FONT_CONFIG
 static PangoFontMap *
 load_override_font_fc (void)
