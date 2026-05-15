@@ -136,8 +136,10 @@ typedef struct
 
 G_DEFINE_TYPE (GtkSourceFileLoader, gtk_source_file_loader, G_TYPE_OBJECT)
 
-static void open_file       (GTask *task);
-static void read_file_chunk (GTask *task);
+static void open_file           (GTask *task);
+static void read_file           (GTask *task);
+static void read_file_chunk     (GTask *task);
+static void recover_not_mounted (GTask *task);
 
 static TaskData *
 task_data_new (void)
@@ -739,6 +741,23 @@ create_input_stream (GTask *task)
 	read_file_chunk (task);
 }
 
+static gboolean
+check_file_is_regular (GFileInfo  *info,
+                       GError    **error)
+{
+	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_TYPE) &&
+	    g_file_info_get_file_type (info) != G_FILE_TYPE_REGULAR)
+	{
+		g_set_error_literal (error,
+		                     G_IO_ERROR,
+		                     G_IO_ERROR_NOT_REGULAR_FILE,
+		                     _("Not a regular file."));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 static void
 query_info_cb (GObject      *source_object,
                GAsyncResult *result,
@@ -762,13 +781,9 @@ query_info_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
-	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_TYPE) &&
-	    g_file_info_get_file_type (task_data->info) != G_FILE_TYPE_REGULAR)
+	if (!check_file_is_regular (task_data->info, &error))
 	{
-		g_task_return_new_error (task,
-		                         G_IO_ERROR,
-		                         G_IO_ERROR_NOT_REGULAR_FILE,
-		                         _("Not a regular file."));
+		g_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -779,6 +794,49 @@ query_info_cb (GObject      *source_object,
 	}
 
 	create_input_stream (task);
+
+cleanup:
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
+}
+
+static void
+pre_open_query_info_cb (GObject      *source_object,
+                        GAsyncResult *result,
+                        gpointer      user_data)
+{
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
+	GError *error = NULL;
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
+
+	task_data = g_task_get_task_data (task);
+
+	g_clear_object (&task_data->info);
+	task_data->info = g_file_query_info_finish (location, result, &error);
+
+	if (error != NULL)
+	{
+		if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_MOUNTED) &&
+		    !task_data->tried_mount)
+		{
+			recover_not_mounted (task);
+			g_error_free (error);
+			goto cleanup;
+		}
+
+		g_task_return_error (task, error);
+		goto cleanup;
+	}
+
+	if (!check_file_is_regular (task_data->info, &error))
+	{
+		g_task_return_error (task, error);
+		goto cleanup;
+	}
+
+	read_file (task);
 
 cleanup:
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
@@ -894,6 +952,27 @@ open_file (GTask *task)
 
 	loader = g_task_get_source_object (task);
 
+	/* Path-based GFile loads remain subject to TOCTOU races: a local path
+	 * can be replaced after this metadata check and before it is opened.
+	 * Querying before g_file_read_async() still avoids opening files that
+	 * are already known to be non-regular.
+	 */
+	g_file_query_info_async (loader->location,
+				 LOADER_QUERY_ATTRIBUTES,
+				 G_FILE_QUERY_INFO_NONE,
+				 g_task_get_priority (task),
+				 g_task_get_cancellable (task),
+				 pre_open_query_info_cb,
+				 task);
+}
+
+static void
+read_file (GTask *task)
+{
+	GtkSourceFileLoader *loader;
+
+	loader = g_task_get_source_object (task);
+
 	g_file_read_async (loader->location,
 	                   g_task_get_priority (task),
 			   g_task_get_cancellable (task),
@@ -925,6 +1004,10 @@ gtk_source_file_loader_error_quark (void)
  * If not already done, call [method@File.set_location] before calling this constructor.
  * The previous location is anyway not needed, because as soon as the file loading begins,
  * the @buffer is emptied.
+ *
+ * For path-based [iface@Gio.File] instances, the regular-file safety check is
+ * subject to time-of-check/time-of-use races if the path is replaced while the
+ * load operation is running.
  *
  * Returns: a new #GtkSourceFileLoader object.
  */

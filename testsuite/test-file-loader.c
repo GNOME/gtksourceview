@@ -19,8 +19,13 @@
  */
 
 #include <gtksourceview/gtksource.h>
+#include <glib/gstdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef G_OS_UNIX
+# include <sys/stat.h>
+#endif
 
 typedef struct
 {
@@ -41,6 +46,89 @@ delete_file (GFile *location)
 		g_assert_no_error (error);
 	}
 }
+
+#ifdef G_OS_UNIX
+typedef struct
+{
+	guint timeout_id;
+} LoaderErrorTestData;
+
+static gboolean
+load_should_not_block_cb (gpointer user_data)
+{
+	g_assert_not_reached ();
+	return G_SOURCE_REMOVE;
+}
+
+static void
+load_non_regular_file_cb (GtkSourceFileLoader *loader,
+                          GAsyncResult        *result,
+                          LoaderErrorTestData *data)
+{
+	GtkSourceBuffer *buffer;
+	GtkTextIter start;
+	GtkTextIter end;
+	GError *error = NULL;
+
+	g_source_remove (data->timeout_id);
+
+	g_assert_false (gtk_source_file_loader_load_finish (loader, result, &error));
+	g_assert_error (error, G_IO_ERROR, G_IO_ERROR_NOT_REGULAR_FILE);
+	g_clear_error (&error);
+
+	buffer = gtk_source_file_loader_get_buffer (loader);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	g_assert_true (gtk_text_iter_equal (&start, &end));
+
+	g_main_loop_quit (main_loop);
+}
+
+static void
+test_non_regular_file_rejected_before_read (void)
+{
+	GFile *location;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	LoaderErrorTestData data;
+	GError *error = NULL;
+	char *dir;
+	char *path;
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+	dir = g_dir_make_tmp ("gtksourceview-file-loader-XXXXXX", &error);
+	g_assert_no_error (error);
+	path = g_build_filename (dir, "fifo", NULL);
+
+	g_assert_cmpint (mkfifo (path, 0600), ==, 0);
+
+	location = g_file_new_for_path (path);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	gtk_source_file_set_location (file, location);
+	loader = gtk_source_file_loader_new (buffer, file);
+
+	data.timeout_id = g_timeout_add_seconds (5, load_should_not_block_cb, NULL);
+
+	gtk_source_file_loader_load_async (loader,
+					   G_PRIORITY_DEFAULT,
+					   NULL, NULL, NULL, NULL,
+					   (GAsyncReadyCallback) load_non_regular_file_cb,
+					   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_assert_cmpint (g_unlink (path), ==, 0);
+	g_assert_cmpint (g_rmdir (dir), ==, 0);
+	g_free (path);
+	g_free (dir);
+	g_object_unref (location);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+#endif
 
 static void
 load_file_cb (GtkSourceFileLoader *loader,
@@ -236,6 +324,10 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/end-line-stripping", test_end_line_stripping);
 	g_test_add_func ("/file-loader/end-new-line-detection", test_end_new_line_detection);
 	g_test_add_func ("/file-loader/begin-new-line-detection", test_begin_new_line_detection);
+#ifdef G_OS_UNIX
+	g_test_add_func ("/file-loader/non-regular-file-rejected-before-read",
+	                 test_non_regular_file_rejected_before_read);
+#endif
 
 	return g_test_run ();
 }
