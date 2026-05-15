@@ -68,6 +68,11 @@ GtkSourceFileLoader      *gtk_source_file_loader_new_from_stream         (GtkSou
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader    *loader,
                                                                           GSList                 *candidate_encodings);
+GTK_SOURCE_AVAILABLE_IN_5_22
+void                      gtk_source_file_loader_set_max_size            (GtkSourceFileLoader    *loader,
+                                                                          guint64                 max_size);
+GTK_SOURCE_AVAILABLE_IN_5_22
+guint64                   gtk_source_file_loader_get_max_size            (GtkSourceFileLoader    *loader);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer          *gtk_source_file_loader_get_buffer              (GtkSourceFileLoader    *loader);
 GTK_SOURCE_AVAILABLE_IN_ALL

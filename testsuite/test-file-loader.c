@@ -220,6 +220,42 @@ delete_file (GFile *location)
 	}
 }
 
+static GBytes *
+create_gzip_data (const char *contents,
+                  gsize       length)
+{
+	GOutputStream *memory;
+	GOutputStream *converter;
+	GZlibCompressor *compressor;
+	GError *error = NULL;
+	gpointer data;
+	gsize data_size;
+
+	memory = g_memory_output_stream_new_resizable ();
+	compressor = g_zlib_compressor_new (G_ZLIB_COMPRESSOR_FORMAT_GZIP, -1);
+	converter = g_converter_output_stream_new (memory, G_CONVERTER (compressor));
+
+	g_assert_true (g_output_stream_write_all (converter,
+	                                          contents,
+	                                          length,
+	                                          NULL,
+	                                          NULL,
+	                                          &error));
+	g_assert_no_error (error);
+
+	g_assert_true (g_output_stream_close (converter, NULL, &error));
+	g_assert_no_error (error);
+
+	data_size = g_memory_output_stream_get_data_size (G_MEMORY_OUTPUT_STREAM (memory));
+	data = g_memory_output_stream_steal_data (G_MEMORY_OUTPUT_STREAM (memory));
+
+	g_object_unref (converter);
+	g_object_unref (compressor);
+	g_object_unref (memory);
+
+	return g_bytes_new_take (data, data_size);
+}
+
 #ifdef G_OS_UNIX
 typedef struct
 {
@@ -646,6 +682,185 @@ test_conversion_failure_after_stream_initialization (void)
 	g_object_unref (loader);
 }
 
+static void
+test_max_size_stream (void)
+{
+	static const guint8 contents[] = "0123456789abcdef\n";
+	GInputStream *stream;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	stream = test_input_stream_new (contents, sizeof contents - 1, 0, FALSE);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+	gtk_source_file_loader_set_max_size (loader, 8);
+	g_assert_cmpuint (gtk_source_file_loader_get_max_size (loader), ==, 8);
+
+	data.expected_domain = GTK_SOURCE_FILE_LOADER_ERROR;
+	data.expected_code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	g_slist_free (candidate_encodings);
+	g_object_unref (stream);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
+static void
+test_max_size_file (void)
+{
+	GFile *location;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+	GError *error = NULL;
+	char *filename;
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	filename = g_build_filename (g_get_tmp_dir (), "gtksourceview-file-loader-too-big.txt", NULL);
+	g_file_set_contents (filename, "0123456789abcdef\n", -1, &error);
+	g_assert_no_error (error);
+
+	location = g_file_new_for_path (filename);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	gtk_source_file_set_location (file, location);
+	loader = gtk_source_file_loader_new (buffer, file);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+	gtk_source_file_loader_set_max_size (loader, 8);
+
+	data.expected_domain = GTK_SOURCE_FILE_LOADER_ERROR;
+	data.expected_code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	delete_file (location);
+	g_free (filename);
+	g_slist_free (candidate_encodings);
+	g_object_unref (location);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
+static void
+test_max_size_gzip_file (void)
+{
+	GBytes *gzip_data;
+	GFile *location;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GSList *candidate_encodings = NULL;
+	LoaderFailureTestData data = { 0 };
+	GError *error = NULL;
+	const char *contents;
+	const char *gzip_contents;
+	gsize gzip_length;
+	char *filename;
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	contents = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+	           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+	           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+	           "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	gzip_data = create_gzip_data (contents, strlen (contents));
+	gzip_contents = g_bytes_get_data (gzip_data, &gzip_length);
+
+	filename = g_build_filename (g_get_tmp_dir (), "gtksourceview-file-loader-too-big.txt.gz", NULL);
+	g_file_set_contents (filename, gzip_contents, gzip_length, &error);
+	g_assert_no_error (error);
+
+	location = g_file_new_for_path (filename);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	gtk_source_file_set_location (file, location);
+	loader = gtk_source_file_loader_new (buffer, file);
+
+	candidate_encodings = g_slist_prepend (NULL, (gpointer) gtk_source_encoding_get_utf8 ());
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+	gtk_source_file_loader_set_max_size (loader, 32);
+
+	data.expected_domain = GTK_SOURCE_FILE_LOADER_ERROR;
+	data.expected_code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG;
+
+	g_signal_connect (buffer,
+	                  "begin-user-action",
+	                  G_CALLBACK (begin_user_action_cb),
+	                  &data);
+	g_signal_connect (buffer,
+	                  "end-user-action",
+	                  G_CALLBACK (end_user_action_cb),
+	                  &data);
+
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_failure_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	delete_file (location);
+	g_bytes_unref (gzip_data);
+	g_free (filename);
+	g_slist_free (candidate_encodings);
+	g_object_unref (location);
+	g_object_unref (buffer);
+	g_object_unref (file);
+	g_object_unref (loader);
+}
+
 gint
 main (gint   argc,
       gchar *argv[])
@@ -658,6 +873,9 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/failure-after-partial-read", test_failure_after_partial_read);
 	g_test_add_func ("/file-loader/cancellation-after-partial-insertion", test_cancellation_after_partial_insertion);
 	g_test_add_func ("/file-loader/conversion-failure-after-stream-initialization", test_conversion_failure_after_stream_initialization);
+	g_test_add_func ("/file-loader/max-size-stream", test_max_size_stream);
+	g_test_add_func ("/file-loader/max-size-file", test_max_size_file);
+	g_test_add_func ("/file-loader/max-size-gzip-file", test_max_size_gzip_file);
 #ifdef G_OS_UNIX
 	g_test_add_func ("/file-loader/non-regular-file-rejected-before-read",
 	                 test_non_regular_file_rejected_before_read);

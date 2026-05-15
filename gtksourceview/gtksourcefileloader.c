@@ -63,11 +63,13 @@ enum
 	PROP_BUFFER,
 	PROP_FILE,
 	PROP_LOCATION,
-	PROP_INPUT_STREAM
+	PROP_INPUT_STREAM,
+	PROP_MAX_SIZE
 };
 
 #define READ_N_PAGES 2
 #define READ_CHUNK_SIZE (_gtk_source_utils_get_page_size()*READ_N_PAGES)
+#define DEFAULT_MAX_SIZE ((guint64)1024 * 1024 * 1024)
 #define LOADER_QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE "," \
 				G_FILE_ATTRIBUTE_STANDARD_TYPE "," \
 				G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
@@ -104,6 +106,7 @@ struct _GtkSourceFileLoader
 	GtkSourceCompressionType auto_detected_compression_type;
 
 	GTask *task;
+	guint64 max_size;
 
 	gint64 load_begin_time;
 };
@@ -213,6 +216,79 @@ get_compression_type_from_content_type (const gchar *content_type)
 	return GTK_SOURCE_COMPRESSION_TYPE_NONE;
 }
 
+static gboolean
+check_file_size (GtkSourceFileLoader  *loader,
+                 TaskData             *task_data,
+                 GError              **error)
+{
+	if (loader->max_size == 0 ||
+	    !g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
+	{
+		return TRUE;
+	}
+
+	if (get_compression_type_from_content_type (g_file_info_get_content_type (task_data->info)) ==
+	    GTK_SOURCE_COMPRESSION_TYPE_GZIP)
+	{
+		return TRUE;
+	}
+
+	if (g_file_info_get_attribute_uint64 (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE) >
+	    loader->max_size)
+	{
+		g_set_error_literal (error,
+		                     GTK_SOURCE_FILE_LOADER_ERROR,
+		                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                     _("File too big."));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+check_expanded_size (GtkSourceFileLoader  *loader,
+                     TaskData             *task_data,
+                     GError              **error)
+{
+	guint64 total_bytes_read;
+	guint64 chunk_bytes_read;
+
+	if (task_data->chunk_bytes_read <= 0)
+	{
+		return TRUE;
+	}
+
+	total_bytes_read = task_data->total_bytes_read;
+	chunk_bytes_read = task_data->chunk_bytes_read;
+
+	if (loader->max_size == 0)
+	{
+		if (total_bytes_read + chunk_bytes_read >= total_bytes_read)
+		{
+			return TRUE;
+		}
+
+		g_set_error_literal (error,
+		                     GTK_SOURCE_FILE_LOADER_ERROR,
+		                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                     _("File too big."));
+		return FALSE;
+	}
+
+	if (total_bytes_read > loader->max_size ||
+	    chunk_bytes_read > loader->max_size - total_bytes_read)
+	{
+		g_set_error_literal (error,
+		                     GTK_SOURCE_FILE_LOADER_ERROR,
+		                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                     _("File too big."));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 static void
 gtk_source_file_loader_set_property (GObject      *object,
                                      guint         prop_id,
@@ -247,6 +323,10 @@ gtk_source_file_loader_set_property (GObject      *object,
 			loader->input_stream_property = g_value_dup_object (value);
 			break;
 
+		case PROP_MAX_SIZE:
+			gtk_source_file_loader_set_max_size (loader, g_value_get_uint64 (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -277,6 +357,10 @@ gtk_source_file_loader_get_property (GObject    *object,
 
 		case PROP_INPUT_STREAM:
 			g_value_set_object (value, loader->input_stream_property);
+			break;
+
+		case PROP_MAX_SIZE:
+			g_value_set_uint64 (value, loader->max_size);
 			break;
 
 		default:
@@ -463,12 +547,30 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 							      G_PARAM_READWRITE |
 							      G_PARAM_CONSTRUCT_ONLY |
 							      G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceFileLoader:max-size:
+	 *
+	 * The maximum expanded size, in bytes, that the loader will insert into
+	 * the buffer. A value of 0 disables the limit.
+	 *
+	 * Since: 5.22
+	 */
+	g_object_class_install_property (object_class, PROP_MAX_SIZE,
+					 g_param_spec_uint64 ("max-size",
+							      "Maximum Size",
+							      "Maximum expanded size in bytes",
+							      0, G_MAXINT64, DEFAULT_MAX_SIZE,
+							      G_PARAM_READWRITE |
+							      G_PARAM_EXPLICIT_NOTIFY |
+							      G_PARAM_STATIC_STRINGS));
 }
 
 static void
 gtk_source_file_loader_init (GtkSourceFileLoader *loader)
 {
 	loader = gtk_source_file_loader_get_instance_private (loader);
+	loader->max_size = DEFAULT_MAX_SIZE;
 }
 
 static void
@@ -597,7 +699,7 @@ write_file_chunk (GTask *task)
 	    task_data->total_size > 0)
 	{
 		task_data->progress_cb (task_data->total_bytes_read,
-					task_data->total_size,
+					MAX (task_data->total_bytes_read, task_data->total_size),
 					task_data->progress_cb_data);
 	}
 
@@ -628,13 +730,9 @@ read_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
-	/* Check for the extremely unlikely case where the file size overflows. */
-	if (task_data->total_bytes_read + task_data->chunk_bytes_read < task_data->total_bytes_read)
+	if (!check_expanded_size (loader, task_data, &error))
 	{
-		load_task_return_error (task,
-		                        g_error_new_literal (GTK_SOURCE_FILE_LOADER_ERROR,
-		                                             GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
-		                                             _("File too big.")));
+		load_task_return_error (task, error);
 		goto cleanup;
 	}
 
@@ -812,6 +910,12 @@ query_info_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
+	if (!check_file_size (g_task_get_source_object (task), task_data, &error))
+	{
+		load_task_return_error (task, error);
+		goto cleanup;
+	}
+
 	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
 	{
 		task_data->total_size = g_file_info_get_attribute_uint64 (task_data->info,
@@ -856,6 +960,12 @@ pre_open_query_info_cb (GObject      *source_object,
 	}
 
 	if (!check_file_is_regular (task_data->info, &error))
+	{
+		load_task_return_error (task, error);
+		goto cleanup;
+	}
+
+	if (!check_file_size (g_task_get_source_object (task), task_data, &error))
 	{
 		load_task_return_error (task, error);
 		goto cleanup;
@@ -1107,6 +1217,51 @@ gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader *loader,
 
 	g_slist_free (loader->candidate_encodings);
 	loader->candidate_encodings = list;
+}
+
+/**
+ * gtk_source_file_loader_set_max_size:
+ * @loader: a #GtkSourceFileLoader.
+ * @max_size: maximum expanded size in bytes, or 0 to disable the limit.
+ *
+ * Sets the maximum expanded size that @loader will insert into the buffer.
+ *
+ * The limit is checked after decompression, so compressed files are limited by
+ * the size of their uncompressed contents rather than their on-disk size.
+ *
+ * Since: 5.22
+ */
+void
+gtk_source_file_loader_set_max_size (GtkSourceFileLoader *loader,
+                                     guint64              max_size)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (loader->task == NULL);
+	g_return_if_fail (max_size <= G_MAXINT64);
+
+	if (loader->max_size != max_size)
+	{
+		loader->max_size = max_size;
+		g_object_notify (G_OBJECT (loader), "max-size");
+	}
+}
+
+/**
+ * gtk_source_file_loader_get_max_size:
+ * @loader: a #GtkSourceFileLoader.
+ *
+ * Gets the maximum expanded size that @loader will insert into the buffer.
+ *
+ * Returns: the maximum expanded size in bytes, or 0 if the limit is disabled.
+ *
+ * Since: 5.22
+ */
+guint64
+gtk_source_file_loader_get_max_size (GtkSourceFileLoader *loader)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), 0);
+
+	return loader->max_size;
 }
 
 /**
