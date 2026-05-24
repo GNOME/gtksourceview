@@ -214,6 +214,7 @@ typedef struct
 	gint cached_right_margin_pos;
 	guint tab_width;
 	gint indent_width;
+	guint highlight_tick;
 	GtkSourceSmartHomeEndType smart_home_end;
 	GtkSourceBackgroundPatternType background_pattern;
 
@@ -327,6 +328,8 @@ static void           gtk_source_view_snapshot_layer       (GtkTextView         
 static void           gtk_source_view_snapshot             (GtkWidget               *widget,
                                                             GtkSnapshot             *snapshot);
 static void           gtk_source_view_queue_draw           (GtkSourceView           *view);
+static void           gtk_source_view_queue_highlight_update
+                                                           (GtkSourceView           *view);
 static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget           *dest,
                                                             const GValue            *value,
                                                             int                      x,
@@ -583,6 +586,12 @@ gtk_source_view_unmap (GtkWidget *widget)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	if (priv->highlight_tick != 0)
+	{
+		gtk_widget_remove_tick_callback (widget, priv->highlight_tick);
+		priv->highlight_tick = 0;
+	}
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->unmap (widget);
 
@@ -1610,6 +1619,12 @@ gtk_source_view_dispose (GObject *object)
 	priv->im_commit_text[0] = 0;
 	priv->im_commit_len = 0;
 
+	if (priv->highlight_tick != 0)
+	{
+		gtk_widget_remove_tick_callback (GTK_WIDGET (view), priv->highlight_tick);
+		priv->highlight_tick = 0;
+	}
+
 	if (priv->completion != NULL)
 	{
 		g_object_run_dispose (G_OBJECT (priv->completion));
@@ -2460,6 +2475,11 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 	GtkTextIter iter1, iter2;
 	char *message = NULL;
 
+	if (priv->source_buffer == NULL)
+	{
+		return;
+	}
+
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	/* If there is nothing to update here in terms of highlighting, then we can
@@ -2490,6 +2510,44 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 	                                 gtk_text_iter_get_line (&iter2));
 	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::IsHighlighted", message);
 	g_free (message);
+}
+
+static gboolean
+gtk_source_view_update_highlight_cb (GtkWidget     *widget,
+                                     GdkFrameClock *frame_clock,
+                                     gpointer       user_data)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GdkRectangle visible_rect;
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
+
+	priv->highlight_tick = 0;
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
+	gtk_source_view_ensure_redrawn_rect_is_highlighted (view, &visible_rect);
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+gtk_source_view_queue_highlight_update (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	if (priv->highlight_tick == 0 &&
+	    priv->source_buffer != NULL &&
+	    (gtk_source_buffer_get_highlight_syntax (priv->source_buffer) ||
+	     _gtk_source_buffer_has_search_highlights (priv->source_buffer)))
+	{
+		priv->highlight_tick = gtk_widget_add_tick_callback (GTK_WIDGET (view),
+		                                                     gtk_source_view_update_highlight_cb,
+		                                                     NULL, NULL);
+	}
 }
 
 /* This function is taken from gtk+/tests/testtext.c */
@@ -2958,10 +3016,6 @@ gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
-	GdkRectangle visible_rect;
-
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
@@ -4611,6 +4665,11 @@ gtk_source_view_adjustment_changed (GtkSourceView *view,
 	g_assert (GTK_IS_ADJUSTMENT (adjustment));
 
 	_gtk_source_view_assistants_update_all (&priv->assistants);
+
+	if (adjustment == priv->vadj)
+	{
+		gtk_source_view_queue_highlight_update (view);
+	}
 }
 
 static void
