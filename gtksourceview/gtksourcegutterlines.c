@@ -70,7 +70,7 @@ gtk_source_gutter_lines_finalize (GObject *object)
 	GtkSourceGutterLines *lines = (GtkSourceGutterLines *)object;
 
 	g_clear_pointer (&lines->lines, g_array_unref);
-	g_clear_object (&lines->view);
+	g_clear_weak_pointer (&lines->view);
 
 	G_OBJECT_CLASS (gtk_source_gutter_lines_parent_class)->finalize (object);
 }
@@ -148,7 +148,7 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 	g_return_val_if_fail (begin != end, NULL);
 
 	lines = g_object_new (GTK_SOURCE_TYPE_GUTTER_LINES, NULL);
-	lines->view = g_object_ref (text_view);
+	g_set_weak_pointer (&lines->view, text_view);
 	lines->first = gtk_text_iter_get_line (begin);
 	lines->last = gtk_text_iter_get_line (end);
 	lines->lines = g_array_sized_new (FALSE,
