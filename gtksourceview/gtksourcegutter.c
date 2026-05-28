@@ -423,6 +423,7 @@ gtk_source_gutter_dispose (GObject *object)
 	GtkWidget *child;
 
 	g_clear_pointer (&gutter->target_binding, g_binding_unbind);
+	g_clear_object (&gutter->lines);
 	g_list_free_full (g_steal_pointer (&gutter->renderers), (GDestroyNotify) renderer_free);
 
 	if (gutter->signals != NULL)
