@@ -475,7 +475,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_WINDOW_TYPE,
-	                                 g_param_spec_enum ("window_type",
+	                                 g_param_spec_enum ("window-type",
 	                                                    "Window Type",
 	                                                    "The gutters' text window type",
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
