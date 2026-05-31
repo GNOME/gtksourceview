@@ -86,7 +86,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      "Line background",
 							      "Line background color",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND,
@@ -94,7 +94,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      "Background",
 							      "Background color",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND,
@@ -102,7 +102,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      "Foreground",
 							      "Foreground color",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD,
@@ -110,7 +110,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Bold",
 							       "Bold",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC,
@@ -118,7 +118,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Italic",
 							       "Italic",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_PANGO_UNDERLINE,
@@ -127,7 +127,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							    "Pango Underline",
 							    PANGO_TYPE_UNDERLINE,
 							    PANGO_UNDERLINE_NONE,
-							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH,
@@ -135,7 +135,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Strikethrough",
 							       "Strikethrough",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_SCALE,
@@ -143,7 +143,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      "Scale",
 							      "Text scale factor",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_WEIGHT,
@@ -152,7 +152,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 	                                                    "Text weight",
 	                                                    PANGO_TYPE_WEIGHT,
 	                                                    PANGO_WEIGHT_NORMAL,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_COLOR,
@@ -160,7 +160,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      "Underline Color",
 							      "Underline color",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_LINE_BACKGROUND_SET,
@@ -168,7 +168,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Line background set",
 							       "Whether line background color is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND_SET,
@@ -176,7 +176,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Foreground set",
 							       "Whether foreground color is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND_SET,
@@ -184,7 +184,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Background set",
 							       "Whether background color is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD_SET,
@@ -192,7 +192,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Bold set",
 							       "Whether bold attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC_SET,
@@ -200,7 +200,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Italic set",
 							       "Whether italic attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_SET,
@@ -208,7 +208,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Underline set",
 							       "Whether underline attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH_SET,
@@ -216,7 +216,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Strikethrough set",
 							       "Whether strikethrough attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_SCALE_SET,
@@ -224,7 +224,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Scale set",
 							       "Whether scale attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_WEIGHT_SET,
@@ -232,7 +232,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Weight set",
 							       "Whether weight attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_COLOR_SET,
@@ -240,7 +240,7 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Underline color set",
 							       "Whether underline color attribute is set",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 }
 
 static void

@@ -51,7 +51,7 @@ gtk_source_style_scheme_chooser_default_init (GtkSourceStyleSchemeChooserInterfa
 		                     "Style Scheme",
 		                     "Current style scheme",
 		                     GTK_SOURCE_TYPE_STYLE_SCHEME,
-		                     G_PARAM_READWRITE));
+		                     G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 /**

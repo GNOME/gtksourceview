@@ -480,7 +480,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                    "The gutters' text window type",
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
 	                                                    GTK_TEXT_WINDOW_LEFT,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	gtk_widget_class_set_css_name (widget_class, "gutter");
 }

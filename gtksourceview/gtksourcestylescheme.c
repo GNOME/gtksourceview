@@ -215,7 +215,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 						 	      "Style scheme id",
 							      "Style scheme id",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceStyleScheme:name:
@@ -228,7 +228,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 						 	      "Style scheme name",
 							      "Style scheme name",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceStyleScheme:description:
@@ -241,7 +241,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 						 	      "Style scheme description",
 							      "Style scheme description",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceStyleScheme:filename:
@@ -254,7 +254,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 						 	      "Style scheme filename",
 							      "Style scheme filename",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 }
 
 static void
