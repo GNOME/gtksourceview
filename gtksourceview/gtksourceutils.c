@@ -946,20 +946,17 @@ _gtk_source_utils_aligned_alloc (gsize size,
                                  gsize alignment)
 {
 	void *res = NULL;
-	size_t max_size = (size_t) -1;
-	size_t real_size;
+	gsize real_size;
 
 	if (size == 0 || number == 0)
 		return NULL;
 
-	if (size > 0 && number > max_size / size)
+	if (!g_size_checked_mul (&real_size, size, number))
 	{
 		g_error ("Overflow in the allocation of (%lu x %lu) bytes",
 		         (unsigned long) size,
 		         (unsigned long) number);
 	}
-
-	real_size = size * number;
 
 	errno = 0;
 
@@ -969,8 +966,13 @@ _gtk_source_utils_aligned_alloc (gsize size,
 	/* real_size must be a multiple of alignment */
 	if (real_size % alignment != 0)
 	{
-		size_t offset = real_size % alignment;
-		real_size += (alignment - offset);
+		gsize offset = real_size % alignment;
+		if (!g_size_checked_add (&real_size, real_size, alignment - offset))
+		{
+			g_error ("Overflow in the allocation of (%lu x %lu) bytes",
+			         (unsigned long) size,
+			         (unsigned long) number);
+		}
 	}
 
 	res = aligned_alloc (alignment, real_size);
