@@ -63,6 +63,24 @@
     </optional>
 
     <optional>
+      <element name="metadata">
+        <zeroOrMore>
+          <element name="property">
+            <attribute name="name">
+              <choice>
+                <value>variant</value>
+                <value>dark-variant</value>
+                <value>light-variant</value>
+                <value>accent_bg_color</value>
+              </choice>
+            </attribute>
+            <text/>
+          </element>
+        </zeroOrMore>
+      </element>
+    </optional>
+
+    <optional>
       <oneOrMore>
           <element name="color">
               <attribute name="name">
@@ -125,6 +143,9 @@
   </optional>
   <optional>
     <attribute name="underline"/>
+  </optional>
+  <optional>
+    <attribute name="underline-color"/>
   </optional>
   <optional>
     <attribute name="strikethrough">
