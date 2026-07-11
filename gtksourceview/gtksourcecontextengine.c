@@ -4438,7 +4438,7 @@ analyze_line (GtkSourceContextEngine *ce,
 {
 	gint line_pos = 0;
 	GList *end_segments = NULL;
-	GTimer *timer;
+	gint64 deadline;
 
 	g_assert (SEGMENT_IS_CONTAINER (state));
 
@@ -4446,7 +4446,7 @@ analyze_line (GtkSourceContextEngine *ce,
                 ce->hint2 = state->last_child;
         g_assert (!ce->hint2 || ce->hint2->parent == state);
 
-	timer = g_timer_new ();
+	deadline = g_get_monotonic_time () + MAX_TIME_FOR_ONE_LINE * G_TIME_SPAN_MILLISECOND;
 
 	/* Find the contexts in the line. */
 	while (line_pos <= line->byte_length)
@@ -4456,7 +4456,7 @@ analyze_line (GtkSourceContextEngine *ce,
 		if (!next_segment (ce, state, line, &line_pos, &new_state, had_bom))
 			break;
 
-		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
+		if (g_get_monotonic_time () > deadline)
 		{
 			g_critical ("%s",
 			            _("Highlighting a single line took too much time, "
@@ -4483,7 +4483,6 @@ analyze_line (GtkSourceContextEngine *ce,
 			end_segments = g_list_prepend (end_segments, state);
 	}
 
-	g_timer_destroy (timer);
 	if (ce->disabled)
 		return NULL;
 
