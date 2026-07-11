@@ -143,6 +143,9 @@ complete_command (GtkSourceVimCommandBar *self,
 		":edit",
 		":open",
 		":file",
+		":noh",
+		":nohl",
+		":nohlsearch",
 		":set",
 	};
 

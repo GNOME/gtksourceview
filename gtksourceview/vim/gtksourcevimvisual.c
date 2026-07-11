@@ -547,6 +547,15 @@ key_handler_g (GtkSourceVimVisual *self,
 		case GDK_KEY_q:
 			return gtk_source_vim_visual_begin_command (self, "format", FALSE);
 
+		case GDK_KEY_U:
+			return gtk_source_vim_visual_begin_command (self, "upcase", TRUE);
+
+		case GDK_KEY_u:
+			return gtk_source_vim_visual_begin_command (self, "downcase", TRUE);
+
+		case GDK_KEY_asciitilde:
+			return gtk_source_vim_visual_begin_command (self, "toggle-case", TRUE);
+
 		default:
 			new_state = gtk_source_vim_motion_new ();
 			gtk_source_vim_motion_set_mark (GTK_SOURCE_VIM_MOTION (new_state), self->cursor);
@@ -653,6 +662,9 @@ key_handler_initial (GtkSourceVimVisual *self,
 
 		case GDK_KEY_u:
 			return gtk_source_vim_visual_begin_command (self, "downcase", TRUE);
+
+		case GDK_KEY_asciitilde:
+			return gtk_source_vim_visual_begin_command (self, "toggle-case", TRUE);
 
 		case GDK_KEY_g:
 			self->handler = key_handler_g;

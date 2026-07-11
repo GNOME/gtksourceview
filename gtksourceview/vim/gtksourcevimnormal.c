@@ -588,6 +588,13 @@ key_handler_command (GtkSourceVimNormal *self,
 			                                     ":delete", 0);
 			return TRUE;
 
+		case GDK_KEY_X:
+			gtk_source_vim_normal_begin_command (self,
+			                                     gtk_source_vim_motion_new_backward_char (),
+			                                     gtk_source_vim_motion_new_none (),
+			                                     ":delete", 0);
+			return TRUE;
+
 		case GDK_KEY_S:
 			gtk_source_vim_normal_begin_change (self,
 			                                    gtk_source_vim_motion_new_line_end (),
@@ -670,7 +677,6 @@ key_handler_command (GtkSourceVimNormal *self,
 			                                     "filter", GDK_KEY_equal);
 			return TRUE;
 
-		case GDK_KEY_plus:
 		default:
 			break;
 	}
@@ -1050,7 +1056,24 @@ key_handler_increment (GtkSourceVimNormal *self,
 {
 	g_assert (GTK_SOURCE_IS_VIM_NORMAL (self));
 
-	return TRUE;
+	if ((mods & GDK_CONTROL_MASK) != 0)
+	{
+		switch (keyval)
+		{
+			case GDK_KEY_a:
+				gtk_source_vim_normal_begin_command (self, NULL, NULL, "increment-number", 0);
+				return TRUE;
+
+			case GDK_KEY_x:
+				gtk_source_vim_normal_begin_command (self, NULL, NULL, "decrement-number", 0);
+				return TRUE;
+
+			default:
+				break;
+		}
+	}
+
+	return gtk_source_vim_normal_bail (self);
 }
 
 static gboolean
@@ -1072,6 +1095,15 @@ key_handler_g (GtkSourceVimNormal *self,
 
 		case GDK_KEY_q:
 			return gtk_source_vim_normal_begin_command_requiring_motion (self, "format");
+
+		case GDK_KEY_U:
+			return gtk_source_vim_normal_begin_command_requiring_motion (self, "upcase");
+
+		case GDK_KEY_u:
+			return gtk_source_vim_normal_begin_command_requiring_motion (self, "downcase");
+
+		case GDK_KEY_asciitilde:
+			return gtk_source_vim_normal_begin_command_requiring_motion (self, "toggle-case");
 
 		case GDK_KEY_g:
 		case GDK_KEY_e:
@@ -1234,6 +1266,7 @@ key_handler_initial (GtkSourceVimNormal *self,
 			case GDK_KEY_ISO_Enter:
 			case GDK_KEY_j:
 			case GDK_KEY_k:
+			case GDK_KEY_KP_Add:
 			case GDK_KEY_KP_Enter:
 			case GDK_KEY_KP_Multiply:
 			case GDK_KEY_l:
@@ -1246,6 +1279,7 @@ key_handler_initial (GtkSourceVimNormal *self,
 			case GDK_KEY_parenleft:
 			case GDK_KEY_parenright:
 			case GDK_KEY_percent:
+			case GDK_KEY_plus:
 			case GDK_KEY_Return:
 			case GDK_KEY_Right:
 			case GDK_KEY_space:
@@ -1292,8 +1326,8 @@ key_handler_initial (GtkSourceVimNormal *self,
 			case GDK_KEY_S:
 			case GDK_KEY_u:
 			case GDK_KEY_x:
+			case GDK_KEY_X:
 			case GDK_KEY_equal:
-			case GDK_KEY_plus:
 			case GDK_KEY_Y:
 				self->handler = key_handler_command;
 				break;

@@ -519,7 +519,7 @@ motion_forward_char_same_line (GtkTextIter        *iter,
 
 	count = MAX (1, count);
 
-	for (guint i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
 		if (gtk_text_iter_ends_line (iter))
 			break;
@@ -592,28 +592,41 @@ motion_next_line_first_char (GtkTextIter        *iter,
                              GtkSourceVimMotion *state)
 {
 	GtkTextIter before = *iter;
+	int count = get_adjusted_count (state);
 
-	if (!gtk_text_iter_ends_line (iter))
-		gtk_text_iter_forward_to_line_end (iter);
-
-	gtk_text_iter_forward_char (iter);
-
-	/* If we are on the same line, then we must be at the end of
-	 * the buffer. Just move to one character before EOB.
-	 */
-	if (gtk_text_iter_get_line (&before) == gtk_text_iter_get_line (iter))
+	if (state->apply_count != 1 || count == 0)
 	{
-		gtk_text_iter_forward_to_line_end (iter);
-		if (!gtk_text_iter_starts_line (iter))
-			gtk_text_iter_backward_char (iter);
-		return !gtk_text_iter_equal (&before, iter);
+		return FALSE;
 	}
 
-	while (!gtk_text_iter_ends_line (iter) &&
-	       g_unichar_isspace (gtk_text_iter_get_char (iter)))
+	for (guint i = 0; i < count; i++)
 	{
-		if (!gtk_text_iter_forward_char (iter))
+		GtkTextIter prev = *iter;
+
+		if (!gtk_text_iter_ends_line (iter))
+			gtk_text_iter_forward_to_line_end (iter);
+
+		gtk_text_iter_forward_char (iter);
+
+		/* If we are on the same line, then we must be at the end of
+		 * the buffer. Just move to one character before EOB.
+		 */
+		if (gtk_text_iter_get_line (&prev) == gtk_text_iter_get_line (iter))
+		{
+			gtk_text_iter_forward_to_line_end (iter);
+
+			if (!gtk_text_iter_starts_line (iter))
+				gtk_text_iter_backward_char (iter);
+
 			break;
+		}
+
+		while (!gtk_text_iter_ends_line (iter) &&
+		       g_unichar_isspace (gtk_text_iter_get_char (iter)))
+		{
+			if (!gtk_text_iter_forward_char (iter))
+				break;
+		}
 	}
 
 	return !gtk_text_iter_equal (&before, iter);
@@ -1791,6 +1804,8 @@ gtk_source_vim_motion_handle_keypress (GtkSourceVimState *state,
 		case GDK_KEY_ISO_Enter:
 		case GDK_KEY_KP_Enter:
 		case GDK_KEY_Return:
+		case GDK_KEY_KP_Add:
+		case GDK_KEY_plus:
 			return gtk_source_vim_motion_complete (self, motion_next_line_first_char, EXCLUSIVE, LINEWISE);
 
 		case GDK_KEY_End:
@@ -2210,6 +2225,18 @@ gtk_source_vim_motion_new_forward_char (void)
 	self = g_object_new (GTK_SOURCE_TYPE_VIM_MOTION, NULL);
 	self->motion = motion_forward_char_same_line_eol_okay;
 	self->inclusivity = EXCLUSIVE;
+
+	return GTK_SOURCE_VIM_STATE (self);
+}
+
+GtkSourceVimState *
+gtk_source_vim_motion_new_backward_char (void)
+{
+	GtkSourceVimMotion *self;
+
+	self = g_object_new (GTK_SOURCE_TYPE_VIM_MOTION, NULL);
+	self->motion = motion_backward_char_same_line;
+	self->inclusivity = INCLUSIVE;
 
 	return GTK_SOURCE_VIM_STATE (self);
 }

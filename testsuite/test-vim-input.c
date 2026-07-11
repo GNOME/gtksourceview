@@ -84,6 +84,22 @@ run_test (const char *text,
 			string[1] = 0;
 			keyval = GDK_KEY_Return;
 		}
+		else if (ch == '\001')
+		{
+			string[0] = '^';
+			string[1] = 'A';
+			string[2] = 0;
+			keyval = GDK_KEY_a;
+			mods = GDK_CONTROL_MASK;
+		}
+		else if (ch == '\030')
+		{
+			string[0] = '^';
+			string[1] = 'X';
+			string[2] = 0;
+			keyval = GDK_KEY_x;
+			mods = GDK_CONTROL_MASK;
+		}
 		else
 		{
 			keyval = gdk_unicode_to_keyval (ch);
@@ -227,6 +243,8 @@ test_motion (void)
 	run_test ("one\ntwo\nthree", "G", "one\ntwo\n|three");
 	run_test ("one\ntwo\n  three\n", "Ggg", "|one\ntwo\n  three\n");
 	run_test ("one\ntwo\n  three\n", "3G", "one\ntwo\n  |three\n");
+	run_test ("one\ntwo\n  three\n", "+", "one\n|two\n  three\n");
+	run_test ("one\ntwo\n  three\n", "2+", "one\ntwo\n  |three\n");
 	run_test ("one\ntwo\nthree\n", "j", "one\n|two\nthree\n");
 	run_test ("one\ntwo\nthree\n", "2j", "one\ntwo\n|three\n");
 	run_test ("one\ntwo\nthree\n", "2jk", "one\n|two\nthree\n");
@@ -267,11 +285,21 @@ test_operator (void)
 {
 	run_test ("abc", "x", "bc");
 	run_test ("abc", "2x", "c");
+	run_test ("abc", "lX", "bc");
+	run_test ("abcd", "2l2X", "cd");
 	run_test ("abc", "rx", "xbc");
 	run_test ("abc", "2rx", "xxc");
 	run_test ("one\ntwo\nthree\n", "J", "one two\nthree\n");
 	run_test ("abc", "~", "Abc");
 	run_test ("abc", "3~", "ABC");
+	run_test ("abc", "vll~", "ABC");
+	run_test ("abc def", "gUw", "ABC def");
+	run_test ("ABC DEF", "guw", "abc DEF");
+	run_test ("abc DEF", "g~w", "ABC DEF");
+	run_test ("n = 41;", "\001", "n = 42;");
+	run_test ("n = 41;", "5\001", "n = 46;");
+	run_test ("n = 41;", "\030", "n = 40;");
+	run_test ("n = 1;", "\001.", "n = 3;");
 	run_test ("abc", "sX\033", "Xbc");
 	run_test ("abc", "2sX\033", "Xc");
 	run_test ("abc", "x.", "c");
@@ -362,6 +390,11 @@ test_command_bar (void)
 	run_test ("", ":set ts=33\n", "");
 	run_test ("", ":set tw=100\n", "");
 	run_test ("", ":set ft=c\n", "");
+	run_test ("", ":set hlsearch nohls nohlsearch\n", "");
+	run_test ("", ":set number nonumber cursorline nocursorline\n", "");
+	run_test ("", ":set syntax=on syntax=off\n", "");
+	run_test ("", ":noh\n", "");
+	run_test ("", ":nohlsearch\n", "");
 }
 
 static void

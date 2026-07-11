@@ -675,6 +675,221 @@ gtk_source_vim_command_replace_one (GtkSourceVimCommand *self)
 	g_free (new_text);
 }
 
+static inline gboolean
+gtk_source_vim_iter_is_digit (const GtkTextIter *iter)
+{
+	gunichar ch;
+
+	g_assert (iter != NULL);
+
+	ch = gtk_text_iter_get_char (iter);
+
+	return ch >= '0' && ch <= '9';
+}
+
+static inline gboolean
+gtk_source_vim_iter_is_number_sign (const GtkTextIter *iter)
+{
+	gunichar ch;
+
+	g_assert (iter != NULL);
+
+	ch = gtk_text_iter_get_char (iter);
+
+	return ch == '-' || ch == '+';
+}
+
+static gboolean
+gtk_source_vim_iter_get_number_bounds (const GtkTextIter *iter,
+                                       GtkTextIter       *begin,
+                                       GtkTextIter       *end)
+{
+	GtkTextIter start;
+	GtkTextIter next;
+
+	g_assert (iter != NULL);
+	g_assert (begin != NULL);
+	g_assert (end != NULL);
+
+	start = *iter;
+
+	if (gtk_source_vim_iter_is_number_sign (&start))
+	{
+		next = start;
+
+		if (!gtk_text_iter_forward_char (&next) ||
+		    !gtk_source_vim_iter_is_digit (&next))
+		{
+			return FALSE;
+		}
+	}
+	else if (gtk_source_vim_iter_is_digit (&start))
+	{
+		while (!gtk_text_iter_starts_line (&start))
+		{
+			GtkTextIter prev = start;
+
+			gtk_text_iter_backward_char (&prev);
+
+			if (!gtk_source_vim_iter_is_digit (&prev))
+			{
+				break;
+			}
+
+			start = prev;
+		}
+
+		if (!gtk_text_iter_starts_line (&start))
+		{
+			GtkTextIter sign = start;
+
+			gtk_text_iter_backward_char (&sign);
+
+			if (gtk_source_vim_iter_is_number_sign (&sign))
+			{
+				start = sign;
+			}
+		}
+	}
+	else
+	{
+		return FALSE;
+	}
+
+	*begin = start;
+	*end = start;
+
+	if (gtk_source_vim_iter_is_number_sign (end))
+	{
+		gtk_text_iter_forward_char (end);
+	}
+
+	while (!gtk_text_iter_ends_line (end) &&
+	       gtk_source_vim_iter_is_digit (end))
+	{
+		gtk_text_iter_forward_char (end);
+	}
+
+	return TRUE;
+}
+
+static gboolean
+gtk_source_vim_iter_forward_number_bounds (const GtkTextIter *iter,
+                                           GtkTextIter       *begin,
+                                           GtkTextIter       *end)
+{
+	GtkTextIter cur;
+
+	g_assert (iter != NULL);
+	g_assert (begin != NULL);
+	g_assert (end != NULL);
+
+	cur = *iter;
+
+	while (!gtk_text_iter_is_end (&cur) && !gtk_text_iter_ends_line (&cur))
+	{
+		if (gtk_source_vim_iter_get_number_bounds (&cur, begin, end))
+		{
+			return TRUE;
+		}
+
+		gtk_text_iter_forward_char (&cur);
+	}
+
+	return FALSE;
+}
+
+static void
+gtk_source_vim_command_change_number (GtkSourceVimCommand *self,
+                                      int                  direction)
+{
+	GtkSourceBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter selection;
+	GtkTextIter begin;
+	GtkTextIter end;
+	gint64 value;
+	int count;
+	int offset;
+	char *text;
+	char *replacement;
+
+	g_assert (GTK_SOURCE_IS_VIM_COMMAND (self));
+	g_assert (direction == 1 || direction == -1);
+
+	if (!gtk_source_vim_state_get_editable (GTK_SOURCE_VIM_STATE (self)))
+	{
+		return;
+	}
+
+	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
+
+	if (!gtk_source_vim_iter_forward_number_bounds (&iter, &begin, &end))
+	{
+		return;
+	}
+
+	text = gtk_text_iter_get_slice (&begin, &end);
+
+	if (!g_ascii_string_to_signed (text, 10, G_MININT64, G_MAXINT64, &value, NULL))
+	{
+		g_free (text);
+		return;
+	}
+
+	count = gtk_source_vim_state_get_count (GTK_SOURCE_VIM_STATE (self));
+
+	if (direction > 0)
+	{
+		if (value > G_MAXINT64 - count)
+		{
+			g_free (text);
+			return;
+		}
+
+		value += count;
+	}
+	else
+	{
+		if (value < G_MININT64 + count)
+		{
+			g_free (text);
+			return;
+		}
+
+		value -= count;
+	}
+
+	replacement = g_strdup_printf ("%" G_GINT64_FORMAT, value);
+	offset = gtk_text_iter_get_offset (&begin);
+
+	gtk_source_vim_state_begin_user_action (GTK_SOURCE_VIM_STATE (self));
+	gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
+	gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, replacement, -1);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &iter, offset);
+	gtk_source_vim_state_select (GTK_SOURCE_VIM_STATE (self), &iter, &iter);
+	gtk_source_vim_state_end_user_action (GTK_SOURCE_VIM_STATE (self));
+
+	gtk_source_vim_state_set_can_repeat (GTK_SOURCE_VIM_STATE (self), TRUE);
+
+	self->ignore_mark = TRUE;
+
+	g_free (replacement);
+	g_free (text);
+}
+
+static void
+gtk_source_vim_command_increment_number (GtkSourceVimCommand *self)
+{
+	gtk_source_vim_command_change_number (self, 1);
+}
+
+static void
+gtk_source_vim_command_decrement_number (GtkSourceVimCommand *self)
+{
+	gtk_source_vim_command_change_number (self, -1);
+}
+
 static void
 gtk_source_vim_command_undo (GtkSourceVimCommand *self)
 {
@@ -1178,12 +1393,20 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 	{
 		const char *part = parts[i];
 
-		if (g_str_equal (part, "hls"))
+		if (g_str_equal (part, "hls") ||
+		    g_str_equal (part, "hlsearch"))
 		{
 			gtk_source_vim_state_get_search (state, &search, &context);
 			gtk_source_search_context_set_highlight (context, TRUE);
 		}
-		else if (g_str_equal (part, "incsearch"))
+		else if (g_str_equal (part, "nohls") ||
+		         g_str_equal (part, "nohlsearch"))
+		{
+			gtk_source_vim_state_get_search (state, &search, &context);
+			gtk_source_search_context_set_highlight (context, FALSE);
+		}
+		else if (g_str_equal (part, "incsearch") ||
+		         g_str_equal (part, "noincsearch"))
 		{
 			/* TODO */
 		}
@@ -1253,6 +1476,11 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 		{
 			gtk_source_buffer_set_highlight_syntax (buffer, FALSE);
 		}
+		else if (g_str_equal (part, "syntax=on") ||
+		         g_str_equal (part, "syntax=enable"))
+		{
+			gtk_source_buffer_set_highlight_syntax (buffer, TRUE);
+		}
 		else if (g_str_equal (part, "et") ||
 			 g_str_equal (part, "expandtab"))
 		{
@@ -1263,13 +1491,23 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 		{
 			gtk_source_view_set_insert_spaces_instead_of_tabs (view, FALSE);
 		}
-		else if (g_str_equal (part, "nu"))
+		else if (g_str_equal (part, "nu") ||
+		         g_str_equal (part, "number"))
 		{
 			gtk_source_view_set_show_line_numbers (view, TRUE);
 		}
-		else if (g_str_equal (part, "nonu"))
+		else if (g_str_equal (part, "nonu") ||
+		         g_str_equal (part, "nonumber"))
 		{
 			gtk_source_view_set_show_line_numbers (view, FALSE);
+		}
+		else if (g_str_equal (part, "cursorline"))
+		{
+			gtk_source_view_set_highlight_current_line (view, TRUE);
+		}
+		else if (g_str_equal (part, "nocursorline"))
+		{
+			gtk_source_view_set_highlight_current_line (view, FALSE);
 		}
 		else if (g_str_equal (part, "wrap"))
 		{
@@ -1601,7 +1839,9 @@ gtk_source_vim_command_class_init (GtkSourceVimCommandClass *klass)
 	ADD_COMMAND (":delete",        gtk_source_vim_command_delete);
 	ADD_COMMAND (":j",             gtk_source_vim_command_join);
 	ADD_COMMAND (":join",          gtk_source_vim_command_join);
+	ADD_COMMAND (":noh",           gtk_source_vim_command_nohl);
 	ADD_COMMAND (":nohl",          gtk_source_vim_command_nohl);
+	ADD_COMMAND (":nohlsearch",    gtk_source_vim_command_nohl);
 	ADD_COMMAND (":redo",          gtk_source_vim_command_redo);
 	ADD_COMMAND (":set",           gtk_source_vim_command_set);
 	ADD_COMMAND (":sort",          gtk_source_vim_command_sort);
@@ -1614,6 +1854,8 @@ gtk_source_vim_command_class_init (GtkSourceVimCommandClass *klass)
 	ADD_COMMAND ("toggle-case",    gtk_source_vim_command_toggle_case);
 	ADD_COMMAND ("upcase",         gtk_source_vim_command_upcase);
 	ADD_COMMAND ("downcase",       gtk_source_vim_command_downcase);
+	ADD_COMMAND ("increment-number", gtk_source_vim_command_increment_number);
+	ADD_COMMAND ("decrement-number", gtk_source_vim_command_decrement_number);
 	ADD_COMMAND ("rot13",          gtk_source_vim_command_rot13);
 	ADD_COMMAND ("replace-one",    gtk_source_vim_command_replace_one);
 	ADD_COMMAND ("indent",         gtk_source_vim_command_indent);
