@@ -1,11 +1,29 @@
-News in 5.20.0, 2025-03-16
+News in 5.21.0, 2026-07-11
+--------------------------
+
+This is an unstable release for GNOME 51.alpha
+
+ * GtkSourceFileLoader now rejects non-regular files before opening
+ * GtkSourceFileLoader now bounds expanded input size, including
+   decompressed input, and reports oversized loads cleanly
+ * GtkSourceFileLoader now unwinds buffer output streams on load failure
+ * Fix gutter and gutter lines leaks
+ * Break a circular reference when line numbers are enabled
+ * Improve Vim emulation for repeated commands, r, cw/cW, +, X, gu, gU,
+   g~, Ctrl-A, Ctrl-X, and :set aliases
+ * Fix vertical alignment when jumping to iters
+ * Improve context engine and search context performance
+ * Use canonical property names and static strings for properties
+ * Translation updates, including new Lao translation
+
+News in 5.20.0, 2026-03-16
 --------------------------
 
 This is a stable release for GNOME 50.0
 
  * No changes since 5.19.0
 
-News in 5.19.0, 2025-02-23
+News in 5.19.0, 2026-02-23
 --------------------------
 
 This is an unstable release for GNOME 50.rc
@@ -290,4 +308,3 @@ Changes since 5.6.2
  * lean.lang: strings may contain line breaks
  * nix.lang: Add Nix syntax highlighting
  * reasonml.lang: add ReasonML language
-
