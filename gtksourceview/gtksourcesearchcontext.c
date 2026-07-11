@@ -511,6 +511,59 @@ get_last_subregion (GtkSourceRegion *region,
 	return found;
 }
 
+static gboolean
+region_intersects_subregion (GtkSourceRegion   *region,
+                             const GtkTextIter *start,
+                             const GtkTextIter *end)
+{
+	GtkSourceRegionIter region_iter;
+	GtkTextIter real_start;
+	GtkTextIter real_end;
+
+	g_assert (start != NULL);
+	g_assert (end != NULL);
+
+	if (region == NULL)
+	{
+		return FALSE;
+	}
+
+	real_start = *start;
+	real_end = *end;
+	gtk_text_iter_order (&real_start, &real_end);
+
+	if (gtk_text_iter_equal (&real_start, &real_end))
+	{
+		return FALSE;
+	}
+
+	gtk_source_region_get_start_region_iter (region, &region_iter);
+
+	while (!gtk_source_region_iter_is_end (&region_iter))
+	{
+		GtkTextIter subregion_start;
+		GtkTextIter subregion_end;
+
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &subregion_start,
+							   &subregion_end))
+		{
+			return FALSE;
+		}
+
+		if (!gtk_text_iter_equal (&subregion_start, &subregion_end) &&
+		    gtk_text_iter_compare (&subregion_start, &real_end) < 0 &&
+		    gtk_text_iter_compare (&real_start, &subregion_end) < 0)
+		{
+			return TRUE;
+		}
+
+		gtk_source_region_iter_next (&region_iter);
+	}
+
+	return FALSE;
+}
+
 static void
 clear_task (GtkSourceSearchContext *search)
 {
@@ -1302,7 +1355,6 @@ adjust_subregion (GtkSourceSearchContext *search,
 		{
 			GtkTextIter tag_start = *start;
 			GtkTextIter tag_end = *start;
-			GtkSourceRegion *region;
 
 			if (!gtk_text_iter_starts_tag (&tag_start, search->found_tag))
 			{
@@ -1311,27 +1363,23 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->found_tag);
 
-			region = gtk_source_region_intersect_subregion (search->scan_region,
-									&tag_start,
-									&tag_end);
-
-			if (gtk_source_region_is_empty (region))
+			if (!region_intersects_subregion (search->scan_region,
+							  &tag_start,
+							  &tag_end))
 			{
-				/* 'region' has already been scanned, so 'start' is in a
-				 * correct match, we can skip it.
+				/* The tag range has already been scanned, so
+				 * 'start' is in a correct match, we can skip it.
 				 */
 				*start = tag_end;
 			}
 			else
 			{
-				/* 'region' has not already been scanned completely, so
-				 * 'start' is most probably in an old match that must be
-				 * removed.
+				/* The tag range has not already been scanned completely,
+				 * so 'start' is most probably in an old match that must
+				 * be removed.
 				 */
 				*start = tag_start;
 			}
-
-			g_clear_object (&region);
 		}
 	}
 
@@ -1352,7 +1400,6 @@ adjust_subregion (GtkSourceSearchContext *search,
 		{
 			GtkTextIter tag_start = *end;
 			GtkTextIter tag_end = *end;
-			GtkSourceRegion *region;
 
 			if (!gtk_text_iter_starts_tag (&tag_start, search->found_tag))
 			{
@@ -1361,27 +1408,23 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->found_tag);
 
-			region = gtk_source_region_intersect_subregion (search->scan_region,
-									&tag_start,
-									&tag_end);
-
-			if (gtk_source_region_is_empty (region))
+			if (!region_intersects_subregion (search->scan_region,
+							  &tag_start,
+							  &tag_end))
 			{
-				/* 'region' has already been scanned, so 'end' is in a
+				/* The tag range has already been scanned, so 'end' is in a
 				 * correct match, we can skip it.
 				 */
 				*end = tag_start;
 			}
 			else
 			{
-				/* 'region' has not already been scanned completely, so
-				 * 'end' is most probably in an old match that must be
+				/* The tag range has not already been scanned completely,
+				 * so 'end' is most probably in an old match that must be
 				 * removed.
 				 */
 				*end = tag_end;
 			}
-
-			g_clear_object (&region);
 		}
 	}
 
@@ -1495,18 +1538,12 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 		}
 		else
 		{
-			GtkSourceRegion *region;
-
-			region = gtk_source_region_intersect_subregion (search->scan_region,
-									&match_start,
-									&match_end);
-
-			if (gtk_source_region_is_empty (region))
+			if (!region_intersects_subregion (search->scan_region,
+							  &match_start,
+							  &match_end))
 			{
 				search->occurrences_count--;
 			}
-
-			g_clear_object (&region);
 		}
 
 		iter = match_end;
@@ -3103,8 +3140,6 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	GtkTextIter iter;
 	gboolean found;
 	gint position = 0;
-	GtkSourceRegion *region;
-	gboolean empty;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), -1);
 	g_return_val_if_fail (match_start != NULL, -1);
@@ -3119,15 +3154,9 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->scan_region,
-								match_start,
-								match_end);
-
-		empty = gtk_source_region_is_empty (region);
-
-		g_clear_object (&region);
-
-		if (!empty)
+		if (region_intersects_subregion (search->scan_region,
+						 match_start,
+						 match_end))
 		{
 			return -1;
 		}
@@ -3156,15 +3185,9 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->scan_region,
-								&iter,
-								match_end);
-
-		empty = gtk_source_region_is_empty (region);
-
-		g_clear_object (&region);
-
-		if (!empty)
+		if (region_intersects_subregion (search->scan_region,
+						 &iter,
+						 match_end))
 		{
 			return -1;
 		}
