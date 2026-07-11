@@ -4530,15 +4530,20 @@ get_line_info (GtkTextBuffer     *buffer,
                const GtkTextIter *line_end,
                LineInfo          *line)
 {
+	int line_end_offset;
+	int line_length;
+
 	g_assert (!gtk_text_iter_equal (line_start, line_end));
 
 	line->text = gtk_text_buffer_get_slice (buffer, line_start, line_end, TRUE);
 	line->start_at = gtk_text_iter_get_offset (line_start);
+	line_end_offset = gtk_text_iter_get_offset (line_end);
+	line_length = line_end_offset - line->start_at;
 
 	if (!gtk_text_iter_starts_line (line_end))
 	{
 		line->eol_length = 0;
-		line->char_length = g_utf8_strlen (line->text, -1);
+		line->char_length = line_length;
 		line->byte_length = strlen (line->text);
 	}
 	else
@@ -4551,13 +4556,13 @@ get_line_info (GtkTextBuffer     *buffer,
 
 		g_assert (eol_index < next_line_index);
 
-		line->char_length = g_utf8_strlen (line->text, eol_index);
-		line->eol_length = g_utf8_strlen (line->text + eol_index, -1);
+		line->eol_length = g_utf8_strlen (line->text + eol_index,
+		                                  next_line_index - eol_index);
+		line->char_length = line_length - line->eol_length;
 		line->byte_length = eol_index;
 	}
 
-	g_assert (gtk_text_iter_get_offset (line_end) ==
-			line->start_at + line->char_length + line->eol_length);
+	g_assert (line_end_offset == line->start_at + line->char_length + line->eol_length);
 }
 
 /**
