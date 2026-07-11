@@ -146,9 +146,9 @@ get_text_object (guint keyval,
 		case GDK_KEY_greater:
 			/* TODO: this needs to use separate mechanisms for < vs > */
 			if (change_modifier == CHANGE_A)
-				return gtk_source_vim_text_object_new_a_block_brace ();
+				return gtk_source_vim_text_object_new_a_block_lt_gt ();
 			else
-				return gtk_source_vim_text_object_new_inner_block_brace ();
+				return gtk_source_vim_text_object_new_inner_block_lt_gt ();
 
 		case GDK_KEY_apostrophe:
 			if (change_modifier == CHANGE_A)

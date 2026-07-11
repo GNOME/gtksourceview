@@ -43,6 +43,9 @@ run_test (const char *text,
 	GtkSourceVim *vim = gtk_source_vim_new (view);
 	GtkSourceVimState *registers = gtk_source_vim_state_get_registers (GTK_SOURCE_VIM_STATE (vim));
 	GtkTextIter begin, end;
+	GtkTextIter insert;
+	GString *expected_text = NULL;
+	int cursor_offset = -1;
 	char *ret;
 
 	/* Registers are shared per-process, so they need to be reset between runs */
@@ -94,8 +97,42 @@ run_test (const char *text,
 
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
 	ret = gtk_text_iter_get_slice (&begin, &end);
-	g_assert_cmpstr (ret, ==, expected);
+	expected_text = g_string_new (NULL);
+	for (const char *c = expected; *c; c = g_utf8_next_char (c))
+	{
+		gunichar ch = g_utf8_get_char (c);
+
+		if (ch == '|')
+		{
+			g_assert_cmpint (cursor_offset, ==, -1);
+			cursor_offset = g_utf8_strlen (expected_text->str, expected_text->len);
+		}
+		else
+		{
+			g_string_append_unichar (expected_text, ch);
+		}
+	}
+
+	if (g_strcmp0 (ret, expected_text->str) != 0)
+	{
+		g_error ("input '%s' produced text '%s', expected '%s'",
+		         input, ret, expected_text->str);
+	}
 	g_free (ret);
+
+	if (cursor_offset >= 0)
+	{
+		gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer),
+		                                  &insert,
+		                                  gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer)));
+		if (gtk_text_iter_get_offset (&insert) != cursor_offset)
+		{
+			g_error ("input '%s' placed cursor at %d, expected %d",
+			         input, gtk_text_iter_get_offset (&insert), cursor_offset);
+		}
+	}
+
+	g_string_free (expected_text, TRUE);
 
 	g_assert_finalize_object (G_OBJECT (vim));
 	g_assert_finalize_object (G_OBJECT (view));
@@ -125,6 +162,12 @@ test_change (void)
 {
 	run_test ("word here", "ciwnot\033", "not here");
 	run_test ("word here", "wc$\033", "word ");
+	run_test ("alpha beta gamma", "wceBETA\033", "alpha BETA gamma");
+	run_test ("one two three", "Ctail\033", "tail");
+	run_test ("one\ntwo\nthree\n", "ccreplacement\033", "replacement\ntwo\nthree\n");
+	run_test ("one\ntwo\nthree\n", "Sreplacement\033", "replacement\ntwo\nthree\n");
+	run_test ("foo(bar) baz", "f(ci(paren\033", "foo(paren) baz");
+	run_test ("foo <tag> baz", "f<ci<angle\033", "foo <angle> baz");
 }
 
 static void
@@ -144,11 +187,89 @@ test_delete (void)
 	run_test ("1\n2\n3\n42", "jmzjjd'z", "1");
 	run_test ("1\n2\n3\n4\n5", "4Gd1G", "5");
 	run_test ("1\n2\n3\n4\n5", ":4\nd1G", "5");
+	run_test ("alpha beta gamma", "dw", "beta gamma");
+	run_test ("alpha beta gamma", "de", " beta gamma");
+	run_test ("alpha beta gamma", "d2w", "gamma");
+	run_test ("alpha beta gamma", "d$", "");
+	run_test ("alpha beta gamma", "lld0", "pha beta gamma");
+	run_test ("foo(bar) baz", "f(di(", "foo() baz");
+	run_test ("foo(bar) baz", "f(da(", "foo baz");
+	run_test ("foo <tag> baz", "f<di<", "foo <> baz");
+	run_test ("foo <tag> baz", "f<da<", "foo  baz");
+	run_test ("one\ntwo\nthree\n", "jdd", "one\nthree\n");
+	run_test ("one\ntwo\nthree\n", "jdk", "three\n");
+	run_test ("one\ntwo\nthree\n", "jD", "one\n\nthree\n");
+	run_test ("one\ntwo\nthree\n", "j0x", "one\nwo\nthree\n");
 
 #if 0
 	/* somehow VIM ignores \n before 4. */
 	run_test ("1\n22\n3\n4", "jlmzjjd`z", "1\n2\n4");
 #endif
+}
+
+static void
+test_motion (void)
+{
+	run_test ("abc", "", "|abc");
+	run_test ("abc", "l", "a|bc");
+	run_test ("abc", "2l", "ab|c");
+	run_test ("abc", "10l", "ab|c");
+	run_test ("abc", "lh", "|abc");
+	run_test ("  abc", "$", "  ab|c");
+	run_test ("  abc", "$0", "|  abc");
+	run_test ("  abc", "$^", "  |abc");
+	run_test ("one two-three", "w", "one |two-three");
+	run_test ("one two-three", "e", "on|e two-three");
+	run_test ("one two-three", "E", "on|e two-three");
+	run_test ("one two-three", "wwb", "one |two-three");
+	run_test ("one two-three", "wge", "on|e two-three");
+	run_test ("one\ntwo\nthree", "G", "one\ntwo\n|three");
+	run_test ("one\ntwo\n  three\n", "Ggg", "|one\ntwo\n  three\n");
+	run_test ("one\ntwo\n  three\n", "3G", "one\ntwo\n  |three\n");
+	run_test ("one\ntwo\nthree\n", "j", "one\n|two\nthree\n");
+	run_test ("one\ntwo\nthree\n", "2j", "one\ntwo\n|three\n");
+	run_test ("one\ntwo\nthree\n", "2jk", "one\n|two\nthree\n");
+	run_test ("abc def ghi", "fdfgFd", "abc |def ghi");
+	run_test ("abc(def)ghi", "f(%", "abc(def|)ghi");
+	run_test ("abc(def)ghi", "f(%%", "abc|(def)ghi");
+	run_test ("a. b! c?", ")", "a. |b! c?");
+	run_test ("a. b! c?", "))", "a. b! |c?");
+	run_test ("first\n\nsecond\n", "}", "first\n|\nsecond\n");
+	run_test ("first\n\nsecond\n", "}j{", "first\n|\nsecond\n");
+}
+
+static void
+test_search (void)
+{
+	run_test ("one two one two", "/two\n", "one |two one two");
+	run_test ("one two one two", "/two\nn", "one two one |two");
+	run_test ("one two one two", "/two\nnN", "one |two one two");
+	run_test ("one two one two", "?two\n", "one two one |two");
+	run_test ("one two one two", "w*", "one two one |two");
+}
+
+static void
+test_mark (void)
+{
+	run_test ("one\ntwo\nthree\n", "jmaG'a", "one\n|two\nthree\n");
+	run_test ("one\ntwo\nthree\n", "jmaG`a", "one\n|two\nthree\n");
+	run_test ("  one\n  two\n  three\n", "jllmaG'a", "  one\n  |two\n  three\n");
+	run_test ("  one\n  two\n  three\n", "jllmaG`a", "  one\n  |two\n  three\n");
+}
+
+static void
+test_operator (void)
+{
+	run_test ("abc", "x", "bc");
+	run_test ("abc", "2x", "c");
+	run_test ("abc", "rx", "xbc");
+	run_test ("abc", "2rx", "xxc");
+	run_test ("one\ntwo\nthree\n", "J", "one two\nthree\n");
+	run_test ("abc", "~", "Abc");
+	run_test ("abc", "3~", "ABC");
+	run_test ("abc", "sX\033", "Xbc");
+	run_test ("abc", "2sX\033", "Xc");
+	run_test ("abc", "x.", "c");
 }
 
 static void
@@ -268,6 +389,10 @@ main (int argc,
 	g_test_add_func ("/GtkSourceView/vim-input/insert", test_insert);
 	g_test_add_func ("/GtkSourceView/vim-input/change", test_change);
 	g_test_add_func ("/GtkSourceView/vim-input/delete", test_delete);
+	g_test_add_func ("/GtkSourceView/vim-input/motion", test_motion);
+	g_test_add_func ("/GtkSourceView/vim-input/search", test_search);
+	g_test_add_func ("/GtkSourceView/vim-input/mark", test_mark);
+	g_test_add_func ("/GtkSourceView/vim-input/operator", test_operator);
 	g_test_add_func ("/GtkSourceView/vim-input/search-and-replace", test_search_and_replace);
 	g_test_add_func ("/GtkSourceView/vim-input/command-bar", test_command_bar);
 	g_test_add_func ("/GtkSourceView/vim-input/visual", test_visual);
