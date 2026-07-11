@@ -163,6 +163,7 @@ test_change (void)
 	run_test ("word here", "ciwnot\033", "not here");
 	run_test ("word here", "wc$\033", "word ");
 	run_test ("alpha beta gamma", "wceBETA\033", "alpha BETA gamma");
+	run_test ("alpha beta gamma", "wcwBETA\033", "alpha BETA gamma");
 	run_test ("one two three", "Ctail\033", "tail");
 	run_test ("one\ntwo\nthree\n", "ccreplacement\033", "replacement\ntwo\nthree\n");
 	run_test ("one\ntwo\nthree\n", "Sreplacement\033", "replacement\ntwo\nthree\n");
@@ -229,6 +230,10 @@ test_motion (void)
 	run_test ("one\ntwo\nthree\n", "j", "one\n|two\nthree\n");
 	run_test ("one\ntwo\nthree\n", "2j", "one\ntwo\n|three\n");
 	run_test ("one\ntwo\nthree\n", "2jk", "one\n|two\nthree\n");
+	run_test ("abcd\nx\nabcd", "$j", "abcd\n|x\nabcd");
+	run_test ("abcd\nx\nabcd", "$jk", "abc|d\nx\nabcd");
+	run_test ("abcd\nx\nabcd", "$jj", "abcd\nx\nabc|d");
+	run_test ("abcd\nx\nabcd", "$jkh", "ab|cd\nx\nabcd");
 	run_test ("abc def ghi", "fdfgFd", "abc |def ghi");
 	run_test ("abc(def)ghi", "f(%", "abc(def|)ghi");
 	run_test ("abc(def)ghi", "f(%%", "abc|(def)ghi");
@@ -270,6 +275,11 @@ test_operator (void)
 	run_test ("abc", "sX\033", "Xbc");
 	run_test ("abc", "2sX\033", "Xc");
 	run_test ("abc", "x.", "c");
+	run_test ("", "ia\033.", "aa");
+	run_test ("abcd", "rxl.", "xxcd");
+	run_test ("abcd", "sX\033l.", "XXcd");
+	run_test ("one two three", "cwONE\033w.", "ONE ONE three");
+	run_test ("foo(bar) baz(qux)", "f(ci(X\033f(.", "foo(X) baz(X)");
 }
 
 static void

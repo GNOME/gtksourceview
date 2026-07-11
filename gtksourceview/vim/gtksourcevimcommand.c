@@ -669,6 +669,8 @@ gtk_source_vim_command_replace_one (GtkSourceVimCommand *self)
 		self->ignore_mark = TRUE;
 	}
 
+	gtk_source_vim_state_set_can_repeat (GTK_SOURCE_VIM_STATE (self), TRUE);
+
 	g_free (text);
 	g_free (new_text);
 }

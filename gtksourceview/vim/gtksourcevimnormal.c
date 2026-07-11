@@ -828,9 +828,20 @@ key_handler_c (GtkSourceVimNormal *self,
 			GtkSourceVimState *motion;
 			GtkSourceVimState *selection;
 			GtkSourceVimState *insert;
+			guint motion_keyval;
 			int count;
 
 			count = self->count, self->count = 0;
+			motion_keyval = keyval;
+
+			if (!self->has_count)
+			{
+				if (keyval == GDK_KEY_w)
+					motion_keyval = GDK_KEY_e;
+				else if (keyval == GDK_KEY_W)
+					motion_keyval = GDK_KEY_E;
+			}
+
 			insert = gtk_source_vim_insert_new ();
 			motion = gtk_source_vim_motion_new ();
 			selection = gtk_source_vim_motion_new_none ();
@@ -839,7 +850,7 @@ key_handler_c (GtkSourceVimNormal *self,
 			gtk_source_vim_state_set_count (motion, count);
 			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), insert);
 			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (insert), motion);
-			gtk_source_vim_state_synthesize (motion, keyval, mods);
+			gtk_source_vim_state_synthesize (motion, motion_keyval, mods);
 
 			gtk_source_vim_normal_clear (self);
 
