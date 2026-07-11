@@ -845,7 +845,7 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   scroll_dest = current_y_scroll;
   if (use_align)
     {
-      scroll_dest = rect.y - yoffset;
+      scroll_dest = rect.y + (rect.height * yalign) - (screen.height * yalign);
       yvalue = scroll_dest - screen.y + screen_yoffset;
     }
   else
