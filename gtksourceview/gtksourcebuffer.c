@@ -3210,6 +3210,16 @@ _gtk_source_buffer_end_loading (GtkSourceBuffer *buffer)
 	}
 }
 
+/**
+ * gtk_source_buffer_get_loading:
+ * @buffer: a #GtkSourceBuffer
+ *
+ * Whether the buffer is loading.
+ *
+ * Returns: whether the buffer is loading
+ *
+ * Since: 5.10
+ */
 gboolean
 gtk_source_buffer_get_loading (GtkSourceBuffer *buffer)
 {

@@ -605,7 +605,7 @@ gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
  *
  * The value for @y is relative to the renderers widget coordinates.
  *
- * Since: 5.18
+ * Since: 5.16
  */
 void
 gtk_source_gutter_lines_get_line_extent (GtkSourceGutterLines                 *lines,
