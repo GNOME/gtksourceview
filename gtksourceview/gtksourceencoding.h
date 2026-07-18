@@ -34,7 +34,7 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_TYPE_ENCODING (gtk_source_encoding_get_type ())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType                    gtk_source_encoding_get_type               (void) G_GNUC_CONST;
+GType                    gtk_source_encoding_get_type               (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding *gtk_source_encoding_get_from_charset       (const gchar             *charset);
 GTK_SOURCE_AVAILABLE_IN_ALL

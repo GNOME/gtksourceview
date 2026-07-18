@@ -454,7 +454,7 @@ static void check_segment_children (Segment                *segment);
 #define CHECK_SEGMENT_CHILDREN(s)
 #endif
 
-static GQuark             gtk_source_context_engine_error_quark (void) G_GNUC_CONST;
+static GQuark             gtk_source_context_engine_error_quark (void);
 static Segment           *create_segment                        (GtkSourceContextEngine  *ce,
                                                                  Segment                 *parent,
                                                                  Context                 *context,
