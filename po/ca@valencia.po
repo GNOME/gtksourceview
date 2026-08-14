@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2026-07-11 11:52+0000\n"
-"PO-Revision-Date: 2026-07-17 21:56+0000\n"
+"PO-Revision-Date: 2026-07-17 22:10+0000\n"
 "Last-Translator: Xavi Ivars <xavi.ivars@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca@valencia\n"
@@ -246,7 +246,6 @@ msgstr "Lot del DOS"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
-#| msgid "Template"
 msgid "Django Template"
 msgstr "Plantilla Django"
 
@@ -295,7 +294,6 @@ msgstr "Especificació RPM"
 
 #. (itstool) path: tera.lang/language@_name
 #: tera.lang:23
-#| msgid "Template"
 msgid "Tera Template"
 msgstr "Plantilla Tera"
 
@@ -306,7 +304,6 @@ msgstr "Adwaita fosc"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22 Adwaita.xml:22
-#| msgid "Style scheme search path"
 msgid "An style scheme for Adwaita"
 msgstr "Un esquema d'estil per a Adwaita"
 
@@ -317,13 +314,11 @@ msgstr "Adwaita"
 
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
-#| msgid "Classic"
 msgid "Classic Dark"
 msgstr "Fosc clàssic"
 
 #. (itstool) path: style-scheme/_description
 #: classic-dark.xml:24
-#| msgid "Classic color scheme"
 msgid "Classic dark color scheme"
 msgstr "Esquema de color fosc clàssic"
 
@@ -339,7 +334,6 @@ msgstr "Esquema de color clàssic"
 
 #. (itstool) path: cobalt-light.xml/style-scheme@_name
 #: cobalt-light.xml:20
-#| msgid "Cobalt"
 msgid "Cobalt Light"
 msgstr "Cobalt clar"
 
@@ -355,7 +349,6 @@ msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
 #: kate-dark.xml:24
-#| msgid "Color scheme used in the Kate text editor"
 msgid "Dark color scheme used in the Kate text editor"
 msgstr "Esquema de color fosc que s'utilitza en l'editor de text Kate"
 
@@ -455,7 +448,6 @@ msgid "%d of %u"
 msgstr "%d de %u"
 
 #: gtksourceview/gtksourcecompletionlist.ui:56
-#| msgid "_Details…"
 msgid "_Details"
 msgstr "_Detalls"
 
@@ -516,7 +508,6 @@ msgstr "context desconegut «%s»"
 
 #: gtksourceview/gtksourcecontextengine.c:6287
 #, c-format
-#| msgid "Missing main language definition (id = \"%s\".)"
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Falta la definició del llenguatge principal (id = «%s»)."
 
