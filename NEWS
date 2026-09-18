@@ -1,3 +1,50 @@
+News in 5.22.0, 2026-09-18
+--------------------------
+
+This is a stable release for GNOME 51.0
+
+Changes since 5.20.0, including the 5.21.x development series:
+
+ * Reject non-regular files before opening them in GtkSourceFileLoader
+ * Add a configurable GtkSourceFileLoader max-size limit, defaulting to
+   1 GiB, for file, stream, and decompressed input
+ * Report oversized loads with GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG
+ * Centralize checked arithmetic for input sizes and buffer growth
+ * Unwind buffer output streams when file loading fails
+ * Handle stream-based loads without a file location in profiler marks
+ * Expand file loader tests for size limits, compressed input, load
+   failures, and arithmetic boundaries
+ * Fix gutter renderer list and gutter lines leaks
+ * Break a circular reference when line numbers are enabled
+ * Avoid temporary region and text mark allocations in search context
+   intersection checks
+ * Avoid per-line timer allocations in the syntax highlighting engine
+ * Avoid rescanning UTF-8 text to determine line character counts
+ * Reduce scrolling overhead in GtkSourceMap
+ * Fix GtkSourceMap slider sizing and positioning when the map is taller
+   than its contents
+ * Reduce allocations and per-line work when drawing source mark backgrounds
+ * Reduce array access overhead in gutter lines
+ * Fix vertical alignment when jumping to text positions
+ * Improve Vim emulation for command repetition, r, and cw/cW
+ * Add Vim support for +, X, gu, gU, g~, and visual-mode ~
+ * Add Vim Ctrl-A and Ctrl-X support for signed decimal numbers
+ * Add Vim :set aliases and :noh/:nohlsearch commands
+ * Expand Vim input tests for commands, motions, and repetition
+ * Use canonical property names and static strings for properties
+ * Add missing API version annotations and correct function attributes
+ * Translation updates, including new Lao and Uzbek (Latin) translations
+
+Maintainer's note: My family needed to move abroad for our safety. I am
+currently unemployed and living abroad, and my continued maintainership
+of GtkSourceView is on an ad hoc basis. Sustained maintenance depends
+heavily on a company stepping forward to support me abroad, after Red Hat
+declined my request to relocate while remaining in my role despite the
+safety concerns facing my family. Organizations that rely on this library
+can help by supporting its maintenance. For background, see my
+"Mid-life transitions" post:
+https://blogs.gnome.org/chergert/2026/02/06/mid-life-transitions/
+
 News in 5.21.0, 2026-07-11
 --------------------------
 
