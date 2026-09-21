@@ -263,6 +263,15 @@ check_expanded_size (GtkSourceFileLoader  *loader,
 		return TRUE;
 	}
 
+	if ((gsize)task_data->chunk_bytes_read > READ_CHUNK_SIZE)
+	{
+		g_set_error_literal (error,
+		                     GTK_SOURCE_FILE_LOADER_ERROR,
+		                     GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                     _("File too big."));
+		return FALSE;
+	}
+
 	if (!_gtk_source_utils_checked_gssize_to_goffset (task_data->chunk_bytes_read,
 	                                                  &chunk_bytes_read) ||
 	    !_gtk_source_utils_checked_add_goffset (task_data->total_bytes_read,
