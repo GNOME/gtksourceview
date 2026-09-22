@@ -961,13 +961,13 @@ gtk_source_map_measure (GtkWidget      *widget,
 			    priv->width_left_margin != left_margin)
 			{
 				PangoLayout *layout = NULL;
-+				char *text = NULL;
+				char *text = NULL;
 
 				text = g_strnfill (right_margin_position, 'X');
 				layout = gtk_widget_create_pango_layout (widget, text);
 				pango_layout_get_pixel_size (layout, &priv->width_request, NULL);
 				g_free (text);
-+				g_object_unref (layout);
+				g_object_unref (layout);
 
 				/* If left-margin is set, try to balance the right side with the same
 				 * amount of additional space to keep it aligned.
