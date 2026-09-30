@@ -5445,7 +5445,11 @@ update_syntax (GtkSourceContextEngine *ce,
 						       line_start_offset - 1);
 		}
 
-		g_assert (state->context != NULL);
+		if (!state->context)
+		{
+			g_timer_destroy (timer);
+			goto out;
+		}
 
 		ce->hint2 = ce->hint;
 
