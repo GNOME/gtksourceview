@@ -8,7 +8,7 @@ adds support for syntax highlighting, file loading and saving, search and
 replace, code completion, snippets, Vim emulation, printing, displaying line
 numbers, and other features typical of a source code editor.
 
-See the [GtkSourceView website](https://wiki.gnome.org/Projects/GtkSourceView).
+See the [GtkSourceView website](https://gitlab.gnome.org/GNOME/gtksourceview).
 
 GtkSourceView 5 depends on GTK 4.
 

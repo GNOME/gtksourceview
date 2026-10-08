@@ -64,9 +64,8 @@ need to add/remove the curly braces all the time.
   code.
 
 See also:
-- https://developer.gnome.org/programming-guidelines/stable/
-- https://wiki.gnome.org/Projects/GTK%2B/BestPractices
-- https://wiki.gnome.org/Projects/GLib/CompilerRequirements
+- https://developer.gnome.org/documentation/guidelines/programming.html
+- https://gitlab.gnome.org/GNOME/glib/-/blob/main/docs/toolchain-requirements.md
 
 Programming best-practices
 --------------------------
