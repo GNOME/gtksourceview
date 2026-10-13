@@ -619,10 +619,66 @@ test_move_line_up_then_undo (void)
 	g_object_unref (view);
 }
 
+static void
+test_finished_snippet_outlives_view (void)
+{
+	GtkSourceView *view;
+	GtkSourceSnippet *snippet;
+	GtkTextIter iter;
+	GError *error = NULL;
+
+	view = g_object_ref_sink (GTK_SOURCE_VIEW (gtk_source_view_new ()));
+	snippet = gtk_source_snippet_new_parsed ("hello", &error);
+	g_assert_no_error (error);
+	g_assert_nonnull (snippet);
+
+	gtk_text_buffer_get_start_iter (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)), &iter);
+	gtk_source_view_push_snippet (view, snippet, &iter);
+	g_assert_cmpint (gtk_text_buffer_get_char_count (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))), ==, 5);
+
+	g_object_unref (view);
+	g_object_unref (snippet);
+}
+
+static void
+test_snippet_buffer_removal (void)
+{
+	guint i;
+
+	for (i = 0; i < 3; i++)
+	{
+		GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
+		GtkSourceView *view = GTK_SOURCE_VIEW (gtk_source_view_new_with_buffer (buffer));
+		GtkSourceSnippet *snippet;
+		GtkTextIter iter;
+		GError *error = NULL;
+
+		g_object_ref_sink (view);
+		snippet = gtk_source_snippet_new_parsed ("${1:hello}$0", &error);
+		g_assert_no_error (error);
+		g_assert_nonnull (snippet);
+		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+		gtk_source_view_push_snippet (view, snippet, &iter);
+		g_assert_cmpint (gtk_text_buffer_get_char_count (GTK_TEXT_BUFFER (buffer)), ==, 5);
+
+		gtk_text_view_set_buffer (GTK_TEXT_VIEW (view), NULL);
+		g_assert_true (GTK_SOURCE_IS_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view))));
+		g_object_unref (buffer);
+		g_object_unref (snippet);
+		g_object_unref (view);
+		while (g_main_context_iteration (NULL, FALSE))
+		{
+		}
+	}
+}
+
 int
 main (int argc, char **argv)
 {
 	gtk_test_init (&argc, &argv);
+
+	g_test_add_func ("/view/snippet-buffer-removal", test_snippet_buffer_removal);
+	g_test_add_func ("/view/finished-snippet-outlives-view", test_finished_snippet_outlives_view);
 
 	g_test_add_func ("/view/move-lines/move-single-line", test_move_lines__move_single_line);
 	g_test_add_func ("/view/move-lines/move-several-lines", test_move_lines__move_several_lines);

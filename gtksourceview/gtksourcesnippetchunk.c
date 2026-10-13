@@ -339,7 +339,10 @@ delete_and_unref_mark (GtkTextMark *mark)
 
 	if (mark != NULL)
 	{
-		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (mark), mark);
+		if (!gtk_text_mark_get_deleted (mark))
+		{
+			gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (mark), mark);
+		}
 		g_object_unref (mark);
 	}
 }
