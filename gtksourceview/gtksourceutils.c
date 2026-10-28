@@ -948,6 +948,7 @@ _gtk_source_utils_aligned_alloc (gsize size,
 	void *res = NULL;
 	size_t max_size = (size_t) -1;
 	size_t real_size;
+	int errsv;
 
 	if (size == 0 || number == 0)
 		return NULL;
@@ -964,7 +965,7 @@ _gtk_source_utils_aligned_alloc (gsize size,
 	errno = 0;
 
 #if defined(HAVE_POSIX_MEMALIGN)
-	errno = posix_memalign (&res, alignment, real_size);
+	errsv = posix_memalign (&res, alignment, real_size);
 #elif defined(HAVE_ALIGNED_ALLOC) || defined(HAVE__ALIGNED_MALLOC)
 	/* real_size must be a multiple of alignment */
 	if (real_size % alignment != 0)
@@ -980,9 +981,13 @@ _gtk_source_utils_aligned_alloc (gsize size,
 	res = malloc (real_size);
 #endif
 
-	if (errno != 0 || res == NULL)
+#if !defined(HAVE_POSIX_MEMALIGN)
+	errsv = res == NULL ? (errno != 0 ? errno : ENOMEM) : 0;
+#endif
+
+	if (errsv != 0)
 	{
-		g_error ("Allocation error: %s", strerror (errno));
+		g_error ("Allocation error: %s", strerror (errsv));
 	}
 
 #ifndef G_DISABLE_ASSERT
