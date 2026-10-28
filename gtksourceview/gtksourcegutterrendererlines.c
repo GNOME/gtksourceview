@@ -178,8 +178,15 @@ on_buffer_cursor_moved (GtkSourceBuffer              *buffer,
 {
 	if (renderer->cursor_visible || renderer->highlight_current_line)
 	{
+		GtkWidget *gutter = gtk_widget_get_parent (GTK_WIDGET (renderer));
+
 		/* Redraw if the current-line needs updating */
 		gtk_widget_queue_draw (GTK_WIDGET (renderer));
+
+		if (gutter != NULL)
+		{
+			gtk_widget_queue_draw (gutter);
+		}
 	}
 }
 

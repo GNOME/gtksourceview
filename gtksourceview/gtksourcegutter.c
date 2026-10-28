@@ -353,9 +353,18 @@ gtk_source_gutter_leave_cb (GtkSourceGutter          *gutter,
 }
 
 static void
+on_window_active_changed (GtkWindow       *window,
+                          GParamSpec      *pspec,
+                          GtkSourceGutter *gutter)
+{
+	_gtk_source_gutter_queue_draw (gutter);
+}
+
+static void
 gtk_source_gutter_root (GtkWidget *widget)
 {
 	GtkWidget *parent;
+	GtkRoot *root;
 
 	g_assert (GTK_SOURCE_IS_GUTTER (widget));
 
@@ -370,6 +379,32 @@ gtk_source_gutter_root (GtkWidget *widget)
 	{
 		gtk_widget_set_overflow (parent, GTK_OVERFLOW_VISIBLE);
 	}
+
+	root = gtk_widget_get_root (widget);
+
+	if (GTK_IS_WINDOW (root))
+	{
+		/* The current-line background is only painted while the window is active. */
+		g_signal_connect (root,
+		                  "notify::is-active",
+		                  G_CALLBACK (on_window_active_changed),
+		                  widget);
+	}
+}
+
+static void
+gtk_source_gutter_unroot (GtkWidget *widget)
+{
+	GtkRoot *root = gtk_widget_get_root (widget);
+
+	if (GTK_IS_WINDOW (root))
+	{
+		g_signal_handlers_disconnect_by_func (root,
+		                                      on_window_active_changed,
+		                                      widget);
+	}
+
+	GTK_WIDGET_CLASS (gtk_source_gutter_parent_class)->unroot (widget);
 }
 
 static void
@@ -456,6 +491,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	widget_class->size_allocate = gtk_source_gutter_size_allocate;
 	widget_class->snapshot = gtk_source_gutter_snapshot;
 	widget_class->root = gtk_source_gutter_root;
+	widget_class->unroot = gtk_source_gutter_unroot;
 
 	/**
 	 * GtkSourceGutter:view:
@@ -1140,6 +1176,8 @@ _gtk_source_gutter_get_lines (GtkSourceGutter *gutter)
 void
 _gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 {
+	do_redraw (gutter);
+
 	for (const GList *iter = gutter->renderers; iter; iter = iter->next)
 	{
 		Renderer *renderer = iter->data;
