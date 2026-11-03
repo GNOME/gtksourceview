@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-convergence" name="Test convergence" version="2.0" hidden="true">
+  <definitions>
+    <context id="test-convergence">
+      <include>
+        <context class="first" first-line-only="true"><match>!</match></context>
+        <context class="once" once-only="true"><match>x</match></context>
+        <context class="normal"><start>x</start><end>$</end></context>
+        <context class="word"><match>[a-z]+</match></context>
+      </include>
+    </context>
+  </definitions>
+</language>

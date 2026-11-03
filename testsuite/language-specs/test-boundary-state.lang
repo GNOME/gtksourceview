@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-boundary-state" name="Test boundary state" version="2.0" hidden="true">
+  <definitions>
+    <context id="word" class="word">
+      <match>(\p{L}+)()</match>
+      <include>
+        <context sub-pattern="1" class="word-capture"/>
+        <context sub-pattern="2" class="empty-capture"/>
+      </include>
+    </context>
+    <context id="zero-open" class="zero-open">
+      <start>(?=\[)</start><end>\]</end>
+      <include><context ref="word"/></include>
+    </context>
+    <context id="zero-close" class="zero-close">
+      <start>\(</start><end>(?=\))</end>
+      <include><context ref="word"/></include>
+    </context>
+    <context id="captured" class="captured">
+      <start>&lt;([AB])()&gt;</start><end>&lt;/\%{1@start}&gt;</end>
+      <include>
+        <context sub-pattern="1" where="start" class="delimiter"/>
+        <context sub-pattern="2" where="start" class="empty-capture"/>
+        <context ref="word"/>
+      </include>
+    </context>
+    <context id="history" class="history">
+      <start>\{</start><end>\}</end>
+      <include>
+        <context class="once" once-only="true"><match>x</match></context>
+        <context class="normal"><match>x</match></context>
+        <context ref="word"/>
+      </include>
+    </context>
+    <context id="test-boundary-state">
+      <include>
+        <context ref="zero-open"/>
+        <context ref="zero-close"/>
+        <context ref="captured"/>
+        <context ref="history"/>
+        <context ref="word"/>
+      </include>
+    </context>
+  </definitions>
+</language>

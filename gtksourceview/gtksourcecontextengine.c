@@ -170,6 +170,7 @@ struct _ContextDefinition
 	 * These DefinitionChild pointers are borrowed from immutable definitions.
 	 */
 	GPtrArray *compiled_children;
+	gboolean has_once_only_children;
 
 	/* Sub-patterns (list of SubPatternDefinition pointers). */
 	GSList *sub_patterns;
@@ -4627,6 +4628,13 @@ next_segment (GtkSourceContextEngine  *ce,
 
 				for (prev = state->children; prev != NULL; prev = prev->next)
 				{
+					/* Retained future segments are not parser history. In
+					 * particular, inserting an earlier occurrence must not
+					 * be suppressed by a cached match on a later line.
+					 */
+					if (prev->start_at > line_pos_to_offset (line, pos))
+						break;
+
 					if (prev->context != NULL &&
 					    prev->context->definition == child_def->u.definition)
 					{
@@ -5357,6 +5365,12 @@ segment_erase_range_ (GtkSourceContextEngine *ce,
 			segment_erase_range_ (ce, child, start, end);
 			child = next;
 		}
+
+		/* Only zero-length descendants touch the erased interval. The
+		 * opening match of this segment is still intact; clearing is_start
+		 * would turn the next line's opener into a false continuation.
+		 */
+		return;
 	}
 	else if (segment->end_at == start)
 	{
@@ -5368,6 +5382,8 @@ segment_erase_range_ (GtkSourceContextEngine *ce,
 			segment_erase_range_ (ce, child, start, end);
 			child = prev;
 		}
+
+		return;
 	}
 	else
 	{
@@ -5621,6 +5637,18 @@ get_invalid_segment_after (GtkSourceContextEngine *ce,
 	}
 
 	return NULL;
+}
+
+static gboolean
+context_uses_once_history (Context *context)
+{
+	for (; context != NULL; context = context->parent)
+	{
+		if (context->definition->has_once_only_children)
+			return TRUE;
+	}
+
+	return FALSE;
 }
 
 /**
@@ -5878,15 +5906,36 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		if (!next_line_invalid)
 		{
 			Segment *old_state, *hint;
+			gboolean has_history;
 
 			hint = ce->hint ? ce->hint : state;
 			old_state = get_segment_at_offset (ce, hint, line_end_offset);
+			has_history = context_uses_once_history (state->context) ||
+			              context_uses_once_history (old_state->context);
+
+			/* Lookup returns the token at the first character of the next
+			 * line. Its opening match has not happened in the incoming
+			 * continuation. Skip newly starting descendants, but retain
+			 * split continuations (is_start == FALSE) and captured Context
+			 * identity. Otherwise column-zero tokens force reparsing to EOF.
+			 * once-only scopes need history as well as Context identity, so
+			 * conservatively keep propagating within those scopes.
+			 */
+			if (!has_history)
+			{
+				while (old_state->parent != NULL && old_state->is_start &&
+				       old_state->start_at == line_end_offset)
+				{
+					old_state = old_state->parent;
+				}
+			}
 
 			/* We can merge old and new stuff if: contexts are the same,
 			 * and the segment on the next line is continuation of the
 			 * segment from previous line. */
-			if (old_state != state &&
-			    (old_state->context != state->context || state->is_start))
+			if (has_history ||
+			    (old_state != state &&
+			     (old_state->context != state->context || state->is_start)))
 			{
 				need_invalidate_next = TRUE;
 				next_line_invalid = TRUE;
@@ -6228,6 +6277,8 @@ definition_compile_children (ContextDefinition *definition)
 	GPtrArray *children = g_ptr_array_new ();
 	GSList *stack = g_slist_prepend (NULL, definition->children);
 
+	definition->has_once_only_children = FALSE;
+
 	while (stack != NULL)
 	{
 		GSList *list = stack->data;
@@ -6248,7 +6299,12 @@ definition_compile_children (ContextDefinition *definition)
 			stack = g_slist_prepend (stack, child->u.definition->children);
 		}
 		else
+		{
 			g_ptr_array_add (children, child);
+
+			if (HAS_OPTION (child->u.definition, ONCE_ONLY))
+				definition->has_once_only_children = TRUE;
+		}
 	}
 
 	return children;

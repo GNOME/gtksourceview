@@ -32,6 +32,7 @@ testsuite_sources = [
   ['test-file-saver'],
   ['test-iter'],
   ['test-highlight-dispatch', false],
+  ['test-highlight-convergence', false],
   ['test-highlight-edits', false],
   ['test-highlight-jump', false],
   ['test-language'],
