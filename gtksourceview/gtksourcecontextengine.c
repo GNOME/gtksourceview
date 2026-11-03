@@ -284,6 +284,11 @@ struct _Context
 
 	guint ref_count;
 
+	/* Only the root owns the transaction hold list. Each held context
+	 * also holds its ancestors, so reclamation order is immaterial.
+	 */
+	GSList *deferred_unref;
+
 	/* see context_freeze() */
 	guint frozen : 1;
 
@@ -2546,6 +2551,10 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->first_update = 0;
 		ce->incremental_update = 0;
 
+		/* A per-line timeout can detach the buffer during a transaction. */
+		if (ce->root_context != NULL && ce->root_context->frozen)
+			context_thaw (ce->root_context);
+
 		if (ce->root_segment != NULL)
 			segment_destroy (ce, ce->root_segment);
 		if (ce->root_context != NULL)
@@ -3456,6 +3465,33 @@ context_unref (Context *context)
 	if (context == NULL || --context->ref_count != 0)
 		return;
 
+	/* Keep only contexts which actually lose their last reference during
+	 * this parse transaction. Their weak cache entries remain available
+	 * for reuse, without walking every live context before/after an edit.
+	 */
+	{
+		Context *root = context;
+
+		while (root->parent != NULL)
+			root = root->parent;
+
+		if (root->frozen)
+		{
+			Context *ancestor;
+
+			context_ref (context);
+
+			/* Parent links are weak. Holding the complete chain prevents
+			 * an unreferenced ancestor from recursively destroying a held
+			 * descendant through the weak child cache. */
+			for (ancestor = context->parent; ancestor != NULL; ancestor = ancestor->parent)
+				context_ref (ancestor);
+
+			root->deferred_unref = g_slist_prepend (root->deferred_unref, context);
+			return;
+		}
+	}
+
 	GTK_SOURCE_PROFILER_LOG ("destroying context %s", context->definition->id);
 
 	children = context->children;
@@ -3512,110 +3548,51 @@ context_unref (Context *context)
 	g_slice_free (Context, context);
 }
 
-static void
-context_freeze_hash_cb (gpointer  text,
-                        Context  *context,
-                        gpointer  user_data)
-{
-	context_freeze (context);
-}
-
-/**
- * context_freeze:
- * @context: the context.
- *
- * Recursively increments reference count in context and its children,
- * and marks them, so context_thaw is able to correctly decrement
- * reference count.
- * This function is for update_syntax: we want to preserve existing
- * contexts when possible, and update_syntax erases contexts from
- * reanalyzed lines; so to avoid destructing and recreating contexts
- * every time, we need to increment reference count on existing contexts,
- * and decrement it when we are done with analysis, so no more needed
- * contexts go away. Keeping a list of referenced contexts is painful
- * or slow, so we just reference all contexts present at the moment.
- *
- * Note this is not reentrant, context_freeze()/context_thaw() pair is called
- * only from update_syntax().
+/* Hold the root for the transaction. context_unref() lazily holds contexts
+ * which would otherwise be destroyed while their segments are replaced.
  */
 static void
 context_freeze (Context *ctx)
 {
-	ContextPtr *ptr;
-
+	g_assert (ctx->parent == NULL);
 	g_assert (!ctx->frozen);
+	g_assert (ctx->deferred_unref == NULL);
+
 	ctx->frozen = TRUE;
 	context_ref (ctx);
-
-	for (ptr = ctx->children; ptr != NULL; ptr = ptr->next)
-	{
-		if (ptr->fixed)
-		{
-			context_freeze (ptr->u.context);
-		}
-		else
-		{
-			g_hash_table_foreach (ptr->u.hash,
-					      (GHFunc) context_freeze_hash_cb,
-					      NULL);
-		}
-	}
 }
 
-static void
-get_child_contexts_hash_cb (G_GNUC_UNUSED gpointer   text,
-                            Context                 *context,
-                            GSList                 **list)
-{
-	*list = g_slist_prepend (*list, context);
-}
-
-static void
-context_thaw_cb (Context  *ctx,
-                 gpointer  user_data)
-{
-	context_thaw (ctx);
-}
-
-/**
- * context_thaw:
- * @context: the context.
- *
- * Recursively decrements reference count in context and its children,
- * if it was incremented by context_freeze().
- */
 static void
 context_thaw (Context *ctx)
 {
-	ContextPtr *ptr;
+	GSList *held;
 
 	if (!ctx->frozen)
 		return;
 
-	for (ptr = ctx->children; ptr != NULL; )
+	g_assert (ctx->parent == NULL);
+	ctx->frozen = FALSE;
+	held = ctx->deferred_unref;
+	ctx->deferred_unref = NULL;
+
+	while (held != NULL)
 	{
-		ContextPtr *next = ptr->next;
+		GSList *next = held->next;
+		Context *context = held->data;
+		Context *parent = context->parent;
 
-		if (ptr->fixed)
+		context_unref (context);
+		while (parent != NULL)
 		{
-			context_thaw (ptr->u.context);
+			Context *ancestor = parent->parent;
+
+			context_unref (parent);
+			parent = ancestor;
 		}
-		else
-		{
-			GSList *children = NULL;
-
-			g_hash_table_foreach (ptr->u.hash,
-					      (GHFunc) get_child_contexts_hash_cb,
-					      &children);
-
-			g_slist_foreach (children, (GFunc) context_thaw_cb, NULL);
-			g_slist_free (children);
-		}
-
-		ptr = next;
+		g_slist_free_1 (held);
+		held = next;
 	}
 
-	ctx->frozen = FALSE;
 	context_unref (ctx);
 }
 
@@ -4066,6 +4043,7 @@ container_context_starts_here (GtkSourceContextEngine  *ce,
 	    new_segment->prev->start_at == line_pos_to_offset (line, *line_pos))
 	{
 		segment_remove (ce, new_segment);
+		context_unref (new_context);
 		return FALSE;
 	}
 
@@ -4701,7 +4679,10 @@ analyze_line (GtkSourceContextEngine *ce,
 	}
 
 	if (ce->disabled)
+	{
+		g_list_free (end_segments);
 		return NULL;
+	}
 
 	/* Extend current state to the end of line. */
 	segment_extend (state, line->start_at + line->char_length);
@@ -5675,7 +5656,11 @@ update_syntax (GtkSourceContextEngine *ce,
 
 		/* At this point analyze_line() could have disabled highlighting */
 		if (ce->disabled)
+		{
+			line_info_destroy (&line);
+			g_timer_destroy (timer);
 			return;
+		}
 
 #ifdef ENABLE_CHECK_TREE
 		{
