@@ -470,6 +470,9 @@ struct _GtkSourceContextEngine
 	/* Whether syntax analysis was disabled because of errors. */
 	gboolean disabled;
 
+	/* Whether the language lets us parse each line from the root context. */
+	gboolean line_independent;
+
 	/* Region covering the unhighlighted text. */
 	GtkSourceRegion *refresh_region;
 
@@ -555,6 +558,10 @@ static DefinitionChild   *definition_iter_next                  (DefinitionsIter
 static void               update_syntax                         (GtkSourceContextEngine  *ce,
                                                                  const GtkTextIter       *end,
                                                                  gint                     time);
+static void               update_syntax_range                   (GtkSourceContextEngine  *ce,
+                                                                 const GtkTextIter       *begin,
+                                                                 const GtkTextIter       *end,
+                                                                 int                      time);
 static void               install_idle_worker                   (GtkSourceContextEngine  *ce);
 static void               install_first_update                  (GtkSourceContextEngine  *ce);
 
@@ -2395,6 +2402,17 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
+	if (ce->line_independent)
+	{
+		/* Every line has a certified root entry state. It is safe to fill a
+		 * visible island while the idle worker still owns an earlier gap. */
+		update_syntax_range (ce, start, end,
+		                     synchronous ? 0 : FIRST_UPDATE_TIME_SLICE);
+		if (!ce->disabled)
+			ensure_highlighted (ce, start, end);
+		goto out;
+	}
+
 	invalid_line = get_invalid_line (ce);
 	end_line = gtk_text_iter_get_line (end);
 
@@ -2424,6 +2442,7 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 		install_first_update (ce);
 	}
 
+out:
 	GTK_SOURCE_PROFILER_END_MARK ("ContextEngine::update_highlight", NULL);
 }
 
@@ -2650,6 +2669,44 @@ destroy_context_classes_list (GtkSourceContextEngine *ce)
 	ce->context_classes = NULL;
 }
 
+/* All real containers must close on this line, including every included
+ * or embedded child. A continuation such as def:line-continue therefore
+ * rejects the proof even when its parent has end-at-line-end. once-only is
+ * rejected conservatively because the root keeps child history across lines.
+ * Recursion through already visited definitions is harmless: every real
+ * container in the cycle must independently satisfy the same EOL condition.
+ */
+static gboolean
+definition_is_line_independent (ContextDefinition *definition,
+                                GHashTable        *seen,
+                                gboolean           root)
+{
+	DefinitionsIter iter;
+	DefinitionChild *child;
+
+	if (HAS_OPTION (definition, ONCE_ONLY) || HAS_OPTION (definition, FIRST_LINE_ONLY))
+		return FALSE;
+
+	if (!root && definition->type == CONTEXT_TYPE_CONTAINER &&
+	    definition->u.start_end.start != NULL &&
+	    !HAS_OPTION (definition, END_AT_LINE_END))
+		return FALSE;
+
+	if (!g_hash_table_add (seen, definition))
+		return TRUE;
+
+	definition_iter_init (&iter, definition);
+	while ((child = definition_iter_next (&iter)) != NULL)
+	{
+		if (!definition_is_line_independent (child->u.definition, seen, FALSE))
+		{
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
 /**
  * gtk_source_context_engine_attach_buffer:
  * @ce: #GtkSourceContextEngine.
@@ -2735,6 +2792,12 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		/* If we don't abort here, we will crash later (#485661). But it should
 		 * never happen, _gtk_source_context_data_finish_parse checks main context. */
 		g_assert (main_definition != NULL);
+
+		{
+			GHashTable *seen = g_hash_table_new (NULL, NULL);
+			ce->line_independent = definition_is_line_independent (main_definition, seen, TRUE);
+			g_hash_table_unref (seen);
+		}
 
 		ce->root_context = context_new (NULL, main_definition, NULL, NULL, FALSE);
 		ce->root_segment = create_segment (ce, NULL, ce->root_context, 0, 0, TRUE, NULL);
@@ -5632,6 +5695,24 @@ erase_segments (GtkSourceContextEngine *ce,
 
 #define IS_BOM(c) (c == 0xFEFF)
 
+static Segment *
+get_invalid_segment_after (GtkSourceContextEngine *ce,
+                           int                     offset)
+{
+	for (GSList *l = ce->invalid; l != NULL; l = l->next)
+	{
+		Segment *segment = l->data;
+
+		if (segment->end_at > offset ||
+		    (segment->start_at == offset && segment->end_at == offset))
+		{
+			return segment;
+		}
+	}
+
+	return NULL;
+}
+
 /**
  * update_syntax:
  * @ce: #GtkSourceContextEngine.
@@ -5648,6 +5729,14 @@ erase_segments (GtkSourceContextEngine *ce,
  * not necessarily what's requested (unless @time is 0).
  */
 /* TODO it must be refactored. */
+static void
+update_syntax (GtkSourceContextEngine *ce,
+               const GtkTextIter      *end,
+               gint                    time)
+{
+	update_syntax_range (ce, NULL, end, time);
+}
+
 typedef struct
 {
 	int start;
@@ -5655,9 +5744,10 @@ typedef struct
 } UpdatedRange;
 
 static void
-update_syntax (GtkSourceContextEngine *ce,
-               const GtkTextIter      *end,
-               gint                    time)
+update_syntax_range (GtkSourceContextEngine *ce,
+                     const GtkTextIter      *begin,
+                     const GtkTextIter      *end,
+                     int                     time)
 {
 	GArray *updated_ranges = NULL;
 	GtkTextBuffer *buffer;
@@ -5668,9 +5758,20 @@ update_syntax (GtkSourceContextEngine *ce,
 	gint start_offset, end_offset;
 	gint line_start_offset, line_end_offset;
 	gint analyzed_end;
+	int begin_offset = 0;
 	gboolean first_line = FALSE;
 	gboolean had_bom = FALSE;
 	GTimer *timer;
+
+	g_assert (begin == NULL || ce->line_independent);
+
+	if (begin != NULL)
+	{
+		GtkTextIter line_begin = *begin;
+
+		gtk_text_iter_set_line_offset (&line_begin, 0);
+		begin_offset = gtk_text_iter_get_offset (&line_begin);
+	}
 
 	buffer = ce->buffer;
 	state = ce->root_segment;
@@ -5684,7 +5785,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		goto out;
 	}
 
-	invalid = get_invalid_segment (ce);
+	invalid = begin ? get_invalid_segment_after (ce, begin_offset) : get_invalid_segment (ce);
 
 	if (invalid == NULL)
 		goto out;
@@ -5703,6 +5804,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		end_offset = gtk_text_buffer_get_char_count (buffer);
 	}
 
+	start_offset = MAX (start_offset, begin_offset);
 	gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start_offset);
 	gtk_text_buffer_get_iter_at_offset (buffer, &end_iter, end_offset);
 
@@ -5739,7 +5841,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	if (start_offset == end_offset)
 	{
 		g_assert (end_offset == gtk_text_buffer_get_char_count (buffer));
-		g_assert (g_slist_length (ce->invalid) == 1);
+		g_assert (begin != NULL || g_slist_length (ce->invalid) == 1);
 		segment_remove (ce, invalid);
 		CHECK_TREE (ce);
 		goto out;
@@ -5777,12 +5879,12 @@ update_syntax (GtkSourceContextEngine *ce,
 
 #ifdef ENABLE_CHECK_TREE
 		{
-			Segment *inv = get_invalid_segment (ce);
+			Segment *inv = begin ? get_invalid_segment_after (ce, line_end_offset) : get_invalid_segment (ce);
 			g_assert (inv == NULL || inv->start_at >= line_end_offset);
 		}
 #endif
 
-		if (first_line)
+		if (first_line || begin != NULL)
 		{
 			state = ce->root_segment;
 		}
@@ -5812,10 +5914,12 @@ update_syntax (GtkSourceContextEngine *ce,
 
 #ifdef ENABLE_CHECK_TREE
 		{
-			Segment *inv = get_invalid_segment (ce);
+			Segment *inv = begin ? get_invalid_segment_after (ce, line_end_offset) : get_invalid_segment (ce);
 			g_assert (inv == NULL || inv->start_at >= line_end_offset);
 		}
 #endif
+
+		g_assert (begin == NULL || state == ce->root_segment);
 
 		/* XXX this is wrong */
 		/* I don't know anymore why it's wrong, I guess it means
@@ -5844,7 +5948,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		}
 
 		analyzed_end = line_end_offset;
-		invalid = get_invalid_segment (ce);
+		invalid = begin ? get_invalid_segment_after (ce, line_end_offset) : get_invalid_segment (ce);
 
 		if (invalid != NULL)
 		{
@@ -5857,6 +5961,10 @@ update_syntax (GtkSourceContextEngine *ce,
 				next_line_invalid = TRUE;
 		}
 
+		/* Edits can leave a cached continuation past the end of this line.
+		 * Even when lines parse independently, invalidate that continuation
+		 * before reusing the following line.
+		 */
 		if (!next_line_invalid)
 		{
 			Segment *old_state, *hint;
@@ -5882,7 +5990,7 @@ update_syntax (GtkSourceContextEngine *ce,
 
 		if ((time != 0 && g_timer_elapsed (timer, NULL) * 1000 > time) ||
 		    line_end_offset >= end_offset ||
-		    (invalid == NULL && !next_line_invalid))
+		    (!next_line_invalid && (invalid == NULL || invalid->start_at >= end_offset)))
 		{
 			if (need_invalidate_next)
 				insert_range (ce, line_end_offset, 0);
@@ -5909,7 +6017,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		first_line = (start_offset - had_bom) == line_start_offset;
 	}
 
-	if (analyzed_end == gtk_text_buffer_get_char_count (buffer))
+	if (begin == NULL && analyzed_end == gtk_text_buffer_get_char_count (buffer))
 	{
 		g_assert (g_slist_length (ce->invalid) <= 1);
 

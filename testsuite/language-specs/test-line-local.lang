@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-line-local" name="Test line local" version="2.0" _section="Other">
+  <definitions>
+    <context id="test-line-local">
+      <include>
+        <context class="comment" end-at-line-end="true">
+          <start>^#</start>
+          <include>
+            <context class="number"><match>[0-9]+</match></context>
+          </include>
+        </context>
+        <context class="word"><match>[a-z]+</match></context>
+      </include>
+    </context>
+  </definitions>
+</language>

@@ -33,6 +33,7 @@ testsuite_sources = [
   ['test-iter'],
   ['test-highlight-dispatch', false],
   ['test-highlight-edits', false],
+  ['test-highlight-jump', false],
   ['test-language'],
   ['test-languagemanager'],
   ['test-language-specs', false],
