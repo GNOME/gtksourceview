@@ -1786,6 +1786,18 @@ source_mark_updated_cb (GtkSourceBuffer *buffer,
 }
 
 static void
+buffer_cursor_moved_cb (GtkSourceBuffer *buffer,
+                        GtkSourceView   *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	if (priv->highlight_current_line)
+	{
+		gtk_widget_queue_draw (GTK_WIDGET (view));
+	}
+}
+
+static void
 buffer_style_scheme_changed_cb (GtkSourceBuffer *buffer,
                                 GParamSpec      *pspec,
                                 GtkSourceView   *view)
@@ -1863,6 +1875,10 @@ remove_source_buffer (GtkSourceView *view)
 						      view);
 
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
+		                                      buffer_cursor_moved_cb,
+		                                      view);
+
+		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      buffer_style_scheme_changed_cb,
 						      view);
 
@@ -1918,6 +1934,11 @@ set_source_buffer (GtkSourceView *view,
 		g_signal_connect (buffer,
 				  "source-mark-updated",
 				  G_CALLBACK (source_mark_updated_cb),
+		                  view);
+
+		g_signal_connect (buffer,
+		                  "cursor-moved",
+		                  G_CALLBACK (buffer_cursor_moved_cb),
 				  view);
 
 		g_signal_connect (buffer,
