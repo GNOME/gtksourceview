@@ -255,6 +255,459 @@ test_issue_198 (void)
 	g_clear_pointer (&re, impl_regex_unref);
 }
 
+static void
+test_sized_subject (void)
+{
+	const char subject[] = { 'a', '\0', 'b' };
+	ImplRegex *regex;
+	ImplMatchInfo *match = NULL;
+	GError *error = NULL;
+	int start, end;
+
+	regex = impl_regex_new ("a\\x00b", 0, 0, &error);
+	g_assert_no_error (error);
+	g_assert_true (impl_regex_match_full (regex, subject, sizeof subject, 0, 0, &match, &error));
+	g_assert_no_error (error);
+	g_assert_true (impl_match_info_fetch_pos (match, 0, &start, &end));
+	g_assert_cmpint (start, ==, 0);
+	g_assert_cmpint (end, ==, sizeof subject);
+	impl_match_info_free (match);
+	impl_regex_unref (regex);
+
+	for (guint optimize = 0; optimize < 2; optimize++)
+	{
+		char *exact = g_malloc (3);
+
+		memcpy (exact, "abc", 3);
+		regex = impl_regex_new ("$", optimize ? G_REGEX_OPTIMIZE : 0, 0, &error);
+		g_assert_no_error (error);
+		g_assert_true (impl_regex_match_full (regex, exact, 3, 0, 0, &match, &error));
+		g_assert_no_error (error);
+		g_assert_true (impl_match_info_fetch_pos (match, 0, &start, &end));
+		g_assert_cmpint (start, ==, 3);
+		g_assert_cmpint (end, ==, 3);
+		g_assert_false (impl_match_info_next (match, &error));
+		g_assert_no_error (error);
+		impl_match_info_free (match);
+		impl_regex_unref (regex);
+		g_free (exact);
+	}
+}
+
+static void
+assert_match_info_equal (ImplMatchInfo *actual,
+                         ImplMatchInfo *expected)
+{
+	g_assert_cmpint (impl_match_info_matches (actual), ==, impl_match_info_matches (expected));
+	g_assert_cmpint (impl_match_info_is_partial_match (actual), ==, impl_match_info_is_partial_match (expected));
+	g_assert_cmpint (impl_match_info_get_match_count (actual), ==, impl_match_info_get_match_count (expected));
+
+	if (impl_match_info_matches (actual))
+	{
+		for (guint i = 0; i < 6; i++)
+		{
+			int actual_start = -123, actual_end = -123;
+			int expected_start = -123, expected_end = -123;
+			gboolean actual_found, expected_found;
+
+			actual_found = impl_match_info_fetch_pos (actual, i, &actual_start, &actual_end);
+			expected_found = impl_match_info_fetch_pos (expected, i, &expected_start, &expected_end);
+			g_assert_cmpint (actual_found, ==, expected_found);
+			g_assert_cmpint (actual_start, ==, expected_start);
+			g_assert_cmpint (actual_end, ==, expected_end);
+		}
+	}
+}
+
+static void
+test_reuse (void)
+{
+	static const struct {
+		const char *subject;
+		gssize length;
+		gsize start;
+		GRegexMatchFlags flags;
+	} cases[] = {
+		{ "abc123", -1, 0, 0 },
+		{ "abc", -1, 0, 0 },
+		{ "!", -1, 0, 0 },
+		{ "", -1, 0, 0 },
+		{ "é🙂abc123", -1, 6, 0 },
+		{ "a\0b", 3, 0, 0 },
+		{ "abc123", 3, 0, 0 },
+		{ "abc123", 6, 6, 0 },
+		{ "abc123", 6, 7, 0 },
+		{ "abc123", 6, 0, G_REGEX_MATCH_NOTBOL },
+	};
+	static const char *patterns[] = {
+		"(?<word>[a-z]+)(?<digits>[0-9]+)?",
+		"^abc",
+		"(?=a)|$",
+		"",
+		"(?<=é🙂)(abc)(123)?",
+	};
+	ImplMatchInfo *cached = NULL;
+	GError *error = NULL;
+
+	/* Reuse one result across different patterns as well as subjects. */
+	for (guint optimize = 0; optimize < 2; optimize++)
+	{
+		for (guint p = 0; p < G_N_ELEMENTS (patterns); p++)
+		{
+			ImplRegex *regex = impl_regex_new (patterns[p], optimize ? G_REGEX_OPTIMIZE : 0, 0, &error);
+			ImplMatchInfo *saved = NULL;
+			int saved_start = -1, saved_end = -1;
+
+			g_assert_no_error (error);
+			impl_regex_match_full (regex, "abc123", -1, 0, 0, &saved, &error);
+			g_assert_no_error (error);
+			if (impl_match_info_matches (saved))
+				impl_match_info_fetch_pos (saved, 0, &saved_start, &saved_end);
+
+			for (guint iteration = 0; iteration < 3; iteration++)
+			{
+				for (guint c = 0; c < G_N_ELEMENTS (cases); c++)
+				{
+					ImplMatchInfo *fresh = NULL;
+					gboolean expected, actual;
+
+					expected = impl_regex_match_full (regex, cases[c].subject, cases[c].length,
+					                                  cases[c].start, cases[c].flags, &fresh, &error);
+					g_assert_no_error (error);
+					actual = impl_regex_match_full_reuse (regex, cases[c].subject, cases[c].length,
+					                                      cases[c].start, cases[c].flags, &cached, &error);
+					g_assert_no_error (error);
+					g_assert_cmpint (actual, ==, expected);
+					assert_match_info_equal (cached, fresh);
+
+					while (expected)
+					{
+						expected = impl_match_info_next (fresh, &error);
+						g_assert_no_error (error);
+						actual = impl_match_info_next (cached, &error);
+						g_assert_no_error (error);
+						g_assert_cmpint (actual, ==, expected);
+						assert_match_info_equal (cached, fresh);
+					}
+
+					impl_match_info_free (fresh);
+				}
+			}
+
+			if (impl_match_info_matches (saved))
+			{
+				int start, end;
+
+				impl_match_info_fetch_pos (saved, 0, &start, &end);
+				g_assert_cmpint (start, ==, saved_start);
+				g_assert_cmpint (end, ==, saved_end);
+			}
+
+			impl_match_info_free (saved);
+			impl_regex_unref (regex);
+		}
+	}
+
+	impl_match_info_free (cached);
+}
+
+static void
+test_reuse_partial (void)
+{
+	ImplRegex *regex;
+	ImplMatchInfo *cached = NULL;
+	GError *error = NULL;
+
+	regex = impl_regex_new ("(?<first>abc)(?<last>def)", 0, 0, &error);
+	g_assert_no_error (error);
+
+	for (guint i = 0; i < 3; i++)
+	{
+		int start, end;
+		char *capture;
+
+		g_assert_true (impl_regex_match_full_reuse (regex, "abcdef", -1, 0, 0, &cached, &error));
+		g_assert_no_error (error);
+		g_assert_true (impl_match_info_fetch_named_pos (cached, "last", &start, &end));
+		g_assert_cmpint (start, ==, 3);
+		g_assert_cmpint (end, ==, 6);
+		capture = impl_match_info_fetch_named (cached, "last");
+		g_assert_cmpstr (capture, ==, "def");
+		g_free (capture);
+
+		g_assert_false (impl_regex_match_full_reuse (regex, "abc", -1, 0,
+		                                             G_REGEX_MATCH_PARTIAL_SOFT, &cached, &error));
+		g_assert_no_error (error);
+		g_assert_true (impl_match_info_is_partial_match (cached));
+		g_assert_false (impl_regex_match_full_reuse (regex, "no", -1, 0, 0, &cached, &error));
+		g_assert_no_error (error);
+		g_assert_false (impl_match_info_is_partial_match (cached));
+	}
+
+	impl_regex_unref (regex);
+	impl_match_info_free (cached);
+}
+
+static void
+test_source_reuse_captures (void)
+{
+	GtkSourceRegex *start;
+	GtkSourceRegex *end;
+	GtkSourceRegex *resolved;
+	GError *error = NULL;
+	int begin, finish;
+
+	start = _gtk_source_regex_new ("(?<delimiter>[A-Z]+):", G_REGEX_ANCHORED, &error);
+	g_assert_no_error (error);
+	end = _gtk_source_regex_new ("\\%{delimiter@start}$", G_REGEX_ANCHORED, &error);
+	g_assert_no_error (error);
+	g_assert_false (_gtk_source_regex_is_resolved (end));
+	g_assert_true (_gtk_source_regex_match (start, "END:", 4, 0));
+	resolved = _gtk_source_regex_resolve (end, start, "END:");
+	g_assert_true (_gtk_source_regex_is_resolved (resolved));
+	g_assert_true (_gtk_source_regex_match (resolved, "END", 3, 0));
+
+	/* Matching another regex must not overwrite the opener's captures. */
+	_gtk_source_regex_fetch_pos_bytes (start, 1, &begin, &finish);
+	g_assert_cmpint (begin, ==, 0);
+	g_assert_cmpint (finish, ==, 3);
+	g_assert_false (_gtk_source_regex_match (start, "!", 1, 0));
+	g_assert_true (_gtk_source_regex_match (start, "FINISH:", 7, 0));
+	_gtk_source_regex_unref (resolved);
+	resolved = _gtk_source_regex_resolve (end, start, "FINISH:");
+	g_assert_true (_gtk_source_regex_match (resolved, "FINISH", 6, 0));
+	g_assert_false (_gtk_source_regex_match (resolved, "END", 3, 0));
+
+	_gtk_source_regex_unref (resolved);
+	_gtk_source_regex_unref (start);
+	_gtk_source_regex_unref (end);
+}
+
+static void
+test_source_named_bytes (void)
+{
+	const char *subject = "é🙂abc";
+	GtkSourceRegex *regex;
+	GError *error = NULL;
+	int begin, end;
+
+	regex = _gtk_source_regex_new ("(?<emoji>🙂)(?<word>[a-z]+)(?<digits>[0-9]+)?", 0, &error);
+	g_assert_no_error (error);
+	g_assert_true (_gtk_source_regex_match (regex, subject, strlen (subject), 0));
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "emoji", &begin, &end);
+	g_assert_cmpint (begin, ==, 2);
+	g_assert_cmpint (end, ==, 6);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "word", &begin, &end);
+	g_assert_cmpint (begin, ==, 6);
+	g_assert_cmpint (end, ==, 9);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "digits", &begin, &end);
+	g_assert_cmpint (begin, ==, -1);
+	g_assert_cmpint (end, ==, -1);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "unknown", &begin, &end);
+	g_assert_cmpint (begin, ==, -1);
+	g_assert_cmpint (end, ==, -1);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "word", NULL, &end);
+	g_assert_cmpint (end, ==, 9);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "word", &begin, NULL);
+	g_assert_cmpint (begin, ==, 6);
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "word", NULL, NULL);
+	g_assert_false (_gtk_source_regex_match (regex, "!", 1, 0));
+	_gtk_source_regex_fetch_named_pos_bytes (regex, "word", &begin, &end);
+	g_assert_cmpint (begin, ==, -1);
+	g_assert_cmpint (end, ==, -1);
+	_gtk_source_regex_unref (regex);
+}
+
+static void
+test_first_byte (void)
+{
+	static const struct {
+		const char *pattern;
+		int byte;
+	} cases[] = {
+		{ "\\{", '{' },
+		{ "\\\\$", '\\' },
+		{ "(?:\\{a|\\{b)", '{' },
+		{ "^\\{", '{' },
+		{ "(?<=a)\\{", '{' },
+		{ "[{}]", -1 },
+		{ "[[:punct:]]", -1 },
+		{ "(?=\\{)", -1 },
+		{ "(?:\\{)?", -1 },
+		{ "", -1 },
+		{ "a", -1 },
+		{ "(?i)K", -1 },
+		{ "é", -1 },
+		{ "\\{\\Kfoo", -1 },
+		{ "\\{(*SKIP)(*FAIL)|abc", -1 },
+	};
+	const char *subject = "a{ab}\\\n3Kéfoo";
+	GError *error = NULL;
+
+	for (guint caseless = 0; caseless < 2; caseless++)
+	{
+		for (guint i = 0; i < G_N_ELEMENTS (cases); i++)
+		{
+			GtkSourceRegex *regex;
+			int first;
+
+			regex = _gtk_source_regex_new (cases[i].pattern,
+			                               G_REGEX_ANCHORED | (caseless ? G_REGEX_CASELESS : 0), &error);
+			g_assert_no_error (error);
+			first = _gtk_source_regex_get_first_byte (regex);
+			g_assert_cmpint (first, ==, cases[i].byte);
+
+			if (first >= 0)
+			{
+				for (const char *p = subject; *p; p = g_utf8_next_char (p))
+				{
+					if (_gtk_source_regex_match (regex, subject, strlen (subject), p - subject))
+					{
+						int begin, end;
+
+						_gtk_source_regex_fetch_pos_bytes (regex, 0, &begin, &end);
+						g_assert_cmpint (begin, ==, p - subject);
+						g_assert_cmpint (end, >, begin);
+						g_assert_cmpint ((guchar)subject[begin], ==, first);
+					}
+				}
+			}
+
+			_gtk_source_regex_unref (regex);
+		}
+	}
+}
+
+static void
+test_source_independent_matcher (void)
+{
+	GtkSourceRegex *original;
+	GtkSourceRegex *matcher;
+	GError *error = NULL;
+	char *capture;
+	int begin, end;
+
+	original = _gtk_source_regex_new ("(?<name>[a-z]+)?$", 0, &error);
+	g_assert_no_error (error);
+	matcher = _gtk_source_regex_new_matcher (original);
+	g_assert_true (_gtk_source_regex_match (original, "first", 5, 0));
+	g_assert_true (_gtk_source_regex_match (matcher, "second", 6, 0));
+	capture = _gtk_source_regex_fetch (original, 1);
+	g_assert_cmpstr (capture, ==, "first");
+	g_free (capture);
+	_gtk_source_regex_fetch_named_pos_bytes (matcher, "name", &begin, &end);
+	g_assert_cmpint (begin, ==, 0);
+	g_assert_cmpint (end, ==, 6);
+
+	g_assert_true (_gtk_source_regex_match (matcher, "", 0, 0));
+	capture = _gtk_source_regex_fetch (original, 1);
+	g_assert_cmpstr (capture, ==, "first");
+	g_free (capture);
+	_gtk_source_regex_unref (original);
+	g_assert_true (_gtk_source_regex_match (matcher, "", 0, 0));
+	g_assert_true (_gtk_source_regex_match (matcher, "third", 5, 0));
+	capture = _gtk_source_regex_fetch (matcher, 1);
+	g_assert_cmpstr (capture, ==, "third");
+	g_free (capture);
+	_gtk_source_regex_unref (matcher);
+}
+
+static void
+test_duplicate_named_captures (void)
+{
+	static const struct {
+		const char *pattern;
+		const char *subject;
+	} cases[] = {
+		{ "(?:(?<tag>alpha)|(?<tag>beta)|x)(?<optional>z)?", "alpha" },
+		{ "(?:(?<tag>alpha)|(?<tag>beta)|x)(?<optional>z)?", "beta" },
+		{ "(?:(?<tag>alpha)|(?<tag>beta)|x)(?<optional>z)?", "x" },
+		{ "(?:(?<tag>alpha)|(?<tag>beta)|x)(?<optional>z)?", "alphaz" },
+		{ "(?<tag>)(?<tag>abc)", "abc" },
+		{ "(?<tag>abc)?(?<tag>def)", "def" },
+		{ "(?<tag>a)(?<tag>b)", "ab" },
+		{ "(?<tag>é)(?<tag>🙂)", "é🙂" },
+		{ "(?<tag>ordinary)(?<optional>z)?", "ordinary" },
+	};
+	const char *names[] = { "tag", "optional", "unknown" };
+	GError *error = NULL;
+
+	for (guint i = 0; i < G_N_ELEMENTS (cases); i++)
+	{
+		GRegex *reference = g_regex_new (cases[i].pattern, G_REGEX_DUPNAMES | G_REGEX_ANCHORED, 0, &error);
+		GMatchInfo *expected = NULL;
+		ImplRegex *regex;
+		ImplMatchInfo *actual = NULL;
+
+		g_assert_no_error (error);
+		regex = impl_regex_new (cases[i].pattern, G_REGEX_DUPNAMES | G_REGEX_ANCHORED | G_REGEX_OPTIMIZE, 0, &error);
+		g_assert_no_error (error);
+		g_assert_true (g_regex_match (reference, cases[i].subject, 0, &expected));
+
+		for (guint repeat = 0; repeat < 3; repeat++)
+		{
+			g_assert_true (impl_regex_match_full_reuse (regex, cases[i].subject, -1, 0, 0, &actual, &error));
+			g_assert_no_error (error);
+
+			for (guint n = 0; n < G_N_ELEMENTS (names); n++)
+			{
+				int begin = -123, end = -123, expected_begin = -123, expected_end = -123;
+				gboolean found, expected_found;
+				char *value, *expected_value;
+
+				found = impl_match_info_fetch_named_pos (actual, names[n], &begin, &end);
+				expected_found = g_match_info_fetch_named_pos (expected, names[n], &expected_begin, &expected_end);
+				g_assert_cmpint (found, ==, expected_found);
+				if (found)
+				{
+					g_assert_cmpint (begin, ==, expected_begin);
+					g_assert_cmpint (end, ==, expected_end);
+				}
+				value = impl_match_info_fetch_named (actual, names[n]);
+				expected_value = g_match_info_fetch_named (expected, names[n]);
+				g_assert_cmpstr (value, ==, expected_value);
+				g_free (value);
+				g_free (expected_value);
+			}
+		}
+
+		impl_match_info_free (actual);
+		impl_regex_unref (regex);
+		g_match_info_free (expected);
+		g_regex_unref (reference);
+	}
+}
+
+static void
+test_duplicate_named_delimiter (void)
+{
+	const char *subjects[] = { "<<'EOF.a'", "<<\"END.b\"" };
+	const char *delimiters[] = { "EOF.a", "END.b" };
+	GtkSourceRegex *start;
+	GtkSourceRegex *end;
+	GError *error = NULL;
+
+	start = _gtk_source_regex_new ("<<(?:'(?<HDB>[^']+)'|\"(?<HDB>[^\"]+)\")",
+	                               G_REGEX_DUPNAMES | G_REGEX_ANCHORED, &error);
+	g_assert_no_error (error);
+	end = _gtk_source_regex_new ("\\%{HDB@start}$", G_REGEX_ANCHORED, &error);
+	g_assert_no_error (error);
+
+	for (guint i = 0; i < G_N_ELEMENTS (subjects); i++)
+	{
+		GtkSourceRegex *resolved;
+
+		g_assert_true (_gtk_source_regex_match (start, subjects[i], strlen (subjects[i]), 0));
+		resolved = _gtk_source_regex_resolve (end, start, subjects[i]);
+		g_assert_true (_gtk_source_regex_match (resolved, delimiters[i], strlen (delimiters[i]), 0));
+		g_assert_false (_gtk_source_regex_match (resolved, "EOFxa", 5, 0));
+		_gtk_source_regex_unref (resolved);
+	}
+
+	_gtk_source_regex_unref (start);
+	_gtk_source_regex_unref (end);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -263,6 +716,15 @@ main (int argc, char** argv)
 	g_test_add_func ("/Regex/slash-c", test_slash_c_pattern);
 	g_test_add_func ("/Regex/compare-g-regex", test_compare);
 	g_test_add_func ("/Regex/issue_198", test_issue_198);
+	g_test_add_func ("/Regex/sized-subject", test_sized_subject);
+	g_test_add_func ("/Regex/reuse", test_reuse);
+	g_test_add_func ("/Regex/reuse-partial", test_reuse_partial);
+	g_test_add_func ("/Regex/source-reuse-captures", test_source_reuse_captures);
+	g_test_add_func ("/Regex/source-named-bytes", test_source_named_bytes);
+	g_test_add_func ("/Regex/first-byte", test_first_byte);
+	g_test_add_func ("/Regex/source-independent-matcher", test_source_independent_matcher);
+	g_test_add_func ("/Regex/duplicate-named-captures", test_duplicate_named_captures);
+	g_test_add_func ("/Regex/duplicate-named-delimiter", test_duplicate_named_delimiter);
 
 	return g_test_run();
 }

@@ -155,6 +155,26 @@ _gtk_source_regex_new (const gchar         *pattern,
 	return regex;
 }
 
+/* Share compiled code without sharing the last match or its capture storage.
+ * This is useful for speculative searches while the original match is still
+ * needed to build a segment or resolve a dynamic end pattern.
+ */
+GtkSourceRegex *
+_gtk_source_regex_new_matcher (GtkSourceRegex *regex)
+{
+	GtkSourceRegex *matcher;
+
+	g_return_val_if_fail (regex != NULL, NULL);
+	g_return_val_if_fail (regex->resolved, NULL);
+
+	matcher = g_slice_new0 (GtkSourceRegex);
+	matcher->ref_count = 1;
+	matcher->resolved = TRUE;
+	matcher->u.regex.regex = impl_regex_ref (regex->u.regex.regex);
+
+	return matcher;
+}
+
 GtkSourceRegex *
 _gtk_source_regex_ref (GtkSourceRegex *regex)
 {
@@ -293,22 +313,12 @@ _gtk_source_regex_match (GtkSourceRegex *regex,
 			 gint             byte_length,
 			 gint             byte_pos)
 {
-	gboolean result;
-
 	g_assert (regex->resolved);
 
-	if (regex->u.regex.match)
-	{
-		impl_match_info_free (regex->u.regex.match);
-		regex->u.regex.match = NULL;
-	}
-
-	result = impl_regex_match_full (regex->u.regex.regex, line,
-	                                byte_length, byte_pos,
-	                                0, &regex->u.regex.match,
-	                                NULL);
-
-	return result;
+	return impl_regex_match_full_reuse (regex->u.regex.regex, line,
+	                                    byte_length, byte_pos,
+	                                    0, &regex->u.regex.match,
+	                                    NULL);
 }
 
 gchar *
@@ -398,6 +408,30 @@ _gtk_source_regex_fetch_named_pos (GtkSourceRegex *regex,
 	}
 }
 
+void
+_gtk_source_regex_fetch_named_pos_bytes (GtkSourceRegex *regex,
+                                         const char     *name,
+                                         int            *start_pos,
+                                         int            *end_pos)
+{
+	int begin = -1;
+	int end = -1;
+
+	g_assert (regex->resolved);
+
+	if (!impl_match_info_fetch_named_pos (regex->u.regex.match, name, &begin, &end))
+	{
+		begin = -1;
+		end = -1;
+	}
+
+	if (start_pos != NULL)
+		*start_pos = begin;
+
+	if (end_pos != NULL)
+		*end_pos = end;
+}
+
 const gchar *
 _gtk_source_regex_get_pattern (GtkSourceRegex *regex)
 {
@@ -406,3 +440,11 @@ _gtk_source_regex_get_pattern (GtkSourceRegex *regex)
 	return impl_regex_get_pattern (regex->u.regex.regex);
 }
 
+
+int
+_gtk_source_regex_get_first_byte (GtkSourceRegex *regex)
+{
+	g_assert (regex->resolved);
+
+	return impl_regex_get_first_byte (regex->u.regex.regex);
+}

@@ -36,6 +36,7 @@ testsuite_sources = [
   ['test-mark'],
   ['test-printcompositor'],
   ['test-regex'],
+  ['test-regex-adversarial'],
   ['test-region'],
   ['test-search-context'],
   ['test-snippets', false],

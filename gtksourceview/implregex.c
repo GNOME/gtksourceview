@@ -62,6 +62,8 @@ struct _ImplRegex
 	gsize                  match_flags;
 	pcre2_compile_context *context;
 	pcre2_code            *code;
+	uint32_t               n_subpatterns;
+	int                    first_byte;
 	guint                  has_jit : 1;
 };
 
@@ -234,6 +236,31 @@ impl_regex_new (const char          *pattern,
 		return NULL;
 	}
 
+	pcre2_pattern_info (regex->code, PCRE2_INFO_CAPTURECOUNT, &regex->n_subpatterns);
+
+	/* A required ASCII byte other than a letter lets us skip matching
+	 * for attempts at a known position. Reject letters because caseless
+	 * matching can fold ASCII letters to non-ASCII code points. Reject
+	 * empty matches and \K because callers use reported match positions.
+	 */
+	regex->first_byte = -1;
+	{
+		uint32_t type = 0;
+		uint32_t unit = 0;
+		uint32_t match_empty = 1;
+
+		pcre2_pattern_info (regex->code, PCRE2_INFO_FIRSTCODETYPE, &type);
+		pcre2_pattern_info (regex->code, PCRE2_INFO_FIRSTCODEUNIT, &unit);
+		pcre2_pattern_info (regex->code, PCRE2_INFO_MATCHEMPTY, &match_empty);
+
+		if (type == 1 && unit < 0x80 && !g_ascii_isalpha (unit) &&
+		    !match_empty && strstr (pattern, "\\K") == NULL)
+		{
+			regex->first_byte = unit;
+		}
+	}
+
+
 	/* Now try to JIT the pattern for faster execution time */
 	if (compile_options & G_REGEX_OPTIMIZE)
 	{
@@ -259,6 +286,14 @@ impl_regex_get_pattern (const ImplRegex *regex)
 	g_return_val_if_fail (regex != NULL, NULL);
 
 	return regex->pattern;
+}
+
+int
+impl_regex_get_first_byte (const ImplRegex *regex)
+{
+	g_return_val_if_fail (regex != NULL, -1);
+
+	return regex->first_byte;
 }
 
 ImplRegex *
@@ -289,6 +324,33 @@ impl_regex_unref (ImplRegex *regex)
 	}
 }
 
+static void
+impl_match_info_reset (ImplMatchInfo    *match_info,
+                       GRegexMatchFlags  match_options,
+                       const char       *string,
+                       gssize            string_len,
+                       gssize            position)
+{
+	g_assert (match_info != NULL);
+	g_assert (string != NULL);
+
+	/* An explicit size may include NUL bytes and needs no terminator scan. */
+	if (string_len < 0)
+		string_len = strlen (string);
+
+	match_info->match_flags = match_info->regex->match_flags | translate_match_flags (match_options);
+	match_info->pos = MAX (0, position);
+	match_info->matches = PCRE2_ERROR_NOMATCH;
+	match_info->string = string;
+	match_info->string_len = string_len;
+
+	/* next() uses the previous full match to suppress duplicate empty
+	 * matches. A new subject must start with no previous match.
+	 */
+	match_info->offsets[0] = PCRE2_UNSET;
+	match_info->offsets[1] = PCRE2_UNSET;
+}
+
 static ImplMatchInfo *
 impl_match_info_new (ImplRegex        *regex,
                      GRegexMatchFlags  match_options,
@@ -300,30 +362,18 @@ impl_match_info_new (ImplRegex        *regex,
 
 	g_assert (regex != NULL);
 	g_assert (string != NULL);
-	g_assert (string_len <= strlen (string));
-
-	if (string_len < 0)
-	{
-		string_len = strlen (string);
-	}
 
 	match_info = g_slice_new0 (ImplMatchInfo);
 	match_info->regex = impl_regex_ref (regex);
-	match_info->match_flags = regex->match_flags | translate_match_flags (match_options);
-	match_info->pos = MAX (0, position);
-	match_info->matches = PCRE2_ERROR_NOMATCH;
-	match_info->string = string;
-	match_info->string_len = string_len;
 	match_info->match_data = pcre2_match_data_create_from_pattern (regex->code, NULL);
 
 	if (match_info->match_data == NULL)
 		g_error ("Failed to allocate match data");
 
-	pcre2_pattern_info (regex->code, PCRE2_INFO_CAPTURECOUNT, &match_info->n_subpatterns);
-
+	match_info->n_subpatterns = regex->n_subpatterns;
 	match_info->offsets = pcre2_get_ovector_pointer (match_info->match_data);
-	match_info->offsets[0] = -1;
-	match_info->offsets[1] = -1;
+
+	impl_match_info_reset (match_info, match_options, string, string_len, position);
 
 	return match_info;
 }
@@ -397,6 +447,10 @@ impl_match_info_fetch_named (const ImplMatchInfo *match_info,
 		if (begin >= 0 && end >= 0)
 		{
 			return g_strndup (match_info->string + begin, end - begin);
+		}
+		else if (begin == -1)
+		{
+			return g_strdup ("");
 		}
 	}
 
@@ -507,6 +561,39 @@ impl_regex_match_full (const ImplRegex   *regex,
 	}
 
 	return ret;
+}
+
+/* @match_info must point to NULL or an exclusively owned previous result.
+ *
+ * Like impl_regex_match_full(), but consumes and replaces the caller's previous
+ * result. The result is exclusively owned by the caller and its captures remain
+ * valid until this function is called again or impl_match_info_free() is used.
+ * Ordinary match_full() results retain their existing independent lifetime.
+ */
+gboolean
+impl_regex_match_full_reuse (const ImplRegex   *regex,
+                             const char        *string,
+                             gssize             string_len,
+                             gsize              start_position,
+                             GRegexMatchFlags   match_options,
+                             ImplMatchInfo    **match_info,
+                             GError           **error)
+{
+	g_return_val_if_fail (regex != NULL, FALSE);
+	g_return_val_if_fail (regex->code != NULL, FALSE);
+	g_return_val_if_fail (string != NULL, FALSE);
+	g_return_val_if_fail (match_info != NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+	if (*match_info != NULL && (*match_info)->regex != regex)
+		g_clear_pointer (match_info, impl_match_info_free);
+
+	if (*match_info == NULL)
+		*match_info = impl_match_info_new ((ImplRegex *)regex, match_options, string, string_len, start_position);
+	else
+		impl_match_info_reset (*match_info, match_options, string, string_len, start_position);
+
+	return impl_match_info_next (*match_info, error);
 }
 
 enum
@@ -1009,22 +1096,43 @@ impl_match_info_fetch_named_pos (const ImplMatchInfo *match_info,
                                  int                 *start_pos,
                                  int                 *end_pos)
 {
-	int num;
+	PCRE2_SPTR first;
+	PCRE2_SPTR last;
+	int entry_size;
+	gboolean found = FALSE;
 
 	g_return_val_if_fail (match_info != NULL, FALSE);
 	g_return_val_if_fail (match_info->match_data != NULL, FALSE);
 	g_return_val_if_fail (match_info->regex != NULL, FALSE);
+	g_return_val_if_fail (name != NULL, FALSE);
 	g_return_val_if_fail (start_pos != NULL, FALSE);
 	g_return_val_if_fail (end_pos != NULL, FALSE);
 
-	num = pcre2_substring_number_from_name (match_info->regex->code, (PCRE2_SPTR)name);
+	/* DUPNAMES is used by, for example, the quoted heredoc alternatives in
+	 * sh.lang. number_from_name() rejects these names; select the first
+	 * participating group in name-table order, as GMatchInfo does. An empty
+	 * participating capture takes precedence over a later nonempty one.
+	 */
+	entry_size = pcre2_substring_nametable_scan (match_info->regex->code, (PCRE2_SPTR)name, &first, &last);
+	if (entry_size < 0)
+		return FALSE;
 
-	if (num >= 0)
+	for (PCRE2_SPTR entry = first; entry <= last; entry += entry_size)
 	{
-		return impl_match_info_fetch_pos (match_info, num, start_pos, end_pos);
+		/* With PCRE2_CODE_UNIT_WIDTH=8 the capture number is two bytes,
+		 * most significant byte first, preceding the NUL-terminated name.
+		 */
+		int num = (entry[0] << 8) | entry[1];
+
+		if (impl_match_info_fetch_pos (match_info, num, start_pos, end_pos))
+		{
+			found = TRUE;
+			if (*start_pos >= 0)
+				break;
+		}
 	}
 
-	return FALSE;
+	return found;
 }
 
 gboolean
@@ -1093,18 +1201,18 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 	 * equivalent */
 	if (match_info->pos == match_info->offsets[1])
 	{
-		if (match_info->pos > match_info->string_len)
+		if (match_info->pos == match_info->string_len)
 		{
-			/* we have reached the end of the string */
-			match_info->pos = -1;
-			match_info->matches = PCRE2_ERROR_NOMATCH;
-			return FALSE;
+			/* Return the empty match at the end once, without reading a
+			 * terminator beyond an explicitly sized subject.
+			 */
+			match_info->pos++;
 		}
-
-		match_info->pos = NEXT_CHAR (match_info->regex, &match_info->string[match_info->pos]) -
-		                  match_info->string;
-
-
+		else
+		{
+			match_info->pos = NEXT_CHAR (match_info->regex, &match_info->string[match_info->pos]) -
+			                  match_info->string;
+		}
 	}
 	else
 	{

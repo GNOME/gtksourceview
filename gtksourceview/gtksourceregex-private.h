@@ -31,6 +31,8 @@ GtkSourceRegex *_gtk_source_regex_new             (const gchar         *pattern,
                                                    GRegexCompileFlags   flags,
                                                    GError             **error);
 GTK_SOURCE_INTERNAL
+GtkSourceRegex *_gtk_source_regex_new_matcher     (GtkSourceRegex      *regex);
+GTK_SOURCE_INTERNAL
 GtkSourceRegex *_gtk_source_regex_ref             (GtkSourceRegex      *regex);
 GTK_SOURCE_INTERNAL
 void            _gtk_source_regex_unref           (GtkSourceRegex      *regex);
@@ -54,6 +56,7 @@ void            _gtk_source_regex_fetch_pos       (GtkSourceRegex      *regex,
                                                    gint                 num,
                                                    gint                *start_pos,
                                                    gint                *end_pos);
+
 GTK_SOURCE_INTERNAL
 void            _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex      *regex,
                                                    gint                 num,
@@ -65,7 +68,17 @@ void            _gtk_source_regex_fetch_named_pos (GtkSourceRegex      *regex,
                                                    const gchar         *name,
                                                    gint                *start_pos,
                                                    gint                *end_pos);
+
+GTK_SOURCE_INTERNAL
+void            _gtk_source_regex_fetch_named_pos_bytes (GtkSourceRegex      *regex,
+                                                         const char          *name,
+                                                         int                 *start_pos,
+                                                         int                 *end_pos);
 GTK_SOURCE_INTERNAL
 const gchar    *_gtk_source_regex_get_pattern     (GtkSourceRegex      *regex);
+
+/* Required ASCII byte at the beginning of a match, or -1 if unknown. */
+GTK_SOURCE_INTERNAL
+int             _gtk_source_regex_get_first_byte  (GtkSourceRegex      *regex);
 
 G_END_DECLS

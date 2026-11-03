@@ -70,6 +70,13 @@ gboolean    impl_regex_match_full            (const ImplRegex        *regex,
                                               GRegexMatchFlags        match_options,
                                               ImplMatchInfo         **match_info,
                                               GError                **error);
+gboolean    impl_regex_match_full_reuse      (const ImplRegex        *regex,
+                                              const char             *string,
+                                              gssize                  string_len,
+                                              gsize                   start_position,
+                                              GRegexMatchFlags        match_options,
+                                              ImplMatchInfo         **match_info,
+                                              GError                **error);
 gboolean    impl_match_info_fetch_pos        (const ImplMatchInfo    *match_info,
                                               int                     match_num,
                                               int                    *start_pos,
@@ -84,6 +91,7 @@ gboolean    impl_match_info_next             (ImplMatchInfo          *match_info
                                               GError                **error);
 int         impl_match_info_get_match_count  (const ImplMatchInfo    *match_info);
 const char *impl_regex_get_pattern           (const ImplRegex        *regex);
+int         impl_regex_get_first_byte        (const ImplRegex        *regex);
 int         impl_regex_get_max_lookbehind    (const ImplRegex        *regex);
 
 G_END_DECLS
