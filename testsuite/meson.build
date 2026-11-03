@@ -40,6 +40,7 @@ testsuite_sources = [
   ['test-regex'],
   ['test-regex-adversarial'],
   ['test-region'],
+  ['test-tag-plan', false],
   ['test-search-context'],
   ['test-snippets', false],
   ['test-space-drawer'],

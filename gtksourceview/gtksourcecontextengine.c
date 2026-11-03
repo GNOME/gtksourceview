@@ -32,6 +32,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourceregex-private.h"
 #include "gtksourceoffsetmap-private.h"
+#include "gtksourcetagplan-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
@@ -833,13 +834,12 @@ get_context_tag (GtkSourceContextEngine *ce,
 
 static void
 apply_tags (GtkSourceContextEngine *ce,
+            GtkSourceTagPlan       *plan,
             Segment                *segment,
             gint                    start_offset,
             gint                    end_offset)
 {
 	GtkTextTag *tag;
-	GtkTextIter start_iter, end_iter;
-	GtkTextBuffer *buffer = ce->buffer;
 	SubPattern *sp;
 	Segment *child;
 
@@ -875,10 +875,7 @@ apply_tags (GtkSourceContextEngine *ce,
 		}
 		else
 		{
-			gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, style_start_at);
-			end_iter = start_iter;
-			gtk_text_iter_forward_chars (&end_iter, style_end_at - style_start_at);
-			gtk_text_buffer_apply_tag (ce->buffer, tag, &start_iter, &end_iter);
+			_gtk_source_tag_plan_add (plan, tag, style_start_at, style_end_at, TRUE);
 		}
 	}
 
@@ -893,10 +890,7 @@ apply_tags (GtkSourceContextEngine *ce,
 
 			if (tag != NULL)
 			{
-				gtk_text_buffer_get_iter_at_offset (buffer, &start_iter, start);
-				end_iter = start_iter;
-				gtk_text_iter_forward_chars (&end_iter, end - start);
-				gtk_text_buffer_apply_tag (ce->buffer, tag, &start_iter, &end_iter);
+				_gtk_source_tag_plan_add (plan, tag, start, end, TRUE);
 			}
 		}
 	}
@@ -906,7 +900,7 @@ apply_tags (GtkSourceContextEngine *ce,
 	     child = child->next)
 	{
 		if (child->end_at > start_offset)
-			apply_tags (ce, child, start_offset, end_offset);
+			apply_tags (ce, plan, child, start_offset, end_offset);
 	}
 }
 
@@ -918,6 +912,9 @@ highlight_region (GtkSourceContextEngine *ce,
 #ifdef ENABLE_PROFILE
 	GTimer *timer;
 #endif
+	GtkSourceTagPlan *plan = NULL;
+	GHashTableIter tag_iter;
+	gpointer value;
 
 	if (gtk_text_iter_starts_line (end))
 		gtk_text_iter_backward_char (end);
@@ -928,12 +925,22 @@ highlight_region (GtkSourceContextEngine *ce,
 	timer = g_timer_new ();
 #endif
 
-	/* First we need to delete tags in the regions. */
-	unhighlight_region (ce, start, end);
+	plan = _gtk_source_tag_plan_new (ce->buffer,
+	                                 gtk_text_iter_get_offset (start),
+	                                 gtk_text_iter_get_offset (end));
 
-	apply_tags (ce, ce->root_segment,
-		    gtk_text_iter_get_offset (start),
-		    gtk_text_iter_get_offset (end));
+	g_hash_table_iter_init (&tag_iter, ce->tags);
+	while (g_hash_table_iter_next (&tag_iter, NULL, &value))
+	{
+		for (GSList *tags = value; tags != NULL; tags = tags->next)
+			_gtk_source_tag_plan_add_tag (plan, tags->data);
+	}
+
+	apply_tags (ce, plan, ce->root_segment,
+	            gtk_text_iter_get_offset (start),
+	            gtk_text_iter_get_offset (end));
+	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE
 	g_print ("highlight (from %d to %d), %g ms elapsed\n",
@@ -1068,42 +1075,24 @@ get_context_classes (GtkSourceContextEngine *ce,
 }
 
 static void
-apply_context_classes (GtkSourceContextEngine *ce,
+apply_context_classes (GtkSourceTagPlan       *plan,
                        GSList                 *context_classes,
                        gint                    start,
                        gint                    end)
 {
-	GtkTextIter start_iter;
-	GtkTextIter end_iter;
 	GSList *item;
-
-	gtk_text_buffer_get_iter_at_offset (ce->buffer, &start_iter, start);
-	end_iter = start_iter;
-	gtk_text_iter_forward_chars (&end_iter, end - start);
 
 	for (item = context_classes; item != NULL; item = g_slist_next (item))
 	{
 		ContextClassTag *attrtag = item->data;
 
-		if (attrtag->enabled)
-		{
-			gtk_text_buffer_apply_tag (ce->buffer,
-			                           attrtag->tag,
-			                           &start_iter,
-			                           &end_iter);
-		}
-		else
-		{
-			gtk_text_buffer_remove_tag (ce->buffer,
-			                            attrtag->tag,
-			                            &start_iter,
-			                            &end_iter);
-		}
+		_gtk_source_tag_plan_add (plan, attrtag->tag, start, end, attrtag->enabled);
 	}
 }
 
 static void
 add_region_context_classes (GtkSourceContextEngine *ce,
+                            GtkSourceTagPlan       *plan,
                             Segment                *segment,
                             gint                    start_offset,
                             gint                    end_offset)
@@ -1131,7 +1120,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 
 	if (context_classes != NULL)
 	{
-		apply_context_classes (ce,
+		apply_context_classes (plan,
 		                       context_classes,
 		                       start_offset,
 		                       end_offset);
@@ -1150,7 +1139,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 
 			if (context_classes != NULL)
 			{
-				apply_context_classes (ce,
+				apply_context_classes (plan,
 				                       context_classes,
 				                       start,
 				                       end);
@@ -1164,28 +1153,8 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 	{
 		if (child->end_at > start_offset)
 		{
-			add_region_context_classes (ce, child, start_offset, end_offset);
+			add_region_context_classes (ce, plan, child, start_offset, end_offset);
 		}
-	}
-}
-
-static void
-remove_region_context_classes (GtkSourceContextEngine *ce,
-                               const GtkTextIter      *start,
-                               const GtkTextIter      *end)
-{
-	GSList *l;
-
-	if (gtk_text_iter_equal (start, end))
-	{
-		return;
-	}
-
-	for (l = ce->context_classes; l != NULL; l = l->next)
-	{
-		GtkTextTag *tag = l->data;
-
-		gtk_text_buffer_remove_tag (ce->buffer, tag, start, end);
 	}
 }
 
@@ -1198,6 +1167,7 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 	GTimer *timer;
 #endif
 	GtkTextIter realend = *end;
+	GtkSourceTagPlan *plan = NULL;
 
 	if (gtk_text_iter_starts_line (&realend))
 	{
@@ -1213,13 +1183,19 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 	timer = g_timer_new ();
 #endif
 
-	/* First we need to delete tags in the regions. */
-	remove_region_context_classes (ce, start, &realend);
+	plan = _gtk_source_tag_plan_new (ce->buffer,
+	                                 gtk_text_iter_get_offset (start),
+	                                 gtk_text_iter_get_offset (&realend));
 
-	add_region_context_classes (ce,
+	for (GSList *tags = ce->context_classes; tags != NULL; tags = tags->next)
+		_gtk_source_tag_plan_add_tag (plan, tags->data);
+
+	add_region_context_classes (ce, plan,
 	                            ce->root_segment,
 	                            gtk_text_iter_get_offset (start),
 	                            gtk_text_iter_get_offset (&realend));
+	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE
 	g_print ("applied context classes (from %d to %d), %g ms elapsed\n",

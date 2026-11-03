@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-tag-plan" name="Test Tag Plan" version="2.0" hidden="true">
+  <styles>
+    <style id="outer" name="Outer"/>
+    <style id="inner" name="Inner"/>
+    <style id="delimiter" name="Delimiter"/>
+    <style id="token" name="Token"/>
+  </styles>
+  <definitions>
+    <context id="outer" style-ref="outer" style-inside="true" class="outer">
+      <start>(\[)</start>
+      <end>(\])</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="delimiter" class="boundary" class-disabled="outer"/>
+        <context sub-pattern="1" where="end" style-ref="delimiter" class="boundary" class-disabled="outer"/>
+        <context id="inner" style-ref="inner" class="inner" class-disabled="outer base">
+          <start>\{</start>
+          <end>\}</end>
+          <include>
+            <context style-ref="token" class="token">
+              <match>x</match>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+    <context id="test-tag-plan" class="base">
+      <include>
+        <context ref="outer"/>
+      </include>
+    </context>
+  </definitions>
+</language>
