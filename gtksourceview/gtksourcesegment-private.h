@@ -35,6 +35,10 @@ struct _Segment
 	Segment *children;
 	Segment *last_child;
 
+	/* Keep list order. Build an index when querying a large sibling list. */
+	GSequence *children_index;
+	GSequenceIter *index_iter;
+
 	/* This is NULL if and only if it's a dummy segment which denotes
 	 * inserted or deleted text.
 	 */
@@ -56,8 +60,178 @@ struct _Segment
 	/* Whether this segment is a whole good segment, or it's an end of
 	 * a bigger one left after erase_segments() call.
 	 */
+	guint n_children;
 	guint is_start : 1;
 };
+
+#define GTK_SOURCE_SEGMENT_INDEX_MIN_CHILDREN 128
+
+static inline void
+_gtk_source_segment_index_build (Segment *parent)
+{
+	if (parent->children_index != NULL)
+		return;
+
+	parent->children_index = g_sequence_new (NULL);
+	for (Segment *child = parent->children; child != NULL; child = child->next)
+	{
+		g_assert (child->index_iter == NULL);
+		child->index_iter = g_sequence_append (parent->children_index, child);
+	}
+}
+
+/* Call after the child has been linked into its parent's sibling list. */
+static inline void
+_gtk_source_segment_index_insert (Segment *child)
+{
+	Segment *parent = child->parent;
+
+	g_assert (parent != NULL);
+	g_assert (child->index_iter == NULL);
+	parent->n_children++;
+
+	if (parent->children_index != NULL)
+	{
+		GSequenceIter *next = child->next != NULL
+		                    ? child->next->index_iter
+		                    : g_sequence_get_end_iter (parent->children_index);
+
+		g_assert (next != NULL);
+
+		child->index_iter = g_sequence_insert_before (next, child);
+	}
+}
+
+static inline void
+_gtk_source_segment_index_remove (Segment *child)
+{
+	g_assert (child->parent != NULL);
+	g_assert (child->parent->n_children > 0);
+
+	child->parent->n_children--;
+
+	if (child->index_iter != NULL)
+	{
+		g_sequence_remove (child->index_iter);
+		child->index_iter = NULL;
+	}
+}
+
+static inline void
+_gtk_source_segment_index_clear (Segment *parent)
+{
+	if (parent->children_index != NULL)
+	{
+		GSequenceIter *iter = g_sequence_get_begin_iter (parent->children_index);
+
+		while (!g_sequence_iter_is_end (iter))
+		{
+			Segment *child = g_sequence_get (iter);
+
+			child->index_iter = NULL;
+			iter = g_sequence_iter_next (iter);
+		}
+
+		g_clear_pointer (&parent->children_index, g_sequence_free);
+	}
+}
+
+static inline void
+_gtk_source_segment_index_split (Segment *left,
+                                 Segment *right)
+{
+	if (left->children_index != NULL && right->children != NULL)
+	{
+		right->children_index = g_sequence_new (NULL);
+		g_sequence_move_range (g_sequence_get_end_iter (right->children_index),
+		                       right->children->index_iter,
+		                       g_sequence_get_end_iter (left->children_index));
+	}
+}
+
+static inline void
+_gtk_source_segment_index_merge (Segment *left,
+                                 Segment *right)
+{
+	if (left->children_index != NULL || right->children_index != NULL)
+	{
+		_gtk_source_segment_index_build (left);
+		_gtk_source_segment_index_build (right);
+
+		g_sequence_move_range (g_sequence_get_end_iter (left->children_index),
+		                       g_sequence_get_begin_iter (right->children_index),
+		                       g_sequence_get_end_iter (right->children_index));
+
+		g_clear_pointer (&right->children_index, g_sequence_free);
+	}
+
+	left->n_children += right->n_children;
+	right->n_children = 0;
+}
+
+static inline int
+_gtk_source_segment_compare_end (gconstpointer a,
+                                 gconstpointer b,
+                                 gpointer      lower_bound)
+{
+	const Segment *left = a;
+	const Segment *right = b;
+	int order = (left->end_at > right->end_at) - (left->end_at < right->end_at);
+
+	if (order == 0 && lower_bound != NULL)
+	{
+		if (a == lower_bound)
+			return -1;
+		if (b == lower_bound)
+			return 1;
+	}
+
+	return order;
+}
+
+/* Seek the first child whose end is >= offset (inclusive) or > offset. End
+ * offsets are ordered because siblings do not overlap. Uniform suffix shifts
+ * preserve that ordering and require no updates to the positional index.
+ */
+static inline Segment *
+_gtk_source_segment_seek_children (Segment  *parent,
+                                   int       offset,
+                                   gboolean  inclusive)
+{
+	if (parent->children == NULL)
+		return NULL;
+
+	if (parent->children->end_at > offset ||
+	    (inclusive && parent->children->end_at == offset))
+		return parent->children;
+
+	if (parent->last_child->end_at < offset ||
+	    (!inclusive && parent->last_child->end_at == offset))
+		return NULL;
+
+	if (parent->children_index == NULL &&
+	    parent->n_children >= GTK_SOURCE_SEGMENT_INDEX_MIN_CHILDREN)
+		_gtk_source_segment_index_build (parent);
+
+	if (parent->children_index != NULL)
+	{
+		Segment key = { .end_at = offset };
+		GSequenceIter *iter;
+
+		iter = g_sequence_search (parent->children_index, &key,
+		                          _gtk_source_segment_compare_end,
+		                          inclusive ? &key : NULL);
+		return g_sequence_iter_is_end (iter) ? NULL : g_sequence_get (iter);
+	}
+
+	for (Segment *child = parent->children; child != NULL; child = child->next)
+	{
+		if (child->end_at > offset || (inclusive && child->end_at == offset))
+			return child;
+	}
+
+	return NULL;
+}
 
 #define GTK_SOURCE_SEGMENT_IS_ZERO_LEN_AT(s,o) ((s)->start_at == (o) && (s)->end_at == (o))
 #define GTK_SOURCE_SEGMENT_CONTAINS(s,o) ((s)->start_at <= (o) && (s)->end_at > (o))
@@ -78,6 +252,7 @@ _gtk_source_segment_lookup_inside (Segment *segment,
 	    segment->children->start_at > offset || segment->last_child->end_at < offset)
 		return segment;
 
+	/* Appending syntax and looking up either end do not need an index. */
 	if (GTK_SOURCE_SEGMENT_IS_ZERO_LEN_AT (segment->children, offset) ||
 	    GTK_SOURCE_SEGMENT_CONTAINS (segment->children, offset))
 	{
@@ -87,6 +262,11 @@ _gtk_source_segment_lookup_inside (Segment *segment,
 	         GTK_SOURCE_SEGMENT_CONTAINS (segment->last_child, offset))
 	{
 		child = segment->last_child;
+	}
+	else if (segment->children_index != NULL ||
+	         segment->n_children >= GTK_SOURCE_SEGMENT_INDEX_MIN_CHILDREN)
+	{
+		child = _gtk_source_segment_seek_children (segment, offset, TRUE);
 	}
 	else if (GTK_SOURCE_SEGMENT_DISTANCE (segment->children, offset) <= GTK_SOURCE_SEGMENT_DISTANCE (segment->last_child, offset))
 	{

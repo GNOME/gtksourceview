@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-segment-tree" name="Segment tree test" version="2.0" hidden="true">
+  <styles>
+    <style id="container" name="Container" map-to="def:string"/>
+    <style id="token" name="Token" map-to="def:keyword"/>
+  </styles>
+  <definitions>
+    <context id="word" style-ref="token" class="word"><match>\w+</match></context>
+    <context id="nested" style-ref="container" class="nested">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="nested"/>
+        <context ref="word"/>
+      </include>
+    </context>
+    <context id="test-segment-tree">
+      <include>
+        <context ref="nested"/>
+        <context ref="word"/>
+      </include>
+    </context>
+  </definitions>
+</language>

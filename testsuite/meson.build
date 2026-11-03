@@ -47,6 +47,7 @@ testsuite_sources = [
   ['test-tag-plan', false],
   ['test-search-context'],
   ['test-segment'],
+  ['test-highlight-segment-edits', false],
   ['test-snippets', false],
   ['test-space-drawer'],
   ['test-stylescheme'],

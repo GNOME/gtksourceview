@@ -893,7 +893,7 @@ apply_tags (GtkSourceContextEngine *ce,
 		}
 	}
 
-	for (child = segment->children;
+	for (child = _gtk_source_segment_seek_children (segment, start_offset, FALSE);
 	     child != NULL && child->start_at < end_offset;
 	     child = child->next)
 	{
@@ -1147,7 +1147,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 		}
 	}
 
-	for (child = segment->children;
+	for (child = _gtk_source_segment_seek_children (segment, start_offset, FALSE);
 	     child != NULL && child->start_at < end_offset;
 	     child = child->next)
 	{
@@ -1933,6 +1933,7 @@ insert_range (GtkSourceContextEngine *ce,
 		else
 			parent->children = new_segment;
 
+		_gtk_source_segment_index_insert (new_segment);
 		segment = new_segment;
 	}
 
@@ -4102,6 +4103,7 @@ create_segment (GtkSourceContextEngine *ce,
 		else
 			parent->children = segment;
 
+		_gtk_source_segment_index_insert (segment);
 		CHECK_SEGMENT_LIST (parent);
 		CHECK_TREE (ce);
 	}
@@ -4138,8 +4140,10 @@ segment_destroy_children (GtkSourceContextEngine *ce,
 	g_return_if_fail (segment != NULL);
 
 	child = segment->children;
+	_gtk_source_segment_index_clear (segment);
 	segment->children = NULL;
 	segment->last_child = NULL;
+	segment->n_children = 0;
 
 	while (child != NULL)
 	{
@@ -5226,6 +5230,8 @@ static void
 segment_remove (GtkSourceContextEngine *ce,
                 Segment                *segment)
 {
+	_gtk_source_segment_index_remove (segment);
+
 	if (segment->next != NULL)
 		segment->next->prev = segment->prev;
 	else
@@ -5289,9 +5295,12 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
 	else
 		new_segment->parent->last_child = new_segment;
 
+	_gtk_source_segment_index_insert (new_segment);
+
 	child = segment->children;
 	segment->children = NULL;
 	segment->last_child = NULL;
+	segment->n_children = 0;
 
 	while (child != NULL)
 	{
@@ -5310,6 +5319,7 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
 		}
 
 		child->parent = append_to;
+		append_to->n_children++;
 
 		if (append_to->last_child != NULL)
 		{
@@ -5327,6 +5337,8 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
 
 		child = next;
 	}
+
+	_gtk_source_segment_index_split (segment, new_segment);
 
 	sp = segment->sub_patterns;
 	segment->sub_patterns = NULL;
@@ -5429,9 +5441,9 @@ segment_erase_range_ (GtkSourceContextEngine *ce,
 	}
 	else
 	{
-		Segment *child = segment->children;
+		Segment *child = _gtk_source_segment_seek_children (segment, start, TRUE);
 
-		while (child != NULL)
+		while (child != NULL && child->start_at <= end)
 		{
 			Segment *next = child->next;
 			segment_erase_range_ (ce, child, start, end);
@@ -5519,6 +5531,9 @@ segment_merge (GtkSourceContextEngine *ce,
 	g_assert (first->next == second);
 	g_assert (first->parent == second->parent);
 	g_assert (second != parent->children);
+
+	_gtk_source_segment_index_remove (second);
+	_gtk_source_segment_index_merge (first, second);
 
 	if (second == parent->last_child)
 		parent->last_child = first;
@@ -6946,6 +6961,21 @@ check_segment (GtkSourceContextEngine *ce,
 
 	if (segment->children != NULL)
 		g_assert (!SEGMENT_IS_INVALID (segment) && SEGMENT_IS_CONTAINER (segment));
+
+	if (segment->children_index != NULL)
+	{
+		GSequenceIter *iter = g_sequence_get_begin_iter (segment->children_index);
+
+		g_assert_cmpuint (g_sequence_get_length (segment->children_index), ==, segment->n_children);
+		for (child = segment->children; child != NULL; child = child->next)
+		{
+			g_assert (!g_sequence_iter_is_end (iter));
+			g_assert (g_sequence_get (iter) == child);
+			g_assert (child->index_iter == iter);
+			iter = g_sequence_iter_next (iter);
+		}
+		g_assert (g_sequence_iter_is_end (iter));
+	}
 
 	for (child = segment->children; child != NULL; child = child->next)
 	{
