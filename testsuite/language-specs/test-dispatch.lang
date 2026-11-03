@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-dispatch" name="Dispatch test" version="2.0" hidden="true">
+  <definitions>
+    <context id="first" first-line-only="true" class="first"><match>!</match></context>
+    <context id="primary" class="primary"><match>ab</match></context>
+    <context id="secondary" class="secondary"><match>ab</match></context>
+    <context id="nested">
+      <include>
+        <context ref="primary"/>
+        <context ref="secondary"/>
+      </include>
+    </context>
+    <context id="nested-again"><include><context ref="nested"/></include></context>
+    <context id="once" once-only="true" class="once"><match>x</match></context>
+    <context id="old" class="old"><match>OLD</match></context>
+    <context id="replacement" class="replacement"><match>new</match></context>
+    <context id="test-dispatch">
+      <include>
+        <context ref="first"/>
+        <context ref="nested-again:*"/>
+        <context ref="once"/>
+        <context ref="old"/>
+        <context class="fallback"><match>.</match></context>
+      </include>
+    </context>
+    <replace id="test-dispatch:old" ref="replacement"/>
+  </definitions>
+</language>

@@ -146,6 +146,8 @@ struct _ContextDefinition
 	gchar *id;
 
 	ContextType type;
+	int first_byte;
+
 	union
 	{
 		GtkSourceRegex *match;
@@ -160,6 +162,11 @@ struct _ContextDefinition
 
 	/* List of DefinitionChild pointers. */
 	GSList *children;
+
+	/* Ordered leaves after expanding wildcard and pure-container references.
+	 * These DefinitionChild pointers are borrowed from immutable definitions.
+	 */
+	GPtrArray *compiled_children;
 
 	/* Sub-patterns (list of SubPatternDefinition pointers). */
 	GSList *sub_patterns;
@@ -228,7 +235,8 @@ struct _DefinitionChild
 
 struct _DefinitionsIter
 {
-	GSList *children_stack;
+	DefinitionChild **next;
+	guint remaining;
 };
 
 struct _Context
@@ -504,7 +512,6 @@ static Context           *ancestor_context_ends_here            (Context        
 static void               definition_iter_init                  (DefinitionsIter         *iter,
                                                                  ContextDefinition       *definition);
 static DefinitionChild   *definition_iter_next                  (DefinitionsIter         *iter);
-static void               definition_iter_destroy               (DefinitionsIter         *iter);
 static void               update_syntax                         (GtkSourceContextEngine  *ce,
                                                                  const GtkTextIter       *end,
                                                                  gint                     time);
@@ -3116,7 +3123,6 @@ create_reg_all (Context           *context,
 			g_string_append (all, "|");
 		}
 	}
-	definition_iter_destroy (&iter);
 
 	if (all->len > 1)
 		g_string_truncate (all, all->len - 1);
@@ -4030,6 +4036,17 @@ child_starts_here (GtkSourceContextEngine  *ce,
 {
 	g_return_val_if_fail (child_def->resolved, FALSE);
 
+	/* Skip the match if its required first byte is missing. Rules which
+	 * can match an empty string, or have no known first byte, still need
+	 * the regex matcher.
+	 */
+	if (child_def->u.definition->first_byte >= 0 &&
+	    (*line_pos == line->byte_length ||
+	     (guchar)line->text[*line_pos] != child_def->u.definition->first_byte))
+	{
+		return FALSE;
+	}
+
 	switch (child_def->u.definition->type)
 	{
 		case CONTEXT_TYPE_SIMPLE:
@@ -4279,7 +4296,6 @@ next_segment (GtkSourceContextEngine  *ce,
 				{
 					g_assert (pos <= line->byte_length);
 					*line_pos = pos;
-					definition_iter_destroy (&def_iter);
 					return TRUE;
 				}
 			}
@@ -4287,7 +4303,6 @@ next_segment (GtkSourceContextEngine  *ce,
 			/* This child does not start here, so we analyze
 			 * another definition. */
 		}
-		definition_iter_destroy (&def_iter);
 
 		if (context_end_found)
 		{
@@ -5731,6 +5746,12 @@ context_definition_new (const gchar            *id,
 		return NULL;
 	}
 
+	definition->first_byte = -1;
+	if (type == CONTEXT_TYPE_SIMPLE)
+		definition->first_byte = _gtk_source_regex_get_first_byte (definition->u.match);
+	else if (definition->u.start_end.start != NULL)
+		definition->first_byte = _gtk_source_regex_get_first_byte (definition->u.start_end.start);
+
 	definition->ref_count = 1;
 	definition->id = g_strdup (id);
 	definition->default_style = g_strdup (style);
@@ -5800,59 +5821,66 @@ context_definition_unref (ContextDefinition *definition)
 	g_slist_free_full (definition->context_classes,
 	                   (GDestroyNotify)gtk_source_context_class_free);
 
+	g_clear_pointer (&definition->compiled_children, g_ptr_array_unref);
 	g_slist_free_full (definition->children, (GDestroyNotify)definition_child_free);
 	g_slice_free (ContextDefinition, definition);
+}
+
+/* Compilation is lazy: most imported definitions are never entered. Expanding
+ * includes once also preserves references' style overrides and duplicate entries;
+ * runtime conditions such as once-only are still evaluated by next_segment().
+ */
+static GPtrArray *
+definition_compile_children (ContextDefinition *definition)
+{
+	GPtrArray *children = g_ptr_array_new ();
+	GSList *stack = g_slist_prepend (NULL, definition->children);
+
+	while (stack != NULL)
+	{
+		GSList *list = stack->data;
+		DefinitionChild *child;
+
+		if (list == NULL)
+		{
+			stack = g_slist_delete_link (stack, stack);
+			continue;
+		}
+
+		child = list->data;
+		stack->data = list->next;
+		g_assert (child->resolved);
+
+		if (child->is_ref_all)
+		{
+			stack = g_slist_prepend (stack, child->u.definition->children);
+		}
+		else
+			g_ptr_array_add (children, child);
+	}
+
+	return children;
 }
 
 static void
 definition_iter_init (DefinitionsIter   *iter,
                       ContextDefinition *definition)
 {
-	iter->children_stack = g_slist_prepend (NULL, definition->children);
-}
+	if (definition->compiled_children == NULL)
+		definition->compiled_children = definition_compile_children (definition);
 
-static void
-definition_iter_destroy (DefinitionsIter *iter)
-{
-	g_slist_free (iter->children_stack);
+	iter->next = (DefinitionChild **)definition->compiled_children->pdata;
+	iter->remaining = definition->compiled_children->len;
 }
 
 static DefinitionChild *
 definition_iter_next (DefinitionsIter *iter)
 {
-	GSList *children_list;
-
-	if (iter->children_stack == NULL)
+	if (iter->remaining == 0)
 		return NULL;
 
-	children_list = iter->children_stack->data;
-	if (children_list == NULL)
-	{
-		iter->children_stack = g_slist_delete_link (iter->children_stack,
-							    iter->children_stack);
-		return definition_iter_next (iter);
-	}
-	else
-	{
-		DefinitionChild *curr_child = children_list->data;
-		ContextDefinition *definition = curr_child->u.definition;
-
-		g_return_val_if_fail (curr_child->resolved, NULL);
-
-		children_list = g_slist_next (children_list);
-		iter->children_stack->data = children_list;
-
-		if (curr_child->is_ref_all)
-		{
-			iter->children_stack = g_slist_prepend (iter->children_stack,
-								definition->children);
-			return definition_iter_next (iter);
-		}
-		else
-		{
-			return curr_child;
-		}
-	}
+	iter->remaining--;
+	return *iter->next++;
 }
 
 gboolean
@@ -6121,6 +6149,8 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 	GSList *l;
 
 	struct ResolveRefData *data = user_data;
+
+	g_clear_pointer (&definition->compiled_children, g_ptr_array_unref);
 
 	if (data->error != NULL)
 		return;
