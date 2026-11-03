@@ -34,6 +34,7 @@
 #include "gtksourceoffsetmap-private.h"
 #include "gtksourceeditjournal-private.h"
 #include "gtksourcetagplan-private.h"
+#include "gtksourcesegment-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
@@ -320,37 +321,7 @@ struct _GtkSourceContextReplace
 	gchar *replace_with;
 };
 
-struct _Segment
-{
-	Segment *parent;
-	Segment *next;
-	Segment *prev;
-	Segment *children;
-	Segment *last_child;
 
-	/* This is NULL if and only if it's a dummy segment which denotes
-	 * inserted or deleted text.
-	 */
-	Context *context;
-
-	/* Subpatterns found in this segment. */
-	SubPattern *sub_patterns;
-
-	/* The context is used in the interval [start_at; end_at). */
-	gint start_at;
-	gint end_at;
-
-	/* In case of container contexts, start_len/end_len is length in chars
-	 * of start/end match.
-	 */
-	gint start_len;
-	gint end_len;
-
-	/* Whether this segment is a whole good segment, or it's an end of
-	 * a bigger one left after erase_segments() call.
-	 */
-	guint is_start : 1;
-};
 
 struct _SubPattern
 {
@@ -5067,67 +5038,7 @@ start:
 
 #define SEGMENT_IS_ZERO_LEN_AT(s,o) ((s)->start_at == (o) && (s)->end_at == (o))
 #define SEGMENT_CONTAINS(s,o) ((s)->start_at <= (o) && (s)->end_at > (o))
-#define SEGMENT_DISTANCE(s,o) (MIN (ABS ((s)->start_at - (o)), ABS ((s)->end_at - (o))))
-static Segment *
-get_segment_in_ (Segment *segment,
-                 gint     offset)
-{
-	Segment *child;
 
-	g_assert (segment->start_at <= offset && segment->end_at > offset);
-
-	if (segment->children == NULL)
-		return segment;
-
-	if (segment->children == segment->last_child)
-	{
-		if (SEGMENT_IS_ZERO_LEN_AT (segment->children, offset))
-			return segment->children;
-
-		if (SEGMENT_CONTAINS (segment->children, offset))
-			return get_segment_in_ (segment->children, offset);
-
-		return segment;
-	}
-
-	if (segment->children->start_at > offset || segment->last_child->end_at < offset)
-		return segment;
-
-	if (SEGMENT_DISTANCE (segment->children, offset) >= SEGMENT_DISTANCE (segment->last_child, offset))
-	{
-		for (child = segment->children; child; child = child->next)
-		{
-			if (child->start_at > offset)
-				return segment;
-
-			if (SEGMENT_IS_ZERO_LEN_AT (child, offset))
-				return child;
-
-			if (SEGMENT_CONTAINS (child, offset))
-				return get_segment_in_ (child, offset);
-		}
-	}
-	else
-	{
-		for (child = segment->last_child; child; child = child->prev)
-		{
-			if (SEGMENT_IS_ZERO_LEN_AT (child, offset))
-			{
-				while (child->prev != NULL && SEGMENT_IS_ZERO_LEN_AT (child->prev, offset))
-					child = child->prev;
-				return child;
-			}
-
-			if (child->end_at <= offset)
-				return segment;
-
-			if (SEGMENT_CONTAINS (child, offset))
-				return get_segment_in_ (child, offset);
-		}
-	}
-
-	return segment;
-}
 
 /* assumes zero-length segments can't have children */
 static Segment *
@@ -5146,7 +5057,7 @@ get_segment_ (Segment *segment,
 	}
 
 	if (SEGMENT_CONTAINS (segment, offset))
-		return get_segment_in_ (segment, offset);
+		return _gtk_source_segment_lookup_inside (segment, offset);
 
 	if (SEGMENT_IS_ZERO_LEN_AT (segment, offset))
 	{
@@ -5166,7 +5077,7 @@ get_segment_ (Segment *segment,
 			return segment->parent;
 
 		if (segment->prev->end_at > offset)
-			return get_segment_in_ (segment->prev, offset);
+			return _gtk_source_segment_lookup_inside (segment->prev, offset);
 
 		if (segment->prev->end_at == offset)
 		{
@@ -5195,7 +5106,7 @@ get_segment_ (Segment *segment,
 		if (segment->next->end_at > offset)
 		{
 			if (segment->next->start_at <= offset)
-				return get_segment_in_ (segment->next, offset);
+				return _gtk_source_segment_lookup_inside (segment->next, offset);
 			else
 				return segment->parent;
 		}
@@ -5207,7 +5118,6 @@ get_segment_ (Segment *segment,
 }
 #undef SEGMENT_IS_ZERO_LEN_AT
 #undef SEGMENT_CONTAINS
-#undef SEGMENT_DISTANCE
 
 /**
  * get_segment_at_offset:
