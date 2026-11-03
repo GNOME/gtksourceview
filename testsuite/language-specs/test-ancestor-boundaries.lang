@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-ancestor-boundaries" name="Ancestor boundary test" version="2.0" hidden="true">
+  <definitions>
+    <context id="token" class="token" extend-parent="false">
+      <match>(.+)</match>
+      <include><context sub-pattern="1" class="capture"/></include>
+    </context>
+    <context id="fast" class="outer">
+      <start>&lt;</start><end>&gt;</end>
+      <include><context ref="token"/></include>
+    </context>
+    <context id="slow" class="outer">
+      <start>\[</start><end>\GEND</end>
+      <include><context ref="token"/></include>
+    </context>
+    <context id="lookbehind" class="outer">
+      <start>\(</start><end>(?&lt;=x)!</end>
+      <include><context ref="token"/></include>
+    </context>
+    <context id="inner" class="inner" extend-parent="false">
+      <start>\[</start><end>!</end>
+      <include><context ref="token"/></include>
+    </context>
+    <context id="outer-first" class="outer">
+      <start>\{</start><end>!!</end>
+      <include><context ref="inner"/></include>
+    </context>
+    <context id="test-ancestor-boundaries">
+      <include>
+        <context ref="fast"/>
+        <context ref="slow"/>
+        <context ref="lookbehind"/>
+        <context ref="outer-first"/>
+      </include>
+    </context>
+  </definitions>
+</language>

@@ -152,6 +152,41 @@ test_long_unicode_literal_run (void)
 	g_string_free (text, TRUE);
 }
 
+static void
+test_ancestor_boundaries (void)
+{
+	const struct {
+		const char *text;
+		guint start;
+		guint end;
+		guint after;
+	} cases[] = {
+		{ "<αβ hello> outside", 1, 9, 10 },
+		{ "[abcENDtail", 1, 4, 7 },
+		{ "(ax! outside", 1, 3, 4 },
+		{ "{[abc!! outside", 2, 5, 7 },
+	};
+
+	for (guint i = 0; i < G_N_ELEMENTS (cases); i++)
+	{
+		GtkSourceBuffer *buffer = test_highlight_buffer_new ("test-ancestor-boundaries", cases[i].text);
+
+		test_highlight_buffer_ensure (buffer);
+
+		for (guint offset = cases[i].start; offset < cases[i].end; offset++)
+		{
+			test_highlight_assert_class (buffer, offset, "token", TRUE);
+			test_highlight_assert_class (buffer, offset, "capture", TRUE);
+		}
+		test_highlight_assert_class (buffer, cases[i].end, "token", FALSE);
+		test_highlight_assert_class (buffer, cases[i].end, "capture", FALSE);
+		test_highlight_assert_class (buffer, cases[i].after, "outer", FALSE);
+		test_highlight_assert_class (buffer, cases[i].after, "inner", FALSE);
+
+		g_object_unref (buffer);
+	}
+}
+
 int
 main (int    argc,
       char **argv)
@@ -160,6 +195,7 @@ main (int    argc,
 	gtk_source_init ();
 	g_test_add_func ("/highlight/compiled-dispatch", test_compiled_dispatch);
 	g_test_add_func ("/highlight/literal-runs", test_literal_runs);
+	g_test_add_func ("/highlight/ancestor-boundaries", test_ancestor_boundaries);
 	g_test_add_func ("/highlight/long-unicode-literal-run", test_long_unicode_literal_run);
 	return g_test_run ();
 }

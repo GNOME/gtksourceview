@@ -252,6 +252,14 @@ struct _Context
 	 */
 	GtkSourceRegex *end;
 
+	/* Used for speculative ancestor-boundary checks. */
+	GtkSourceRegex *end_probe;
+
+	/* Eligible terminating ancestors, outermost first, borrowed from the
+	 * context's immutable parent chain.
+	 */
+	GPtrArray *end_ancestors;
+
 	/* The regular expression containing every regular expression that could
 	 * be matched in this context.
 	 */
@@ -515,6 +523,10 @@ static void               segment_extend                        (Segment        
 static Context           *ancestor_context_ends_here            (Context                 *state,
                                                                  LineInfo                *line,
                                                                  gint                     pos);
+static int                find_ancestor_end                     (Context                 *state,
+                                                                 LineInfo                *line,
+                                                                 int                      start,
+                                                                 int                      end);
 static void               definition_iter_init                  (DefinitionsIter         *iter,
                                                                  ContextDefinition       *definition);
 static DefinitionChild   *definition_iter_next                  (DefinitionsIter         *iter);
@@ -2926,18 +2938,9 @@ can_apply_match (Context        *state,
 	    /* there is no middle of zero-length match */
 	    match_start < end_match_pos)
 	{
-		pos = match_start + 1;
-
-		while (pos < end_match_pos)
-		{
-			if (ancestor_context_ends_here (state, line, pos))
-			{
-				ancestor_ends = TRUE;
-				break;
-			}
-
-			pos = g_utf8_next_char (line->text + pos) - line->text;
-		}
+		pos = g_utf8_next_char (line->text + match_start) - line->text;
+		pos = find_ancestor_end (state, line, pos, end_match_pos);
+		ancestor_ends = pos < end_match_pos;
 	}
 	else
 	{
@@ -3258,6 +3261,37 @@ literal_run_end (Context  *context,
 	return p - line->text;
 }
 
+static void
+context_compile_ancestors (Context *context)
+{
+	Context *ancestor = context;
+
+	while (ANCESTOR_CAN_END_CONTEXT (ancestor))
+	{
+		if (!CONTEXT_EXTENDS_PARENT (ancestor) && ancestor->parent->end != NULL)
+		{
+			if (context->end_ancestors == NULL)
+				context->end_ancestors = g_ptr_array_new ();
+			g_ptr_array_add (context->end_ancestors, ancestor->parent);
+		}
+
+		ancestor = ancestor->parent;
+	}
+
+	if (context->end_ancestors != NULL)
+	{
+		GPtrArray *ancestors = context->end_ancestors;
+
+		for (guint i = 0; i < ancestors->len / 2; i++)
+		{
+			gpointer tmp = ancestors->pdata[i];
+
+			ancestors->pdata[i] = ancestors->pdata[ancestors->len - i - 1];
+			ancestors->pdata[ancestors->len - i - 1] = tmp;
+		}
+	}
+}
+
 static Context *
 context_ref (Context *context)
 {
@@ -3303,6 +3337,8 @@ context_new (Context           *parent,
 							  definition->u.start_end.start,
 							  line_text);
 	}
+
+	context_compile_ancestors (context);
 
 	if (definition->type == CONTEXT_TYPE_CONTAINER)
 		context_compile_literal_run (context);
@@ -3455,6 +3491,8 @@ context_unref (Context *context)
 		context_remove_child (context->parent, context);
 
 	_gtk_source_regex_unref (context->end);
+	_gtk_source_regex_unref (context->end_probe);
+	g_clear_pointer (&context->end_ancestors, g_ptr_array_unref);
 	_gtk_source_regex_unref (context->reg_all);
 
 	if (context->subpattern_context_classes != NULL)
@@ -4222,53 +4260,94 @@ segment_ends_here (Segment  *state,
  *
  * Returns: the ancestor context that terminates here or %NULL.
  */
+static gboolean
+ancestor_matches_at (Context  *ancestor,
+                     LineInfo *line,
+                     int       pos)
+{
+	int first_byte = _gtk_source_regex_get_first_byte (ancestor->end);
+
+	if (first_byte >= 0 &&
+	    (pos == line->byte_length || (guchar)line->text[pos] != first_byte))
+	{
+		return FALSE;
+	}
+
+	/* A speculative search must not overwrite captures of an end match that
+	 * next_segment() has already found and may still apply after trying a child.
+	 */
+	if (ancestor->end_probe == NULL)
+	{
+		ancestor->end_probe = _gtk_source_regex_new_matcher (ancestor->end);
+	}
+
+	return _gtk_source_regex_match (ancestor->end_probe, line->text, line->byte_length, pos);
+}
+
 static Context *
 ancestor_context_ends_here (Context  *state,
                             LineInfo *line,
                             gint      line_pos)
 {
-	Context *current_context;
-	GSList *current_context_list;
-	GSList *check_ancestors;
-	Context *terminating_context;
+	if (state->end_ancestors == NULL)
+		return NULL;
 
-	/* A context can be terminated by the parent if extend_parent is
-	 * FALSE, so we need to verify the end of all the parents of
-	 * not-extending contexts. The list is ordered by ascending
-	 * depth. */
-	check_ancestors = NULL;
-	current_context = state;
-	while (ANCESTOR_CAN_END_CONTEXT (current_context))
+	for (guint i = 0; i < state->end_ancestors->len; i++)
 	{
-		if (!CONTEXT_EXTENDS_PARENT (current_context))
-			check_ancestors = g_slist_prepend (check_ancestors,
-							   current_context->parent);
-		current_context = current_context->parent;
+		Context *ancestor = state->end_ancestors->pdata[i];
+
+		if (ancestor_matches_at (ancestor, line, line_pos))
+			return ancestor;
 	}
 
-	/* The first context that ends here terminates its descendants. */
-	terminating_context = NULL;
-	current_context_list = check_ancestors;
-	while (current_context_list != NULL)
-	{
-		current_context = current_context_list->data;
+	return NULL;
+}
 
-		if (current_context->end &&
-		    _gtk_source_regex_is_resolved (current_context->end) &&
-		    _gtk_source_regex_match (current_context->end,
-					     line->text,
-					     line->byte_length,
-					     line_pos))
+/* Return the earliest ancestor boundary inside [start, end). Keep anchored
+ * matching against the original subject: unanchored searches are not equivalent
+ * for constructs such as \G, lookbehind, or match-start-dependent assertions.
+ * A mandatory ASCII first byte permits memchr() to skip impossible positions.
+ * Other patterns retain the exact character-by-character search.
+ */
+static int
+find_ancestor_end (Context  *state,
+                   LineInfo *line,
+                   int       start,
+                   int       end)
+{
+	if (state->end_ancestors == NULL)
+		return end;
+
+	for (guint i = 0; i < state->end_ancestors->len; i++)
+	{
+		Context *ancestor = state->end_ancestors->pdata[i];
+		int first_byte = _gtk_source_regex_get_first_byte (ancestor->end);
+		int pos = start;
+
+		while (pos < end)
 		{
-			terminating_context = current_context;
-			break;
+			if (first_byte >= 0)
+			{
+				const char *candidate;
+
+				candidate = memchr (line->text + pos, first_byte, end - pos);
+				if (candidate == NULL)
+					break;
+
+				pos = candidate - line->text;
+			}
+
+			if (ancestor_matches_at (ancestor, line, pos))
+			{
+				end = pos;
+				break;
+			}
+
+			pos = g_utf8_next_char (line->text + pos) - line->text;
 		}
-
-		current_context_list = current_context_list->next;
 	}
-	g_slist_free (check_ancestors);
 
-	return terminating_context;
+	return end;
 }
 
 /**
