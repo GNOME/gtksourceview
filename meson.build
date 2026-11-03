@@ -208,7 +208,7 @@ if build_machine.system() == 'darwin' and gtk_quartz_dep.found()
 endif
 
 # Compiler flags and warnings
-global_c_args = []
+global_c_args = ['-DG_DISABLE_CLEANUP']
 if cc.get_id() == 'msvc'
   test_c_args = [
     '/FImsvc_recommended_pragmas.h',
