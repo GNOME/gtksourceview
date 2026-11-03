@@ -257,6 +257,12 @@ struct _Context
 	 */
 	GtkSourceRegex *reg_all;
 
+	/* A trailing, stateless dot rule can consume ordinary text in runs when
+	 * every competing transition has a known mandatory first byte.
+	 */
+	DefinitionChild *literal_fallback;
+	guint8 literal_stops[16];
+
 	/* Either definition->default_style or child_def->style, not copied. */
 	const gchar *style;
 	GtkTextTag *tag;
@@ -3146,6 +3152,112 @@ create_reg_all (Context           *context,
 	return regex;
 }
 
+static gboolean
+literal_run_add_stop (Context        *context,
+                      GtkSourceRegex *regex)
+{
+	int first_byte;
+
+	if (regex == NULL)
+		return TRUE;
+
+	first_byte = _gtk_source_regex_get_first_byte (regex);
+	if (first_byte < 0)
+		return FALSE;
+
+	g_assert ((first_byte / 8) < G_N_ELEMENTS (context->literal_stops));
+	context->literal_stops[first_byte / 8] |= 1 << (first_byte % 8);
+
+	return TRUE;
+}
+
+/* This is deliberately a proof for a small subset.
+ *
+ * Unknown first bytes, nullable transitions, and stateful fallback rules keep
+ * the ordinary matcher. Stop bytes include disabled rules too: false positives
+ * merely shorten a run. No competing transition can start between the stops.
+ */
+static void
+context_compile_literal_run (Context *context)
+{
+	DefinitionsIter iter;
+	DefinitionChild *child;
+	DefinitionChild *last = NULL;
+	ContextDefinition *definition;
+	Context *ancestor;
+	const char *pattern;
+
+	definition_iter_init (&iter, context->definition);
+	while ((child = definition_iter_next (&iter)) != NULL)
+	{
+		if (last != NULL)
+		{
+			GtkSourceRegex *regex;
+
+			definition = last->u.definition;
+			regex = definition->type == CONTEXT_TYPE_SIMPLE
+			      ? definition->u.match
+			      : definition->u.start_end.start;
+
+			if (!literal_run_add_stop (context, regex))
+				return;
+		}
+
+		last = child;
+	}
+
+	if (last == NULL)
+		return;
+
+	definition = last->u.definition;
+	if (definition->type != CONTEXT_TYPE_SIMPLE ||
+	    (definition->flags & ~GTK_SOURCE_CONTEXT_EXTEND_PARENT) != 0 ||
+	    definition->sub_patterns != NULL)
+		return;
+
+	pattern = _gtk_source_regex_get_pattern (definition->u.match);
+	if (strcmp (pattern, ".") != 0 && strcmp (pattern, "(?-ix).") != 0)
+		return;
+
+	if (!literal_run_add_stop (context, context->end))
+		return;
+
+	ancestor = context;
+	while (ANCESTOR_CAN_END_CONTEXT (ancestor))
+	{
+		if (!CONTEXT_EXTENDS_PARENT (ancestor) &&
+		    !literal_run_add_stop (context, ancestor->parent->end))
+			return;
+
+		ancestor = ancestor->parent;
+	}
+
+	/* Dot is not DOTALL, even if the caller provides an interior newline. */
+	context->literal_stops['\n' / 8] |= 1 << ('\n' % 8);
+	context->literal_fallback = last;
+}
+
+static int
+literal_run_end (Context  *context,
+                 LineInfo *line,
+                 int       pos)
+{
+	const char *p = line->text + pos;
+	const char *end = line->text + pos + MIN (line->byte_length - pos, 65536);
+
+	while (p < end)
+	{
+		guchar ch = *p;
+
+		if (ch < 128 && (context->literal_stops[ch / 8] & (1 << (ch % 8))))
+			break;
+
+		p = g_utf8_next_char (p);
+	}
+
+	return p - line->text;
+}
+
 static Context *
 context_ref (Context *context)
 {
@@ -3191,6 +3303,9 @@ context_new (Context           *parent,
 							  definition->u.start_end.start,
 							  line_text);
 	}
+
+	if (definition->type == CONTEXT_TYPE_CONTAINER)
+		context_compile_literal_run (context);
 
 	/* Create reg_all. If it is possible we share the same reg_all
 	 * for more contexts storing it in the definition. */
@@ -3977,6 +4092,9 @@ simple_context_starts_here (GtkSourceContextEngine  *ce,
 		context_unref (new_context);
 		return FALSE;
 	}
+
+	if (state->context->literal_fallback == child_def)
+		match_end = literal_run_end (state->context, line, match_end);
 
 	g_assert (match_end <= line->byte_length);
 	segment_extend (state, line_pos_to_offset (line, match_end));

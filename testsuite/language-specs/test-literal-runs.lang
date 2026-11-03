@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="test-literal-runs" name="Literal run test" version="2.0" hidden="true">
+  <definitions>
+    <context id="interpolation" class="interpolation" extend-parent="false">
+      <start>\{</start>
+      <end>\}</end>
+    </context>
+    <context id="string" class="string" extend-parent="false">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context class="escape" extend-parent="true"><match>\\.</match></context>
+        <context ref="interpolation"/>
+        <context class="literal" extend-parent="false"><match>.</match></context>
+      </include>
+    </context>
+    <context id="unknown" class="unknown">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context class="word"><match>STOP</match></context>
+        <context class="literal" extend-parent="false"><match>.</match></context>
+      </include>
+    </context>
+    <context id="nullable" class="nullable">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context class="zero" end-parent="true"><match>(?=!)</match></context>
+        <context class="literal" extend-parent="false"><match>.</match></context>
+      </include>
+    </context>
+    <context id="host" class="host">
+      <start>&lt;([!#])</start>
+      <end>\%{1@start}&gt;</end>
+      <include><context ref="string"/></include>
+    </context>
+    <context id="test-literal-runs">
+      <include>
+        <context ref="host"/>
+        <context ref="string"/>
+        <context ref="unknown"/>
+        <context ref="nullable"/>
+      </include>
+    </context>
+  </definitions>
+</language>
