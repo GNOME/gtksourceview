@@ -51,24 +51,10 @@ GTK_SOURCE_INTERNAL
 gchar          *_gtk_source_regex_fetch           (GtkSourceRegex      *regex,
                                                    gint                 num);
 GTK_SOURCE_INTERNAL
-void            _gtk_source_regex_fetch_pos       (GtkSourceRegex      *regex,
-                                                   const gchar         *text,
-                                                   gint                 num,
-                                                   gint                *start_pos,
-                                                   gint                *end_pos);
-
-GTK_SOURCE_INTERNAL
 void            _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex      *regex,
                                                    gint                 num,
                                                    gint                *start_pos_p,
                                                    gint                *end_pos_p);
-GTK_SOURCE_INTERNAL
-void            _gtk_source_regex_fetch_named_pos (GtkSourceRegex      *regex,
-                                                   const gchar         *text,
-                                                   const gchar         *name,
-                                                   gint                *start_pos,
-                                                   gint                *end_pos);
-
 GTK_SOURCE_INTERNAL
 void            _gtk_source_regex_fetch_named_pos_bytes (GtkSourceRegex      *regex,
                                                          const char          *name,

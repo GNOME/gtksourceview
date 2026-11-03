@@ -331,34 +331,6 @@ _gtk_source_regex_fetch (GtkSourceRegex *regex,
 }
 
 void
-_gtk_source_regex_fetch_pos (GtkSourceRegex *regex,
-			     const gchar    *text,
-			     gint            num,
-			     gint           *start_pos, /* character offsets */
-			     gint           *end_pos)   /* character offsets */
-{
-	gint byte_start_pos, byte_end_pos;
-
-	g_assert (regex->resolved);
-
-	/* impl_match_info_fetch_pos() can return TRUE with start_pos/end_pos set to -1 */
-	if (!impl_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
-	{
-		if (start_pos != NULL)
-			*start_pos = -1;
-		if (end_pos != NULL)
-			*end_pos = -1;
-	}
-	else
-	{
-		if (start_pos != NULL)
-			*start_pos = g_utf8_pointer_to_offset (text, text + MAX (0, byte_start_pos));
-		if (end_pos != NULL)
-			*end_pos = g_utf8_pointer_to_offset (text, text + MAX (0, byte_end_pos));
-	}
-}
-
-void
 _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex *regex,
 				   gint            num,
 				   gint           *start_pos_p, /* byte offsets */
@@ -379,33 +351,6 @@ _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex *regex,
 		*start_pos_p = start_pos;
 	if (end_pos_p != NULL)
 		*end_pos_p = end_pos;
-}
-
-void
-_gtk_source_regex_fetch_named_pos (GtkSourceRegex *regex,
-				   const gchar    *text,
-				   const gchar    *name,
-				   gint           *start_pos, /* character offsets */
-				   gint           *end_pos)   /* character offsets */
-{
-	gint byte_start_pos, byte_end_pos;
-
-	g_assert (regex->resolved);
-
-	if (!impl_match_info_fetch_named_pos (regex->u.regex.match, name, &byte_start_pos, &byte_end_pos))
-	{
-		if (start_pos != NULL)
-			*start_pos = -1;
-		if (end_pos != NULL)
-			*end_pos = -1;
-	}
-	else
-	{
-		if (start_pos != NULL)
-			*start_pos = g_utf8_pointer_to_offset (text, text + byte_start_pos);
-		if (end_pos != NULL)
-			*end_pos = g_utf8_pointer_to_offset (text, text + byte_end_pos);
-	}
 }
 
 void

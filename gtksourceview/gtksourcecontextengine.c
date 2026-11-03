@@ -31,6 +31,7 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceregex-private.h"
+#include "gtksourceoffsetmap-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
@@ -364,6 +365,9 @@ struct _LineInfo
 	/* Length of the line text not including line terminator. */
 	gint char_length;
 	gint byte_length;
+
+	/* Shared by token boundaries and all numbered/named captures. */
+	GtkSourceOffsetMap offsets;
 };
 
 struct _InvalidRegion
@@ -2809,7 +2813,9 @@ apply_sub_patterns (Segment         *state,
 		gint start_pos;
 		gint end_pos;
 
-		_gtk_source_regex_fetch_pos (regex, line->text, 0, &start_pos, &end_pos);
+		_gtk_source_regex_fetch_pos_bytes (regex, 0, &start_pos, &end_pos);
+		start_pos = _gtk_source_offset_map_lookup (&line->offsets, start_pos);
+		end_pos = _gtk_source_offset_map_lookup (&line->offsets, end_pos);
 
 		if (where == SUB_PATTERN_WHERE_START)
 		{
@@ -2842,23 +2848,24 @@ apply_sub_patterns (Segment         *state,
 
 			if (sp_def->is_named)
 			{
-				_gtk_source_regex_fetch_named_pos (regex,
-								   line->text,
-								   sp_def->u.name,
-								   &start_pos,
-								   &end_pos);
+				_gtk_source_regex_fetch_named_pos_bytes (regex,
+				                                         sp_def->u.name,
+				                                         &start_pos,
+				                                         &end_pos);
 			}
 			else
 			{
-				_gtk_source_regex_fetch_pos (regex,
-							     line->text,
-							     sp_def->u.num,
-							     &start_pos,
-							     &end_pos);
+				_gtk_source_regex_fetch_pos_bytes (regex,
+				                                   sp_def->u.num,
+				                                   &start_pos,
+				                                   &end_pos);
 			}
 
 			if (start_pos >= 0 && start_pos != end_pos)
 			{
+				start_pos = _gtk_source_offset_map_lookup (&line->offsets, start_pos);
+				end_pos = _gtk_source_offset_map_lookup (&line->offsets, end_pos);
+
 				sub_pattern_new (state,
 						 line->start_at + start_pos,
 						 line->start_at + end_pos,
@@ -2948,9 +2955,7 @@ static gint
 line_pos_to_offset (LineInfo *line,
                     gint      pos)
 {
-	if (line->char_length != line->byte_length)
-		pos = g_utf8_pointer_to_offset (line->text, line->text + pos);
-	return line->start_at + pos;
+	return line->start_at + _gtk_source_offset_map_lookup (&line->offsets, pos);
 }
 
 /**
@@ -4563,6 +4568,7 @@ get_line_info (GtkTextBuffer     *buffer,
 	}
 
 	g_assert (line_end_offset == line->start_at + line->char_length + line->eol_length);
+	_gtk_source_offset_map_init (&line->offsets, line->text, line->byte_length, line->char_length);
 }
 
 /**
@@ -4574,6 +4580,7 @@ get_line_info (GtkTextBuffer     *buffer,
 static void
 line_info_destroy (LineInfo *line)
 {
+	_gtk_source_offset_map_clear (&line->offsets);
 	g_free (line->text);
 }
 
