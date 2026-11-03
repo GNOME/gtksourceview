@@ -460,6 +460,9 @@ struct _GtkSourceContextEngine
 	GArray *pending_edits;
 	gboolean pending_edits_collapsed;
 
+	/* Detect edits even if a reentrant update consumes the pending region. */
+	guint64 change_serial;
+
 	guint first_update;
 	guint incremental_update;
 };
@@ -1984,6 +1987,7 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
 	{
 		g_return_if_fail (start_offset < end_offset);
 
+		ce->change_serial++;
 		invalidate_region (ce, start_offset, end_offset - start_offset);
 
 		/* If end_offset is at the start of a line (enter key pressed) then
@@ -2123,6 +2127,7 @@ gtk_source_context_engine_text_deleted (GtkSourceEngine *engine,
 
 	if (!ce->disabled)
 	{
+		ce->change_serial++;
 		invalidate_region (ce, offset, - length);
 	}
 }
@@ -2368,19 +2373,24 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	gint invalid_line;
 	gint end_line;
 	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
+	GtkTextBuffer *buffer = NULL;
+	guint64 change_serial = ce->change_serial;
 
-	if (!ce->highlight || ce->disabled)
+	if (!ce->highlight || ce->disabled || ce->buffer == NULL)
 		return;
+
+	g_object_ref (ce);
+	buffer = g_object_ref (ce->buffer);
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	if (ce->line_independent)
 	{
-		/* Every line has a certified root entry state. It is safe to fill a
-		 * visible island while the idle worker still owns an earlier gap. */
-		update_syntax_range (ce, start, end,
-		                     synchronous ? 0 : FIRST_UPDATE_TIME_SLICE);
-		if (!ce->disabled)
+		/* Each line starts at the root context, so we can parse the visible
+		 * range while the idle worker still has earlier lines to process.
+		 */
+		update_syntax_range (ce, start, end, synchronous ? 0 : FIRST_UPDATE_TIME_SLICE);
+		if (!ce->disabled && ce->highlight && ce->buffer == buffer && ce->change_serial == change_serial)
 			ensure_highlighted (ce, start, end);
 		goto out;
 	}
@@ -2399,7 +2409,11 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	{
 		/* analyze whole region */
 		update_syntax (ce, end, 0);
-		ensure_highlighted (ce, start, end);
+		/* Notification handlers can detach the engine or invalidate the
+		 * caller's iterators, even if a nested update finishes their edits.
+		 */
+		if (!ce->disabled && ce->highlight && ce->buffer == buffer && ce->change_serial == change_serial)
+			ensure_highlighted (ce, start, end);
 	}
 	else
 	{
@@ -2416,6 +2430,8 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 out:
 	GTK_SOURCE_PROFILER_END_MARK ("ContextEngine::update_highlight", NULL);
+	g_object_unref (buffer);
+	g_object_unref (ce);
 }
 
 /**
@@ -2487,12 +2503,21 @@ all_analyzed (GtkSourceContextEngine *ce)
 static gboolean
 idle_worker (GtkSourceContextEngine *ce)
 {
+	GtkTextBuffer *buffer = NULL;
 	gboolean retval = G_SOURCE_CONTINUE;
 
 	g_return_val_if_fail (ce->buffer != NULL, G_SOURCE_REMOVE);
 
+	g_object_ref (ce);
+	buffer = g_object_ref (ce->buffer);
+
 	/* analyze batch of text */
 	update_syntax (ce, NULL, INCREMENTAL_UPDATE_TIME_SLICE);
+	if (ce->disabled || ce->buffer != buffer)
+	{
+		retval = G_SOURCE_REMOVE;
+		goto out;
+	}
 	CHECK_TREE (ce);
 
 	if (all_analyzed (ce))
@@ -2500,6 +2525,10 @@ idle_worker (GtkSourceContextEngine *ce)
 		ce->incremental_update = 0;
 		retval = G_SOURCE_REMOVE;
 	}
+
+out:
+	g_object_unref (buffer);
+	g_object_unref (ce);
 
 	return retval;
 }
@@ -2514,16 +2543,27 @@ idle_worker (GtkSourceContextEngine *ce)
 static gboolean
 first_update_callback (GtkSourceContextEngine *ce)
 {
+	GtkTextBuffer *buffer = NULL;
+
 	g_return_val_if_fail (ce->buffer != NULL, G_SOURCE_REMOVE);
+
+	g_object_ref (ce);
+	buffer = g_object_ref (ce->buffer);
 
 	/* analyze batch of text */
 	update_syntax (ce, NULL, FIRST_UPDATE_TIME_SLICE);
+	if (ce->disabled || ce->buffer != buffer)
+		goto out;
 	CHECK_TREE (ce);
 
 	ce->first_update = 0;
 
 	if (!all_analyzed (ce))
 		install_idle_worker (ce);
+
+out:
+	g_object_unref (buffer);
+	g_object_unref (ce);
 
 	return G_SOURCE_REMOVE;
 }
@@ -2697,6 +2737,8 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 	if (ce->buffer == buffer)
 		return;
+
+	ce->change_serial++;
 
 	/* Detach previous buffer if there is one. */
 	if (ce->buffer != NULL)
@@ -5688,7 +5730,8 @@ update_syntax_range (GtkSourceContextEngine *ce,
                      int                     time)
 {
 	GArray *updated_ranges = NULL;
-	GtkTextBuffer *buffer;
+	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
+	guint64 change_serial = ce->change_serial;
 	GtkTextIter start_iter, end_iter;
 	GtkTextIter line_start, line_end;
 	Segment *state;
@@ -5711,7 +5754,6 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		begin_offset = gtk_text_iter_get_offset (&line_begin);
 	}
 
-	buffer = ce->buffer;
 	state = ce->root_segment;
 
 	context_freeze (ce->root_context);
@@ -5847,7 +5889,7 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		{
 			line_info_destroy (&line);
 			g_timer_destroy (timer);
-			return;
+			goto out;
 		}
 
 #ifdef ENABLE_CHECK_TREE
@@ -5997,30 +6039,12 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		GtkTextIter range_start;
 		GtkTextIter range_end;
 
-		if (ce->disabled || ce->buffer != buffer || !ce->invalid_region.empty)
+		if (ce->disabled || ce->buffer != buffer || ce->change_serial != change_serial)
 			break;
 
 		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
 		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
 		refresh_context_classes (ce, &range_start, &range_end);
-	}
-
-	/* Observers see all refreshed classes before the first notification.
-	 * A handler may edit the buffer; those new pending edits invalidate the
-	 * saved offsets, so do not emit further notifications from this batch.
-	 */
-	for (guint i = 0; i < updated_ranges->len; i++)
-	{
-		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
-		GtkTextIter range_start;
-		GtkTextIter range_end;
-
-		if (ce->disabled || ce->buffer != buffer || !ce->invalid_region.empty)
-			break;
-
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
-		notify_highlight_updated (ce, &range_start, &range_end);
 	}
 
 	GTK_SOURCE_PROFILER_LOG ("analyzed %d chars from %d to %d in %fms",
@@ -6030,9 +6054,39 @@ update_syntax_range (GtkSourceContextEngine *ce,
 	g_timer_destroy (timer);
 
 out:
-	/* must call context_thaw, so this is the only return point */
-	context_thaw (ce->root_context);
-	g_clear_pointer (&updated_ranges, g_array_unref);
+	/* Finish the transaction before calling observers: a read-only handler
+	 * may synchronously request highlighting again. Detaching the buffer
+	 * already thaws and releases its root context.
+	 */
+	if (ce->root_context != NULL)
+		context_thaw (ce->root_context);
+
+	if (updated_ranges == NULL)
+	{
+		g_object_unref (buffer);
+		return;
+	}
+
+	/* Observers see all refreshed classes before the first notification.
+	 * Edits invalidate the saved offsets even if a nested update has already
+	 * consumed them, so use the serial rather than the pending-edit region.
+	 */
+	for (guint i = 0; i < updated_ranges->len; i++)
+	{
+		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
+		GtkTextIter range_start;
+		GtkTextIter range_end;
+
+		if (ce->disabled || ce->buffer != buffer || ce->change_serial != change_serial)
+			break;
+
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
+		notify_highlight_updated (ce, &range_start, &range_end);
+	}
+
+	g_array_unref (updated_ranges);
+	g_object_unref (buffer);
 }
 
 

@@ -442,6 +442,143 @@ test_engine_external_class (void)
 	g_object_unref (manager);
 }
 
+typedef enum
+{
+	NOTIFY_ENSURE,
+	NOTIFY_EDIT_ENSURE,
+	NOTIFY_EDIT,
+	NOTIFY_DETACH,
+} NotifyAction;
+
+typedef struct
+{
+	NotifyAction action;
+	guint outer_calls;
+	guint nested_calls;
+	gboolean in_callback;
+	gboolean synchronous;
+} NotifyState;
+
+static void
+highlight_updated_reentrant (GtkSourceBuffer *buffer,
+                             GtkTextIter     *start,
+                             GtkTextIter     *end,
+                             NotifyState     *state)
+{
+	GtkTextIter iter;
+
+	if (state->in_callback)
+	{
+		state->nested_calls++;
+		g_assert_cmpint (state->action, ==, NOTIFY_EDIT_ENSURE);
+		g_assert_cmpint (gtk_text_iter_get_line (start), ==, 0);
+		g_assert_cmpint (gtk_text_iter_get_line (end), ==, 0);
+		return;
+	}
+
+	g_assert_cmpint (gtk_text_iter_get_line (end), ==, gtk_text_iter_get_line (start));
+
+	state->outer_calls++;
+	if (state->outer_calls == 1)
+	{
+		g_assert_cmpint (gtk_text_iter_get_line (start), ==, 20);
+		gtk_text_buffer_get_iter_at_line_offset (GTK_TEXT_BUFFER (buffer), &iter,
+		                                         state->synchronous ? 700 : 20, 3);
+		g_assert_true (gtk_source_buffer_iter_has_context_class (buffer, &iter, "inner"));
+	}
+	else
+	{
+		g_assert_cmpint (state->action, ==, NOTIFY_ENSURE);
+		g_assert_cmpuint (state->outer_calls, ==, 2);
+		g_assert_cmpint (gtk_text_iter_get_line (start), ==, 700);
+	}
+
+	state->in_callback = TRUE;
+	if (state->action == NOTIFY_DETACH)
+	{
+		gtk_source_buffer_set_language (buffer, NULL);
+	}
+	else
+	{
+		if (state->action == NOTIFY_EDIT_ENSURE || state->action == NOTIFY_EDIT)
+		{
+			gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+			gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &iter, " ", 1);
+		}
+
+		if (state->action != NOTIFY_EDIT)
+			ensure_highlight (buffer);
+	}
+	state->in_callback = FALSE;
+}
+
+static void
+test_notification_reentrancy (gconstpointer data)
+{
+	GtkSourceLanguageManager *manager = NULL;
+	GtkSourceBuffer *source_buffer = NULL;
+	GString *text = g_string_new (NULL);
+	GtkTextBuffer *buffer;
+	GtkTextIter end;
+	const int lines[] = { 700, 20 };
+	NotifyState state = { .action = GPOINTER_TO_INT (data) / 2 };
+	gboolean synchronous = GPOINTER_TO_INT (data) % 2;
+	gulong handler;
+
+	state.synchronous = synchronous;
+
+	source_buffer = new_source_buffer (&manager);
+	buffer = GTK_TEXT_BUFFER (source_buffer);
+
+	for (int i = 0; i < 1000; i++)
+		g_string_append (text, " [ab{xy}cd] z\n");
+	gtk_text_buffer_set_text (buffer, text->str, text->len);
+	ensure_highlight (source_buffer);
+
+	for (guint i = 0; i < G_N_ELEMENTS (lines); i++)
+	{
+		if (!synchronous && i == 0)
+			continue;
+
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &end, lines[i], 2);
+		gtk_text_buffer_insert (buffer, &end, i == 0 || !synchronous ? "{x}" : " ", -1);
+	}
+
+	handler = g_signal_connect (buffer,
+	                            "highlight-updated",
+	                            G_CALLBACK (highlight_updated_reentrant),
+	                            &state);
+
+	if (synchronous)
+	{
+		ensure_highlight (source_buffer);
+	}
+	else
+	{
+		while (state.outer_calls == 0)
+			g_assert_true (g_main_context_iteration (NULL, FALSE));
+	}
+
+	g_signal_handler_disconnect (buffer, handler);
+	g_assert_cmpuint (state.outer_calls, ==, state.action == NOTIFY_ENSURE && synchronous ? 2 : 1);
+	g_assert_cmpuint (state.nested_calls, ==, state.action == NOTIFY_EDIT_ENSURE ? 1 : 0);
+
+	if (state.action == NOTIFY_DETACH)
+	{
+		g_assert_null (gtk_source_buffer_get_language (source_buffer));
+	}
+	else
+	{
+		ensure_highlight (source_buffer);
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &end, synchronous ? 700 : 20, 3);
+		g_assert_true (gtk_source_buffer_iter_has_context_class (source_buffer, &end, "inner"));
+	}
+
+	g_string_free (text, TRUE);
+	g_object_unref (source_buffer);
+	g_object_unref (manager);
+}
+
 int
 main (int   argc,
       char *argv[])
@@ -455,6 +592,14 @@ main (int   argc,
 	g_test_add_func ("/tag-plan/overlay-existing-tag", test_overlay_existing_tag);
 	g_test_add_func ("/tag-plan/engine-classes-and-edit", test_engine_classes_and_edit);
 	g_test_add_func ("/tag-plan/engine-external-class", test_engine_external_class);
+	g_test_add_data_func ("/tag-plan/notification/ensure-idle", GINT_TO_POINTER (2 * NOTIFY_ENSURE), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/ensure-synchronous", GINT_TO_POINTER (2 * NOTIFY_ENSURE + 1), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/edit-ensure-idle", GINT_TO_POINTER (2 * NOTIFY_EDIT_ENSURE), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/edit-ensure-synchronous", GINT_TO_POINTER (2 * NOTIFY_EDIT_ENSURE + 1), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/edit-idle", GINT_TO_POINTER (2 * NOTIFY_EDIT), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/edit-synchronous", GINT_TO_POINTER (2 * NOTIFY_EDIT + 1), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/detach-idle", GINT_TO_POINTER (2 * NOTIFY_DETACH), test_notification_reentrancy);
+	g_test_add_data_func ("/tag-plan/notification/detach-synchronous", GINT_TO_POINTER (2 * NOTIFY_DETACH + 1), test_notification_reentrancy);
 
 	return g_test_run ();
 }
