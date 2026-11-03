@@ -1206,28 +1206,15 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 #endif
 }
 
-/*
- * refresh_range:
- * @ce: a #GtkSourceContextEngine.
- * @start: the beginning of updated area.
- * @end: the end of updated area.
- * @modify_refresh_region: whether updated area should be added to
- * refresh_region.
- *
- * Marks the area as updated and notifies view about it.
- */
 static void
-refresh_range (GtkSourceContextEngine *ce,
-               const GtkTextIter      *start,
-               const GtkTextIter      *end)
+notify_highlight_updated (GtkSourceContextEngine *ce,
+                          const GtkTextIter      *start,
+                          const GtkTextIter      *end)
 {
 	GtkTextIter real_end;
 
 	if (gtk_text_iter_equal (start, end))
 		return;
-
-	/* Refresh the context classes here */
-	refresh_context_classes (ce, start, end);
 
 	/* Here we need to make sure we do not make it redraw next line */
 	real_end = *end;
@@ -2298,7 +2285,8 @@ enable_highlight (GtkSourceContextEngine *ce,
 	{
 		gtk_source_region_add_subregion (ce->refresh_region, &start, &end);
 
-		refresh_range (ce, &start, &end);
+		refresh_context_classes (ce, &start, &end);
+		notify_highlight_updated (ce, &start, &end);
 	}
 	else
 	{
@@ -5484,11 +5472,18 @@ erase_segments (GtkSourceContextEngine *ce,
  * not necessarily what's requested (unless @time is 0).
  */
 /* TODO it must be refactored. */
+typedef struct
+{
+	int start;
+	int end;
+} UpdatedRange;
+
 static void
 update_syntax (GtkSourceContextEngine *ce,
                const GtkTextIter      *end,
                gint                    time)
 {
+	GArray *updated_ranges = NULL;
 	GtkTextBuffer *buffer;
 	GtkTextIter start_iter, end_iter;
 	GtkTextIter line_start, line_end;
@@ -5585,6 +5580,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	analyzed_end = line_end_offset;
 
 	timer = g_timer_new ();
+	updated_ranges = g_array_new (FALSE, FALSE, sizeof (UpdatedRange));
 
 	while (TRUE)
 	{
@@ -5656,6 +5652,21 @@ update_syntax (GtkSourceContextEngine *ce,
 		line_info_destroy (&line);
 
 		gtk_source_region_add_subregion (ce->refresh_region, &line_start, &line_end);
+
+		/* Keep the gaps when convergence lets us skip valid syntax. Refreshing
+		 * the bounding range would revisit its segments and context classes.
+		 */
+		if (updated_ranges->len > 0 &&
+		    g_array_index (updated_ranges, UpdatedRange, updated_ranges->len - 1).end == line_start_offset)
+		{
+			g_array_index (updated_ranges, UpdatedRange, updated_ranges->len - 1).end = line_end_offset;
+		}
+		else
+		{
+			UpdatedRange range = { line_start_offset, line_end_offset };
+			g_array_append_val (updated_ranges, range);
+		}
+
 		analyzed_end = line_end_offset;
 		invalid = get_invalid_segment (ce);
 
@@ -5737,9 +5748,37 @@ update_syntax (GtkSourceContextEngine *ce,
 	if (!all_analyzed (ce))
 		install_idle_worker (ce);
 
-	gtk_text_iter_set_offset (&end_iter, analyzed_end);
+	for (guint i = 0; i < updated_ranges->len; i++)
+	{
+		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
+		GtkTextIter range_start;
+		GtkTextIter range_end;
 
-	refresh_range (ce, &start_iter, &end_iter);
+		if (ce->disabled || ce->buffer != buffer || !ce->invalid_region.empty)
+			break;
+
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
+		refresh_context_classes (ce, &range_start, &range_end);
+	}
+
+	/* Observers see all refreshed classes before the first notification.
+	 * A handler may edit the buffer; those new pending edits invalidate the
+	 * saved offsets, so do not emit further notifications from this batch.
+	 */
+	for (guint i = 0; i < updated_ranges->len; i++)
+	{
+		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
+		GtkTextIter range_start;
+		GtkTextIter range_end;
+
+		if (ce->disabled || ce->buffer != buffer || !ce->invalid_region.empty)
+			break;
+
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
+		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
+		notify_highlight_updated (ce, &range_start, &range_end);
+	}
 
 	GTK_SOURCE_PROFILER_LOG ("analyzed %d chars from %d to %d in %fms",
 	                         analyzed_end - start_offset, start_offset, analyzed_end,
@@ -5750,6 +5789,7 @@ update_syntax (GtkSourceContextEngine *ce,
 out:
 	/* must call context_thaw, so this is the only return point */
 	context_thaw (ce->root_context);
+	g_clear_pointer (&updated_ranges, g_array_unref);
 }
 
 
