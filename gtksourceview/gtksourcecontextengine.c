@@ -32,6 +32,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourceregex-private.h"
 #include "gtksourceoffsetmap-private.h"
+#include "gtksourceeditjournal-private.h"
 #include "gtksourcetagplan-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
@@ -408,6 +409,19 @@ struct _InvalidRegion
 	gint delta;
 };
 
+typedef struct
+{
+	GtkTextMark *start;
+	GtkTextMark *end;
+	int delta;
+} PendingEdit;
+
+/* Keep the edit journal bounded. Large batches fall back to one bounding
+ * range so we do not keep shifting the same untouched text.
+ */
+#define MAX_PENDING_EDITS 32
+#define PENDING_EDIT_MERGE_DISTANCE 4096
+
 struct _GtkSourceContextClass
 {
 	gchar *name;
@@ -468,6 +482,8 @@ struct _GtkSourceContextEngine
 	/* list of Segment* */
 	GSList *invalid;
 	InvalidRegion invalid_region;
+	GArray *pending_edits;
+	gboolean pending_edits_collapsed;
 
 	guint first_update;
 	guint incremental_update;
@@ -916,8 +932,10 @@ highlight_region (GtkSourceContextEngine *ce,
 	GHashTableIter tag_iter;
 	gpointer value;
 
-	if (gtk_text_iter_starts_line (end))
-		gtk_text_iter_backward_char (end);
+	/* Reconcile the full analyzed range, including its line ending. Tag
+	 * membership must not depend on whether this line ends a parse batch.
+	 * notify_highlight_updated() separately limits the redraw notification.
+	 */
 	if (gtk_text_iter_compare (start, end) >= 0)
 		return;
 
@@ -1168,11 +1186,6 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 #endif
 	GtkTextIter realend = *end;
 	GtkSourceTagPlan *plan = NULL;
-
-	if (gtk_text_iter_starts_line (&realend))
-	{
-		gtk_text_iter_backward_char (&realend);
-	}
 
 	if (gtk_text_iter_compare (start, &realend) >= 0)
 	{
@@ -1733,6 +1746,54 @@ simple_segment_split_ (GtkSourceContextEngine *ce,
 	return invalid;
 }
 
+static void
+clear_pending_edits (GtkSourceContextEngine *ce)
+{
+	if (ce->pending_edits == NULL)
+		return;
+
+	for (guint i = 0; i < ce->pending_edits->len; i++)
+	{
+		PendingEdit *edit = &g_array_index (ce->pending_edits, PendingEdit, i);
+
+		gtk_text_buffer_delete_mark (ce->buffer, edit->start);
+		gtk_text_buffer_delete_mark (ce->buffer, edit->end);
+	}
+
+	g_clear_pointer (&ce->pending_edits, g_array_unref);
+}
+
+static void
+record_pending_edit (GtkSourceContextEngine *ce,
+                     int                     start,
+                     int                     end,
+                     int                     delta)
+{
+	PendingEdit edit;
+	GtkTextIter iter;
+
+	if (ce->pending_edits_collapsed)
+		return;
+
+	if (ce->pending_edits == NULL)
+		ce->pending_edits = g_array_new (FALSE, FALSE, sizeof (PendingEdit));
+
+	if (ce->pending_edits->len == MAX_PENDING_EDITS)
+	{
+		clear_pending_edits (ce);
+		ce->pending_edits_collapsed = TRUE;
+		return;
+	}
+
+	gtk_text_buffer_get_iter_at_offset (ce->buffer, &iter, start);
+	edit.start = gtk_text_buffer_create_mark (ce->buffer, NULL, &iter, TRUE);
+	gtk_text_iter_set_offset (&iter, end);
+	edit.end = gtk_text_buffer_create_mark (ce->buffer, NULL, &iter, FALSE);
+	edit.delta = delta;
+
+	g_array_append_val (ce->pending_edits, edit);
+}
+
 /**
  * invalidate_region:
  * @ce: a #GtkSourceContextEngine.
@@ -1798,6 +1859,8 @@ invalidate_region (GtkSourceContextEngine *ce,
 		g_assert_cmpint (start, <=, end - region->delta);
 	}
 #endif
+
+	record_pending_edit (ce, offset, end_offset, length);
 
 	CHECK_TREE (ce);
 
@@ -2140,22 +2203,12 @@ get_invalid_line (GtkSourceContextEngine *ce)
  * Modifies syntax tree according to data in invalid_region.
  */
 static void
-update_tree (GtkSourceContextEngine *ce)
+update_tree_region (GtkSourceContextEngine *ce,
+                    int                     start,
+                    int                     end,
+                    int                     delta)
 {
-	InvalidRegion *region = &ce->invalid_region;
-	gint start, end, delta;
 	gint erase_start, erase_end;
-	GtkTextIter iter;
-
-	if (region->empty)
-		return;
-
-	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->start);
-	start = gtk_text_iter_get_offset (&iter);
-	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->end);
-	end = gtk_text_iter_get_offset (&iter);
-
-	delta = region->delta;
 
 	g_assert (start <= MIN (end, end - delta));
 
@@ -2191,12 +2244,127 @@ update_tree (GtkSourceContextEngine *ce)
 		insert_range (ce, start, 0);
 	}
 
-	region->empty = TRUE;
+}
 
-#ifdef ENABLE_CHECK_TREE
-	g_assert (get_invalid_at (ce, start) != NULL);
+static int
+pending_edit_compare (gconstpointer a,
+                      gconstpointer b)
+{
+	const GtkSourceEditRange *x = a;
+	const GtkSourceEditRange *y = b;
+
+	if (x->start != y->start)
+		return (x->start > y->start) - (x->start < y->start);
+
+	return (x->end > y->end) - (x->end < y->end);
+}
+
+static void
+update_tree_bounding_region (GtkSourceContextEngine *ce)
+{
+	InvalidRegion *region = &ce->invalid_region;
+	GtkTextIter iter;
+	int start, end;
+
+	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->start);
+	start = gtk_text_iter_get_offset (&iter);
+	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->end);
+	end = gtk_text_iter_get_offset (&iter);
+
+	update_tree_region (ce, start, end, region->delta);
+}
+
+static void
+update_tree (GtkSourceContextEngine *ce)
+{
+	InvalidRegion *region = &ce->invalid_region;
+	GtkTextIter iter;
+
+	if (region->empty)
+		return;
+
+	if (ce->pending_edits_collapsed || ce->pending_edits == NULL)
+	{
+		update_tree_bounding_region (ce);
+	}
+	else
+	{
+		GArray *ranges = g_array_sized_new (FALSE, FALSE, sizeof (GtkSourceEditRange), ce->pending_edits->len);
+		guint n = 0;
+
+		/* Marks describe every edit in final buffer coordinates. Overlapping
+		 * edits (including deletions of inserted text) share one net delta.
+		 */
+		for (guint i = 0; i < ce->pending_edits->len; i++)
+		{
+			PendingEdit *edit = &g_array_index (ce->pending_edits, PendingEdit, i);
+			GtkSourceEditRange range;
+
+			gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, edit->start);
+			gtk_text_iter_set_line_offset (&iter, 0);
+			range.start = gtk_text_iter_get_offset (&iter);
+			gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, edit->end);
+
+			if (!gtk_text_iter_starts_line (&iter) || gtk_text_iter_get_offset (&iter) == range.start)
+				gtk_text_iter_forward_line (&iter);
+
+			range.end = gtk_text_iter_get_offset (&iter);
+			range.delta = edit->delta;
+
+			g_array_append_val (ranges, range);
+		}
+
+		g_array_sort (ranges, pending_edit_compare);
+
+		for (guint i = 0; i < ranges->len; i++)
+		{
+			GtkSourceEditRange range = g_array_index (ranges, GtkSourceEditRange, i);
+
+			/* Offsets are still absolute in this tree. Cluster nearby edits
+			 * into one shift so multiple cursors on nearby lines do not each
+			 * walk the same untouched suffix. Parsing already works by line.
+			 */
+			if (n > 0 && range.start - g_array_index (ranges, GtkSourceEditRange, n - 1).end <= PENDING_EDIT_MERGE_DISTANCE)
+			{
+				GtkSourceEditRange *last = &g_array_index (ranges, GtkSourceEditRange, n - 1);
+
+				last->end = MAX (last->end, range.end);
+				last->delta += range.delta;
+			}
+			else
+			{
+				g_array_index (ranges, GtkSourceEditRange, n++) = range;
+			}
+		}
+
+		/* Undo only the earlier edits' displacement, and check all temporary
+		 * coordinates in a wider type before changing the tree. Very large
+		 * edit batches can exceed the offset limit in right-to-left order,
+		 * even though their original and final buffers both fit.
+		 */
+		if (!_gtk_source_edit_ranges_prepare ((GtkSourceEditRange *)ranges->data,
+		                                      n, ce->root_segment->end_at,
+		                                      gtk_text_buffer_get_char_count (ce->buffer)))
+		{
+			update_tree_bounding_region (ce);
+		}
+		else
+		{
+			while (n > 0)
+			{
+				GtkSourceEditRange *range = &g_array_index (ranges, GtkSourceEditRange, --n);
+
+				update_tree_region (ce, range->start, range->end, (int)range->delta);
+			}
+		}
+
+		g_array_unref (ranges);
+	}
+
+	clear_pending_edits (ce);
+	ce->pending_edits_collapsed = FALSE;
+	region->empty = TRUE;
 	CHECK_TREE (ce);
-#endif
 }
 
 /**
@@ -2529,6 +2697,9 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->root_context = NULL;
 		ce->invalid = NULL;
 
+		clear_pending_edits (ce);
+		ce->pending_edits_collapsed = FALSE;
+
 		if (ce->invalid_region.start != NULL)
 			gtk_text_buffer_delete_mark (ce->buffer,
 						     ce->invalid_region.start);
@@ -2581,6 +2752,11 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		{
 			ce->invalid_region.empty = FALSE;
 			ce->invalid_region.delta = gtk_text_buffer_get_char_count (buffer);
+			/* The initial contents have not been represented in the tree or
+			 * edit journal. Keep subsequent edits in this bounding invalidation
+			 * until update_tree() has consumed that initial insertion.
+			 */
+			ce->pending_edits_collapsed = TRUE;
 		}
 		else
 		{
