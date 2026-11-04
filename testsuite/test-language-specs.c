@@ -38,17 +38,9 @@ main (int   argc,
 {
 	GtkSourceLanguageManager *lm;
 	const char * const *ids;
-	char *language_specs;
-	char *search_path[2];
-	const char *srcdir = g_getenv ("G_TEST_SRCDIR");
+	const char * const search_path[] = { "resource:///org/gnome/gtksourceview/language-specs/", NULL };
 	GPtrArray *strings;
 	int ret;
-
-	g_assert_nonnull (srcdir);
-
-	language_specs = g_build_filename (srcdir, "..", "data", "language-specs", NULL);
-	search_path[0] = language_specs;
-	search_path[1] = 0;
 
 	g_test_init (&argc, &argv, NULL);
 	gtk_init ();
@@ -77,7 +69,7 @@ main (int   argc,
 
 	strings = g_ptr_array_new_with_free_func (g_free);
 	lm = gtk_source_language_manager_get_default ();
-	gtk_source_language_manager_set_search_path (lm, (const char * const *)search_path);
+	gtk_source_language_manager_set_search_path (lm, search_path);
 
 	ids = gtk_source_language_manager_get_language_ids (lm);
 
@@ -92,7 +84,6 @@ main (int   argc,
 
 	g_ptr_array_unref (strings);
 	g_hash_table_unref (skipped);
-	g_free (language_specs);
 
 	return ret;
 }

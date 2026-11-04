@@ -217,9 +217,21 @@ gtksourceversion_h = configure_file(
     install_dir: join_paths(pkgincludedir, 'gtksourceview'),
 )
 
+validated_languages = custom_target('validate-language-specs',
+  input: ['gtksourceview.gresource.xml', '../data/language-specs/language2.rng'],
+  output: 'language-specs.validated',
+  depfile: 'language-specs.validated.d',
+  command: [
+    import('python').find_installation(),
+    files('../data/language-specs/check-language-specs.py'),
+    xmllint_prg, '@INPUT0@', '@INPUT1@', '@OUTPUT@', '@DEPFILE@',
+  ],
+)
+
 gtksource_res = gnome.compile_resources(
   'gtksourceview-gresources',
-  'gtksourceview.gresource.xml'
+  'gtksourceview.gresource.xml',
+  dependencies: validated_languages,
 )
 
 core_sources = [

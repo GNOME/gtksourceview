@@ -1651,6 +1651,7 @@ file_parse (const gchar               *filename,
 	GBytes *bytes = NULL;
 	int fd = -1;
 	GError *tmp_error = NULL;
+	gboolean validated = FALSE;
 
 	g_return_val_if_fail (filename != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -1660,8 +1661,16 @@ file_parse (const gchar               *filename,
 	if (g_str_has_prefix (filename, "resource://"))
 	{
 		const char *path = filename + strlen ("resource://");
+		GBytes *bundled;
 
 		bytes = g_resources_lookup_data (path, 0, NULL);
+		bundled = g_resource_lookup_data (gtksourceview_get_resource (), path, 0, NULL);
+
+		/* We validate bundled specs when building the library. Overlays
+		 * and application resources still need to be validated here.
+		 */
+		validated = bytes != NULL && bundled != NULL && g_bytes_equal (bytes, bundled);
+		g_clear_pointer (&bundled, g_bytes_unref);
 
 		if (bytes != NULL)
 		{
@@ -1692,7 +1701,7 @@ file_parse (const gchar               *filename,
 		goto error;
 	}
 
-	if (xmlTextReaderRelaxNGSetSchema (reader, get_rng_schema ()) != 0)
+	if (!validated && xmlTextReaderRelaxNGSetSchema (reader, get_rng_schema ()) != 0)
 	{
 		g_set_error_literal (&tmp_error,
 		                     PARSER_ERROR,

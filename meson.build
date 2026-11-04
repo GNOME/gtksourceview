@@ -103,7 +103,7 @@ else
   introspection_dep = []
 endif
 
-xmllint_prg = find_program('xmllint', required: false)
+xmllint_prg = find_program('xmllint')
 
 glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]

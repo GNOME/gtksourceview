@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: LGPL-2.1-or-later -->
+<language id="testsuite-invalid" name="Invalid schema test" version="2.0" invalid="true">
+  <definitions>
+    <context id="testsuite-invalid">
+      <match>test</match>
+    </context>
+  </definitions>
+</language>

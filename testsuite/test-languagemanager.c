@@ -211,7 +211,7 @@ test_resources (void)
 	g_assert_true (g_strv_contains (ids, "testsuite"));
 	g_assert_true (g_strv_contains (ids, "testsuite-2"));
 	g_assert_true (g_strv_contains (ids, "def"));
-	g_assert_cmpint (g_strv_length ((char **)ids), ==, 3);
+	g_assert_cmpint (g_strv_length ((char **)ids), ==, 4);
 
 	l = gtk_source_language_manager_get_language (lm, "testsuite");
 	g_assert_nonnull (l);
@@ -219,6 +219,14 @@ test_resources (void)
 
 	buffer = gtk_source_buffer_new (NULL);
 	gtk_source_buffer_set_language (buffer, l);
+
+	/* Application resources must still be validated against our schema. */
+	l = gtk_source_language_manager_get_language (lm, "testsuite-invalid");
+	g_assert_nonnull (l);
+	g_test_expect_message ("GtkSourceView", G_LOG_LEVEL_WARNING,
+	                       "*Failed to load*testsuite-invalid.lang*");
+	gtk_source_buffer_set_language (buffer, l);
+	g_test_assert_expected_messages ();
 
 	g_object_unref (buffer);
 	g_object_unref (lm);
