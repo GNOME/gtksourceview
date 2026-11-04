@@ -165,6 +165,9 @@ main (int   argc,
 {
 	int ret;
 
+	/* We only inspect render nodes, so avoid initializing GPU drivers. */
+	g_setenv ("GSK_RENDERER", "cairo", TRUE);
+
 	gtk_test_init (&argc, &argv);
 	gtk_source_init ();
 
