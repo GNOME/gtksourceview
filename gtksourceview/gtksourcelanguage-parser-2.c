@@ -33,6 +33,7 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcecontextengine-private.h"
+#include "gtksourcetrace.h"
 #include "gtksourceview-gresources.h"
 
 #include <glib.h>
@@ -1056,8 +1057,11 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 
 	data.parser_state = parser_state;
 	data.error = NULL;
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 	expanded_regex = g_regex_replace_eval (egg_re, regex, len, 0, 0,
 					       replace_by_id, &data, NULL);
+	GTK_SOURCE_PROFILER_END_MARK ("Language expand variables", NULL);
 
 	if (data.error == NULL)
         {
@@ -1140,8 +1144,10 @@ expand_regex_delimiters (ParserState *parser_state,
 	if (egg_re == NULL)
 		egg_re = g_regex_new (re, G_REGEX_NEWLINE_LF | G_REGEX_OPTIMIZE, 0, NULL);
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 	expanded_regex = g_regex_replace_eval (egg_re, regex, len, 0, 0,
 					       replace_delimiter, parser_state, NULL);
+	GTK_SOURCE_PROFILER_END_MARK ("Language expand delimiters", NULL);
 
 	DEBUG (g_message ("expanded regex delims '%s' to '%s'",
 				regex, expanded_regex));
@@ -1616,6 +1622,7 @@ get_rng_schema (void)
 		return rng_schema;
 	}
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 	bytes = g_resource_lookup_data (gtksourceview_get_resource (),
 	                                "/org/gnome/gtksourceview/language2.rng", 0, NULL);
 	g_assert (bytes != NULL);
@@ -1626,6 +1633,7 @@ get_rng_schema (void)
 	g_assert (rng_schema != NULL);
 	xmlRelaxNGFreeParserCtxt (ctxt);
 	g_bytes_unref (bytes);
+	GTK_SOURCE_PROFILER_END_MARK ("Language compile schema", NULL);
 
 	return rng_schema;
 }
@@ -1718,6 +1726,7 @@ file_parse (const gchar               *filename,
 						(xmlStructuredErrorFunc) text_reader_structured_error_func,
 						parser_state);
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 	while ((parser_state->error == NULL) &&
 	        (1 == xmlTextReaderRead (parser_state->reader)))
 	{
@@ -1743,6 +1752,8 @@ file_parse (const gchar               *filename,
 				break;
 		}
 	}
+
+	GTK_SOURCE_PROFILER_END_MARK ("Language parse file", filename);
 
 	if (parser_state->error != NULL)
 	{
@@ -1883,13 +1894,19 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 						 NULL);
 	replacements = g_queue_new ();
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 	success = file_parse (filename, language, ctx_data,
 			      defined_regexes, styles,
 			      loaded_lang_ids, replacements,
 			      &error);
+	GTK_SOURCE_PROFILER_END_MARK ("Language parse", filename);
 
 	if (success)
+	{
+		GTK_SOURCE_PROFILER_BEGIN_MARK;
 		success = _gtk_source_context_data_finish_parse (ctx_data, replacements->head, &error);
+		GTK_SOURCE_PROFILER_END_MARK ("Language finish parse", filename);
+	}
 
 	if (success)
 		g_hash_table_foreach_steal (styles,
