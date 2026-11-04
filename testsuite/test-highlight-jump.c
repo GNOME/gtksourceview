@@ -236,6 +236,34 @@ test_islands_with_pending_edits (void)
 }
 
 static void
+test_delete_line_prefix (void)
+{
+	const guint batches[] = { 1, 40 };
+
+	for (guint i = 0; i < G_N_ELEMENTS (batches); i++)
+	{
+		GtkSourceBuffer *buffer = test_highlight_buffer_new ("test-line-local", "word\nx# comment\n");
+		GtkTextIter begin, end;
+		int offset = 5 + batches[i];
+
+		test_highlight_buffer_ensure (buffer);
+		for (guint edit = 0; edit < batches[i]; edit++)
+		{
+			gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &begin);
+			gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, "a", 1);
+		}
+
+		gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &begin, offset);
+		end = begin;
+		gtk_text_iter_forward_char (&end);
+		gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
+		test_highlight_buffer_ensure (buffer);
+		test_highlight_assert_class (buffer, offset, "comment", TRUE);
+		g_object_unref (buffer);
+	}
+}
+
+static void
 test_first_line_edits (void)
 {
 	const char *prefixes[] = { "\n", "\n\n", "new\n", "new\nprefix " };
@@ -287,6 +315,7 @@ main (int    argc,
 	g_test_add_func ("/highlight/jump/python-blank-rejected", test_python_blank_is_not_restart);
 	g_test_add_func ("/highlight/jump/islands-with-pending-edits", test_islands_with_pending_edits);
 	g_test_add_func ("/highlight/jump/first-line-edits", test_first_line_edits);
+	g_test_add_func ("/highlight/jump/delete-line-prefix", test_delete_line_prefix);
 	result = g_test_run ();
 	gtk_source_finalize ();
 	return result;

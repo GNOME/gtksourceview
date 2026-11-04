@@ -2254,6 +2254,9 @@ update_tree_bounding_region (GtkSourceContextEngine *ce)
 	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->start);
 	start = gtk_text_iter_get_offset (&iter);
 	gtk_text_buffer_get_iter_at_mark (ce->buffer, &iter, region->end);
+
+	/* If prefix was deleted the mark moves to the start but still needs parsing. */
+	gtk_text_iter_forward_line (&iter);
 	end = gtk_text_iter_get_offset (&iter);
 
 	update_tree_region (ce, start, end, region->delta);
