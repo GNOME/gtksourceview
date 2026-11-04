@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="jsp" name="JSP" version="2.0" _section="Markup">
+  <metadata>
+    <property name="mimetypes">text/x-jsp;application/x-jsp</property>
+    <property name="globs">*.jsp;*.jspf;*.jspx;*.tagf</property>
+    <property name="block-comment-start">&lt;%--</property>
+    <property name="block-comment-end">--%&gt;</property>
+    <property name="suggested-suffix">.jsp</property>
+  </metadata>
+
+  <styles>
+    <style id="preprocessor" name="Preprocessor tags" map-to="def:preprocessor"/>
+    <style id="comment" name="JSP comment" map-to="def:comment"/>
+    <style id="directive" name="Directive Name" map-to="def:keyword"/>
+    <style id="attrib-name" name="Attribute Name" map-to="xml:attribute-name"/>
+    <style id="attrib-value" name="Attribute Value" map-to="xml:attribute-value"/>
+    <style id="expression" name="Expression Language" map-to="def:identifier"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="builtin" name="Implicit Object" map-to="def:builtin"/>
+    <style id="null-value" name="Null Value" map-to="def:special-constant"/>
+    <style id="boolean" name="Boolean value" map-to="def:boolean"/>
+  </styles>
+
+  <definitions>
+    <!-- A JSP comment is not passed on to the client, unlike an HTML comment. -->
+    <context id="jsp-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+      <start>&lt;%--</start>
+      <end>--%&gt;</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <!-- <%@ page|include|taglib|tag|attribute|variable ... %> -->
+    <context id="directive" class="no-spell-check">
+      <start>&lt;%@</start>
+      <end>%&gt;</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="preprocessor"/>
+        <context sub-pattern="0" where="end" style-ref="preprocessor"/>
+
+        <context id="directive-name" style-ref="directive" once-only="true">
+          <match>\%[(page|include|taglib|tag|attribute|variable)\%]</match>
+        </context>
+
+        <context id="directive-attrib-name" style-ref="attrib-name">
+          <match>[a-zA-Z][a-zA-Z0-9_.:-]*(?=\s*=)</match>
+        </context>
+
+        <context ref="def:string" style-ref="attrib-value"/>
+        <context ref="def:single-quoted-string" style-ref="attrib-value"/>
+      </include>
+    </context>
+
+    <!-- java.lang lists only Java's true keywords, so class names such as
+         String are left unstyled. Scriptlets are terse enough that the common
+         java.lang classes read as types here. Scoped to JSP by overriding
+         java:primitive-types from this language only, so .java files keep
+         upstream behaviour. -->
+    <context id="java-types">
+      <include>
+        <context ref="java:primitive-types" original="true"/>
+
+        <context id="java-lang-classes" style-ref="type">
+          <keyword>Boolean</keyword>
+          <keyword>Byte</keyword>
+          <keyword>Character</keyword>
+          <keyword>CharSequence</keyword>
+          <keyword>Class</keyword>
+          <keyword>Comparable</keyword>
+          <keyword>Double</keyword>
+          <keyword>Exception</keyword>
+          <keyword>Float</keyword>
+          <keyword>Integer</keyword>
+          <keyword>Iterable</keyword>
+          <keyword>Long</keyword>
+          <keyword>Math</keyword>
+          <keyword>Number</keyword>
+          <keyword>Object</keyword>
+          <keyword>Runnable</keyword>
+          <keyword>RuntimeException</keyword>
+          <keyword>Short</keyword>
+          <keyword>String</keyword>
+          <keyword>StringBuffer</keyword>
+          <keyword>StringBuilder</keyword>
+          <keyword>System</keyword>
+          <keyword>Thread</keyword>
+          <keyword>Throwable</keyword>
+        </context>
+      </include>
+    </context>
+
+    <replace id="java:primitive-types" ref="java-types"/>
+
+    <!-- <%! declarations %>, <%= expression %> and <% scriptlet %> all hold Java. -->
+    <context id="java-block" class="no-spell-check">
+      <start>&lt;%[!=]?</start>
+      <end>%&gt;</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="preprocessor"/>
+        <context sub-pattern="0" where="end" style-ref="preprocessor"/>
+        <context ref="java:java"/>
+      </include>
+    </context>
+
+    <!-- Expression language: ${...} (immediate) and #{...} (deferred). -->
+    <context id="expression" style-ref="expression" class="no-spell-check">
+      <start>[$#]\{</start>
+      <end>\}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="preprocessor"/>
+        <context sub-pattern="0" where="end" style-ref="preprocessor"/>
+
+        <context id="el-keywords" style-ref="keyword">
+          <keyword>and</keyword>
+          <keyword>div</keyword>
+          <keyword>empty</keyword>
+          <keyword>eq</keyword>
+          <keyword>ge</keyword>
+          <keyword>gt</keyword>
+          <keyword>instanceof</keyword>
+          <keyword>le</keyword>
+          <keyword>lt</keyword>
+          <keyword>mod</keyword>
+          <keyword>ne</keyword>
+          <keyword>not</keyword>
+          <keyword>or</keyword>
+        </context>
+
+        <context id="el-implicit-objects" style-ref="builtin">
+          <keyword>applicationScope</keyword>
+          <keyword>cookie</keyword>
+          <keyword>header</keyword>
+          <keyword>headerValues</keyword>
+          <keyword>initParam</keyword>
+          <keyword>pageContext</keyword>
+          <keyword>pageScope</keyword>
+          <keyword>param</keyword>
+          <keyword>paramValues</keyword>
+          <keyword>requestScope</keyword>
+          <keyword>sessionScope</keyword>
+        </context>
+
+        <context id="el-null" style-ref="null-value">
+          <keyword>null</keyword>
+        </context>
+
+        <context id="el-boolean" style-ref="boolean">
+          <keyword>false</keyword>
+          <keyword>true</keyword>
+        </context>
+
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+        <context ref="def:float"/>
+        <context ref="def:decimal"/>
+      </include>
+    </context>
+
+    <context id="jsp-code">
+      <include>
+        <!-- Order matters: the comment and directive openers must be tried
+             before the bare scriptlet opener, which is a prefix of both. -->
+        <context ref="jsp-comment"/>
+        <context ref="directive"/>
+        <context ref="java-block"/>
+        <context ref="expression"/>
+      </include>
+    </context>
+
+    <!-- Lets JSP code appear inside HTML tags and attribute values, which is
+         also what makes it work inside <script> and <style> blocks. -->
+    <replace id="html:embedded-lang-hook" ref="jsp-code"/>
+
+    <context id="jsp" class="no-spell-check">
+      <include>
+        <context ref="jsp-code"/>
+        <context ref="html:html"/>
+      </include>
+    </context>
+  </definitions>
+</language>
