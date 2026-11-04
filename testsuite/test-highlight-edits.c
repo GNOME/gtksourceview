@@ -20,6 +20,7 @@
  */
 
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcecontextengine-private.h"
 
 static GtkSourceLanguageManager *languages;
 static GtkSourceStyleScheme *style;
@@ -225,6 +226,22 @@ test_edit_batches (gconstpointer data)
 }
 
 static void
+test_main_context_type (void)
+{
+	GtkSourceLanguage *language = gtk_source_language_manager_get_language (languages, "def");
+	GtkSourceContextData *data = _gtk_source_context_data_new (language);
+	GError *error = NULL;
+
+	g_assert_true (_gtk_source_context_data_define_context (data, "def:def", NULL, "word", NULL, NULL, NULL, NULL, 0, &error));
+	g_assert_no_error (error);
+	g_assert_false (_gtk_source_context_data_finish_parse (data, NULL, &error));
+	g_assert_nonnull (error);
+
+	g_clear_error (&error);
+	_gtk_source_context_data_unref (data);
+}
+
+static void
 test_language_attach_before_parse (void)
 {
 	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
@@ -343,7 +360,7 @@ main (int    argc,
 {
 	const char *paths[] = { TOP_SRCDIR "/data/language-specs", NULL };
 	const char *styles[] = { TOP_SRCDIR "/data/styles", NULL };
-	const char *ids[] = { "c", "cpp", "python3", "html", "js", "markdown", "sh" };
+	const char *ids[] = { "c", "cpp", "python3", "html", "js", "markdown", "sh", "def" };
 	GtkSourceStyleSchemeManager *manager;
 	int result;
 
@@ -363,6 +380,7 @@ main (int    argc,
 		g_free (name);
 	}
 
+	g_test_add_func ("/highlight/edits/main-context-type", test_main_context_type);
 	g_test_add_func ("/highlight/edits/language-attach-before-parse", test_language_attach_before_parse);
 	g_test_add_func ("/highlight/edits/terminal-line-endings", test_terminal_line_endings);
 	g_test_add_func ("/highlight/edits/partial-line-endings", test_partial_line_endings);

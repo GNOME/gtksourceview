@@ -6843,6 +6843,16 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 		return FALSE;
 	}
 
+	if (main_definition->type != CONTEXT_TYPE_CONTAINER)
+	{
+		g_set_error (error,
+		             GTK_SOURCE_CONTEXT_ENGINE_ERROR,
+		             GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
+		             "Main language definition must be a container (id = “%s”).",
+		             gtk_source_language_get_id (ctx_data->lang));
+		return FALSE;
+	}
+
 	return TRUE;
 }
 
