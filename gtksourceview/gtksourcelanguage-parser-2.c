@@ -1042,13 +1042,14 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 	 */
 	const gchar *re = "(?<!\\\\)(\\\\\\\\)*\\\\%\\{([^@]*?)\\}";
 	gchar *expanded_regex;
-	GRegex *egg_re;
+	static GRegex *egg_re;
 	struct ReplaceByIdData data;
 
 	if (regex == NULL)
 		return NULL;
 
-	egg_re = g_regex_new (re, G_REGEX_NEWLINE_LF, 0, NULL);
+	if (egg_re == NULL)
+		egg_re = g_regex_new (re, G_REGEX_NEWLINE_LF | G_REGEX_OPTIMIZE, 0, NULL);
 
 	data.parser_state = parser_state;
 	data.error = NULL;
@@ -1060,8 +1061,6 @@ expand_regex_vars (ParserState *parser_state, gchar *regex, gint len, GError **e
 		DEBUG (g_message ("expanded regex vars '%s' to '%s'",
 				  regex, expanded_regex));
         }
-
-	g_regex_unref (egg_re);
 
 	if (data.error != NULL)
 	{
