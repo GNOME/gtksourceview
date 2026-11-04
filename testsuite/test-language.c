@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcecontextengine-private.h"
 
 typedef struct _TestFixture TestFixture;
 
@@ -43,7 +44,7 @@ test_fixture_setup (TestFixture   *fixture,
 
 	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
-	fixture->manager = gtk_source_language_manager_get_default ();
+	fixture->manager = gtk_source_language_manager_new ();
 
 	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
 	{
@@ -76,6 +77,7 @@ static void
 test_fixture_teardown (TestFixture   *fixture,
                        gconstpointer  data)
 {
+	g_clear_object (&fixture->manager);
 }
 
 static int
@@ -188,12 +190,50 @@ test_language (TestFixture   *fixture,
 	check_language (language, "test-empty", "Test Empty", "Others", TRUE, NULL, NULL, NULL, NULL, NULL, NULL);
 }
 
+static void
+test_empty_main_context (TestFixture   *fixture,
+                         gconstpointer  unused)
+{
+	GtkSourceLanguage *language = gtk_source_language_manager_get_language (fixture->manager, "def");
+	GtkSourceBuffer *buffer = gtk_source_buffer_new_with_language (language);
+	const char *text[] = { "one\ntwo\n", "", "three\nfour\n" };
+	GtkTextIter begin, end;
+
+	for (guint i = 0; i < G_N_ELEMENTS (text); i++)
+	{
+		gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text[i], -1);
+		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+		gtk_source_buffer_ensure_highlight (buffer, &begin, &end);
+	}
+
+	g_object_unref (buffer);
+}
+
+static void
+test_main_context_type (TestFixture   *fixture,
+                        gconstpointer  unused)
+{
+	GtkSourceLanguage *language = gtk_source_language_manager_get_language (fixture->manager, "def");
+	GtkSourceContextData *data = _gtk_source_context_data_new (language);
+	GError *error = NULL;
+
+	g_assert_true (_gtk_source_context_data_define_context (data, "def:def", NULL, "word", NULL, NULL, NULL, NULL, 0, &error));
+	g_assert_no_error (error);
+	g_assert_false (_gtk_source_context_data_finish_parse (data, NULL, &error));
+	g_assert_nonnull (error);
+
+	g_clear_error (&error);
+	_gtk_source_context_data_unref (data);
+}
+
 int
 main (int argc, char** argv)
 {
 	gtk_test_init (&argc, &argv);
 
 	g_test_add ("/Language/language-properties", TestFixture, NULL, test_fixture_setup, test_language, test_fixture_teardown);
+	g_test_add ("/Language/empty-main-context", TestFixture, NULL, test_fixture_setup, test_empty_main_context, test_fixture_teardown);
+	g_test_add ("/Language/main-context-type", TestFixture, NULL, test_fixture_setup, test_main_context_type, test_fixture_teardown);
 
 	return g_test_run();
 }

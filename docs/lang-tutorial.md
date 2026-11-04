@@ -103,7 +103,9 @@ description proper of the syntax:
 Here we should define a main context, the one we enter at the beginning of
 the file: to do so we use the `<context>` tag, with an
 `id` equal to the `id` of the
-`<language>` element:
+`<language>` element. The main context must be a container context;
+it cannot use `<match>` or `<keyword>` elements. An empty main context
+such as `<context id="c"/>` is also valid and does not highlight any text:
 
 ```xml
 <context id="c">

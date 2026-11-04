@@ -814,23 +814,34 @@ handle_context_element (ParserState *parser_state)
 						parser_state->reader);
 
 				if (is_empty)
+				{
+					char *root_id = g_strdup_printf ("%s:%s",
+					                                 parser_state->current_lang_id,
+					                                 parser_state->current_lang_id);
+					const char *match = g_str_equal (id, root_id) ? NULL : "$^";
+
+					/* Ensure main context is still a container. See #428 */
 					success = _gtk_source_context_data_define_context (parser_state->ctx_data,
-											   id,
-											   parent_id,
-											   "$^",
-											   NULL,
-											   NULL,
-											   NULL,
-											   NULL,
-											   0,
-											   &tmp_error);
+					                                                   id,
+					                                                   parent_id,
+					                                                   match,
+					                                                   NULL,
+					                                                   NULL,
+					                                                   NULL,
+					                                                   NULL,
+					                                                   0,
+					                                                   &tmp_error);
+					g_free (root_id);
+				}
 				else
+				{
 					success = create_definition (parser_state,
 					                             id,
 					                             parent_id,
 					                             style_ref,
 					                             context_classes,
 					                             &tmp_error);
+				}
 
 				if (success && !is_empty)
 				{
