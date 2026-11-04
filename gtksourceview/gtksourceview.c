@@ -1600,14 +1600,15 @@ gtk_source_view_dispose (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GtkSourceCompletion *completion = NULL;
 
 	priv->im_commit_text[0] = 0;
 	priv->im_commit_len = 0;
 
 	if (priv->completion != NULL)
 	{
-		g_object_run_dispose (G_OBJECT (priv->completion));
-		g_clear_object (&priv->completion);
+		completion = g_steal_pointer (&priv->completion);
+		g_object_run_dispose (G_OBJECT (completion));
 	}
 
 	if (priv->hover != NULL)
@@ -1637,6 +1638,9 @@ gtk_source_view_dispose (GObject *object)
 	_gtk_source_view_assistants_shutdown (&priv->assistants);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
+
+	/* Must do after chaining up to allow for GWeakRef propagation */
+	g_clear_object (&completion);
 }
 
 static void

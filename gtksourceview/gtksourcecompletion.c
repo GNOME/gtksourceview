@@ -974,6 +974,11 @@ gtk_source_completion_finalize (GObject *object)
 	GtkSourceCompletion *self = (GtkSourceCompletion *)object;
 
 	g_clear_weak_pointer (&self->view);
+	g_clear_object (&self->context_signals);
+	g_clear_object (&self->buffer_signals);
+	g_clear_object (&self->view_signals);
+	g_clear_pointer (&self->providers, g_ptr_array_unref);
+	g_clear_pointer (&self->font_desc, pango_font_description_free);
 
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->finalize (object);
 }
