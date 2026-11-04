@@ -215,6 +215,8 @@ typedef struct
 	gint cached_right_margin_pos;
 	guint tab_width;
 	gint indent_width;
+	guint highlight_tick;
+	guint highlight_timeout;
 	GtkSourceSmartHomeEndType smart_home_end;
 	GtkSourceBackgroundPatternType background_pattern;
 
@@ -321,6 +323,8 @@ static void           gtk_source_view_snapshot_layer       (GtkTextView         
 static void           gtk_source_view_snapshot             (GtkWidget               *widget,
                                                             GtkSnapshot             *snapshot);
 static void           gtk_source_view_queue_draw           (GtkSourceView           *view);
+static void           gtk_source_view_queue_highlight_update
+                                                           (GtkSourceView           *view);
 static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget           *dest,
                                                             const GValue            *value,
                                                             int                      x,
@@ -330,9 +334,6 @@ static void           gtk_source_view_populate_extra_menu  (GtkSourceView       
 static void           gtk_source_view_real_push_snippet    (GtkSourceView           *view,
                                                             GtkSourceSnippet        *snippet,
                                                             GtkTextIter             *location);
-static void           gtk_source_view_ensure_redrawn_rect_is_highlighted
-                                                           (GtkSourceView           *view,
-                                                            GdkRectangle            *clip);
 
 static GtkSourceCompletion *
 get_completion (GtkSourceView *self)
@@ -562,14 +563,36 @@ gtk_source_view_size_allocate (GtkWidget *widget,
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	GdkRectangle visible_rect;
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->size_allocate (widget, width, height, baseline);
 
 	_gtk_source_view_assistants_size_allocate (&priv->assistants, width, height, baseline);
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
+	_gtk_source_view_update_highlight (view);
+}
+
+static void
+gtk_source_view_cancel_highlight_update (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	if (priv->highlight_tick != 0)
+	{
+		gtk_widget_remove_tick_callback (GTK_WIDGET (view), priv->highlight_tick);
+		priv->highlight_tick = 0;
+	}
+
+	g_clear_handle_id (&priv->highlight_timeout, g_source_remove);
+}
+
+static void
+gtk_source_view_map (GtkWidget *widget)
+{
+	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->map (widget);
+
+	gtk_source_view_queue_highlight_update (GTK_SOURCE_VIEW (widget));
 }
 
 static void
@@ -577,6 +600,8 @@ gtk_source_view_unmap (GtkWidget *widget)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	gtk_source_view_cancel_highlight_update (view);
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->unmap (widget);
 
@@ -603,6 +628,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	widget_class->snapshot = gtk_source_view_snapshot;
 	widget_class->css_changed = gtk_source_view_css_changed;
 	widget_class->size_allocate = gtk_source_view_size_allocate;
+	widget_class->map = gtk_source_view_map;
 	widget_class->unmap = gtk_source_view_unmap;
 
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -1605,6 +1631,8 @@ gtk_source_view_dispose (GObject *object)
 	priv->im_commit_text[0] = 0;
 	priv->im_commit_len = 0;
 
+	gtk_source_view_cancel_highlight_update (view);
+
 	if (priv->completion != NULL)
 	{
 		completion = g_steal_pointer (&priv->completion);
@@ -1979,6 +2007,7 @@ set_source_buffer (GtkSourceView *view,
 	}
 
 	gtk_source_view_update_style_scheme (view);
+	gtk_source_view_queue_highlight_update (view);
 }
 
 static void
@@ -2471,13 +2500,29 @@ gtk_source_view_extend_selection (GtkTextView            *text_view,
 										     end);
 }
 
-static void
-gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
-                                                    GdkRectangle  *clip)
+/* Update before painting. Applying tags here can invalidate the text layout.
+ * GtkSourceMap also calls this after scrolling from its own tick callback,
+ * since another tick would not run until the following frame.
+ */
+void
+_gtk_source_view_update_highlight (GtkSourceView *view)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GtkSourceBuffer *buffer;
 	GtkTextIter iter1, iter2;
+	GdkRectangle visible_rect;
 	char *message = NULL;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+	gtk_source_view_cancel_highlight_update (view);
+
+	if (priv->source_buffer == NULL)
+	{
+		return;
+	}
+
+	buffer = priv->source_buffer;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
@@ -2486,29 +2531,86 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 	 * Inside of test-widget, this function can easily take .5msec according to
 	 * profiling data.
 	 */
-	if (!gtk_source_buffer_get_highlight_syntax (priv->source_buffer) &&
-	    !_gtk_source_buffer_has_search_highlights (priv->source_buffer))
+	if (!gtk_source_buffer_get_highlight_syntax (buffer) &&
+	    !_gtk_source_buffer_has_search_highlights (buffer))
 	{
 		return;
 	}
 
-	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter1, clip->y, NULL);
-	gtk_text_iter_backward_line (&iter1);
-	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, clip->y + clip->height, NULL);
-	gtk_text_iter_forward_line (&iter2);
+	g_object_ref (buffer);
 
-	_gtk_source_buffer_update_syntax_highlight (priv->source_buffer,
-						    &iter1, &iter2, FALSE);
-	_gtk_source_buffer_update_search_highlight (priv->source_buffer,
-						    &iter1, &iter2, FALSE);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
+	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter1, visible_rect.y, NULL);
+	gtk_text_iter_backward_line (&iter1);
+	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, visible_rect.y + visible_rect.height, NULL);
+	gtk_text_iter_forward_line (&iter2);
 
 	if (GTK_SOURCE_PROFILER_ACTIVE)
 		message = g_strdup_printf ("Area: Y=%d Height=%d BeginLine=%d EndLine=%d",
-	                                 clip->y, clip->height,
+	                                 visible_rect.y, visible_rect.height,
 	                                 gtk_text_iter_get_line (&iter1),
 	                                 gtk_text_iter_get_line (&iter2));
+
+	_gtk_source_buffer_update_syntax_highlight (buffer, &iter1, &iter2, FALSE);
+
+	if (buffer == priv->source_buffer && _gtk_source_buffer_has_search_highlights (buffer))
+	{
+		get_visible_region (GTK_TEXT_VIEW (view), &iter1, &iter2);
+		_gtk_source_buffer_update_search_highlight (buffer, &iter1, &iter2, FALSE);
+	}
+
 	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::IsHighlighted", message);
 	g_free (message);
+	g_object_unref (buffer);
+}
+
+static gboolean
+gtk_source_view_update_highlight_cb (GtkWidget     *widget,
+                                     GdkFrameClock *frame_clock,
+                                     gpointer       user_data)
+{
+	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
+
+	_gtk_source_view_update_highlight (GTK_SOURCE_VIEW (widget));
+
+	return G_SOURCE_REMOVE;
+}
+
+static gboolean
+gtk_source_view_highlight_timeout_cb (gpointer user_data)
+{
+	GtkSourceView *view = g_object_ref (user_data);
+
+	_gtk_source_view_update_highlight (view);
+	g_object_unref (view);
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+gtk_source_view_queue_highlight_update (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	if (gtk_widget_get_mapped (GTK_WIDGET (view)) &&
+	    priv->highlight_tick == 0 &&
+	    priv->source_buffer != NULL &&
+	    (gtk_source_buffer_get_highlight_syntax (priv->source_buffer) ||
+	     _gtk_source_buffer_has_search_highlights (priv->source_buffer)))
+	{
+		priv->highlight_tick = gtk_widget_add_tick_callback (GTK_WIDGET (view),
+		                                                     gtk_source_view_update_highlight_cb,
+		                                                     NULL, NULL);
+
+		/* Race the tick with a fallback incase the mapped widget is
+		 * not getting updates due to being obscurred, hidden, etc.
+		 */
+		priv->highlight_timeout = g_timeout_add_full (G_PRIORITY_LOW, 100,
+		                                              gtk_source_view_highlight_timeout_cb,
+		                                              view, NULL);
+	}
 }
 
 /* Another solution to paint the line background is to use the
@@ -2897,10 +2999,6 @@ gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
-	GdkRectangle visible_rect;
-
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
-	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
 	/* Draw the right margin vertical line + background overlay. This is
 	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
@@ -4551,6 +4649,11 @@ gtk_source_view_adjustment_changed (GtkSourceView *view,
 	g_assert (GTK_IS_ADJUSTMENT (adjustment));
 
 	_gtk_source_view_assistants_update_all (&priv->assistants);
+
+	if (adjustment == priv->vadj)
+	{
+		gtk_source_view_queue_highlight_update (view);
+	}
 }
 
 static void
