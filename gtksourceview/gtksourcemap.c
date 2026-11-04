@@ -199,8 +199,8 @@ typedef struct
 	/* Our signal handler for view changes */
 	gulong view_notify_buffer_handler;
 	gulong view_notify_right_margin_position_handler;
-	gulong view_vadj_value_changed_handler;
-	gulong view_vadj_changed_handler;
+	gulong view_notify_vadjustment_handler;
+	GSignalGroup *view_adjustment_signals;
 
 	/* Signals connected indirectly to the buffer */
 	gulong buffer_changed_handler;
@@ -1055,7 +1055,6 @@ gtk_source_map_set_adjustment_handlers_blocked (GtkSourceMap *map,
                                                 gboolean      blocked)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-	GtkAdjustment *vadj;
 
 	g_assert (GTK_SOURCE_IS_MAP (map));
 
@@ -1065,20 +1064,34 @@ gtk_source_map_set_adjustment_handlers_blocked (GtkSourceMap *map,
 		return;
 	}
 
-	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
-
 	if (blocked)
 	{
-		g_signal_handler_block (vadj, priv->view_vadj_value_changed_handler);
-		g_signal_handler_block (vadj, priv->view_vadj_changed_handler);
+		g_signal_group_block (priv->view_adjustment_signals);
 	}
 	else
 	{
-		g_signal_handler_unblock (vadj, priv->view_vadj_value_changed_handler);
-		g_signal_handler_unblock (vadj, priv->view_vadj_changed_handler);
+		g_signal_group_unblock (priv->view_adjustment_signals);
 	}
 
 	priv->adjustment_handlers_blocked = blocked;
+}
+
+static void
+view_notify_vadjustment (GtkSourceMap  *map,
+                         GParamSpec    *pspec,
+                         GtkSourceView *view)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GtkAdjustment *vadj;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	/* Gracefully handle a scrolledwindow changing view's adjustments */
+	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
+	g_signal_group_set_target (priv->view_adjustment_signals, vadj);
+	gtk_source_map_invalidate_content_heights (map);
+	gtk_source_map_queue_update (map);
 }
 
 static void
@@ -1086,14 +1099,11 @@ connect_view (GtkSourceMap  *map,
               GtkSourceView *view)
 {
 	GtkSourceMapPrivate *priv;
-	GtkAdjustment *vadj;
 
 	priv = gtk_source_map_get_instance_private (map);
 
 	priv->view = view;
 	g_object_add_weak_pointer (G_OBJECT (view), (gpointer *)&priv->view);
-
-	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
 
 	priv->buffer_binding =
 		g_object_bind_property (view, "buffer",
@@ -1155,19 +1165,13 @@ connect_view (GtkSourceMap  *map,
 		                         map,
 		                         G_CONNECT_SWAPPED);
 
-	priv->view_vadj_value_changed_handler =
-		g_signal_connect_object (vadj,
-		                         "value-changed",
-		                         G_CALLBACK (view_vadj_changed),
+	priv->view_notify_vadjustment_handler =
+		g_signal_connect_object (view,
+		                         "notify::vadjustment",
+		                         G_CALLBACK (view_notify_vadjustment),
 		                         map,
 		                         G_CONNECT_SWAPPED);
-
-	priv->view_vadj_changed_handler =
-		g_signal_connect_object (vadj,
-		                         "changed",
-		                         G_CALLBACK (view_vadj_changed),
-		                         map,
-		                         G_CONNECT_SWAPPED);
+	view_notify_vadjustment (map, NULL, view);
 
 	gtk_source_map_set_adjustment_handlers_blocked (map,
 	                                                !gtk_widget_get_mapped (GTK_WIDGET (map)));
@@ -1180,7 +1184,6 @@ static void
 disconnect_view (GtkSourceMap *map)
 {
 	GtkSourceMapPrivate *priv;
-	GtkAdjustment *vadj;
 
 	priv = gtk_source_map_get_instance_private (map);
 
@@ -1235,15 +1238,9 @@ disconnect_view (GtkSourceMap *map)
 	g_clear_signal_handler (&priv->view_notify_buffer_handler, priv->view);
 	g_clear_signal_handler (&priv->view_notify_right_margin_position_handler, priv->view);
 
-	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
-	if (vadj != NULL)
-	{
-		g_signal_handler_disconnect (vadj, priv->view_vadj_value_changed_handler);
-		priv->view_vadj_value_changed_handler = 0;
-
-		g_signal_handler_disconnect (vadj, priv->view_vadj_changed_handler);
-		priv->view_vadj_changed_handler = 0;
-	}
+	g_clear_signal_handler (&priv->view_notify_vadjustment_handler, priv->view);
+	g_signal_group_set_target (priv->view_adjustment_signals, NULL);
+	gtk_source_map_set_adjustment_handlers_blocked (map, FALSE);
 
 	g_object_remove_weak_pointer (G_OBJECT (priv->view), (gpointer *)&priv->view);
 	priv->view = NULL;
@@ -1264,6 +1261,7 @@ gtk_source_map_dispose (GObject *object)
 
 	gtk_source_map_cancel_update (map);
 
+	g_clear_object (&priv->view_adjustment_signals);
 	g_clear_object (&priv->css_provider);
 	g_clear_object (&priv->width_context);
 	g_clear_pointer (&priv->font_desc, pango_font_description_free);
@@ -1709,6 +1707,18 @@ gtk_source_map_init (GtkSourceMap *map)
 	priv->map_content_height = -1.0;
 	priv->width_request = -1;
 	priv->slider_min_height = -1;
+
+	priv->view_adjustment_signals = g_signal_group_new (GTK_TYPE_ADJUSTMENT);
+	g_signal_group_connect_object (priv->view_adjustment_signals,
+	                               "value-changed",
+	                               G_CALLBACK (view_vadj_changed),
+	                               map,
+	                               G_CONNECT_SWAPPED);
+	g_signal_group_connect_object (priv->view_adjustment_signals,
+	                               "changed",
+	                               G_CALLBACK (view_vadj_changed),
+	                               map,
+	                               G_CONNECT_SWAPPED);
 
 	gtk_widget_add_css_class (GTK_WIDGET (map), "GtkSourceMap");
 
