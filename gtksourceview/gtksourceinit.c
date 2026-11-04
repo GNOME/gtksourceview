@@ -37,6 +37,7 @@
 #include "gtksourcegutterrenderertext.h"
 #include "gtksourceinit.h"
 #include "gtksourcelanguagemanager-private.h"
+#include "gtksourcelanguage-private.h"
 #include "gtksourcemap.h"
 #include "gtksourcesnippetmanager-private.h"
 #include "gtksourcestyleschemechooser.h"
@@ -307,6 +308,8 @@ gtk_source_finalize (void)
 
 		snippet_manager = _gtk_source_snippet_manager_peek_default ();
 		g_clear_object (&snippet_manager);
+
+		_gtk_source_language_parser_finalize ();
 
 		done = TRUE;
 	}
