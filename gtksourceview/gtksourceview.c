@@ -2696,9 +2696,9 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	if (priv->cached_right_margin_pos < 0)
 	{
 		priv->cached_right_margin_pos =
-			calculate_real_tab_width (view,
-						  priv->right_margin_pos,
-						  '_');
+			PANGO_PIXELS_CEIL (calculate_real_tab_width (view,
+			                                             priv->right_margin_pos,
+			                                             '_'));
 	}
 
 	x = priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view) + get_left_gutter_size (view);
@@ -2924,7 +2924,8 @@ gtk_source_view_snapshot (GtkWidget   *widget,
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->snapshot (widget, snapshot);
 }
 
-/* This is a pretty important function... We call it when the tab_stop is changed,
+/* Returns a width in Pango units to preserve fractional glyph advances.
+ * This is a pretty important function... We call it when the tab_stop is changed,
  * and when the font is changed.
  * NOTE: You must change this with the default font for now...
  * It may be a good idea to set the tab_width for each GtkTextTag as well
@@ -2954,7 +2955,7 @@ calculate_real_tab_width (GtkSourceView *view, guint tab_size, gchar c)
 
 	if (layout != NULL)
 	{
-		pango_layout_get_pixel_size (layout, &tab_width, NULL);
+		pango_layout_get_size (layout, &tab_width, NULL);
 		g_object_unref (G_OBJECT (layout));
 	}
 	else
@@ -3175,7 +3176,7 @@ set_tab_stops_internal (GtkSourceView *view)
 		return FALSE;
 	}
 
-	tab_array = pango_tab_array_new (1, TRUE);
+	tab_array = pango_tab_array_new (1, FALSE);
 	pango_tab_array_set_tab (tab_array, 0, PANGO_TAB_LEFT, real_tab_width);
 
 	gtk_text_view_set_tabs (GTK_TEXT_VIEW (view),

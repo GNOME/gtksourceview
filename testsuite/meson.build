@@ -55,6 +55,7 @@ testsuite_sources = [
   ['test-syntax', false],
   ['test-utils'],
   ['test-view'],
+  ['test-view-tabs'],
   ['test-vim-input', false],
   ['test-vim-state'],
   ['test-vim-text-object'],
