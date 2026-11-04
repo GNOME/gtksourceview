@@ -33,6 +33,7 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcecontextengine-private.h"
+#include "gtksourceview-gresources.h"
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -114,6 +115,8 @@ struct _ParserState
 };
 
 typedef struct _ParserState ParserState;
+
+static xmlRelaxNG *rng_schema;
 
 
 static GQuark     parser_error_quark           (void);
@@ -1602,6 +1605,37 @@ text_reader_structured_error_func (ParserState *parser_state,
 		g_warning ("in file %s on line %d: %s\n", error->file, error->line, error->message);
 }
 
+static xmlRelaxNG *
+get_rng_schema (void)
+{
+	GBytes *bytes;
+	xmlRelaxNGParserCtxt *ctxt;
+
+	if (rng_schema != NULL)
+	{
+		return rng_schema;
+	}
+
+	bytes = g_resource_lookup_data (gtksourceview_get_resource (),
+	                                "/org/gnome/gtksourceview/language2.rng", 0, NULL);
+	g_assert (bytes != NULL);
+
+	ctxt = xmlRelaxNGNewMemParserCtxt (g_bytes_get_data (bytes, NULL), g_bytes_get_size (bytes));
+	g_assert (ctxt != NULL);
+	rng_schema = xmlRelaxNGParse (ctxt);
+	g_assert (rng_schema != NULL);
+	xmlRelaxNGFreeParserCtxt (ctxt);
+	g_bytes_unref (bytes);
+
+	return rng_schema;
+}
+
+void
+_gtk_source_language_parser_finalize (void)
+{
+	g_clear_pointer (&rng_schema, xmlRelaxNGFree);
+}
+
 static gboolean
 file_parse (const gchar               *filename,
 	    GtkSourceLanguage         *language,
@@ -1617,8 +1651,6 @@ file_parse (const gchar               *filename,
 	GBytes *bytes = NULL;
 	int fd = -1;
 	GError *tmp_error = NULL;
-	GtkSourceLanguageManager *lm;
-	const gchar *rng_lang_schema;
 
 	g_return_val_if_fail (filename != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -1660,25 +1692,12 @@ file_parse (const gchar               *filename,
 		goto error;
 	}
 
-	lm = _gtk_source_language_get_language_manager (language);
-	rng_lang_schema = _gtk_source_language_manager_get_rng_file (lm);
-
-	if (rng_lang_schema == NULL)
+	if (xmlTextReaderRelaxNGSetSchema (reader, get_rng_schema ()) != 0)
 	{
-		g_set_error (&tmp_error,
-			     PARSER_ERROR,
-			     PARSER_ERROR_CANNOT_VALIDATE,
-			     "could not find the RelaxNG schema file");
-		goto error;
-	}
-
-	if (xmlTextReaderRelaxNGValidate (reader, rng_lang_schema))
-	{
-		g_set_error (&tmp_error,
-			     PARSER_ERROR,
-			     PARSER_ERROR_CANNOT_VALIDATE,
-			     "unable to load the RelaxNG schema '%s'",
-			     rng_lang_schema);
+		g_set_error_literal (&tmp_error,
+		                     PARSER_ERROR,
+		                     PARSER_ERROR_CANNOT_VALIDATE,
+		                     "unable to attach the RelaxNG schema");
 		goto error;
 	}
 
@@ -1723,6 +1742,7 @@ file_parse (const gchar               *filename,
 	}
 
 	parser_state_destroy (parser_state);
+	reader = NULL;
 
 	if (tmp_error != NULL)
 		goto error;
@@ -1734,6 +1754,7 @@ file_parse (const gchar               *filename,
 	return TRUE;
 
 error:
+	g_clear_pointer (&reader, xmlFreeTextReader);
 	if (fd != -1)
 		close (fd);
 	g_clear_pointer (&bytes, g_bytes_unref);

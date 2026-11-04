@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
+  <gresource prefix="/org/gnome/gtksourceview">
+    <file preprocess="xml-stripblanks" alias="language2.rng">../data/language-specs/language2.rng</file>
+  </gresource>
   <gresource prefix="/org/gnome/gtksourceview/css/">
     <file>GtkSourceView.css</file>
   </gresource>

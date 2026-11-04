@@ -43,7 +43,7 @@ GtkSourceLanguageManager *_gtk_source_language_get_language_manager   (GtkSource
 G_GNUC_INTERNAL
 const gchar              *_gtk_source_language_get_file_name          (GtkSourceLanguage        *language);
 G_GNUC_INTERNAL
-const gchar              *_gtk_source_language_manager_get_rng_file   (GtkSourceLanguageManager *lm);
+void                      _gtk_source_language_parser_finalize        (void);
 G_GNUC_INTERNAL
 gchar                    *_gtk_source_language_translate_string       (GtkSourceLanguage        *language,
                                                                        const gchar              *string);

@@ -23,8 +23,6 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
-#include "gtksourceview/gtksourcelanguagemanager-private.h"
-
 #include "testsuite-gresources.h"
 
 /* If we are running from the source dir (e.g. during make check)
@@ -39,19 +37,15 @@ init_default_manager (void)
 	{
 		GtkSourceLanguageManager *lm;
 		char **lang_dirs;
-		char *rng = g_build_filename (dir, "language2.rng", NULL);
 
 		lm = gtk_source_language_manager_get_default ();
 
 		lang_dirs = g_new0 (gchar *, 2);
 		lang_dirs[0] = dir;
 
-		_gtk_source_language_manager_set_rng_file (rng);
 		gtk_source_language_manager_set_search_path (lm, (const gchar * const *)lang_dirs);
 
 		g_strfreev (lang_dirs);
-		g_free (rng);
-
 	}
 	else
 	{

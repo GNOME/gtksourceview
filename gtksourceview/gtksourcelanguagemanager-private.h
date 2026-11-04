@@ -24,6 +24,5 @@
 G_BEGIN_DECLS
 
 GtkSourceLanguageManager *_gtk_source_language_manager_peek_default (void);
-void                      _gtk_source_language_manager_set_rng_file (const char *rng_file);
 
 G_END_DECLS

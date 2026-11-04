@@ -42,10 +42,8 @@
  * given file name and content type.
  */
 
-#define RNG_SCHEMA_FILE          "language2.rng"
 #define LANGUAGE_DIR             "language-specs"
 #define LANG_FILE_SUFFIX         ".lang"
-#define FALLBACK_RNG_SCHEMA_FILE PACKAGE_DATADIR "/language-specs/" RNG_SCHEMA_FILE
 
 enum {
 	PROP_0,
@@ -61,14 +59,12 @@ struct _GtkSourceLanguageManager
 	GHashTable	*language_ids;
 
 	gchar	       **lang_dirs;
-	gchar		*rng_file;
 
 	gchar          **ids; /* Cache the IDs of the available languages */
 };
 
 static GtkSourceLanguageManager *default_instance;
 static GParamSpec *properties[N_PROPS];
-static const char *default_rng_file = FALLBACK_RNG_SCHEMA_FILE;
 
 G_DEFINE_TYPE (GtkSourceLanguageManager, gtk_source_language_manager, G_TYPE_OBJECT)
 
@@ -131,7 +127,6 @@ gtk_source_language_manager_finalize (GObject *object)
 	g_strfreev (lm->ids);
 
 	g_strfreev (lm->lang_dirs);
-	g_free (lm->rng_file);
 
 	G_OBJECT_CLASS (gtk_source_language_manager_parent_class)->finalize (object);
 }
@@ -176,7 +171,6 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 	lm->language_ids = NULL;
 	lm->ids = NULL;
 	lm->lang_dirs = NULL;
-	lm->rng_file = NULL;
 }
 
 /**
@@ -369,64 +363,6 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 		lm->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR);
 
 	return (const gchar * const *)lm->lang_dirs;
-}
-
-void
-_gtk_source_language_manager_set_rng_file (const char *rng_file)
-{
-	if (rng_file == NULL)
-	{
-		default_rng_file = FALLBACK_RNG_SCHEMA_FILE;
-	}
-	else
-	{
-		default_rng_file = g_intern_string (rng_file);
-	}
-}
-
-/**
- * _gtk_source_language_manager_get_rng_file:
- * @lm: a #GtkSourceLanguageManager.
- *
- * Returns location of the RNG schema file for lang files version 2.
- *
- * Returns: path to RNG file. It belongs to %lm and must not be freed or modified.
- */
-const char *
-_gtk_source_language_manager_get_rng_file (GtkSourceLanguageManager *lm)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
-
-	if (lm->rng_file == NULL)
-	{
-		const gchar * const *dirs;
-
-		for (dirs = gtk_source_language_manager_get_search_path (lm);
-		     dirs != NULL && *dirs != NULL;
-		     ++dirs)
-		{
-			gchar *file;
-
-			file = g_build_filename (*dirs, RNG_SCHEMA_FILE, NULL);
-			if (g_file_test (file, G_FILE_TEST_EXISTS))
-			{
-				lm->rng_file = file;
-				break;
-			}
-
-			g_free (file);
-		}
-
-		if (lm->rng_file == NULL)
-		{
-			if (g_file_test (default_rng_file, G_FILE_TEST_EXISTS))
-			{
-				lm->rng_file = g_strdup (default_rng_file);
-			}
-		}
-	}
-
-	return lm->rng_file;
 }
 
 static gint
