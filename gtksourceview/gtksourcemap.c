@@ -210,6 +210,7 @@ typedef struct
 	 * avoid doing changes during LAYOUT phase.
 	 */
 	guint update_id;
+	guint update_timeout;
 
 	/* Whether editor adjustment handlers are currently blocked. */
 	guint adjustment_handlers_blocked : 1;
@@ -692,21 +693,46 @@ update_child_vadjustment (GtkSourceMap *map)
 	gtk_adjustment_set_value (child_vadj, new_value);
 }
 
+static void
+gtk_source_map_cancel_update (GtkSourceMap *map)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	if (priv->update_id != 0)
+	{
+		gtk_widget_remove_tick_callback (GTK_WIDGET (map), priv->update_id);
+		priv->update_id = 0;
+	}
+
+	g_clear_handle_id (&priv->update_timeout, g_source_remove);
+}
+
+static gboolean
+gtk_source_map_update (gpointer user_data)
+{
+	GtkSourceMap *map = user_data;
+
+	gtk_source_map_cancel_update (map);
+
+	g_object_ref (map);
+	update_child_vadjustment (map);
+	_gtk_source_view_update_highlight (GTK_SOURCE_VIEW (map));
+	gtk_source_map_allocate_slider (map);
+	g_object_unref (map);
+
+	return G_SOURCE_REMOVE;
+}
+
 static gboolean
 gtk_source_map_do_update (GtkWidget     *widget,
                           GdkFrameClock *frame_clock,
                           gpointer       user_data)
 {
-	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
-	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-
 	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
 
-	priv->update_id = 0;
-	update_child_vadjustment (map);
-	gtk_source_map_allocate_slider (map);
-
-	return G_SOURCE_REMOVE;
+	return gtk_source_map_update (widget);
 }
 
 static void
@@ -728,20 +754,13 @@ gtk_source_map_queue_update (GtkSourceMap *map)
 			gtk_widget_add_tick_callback (GTK_WIDGET (map),
 			                              gtk_source_map_do_update,
 			                              NULL, NULL);
-	}
-}
 
-static void
-gtk_source_map_cancel_update (GtkSourceMap *map)
-{
-	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-
-	g_assert (GTK_SOURCE_IS_MAP (map));
-
-	if (priv->update_id != 0)
-	{
-		gtk_widget_remove_tick_callback (GTK_WIDGET (map), priv->update_id);
-		priv->update_id = 0;
+		/* Keep the map synchronized even when its toplevel is suspended */
+		priv->update_timeout = g_timeout_add_full (G_PRIORITY_LOW,
+		                                           100,
+		                                           gtk_source_map_update,
+		                                           map,
+		                                           NULL);
 	}
 }
 
