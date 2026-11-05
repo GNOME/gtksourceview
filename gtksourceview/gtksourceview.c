@@ -322,8 +322,8 @@ static void           gtk_source_view_snapshot             (GtkWidget           
 static void           gtk_source_view_queue_draw           (GtkSourceView           *view);
 static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget           *dest,
                                                             const GValue            *value,
-                                                            int                      x,
-                                                            int                      y,
+                                                            double                   x,
+                                                            double                   y,
                                                             GtkSourceView           *view);
 static void           gtk_source_view_populate_extra_menu  (GtkSourceView           *view);
 static void           gtk_source_view_real_push_snippet    (GtkSourceView           *view,
@@ -4719,18 +4719,19 @@ insert_rgba_at_iter (GtkSourceView *view,
 static gboolean
 gtk_source_view_rgba_drop (GtkDropTarget *dest,
                            const GValue  *value,
-                           int            x,
-                           int            y,
+                           double         x,
+                           double         y,
                            GtkSourceView *view)
 {
 	const GdkRGBA *rgba;
 	GtkTextIter pos;
+	int buffer_x, buffer_y;
 
 	rgba = g_value_get_boxed (value);
 	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
 	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       x, y, &x, &y);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &pos, x, y);
+	                                       x, y, &buffer_x, &buffer_y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &pos, buffer_x, buffer_y);
 	insert_rgba_at_iter (view, rgba, &pos);
 
 	return TRUE;
