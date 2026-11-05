@@ -228,10 +228,21 @@ validated_languages = custom_target('validate-language-specs',
   ],
 )
 
+validated_styles = custom_target('validate-style-schemes',
+  input: ['gtksourceview.gresource.xml', '../data/styles/styles.rng'],
+  output: 'style-schemes.validated',
+  depfile: 'style-schemes.validated.d',
+  command: [
+    import('python').find_installation(),
+    files('../data/styles/check-style-schemes.py'),
+    xmllint_prg, '@INPUT0@', '@INPUT1@', '@OUTPUT@', '@DEPFILE@',
+  ],
+)
+
 gtksource_res = gnome.compile_resources(
   'gtksourceview-gresources',
   'gtksourceview.gresource.xml',
-  dependencies: validated_languages,
+  dependencies: [validated_languages, validated_styles],
 )
 
 core_sources = [
