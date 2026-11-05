@@ -472,20 +472,33 @@ compare_change (gconstpointer a,
 	return (change_a->span.end < change_b->span.end) - (change_a->span.end > change_b->span.end);
 }
 
-void
-_gtk_source_tag_plan_apply (GtkSourceTagPlan *plan)
+static void
+buffer_changed (GtkTextBuffer *buffer,
+                gboolean      *changed)
+{
+	*changed = TRUE;
+}
+
+/* A partial application is idempotent: the next plan collects the current
+ * membership again and only commits the differences still outstanding.
+ */
+gboolean
+_gtk_source_tag_plan_apply (GtkSourceTagPlan *plan,
+                            gint64            deadline)
 {
 	GHashTableIter iter;
 	GArray *changes;
 	gpointer key;
 	gpointer value;
+	gboolean changed = FALSE;
+	gboolean complete = TRUE;
+	gulong handler;
 
 	if (plan->start == plan->end || g_hash_table_size (plan->tags) == 0)
-		return;
+		return TRUE;
 
 	collect_spans (plan);
 	changes = g_array_new (FALSE, FALSE, sizeof (Change));
-
 	g_hash_table_iter_init (&iter, plan->tags);
 
 	while (g_hash_table_iter_next (&iter, &key, &value))
@@ -505,6 +518,8 @@ _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan)
 	 */
 	g_array_sort (changes, compare_change);
 
+	handler = g_signal_connect (plan->buffer, "changed", G_CALLBACK (buffer_changed), &changed);
+
 	for (guint i = 0; i < changes->len; i++)
 	{
 		Change *change = &g_array_index (changes, Change, i);
@@ -519,9 +534,32 @@ _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan)
 			gtk_text_buffer_apply_tag (plan->buffer, change->tag, &start, &end);
 		else
 			gtk_text_buffer_remove_tag (plan->buffer, change->tag, &start, &end);
+
+		/* A signal handler may have edited the buffer. Never apply another
+		 * change using offsets computed before that edit.
+		 */
+		if (changed)
+		{
+			complete = FALSE;
+			break;
+		}
+
+		/* Reconcile unfinished work on the next pass. Checking every four
+		 * mutations amortizes clock reads without committing a whole dense
+		 * paragraph's worth of tags after the deadline.
+		 */
+		if (deadline != 0 && (i + 1) % 4 == 0 && i + 1 < changes->len &&
+		    g_get_monotonic_time () >= deadline)
+		{
+			complete = FALSE;
+			break;
+		}
 	}
 
+	g_clear_signal_handler (&handler, plan->buffer);
 	g_array_unref (changes);
+
+	return complete;
 }
 
 void

@@ -124,7 +124,7 @@ test_coalesce_and_unchanged (void)
 	for (int i = 0; i < 1000; i++)
 		_gtk_source_tag_plan_add (plan, tag, i, i + 1, TRUE);
 
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	g_assert_cmpuint (count.apply, ==, 1);
 	g_assert_cmpuint (count.remove, ==, 0);
 
@@ -132,14 +132,14 @@ test_coalesce_and_unchanged (void)
 		g_assert_true (has_tag (buffer, tag, i));
 
 	count = (MutationCount) { 0, 0 };
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	g_assert_cmpuint (count.apply, ==, 0);
 	g_assert_cmpuint (count.remove, ==, 0);
 
 	g_clear_pointer (&plan, _gtk_source_tag_plan_free);
 	plan = _gtk_source_tag_plan_new (buffer, 0, 1000);
 	_gtk_source_tag_plan_add_tag (plan, tag);
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	g_assert_cmpuint (count.apply, ==, 0);
 	g_assert_cmpuint (count.remove, ==, 1);
 
@@ -161,7 +161,7 @@ test_ordered_overrides (void)
 	_gtk_source_tag_plan_add (plan, tag, 6, 10, FALSE);
 	_gtk_source_tag_plan_add (plan, tag, 8, 9, TRUE);
 	_gtk_source_tag_plan_add (plan, other, 0, 20, TRUE);
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 
 	for (int i = 0; i < 20; i++)
 	{
@@ -171,8 +171,7 @@ test_ordered_overrides (void)
 		g_assert_true (has_tag (buffer, other, i));
 	}
 
-	/* Reapplying a plan must also leave mixed enable/disable plans intact. */
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	g_assert_false (has_tag (buffer, tag, 2));
 	g_assert_true (has_tag (buffer, tag, 8));
 
@@ -201,7 +200,7 @@ test_partial_range_and_identity (void)
 	_gtk_source_tag_plan_add (plan, b, 4, 6, TRUE);
 	_gtk_source_tag_plan_add (plan, a, 0, 3, TRUE);
 	_gtk_source_tag_plan_add (plan, a, 7, 10, TRUE);
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -234,7 +233,7 @@ test_scan_boundaries (void)
 			_gtk_source_tag_plan_add (plan, tags[t], 3, 5, FALSE);
 	}
 
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 
 	for (int t = 0; t < 4; t++)
 	{
@@ -299,7 +298,7 @@ test_random_overlays (void)
 
 		g_signal_connect (buffer, "apply-tag", G_CALLBACK (count_apply), &count);
 		g_signal_connect (buffer, "remove-tag", G_CALLBACK (count_remove), &count);
-		_gtk_source_tag_plan_apply (plan);
+		_gtk_source_tag_plan_apply (plan, 0);
 
 		for (int t = 0; t < 3; t++)
 		{
@@ -323,13 +322,13 @@ test_overlay_existing_tag (void)
 	set_tag (buffer, tag, 0, 10, TRUE);
 	_gtk_source_tag_plan_add (plan, tag, 2, 8, FALSE);
 	_gtk_source_tag_plan_add (plan, tag, 4, 6, TRUE);
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 
 	for (int i = 0; i < 10; i++)
 		g_assert_cmpint (has_tag (buffer, tag, i), ==, i < 2 || i >= 8 || (i >= 4 && i < 6));
 
 	set_tag (buffer, tag, 0, 1, FALSE);
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	g_assert_false (has_tag (buffer, tag, 0));
 	g_assert_true (has_tag (buffer, tag, 1));
 
@@ -467,8 +466,10 @@ test_engine_external_class (void)
 	ensure_highlight (source_buffer);
 
 	for (int i = 0; i < 12; i++)
+	{
 		g_assert_cmpint (has_tag (buffer, external, i), ==,
 		                 (i >= 1 && i < 3) || (i >= 7 && i < 9) || i == 11);
+	}
 
 	g_object_unref (source_buffer);
 	g_object_unref (manager);
@@ -526,6 +527,7 @@ highlight_updated_reentrant (GtkSourceBuffer *buffer,
 	}
 
 	state->in_callback = TRUE;
+
 	if (state->action == NOTIFY_DETACH)
 	{
 		gtk_source_buffer_set_language (buffer, NULL);
@@ -563,14 +565,19 @@ test_notification_reentrancy (gconstpointer data)
 	buffer = GTK_TEXT_BUFFER (source_buffer);
 
 	for (int i = 0; i < 1000; i++)
+	{
 		g_string_append (text, " [ab{xy}cd] z\n");
+	}
+
 	gtk_text_buffer_set_text (buffer, text->str, text->len);
 	ensure_highlight (source_buffer);
 
 	for (guint i = 0; i < G_N_ELEMENTS (lines); i++)
 	{
 		if (!synchronous && i == 0)
+		{
 			continue;
+		}
 
 		gtk_text_buffer_get_iter_at_line_offset (buffer, &end, lines[i], 2);
 		gtk_text_buffer_insert (buffer, &end, i == 0 || !synchronous ? "{x}" : " ", -1);
@@ -588,10 +595,12 @@ test_notification_reentrancy (gconstpointer data)
 	else
 	{
 		while (state.outer_calls == 0)
+		{
 			g_assert_true (g_main_context_iteration (NULL, FALSE));
+		}
 	}
 
-	g_signal_handler_disconnect (buffer, handler);
+	g_clear_signal_handler (&handler, buffer);
 	g_assert_cmpuint (state.outer_calls, ==, state.action == NOTIFY_ENSURE && synchronous ? 2 : 1);
 	g_assert_cmpuint (state.nested_calls, ==, state.action == NOTIFY_EDIT_ENSURE ? 1 : 0);
 
@@ -611,12 +620,102 @@ test_notification_reentrancy (gconstpointer data)
 	g_object_unref (manager);
 }
 
+static void
+edit_after_tag (GtkTextBuffer *buffer,
+                GtkTextTag    *tag,
+                GtkTextIter   *start,
+                GtkTextIter   *end,
+                guint         *calls)
+{
+	GtkTextIter iter;
+
+	(*calls)++;
+
+	if (*calls == 1)
+	{
+		gtk_text_buffer_get_start_iter (buffer, &iter);
+		gtk_text_buffer_insert (buffer, &iter, "αβ", -1);
+	}
+}
+
+static void
+test_edit_during_commit (void)
+{
+	GtkTextBuffer *buffer = new_buffer (128);
+	GtkTextTag *tag = gtk_text_buffer_create_tag (buffer, NULL, NULL);
+	GtkSourceTagPlan *plan = _gtk_source_tag_plan_new (buffer, 0, 128);
+	guint calls = 0;
+	gulong handler;
+
+	for (int i = 0; i < 128; i += 2)
+	{
+		_gtk_source_tag_plan_add (plan, tag, i, i + 1, TRUE);
+	}
+
+	handler = g_signal_connect_after (buffer, "apply-tag", G_CALLBACK (edit_after_tag), &calls);
+	g_assert_false (_gtk_source_tag_plan_apply (plan, 0));
+	g_assert_cmpuint (calls, ==, 1);
+	g_assert_cmpint (gtk_text_buffer_get_char_count (buffer), ==, 130);
+	g_clear_signal_handler (&handler, buffer);
+	_gtk_source_tag_plan_free (plan);
+	g_object_unref (buffer);
+}
+
+static void
+test_deadline (void)
+{
+	GtkTextBuffer *buffer = new_buffer (128);
+	GtkTextTag *tag = gtk_text_buffer_create_tag (buffer, NULL, NULL);
+	guint passes = 0;
+	int shift = 0;
+	gboolean complete = FALSE;
+
+	while (!complete)
+	{
+		GtkSourceTagPlan *plan = _gtk_source_tag_plan_new (buffer, shift, 128 + shift);
+
+		_gtk_source_tag_plan_add_tag (plan, tag);
+
+		for (int i = 0; i < 128; i += 2)
+		{
+			_gtk_source_tag_plan_add (plan, tag, i + shift, i + shift + 1, TRUE);
+		}
+
+		complete = _gtk_source_tag_plan_apply (plan, 1);
+		_gtk_source_tag_plan_free (plan);
+		g_assert_cmpuint (++passes, <=, 64);
+
+		if (passes == 1)
+		{
+			GtkTextIter iter;
+
+			g_assert_false (complete);
+			g_assert_false (has_tag (buffer, tag, 126));
+
+			gtk_text_buffer_get_start_iter (buffer, &iter);
+			gtk_text_buffer_insert (buffer, &iter, "αβ", -1);
+			shift = 2;
+		}
+	}
+
+	g_assert_cmpuint (passes, >, 1);
+
+	for (int i = 0; i < 128; i++)
+	{
+		g_assert_cmpint (has_tag (buffer, tag, i + shift), ==, i % 2 == 0);
+	}
+
+	g_object_unref (buffer);
+}
+
 int
 main (int   argc,
       char *argv[])
 {
 	g_test_init (&argc, &argv, NULL);
 
+	g_test_add_func ("/tag-plan/deadline", test_deadline);
+	g_test_add_func ("/tag-plan/edit-during-commit", test_edit_during_commit);
 	g_test_add_func ("/tag-plan/coalesce-and-unchanged", test_coalesce_and_unchanged);
 	g_test_add_func ("/tag-plan/ordered-overrides", test_ordered_overrides);
 	g_test_add_func ("/tag-plan/partial-range-and-identity", test_partial_range_and_identity);

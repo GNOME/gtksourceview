@@ -939,7 +939,7 @@ highlight_region (GtkSourceContextEngine *ce,
 	apply_tags (ce, plan, ce->root_segment,
 	            gtk_text_iter_get_offset (start),
 	            gtk_text_iter_get_offset (end));
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE
@@ -1189,7 +1189,7 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 	                            ce->root_segment,
 	                            gtk_text_iter_get_offset (start),
 	                            gtk_text_iter_get_offset (&realend));
-	_gtk_source_tag_plan_apply (plan);
+	_gtk_source_tag_plan_apply (plan, 0);
 	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE

@@ -39,7 +39,8 @@ void              _gtk_source_tag_plan_add     (GtkSourceTagPlan *plan,
                                                 int               start,
                                                 int               end,
                                                 gboolean          enabled);
-void              _gtk_source_tag_plan_apply   (GtkSourceTagPlan *plan);
+gboolean          _gtk_source_tag_plan_apply   (GtkSourceTagPlan *plan,
+                                                gint64            deadline);
 void              _gtk_source_tag_plan_free    (GtkSourceTagPlan *plan);
 
 G_END_DECLS
