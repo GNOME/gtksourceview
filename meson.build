@@ -290,6 +290,10 @@ if cc.get_id() != 'msvc' and cc.has_multi_arguments('-Wmissing-declarations')
   global_c_args += '-Wmissing-declarations'
 endif
 
+if cc.has_argument('-fvisibility=hidden')
+  global_c_args += '-fvisibility=hidden'
+endif
+
 # Detect and set symbol visibility
 if get_option('default_library') != 'static'
   if host_machine.system() == 'windows'

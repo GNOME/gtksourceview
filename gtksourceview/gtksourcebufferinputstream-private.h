@@ -31,16 +31,12 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM (_gtk_source_buffer_input_stream_get_type())
 
-GTK_SOURCE_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceBufferInputStream, _gtk_source_buffer_input_stream, GTK_SOURCE, BUFFER_INPUT_STREAM, GInputStream)
 
-GTK_SOURCE_INTERNAL
 GtkSourceBufferInputStream *_gtk_source_buffer_input_stream_new            (GtkTextBuffer              *buffer,
                                                                             GtkSourceNewlineType        type,
                                                                             gboolean                    add_trailing_newline);
-GTK_SOURCE_INTERNAL
 gsize                       _gtk_source_buffer_input_stream_get_total_size (GtkSourceBufferInputStream *stream);
-GTK_SOURCE_INTERNAL
 gsize                       _gtk_source_buffer_input_stream_tell           (GtkSourceBufferInputStream *stream);
 
 G_END_DECLS

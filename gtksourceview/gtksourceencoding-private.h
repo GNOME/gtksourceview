@@ -38,7 +38,6 @@ typedef enum _GtkSourceEncodingDuplicates
 	GTK_SOURCE_ENCODING_DUPLICATES_KEEP_LAST
 } GtkSourceEncodingDuplicates;
 
-GTK_SOURCE_INTERNAL
 GSList *_gtk_source_encoding_remove_duplicates (GSList                      *encodings,
                                                 GtkSourceEncodingDuplicates  removal_type);
 

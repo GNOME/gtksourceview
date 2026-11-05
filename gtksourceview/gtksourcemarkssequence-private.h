@@ -26,35 +26,24 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_MARKS_SEQUENCE (_gtk_source_marks_sequence_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceMarksSequence, _gtk_source_marks_sequence, GTK_SOURCE, MARKS_SEQUENCE, GObject)
 
-G_GNUC_INTERNAL
 GtkSourceMarksSequence *_gtk_source_marks_sequence_new                (GtkTextBuffer          *buffer);
-G_GNUC_INTERNAL
 gboolean                _gtk_source_marks_sequence_is_empty           (GtkSourceMarksSequence *seq);
-G_GNUC_INTERNAL
 void                    _gtk_source_marks_sequence_add                (GtkSourceMarksSequence *seq,
                                                                        GtkTextMark            *mark);
-G_GNUC_INTERNAL
 void                    _gtk_source_marks_sequence_remove             (GtkSourceMarksSequence *seq,
                                                                        GtkTextMark            *mark);
-G_GNUC_INTERNAL
 GtkTextMark            *_gtk_source_marks_sequence_next               (GtkSourceMarksSequence *seq,
                                                                        GtkTextMark            *mark);
-G_GNUC_INTERNAL
 GtkTextMark            *_gtk_source_marks_sequence_prev               (GtkSourceMarksSequence *seq,
                                                                        GtkTextMark            *mark);
-G_GNUC_INTERNAL
 gboolean                _gtk_source_marks_sequence_forward_iter       (GtkSourceMarksSequence *seq,
                                                                        GtkTextIter            *iter);
-G_GNUC_INTERNAL
 gboolean                _gtk_source_marks_sequence_backward_iter      (GtkSourceMarksSequence *seq,
                                                                        GtkTextIter            *iter);
-G_GNUC_INTERNAL
 GSList                 *_gtk_source_marks_sequence_get_marks_at_iter  (GtkSourceMarksSequence *seq,
                                                                        const GtkTextIter      *iter);
-G_GNUC_INTERNAL
 GSList                 *_gtk_source_marks_sequence_get_marks_in_range (GtkSourceMarksSequence *seq,
                                                                        const GtkTextIter      *iter1,
                                                                        const GtkTextIter      *iter2);

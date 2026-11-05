@@ -26,10 +26,8 @@
 
 G_BEGIN_DECLS
 
-GTK_SOURCE_INTERNAL
 void _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
                                             GtkSourceView        *view);
-GTK_SOURCE_INTERNAL
 void _gtk_source_space_drawer_draw         (GtkSourceSpaceDrawer *drawer,
                                             GtkSourceView        *view,
                                             GtkSnapshot          *snapshot);

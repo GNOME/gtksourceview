@@ -23,7 +23,6 @@
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
 void _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
                                                   const GtkTextIter      *start,
                                                   const GtkTextIter      *end,

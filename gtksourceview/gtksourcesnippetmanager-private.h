@@ -23,9 +23,7 @@
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
 GtkSourceSnippetManager *_gtk_source_snippet_manager_peek_default (void);
-G_GNUC_INTERNAL
 const gchar             *_gtk_source_snippet_manager_intern       (GtkSourceSnippetManager *manager,
                                                                    const gchar             *str);
 

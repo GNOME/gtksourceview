@@ -28,10 +28,8 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES (_gtk_source_gutter_renderer_lines_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceGutterRendererLines, _gtk_source_gutter_renderer_lines, GTK_SOURCE, GUTTER_RENDERER_LINES, GtkSourceGutterRendererText)
 
-G_GNUC_INTERNAL
 GtkSourceGutterRenderer *_gtk_source_gutter_renderer_lines_new (void);
 
 G_END_DECLS

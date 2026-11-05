@@ -25,15 +25,11 @@
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
 GSList *_gtk_source_completion_words_utils_scan_words        (gchar             *text,
                                                               guint              minimum_word_size);
-G_GNUC_INTERNAL
 gchar  *_gtk_source_completion_words_utils_get_end_word      (gchar             *text);
-G_GNUC_INTERNAL
 void    _gtk_source_completion_words_utils_adjust_region     (GtkTextIter       *start,
                                                               GtkTextIter       *end);
-G_GNUC_INTERNAL
 void    _gtk_source_completion_words_utils_check_scan_region (const GtkTextIter *start,
                                                               const GtkTextIter *end);
 

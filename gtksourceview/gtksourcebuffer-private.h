@@ -27,45 +27,45 @@
 
 G_BEGIN_DECLS
 
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_update_syntax_highlight   (GtkSourceBuffer        *buffer,
-                                                                                             const GtkTextIter      *start,
-                                                                                             const GtkTextIter      *end,
-                                                                                             gboolean                synchronous);
-GTK_SOURCE_INTERNAL gboolean                   _gtk_source_buffer_has_search_highlights     (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_update_search_highlight   (GtkSourceBuffer        *buffer,
-                                                                                             const GtkTextIter      *start,
-                                                                                             const GtkTextIter      *end,
-                                                                                             gboolean                synchronous);
-GTK_SOURCE_INTERNAL GtkSourceMark             *_gtk_source_buffer_source_mark_next          (GtkSourceBuffer        *buffer,
-                                                                                             GtkSourceMark          *mark,
-                                                                                             const gchar            *category);
-GTK_SOURCE_INTERNAL GtkSourceMark             *_gtk_source_buffer_source_mark_prev          (GtkSourceBuffer        *buffer,
-                                                                                             GtkSourceMark          *mark,
-                                                                                             const gchar            *category);
-GTK_SOURCE_INTERNAL GtkTextTag                *_gtk_source_buffer_get_bracket_match_tag     (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_add_search_context        (GtkSourceBuffer        *buffer,
-                                                                                             GtkSourceSearchContext *search_context);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_set_as_invalid_character  (GtkSourceBuffer        *buffer,
-                                                                                             const GtkTextIter      *start,
-                                                                                             const GtkTextIter      *end);
-GTK_SOURCE_INTERNAL gboolean                   _gtk_source_buffer_has_invalid_chars         (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL GtkSourceBracketMatchType  _gtk_source_buffer_find_bracket_match        (GtkSourceBuffer        *buffer,
-                                                                                             const GtkTextIter      *pos,
-                                                                                             GtkTextIter            *bracket,
-                                                                                             GtkTextIter            *bracket_match);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_save_and_clear_selection  (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_restore_selection         (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL gboolean                   _gtk_source_buffer_has_source_marks          (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL GSList                    *_gtk_source_buffer_get_source_marks_in_range (GtkSourceBuffer        *buffer,
-                                                                                             const GtkTextIter      *start,
-                                                                                             const GtkTextIter      *end,
-                                                                                             const char             *category);
-GTK_SOURCE_INTERNAL gboolean                   _gtk_source_buffer_has_spaces_tag            (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL GtkTextTag                *_gtk_source_buffer_get_snippet_focus_tag     (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL gint64                     _gtk_source_buffer_get_insertion_count       (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_block_cursor_moved        (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_unblock_cursor_moved      (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_begin_loading             (GtkSourceBuffer        *buffer);
-GTK_SOURCE_INTERNAL void                       _gtk_source_buffer_end_loading               (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_update_syntax_highlight   (GtkSourceBuffer        *buffer,
+                                                                         const GtkTextIter      *start,
+                                                                         const GtkTextIter      *end,
+                                                                         gboolean                synchronous);
+gboolean                   _gtk_source_buffer_has_search_highlights     (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_update_search_highlight   (GtkSourceBuffer        *buffer,
+                                                                         const GtkTextIter      *start,
+                                                                         const GtkTextIter      *end,
+                                                                         gboolean                synchronous);
+GtkSourceMark             *_gtk_source_buffer_source_mark_next          (GtkSourceBuffer        *buffer,
+                                                                         GtkSourceMark          *mark,
+                                                                         const gchar            *category);
+GtkSourceMark             *_gtk_source_buffer_source_mark_prev          (GtkSourceBuffer        *buffer,
+                                                                         GtkSourceMark          *mark,
+                                                                         const gchar            *category);
+GtkTextTag                *_gtk_source_buffer_get_bracket_match_tag     (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_add_search_context        (GtkSourceBuffer        *buffer,
+                                                                         GtkSourceSearchContext *search_context);
+void                       _gtk_source_buffer_set_as_invalid_character  (GtkSourceBuffer        *buffer,
+                                                                         const GtkTextIter      *start,
+                                                                         const GtkTextIter      *end);
+gboolean                   _gtk_source_buffer_has_invalid_chars         (GtkSourceBuffer        *buffer);
+GtkSourceBracketMatchType  _gtk_source_buffer_find_bracket_match        (GtkSourceBuffer        *buffer,
+                                                                         const GtkTextIter      *pos,
+                                                                         GtkTextIter            *bracket,
+                                                                         GtkTextIter            *bracket_match);
+void                       _gtk_source_buffer_save_and_clear_selection  (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_restore_selection         (GtkSourceBuffer        *buffer);
+gboolean                   _gtk_source_buffer_has_source_marks          (GtkSourceBuffer        *buffer);
+GSList                    *_gtk_source_buffer_get_source_marks_in_range (GtkSourceBuffer        *buffer,
+                                                                         const GtkTextIter      *start,
+                                                                         const GtkTextIter      *end,
+                                                                         const char             *category);
+gboolean                   _gtk_source_buffer_has_spaces_tag            (GtkSourceBuffer        *buffer);
+GtkTextTag                *_gtk_source_buffer_get_snippet_focus_tag     (GtkSourceBuffer        *buffer);
+gint64                     _gtk_source_buffer_get_insertion_count       (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_block_cursor_moved        (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_unblock_cursor_moved      (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_begin_loading             (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_end_loading               (GtkSourceBuffer        *buffer);
 
 G_END_DECLS

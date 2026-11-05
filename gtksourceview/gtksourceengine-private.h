@@ -27,7 +27,6 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_ENGINE (_gtk_source_engine_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_INTERFACE (GtkSourceEngine, _gtk_source_engine, GTK_SOURCE, ENGINE, GObject)
 
 struct _GtkSourceEngineInterface
@@ -50,23 +49,18 @@ struct _GtkSourceEngineInterface
 	                           GtkSourceStyleScheme *scheme);
 };
 
-G_GNUC_INTERNAL
 void _gtk_source_engine_attach_buffer    (GtkSourceEngine      *engine,
                                           GtkTextBuffer        *buffer);
-G_GNUC_INTERNAL
 void _gtk_source_engine_text_inserted    (GtkSourceEngine      *engine,
                                           gint                  start_offset,
                                           gint                  end_offset);
-G_GNUC_INTERNAL
 void _gtk_source_engine_text_deleted     (GtkSourceEngine      *engine,
                                           gint                  offset,
                                           gint                  length);
-G_GNUC_INTERNAL
 void _gtk_source_engine_update_highlight (GtkSourceEngine      *engine,
                                           const GtkTextIter    *start,
                                           const GtkTextIter    *end,
                                           gboolean              synchronous);
-G_GNUC_INTERNAL
 void _gtk_source_engine_set_style_scheme (GtkSourceEngine      *engine,
                                           GtkSourceStyleScheme *scheme);
 

@@ -31,20 +31,14 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_BUFFER_OUTPUT_STREAM (gtk_source_buffer_output_stream_get_type())
 
-GTK_SOURCE_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceBufferOutputStream, gtk_source_buffer_output_stream, GTK_SOURCE, BUFFER_OUTPUT_STREAM, GOutputStream)
 
-GTK_SOURCE_INTERNAL
 GtkSourceBufferOutputStream *gtk_source_buffer_output_stream_new                 (GtkSourceBuffer             *buffer,
                                                                                   GSList                      *candidate_encodings,
                                                                                   gboolean                     remove_trailing_newline);
-GTK_SOURCE_INTERNAL
 GtkSourceNewlineType         gtk_source_buffer_output_stream_detect_newline_type (GtkSourceBufferOutputStream *stream);
-GTK_SOURCE_INTERNAL
 const GtkSourceEncoding     *gtk_source_buffer_output_stream_get_guessed         (GtkSourceBufferOutputStream *stream);
-GTK_SOURCE_INTERNAL
 guint                        gtk_source_buffer_output_stream_get_num_fallbacks   (GtkSourceBufferOutputStream *stream);
-GTK_SOURCE_INTERNAL
 void                         gtk_source_buffer_output_stream_abort               (GtkSourceBufferOutputStream *stream);
 
 G_END_DECLS

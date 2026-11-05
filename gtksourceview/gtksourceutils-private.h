@@ -26,79 +26,55 @@
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
-gchar  **_gtk_source_utils_get_default_dirs              (const gchar                 *basename);
-G_GNUC_INTERNAL
-GSList  *_gtk_source_utils_get_file_list                 (gchar                      **path,
-                                                          const gchar                 *suffix,
-                                                          gboolean                     only_dirs);
-G_GNUC_INTERNAL
-gint     _gtk_source_utils_string_to_int                 (const gchar                 *str);
-G_GNUC_INTERNAL
-gint     _gtk_source_utils_int_to_string                 (guint                        value,
-                                                          const gchar                **outstr);
-G_GNUC_INTERNAL
-gchar   *_gtk_source_utils_pango_font_description_to_css (const PangoFontDescription  *font_desc);
-
+gchar        **_gtk_source_utils_get_default_dirs              (const gchar                 *basename);
+GSList        *_gtk_source_utils_get_file_list                 (gchar                      **path,
+                                                                const gchar                 *suffix,
+                                                                gboolean                     only_dirs);
+gint           _gtk_source_utils_string_to_int                 (const gchar                 *str);
+gint           _gtk_source_utils_int_to_string                 (guint                        value,
+                                                                const gchar                **outstr);
+gchar         *_gtk_source_utils_pango_font_description_to_css (const PangoFontDescription  *font_desc);
 /* Note: it returns duplicated string. */
-G_GNUC_INTERNAL
-gchar   *_gtk_source_utils_dgettext                      (const gchar                 *domain,
-                                                          const gchar                 *msgid) G_GNUC_FORMAT(2);
-
-G_GNUC_INTERNAL
-void     _gtk_source_view_jump_to_iter                   (GtkTextView                 *view,
-                                                          const GtkTextIter           *iter,
-                                                          double                       within_margin,
-                                                          gboolean                     use_align,
-                                                          double                       xalign,
-                                                          double                       yalign);
-
-G_GNUC_INTERNAL
-char    *_gtk_source_utils_aligned_alloc                 (gsize                        size,
-                                                          gsize                        number,
-                                                          gsize                        alignment);
-G_GNUC_INTERNAL
-void     _gtk_source_utils_aligned_free                  (gpointer                     data);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_add_gsize             (gsize                        left,
-                                                          gsize                        right,
-                                                          gsize                       *result);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_add_guint             (guint                        left,
-                                                          guint                        right,
-                                                          guint                       *result);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_mul_gsize             (gsize                        left,
-                                                          gsize                        right,
-                                                          gsize                       *result);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_add_goffset           (goffset                      left,
-                                                          goffset                      right,
-                                                          goffset                     *result);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_gssize_to_gsize       (gssize                       value,
-                                                          gsize                       *result);
-G_GNUC_INTERNAL
-gboolean _gtk_source_utils_checked_gssize_to_goffset     (gssize                       value,
-                                                          goffset                     *result);
-G_GNUC_INTERNAL
-gsize    _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
-G_GNUC_INTERNAL
-PangoFontMap *_gtk_source_utils_get_builder_blocks       (void);
-G_GNUC_INTERNAL
-gsize    _gtk_source_utils_strnlen                       (const char                  *str,
-                                                          gsize                        maxlen);
-G_GNUC_INTERNAL
-void     _gtk_source_widget_add_css_provider             (GtkWidget                   *widget,
-                                                          GtkCssProvider              *provider,
-							  guint                        priority);
-G_GNUC_INTERNAL
-void     _gtk_source_widget_remove_css_provider          (GtkWidget                   *widget,
-                                                          GtkCssProvider              *provider);
-G_GNUC_INTERNAL
-void     _gtk_source_add_css_provider                    (GdkDisplay                  *display,
-                                                          GtkCssProvider              *provider,
-							  guint                        priority);
+gchar         *_gtk_source_utils_dgettext                      (const gchar                 *domain,
+                                                                const gchar                 *msgid) G_GNUC_FORMAT(2);
+void           _gtk_source_view_jump_to_iter                   (GtkTextView                 *view,
+                                                                const GtkTextIter           *iter,
+                                                                double                       within_margin,
+                                                                gboolean                     use_align,
+                                                                double                       xalign,
+                                                                double                       yalign);
+char          *_gtk_source_utils_aligned_alloc                 (gsize                        size,
+                                                                gsize                        number,
+                                                                gsize                        alignment);
+void           _gtk_source_utils_aligned_free                  (gpointer                     data);
+gboolean       _gtk_source_utils_checked_add_gsize             (gsize                        left,
+                                                                gsize                        right,
+                                                                gsize                       *result);
+gboolean       _gtk_source_utils_checked_add_guint             (guint                        left,
+                                                                guint                        right,
+                                                                guint                       *result);
+gboolean       _gtk_source_utils_checked_mul_gsize             (gsize                        left,
+                                                                gsize                        right,
+                                                                gsize                       *result);
+gboolean       _gtk_source_utils_checked_add_goffset           (goffset                      left,
+                                                                goffset                      right,
+                                                                goffset                     *result);
+gboolean       _gtk_source_utils_checked_gssize_to_gsize       (gssize                       value,
+                                                                gsize                       *result);
+gboolean       _gtk_source_utils_checked_gssize_to_goffset     (gssize                       value,
+                                                                goffset                     *result);
+gsize          _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
+PangoFontMap  *_gtk_source_utils_get_builder_blocks            (void);
+gsize          _gtk_source_utils_strnlen                       (const char                  *str,
+                                                                gsize                        maxlen);
+void           _gtk_source_widget_add_css_provider             (GtkWidget                   *widget,
+                                                                GtkCssProvider              *provider,
+                                                                guint                        priority);
+void           _gtk_source_widget_remove_css_provider          (GtkWidget                   *widget,
+                                                                GtkCssProvider              *provider);
+void           _gtk_source_add_css_provider                    (GdkDisplay                  *display,
+                                                                GtkCssProvider              *provider,
+                                                                guint                        priority);
 
 static inline void
 premix_colors (GdkRGBA       *dest,

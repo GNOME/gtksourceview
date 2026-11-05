@@ -43,12 +43,9 @@ struct _GtkSourceSnippetChunk
 	guint                    text_set : 1;
 };
 
-G_GNUC_INTERNAL
 void     _gtk_source_snippet_chunk_save_text  (GtkSourceSnippetChunk *chunk);
-G_GNUC_INTERNAL
 gboolean _gtk_source_snippet_chunk_contains   (GtkSourceSnippetChunk *chunk,
                                                const GtkTextIter     *iter);
-G_GNUC_INTERNAL
 gboolean _gtk_source_snippet_chunk_get_bounds (GtkSourceSnippetChunk *chunk,
                                                GtkTextIter           *begin,
                                                GtkTextIter           *end);

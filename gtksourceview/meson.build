@@ -296,7 +296,6 @@ gtksource_lib = library(package_string,
                  c_args: core_c_args + deprecated_c_args,
               link_args: release_link_args,
                 install: true,
-  gnu_symbol_visibility: 'hidden',
 )
 
 gtksource_dep_sources = [

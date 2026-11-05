@@ -29,16 +29,11 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL (gtk_source_completion_words_proposal_get_type())
 
-GTK_SOURCE_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionWordsProposal, gtk_source_completion_words_proposal, GTK_SOURCE, COMPLETION_WORDS_PROPOSAL, GObject)
 
-GTK_SOURCE_INTERNAL
 GtkSourceCompletionWordsProposal *gtk_source_completion_words_proposal_new      (const gchar                      *word);
-GTK_SOURCE_INTERNAL
 const gchar                      *gtk_source_completion_words_proposal_get_word (GtkSourceCompletionWordsProposal *proposal);
-GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_proposal_use      (GtkSourceCompletionWordsProposal *proposal);
-GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_proposal_unuse    (GtkSourceCompletionWordsProposal *proposal);
 
 G_END_DECLS

@@ -28,20 +28,16 @@
 
 G_BEGIN_DECLS
 
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_annotation_get_rect       (GtkSourceAnnotation *self,
                                                 GdkRectangle        *rect);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_annotation_contains_point (GtkSourceAnnotation *self,
                                                 int                  x,
                                                 int                  y);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_annotation_draw           (GtkSourceAnnotation *self,
                                                 GtkSnapshot         *snapshot,
                                                 GtkSourceView       *view,
                                                 GdkRectangle         rectangle,
                                                 const GdkRGBA       *color);
-GTK_SOURCE_INTERNAL
 int      _gtk_source_annotation_get_width      (GtkSourceAnnotation *self,
                                                 GtkWidget           *widget,
                                                 int                  line_height);

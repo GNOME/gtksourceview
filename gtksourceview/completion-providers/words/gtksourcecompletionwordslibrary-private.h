@@ -33,35 +33,24 @@ struct _GtkSourceCompletionWordsLibraryClass
 	GObjectClass parent_class;
 };
 
-GTK_SOURCE_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionWordsLibrary, gtk_source_completion_words_library, GTK_SOURCE, COMPLETION_WORDS_LIBRARY, GObject)
 
-GTK_SOURCE_INTERNAL
 GtkSourceCompletionWordsLibrary  *gtk_source_completion_words_library_new          (void);
-GTK_SOURCE_INTERNAL
 GSequenceIter                    *gtk_source_completion_words_library_find         (GtkSourceCompletionWordsLibrary  *library,
                                                                                     GtkSourceCompletionWordsProposal *proposal);
-GTK_SOURCE_INTERNAL
 GSequenceIter                    *gtk_source_completion_words_library_find_first   (GtkSourceCompletionWordsLibrary  *library,
                                                                                     const gchar                      *word,
                                                                                     gint                              len);
-GTK_SOURCE_INTERNAL
 GSequenceIter                    *gtk_source_completion_words_library_find_next    (GSequenceIter                    *iter,
                                                                                     const gchar                      *word,
                                                                                     gint                              len);
-GTK_SOURCE_INTERNAL
 GtkSourceCompletionWordsProposal *gtk_source_completion_words_library_get_proposal (GSequenceIter                    *iter);
-GTK_SOURCE_INTERNAL
 GtkSourceCompletionWordsProposal *gtk_source_completion_words_library_add_word     (GtkSourceCompletionWordsLibrary  *library,
                                                                                     const gchar                      *word);
-GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_library_remove_word  (GtkSourceCompletionWordsLibrary  *library,
                                                                                     GtkSourceCompletionWordsProposal *proposal);
-GTK_SOURCE_INTERNAL
 gboolean                          gtk_source_completion_words_library_is_locked    (GtkSourceCompletionWordsLibrary  *library);
-GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_library_lock         (GtkSourceCompletionWordsLibrary  *library);
-GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_library_unlock       (GtkSourceCompletionWordsLibrary  *library);
 
 G_END_DECLS

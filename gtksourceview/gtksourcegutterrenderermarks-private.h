@@ -29,10 +29,8 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS	(gtk_source_gutter_renderer_marks_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceGutterRendererMarks, gtk_source_gutter_renderer_marks, GTK_SOURCE, GUTTER_RENDERER_MARKS, GtkSourceGutterRendererPixbuf)
 
-G_GNUC_INTERNAL
 GtkSourceGutterRenderer *gtk_source_gutter_renderer_marks_new (void);
 
 G_END_DECLS

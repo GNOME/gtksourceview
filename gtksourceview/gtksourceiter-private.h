@@ -27,49 +27,31 @@ G_BEGIN_DECLS
 
 /* Semi-public functions. */
 
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_forward_visible_word_end           (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_forward_visible_word_ends          (GtkTextIter       *iter,
                                                               gint               count);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_backward_visible_word_start        (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_backward_visible_word_starts       (GtkTextIter       *iter,
                                                               gint               count);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_extend_selection_word              (const GtkTextIter *location,
                                                               GtkTextIter       *start,
                                                               GtkTextIter       *end);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_starts_extra_natural_word          (const GtkTextIter *iter,
                                                               gboolean           visible);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_ends_extra_natural_word            (const GtkTextIter *iter,
                                                               gboolean           visible);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_get_leading_spaces_end_boundary    (const GtkTextIter *iter,
                                                               GtkTextIter       *leading_end);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_get_trailing_spaces_start_boundary (const GtkTextIter *iter,
                                                               GtkTextIter       *trailing_start);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_forward_full_word_end              (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_backward_full_word_start           (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_starts_full_word                   (const GtkTextIter *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_ends_full_word                     (const GtkTextIter *iter);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_forward_extra_natural_word_end     (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 void     _gtk_source_iter_backward_extra_natural_word_start  (GtkTextIter       *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_starts_word                        (const GtkTextIter *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_ends_word                          (const GtkTextIter *iter);
-GTK_SOURCE_INTERNAL
 gboolean _gtk_source_iter_inside_word                        (const GtkTextIter *iter);
 
 G_END_DECLS

@@ -28,18 +28,13 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER (gtk_source_completion_words_buffer_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, GTK_SOURCE, COMPLETION_WORDS_BUFFER, GObject)
 
-G_GNUC_INTERNAL
 GtkSourceCompletionWordsBuffer *gtk_source_completion_words_buffer_new                   (GtkSourceCompletionWordsLibrary *library,
                                                                                           GtkTextBuffer                   *buffer);
-G_GNUC_INTERNAL
 GtkTextBuffer                  *gtk_source_completion_words_buffer_get_buffer            (GtkSourceCompletionWordsBuffer  *buffer);
-G_GNUC_INTERNAL
 void                            gtk_source_completion_words_buffer_set_scan_batch_size   (GtkSourceCompletionWordsBuffer  *buffer,
                                                                                           guint                            size);
-G_GNUC_INTERNAL
 void                            gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer  *buffer,
                                                                                           guint                            size);
 

@@ -29,14 +29,11 @@
 
 G_BEGIN_DECLS
 
-GTK_SOURCE_INTERNAL
-void       _gtk_source_annotations_update_color  (GtkSourceAnnotations       *manager,
-                                                         GtkSourceView                    *view);
-GTK_SOURCE_INTERNAL
-void       _gtk_source_annotations_draw          (GtkSourceAnnotations       *manager,
-                                                         GtkSourceView                    *view,
-                                                         GtkSnapshot                      *snapshot);
-GTK_SOURCE_INTERNAL
+void       _gtk_source_annotations_update_color  (GtkSourceAnnotations *manager,
+                                                  GtkSourceView        *view);
+void       _gtk_source_annotations_draw          (GtkSourceAnnotations *manager,
+                                                  GtkSourceView        *view,
+                                                  GtkSnapshot          *snapshot);
 GPtrArray *_gtk_source_annotations_get_providers (GtkSourceAnnotations *self);
 
 G_END_DECLS

@@ -23,7 +23,6 @@
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
 void _gtk_source_snippet_context_emit_changed (GtkSourceSnippetContext *context);
 
 G_END_DECLS
