@@ -27,10 +27,10 @@
 
 G_BEGIN_DECLS
 
-void                       _gtk_source_buffer_update_syntax_highlight   (GtkSourceBuffer        *buffer,
+gboolean                   _gtk_source_buffer_update_syntax_highlight   (GtkSourceBuffer        *buffer,
                                                                          const GtkTextIter      *start,
                                                                          const GtkTextIter      *end,
-                                                                         gboolean                synchronous);
+                                                                         gint64                  deadline);
 gboolean                   _gtk_source_buffer_has_search_highlights     (GtkSourceBuffer        *buffer);
 void                       _gtk_source_buffer_update_search_highlight   (GtkSourceBuffer        *buffer,
                                                                          const GtkTextIter      *start,

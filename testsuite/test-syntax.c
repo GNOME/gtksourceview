@@ -82,7 +82,7 @@ test_syntax (gconstpointer data)
 	gtk_source_buffer_set_style_scheme (buffer, s);
 
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
-	_gtk_source_buffer_update_syntax_highlight (buffer, &begin, &end, TRUE);
+	_gtk_source_buffer_update_syntax_highlight (buffer, &begin, &end, 0);
 
 	g_object_unref (buffer);
 

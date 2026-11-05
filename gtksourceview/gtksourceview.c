@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include "gtksourceview-private.h"
+#include "gtksourcemap.h"
 
 #include <string.h>
 #include <fribidi.h>
@@ -1718,8 +1719,6 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 	GtkTextIter end;
 	GtkTextIter visible_start;
 	GtkTextIter visible_end;
-	GtkTextIter intersect_start;
-	GtkTextIter intersect_end;
 
 #if 0
 	{
@@ -1746,42 +1745,9 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 		return;
 	}
 
-	if (gtk_text_iter_compare (&start, &visible_start) < 0)
-	{
-		intersect_start = visible_start;
-	}
-	else
-	{
-		intersect_start = start;
-	}
-
-	if (gtk_text_iter_compare (&visible_end, &end) < 0)
-	{
-		intersect_end = visible_end;
-	}
-	else
-	{
-		intersect_end = end;
-	}
-
-	/* GtkSourceContextEngine sends the highlight-updated signal to notify
-	 * the view, and in the view (here) we tell the ContextEngine to update
-	 * the highlighting, but only in the visible area. It seems that the
-	 * purpose is to reduce the number of tags that the ContextEngine
-	 * applies to the buffer.
-	 *
-	 * A previous implementation of this signal handler queued a redraw on
-	 * the view with gtk_widget_queue_draw_area(), instead of calling
-	 * directly _gtk_source_buffer_update_syntax_highlight(). The ::draw
-	 * handler also calls _gtk_source_buffer_update_syntax_highlight(), so
-	 * this had the desired effect, but it was less clear.
-	 * See the Git commit 949cd128064201935f90d999544e6a19f8e3baa6.
-	 * And: https://bugzilla.gnome.org/show_bug.cgi?id=767565
-	 */
-	_gtk_source_buffer_update_syntax_highlight (buffer,
-						    &intersect_start,
-						    &intersect_end,
-						    FALSE);
+	/* Applying tags from this notification recursively spends the parser's
+	 * idle budget on every attached view, especially the minimap. */
+	gtk_source_view_queue_highlight_update (GTK_SOURCE_VIEW (text_view));
 }
 
 static void
@@ -2512,6 +2478,7 @@ _gtk_source_view_update_highlight (GtkSourceView *view)
 	GtkTextIter iter1, iter2;
 	GdkRectangle visible_rect;
 	char *message = NULL;
+	int grace;
 
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
@@ -2551,7 +2518,16 @@ _gtk_source_view_update_highlight (GtkSourceView *view)
 	                                 gtk_text_iter_get_line (&iter1),
 	                                 gtk_text_iter_get_line (&iter2));
 
-	_gtk_source_buffer_update_syntax_highlight (buffer, &iter1, &iter2, FALSE);
+	/* Don't spend too much time on the map which can cause us to miss
+	 * deadlines. Primarily focus on the view itself and let the map
+	 * catch up as necessary incrementally.
+	 */
+	grace = GTK_SOURCE_IS_MAP (view) ? 500 : 2000;
+
+	if (!_gtk_source_buffer_update_syntax_highlight (buffer, &iter1, &iter2, g_get_monotonic_time () + grace))
+	{
+		gtk_source_view_queue_highlight_update (view);
+	}
 
 	if (buffer == priv->source_buffer && _gtk_source_buffer_has_search_highlights (buffer))
 	{

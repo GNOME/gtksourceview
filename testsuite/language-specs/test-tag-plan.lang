@@ -4,7 +4,7 @@
     <style id="outer" name="Outer"/>
     <style id="inner" name="Inner"/>
     <style id="delimiter" name="Delimiter"/>
-    <style id="token" name="Token"/>
+    <style id="token" name="Token" map-to="def:string"/>
   </styles>
   <definitions>
     <context id="outer" style-ref="outer" style-inside="true" class="outer">
@@ -17,8 +17,11 @@
           <start>\{</start>
           <end>\}</end>
           <include>
-            <context style-ref="token" class="token">
-              <match>x</match>
+            <context class="token">
+              <match>(x+)</match>
+              <include>
+                <context sub-pattern="1" style-ref="token" class="capture"/>
+              </include>
             </context>
           </include>
         </context>

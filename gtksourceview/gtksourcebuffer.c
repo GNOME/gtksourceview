@@ -1592,32 +1592,22 @@ gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 	return priv->language;
 }
 
-/*
- * _gtk_source_buffer_update_syntax_highlight:
- * @buffer: a #GtkSourceBuffer.
- * @start: start of the area to highlight.
- * @end: end of the area to highlight.
- * @synchronous: whether the area should be highlighted synchronously.
- *
- * Asks the buffer to analyze and highlight given area.
+/* A zero deadline finishes the requested range synchronously. Otherwise,
+ * FALSE means that the caller needs to schedule another batch.
  */
-void
+gboolean
 _gtk_source_buffer_update_syntax_highlight (GtkSourceBuffer   *buffer,
-					    const GtkTextIter *start,
-					    const GtkTextIter *end,
-					    gboolean           synchronous)
+                                            const GtkTextIter *start,
+                                            const GtkTextIter *end,
+                                            gint64             deadline)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), TRUE);
+	g_return_val_if_fail (start != NULL && end != NULL, TRUE);
 
-	if (priv->highlight_engine != NULL)
-	{
-		_gtk_source_engine_update_highlight (priv->highlight_engine,
-						     start,
-						     end,
-						     synchronous);
-	}
+	return priv->highlight_engine == NULL ||
+	       _gtk_source_engine_update_highlight (priv->highlight_engine, start, end, deadline);
 }
 
 void
@@ -1678,7 +1668,7 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
 				    const GtkTextIter *start,
 				    const GtkTextIter *end)
 {
-	_gtk_source_buffer_update_syntax_highlight (buffer, start, end, TRUE);
+	_gtk_source_buffer_update_syntax_highlight (buffer, start, end, 0);
 	_gtk_source_buffer_update_search_highlight (buffer, start, end, TRUE);
 }
 

@@ -53,7 +53,7 @@
  * Should be small enough, since in worst case we block ui for this time after
  * each keypress.
  */
-#define FIRST_UPDATE_TIME_SLICE		10
+#define FIRST_UPDATE_TIME_SLICE 2
 
 /* Priority of long running idle which is used to analyze whole buffer, if
  * the engine wasn't quick enough to analyze it in one shot.
@@ -68,7 +68,10 @@
 /* Maximal amount of time (in milliseconds) allowed to spend in one cycle of
  * background idle.
  */
-#define INCREMENTAL_UPDATE_TIME_SLICE	30
+#define INCREMENTAL_UPDATE_TIME_SLICE 2
+
+#define TAG_UPDATE_CHARS 512
+#define PARSE_BATCH_CHARS 1024
 
 /* Maximal amount of time (in milliseconds) allowed to spend highlihting a
  * single line. If it is not enough, then highlighting is disabled.
@@ -447,6 +450,7 @@ struct _GtkSourceContextEngine
 
 	/* Region covering the unhighlighted text. */
 	GtkSourceRegion *refresh_region;
+	GtkSourceRegion *context_region;
 
 	/* Tree of contexts. */
 	Context *root_context;
@@ -536,7 +540,9 @@ static void               update_syntax                         (GtkSourceContex
 static void               update_syntax_range                   (GtkSourceContextEngine  *ce,
                                                                  const GtkTextIter       *begin,
                                                                  const GtkTextIter       *end,
-                                                                 int                      time);
+                                                                 gint64                   deadline);
+static Segment           *get_invalid_segment_after             (GtkSourceContextEngine  *ce,
+                                                                 int                      offset);
 static void               install_idle_worker                   (GtkSourceContextEngine  *ce);
 static void               install_first_update                  (GtkSourceContextEngine  *ce);
 
@@ -879,7 +885,7 @@ apply_tags (GtkSourceContextEngine *ce,
 
 	for (sp = segment->sub_patterns; sp != NULL; sp = sp->next)
 	{
-		if (sp->start_at >= start_offset && sp->end_at <= end_offset)
+		if (sp->start_at < end_offset && sp->end_at > start_offset)
 		{
 			gint start = MAX (start_offset, sp->start_at);
 			gint end = MIN (end_offset, sp->end_at);
@@ -902,15 +908,17 @@ apply_tags (GtkSourceContextEngine *ce,
 	}
 }
 
-static void
+static gboolean
 highlight_region (GtkSourceContextEngine *ce,
                   GtkTextIter            *start,
-                  GtkTextIter            *end)
+                  GtkTextIter            *end,
+                  gint64                  deadline)
 {
 #ifdef ENABLE_PROFILE
 	GTimer *timer;
 #endif
 	GtkSourceTagPlan *plan = NULL;
+	gboolean complete;
 	GHashTableIter tag_iter;
 	gpointer value;
 
@@ -919,7 +927,7 @@ highlight_region (GtkSourceContextEngine *ce,
 	 * notify_highlight_updated() separately limits the redraw notification.
 	 */
 	if (gtk_text_iter_compare (start, end) >= 0)
-		return;
+		return TRUE;
 
 #ifdef ENABLE_PROFILE
 	timer = g_timer_new ();
@@ -939,7 +947,7 @@ highlight_region (GtkSourceContextEngine *ce,
 	apply_tags (ce, plan, ce->root_segment,
 	            gtk_text_iter_get_offset (start),
 	            gtk_text_iter_get_offset (end));
-	_gtk_source_tag_plan_apply (plan, 0);
+	complete = _gtk_source_tag_plan_apply (plan, deadline);
 	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE
@@ -949,6 +957,8 @@ highlight_region (GtkSourceContextEngine *ce,
 		 g_timer_elapsed (timer, NULL) * 1000);
 	g_timer_destroy (timer);
 #endif
+
+	return complete;
 }
 
 /**
@@ -962,37 +972,56 @@ highlight_region (GtkSourceContextEngine *ce,
  * tree currently, so highlighting may not be correct
  * (gtk_source_context_engine_update_highlight is the method
  * that actually ensures correct highlighting).
+ *
+ * Leave unfinished pieces in refresh_region for the next batch.
  */
-static void
+static gboolean
 ensure_highlighted (GtkSourceContextEngine *ce,
                     const GtkTextIter      *start,
-                    const GtkTextIter      *end)
+                    const GtkTextIter      *end,
+                    gint64                  deadline)
 {
-	GtkSourceRegion *region;
-	GtkSourceRegionIter reg_iter;
+	GtkSourceRegion *region = NULL;
+	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
+	guint64 serial = ce->change_serial;
+	gboolean complete = FALSE;
 
-	/* Get the subregions not yet highlighted. */
 	region = gtk_source_region_intersect_subregion (ce->refresh_region, start, end);
 
-	if (region == NULL)
-		return;
-
-	gtk_source_region_get_start_region_iter (region, &reg_iter);
-
-	/* Highlight all subregions from the intersection.
-	 * hopefully this will only be one subregion. */
-	while (!gtk_source_region_iter_is_end (&reg_iter))
+	while (!gtk_source_region_is_empty (region))
 	{
-		GtkTextIter s, e;
-		gtk_source_region_iter_get_subregion (&reg_iter, &s, &e);
-		highlight_region (ce, &s, &e);
-		gtk_source_region_iter_next (&reg_iter);
+		GtkSourceRegionIter iter;
+		GtkTextIter begin, limit;
+
+		if (deadline != 0 && g_get_monotonic_time () >= deadline)
+			goto out;
+
+		gtk_source_region_get_start_region_iter (region, &iter);
+		gtk_source_region_iter_get_subregion (&iter, &begin, &limit);
+
+		if (deadline != 0 &&
+		    gtk_text_iter_get_offset (&limit) - gtk_text_iter_get_offset (&begin) > TAG_UPDATE_CHARS)
+		{
+			limit = begin;
+			gtk_text_iter_forward_chars (&limit, TAG_UPDATE_CHARS);
+		}
+
+		if (!highlight_region (ce, &begin, &limit, deadline) ||
+		    ce->disabled || ce->buffer != buffer || ce->change_serial != serial)
+		{
+			goto out;
+		}
+
+		gtk_source_region_subtract_subregion (ce->refresh_region, &begin, &limit);
+		gtk_source_region_subtract_subregion (region, &begin, &limit);
 	}
 
-	g_clear_object (&region);
+	complete = TRUE;
 
-	/* Remove the just highlighted region. */
-	gtk_source_region_subtract_subregion (ce->refresh_region, start, end);
+out:
+	g_clear_object (&region);
+	g_object_unref (buffer);
+	return complete;
 }
 
 static GtkTextTag *
@@ -1128,7 +1157,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 
 	for (sp = segment->sub_patterns; sp != NULL; sp = sp->next)
 	{
-		if (sp->start_at >= start_offset && sp->end_at <= end_offset)
+		if (sp->start_at < end_offset && sp->end_at > start_offset)
 		{
 			gint start = MAX (start_offset, sp->start_at);
 			gint end = MIN (end_offset, sp->end_at);
@@ -1158,20 +1187,22 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 	}
 }
 
-static void
+static gboolean
 refresh_context_classes (GtkSourceContextEngine *ce,
                          const GtkTextIter      *start,
-                         const GtkTextIter      *end)
+                         const GtkTextIter      *end,
+                         gint64                  deadline)
 {
 #ifdef ENABLE_PROFILE
 	GTimer *timer;
 #endif
 	GtkTextIter realend = *end;
 	GtkSourceTagPlan *plan = NULL;
+	gboolean complete;
 
 	if (gtk_text_iter_compare (start, &realend) >= 0)
 	{
-		return;
+		return TRUE;
 	}
 
 #ifdef ENABLE_PROFILE
@@ -1189,7 +1220,7 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 	                            ce->root_segment,
 	                            gtk_text_iter_get_offset (start),
 	                            gtk_text_iter_get_offset (&realend));
-	_gtk_source_tag_plan_apply (plan, 0);
+	complete = _gtk_source_tag_plan_apply (plan, deadline);
 	_gtk_source_tag_plan_free (plan);
 
 #ifdef ENABLE_PROFILE
@@ -1199,6 +1230,8 @@ refresh_context_classes (GtkSourceContextEngine *ce,
 		 g_timer_elapsed (timer, NULL) * 1000);
 	g_timer_destroy (timer);
 #endif
+
+	return complete;
 }
 
 static void
@@ -1224,6 +1257,81 @@ notify_highlight_updated (GtkSourceContextEngine *ce,
 			       "highlight-updated",
 			       start,
 			       &real_end);
+}
+
+
+typedef struct
+{
+	int start;
+	int end;
+} UpdatedRange;
+
+static void
+flush_context_classes (GtkSourceContextEngine *ce,
+                       gint64                  deadline)
+{
+	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
+	GArray *updated = g_array_new (FALSE, FALSE, sizeof (UpdatedRange));
+	guint64 serial = ce->change_serial;
+
+	while (ce->invalid_region.empty && !gtk_source_region_is_empty (ce->context_region))
+	{
+		GtkSourceRegionIter iter;
+		GtkTextIter begin, end;
+		UpdatedRange range;
+
+		if (deadline != 0 && g_get_monotonic_time () >= deadline)
+			break;
+
+		gtk_source_region_get_start_region_iter (ce->context_region, &iter);
+		gtk_source_region_iter_get_subregion (&iter, &begin, &end);
+
+		if (deadline != 0 &&
+		    gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&begin) > TAG_UPDATE_CHARS)
+		{
+			end = begin;
+			gtk_text_iter_forward_chars (&end, TAG_UPDATE_CHARS);
+		}
+
+		if (!refresh_context_classes (ce, &begin, &end, deadline) ||
+		    ce->disabled || ce->buffer != buffer || ce->change_serial != serial)
+		{
+			break;
+		}
+
+		gtk_source_region_subtract_subregion (ce->context_region, &begin, &end);
+		range.start = gtk_text_iter_get_offset (&begin);
+		range.end = gtk_text_iter_get_offset (&end);
+
+		if (updated->len > 0 &&
+		    g_array_index (updated, UpdatedRange, updated->len - 1).end == range.start)
+		{
+			g_array_index (updated, UpdatedRange, updated->len - 1).end = range.end;
+		}
+		else
+		{
+			g_array_append_val (updated, range);
+		}
+	}
+
+	/* Commit the whole batch before notifying observers. In particular, a
+	 * synchronous update must expose all context classes to its first handler.
+	 */
+	for (guint i = 0; i < updated->len; i++)
+	{
+		UpdatedRange range = g_array_index (updated, UpdatedRange, i);
+		GtkTextIter begin, end;
+
+		if (ce->disabled || ce->buffer != buffer || ce->change_serial != serial)
+			break;
+
+		gtk_text_buffer_get_iter_at_offset (buffer, &begin, range.start);
+		gtk_text_buffer_get_iter_at_offset (buffer, &end, range.end);
+		notify_highlight_updated (ce, &begin, &end);
+	}
+
+	g_array_unref (updated);
+	g_object_unref (buffer);
 }
 
 
@@ -2360,20 +2468,19 @@ update_tree (GtkSourceContextEngine *ce)
  * @ce: a #GtkSourceContextEngine.
  * @start: start of area to update.
  * @end: start of area to update.
- * @synchronous: whether it should block until everything
- * is analyzed/highlighted.
+ * @deadline: monotonic deadline, or zero to finish synchronously.
  *
  * GtkSourceEngine::update_highlight method.
  *
- * Makes sure the area is analyzed and highlighted. If @synchronous
- * is %FALSE, then it queues idle worker.
+ * Returns FALSE if the requested range still needs work.
  */
-static void
+static gboolean
 gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
                                             const GtkTextIter *start,
                                             const GtkTextIter *end,
-                                            gboolean           synchronous)
+                                            gint64             deadline)
 {
+	gboolean complete = TRUE;
 	gint invalid_line;
 	gint end_line;
 	GtkSourceContextEngine *ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
@@ -2381,7 +2488,7 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 	guint64 change_serial = ce->change_serial;
 
 	if (!ce->highlight || ce->disabled || ce->buffer == NULL)
-		return;
+		return TRUE;
 
 	g_object_ref (ce);
 	buffer = g_object_ref (ce->buffer);
@@ -2393,9 +2500,23 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 		/* Each line starts at the root context, so we can parse the visible
 		 * range while the idle worker still has earlier lines to process.
 		 */
-		update_syntax_range (ce, start, end, synchronous ? 0 : FIRST_UPDATE_TIME_SLICE);
+		update_syntax_range (ce, start, end, deadline);
+
 		if (!ce->disabled && ce->highlight && ce->buffer == buffer && ce->change_serial == change_serial)
-			ensure_highlighted (ce, start, end);
+		{
+			Segment *invalid = get_invalid_segment_after (ce, gtk_text_iter_get_offset (start));
+			gboolean parsed = invalid == NULL || invalid->start_at >= gtk_text_iter_get_offset (end);
+
+			complete = ensure_highlighted (ce, start, end, deadline) && parsed;
+		}
+		goto out;
+	}
+
+	flush_context_classes (ce, deadline);
+
+	if (ce->disabled || ce->buffer != buffer || ce->change_serial != change_serial)
+	{
+		complete = FALSE;
 		goto out;
 	}
 
@@ -2407,17 +2528,18 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 
 	if (invalid_line < 0 || invalid_line > end_line)
 	{
-		ensure_highlighted (ce, start, end);
+		complete = ensure_highlighted (ce, start, end, deadline);
 	}
-	else if (synchronous)
+	else if (deadline == 0)
 	{
 		/* analyze whole region */
 		update_syntax (ce, end, 0);
+
 		/* Notification handlers can detach the engine or invalidate the
 		 * caller's iterators, even if a nested update finishes their edits.
 		 */
 		if (!ce->disabled && ce->highlight && ce->buffer == buffer && ce->change_serial == change_serial)
-			ensure_highlighted (ce, start, end);
+			complete = ensure_highlighted (ce, start, end, deadline);
 	}
 	else
 	{
@@ -2426,16 +2548,34 @@ gtk_source_context_engine_update_highlight (GtkSourceEngine   *engine,
 			GtkTextIter valid_end = *start;
 
 			gtk_text_iter_set_line (&valid_end, invalid_line);
-			ensure_highlighted (ce, start, &valid_end);
+			ensure_highlighted (ce, start, &valid_end, deadline);
 		}
 
+		complete = FALSE;
 		install_first_update (ce);
 	}
 
 out:
+	if (!ce->disabled && ce->buffer == buffer)
+	{
+		if (ce->change_serial != change_serial)
+		{
+			complete = FALSE;
+		}
+		else if (complete)
+		{
+			GtkSourceRegion *pending;
+
+			pending = gtk_source_region_intersect_subregion (ce->context_region, start, end);
+			complete = gtk_source_region_is_empty (pending);
+			g_clear_object (&pending);
+		}
+	}
+
 	GTK_SOURCE_PROFILER_END_MARK ("ContextEngine::update_highlight", NULL);
 	g_object_unref (buffer);
 	g_object_unref (ce);
+	return complete;
 }
 
 /**
@@ -2464,7 +2604,7 @@ enable_highlight (GtkSourceContextEngine *ce,
 	{
 		gtk_source_region_add_subregion (ce->refresh_region, &start, &end);
 
-		refresh_context_classes (ce, &start, &end);
+		refresh_context_classes (ce, &start, &end, 0);
 		notify_highlight_updated (ce, &start, &end);
 	}
 	else
@@ -2489,12 +2629,14 @@ buffer_notify_highlight_syntax_cb (GtkSourceContextEngine *ce)
  * all_analyzed:
  * @ce: a #GtkSourceContextEngine.
  *
- * Returns: whether everything is analyzed (but it doesn't care about the tags).
+ * Returns: whether everything is analyzed and its context classes are applied.
+ * Style tags are refreshed separately for visible regions.
  */
 static gboolean
 all_analyzed (GtkSourceContextEngine *ce)
 {
-	return ce->invalid == NULL && ce->invalid_region.empty;
+	return ce->invalid == NULL && ce->invalid_region.empty &&
+	       gtk_source_region_is_empty (ce->context_region);
 }
 
 /**
@@ -2796,6 +2938,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		destroy_context_classes_list (ce);
 
 		g_clear_object (&ce->refresh_region);
+		g_clear_object (&ce->context_region);
 	}
 
 	ce->buffer = buffer;
@@ -2847,6 +2990,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 
 		g_object_get (buffer, "highlight-syntax", &ce->highlight, NULL);
 		ce->refresh_region = gtk_source_region_new (buffer);
+		ce->context_region = gtk_source_region_new (buffer);
 
 		g_signal_connect_swapped (buffer,
 					  "notify::highlight-syntax",
@@ -5732,22 +5876,15 @@ update_syntax (GtkSourceContextEngine *ce,
                const GtkTextIter      *end,
                gint                    time)
 {
-	update_syntax_range (ce, NULL, end, time);
+	update_syntax_range (ce, NULL, end, time ? g_get_monotonic_time () + time * 1000 : 0);
 }
-
-typedef struct
-{
-	int start;
-	int end;
-} UpdatedRange;
 
 static void
 update_syntax_range (GtkSourceContextEngine *ce,
                      const GtkTextIter      *begin,
                      const GtkTextIter      *end,
-                     int                     time)
+                     gint64                  deadline)
 {
-	GArray *updated_ranges = NULL;
 	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
 	guint64 change_serial = ce->change_serial;
 	GtkTextIter start_iter, end_iter;
@@ -5761,6 +5898,8 @@ update_syntax_range (GtkSourceContextEngine *ce,
 	gboolean first_line = FALSE;
 	gboolean had_bom = FALSE;
 	GTimer *timer;
+	gint64 now = g_get_monotonic_time ();
+	gint64 parse_deadline = deadline ? now + MAX (0, deadline - now) / 2 : 0;
 
 	g_assert (begin == NULL || ce->line_independent);
 
@@ -5856,7 +5995,6 @@ update_syntax_range (GtkSourceContextEngine *ce,
 	analyzed_end = line_end_offset;
 
 	timer = g_timer_new ();
-	updated_ranges = g_array_new (FALSE, FALSE, sizeof (UpdatedRange));
 
 	while (TRUE)
 	{
@@ -5931,19 +6069,8 @@ update_syntax_range (GtkSourceContextEngine *ce,
 
 		gtk_source_region_add_subregion (ce->refresh_region, &line_start, &line_end);
 
-		/* Keep the gaps when convergence lets us skip valid syntax. Refreshing
-		 * the bounding range would revisit its segments and context classes.
-		 */
-		if (updated_ranges->len > 0 &&
-		    g_array_index (updated_ranges, UpdatedRange, updated_ranges->len - 1).end == line_start_offset)
-		{
-			g_array_index (updated_ranges, UpdatedRange, updated_ranges->len - 1).end = line_end_offset;
-		}
-		else
-		{
-			UpdatedRange range = { line_start_offset, line_end_offset };
-			g_array_append_val (updated_ranges, range);
-		}
+		/* Preserve the gaps where convergence let us skip valid syntax. */
+		gtk_source_region_add_subregion (ce->context_region, &line_start, &line_end);
 
 		analyzed_end = line_end_offset;
 		invalid = begin ? get_invalid_segment_after (ce, line_end_offset) : get_invalid_segment (ce);
@@ -6007,7 +6134,9 @@ update_syntax_range (GtkSourceContextEngine *ce,
 			}
 		}
 
-		if ((time != 0 && g_timer_elapsed (timer, NULL) * 1000 > time) ||
+		if ((deadline != 0 &&
+		     (g_get_monotonic_time () >= parse_deadline ||
+		      analyzed_end - start_offset >= PARSE_BATCH_CHARS)) ||
 		    line_end_offset >= end_offset ||
 		    (!next_line_invalid && (invalid == NULL || invalid->start_at >= end_offset)))
 		{
@@ -6048,23 +6177,6 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		}
 	}
 
-	if (!all_analyzed (ce))
-		install_idle_worker (ce);
-
-	for (guint i = 0; i < updated_ranges->len; i++)
-	{
-		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
-		GtkTextIter range_start;
-		GtkTextIter range_end;
-
-		if (ce->disabled || ce->buffer != buffer || ce->change_serial != change_serial)
-			break;
-
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
-		refresh_context_classes (ce, &range_start, &range_end);
-	}
-
 	GTK_SOURCE_PROFILER_LOG ("analyzed %d chars from %d to %d in %fms",
 	                         analyzed_end - start_offset, start_offset, analyzed_end,
 	                         g_timer_elapsed (timer, NULL) * 1000);
@@ -6079,31 +6191,14 @@ out:
 	if (ce->root_context != NULL)
 		context_thaw (ce->root_context);
 
-	if (updated_ranges == NULL)
+	if (!ce->disabled && ce->buffer == buffer && ce->change_serial == change_serial)
 	{
-		g_object_unref (buffer);
-		return;
+		flush_context_classes (ce, deadline);
+
+		if (!ce->disabled && ce->buffer == buffer && !all_analyzed (ce))
+			install_idle_worker (ce);
 	}
 
-	/* Observers see all refreshed classes before the first notification.
-	 * Edits invalidate the saved offsets even if a nested update has already
-	 * consumed them, so use the serial rather than the pending-edit region.
-	 */
-	for (guint i = 0; i < updated_ranges->len; i++)
-	{
-		UpdatedRange range = g_array_index (updated_ranges, UpdatedRange, i);
-		GtkTextIter range_start;
-		GtkTextIter range_end;
-
-		if (ce->disabled || ce->buffer != buffer || ce->change_serial != change_serial)
-			break;
-
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_start, range.start);
-		gtk_text_buffer_get_iter_at_offset (buffer, &range_end, range.end);
-		notify_highlight_updated (ce, &range_start, &range_end);
-	}
-
-	g_array_unref (updated_ranges);
 	g_object_unref (buffer);
 }
 

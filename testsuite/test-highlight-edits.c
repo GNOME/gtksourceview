@@ -19,7 +19,10 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
+#include "config.h"
+
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcebuffer-private.h"
 #include "gtksourceview/gtksourcecontextengine-private.h"
 
 static GtkSourceLanguageManager *languages;
@@ -354,11 +357,65 @@ test_partial_line_endings (void)
 	}
 }
 
+static void
+test_highlight_budget (gconstpointer data)
+{
+	const char *id = data;
+	GString *text = g_string_new ("[{");
+	GtkSourceBuffer *buffer = new_buffer (id, "");
+	GtkSourceBuffer *fresh = NULL;
+	char *actual = NULL;
+	char *expected = NULL;
+	GtkTextIter begin, end;
+	gint64 timeout = g_get_monotonic_time () + 10 * G_TIME_SPAN_SECOND;
+	gboolean complete;
+
+	/* The capture in test-tag-plan must span several tag batches. */
+	for (guint i = 0; i < 4096; i++)
+		g_string_append_c (text, 'x');
+	g_string_append (text, "}]\n");
+
+	for (guint i = 0; i < 500; i++)
+		g_string_append (text, "# comment αβ\nword 123\n");
+
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text->str, -1);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+	g_assert_false (_gtk_source_buffer_update_syntax_highlight (buffer, &begin, &end, 1));
+
+	/* Pending regions must follow edits, including multibyte insertions. */
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &begin);
+	gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, "# inserted αβ\n", -1);
+	g_string_prepend (text, "# inserted αβ\n");
+	fresh = new_buffer (id, text->str);
+
+	do
+	{
+		g_assert_cmpint (g_get_monotonic_time (), <, timeout);
+		g_main_context_iteration (NULL, FALSE);
+		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+		complete = _gtk_source_buffer_update_syntax_highlight (buffer, &begin, &end,
+		                                                      g_get_monotonic_time () + 500);
+	}
+	while (!complete);
+
+	/* Compare before a synchronous request could repair incomplete tags. */
+	actual = snapshot (buffer);
+	expected = snapshot (fresh);
+	g_assert_cmpstr (actual, ==, expected);
+
+	g_free (actual);
+	g_free (expected);
+	g_object_unref (fresh);
+	g_object_unref (buffer);
+	g_string_free (text, TRUE);
+}
+
 int
 main (int    argc,
       char **argv)
 {
-	const char *paths[] = { TOP_SRCDIR "/data/language-specs", NULL };
+	const char *paths[] = { TOP_SRCDIR "/testsuite/language-specs",
+	                        TOP_SRCDIR "/data/language-specs", NULL };
 	const char *styles[] = { TOP_SRCDIR "/data/styles", NULL };
 	const char *ids[] = { "c", "cpp", "python3", "html", "js", "markdown", "sh", "def" };
 	GtkSourceStyleSchemeManager *manager;
@@ -384,6 +441,9 @@ main (int    argc,
 	g_test_add_func ("/highlight/edits/language-attach-before-parse", test_language_attach_before_parse);
 	g_test_add_func ("/highlight/edits/terminal-line-endings", test_terminal_line_endings);
 	g_test_add_func ("/highlight/edits/partial-line-endings", test_partial_line_endings);
+	g_test_add_data_func ("/highlight/budget/line-independent", "test-line-local", test_highlight_budget);
+	g_test_add_data_func ("/highlight/budget/context-dependent", "python3", test_highlight_budget);
+	g_test_add_data_func ("/highlight/budget/capture", "test-tag-plan", test_highlight_budget);
 	result = g_test_run ();
 	g_object_unref (manager);
 	g_object_unref (languages);
