@@ -51,9 +51,10 @@ typedef struct
 
 typedef struct
 {
-	GArray *operations;
-	gboolean only_enable;
-	gboolean clear;
+	GArray   *operations;
+	GArray   *current;
+	gboolean  only_enable;
+	gboolean  clear;
 } TagPlan;
 
 typedef struct
@@ -77,6 +78,7 @@ tag_plan_free (gpointer data)
 	TagPlan *tag_plan = data;
 
 	g_array_unref (tag_plan->operations);
+	g_array_unref (tag_plan->current);
 	g_free (tag_plan);
 }
 
@@ -109,6 +111,7 @@ ensure_tag (GtkSourceTagPlan *plan,
 	{
 		tag_plan = g_new0 (TagPlan, 1);
 		tag_plan->operations = g_array_new (FALSE, FALSE, sizeof (Operation));
+		tag_plan->current = g_array_new (FALSE, FALSE, sizeof (Span));
 		tag_plan->only_enable = TRUE;
 		g_hash_table_insert (plan->tags, g_object_ref (tag), tag_plan);
 	}
@@ -357,39 +360,53 @@ resolve_spans (TagPlan *tag_plan,
 	return spans;
 }
 
-static GArray *
-collect_spans (GtkSourceTagPlan *plan,
-               GtkTextTag       *tag)
+/* Consumes the list of tags, whose elements belong to the buffer. */
+static void
+collect_tags (GtkSourceTagPlan *plan,
+              GSList           *tags,
+              int               offset,
+              gboolean          enabled)
 {
-	GArray *spans = g_array_new (FALSE, FALSE, sizeof (Span));
-	GtkTextIter iter;
-	int offset = plan->start;
-	gboolean enabled;
-
-	gtk_text_buffer_get_iter_at_offset (plan->buffer, &iter, offset);
-	enabled = gtk_text_iter_has_tag (&iter, tag);
-
-	while (offset < plan->end)
+	for (GSList *l = tags; l != NULL; l = l->next)
 	{
-		int next;
+		TagPlan *tag_plan = g_hash_table_lookup (plan->tags, l->data);
 
-		if (!gtk_text_iter_forward_to_tag_toggle (&iter, tag))
-			next = plan->end;
-		else
-			next = MIN (gtk_text_iter_get_offset (&iter), plan->end);
+		if (tag_plan == NULL)
+			continue;
 
+		/* Leave each span open to the range end until its tag turns off. */
 		if (enabled)
-			append_span (spans, offset, next);
-		offset = next;
-
-		/* Tag toggles alternate between enabled and disabled. Calling
-		 * has_tag() at every toggle would keep scanning the beginning
-		 * of a long line.
-		 */
-		enabled = !enabled;
+		{
+			append_span (tag_plan->current, offset, plan->end);
+		}
+		else
+		{
+			g_assert (tag_plan->current->len > 0);
+			g_array_index (tag_plan->current, Span, tag_plan->current->len - 1).end = offset;
+		}
 	}
 
-	return spans;
+	g_slist_free (tags);
+}
+
+static void
+collect_spans (GtkSourceTagPlan *plan)
+{
+	GtkTextIter iter;
+	GtkTextIter end;
+
+	gtk_text_buffer_get_iter_at_offset (plan->buffer, &iter, plan->start);
+	gtk_text_buffer_get_iter_at_offset (plan->buffer, &end, plan->end);
+	collect_tags (plan, gtk_text_iter_get_tags (&iter), plan->start, TRUE);
+
+	/* Share one bounded traversal across all managed tags. */
+	while (gtk_text_iter_forward_to_tag_toggle_with_limit (&iter, NULL, &end))
+	{
+		int offset = gtk_text_iter_get_offset (&iter);
+
+		collect_tags (plan, gtk_text_iter_get_toggled_tags (&iter, FALSE), offset, FALSE);
+		collect_tags (plan, gtk_text_iter_get_toggled_tags (&iter, TRUE), offset, TRUE);
+	}
 }
 
 static void
@@ -459,22 +476,28 @@ void
 _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan)
 {
 	GHashTableIter iter;
-	GArray *changes = g_array_new (FALSE, FALSE, sizeof (Change));
+	GArray *changes;
 	gpointer key;
 	gpointer value;
+
+	if (plan->start == plan->end || g_hash_table_size (plan->tags) == 0)
+		return;
+
+	collect_spans (plan);
+	changes = g_array_new (FALSE, FALSE, sizeof (Change));
 
 	g_hash_table_iter_init (&iter, plan->tags);
 
 	while (g_hash_table_iter_next (&iter, &key, &value))
 	{
-		GArray *current = collect_spans (plan, key);
+		GArray *current = ((TagPlan *)value)->current;
 		GArray *wanted = resolve_spans (value, current);
 
 		append_difference (changes, key, current, wanted, FALSE);
 		append_difference (changes, key, wanted, current, TRUE);
 
 		g_array_unref (wanted);
-		g_array_unref (current);
+		g_array_set_size (current, 0);
 	}
 
 	/* Commit in buffer order, rather than making one pass through the text

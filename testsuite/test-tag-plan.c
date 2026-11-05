@@ -217,6 +217,38 @@ test_partial_range_and_identity (void)
 }
 
 static void
+test_scan_boundaries (void)
+{
+	GtkTextBuffer *buffer = new_buffer (8);
+	GtkSourceTagPlan *plan = _gtk_source_tag_plan_new (buffer, 2, 6);
+	GtkTextTag *tags[4];
+	const int ranges[][2] = { { 0, 4 }, { 4, 8 }, { 2, 6 }, { 3, 5 } };
+	const char *expected[] = { "11100000", "00000111", "00100100", "00011000" };
+
+	for (int t = 0; t < 4; t++)
+	{
+		tags[t] = gtk_text_buffer_create_tag (buffer, NULL, NULL);
+		set_tag (buffer, tags[t], ranges[t][0], ranges[t][1], TRUE);
+
+		if (t < 3)
+			_gtk_source_tag_plan_add (plan, tags[t], 3, 5, FALSE);
+	}
+
+	_gtk_source_tag_plan_apply (plan);
+
+	for (int t = 0; t < 4; t++)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			g_assert_cmpint (has_tag (buffer, tags[t], i), ==, expected[t][i] == '1');
+		}
+	}
+
+	_gtk_source_tag_plan_free (plan);
+	g_object_unref (buffer);
+}
+
+static void
 test_random_overlays (void)
 {
 
@@ -588,6 +620,7 @@ main (int   argc,
 	g_test_add_func ("/tag-plan/coalesce-and-unchanged", test_coalesce_and_unchanged);
 	g_test_add_func ("/tag-plan/ordered-overrides", test_ordered_overrides);
 	g_test_add_func ("/tag-plan/partial-range-and-identity", test_partial_range_and_identity);
+	g_test_add_func ("/tag-plan/scan-boundaries", test_scan_boundaries);
 	g_test_add_func ("/tag-plan/random-overlays", test_random_overlays);
 	g_test_add_func ("/tag-plan/overlay-existing-tag", test_overlay_existing_tag);
 	g_test_add_func ("/tag-plan/engine-classes-and-edit", test_engine_classes_and_edit);

@@ -22,7 +22,7 @@ Dependencies
 ------------
 
 * GLib >= 2.76
-* GTK >= 4.17
+* GTK >= 4.25
 * libxml2 >= 2.6
 * fribidi >= 0.19.7
 * libpcre2-8 >= 10.21
