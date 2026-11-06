@@ -38,3 +38,14 @@ Inline <abbr title="Hypertext Markup Language">HTML</abbr> is supported.
 
 <h1 class="a_long_classname">Formatting inside block-level elements _should_ be **ignored**.</h1>
 
+Task lists extension (GFM):
+
+* [ ] Not done
+* [x] Finished this
+* [!] This too
+* [ ] ![Image-in-a-checklist](Icon-pictures.png "icon")
+
+1. [x] Completed first step
+2. [ ] Haven't gotten this far
+3. [ ] [This is a link](https://example.com) in a list
+4. [x] [Out-of-order [x] item](https://example.com)
