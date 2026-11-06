@@ -356,10 +356,12 @@ if generate_gir
   endif
 endif
 
+# Only expose public dependencies; the private archives are already included
+# in gtksource_lib through link_whole.
 gtksource_dep = declare_dependency(
             link_with: gtksource_lib,
   include_directories: rootdir,
-         dependencies: gtksource_deps,
+         dependencies: [glib_dep, gobject_dep, gio_dep, gtk_dep],
               sources: gtksource_dep_sources,
 )
 
