@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include "gtksourcetagplan-private.h"
+#include "gtksourcedeadline-private.h"
 
 /* Build the final membership of each tag before touching GtkTextBuffer. The
  * order of additions matters: a disabled context class in a child overrides
@@ -486,6 +487,7 @@ gboolean
 _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan,
                             gint64            deadline)
 {
+	GtkSourceDeadline budget = GTK_SOURCE_DEADLINE_INIT (deadline, 4);
 	GHashTableIter iter;
 	GArray *changes;
 	gpointer key;
@@ -526,6 +528,15 @@ _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan,
 		GtkTextIter start;
 		GtkTextIter end;
 
+		/* Always commit the first four mutations to guarantee progress, even
+		 * with an expired deadline. Sample every four mutations thereafter.
+		 */
+		if (i >= 4 && !gtk_source_deadline_step (&budget))
+		{
+			complete = FALSE;
+			break;
+		}
+
 		gtk_text_buffer_get_iter_at_offset (plan->buffer, &start, change->span.start);
 		end = start;
 		gtk_text_iter_forward_chars (&end, change->span.end - change->span.start);
@@ -539,17 +550,6 @@ _gtk_source_tag_plan_apply (GtkSourceTagPlan *plan,
 		 * change using offsets computed before that edit.
 		 */
 		if (changed)
-		{
-			complete = FALSE;
-			break;
-		}
-
-		/* Reconcile unfinished work on the next pass. Checking every four
-		 * mutations amortizes clock reads without committing a whole dense
-		 * paragraph's worth of tags after the deadline.
-		 */
-		if (deadline != 0 && (i + 1) % 4 == 0 && i + 1 < changes->len &&
-		    g_get_monotonic_time () >= deadline)
 		{
 			complete = FALSE;
 			break;

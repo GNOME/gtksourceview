@@ -690,6 +690,8 @@ test_deadline (void)
 			GtkTextIter iter;
 
 			g_assert_false (complete);
+			g_assert_true (has_tag (buffer, tag, 6));
+			g_assert_false (has_tag (buffer, tag, 8));
 			g_assert_false (has_tag (buffer, tag, 126));
 
 			gtk_text_buffer_get_start_iter (buffer, &iter);
@@ -698,7 +700,7 @@ test_deadline (void)
 		}
 	}
 
-	g_assert_cmpuint (passes, >, 1);
+	g_assert_cmpuint (passes, ==, 16);
 
 	for (int i = 0; i < 128; i++)
 	{

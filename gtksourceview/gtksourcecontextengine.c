@@ -26,6 +26,7 @@
 #include <glib/gi18n-lib.h>
 
 #include "gtksourcecontextengine-private.h"
+#include "gtksourcedeadline-private.h"
 #include "gtksourceregion.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
@@ -73,10 +74,10 @@
 #define TAG_UPDATE_CHARS 512
 #define PARSE_BATCH_CHARS 1024
 
-/* Maximal amount of time (in milliseconds) allowed to spend highlihting a
+/* Maximal amount of time (in microseconds) allowed to spend highlighting a
  * single line. If it is not enough, then highlighting is disabled.
  */
-#define MAX_TIME_FOR_ONE_LINE		2000
+#define MAX_TIME_FOR_ONE_LINE_USEC	(2000 * G_TIME_SPAN_MILLISECOND)
 
 #define GTK_SOURCE_CONTEXT_ENGINE_ERROR (gtk_source_context_engine_error_quark ())
 
@@ -981,6 +982,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
                     const GtkTextIter      *end,
                     gint64                  deadline)
 {
+	GtkSourceDeadline budget = GTK_SOURCE_DEADLINE_INIT (deadline, 1);
 	GtkSourceRegion *region = NULL;
 	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
 	guint64 serial = ce->change_serial;
@@ -993,7 +995,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 		GtkSourceRegionIter iter;
 		GtkTextIter begin, limit;
 
-		if (deadline != 0 && g_get_monotonic_time () >= deadline)
+		if (!gtk_source_deadline_step (&budget))
 			goto out;
 
 		gtk_source_region_get_start_region_iter (region, &iter);
@@ -1270,6 +1272,7 @@ static void
 flush_context_classes (GtkSourceContextEngine *ce,
                        gint64                  deadline)
 {
+	GtkSourceDeadline budget = GTK_SOURCE_DEADLINE_INIT (deadline, 1);
 	GtkTextBuffer *buffer = g_object_ref (ce->buffer);
 	GArray *updated = g_array_new (FALSE, FALSE, sizeof (UpdatedRange));
 	guint64 serial = ce->change_serial;
@@ -1280,7 +1283,7 @@ flush_context_classes (GtkSourceContextEngine *ce,
 		GtkTextIter begin, end;
 		UpdatedRange range;
 
-		if (deadline != 0 && g_get_monotonic_time () >= deadline)
+		if (!gtk_source_deadline_step (&budget))
 			break;
 
 		gtk_source_region_get_start_region_iter (ce->context_region, &iter);
@@ -5008,15 +5011,14 @@ analyze_line (GtkSourceContextEngine *ce,
 {
 	gint line_pos = 0;
 	GList *end_segments = NULL;
-	gint64 deadline;
+	gint64 end_time = g_get_monotonic_time () + MAX_TIME_FOR_ONE_LINE_USEC;
+	GtkSourceDeadline deadline = GTK_SOURCE_DEADLINE_INIT (end_time, 1);
 
 	g_assert (SEGMENT_IS_CONTAINER (state));
 
         if (ce->hint2 == NULL || ce->hint2->parent != state)
                 ce->hint2 = state->last_child;
         g_assert (!ce->hint2 || ce->hint2->parent == state);
-
-	deadline = g_get_monotonic_time () + MAX_TIME_FOR_ONE_LINE * G_TIME_SPAN_MILLISECOND;
 
 	/* Find the contexts in the line. */
 	while (line_pos <= line->byte_length)
@@ -5026,7 +5028,7 @@ analyze_line (GtkSourceContextEngine *ce,
 		if (!next_segment (ce, state, line, &line_pos, &new_state, had_bom))
 			break;
 
-		if (g_get_monotonic_time () > deadline)
+		if (!gtk_source_deadline_check_now (&deadline))
 		{
 			g_critical ("%s",
 			            _("Highlighting a single line took too much time, "
@@ -5900,6 +5902,7 @@ update_syntax_range (GtkSourceContextEngine *ce,
 	GTimer *timer;
 	gint64 now = g_get_monotonic_time ();
 	gint64 parse_deadline = deadline ? now + MAX (0, deadline - now) / 2 : 0;
+	GtkSourceDeadline parse_budget = GTK_SOURCE_DEADLINE_INIT (parse_deadline, 1);
 
 	g_assert (begin == NULL || ce->line_independent);
 
@@ -6135,7 +6138,7 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		}
 
 		if ((deadline != 0 &&
-		     (g_get_monotonic_time () >= parse_deadline ||
+		     (!gtk_source_deadline_check_now (&parse_budget) ||
 		      analyzed_end - start_offset >= PARSE_BATCH_CHARS)) ||
 		    line_end_offset >= end_offset ||
 		    (!next_line_invalid && (invalid == NULL || invalid->start_at >= end_offset)))

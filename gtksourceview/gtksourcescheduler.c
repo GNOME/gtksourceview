@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 
 #include "gtksourcescheduler.h"
+#include "gtksourcedeadline-private.h"
 
 /**
  * SECTION:scheduler
@@ -158,9 +159,10 @@ gtk_source_scheduler_dispatch (GSource     *source,
 	gint64 current = g_source_get_time (source);
 	gint64 deadline = current + _1_MSEC;
 	gint64 interval = get_interval (self);
+	GtkSourceDeadline budget = GTK_SOURCE_DEADLINE_INIT (deadline, 1);
 
-	/* Try to process as many items within our quanta if they */
-	while (g_get_monotonic_time () < deadline)
+	/* Callbacks have unknown cost, so check the deadline before each one. */
+	while (gtk_source_deadline_step (&budget))
 	{
 		GtkSourceTask *task = g_queue_peek_head (&self->queue);
 
