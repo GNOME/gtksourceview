@@ -19,7 +19,7 @@ stages:
     - deploy
 
 variables:
-    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:42"
+    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:45"
 
 flatpak:
     variables:
@@ -48,6 +48,7 @@ reference:
                 gi-docgen-fonts
                 git
                 glib2-devel
+                glibc-langpack-en
                 gobject-introspection-devel
                 gtk4-devel
                 itstool
@@ -62,7 +63,9 @@ reference:
                 libXdamage-devel
                 libXinerama-devel
                 libdrm-devel
+                libepoxy-devel
                 libglvnd-devel
+                libtiff-devel
                 glslc
                 mesa-vulkan-drivers
                 meson
