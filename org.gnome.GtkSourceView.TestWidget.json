@@ -53,6 +53,39 @@
             ]
         },
         {
+            "name" : "gtk",
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "config-opts" : [
+                "--libdir=lib",
+                "-Ddocumentation=false",
+                "-Dintrospection=enabled",
+                "-Dbuild-demos=false",
+                "-Dbuild-examples=false",
+                "-Dbuild-tests=false",
+                "-Dbuild-testsuite=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gtk.git",
+                    "branch" : "main"
+                },
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/lazka/sassc.git",
+                    "branch" : "meson",
+                    "dest" : "subprojects/sassc"
+                },
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/lazka/libsass.git",
+                    "branch" : "meson",
+                    "dest" : "subprojects/libsass"
+                }
+            ]
+        },
+        {
             "name" : "gtksourceview",
             "buildsystem" : "meson",
             "builddir" : true,
