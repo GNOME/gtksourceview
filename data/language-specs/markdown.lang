@@ -21,7 +21,12 @@
 <!-- Note: this language definition file adds support for Markdown syntax,
      described in the following websites:
      * (fr) <http://michelf.com/projets/php-markdown/syntaxe/>
-     * (en) <http://daringfireball.net/projects/markdown/syntax> -->
+     * (en) <http://daringfireball.net/projects/markdown/syntax> 
+
+     It also includes support for GitHub Flavored Markdown extensions,
+     as defined in the GFM spec:
+     * <https://github.github.com/gfm>
+-->
 <language id="markdown" name="Markdown" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/x-markdown</property>
@@ -112,18 +117,32 @@
          - Item
 
          Example (ordered list):
-         1. Item
-         2. Item
-         3. Item
+         1.  Item
+         2)  Item
+         13. Item
+
+         Example (task lists, GFM extension):
+         * [ ] Unchecked Item
+         - [x] Checked Item
+         + [✓] Checked Item (Extended Syntax)
+
+         1. [ ] Unchecked Ordered Item
+         2) [x] Checked Ordered Item
+         1. [#] Checked Ordered Item (Extended Syntax)
     -->
     <context id="list" style-ref="list-marker">
       <match extended="true">
-        ^[ ]{0,3}  # Maximum 3 spaces at the beginning of the line.
+        ^[ ]{0,3}      # Maximum 3 spaces at the beginning of the line.
         (
-          \*|\+|-| # Asterisk, plus or hyphen for unordered list.
-          [0-9]+\. # Number followed by period for ordered list.
+          \*|\+|-      # Asterisk, plus, or hyphen for unordered list.
+        | [0-9]{1,9}   # Or, 1-9 digit number
+          [\.\)]       # followed by period or paren for ordered list.
         )
-        [ \t]+     # Must be followed by at least 1 space or 1 tab.
+        [ ]{1,4}      # Followed by 1-4 space characters
+        (
+          [ ]*\[.\]   # Spaces and one character in brackets for task list
+          \s+         # Followed by at least one whitespace character
+        )?            # Task list item marker is optional
       </match>
     </context>
 
