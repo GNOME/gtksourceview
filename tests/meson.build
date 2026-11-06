@@ -20,9 +20,14 @@ tests_resources = {
       'widget': 'test-widget.gresource.xml',
 }
 
-tests_deps = [gtksource_dep]
-
 foreach test_name, test_sources: tests_sources
+  tests_deps = [gtksource_dep]
+
+  # This test exercises private API which is not exported by the shared library.
+  if test_name == 'int2str'
+    tests_deps = gtksource_deps
+  endif
+
   if tests_resources.has_key(test_name)
     test_sources += gnome.compile_resources(
       'test-@0@-resources'.format(test_name),
@@ -41,8 +46,6 @@ foreach test_name, test_sources: tests_sources
     endif
   endif
 
-  # MSVC builds: We need items from the main GtkSourceView .lib as
-  # well as the static core lib
   executable('test-@0@'.format(test_name), test_sources,
           c_args: tests_c_args + deprecated_c_args,
     dependencies: tests_deps,
