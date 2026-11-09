@@ -14,3 +14,7 @@ pango/
 pixman/
 sassc/
 wayland/
+# Meson may create this lockfile when configuring
+.wraplock
+# Meson may write this as a redirect from gtk
+pango.wrap
