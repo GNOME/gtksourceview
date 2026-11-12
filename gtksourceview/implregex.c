@@ -467,7 +467,7 @@ impl_regex_replace_eval (const ImplRegex        *regex,
                          gpointer                user_data,
                          GError                **error)
 {
-	ImplMatchInfo *match_info;
+	ImplMatchInfo *match_info = NULL;
 	GString *result;
 	gsize str_pos = 0;
 	gboolean done = FALSE;
