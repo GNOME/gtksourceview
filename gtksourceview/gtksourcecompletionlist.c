@@ -299,6 +299,19 @@ _gtk_source_completion_list_get_offset (GtkSourceAssistant *assistant,
 }
 
 static gboolean
+forward_key_event (GtkEventControllerKey *key,
+                   GtkWidget             *widget)
+{
+	gboolean handled;
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+	handled = gtk_event_controller_key_forward (key, widget);
+	G_GNUC_END_IGNORE_DEPRECATIONS
+
+	return handled;
+}
+
+static gboolean
 key_press_propagate_cb (GtkSourceCompletionList *self,
                         guint                    keyval,
                         guint                    keycode,
@@ -313,7 +326,7 @@ key_press_propagate_cb (GtkSourceCompletionList *self,
 		/* Still propagate after hiding */
 		gtk_widget_set_visible (GTK_WIDGET (self), FALSE);
 	}
-	else if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
+	else if (forward_key_event (key, GTK_WIDGET (self->listbox)))
 	{
 		return GDK_EVENT_STOP;
 	}
@@ -331,7 +344,7 @@ key_release_propagate_cb (GtkSourceCompletionList *self,
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
 
-	if (gtk_event_controller_key_forward (key, GTK_WIDGET (self->listbox)))
+	if (forward_key_event (key, GTK_WIDGET (self->listbox)))
 	{
 		return GDK_EVENT_STOP;
 	}
