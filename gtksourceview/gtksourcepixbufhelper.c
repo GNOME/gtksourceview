@@ -224,7 +224,23 @@ from_pixbuf (GtkSourcePixbufHelper *helper,
 {
 	if (helper->pixbuf != NULL)
 	{
-		set_cache (helper, GDK_PAINTABLE (gdk_texture_new_for_pixbuf (helper->pixbuf)));
+		GBytes *bytes;
+		GdkTexture *texture;
+		GdkPixbuf *pixbuf = helper->pixbuf;
+
+		bytes = g_bytes_new_with_free_func (gdk_pixbuf_read_pixels (pixbuf),
+		                                    gdk_pixbuf_get_height (pixbuf) * (gsize) gdk_pixbuf_get_rowstride (pixbuf),
+		                                    g_object_unref,
+		                                    g_object_ref (pixbuf));
+		texture = gdk_memory_texture_new (gdk_pixbuf_get_width (pixbuf),
+		                                  gdk_pixbuf_get_height (pixbuf),
+		                                  gdk_pixbuf_get_has_alpha (pixbuf)
+		                                    ? GDK_MEMORY_R8G8B8A8 : GDK_MEMORY_R8G8B8,
+		                                  bytes,
+		                                  gdk_pixbuf_get_rowstride (pixbuf));
+		g_bytes_unref (bytes);
+
+		set_cache (helper, GDK_PAINTABLE (texture));
 	}
 }
 
