@@ -245,13 +245,19 @@ gtksource_res = gnome.compile_resources(
   dependencies: [validated_languages, validated_styles],
 )
 
+gtksource_res_lib = static_library(package_string + 'resources',
+  gtksource_res,
+  dependencies: gio_dep,
+  install: false,
+)
+
 core_sources = [
   core_public_c,
   core_private_c,
   core_enums,
   gtksourceversion_h,
   core_marshallers,
-  gtksource_res,
+  gtksource_res.get(1),
   vim_sources,
 ]
 
@@ -270,7 +276,7 @@ core_lib = static_library(package_string + 'core', core_sources,
 )
 
 core_dep = declare_dependency(
-            link_with: core_lib,
+            link_with: [core_lib, gtksource_res_lib],
   include_directories: rootdir,
          dependencies: core_deps,
               sources: [core_enums_h]

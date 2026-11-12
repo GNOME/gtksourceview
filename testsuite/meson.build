@@ -21,6 +21,12 @@ testsuite_res = gnome.compile_resources(
   'testsuite.gresource.xml'
 )
 
+testsuite_res_lib = static_library('testsuite-resources',
+  testsuite_res,
+  dependencies: gio_dep,
+  install: false,
+)
+
 testsuite_sources = [
   ['test-buffer'],
   ['test-buffer-input-stream'],
@@ -64,7 +70,7 @@ testsuite_sources = [
 foreach test: testsuite_sources
   test_name = test.get(0)
   install_test = test.get(1, true) and get_option('install-tests')
-  test_sources = gtksource_res + testsuite_res + [
+  test_sources = [testsuite_res.get(1),
     '@0@.c'.format(test_name),
   ]
 
@@ -78,6 +84,7 @@ foreach test: testsuite_sources
   test_exe = executable(test_name, test_sources,
           c_args: testsuite_c_args + deprecated_c_args,
     dependencies: [core_dep, completionwords_dep],
+       link_whole: testsuite_res_lib,
          install: install_test,
      install_dir: testexecdir
   )
