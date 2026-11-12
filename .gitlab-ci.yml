@@ -18,9 +18,6 @@ stages:
     - docs
     - deploy
 
-variables:
-    FEDORA_IMAGE: "registry.fedoraproject.org/fedora:45"
-
 flatpak:
     variables:
         FLATPAK_MODULE: "gtksourceview"
@@ -31,73 +28,19 @@ flatpak:
     extends: ".flatpak"
 
 reference:
-    image: $FEDORA_IMAGE
+    image:
+        name: "quay.io/gnome_infrastructure/gnome-build-meta:gnomeos-devel-nightly"
+        docker:
+            user: "root"
+    tags: ["x86_64_v3"]
     stage: docs
     needs: []
-    variables:
     script:
-        - sudo dnf install -y gtk4-devel
-                dbus-daemon
-                ccache
-                desktop-file-utils
-                expat-devel
-                gcc
-                gcc-c++
-                gettext
-                gi-docgen
-                gi-docgen-fonts
-                git
-                glib2-devel
-                glibc-langpack-en
-                gobject-introspection-devel
-                gtk4-devel
-                itstool
-                libadwaita-devel
-                libicu-devel
-                libjpeg-turbo-devel
-                libpng-devel
-                libxkbcommon-devel
-                libXrandr-devel
-                libXi-devel
-                libXcursor-devel
-                libXdamage-devel
-                libXinerama-devel
-                libdrm-devel
-                libepoxy-devel
-                libglvnd-devel
-                libtiff-devel
-                glslc
-                mesa-vulkan-drivers
-                meson
-                ninja-build
-                redhat-rpm-config
-                shared-mime-info
-                vala
-                weston
-                xorg-x11-server-Xvfb
-                vulkan-devel
-                vulkan-headers
-                vulkan-loader-devel
-        - mkdir -p pfx/
-        - meson --prefix=${PWD}/pfx -Ddocumentation=true _build
-                -Dc_std=c11
-                -Dcpp_std=c++11
-                -Dwerror=false
-                -Dglib:tests=false
-                -Dgtk:media-gstreamer=disabled
-                -Dgtk:broadway-backend=false
-                -Dgtk:build-demos=false
-                -Dgtk:build-examples=false
-                -Dgtk:build-tests=false
-                -Dgtk:build-testsuite=false
-                -Dgtk:werror=false
-                -Dlibsass:werror=false
-                -Dsassc:werror=false
-                -Dlibadwaita:werror=false
-        - export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
-        - weston --backend=headless-backend.so --socket=wayland-5 --idle-time=0 &
-        - dbus-run-session -- env WAYLAND_DISPLAY=wayland-5 ninja -C _build test
-        - ninja -C _build install
+        - meson setup _build --prefix="${PWD}/pfx" -Ddocumentation=true
+        - meson compile -C _build
+        - export XDG_RUNTIME_DIR="$(mktemp -p "${PWD}" -d xdg-runtime-XXXXXX)"
+        - dbus-run-session -- mutter --headless --wayland --no-x11 --virtual-monitor 1024x768 -- meson test -C _build --print-errorlogs
+        - meson install -C _build --no-rebuild
         - mkdir -p _reference/
         - mv pfx/share/doc/gtksourceview5/ _reference/
     artifacts:
