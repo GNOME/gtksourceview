@@ -73,6 +73,8 @@ enum
 #define LOADER_QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE "," \
 				G_FILE_ATTRIBUTE_STANDARD_TYPE "," \
 				G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
+				G_FILE_ATTRIBUTE_TIME_CREATED "," \
+				G_FILE_ATTRIBUTE_TIME_CREATED_USEC "," \
 				G_FILE_ATTRIBUTE_STANDARD_SIZE "," \
 				G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE
 
@@ -1509,6 +1511,7 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 	if (update_file_properties && loader->file != NULL)
 	{
 		TaskData *task_data;
+		GDateTime *creation_time;
 
 		task_data = g_task_get_task_data (G_TASK (result));
 
@@ -1527,6 +1530,10 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 
 		_gtk_source_file_set_externally_modified (loader->file, FALSE);
 		_gtk_source_file_set_deleted (loader->file, FALSE);
+
+		creation_time = g_file_info_get_creation_date_time (task_data->info);
+		_gtk_source_file_set_creation_time (loader->file, creation_time);
+		g_clear_pointer (&creation_time, g_date_time_unref);
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{

@@ -59,9 +59,10 @@ typedef struct
 	gpointer mount_operation_userdata;
 	GDestroyNotify mount_operation_notify;
 
-	/* Last known modification time of 'location'. The value is updated on a
-	 * file loading or file saving.
+	/* Last known creation and modification times of 'location'.
+	 * The values are updated when loading or saving the file.
 	 */
+	GDateTime *creation_time;
 	gint64 modification_time;
 
 	guint modification_time_set : 1;
@@ -139,6 +140,7 @@ gtk_source_file_dispose (GObject *object)
 	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
 	g_clear_object (&priv->location);
+	g_clear_pointer (&priv->creation_time, g_date_time_unref);
 
 	if (priv->mount_operation_notify != NULL)
 	{
@@ -272,8 +274,9 @@ gtk_source_file_set_location (GtkSourceFile *file,
 	{
 		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_LOCATION]);
 
-		/* The modification_time is for the old location. */
+		/* The timestamps are for the old location. */
 		priv->modification_time_set = FALSE;
+		g_clear_pointer (&priv->creation_time, g_date_time_unref);
 
 		priv->externally_modified = FALSE;
 		priv->deleted = FALSE;
@@ -437,6 +440,34 @@ _gtk_source_file_create_mount_operation (GtkSourceFile *file)
 	return (file != NULL && priv->mount_operation_factory != NULL) ?
 		priv->mount_operation_factory (file, priv->mount_operation_userdata) :
 		g_mount_operation_new ();
+}
+
+GDateTime *
+_gtk_source_file_get_creation_time (GtkSourceFile *file)
+{
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
+	if (file == NULL)
+		return NULL;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), NULL);
+
+	return priv->creation_time;
+}
+
+void
+_gtk_source_file_set_creation_time (GtkSourceFile *file,
+                                  GDateTime     *creation_time)
+{
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
+	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
+
+	if (creation_time != NULL)
+		g_date_time_ref (creation_time);
+
+	g_clear_pointer (&priv->creation_time, g_date_time_unref);
+	priv->creation_time = creation_time;
 }
 
 gboolean

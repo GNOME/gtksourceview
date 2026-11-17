@@ -61,7 +61,9 @@
 #define WRITE_N_PAGES 2
 #define WRITE_CHUNK_SIZE (_gtk_source_utils_get_page_size()*WRITE_N_PAGES)
 
-#define QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_TIME_MODIFIED
+#define QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
+			 G_FILE_ATTRIBUTE_TIME_CREATED "," \
+			 G_FILE_ATTRIBUTE_TIME_CREATED_USEC
 
 enum
 {
@@ -572,6 +574,40 @@ query_info_cb (GObject      *source_object,
 }
 
 static void
+query_saved_file (GTask *task)
+{
+	GtkSourceFileSaver *saver = g_task_get_source_object (task);
+
+	/* Get the file info: note we cannot use
+	 * g_file_output_stream_query_info_async() since it is not able to get
+	 * the modification time.
+	 */
+	DEBUG ({
+	       g_print ("Query info on file\n");
+	});
+
+	g_file_query_info_async (saver->location,
+			         QUERY_ATTRIBUTES,
+			         G_FILE_QUERY_INFO_NONE,
+				 g_task_get_priority (task),
+				 g_task_get_cancellable (task),
+			         query_info_cb,
+			         task);
+}
+
+static void
+set_attributes_cb (GObject      *source_object,
+                   GAsyncResult *result,
+                   gpointer      user_data)
+{
+	GTask *task = G_TASK (user_data);
+
+	/* Creation time is not writable on all backends. */
+	g_file_set_attributes_finish (G_FILE (source_object), result, NULL, NULL);
+	query_saved_file (task);
+}
+
+static void
 close_output_stream_cb (GObject      *source_object,
                         GAsyncResult *result,
                         gpointer      user_data)
@@ -599,21 +635,28 @@ close_output_stream_cb (GObject      *source_object,
 		return;
 	}
 
-	/* Get the file info: note we cannot use
-	 * g_file_output_stream_query_info_async() since it is not able to get
-	 * the modification time.
-	 */
-	DEBUG ({
-	       g_print ("Query info on file\n");
-	});
+	{
+		GDateTime *creation_time = _gtk_source_file_get_creation_time (saver->file);
 
-	g_file_query_info_async (saver->location,
-			         QUERY_ATTRIBUTES,
-			         G_FILE_QUERY_INFO_NONE,
-				 g_task_get_priority (task),
-				 g_task_get_cancellable (task),
-			         query_info_cb,
-			         task);
+		if (creation_time != NULL)
+		{
+			GFileInfo *info = g_file_info_new ();
+
+			g_file_info_set_creation_date_time (info, creation_time);
+			g_file_set_attributes_async (saver->location,
+						     info,
+						     G_FILE_QUERY_INFO_NONE,
+						     g_task_get_priority (task),
+						     g_task_get_cancellable (task),
+						     set_attributes_cb,
+						     task);
+			g_object_unref (info);
+		}
+		else
+		{
+			query_saved_file (task);
+		}
+	}
 }
 
 static void
@@ -1465,6 +1508,7 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 	if (ok && saver->file != NULL)
 	{
 		TaskData *task_data;
+		GDateTime *creation_time;
 
 		gtk_source_file_set_location (saver->file,
 					      saver->location);
@@ -1483,6 +1527,10 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 		_gtk_source_file_set_readonly (saver->file, FALSE);
 
 		task_data = g_task_get_task_data (G_TASK (result));
+
+		creation_time = g_file_info_get_creation_date_time (task_data->info);
+		_gtk_source_file_set_creation_time (saver->file, creation_time);
+		g_clear_pointer (&creation_time, g_date_time_unref);
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{

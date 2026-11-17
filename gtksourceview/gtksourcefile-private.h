@@ -40,5 +40,8 @@ void             _gtk_source_file_set_deleted             (GtkSourceFile        
                                                            gboolean                  deleted);
 void             _gtk_source_file_set_readonly            (GtkSourceFile            *file,
                                                            gboolean                  readonly);
+GDateTime       *_gtk_source_file_get_creation_time       (GtkSourceFile            *file);
+void             _gtk_source_file_set_creation_time       (GtkSourceFile            *file,
+                                                           GDateTime                *creation_time);
 
 G_END_DECLS
