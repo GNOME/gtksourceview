@@ -230,6 +230,8 @@ test_motion (void)
 	run_test ("abc", "2l", "ab|c");
 	run_test ("abc", "10l", "ab|c");
 	run_test ("abc", "lh", "|abc");
+	run_test ("abcdefghij", "$3h", "abcdef|ghij");
+	run_test ("abcdefghij", "$2h", "abcdefg|hij");
 	run_test ("  abc", "$", "  ab|c");
 	run_test ("  abc", "$0", "|  abc");
 	run_test ("  abc", "$^", "  |abc");

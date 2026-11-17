@@ -1941,7 +1941,6 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
 	GtkTextIter iter;
-	int count;
 
 	g_assert (GTK_SOURCE_IS_VIM_MOTION (self));
 
@@ -1952,7 +1951,6 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 
 	view = gtk_source_vim_state_get_view (state);
 	buffer = gtk_source_vim_state_get_buffer (state, &iter, NULL);
-	count = get_adjusted_count (self);
 
 	if (self->mark != NULL)
 	{
@@ -1961,11 +1959,7 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 		                                  self->mark);
 	}
 
-	do
-	{
-		if (!gtk_source_vim_motion_apply (self, &iter, FALSE))
-			break;
-	} while (--count > 0);
+	gtk_source_vim_motion_apply (self, &iter, FALSE);
 
 	if (self->mark != NULL)
 	{
