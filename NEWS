@@ -1,3 +1,53 @@
+News in 5.23.0 (unreleased)
+---------------------------
+
+This is an unstable release for the GNOME 52 development cycle.
+
+Development of this release was funded by Source & Stack, LLC.
+
+ * Prepare language definitions and highlighting data asynchronously when a
+   language is assigned to a buffer; add gtk_source_language_prepare_async()
+   and gtk_source_language_prepare_finish() (#432)
+ * Improve incremental syntax highlighting, especially after batched edits,
+   in large files, and while scrolling; bound parsing and tag updates so
+   they can continue across frames
+ * Avoid redundant tag changes and regex work during highlighting
+ * Reuse language specification schemas and validate bundled languages and
+   style schemes at build time; keep validating external language specs
+ * Coalesce search invalidation during edit batches to speed up undo and
+   redo with many replacements (#415)
+ * Add JSONC and JSP language definitions (#155)
+ * Add Markdown task lists and numbered lists using the 1) form (#329)
+ * Add CSS gap and rotate keywords (#424)
+ * Improve C attribute highlighting around Objective-C messages (#395)
+ * Fix escaped quotes in Python raw strings and raw f-strings (#371)
+ * Stop highlighting the Rust scope keyword by default
+ * Fix highlighting of nested matches at end of file (#413) and empty
+   main contexts in language definitions (#428)
+ * Fix highlighting state after recursive text edits from signal handlers
+   (#389)
+ * Fix fractional tab widths and right-margin placement (#403)
+ * Fix current-line redraw when moving the cursor and preserve macOS word
+   navigation shortcuts (#429)
+ * Fix source map tracking when a view's vertical adjustment changes
+ * Measure gutter text using the renderer font (#340)
+ * Fix GdkRGBA color handling in the view (#422)
+ * Fix counted Vim motions being applied more than once (#406)
+ * Correct Vala smart_home_end behavior
+ * Validate encoding converters before loading or replacing files (#430)
+ * Fix UTF-16LE loading when a CRLF pair crosses a read boundary (#427)
+ * Improve UTF-8 detection and recovery for files containing NUL or
+   invalid bytes (#388)
+ * Preserve file creation time when saving, where supported (#385)
+ * Normalize underline styles in the Adwaita style schemes
+ * Avoid permanent quark allocations for source mark sequences (#400)
+ * Document ordering of source marks at the same position (#419)
+ * Expand tests for quoted heredoc delimiters (#346)
+ * Fix completion teardown and remove deprecated GTK and GDK API usage
+ * Clean up annotation API documentation
+ * Improve build parallelism and fix MSYS2 linking and test builds
+ * Update the Slovenian translation
+
 News in 5.22.0, 2026-09-18
 --------------------------
 
