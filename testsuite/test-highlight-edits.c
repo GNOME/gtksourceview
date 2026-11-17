@@ -410,6 +410,62 @@ test_highlight_budget (gconstpointer data)
 	g_string_free (text, TRUE);
 }
 
+static void
+recursive_edit_cb (GtkSourceBuffer *buffer,
+                   gboolean        *edited)
+{
+  GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (buffer);
+  GtkTextIter start;
+  GtkTextIter end;
+
+  assert_fresh (buffer, "c");
+
+  if (*edited)
+    return;
+
+  *edited = TRUE;
+
+  gtk_text_buffer_get_start_iter (text_buffer, &start);
+  gtk_text_buffer_insert (text_buffer, &start, "/* αβ */\n", -1);
+
+  gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 3);
+  gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 5);
+  gtk_text_buffer_delete (text_buffer, &start, &end);
+}
+
+static void
+test_recursive_edit (gconstpointer data)
+{
+  GtkSourceBuffer *buffer = new_buffer ("c", "int main (void) { return 0; }\n");
+  GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (buffer);
+  GtkTextIter start;
+  GtkTextIter end;
+  gboolean edited = FALSE;
+  gulong handler;
+
+  handler = g_signal_connect (buffer,
+                              (GPOINTER_TO_INT (data) & 2) ? "cursor-moved" : "changed",
+                              G_CALLBACK (recursive_edit_cb),
+                              &edited);
+
+  gtk_text_buffer_get_start_iter (text_buffer, &start);
+
+  if (GPOINTER_TO_INT (data) & 1)
+    {
+      gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 4);
+      gtk_text_buffer_delete (text_buffer, &start, &end);
+    }
+  else
+    {
+      gtk_text_buffer_insert (text_buffer, &start, "// γδ\n", -1);
+    }
+
+  g_assert_true (edited);
+  g_clear_signal_handler (&handler, buffer);
+  assert_fresh (buffer, "c");
+  g_object_unref (buffer);
+}
+
 int
 main (int    argc,
       char **argv)
@@ -444,6 +500,10 @@ main (int    argc,
 	g_test_add_data_func ("/highlight/budget/line-independent", "test-line-local", test_highlight_budget);
 	g_test_add_data_func ("/highlight/budget/context-dependent", "python3", test_highlight_budget);
 	g_test_add_data_func ("/highlight/budget/capture", "test-tag-plan", test_highlight_budget);
+	g_test_add_data_func ("/highlight/edits/recursive-insert", GINT_TO_POINTER (FALSE), test_recursive_edit);
+	g_test_add_data_func ("/highlight/edits/recursive-delete", GINT_TO_POINTER (TRUE), test_recursive_edit);
+	g_test_add_data_func ("/highlight/edits/recursive-cursor-insert", GINT_TO_POINTER (2), test_recursive_edit);
+	g_test_add_data_func ("/highlight/edits/recursive-cursor-delete", GINT_TO_POINTER (3), test_recursive_edit);
 	result = g_test_run ();
 	g_object_unref (manager);
 	g_object_unref (languages);

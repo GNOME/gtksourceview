@@ -170,6 +170,7 @@ typedef struct
 	GtkTextTag *invalid_char_tag;
 
 	gint64 insertion_count;
+	guint deletion_length;
 
 	guint cursor_moved_block_count;
 	guint edit_batch_depth;
@@ -187,36 +188,41 @@ static guint       buffer_signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
-static void gtk_source_buffer_dispose                  (GObject            *object);
-static void gtk_source_buffer_set_property             (GObject            *object,
-                                                        guint               prop_id,
-                                                        const GValue       *value,
-                                                        GParamSpec         *pspec);
-static void gtk_source_buffer_get_property             (GObject            *object,
-                                                        guint               prop_id,
-                                                        GValue             *value,
-                                                        GParamSpec         *pspec);
-static void gtk_source_buffer_real_insert_text         (GtkTextBuffer      *buffer,
-                                                        GtkTextIter        *iter,
-                                                        const gchar        *text,
-                                                        gint                len);
-static void gtk_source_buffer_real_insert_paintable    (GtkTextBuffer      *buffer,
-                                                        GtkTextIter        *pos,
-                                                        GdkPaintable       *paintable);
-static void gtk_source_buffer_real_insert_child_anchor (GtkTextBuffer      *buffer,
-                                                        GtkTextIter        *pos,
-                                                        GtkTextChildAnchor *anchor);
-static void gtk_source_buffer_real_delete_range        (GtkTextBuffer      *buffer,
-                                                        GtkTextIter        *iter,
-                                                        GtkTextIter        *end);
-static void gtk_source_buffer_real_mark_set            (GtkTextBuffer      *buffer,
-                                                        const GtkTextIter  *location,
-                                                        GtkTextMark        *mark);
-static void gtk_source_buffer_real_mark_deleted        (GtkTextBuffer      *buffer,
-                                                        GtkTextMark        *mark);
-static void gtk_source_buffer_real_highlight_updated   (GtkSourceBuffer    *buffer,
-                                                        GtkTextIter        *start,
-                                                        GtkTextIter        *end);
+static void gtk_source_buffer_dispose                  (GObject                  *object);
+static void gtk_source_buffer_set_property             (GObject                  *object,
+                                                        guint                     prop_id,
+                                                        const GValue             *value,
+                                                        GParamSpec               *pspec);
+static void gtk_source_buffer_get_property             (GObject                  *object,
+                                                        guint                     prop_id,
+                                                        GValue                   *value,
+                                                        GParamSpec               *pspec);
+static void gtk_source_buffer_commit_notify            (GtkTextBuffer            *buffer,
+                                                        GtkTextBufferNotifyFlags  flags,
+                                                        guint                     position,
+                                                        guint                     length,
+                                                        gpointer                  user_data);
+static void gtk_source_buffer_real_insert_text         (GtkTextBuffer            *buffer,
+                                                        GtkTextIter              *iter,
+                                                        const gchar              *text,
+                                                        gint                      len);
+static void gtk_source_buffer_real_insert_paintable    (GtkTextBuffer            *buffer,
+                                                        GtkTextIter              *pos,
+                                                        GdkPaintable             *paintable);
+static void gtk_source_buffer_real_insert_child_anchor (GtkTextBuffer            *buffer,
+                                                        GtkTextIter              *pos,
+                                                        GtkTextChildAnchor       *anchor);
+static void gtk_source_buffer_real_delete_range        (GtkTextBuffer            *buffer,
+                                                        GtkTextIter              *iter,
+                                                        GtkTextIter              *end);
+static void gtk_source_buffer_real_mark_set            (GtkTextBuffer            *buffer,
+                                                        const GtkTextIter        *location,
+                                                        GtkTextMark              *mark);
+static void gtk_source_buffer_real_mark_deleted        (GtkTextBuffer            *buffer,
+                                                        GtkTextMark              *mark);
+static void gtk_source_buffer_real_highlight_updated   (GtkSourceBuffer          *buffer,
+                                                        GtkTextIter              *start,
+                                                        GtkTextIter              *end);
 
 static void
 gtk_source_buffer_check_tag_for_spaces (GtkSourceBuffer *buffer,
@@ -515,6 +521,14 @@ static void
 gtk_source_buffer_init (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	gtk_text_buffer_add_commit_notify (GTK_TEXT_BUFFER (buffer),
+	                                   (GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT |
+	                                    GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE |
+	                                    GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE),
+	                                   gtk_source_buffer_commit_notify,
+	                                   NULL,
+	                                   NULL);
 
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
@@ -1109,6 +1123,42 @@ gtk_source_buffer_real_highlight_updated (GtkSourceBuffer *buffer,
 }
 
 static void
+gtk_source_buffer_commit_notify (GtkTextBuffer            *buffer,
+                                 GtkTextBufferNotifyFlags  flags,
+                                 guint                     position,
+                                 guint                     length,
+                                 gpointer                  user_data)
+{
+  GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+  GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
+
+  switch (flags)
+    {
+    case GTK_TEXT_BUFFER_NOTIFY_AFTER_INSERT:
+      priv->insertion_count++;
+
+      if (priv->highlight_engine != NULL)
+        _gtk_source_engine_text_inserted (priv->highlight_engine, position, position + length);
+      break;
+
+    case GTK_TEXT_BUFFER_NOTIFY_BEFORE_DELETE:
+      /* GTK reports a zero length in the after-delete notification. */
+      priv->deletion_length = length;
+      break;
+
+    case GTK_TEXT_BUFFER_NOTIFY_AFTER_DELETE:
+      if (priv->highlight_engine != NULL)
+        _gtk_source_engine_text_deleted (priv->highlight_engine, position, priv->deletion_length);
+      priv->deletion_length = 0;
+      break;
+
+    case GTK_TEXT_BUFFER_NOTIFY_BEFORE_INSERT:
+    default:
+      g_assert_not_reached ();
+    }
+}
+
+static void
 gtk_source_buffer_content_inserted (GtkTextBuffer *buffer,
 				    gint           start_offset,
 				    gint           end_offset)
@@ -1132,34 +1182,19 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    const gchar   *text,
 				    gint           len)
 {
-	GtkSourceBuffer *source_buffer = (GtkSourceBuffer *)buffer;
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
-	gint start_offset;
-
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (text != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
-	start_offset = gtk_text_iter_get_offset (iter);
-
-	/* iter is invalidated when
-	 * insertion occurs (because the buffer contents change), but the
-	 * default signal handler revalidates it to point to the end of the
-	 * inserted text.
-	 */
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_text (buffer, iter, text, len);
 
-	priv->insertion_count++;
-
-	gtk_source_buffer_content_inserted (buffer,
-					    start_offset,
-					    gtk_text_iter_get_offset (iter));
+	cursor_moved (GTK_SOURCE_BUFFER (buffer));
 }
 
-/* insert_paintable and insert_child_anchor do nothing except notifying
- * the highlighting engine about the change, because engine's idea
- * of buffer char count must be correct at all times.
+/* GTK does not emit commit notifications for paintables or child anchors,
+ * so these overrides must keep the highlighting engine's character count
+ * in sync.
  */
 static void
 gtk_source_buffer_real_insert_paintable (GtkTextBuffer *buffer,
@@ -1215,30 +1250,15 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 				     GtkTextIter   *start,
 				     GtkTextIter   *end)
 {
-	gint offset, length;
-	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
-
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 	g_return_if_fail (gtk_text_iter_get_buffer (start) == buffer);
 	g_return_if_fail (gtk_text_iter_get_buffer (end) == buffer);
 
-	gtk_text_iter_order (start, end);
-	offset = gtk_text_iter_get_offset (start);
-	length = gtk_text_iter_get_offset (end) - offset;
-
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->delete_range (buffer, start, end);
 
-	cursor_moved (source_buffer);
-
-	/* emit text deleted for engines */
-	if (priv->highlight_engine != NULL)
-	{
-		_gtk_source_engine_text_deleted (priv->highlight_engine,
-						 offset, length);
-	}
+	cursor_moved (GTK_SOURCE_BUFFER (buffer));
 }
 
 static gint
