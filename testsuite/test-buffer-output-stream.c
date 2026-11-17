@@ -333,6 +333,88 @@ test_utf8_utf8 (void)
 }
 
 static void
+test_guessed_utf8_with_nuls (void)
+{
+	static const char input[] = "1 !\n2 \xef\xbf\xbd\n3 \0\n4 text\n5 \0\n6 \xe6\x96\x87\n";
+	static const char expected[] = "1 !\n2 \xef\xbf\xbd\n3 \\00\n4 text\n5 \\00\n6 \xe6\x96\x87";
+	const GtkSourceEncoding *guessed;
+	GSList *encodings = NULL;
+
+	encodings = g_slist_append (encodings, (gpointer)gtk_source_encoding_get_utf8 ());
+	encodings = g_slist_append (encodings, (gpointer)gtk_source_encoding_get_from_charset ("ISO-8859-15"));
+	encodings = g_slist_append (encodings, (gpointer)gtk_source_encoding_get_from_charset ("UTF-16"));
+
+	for (gsize chunk = 1; chunk < sizeof input; chunk++)
+	{
+		char *text;
+
+		text = do_test (input, NULL, encodings, sizeof input - 1, chunk, &guessed);
+		g_assert_true (guessed == gtk_source_encoding_get_utf8 ());
+		g_assert_cmpstr (text, ==, expected);
+		g_free (text);
+	}
+
+	g_slist_free (encodings);
+}
+
+static void
+test_guessed_encoding_samples (void)
+{
+	static const struct
+	{
+		const char *input;
+		gsize length;
+		const char *charset;
+		const char *expected;
+	} samples[] = {
+		{ "hello", 5, "UTF-8", "hello" },
+		{ "caf\xe9 ", 5, "ISO-8859-15", "caf\xc3\xa9 " },
+		{ "h\0e\0l\0l\0o\0", 10, "UTF-16LE", "hello" },
+		{ "\0h\0e\0l\0l\0o", 10, "UTF-16BE", "hello" },
+		{ "\xff\xfe\0\0h\0\0\0i\0\0\0", 12, "UTF-32", "hi" },
+		{ "\0\0\xfe\xff\0\0\0h\0\0\0i", 12, "UTF-32", "hi" },
+		{ "\xff\xfeh\0i\0", 6, "UTF-16", "hi" },
+	};
+
+	for (gsize i = 0; i < G_N_ELEMENTS (samples); i++)
+	{
+		const GtkSourceEncoding *expected_encoding;
+		const GtkSourceEncoding *guessed;
+		GSList *encodings = NULL;
+		char *text;
+
+		g_test_message ("Testing %s", samples[i].charset);
+		expected_encoding = gtk_source_encoding_get_from_charset (samples[i].charset);
+		encodings = g_slist_append (encodings, (gpointer)gtk_source_encoding_get_utf8 ());
+		encodings = g_slist_append (encodings, (gpointer)expected_encoding);
+
+		text = do_test (samples[i].input, NULL, encodings,
+		                samples[i].length, samples[i].length, &guessed);
+		g_slist_free (encodings);
+
+		g_assert_true (guessed == expected_encoding);
+		g_assert_cmpstr (text, ==, samples[i].expected);
+		g_free (text);
+	}
+}
+
+static void
+test_utf8_fallback_chunks (void)
+{
+	static const char input[] = "\0\0a\xff\xfe\xc3\xa8z\0";
+	static const char expected[] = "\\00\\00a\\FF\\FE\xc3\xa8z\\00";
+
+	for (gsize chunk = 1; chunk < sizeof input; chunk++)
+	{
+		char *text;
+
+		text = do_test (input, "UTF-8", NULL, sizeof input - 1, chunk, NULL);
+		g_assert_cmpstr (text, ==, expected);
+		g_free (text);
+	}
+}
+
+static void
 test_empty_conversion (void)
 {
 	const GtkSourceEncoding *guessed;
@@ -421,6 +503,9 @@ main (gint   argc,
 	g_test_init (&argc, &argv, NULL);
 
 	g_test_add_func ("/buffer-output-stream/empty", test_empty);
+	g_test_add_func ("/buffer-output-stream/guessed-utf8-with-nuls", test_guessed_utf8_with_nuls);
+	g_test_add_func ("/buffer-output-stream/guessed-encoding-samples", test_guessed_encoding_samples);
+	g_test_add_func ("/buffer-output-stream/utf8-fallback-chunks", test_utf8_fallback_chunks);
 
 	g_test_add_func ("/buffer-output-stream/consecutive", test_consecutive);
 	g_test_add_func ("/buffer-output-stream/consecutive_tnewline", test_consecutive_tnewline);

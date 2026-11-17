@@ -353,10 +353,52 @@ try_convert (GCharsetConverter *converter,
 	return ret;
 }
 
+static gboolean
+is_utf8_sample (const char *text,
+                gsize       length)
+{
+	gboolean has_nul = FALSE;
+	gboolean has_multibyte = FALSE;
+
+	while (length > 0)
+	{
+		gunichar ch;
+		gsize char_length;
+
+		if (*text == '\0')
+		{
+			has_nul = TRUE;
+			text++;
+			length--;
+			continue;
+		}
+
+		ch = g_utf8_get_char_validated (text, length);
+
+		if (ch == (gunichar)-1)
+			return FALSE;
+
+		if (ch == (gunichar)-2)
+		{
+			if (memchr (text, '\0', length) != NULL)
+				return FALSE;
+
+			break;
+		}
+
+		char_length = g_utf8_next_char (text) - text;
+		has_multibyte |= char_length > 1;
+		text += char_length;
+		length -= char_length;
+	}
+
+	return !has_nul || has_multibyte;
+}
+
 static GCharsetConverter *
-guess_encoding (GtkSourceBufferOutputStream *stream,
-                const void                  *inbuf,
-                gsize                        inbuf_size,
+guess_encoding (GtkSourceBufferOutputStream  *stream,
+                const void                   *inbuf,
+                gsize                         inbuf_size,
                 GError                      **error)
 {
 	GCharsetConverter *conv = NULL;
@@ -399,20 +441,7 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 
 		if (enc == gtk_source_encoding_get_utf8 ())
 		{
-			gsize remainder;
-			const gchar *end;
-
-			if (g_utf8_validate (inbuf, inbuf_size, &end) ||
-			    stream->use_first)
-			{
-				stream->is_utf8 = TRUE;
-				break;
-			}
-
-			/* The sample may end in an incomplete UTF-8 character. */
-			remainder = inbuf_size - (end - (gchar *)inbuf);
-			if (memchr (end, '\0', remainder) == NULL &&
-			    g_utf8_get_char_validated (end, remainder) == (gunichar)-2)
+			if (stream->use_first || is_utf8_sample (inbuf, inbuf_size))
 			{
 				stream->is_utf8 = TRUE;
 				break;
@@ -781,6 +810,7 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		len = len - nvalid;
 
 		if ((len < MAX_UNICHAR_LEN) &&
+		    memchr (buffer, '\0', len) == NULL &&
 		    (g_utf8_get_char_validated (buffer, len) == (gunichar)-2))
 		{
 			stream->buffer = g_strndup (end, len);
@@ -805,7 +835,8 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		{
 			while (invalseq < len)
 			{
-				if (!g_utf8_validate (&buffer[invalseq], len - invalseq, NULL))
+				if (buffer[invalseq] == '\0' ||
+				    g_utf8_get_char_validated (&buffer[invalseq], len - invalseq) == (gunichar)-1)
 				{
 					invalseq++;
 				}
