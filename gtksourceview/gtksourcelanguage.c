@@ -47,6 +47,11 @@
  *
  * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
  * [method@Buffer.set_language] to apply it to a [class@Buffer].
+ *
+ * Since 5.24, assigning a language to a buffer prepares it asynchronously.
+ * Use [method@Language.prepare_async] to wait until its highlighting data and
+ * styles are available. Style queries return %NULL while preparation is pending;
+ * when no preparation is pending, they can load the language synchronously.
  */
 
 #define DEFAULT_SECTION _("Others")
@@ -83,6 +88,7 @@ struct _GtkSourceLanguage
 	GtkSourceLanguageManager *language_manager;
 
 	GtkSourceContextData     *ctx_data;
+	GPtrArray                *prepare_tasks;
 };
 
 G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
@@ -248,7 +254,12 @@ gtk_source_language_finalize (GObject *object)
 	lang = GTK_SOURCE_LANGUAGE (object);
 
 	if (lang->ctx_data != NULL)
-		g_critical ("context data not freed in gtk_source_language_finalize");
+	{
+		_gtk_source_context_data_set_language (lang->ctx_data, NULL);
+		g_clear_pointer (&lang->ctx_data, _gtk_source_context_data_unref);
+	}
+
+	g_assert (lang->prepare_tasks == NULL);
 
 	g_free (lang->lang_file_name);
 	g_free (lang->translation_domain);
@@ -755,70 +766,281 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 	}
 }
 
-/* returns new reference, which _must_ be unref'ed */
+typedef struct
+{
+	GtkSourceLanguageDefinition  definition;
+	GtkSourceContextData        *ctx_data;
+	GHashTable                  *styles;
+} LanguagePreparation;
+
+static void
+language_preparation_free (LanguagePreparation *preparation)
+{
+	g_clear_pointer (&preparation->ctx_data, _gtk_source_context_data_unref);
+	g_clear_pointer (&preparation->styles, g_hash_table_unref);
+	g_clear_pointer (&preparation->definition.filenames, g_hash_table_unref);
+	g_free (preparation->definition.id);
+	g_free (preparation->definition.filename);
+	g_free (preparation->definition.translation_domain);
+	g_free (preparation);
+}
+
+static LanguagePreparation *
+language_preparation_new (GtkSourceLanguage  *language,
+			  GError            **error)
+{
+	LanguagePreparation *preparation;
+	const char * const *ids;
+
+	if (language->language_manager == NULL)
+	{
+		g_set_error_literal (error,
+				     G_IO_ERROR,
+				     G_IO_ERROR_CLOSED,
+				     "The language manager has been finalized");
+		return NULL;
+	}
+
+	if (language->version != GTK_SOURCE_LANGUAGE_VERSION_2_0)
+	{
+		g_set_error_literal (error,
+				     G_IO_ERROR,
+				     G_IO_ERROR_NOT_SUPPORTED,
+				     "Only language definition version 2 is supported");
+		return NULL;
+	}
+
+	preparation = g_new0 (LanguagePreparation, 1);
+	preparation->definition.id = g_strdup (language->id);
+	preparation->definition.filename = g_strdup (language->lang_file_name);
+	preparation->definition.translation_domain = g_strdup (language->translation_domain);
+	preparation->definition.filenames = g_hash_table_new_full (g_str_hash, g_str_equal,
+								   g_free, g_free);
+	preparation->ctx_data = _gtk_source_context_data_new (language->id);
+
+	ids = gtk_source_language_manager_get_language_ids (language->language_manager);
+
+	for (guint i = 0; ids != NULL && ids[i] != NULL; i++)
+	{
+		GtkSourceLanguage *dependency;
+
+		dependency = gtk_source_language_manager_get_language (language->language_manager, ids[i]);
+		g_hash_table_insert (preparation->definition.filenames,
+				     g_strdup (ids[i]),
+				     g_strdup (dependency->lang_file_name));
+	}
+
+	return preparation;
+}
+
+static void
+language_preparation_install (GtkSourceLanguage   *language,
+			      LanguagePreparation *preparation)
+{
+	g_assert (language->ctx_data == NULL);
+	g_assert (preparation->ctx_data != NULL);
+	g_assert (preparation->styles != NULL);
+
+	language->ctx_data = g_steal_pointer (&preparation->ctx_data);
+	_gtk_source_context_data_set_language (language->ctx_data, language);
+
+	if (!language->styles_loaded)
+	{
+		g_clear_pointer (&language->styles, g_hash_table_unref);
+		language->styles = g_steal_pointer (&preparation->styles);
+		language->styles_loaded = TRUE;
+	}
+}
+
 static GtkSourceContextData *
 gtk_source_language_parse_file (GtkSourceLanguage *language)
 {
-	if (language->ctx_data == NULL)
+	if (language->ctx_data == NULL && language->prepare_tasks == NULL)
 	{
-		gboolean success = FALSE;
-		GtkSourceContextData *ctx_data;
+		LanguagePreparation *preparation;
+		GError *error = NULL;
 
-		if (language->language_manager == NULL)
+		preparation = language_preparation_new (language, &error);
+
+		if (preparation != NULL &&
+		    _gtk_source_language_file_parse_version2 (&preparation->definition,
+							      preparation->ctx_data,
+							      &preparation->styles,
+							      &error))
+			language_preparation_install (language, preparation);
+
+		if (preparation != NULL)
+			language_preparation_free (preparation);
+
+		if (error != NULL)
 		{
-			g_critical ("_gtk_source_language_create_engine() is called after "
-				    "language manager was finalized");
-		}
-		else
-		{
-			ctx_data = _gtk_source_context_data_new	(language);
-
-			switch (language->version)
-			{
-				case GTK_SOURCE_LANGUAGE_VERSION_1_0:
-					g_warning ("The language definition format version 1 "
-						   "(for syntax highlighting) is no longer "
-						   "supported by GtkSourceView >= 4.0. "
-						   "Please use version 2.");
-					break;
-
-				case GTK_SOURCE_LANGUAGE_VERSION_2_0:
-					success = _gtk_source_language_file_parse_version2 (language, ctx_data);
-					break;
-
-				default:
-					g_assert_not_reached ();
-			}
-
-			if (!success)
-				_gtk_source_context_data_unref (ctx_data);
-			else
-				language->ctx_data = ctx_data;
+			g_warning ("Failed to load '%s': %s", language->lang_file_name, error->message);
+			g_clear_error (&error);
 		}
 	}
+
+	return language->ctx_data != NULL ? _gtk_source_context_data_ref (language->ctx_data) : NULL;
+}
+
+static void
+language_prepare_worker (GTask        *task,
+			 gpointer      source_object,
+			 gpointer      task_data,
+			 GCancellable *cancellable)
+{
+	LanguagePreparation *preparation = task_data;
+	GError *error = NULL;
+
+	if (!_gtk_source_language_file_parse_version2 (&preparation->definition,
+						       preparation->ctx_data,
+						       &preparation->styles,
+						       &error))
+		g_task_return_error (task, g_steal_pointer (&error));
 	else
+		g_task_return_boolean (task, TRUE);
+}
+
+static void
+language_prepare_cb (GObject      *object,
+		     GAsyncResult *result,
+		     gpointer      user_data)
+{
+	GtkSourceLanguage *language = user_data;
+	GPtrArray *tasks = g_steal_pointer (&language->prepare_tasks);
+	GError *error = NULL;
+
+	if (g_task_propagate_boolean (G_TASK (result), &error))
+		language_preparation_install (language, g_task_get_task_data (G_TASK (result)));
+
+	for (guint i = 0; i < tasks->len; i++)
 	{
-		_gtk_source_context_data_ref (language->ctx_data);
+		GTask *task = g_ptr_array_index (tasks, i);
+
+		if (g_task_return_error_if_cancelled (task))
+			continue;
+
+		if (error != NULL)
+			g_task_return_error (task, g_error_copy (error));
+		else
+			g_task_return_boolean (task, TRUE);
 	}
 
-	return language->ctx_data;
+	g_clear_error (&error);
+	g_ptr_array_unref (tasks);
+	g_object_unref (language);
+}
+
+/**
+ * gtk_source_language_prepare_async:
+ * @language: a #GtkSourceLanguage
+ * @cancellable: (nullable): a #GCancellable
+ * @callback: (scope async) (closure user_data) (nullable): callback invoked when preparation completes
+ * @user_data: (nullable): data for @callback
+ *
+ * Prepares the language for highlighting without blocking the main loop.
+ *
+ * Parsing and regex compilation run on a worker thread. Concurrent requests
+ * share preparation, and the language retains the prepared data for its lifetime.
+ * Cancelling a request cancels that caller's result, not the shared preparation.
+ *
+ * [method@Buffer.set_language] starts preparation automatically. This method can
+ * also be used to prepare a language before assigning it to a buffer, or to wait
+ * until synchronous highlighting and context-class queries can be used.
+ *
+ * Call this method on the main thread. The callback runs in the thread-default
+ * main context of the caller. Call [method@Language.prepare_finish] to obtain
+ * the result.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_language_prepare_async (GtkSourceLanguage   *language,
+				   GCancellable        *cancellable,
+				   GAsyncReadyCallback  callback,
+				   gpointer             user_data)
+{
+	GTask *task = NULL;
+	GTask *worker = NULL;
+	GError *error = NULL;
+	LanguagePreparation *preparation;
+
+	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE (language));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+
+	task = g_task_new (language, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gtk_source_language_prepare_async);
+
+	if (g_task_return_error_if_cancelled (task))
+		goto out;
+
+	if (language->ctx_data != NULL)
+	{
+		g_task_return_boolean (task, TRUE);
+		goto out;
+	}
+
+	if (language->prepare_tasks != NULL)
+	{
+		g_ptr_array_add (language->prepare_tasks, g_steal_pointer (&task));
+		goto out;
+	}
+
+	if (!(preparation = language_preparation_new (language, &error)))
+	{
+		g_task_return_error (task, g_steal_pointer (&error));
+		goto out;
+	}
+
+	language->prepare_tasks = g_ptr_array_new_with_free_func (g_object_unref);
+	g_ptr_array_add (language->prepare_tasks, g_steal_pointer (&task));
+
+	/* Only plain data crosses into the worker. Caller tasks and their source
+	 * objects are released by language_prepare_cb() on the main thread.
+	 */
+	worker = g_task_new (NULL, NULL, language_prepare_cb, g_object_ref (language));
+	g_task_set_task_data (worker, preparation, (GDestroyNotify) language_preparation_free);
+	g_task_run_in_thread (worker, language_prepare_worker);
+
+out:
+	g_clear_object (&worker);
+	g_clear_object (&task);
+	g_clear_error (&error);
+}
+
+/**
+ * gtk_source_language_prepare_finish:
+ * @language: a #GtkSourceLanguage
+ * @result: the #GAsyncResult passed to the callback
+ * @error: return location for an error
+ *
+ * Finishes preparing a language for highlighting.
+ *
+ * Returns: %TRUE if the language is ready, or %FALSE on failure
+ *
+ * Since: 5.24
+ */
+gboolean
+gtk_source_language_prepare_finish (GtkSourceLanguage  *language,
+				    GAsyncResult       *result,
+				    GError            **error)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), FALSE);
+	g_return_val_if_fail (g_task_is_valid (result, language), FALSE);
+	g_return_val_if_fail (g_async_result_is_tagged (result, gtk_source_language_prepare_async), FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+	return g_task_propagate_boolean (G_TASK (result), error);
 }
 
 GtkSourceEngine *
 _gtk_source_language_create_engine (GtkSourceLanguage *language)
 {
-	GtkSourceContextEngine *ce = NULL;
-	GtkSourceContextData *ctx_data;
+	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
 
-	ctx_data = gtk_source_language_parse_file (language);
+	if (language->ctx_data == NULL)
+		return NULL;
 
-	if (ctx_data != NULL)
-	{
-		ce = _gtk_source_context_engine_new (ctx_data);
-		_gtk_source_context_data_unref (ctx_data);
-	}
-
-	return ce ? GTK_SOURCE_ENGINE (ce) : NULL;
+	return GTK_SOURCE_ENGINE (_gtk_source_context_engine_new (language->ctx_data));
 }
 
 typedef struct
@@ -899,6 +1121,9 @@ force_styles (GtkSourceLanguage *language)
  *
  * Returns the ids of the styles defined by this @language.
  *
+ * If preparation is pending, returns %NULL. Wait for
+ * [method@Language.prepare_async] to complete before querying styles.
+ *
  * Returns: (nullable) (array zero-terminated=1) (transfer full):
  * a newly-allocated %NULL terminated array containing ids of the
  * styles defined by this @language or %NULL if no style is defined.
@@ -939,6 +1164,9 @@ get_style_info (GtkSourceLanguage *language,
  *
  * Returns the name of the style with ID @style_id defined by this @language.
  *
+ * If preparation is pending, returns %NULL. Wait for
+ * [method@Language.prepare_async] to complete before querying styles.
+ *
  * Returns: (nullable) (transfer none): the name of the style with ID @style_id
  * defined by this @language or %NULL if the style has no name or there is no
  * style with ID @style_id defined by this @language.
@@ -966,6 +1194,9 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
  *
  * Returns the ID of the style to use if the specified @style_id
  * is not present in the current style scheme.
+ *
+ * If preparation is pending, returns %NULL. Wait for
+ * [method@Language.prepare_async] to complete before querying styles.
  *
  * Returns: (nullable) (transfer none): the ID of the style to use if the
  * specified @style_id is not present in the current style scheme or %NULL
@@ -1023,24 +1254,8 @@ _gtk_source_style_info_free (GtkSourceStyleInfo *info)
 }
 
 
-void
-_gtk_source_language_clear_ctx_data (GtkSourceLanguage    *language,
-                                     GtkSourceContextData *ctx_data)
-{
-	if (language->ctx_data == ctx_data)
-	{
-		language->ctx_data = NULL;
-	}
-}
-
 const gchar *
 _gtk_source_language_get_file_name (GtkSourceLanguage *language)
 {
 	return language->lang_file_name;
-}
-
-GHashTable *
-_gtk_source_language_get_styles (GtkSourceLanguage *language)
-{
-	return language->styles;
 }

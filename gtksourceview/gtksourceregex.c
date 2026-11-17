@@ -35,15 +35,16 @@
  */
 
 /* Regex used to match "\%{...@start}". */
-static ImplRegex *
+static GRegex *
 get_start_ref_regex (void)
 {
-	static ImplRegex *start_ref_regex = NULL;
+	static GRegex *start_ref_regex;
 
-	if (start_ref_regex == NULL)
+	if (g_once_init_enter (&start_ref_regex))
 	{
-		start_ref_regex = impl_regex_new ("(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}",
-		                                  G_REGEX_OPTIMIZE, 0, NULL);
+		GRegex *regex = g_regex_new ("(?<!\\\\)(\\\\\\\\)*\\\\%\\{(.*?)@start\\}",
+					     G_REGEX_OPTIMIZE, 0, NULL);
+		g_once_init_leave (&start_ref_regex, regex);
 	}
 
 	return start_ref_regex;
@@ -132,7 +133,7 @@ _gtk_source_regex_new (const gchar         *pattern,
 	regex = g_slice_new0 (GtkSourceRegex);
 	regex->ref_count = 1;
 
-	if (impl_regex_match (get_start_ref_regex (), pattern, 0, NULL))
+	if (g_regex_match (get_start_ref_regex (), pattern, 0, NULL))
 	{
 		regex->resolved = FALSE;
 		regex->u.info.pattern = g_strdup (pattern);
@@ -208,16 +209,16 @@ struct RegexResolveData {
 };
 
 static gboolean
-replace_start_regex (const ImplMatchInfo *match_info,
-		     GString             *expanded_regex,
-		     gpointer             user_data)
+replace_start_regex (const GMatchInfo *match_info,
+		     GString          *expanded_regex,
+		     gpointer          user_data)
 {
 	gchar *num_string, *subst, *subst_escaped, *escapes;
 	gint num;
 	struct RegexResolveData *data = user_data;
 
-	escapes = impl_match_info_fetch (match_info, 1);
-	num_string = impl_match_info_fetch (match_info, 2);
+	escapes = g_match_info_fetch (match_info, 1);
+	num_string = g_match_info_fetch (match_info, 2);
 	num = _gtk_source_utils_string_to_int (num_string);
 
 	if (num < 0)
@@ -281,11 +282,11 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 
 	data.start_regex = start_regex;
 	data.matched_text = matched_text;
-	expanded_regex = impl_regex_replace_eval (get_start_ref_regex (),
-	                                          regex->u.info.pattern,
-	                                          -1, 0, 0,
-	                                          replace_start_regex,
-	                                          &data, NULL);
+	expanded_regex = g_regex_replace_eval (get_start_ref_regex (),
+					       regex->u.info.pattern,
+					       -1, 0, 0,
+					       replace_start_regex,
+					       &data, NULL);
 	new_regex = _gtk_source_regex_new (expanded_regex, regex->u.info.flags, NULL);
 	if (new_regex == NULL || !new_regex->resolved)
 	{

@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include <gtksourceview/gtksource.h>
 #include "gtksourceview/gtksourcebuffer-private.h"
+#include "test-highlight-utils.h"
 
 static const char *c_snippet =
 	"#include <foo.h>\n"
@@ -112,6 +113,7 @@ test_get_context_classes (void)
 	lang = gtk_source_language_manager_get_language (lm, "c");
 	g_assert_true (GTK_SOURCE_IS_LANGUAGE (lang));
 	buffer = gtk_source_buffer_new_with_language (lang);
+	test_language_prepare (lang);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), c_snippet, -1);
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 	gtk_source_buffer_ensure_highlight (buffer, &start, &end);
@@ -413,6 +415,7 @@ test_bracket_matching (void)
 	c_language = gtk_source_language_manager_get_language (language_manager, "c");
 	g_assert_nonnull (c_language);
 	gtk_source_buffer_set_language (buffer, c_language);
+	test_language_prepare (c_language);
 
 	/* Basics */
 

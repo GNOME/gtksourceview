@@ -49,7 +49,9 @@ typedef enum _GtkSourceContextRefOptions {
 
 G_DECLARE_FINAL_TYPE (GtkSourceContextEngine, _gtk_source_context_engine, GTK_SOURCE, CONTEXT_ENGINE, GObject)
 
-GtkSourceContextData    *_gtk_source_context_data_new             (GtkSourceLanguage           *lang);
+GtkSourceContextData    *_gtk_source_context_data_new             (const char                  *id);
+void                     _gtk_source_context_data_set_language    (GtkSourceContextData        *data,
+								   GtkSourceLanguage           *language);
 GtkSourceContextData    *_gtk_source_context_data_ref             (GtkSourceContextData        *data);
 void                     _gtk_source_context_data_unref           (GtkSourceContextData        *data);
 GtkSourceContextClass   *gtk_source_context_class_new             (gchar const                 *name,
@@ -87,7 +89,6 @@ void                     _gtk_source_context_replace_free         (GtkSourceCont
 gboolean                 _gtk_source_context_data_finish_parse    (GtkSourceContextData        *data,
                                                                    GList                       *overrides,
                                                                    GError                     **error);
-/* Only for lang files version 1, do not use it */
 void                     _gtk_source_context_data_set_escape_char (GtkSourceContextData        *data,
                                                                    gunichar                     esc_char);
 

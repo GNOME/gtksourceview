@@ -112,6 +112,7 @@ test_syntax (gconstpointer data)
 	buffer = gtk_source_buffer_new (NULL);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), contents, len);
 	gtk_source_buffer_set_language (buffer, l);
+	test_language_prepare (l);
 	gtk_source_buffer_set_highlight_syntax (buffer, TRUE);
 	gtk_source_buffer_set_style_scheme (buffer, s);
 

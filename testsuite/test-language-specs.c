@@ -1,4 +1,6 @@
+#include "config.h"
 #include <gtksourceview/gtksource.h>
+#include "test-highlight-utils.h"
 
 static GHashTable *skipped;
 
@@ -29,6 +31,7 @@ test_func (gconstpointer data)
 			       "highlight-syntax", TRUE,
 			       NULL);
 
+	test_language_prepare (l);
 	g_object_unref (buffer);
 }
 

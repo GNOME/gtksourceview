@@ -35,23 +35,29 @@ typedef struct
 	gchar *map_to;
 } GtkSourceStyleInfo;
 
-GtkSourceLanguage        *_gtk_source_language_new_from_file          (const gchar              *filename,
-                                                                       GtkSourceLanguageManager *lm);
-GtkSourceLanguageManager *_gtk_source_language_get_language_manager   (GtkSourceLanguage        *language);
-const gchar              *_gtk_source_language_get_file_name          (GtkSourceLanguage        *language);
-void                      _gtk_source_language_parser_finalize        (void);
-gchar                    *_gtk_source_language_translate_string       (GtkSourceLanguage        *language,
-                                                                       const gchar              *string);
-void                      _gtk_source_language_define_language_styles (GtkSourceLanguage        *language);
-gboolean                  _gtk_source_language_file_parse_version2    (GtkSourceLanguage        *language,
-                                                                       GtkSourceContextData     *ctx_data);
-GtkSourceEngine          *_gtk_source_language_create_engine          (GtkSourceLanguage        *language);
-void                      _gtk_source_language_clear_ctx_data         (GtkSourceLanguage        *language,
-                                                                       GtkSourceContextData     *ctx_data);
-GHashTable               *_gtk_source_language_get_styles             (GtkSourceLanguage        *language);
-GtkSourceStyleInfo       *_gtk_source_style_info_new                  (const gchar              *name,
-                                                                       const gchar              *map_to);
-GtkSourceStyleInfo       *_gtk_source_style_info_copy                 (GtkSourceStyleInfo       *info);
-void                      _gtk_source_style_info_free                 (GtkSourceStyleInfo       *info);
+typedef struct
+{
+	char       *id;
+	char       *filename;
+	char       *translation_domain;
+	GHashTable *filenames;
+} GtkSourceLanguageDefinition;
+
+GtkSourceLanguage        *_gtk_source_language_new_from_file          (const gchar                  *filename,
+								       GtkSourceLanguageManager     *lm);
+GtkSourceLanguageManager *_gtk_source_language_get_language_manager   (GtkSourceLanguage            *language);
+const gchar              *_gtk_source_language_get_file_name          (GtkSourceLanguage            *language);
+gchar                    *_gtk_source_language_translate_string       (GtkSourceLanguage            *language,
+								       const gchar                  *string);
+void                      _gtk_source_language_define_language_styles (GtkSourceLanguage            *language);
+gboolean                  _gtk_source_language_file_parse_version2    (GtkSourceLanguageDefinition  *language,
+								       GtkSourceContextData         *ctx_data,
+								       GHashTable                  **styles,
+								       GError                      **error);
+GtkSourceEngine          *_gtk_source_language_create_engine          (GtkSourceLanguage            *language);
+GtkSourceStyleInfo       *_gtk_source_style_info_new                  (const gchar                  *name,
+								       const gchar                  *map_to);
+GtkSourceStyleInfo       *_gtk_source_style_info_copy                 (GtkSourceStyleInfo           *info);
+void                      _gtk_source_style_info_free                 (GtkSourceStyleInfo           *info);
 
 G_END_DECLS

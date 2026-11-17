@@ -412,7 +412,8 @@ struct _ContextClassTag
 
 struct _GtkSourceContextData
 {
-	guint ref_count;
+	char  *lang_id;
+	guint  ref_count;
 
 	GtkSourceLanguage *lang;
 
@@ -561,7 +562,7 @@ gtk_source_context_data_lookup_root (GtkSourceContextData *ctx_data)
 	gchar *root_id;
 	ContextDefinition *root_definition;
 
-	lang_id = gtk_source_language_get_id (ctx_data->lang);
+	lang_id = ctx_data->lang_id;
 	root_id = g_strdup_printf ("%s:%s", lang_id, lang_id);
 	root_definition = gtk_source_context_data_lookup (ctx_data, root_id);
 	g_free (root_id);
@@ -2772,10 +2773,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceContextEngine,
 static GQuark
 gtk_source_context_engine_error_quark (void)
 {
-	static GQuark err_q = 0;
-	if (err_q == 0)
-		err_q = g_quark_from_static_string ("gtk-source-context-engine-error-quark");
-	return err_q;
+	return g_quark_from_static_string ("gtk-source-context-engine-error-quark");
 }
 
 static void
@@ -3135,27 +3133,30 @@ _gtk_source_context_engine_new (GtkSourceContextData *ctx_data)
 	return ce;
 }
 
-/**
- * _gtk_source_context_data_new:
- * @lang: #GtkSourceLanguage.
- *
- * Creates new context definition set. It does not set lang->ctx_data,
- * that's lang business.
- */
 GtkSourceContextData *
-_gtk_source_context_data_new (GtkSourceLanguage *lang)
+_gtk_source_context_data_new (const char *id)
 {
 	GtkSourceContextData *ctx_data;
 
-	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (lang), NULL);
+	g_return_val_if_fail (id != NULL, NULL);
 
-	ctx_data = g_slice_new (GtkSourceContextData);
+	ctx_data = g_slice_new0 (GtkSourceContextData);
 	ctx_data->ref_count = 1;
-	ctx_data->lang = lang;
+	ctx_data->lang_id = g_strdup (id);
 	ctx_data->definitions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
 						       (GDestroyNotify) context_definition_unref);
 
 	return ctx_data;
+}
+
+void
+_gtk_source_context_data_set_language (GtkSourceContextData *data,
+				       GtkSourceLanguage    *language)
+{
+	g_return_if_fail (data != NULL);
+	g_return_if_fail (language == NULL || GTK_SOURCE_IS_LANGUAGE (language));
+
+	data->lang = language;
 }
 
 GtkSourceContextData *
@@ -3170,9 +3171,8 @@ _gtk_source_context_data_ref (GtkSourceContextData *ctx_data)
  * _gtk_source_context_data_unref:
  * @ctx_data: #GtkSourceContextData.
  *
- * Decreases reference count in ctx_data. When reference count
- * drops to zero, ctx_data is freed, and ctx_data->lang->ctx_data
- * is unset.
+ * Decreases the reference count in ctx_data. When the reference count
+ * drops to zero, ctx_data is freed.
  */
 void
 _gtk_source_context_data_unref (GtkSourceContextData *ctx_data)
@@ -3181,9 +3181,8 @@ _gtk_source_context_data_unref (GtkSourceContextData *ctx_data)
 
 	if (--ctx_data->ref_count == 0)
 	{
-		if (ctx_data->lang != NULL)
-			_gtk_source_language_clear_ctx_data (ctx_data->lang, ctx_data);
 		g_hash_table_destroy (ctx_data->definitions);
+		g_free (ctx_data->lang_id);
 		g_slice_free (GtkSourceContextData, ctx_data);
 	}
 }
@@ -6735,7 +6734,7 @@ _gtk_source_context_data_add_ref (GtkSourceContextData        *ctx_data,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 			     _("style override used with wildcard context reference"
 			       " in language “%s” in ref “%s”"),
-			     gtk_source_language_get_id (ctx_data->lang), ref_id);
+			     ctx_data->lang_id, ref_id);
 		return FALSE;
 	}
 
@@ -6797,7 +6796,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 						     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 						     _("style override used with wildcard context reference"
 						       " in language “%s” in ref “%s”"),
-						     gtk_source_language_get_id (data->ctx_data->lang), ref->id);
+						     data->ctx_data->lang_id, ref->id);
 				}
 				else
 				{
@@ -6902,7 +6901,7 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 	ContextDefinition *main_definition;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
-	g_return_val_if_fail (ctx_data->lang != NULL, FALSE);
+	g_return_val_if_fail (ctx_data->lang_id != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	while (overrides != NULL)
@@ -6930,8 +6929,8 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 
 	/* Sanity check: user may have screwed up the files by now (#485661) */
 	root_id = g_strdup_printf ("%s:%s",
-	                           gtk_source_language_get_id (ctx_data->lang),
-	                           gtk_source_language_get_id (ctx_data->lang));
+				   ctx_data->lang_id,
+				   ctx_data->lang_id);
 	main_definition = gtk_source_context_data_lookup (ctx_data, root_id);
 	g_free (root_id);
 
@@ -6940,7 +6939,7 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
 			     _("Missing main language definition (id = “%s”)."),
-			     gtk_source_language_get_id (ctx_data->lang));
+			     ctx_data->lang_id);
 		return FALSE;
 	}
 
@@ -6950,9 +6949,12 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 		             GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 		             GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
 		             "Main language definition must be a container (id = “%s”).",
-		             gtk_source_language_get_id (ctx_data->lang));
+			     ctx_data->lang_id);
 		return FALSE;
 	}
+
+	if (main_definition->reg_all == NULL)
+		main_definition->reg_all = create_reg_all (NULL, main_definition);
 
 	return TRUE;
 }

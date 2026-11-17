@@ -35,27 +35,36 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceLanguage, gtk_source_language, GTK_SOURCE, LANGUAGE, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_id             (GtkSourceLanguage *language);
+const gchar  *gtk_source_language_get_id             (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_name           (GtkSourceLanguage *language);
+const gchar  *gtk_source_language_get_name           (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_section        (GtkSourceLanguage *language);
+const gchar  *gtk_source_language_get_section        (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean      gtk_source_language_get_hidden         (GtkSourceLanguage *language);
+gboolean      gtk_source_language_get_hidden         (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_metadata       (GtkSourceLanguage *language,
-                                                      const gchar       *name);
+const gchar  *gtk_source_language_get_metadata       (GtkSourceLanguage    *language,
+						      const gchar          *name);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar       **gtk_source_language_get_mime_types     (GtkSourceLanguage *language);
+gchar       **gtk_source_language_get_mime_types     (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar       **gtk_source_language_get_globs          (GtkSourceLanguage *language);
+gchar       **gtk_source_language_get_globs          (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar       **gtk_source_language_get_style_ids      (GtkSourceLanguage *language);
+gchar       **gtk_source_language_get_style_ids      (GtkSourceLanguage    *language);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_style_name     (GtkSourceLanguage *language,
-                                                      const gchar       *style_id);
+const gchar  *gtk_source_language_get_style_name     (GtkSourceLanguage    *language,
+						      const gchar          *style_id);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar  *gtk_source_language_get_style_fallback (GtkSourceLanguage *language,
-                                                      const gchar       *style_id);
+const gchar  *gtk_source_language_get_style_fallback (GtkSourceLanguage    *language,
+						      const gchar          *style_id);
+GTK_SOURCE_AVAILABLE_IN_5_24
+void          gtk_source_language_prepare_async      (GtkSourceLanguage    *language,
+						      GCancellable         *cancellable,
+						      GAsyncReadyCallback   callback,
+						      gpointer              user_data);
+GTK_SOURCE_AVAILABLE_IN_5_24
+gboolean      gtk_source_language_prepare_finish     (GtkSourceLanguage    *language,
+						      GAsyncResult         *result,
+						      GError              **error);
 
 G_END_DECLS

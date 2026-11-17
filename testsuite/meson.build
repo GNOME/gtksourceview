@@ -42,6 +42,7 @@ testsuite_sources = [
   ['test-highlight-edits', false],
   ['test-highlight-jump', false],
   ['test-language'],
+  ['test-language-prepare', false],
   ['test-languagemanager'],
   ['test-language-specs', false],
   ['test-mark'],

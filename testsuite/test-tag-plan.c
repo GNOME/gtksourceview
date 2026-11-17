@@ -21,6 +21,7 @@
 
 #include <gtksourceview/gtksource.h>
 #include "gtksourceview/gtksourcetagplan-private.h"
+#include "test-highlight-utils.h"
 
 typedef struct
 {
@@ -342,6 +343,7 @@ ensure_highlight (GtkSourceBuffer *buffer)
 	GtkTextIter start;
 	GtkTextIter end;
 
+	test_language_prepare (gtk_source_buffer_get_language (buffer));
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 	gtk_source_buffer_ensure_highlight (buffer, &start, &end);
 }

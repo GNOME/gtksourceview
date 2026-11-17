@@ -1553,6 +1553,60 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 	}
 }
 
+static gboolean
+attach_language_engine (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_assert (priv->language != NULL);
+	g_assert (priv->highlight_engine == NULL);
+
+	priv->highlight_engine = _gtk_source_language_create_engine (priv->language);
+
+	if (priv->highlight_engine == NULL)
+		return FALSE;
+
+	_gtk_source_engine_attach_buffer (priv->highlight_engine, GTK_TEXT_BUFFER (buffer));
+
+	if (priv->style_scheme != NULL)
+		_gtk_source_engine_set_style_scheme (priv->highlight_engine, priv->style_scheme);
+
+	return TRUE;
+}
+
+static void
+buffer_language_prepared_cb (GObject      *object,
+			     GAsyncResult *result,
+			     gpointer      user_data)
+{
+	GtkSourceLanguage *language = GTK_SOURCE_LANGUAGE (object);
+	GWeakRef *ref = user_data;
+	GtkSourceBuffer *buffer = g_weak_ref_get (ref);
+	GError *error = NULL;
+	gboolean success;
+
+	success = gtk_source_language_prepare_finish (language, result, &error);
+	g_weak_ref_clear (ref);
+	g_free (ref);
+
+	if (buffer != NULL)
+	{
+		GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+		if (priv->language == language && priv->highlight_engine == NULL)
+		{
+			if (success)
+				attach_language_engine (buffer);
+			else
+				g_warning ("Failed to load '%s': %s",
+					   _gtk_source_language_get_file_name (language), error->message);
+		}
+	}
+
+	g_clear_object (&buffer);
+	g_clear_error (&error);
+}
+
 /**
  * gtk_source_buffer_set_language:
  * @buffer: a #GtkSourceBuffer.
@@ -1565,6 +1619,12 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * syntax highlighting, see [method@Buffer.set_highlight_syntax].
  *
  * The buffer holds a reference to @language.
+ *
+ * Since 5.24, an unprepared language is prepared asynchronously. Highlighting
+ * and context classes become available after preparation completes. The buffer
+ * remains editable while preparation is pending. Use
+ * [method@Language.prepare_async] to wait for readiness before requesting
+ * synchronous highlighting.
  */
 void
 gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
@@ -1588,22 +1648,12 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 		priv->highlight_engine = NULL;
 	}
 
-	if (language != NULL)
+	if (language != NULL && !attach_language_engine (buffer))
 	{
-		/* get a new engine */
-		priv->highlight_engine = _gtk_source_language_create_engine (language);
+		GWeakRef *ref = g_new0 (GWeakRef, 1);
 
-		if (priv->highlight_engine != NULL)
-		{
-			_gtk_source_engine_attach_buffer (priv->highlight_engine,
-							  GTK_TEXT_BUFFER (buffer));
-
-			if (priv->style_scheme != NULL)
-			{
-				_gtk_source_engine_set_style_scheme (priv->highlight_engine,
-								     priv->style_scheme);
-			}
-		}
+		g_weak_ref_init (ref, buffer);
+		gtk_source_language_prepare_async (language, NULL, buffer_language_prepared_cb, ref);
 	}
 
 	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_LANGUAGE]);
@@ -1644,6 +1694,9 @@ _gtk_source_buffer_update_syntax_highlight (GtkSourceBuffer   *buffer,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), TRUE);
 	g_return_val_if_fail (start != NULL && end != NULL, TRUE);
+
+	if (priv->highlight_engine == NULL && priv->language != NULL)
+		attach_language_engine (buffer);
 
 	return priv->highlight_engine == NULL ||
 	       _gtk_source_engine_update_highlight (priv->highlight_engine, start, end, deadline);
@@ -1695,6 +1748,10 @@ _gtk_source_buffer_has_search_highlights (GtkSourceBuffer *buffer)
  * @end: end of the area to highlight.
  *
  * Forces buffer to analyze and highlight the given area synchronously.
+ *
+ * If language preparation is still pending, syntax highlighting is deferred.
+ * Wait for [method@Language.prepare_async] to complete before calling this
+ * method when highlighted results are required immediately.
  *
  * **Note**:
  *
@@ -3636,6 +3693,10 @@ add_styled_segment (GtkTextBuffer *buffer,
  *
  * For very long ranges this function can take long enough that you could
  * potentially miss frame renderings.
+ *
+ * If language preparation is pending, syntax styling is not yet available.
+ * Wait for [method@Language.prepare_async] to complete when syntax-styled
+ * markup is required.
  *
  * Returns: (transfer full): a newly-allocated string containing the text
  *   with Pango markup, or %NULL if @start and @end are invalid.

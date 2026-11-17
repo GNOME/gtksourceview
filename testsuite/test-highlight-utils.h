@@ -23,6 +23,33 @@
 
 #include <gtksourceview/gtksource.h>
 
+static inline void
+test_language_prepared_cb (GObject      *object,
+			   GAsyncResult *result,
+			   gpointer      user_data)
+{
+	gboolean *done = user_data;
+	GError *error = NULL;
+
+	g_assert_true (gtk_source_language_prepare_finish (GTK_SOURCE_LANGUAGE (object), result, &error));
+	g_assert_no_error (error);
+	*done = TRUE;
+}
+
+static inline void
+test_language_prepare (GtkSourceLanguage *language)
+{
+	gboolean done = FALSE;
+
+	if (language == NULL)
+		return;
+
+	gtk_source_language_prepare_async (language, NULL, test_language_prepared_cb, &done);
+
+	while (!done)
+		g_main_context_iteration (NULL, TRUE);
+}
+
 static inline GtkSourceBuffer *
 test_highlight_buffer_new (const char *id,
                            const char *text)
@@ -36,6 +63,7 @@ test_highlight_buffer_new (const char *id,
 	gtk_source_language_manager_set_search_path (manager, paths);
 	language = gtk_source_language_manager_get_language (manager, id);
 	g_assert_nonnull (language);
+	test_language_prepare (language);
 	buffer = gtk_source_buffer_new_with_language (language);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
 	g_object_unref (manager);

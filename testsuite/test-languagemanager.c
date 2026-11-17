@@ -24,6 +24,7 @@
 #include <gtksourceview/gtksource.h>
 
 #include "testsuite-gresources.h"
+#include "test-highlight-utils.h"
 
 /* If we are running from the source dir (e.g. during make check)
  * we override the path to read from the data dir
@@ -195,6 +196,16 @@ test_guess_language (void)
 }
 
 static void
+invalid_language_prepared_cb (GObject      *object,
+			      GAsyncResult *result,
+			      gpointer      user_data)
+{
+	GAsyncResult **out = user_data;
+
+	*out = g_object_ref (result);
+}
+
+static void
 test_resources (void)
 {
 	GtkSourceLanguageManager *lm = gtk_source_language_manager_new ();
@@ -219,14 +230,23 @@ test_resources (void)
 
 	buffer = gtk_source_buffer_new (NULL);
 	gtk_source_buffer_set_language (buffer, l);
+	test_language_prepare (l);
 
 	/* Application resources must still be validated against our schema. */
 	l = gtk_source_language_manager_get_language (lm, "testsuite-invalid");
 	g_assert_nonnull (l);
-	g_test_expect_message ("GtkSourceView", G_LOG_LEVEL_WARNING,
-	                       "*Failed to load*testsuite-invalid.lang*");
-	gtk_source_buffer_set_language (buffer, l);
-	g_test_assert_expected_messages ();
+	{
+		GAsyncResult *result = NULL;
+		GError *error = NULL;
+
+		gtk_source_language_prepare_async (l, NULL, invalid_language_prepared_cb, &result);
+		while (result == NULL)
+		g_main_context_iteration (NULL, TRUE);
+		g_assert_false (gtk_source_language_prepare_finish (l, result, &error));
+		g_assert_nonnull (error);
+		g_clear_error (&error);
+		g_object_unref (result);
+	}
 
 	g_object_unref (buffer);
 	g_object_unref (lm);

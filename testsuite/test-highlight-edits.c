@@ -24,6 +24,7 @@
 #include <gtksourceview/gtksource.h>
 #include "gtksourceview/gtksourcebuffer-private.h"
 #include "gtksourceview/gtksourcecontextengine-private.h"
+#include "test-highlight-utils.h"
 
 static GtkSourceLanguageManager *languages;
 static GtkSourceStyleScheme *style;
@@ -32,6 +33,7 @@ static void
 highlight (GtkSourceBuffer *buffer)
 {
 	GtkTextIter begin, end;
+	test_language_prepare (gtk_source_buffer_get_language (buffer));
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
 	gtk_source_buffer_ensure_highlight (buffer, &begin, &end);
 }
@@ -232,7 +234,7 @@ static void
 test_main_context_type (void)
 {
 	GtkSourceLanguage *language = gtk_source_language_manager_get_language (languages, "def");
-	GtkSourceContextData *data = _gtk_source_context_data_new (language);
+	GtkSourceContextData *data = _gtk_source_context_data_new (gtk_source_language_get_id (language));
 	GError *error = NULL;
 
 	g_assert_true (_gtk_source_context_data_define_context (data, "def:def", NULL, "word", NULL, NULL, NULL, NULL, 0, &error));

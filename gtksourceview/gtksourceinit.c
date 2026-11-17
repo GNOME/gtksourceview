@@ -309,7 +309,6 @@ gtk_source_finalize (void)
 		snippet_manager = _gtk_source_snippet_manager_peek_default ();
 		g_clear_object (&snippet_manager);
 
-		_gtk_source_language_parser_finalize ();
 
 		done = TRUE;
 	}
