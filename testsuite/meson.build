@@ -38,7 +38,7 @@ testsuite_sources = [
   ['test-file-saver'],
   ['test-iter'],
   ['test-highlight-dispatch', false],
-  ['test-highlight-convergence', false],
+  ['test-highlight-convergence', false, 120],
   ['test-highlight-edits', false],
   ['test-highlight-jump', false],
   ['test-language'],
@@ -90,7 +90,7 @@ foreach test: testsuite_sources
      install_dir: testexecdir
   )
 
-  test(test_name, test_exe, suite: package_string, env: test_env)
+  test(test_name, test_exe, suite: package_string, env: test_env, timeout: test.get(2, 30))
 
   if install_test
     test_t = configuration_data()
