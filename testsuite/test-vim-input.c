@@ -30,6 +30,19 @@
 #include <gtksourceview/vim/gtksourcevimstate.h>
 
 static void
+language_prepared_cb (GObject      *object,
+                      GAsyncResult *result,
+                      gpointer      user_data)
+{
+	GError *error = NULL;
+	gboolean *done = user_data;
+
+	g_assert_true (gtk_source_language_prepare_finish (GTK_SOURCE_LANGUAGE (object), result, &error));
+	g_assert_no_error (error);
+	*done = TRUE;
+}
+
+static void
 run_test (const char *text,
           const char *input,
           const char *expected)
@@ -147,6 +160,19 @@ run_test (const char *text,
 	}
 
 	g_string_free (expected_text, TRUE);
+
+	if (gtk_source_buffer_get_language (buffer) != NULL)
+	{
+		gboolean done = FALSE;
+
+		gtk_source_language_prepare_async (gtk_source_buffer_get_language (buffer),
+		                                   NULL,
+		                                   language_prepared_cb,
+		                                   &done);
+
+		while (!done)
+			g_main_context_iteration (NULL, TRUE);
+	}
 
 	g_assert_finalize_object (G_OBJECT (vim));
 	g_assert_finalize_object (G_OBJECT (view));
