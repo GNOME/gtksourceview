@@ -17,12 +17,46 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 #include <gtksourceview/gtksourcebuffer-private.h>
+
+#include "test-highlight-utils.h"
+
+static void
+test_quoted_heredoc (void)
+{
+	static const struct {
+		const char *language;
+		const char *text;
+		const char *following;
+	} cases[] = {
+		{ "sh", "#!/usr/bin/bash\ncat << \"EOF\"\n# text\n\n# more\nEOF\necho ${PWD}\n# after\n", "# after" },
+		{ "sh", "#!/usr/bin/bash\ncat << 'EOF'\n# text\n\n# more\nEOF\necho ${PWD}\n# after\n", "# after" },
+		{ "perl", "#!/usr/bin/perl\nprint <<\"END\";\n# text\n\n# more\nEND\nprint $var;\n# after\n", "# after" },
+		{ "perl", "#!/usr/bin/perl\nprint <<'END';\n# text\n\n# more\nEND\nprint $var;\n# after\n", "# after" },
+	};
+
+	for (guint i = 0; i < G_N_ELEMENTS (cases); i++)
+	{
+		GtkSourceBuffer *buffer;
+
+		g_test_message ("%s: %s", cases[i].language, cases[i].text);
+		buffer = test_highlight_buffer_new (cases[i].language, cases[i].text);
+		test_highlight_buffer_ensure (buffer);
+
+		test_highlight_assert_class (buffer, strstr (cases[i].text, "text") - cases[i].text, "comment", FALSE);
+		test_highlight_assert_class (buffer, strstr (cases[i].text, "more") - cases[i].text, "comment", FALSE);
+		test_highlight_assert_class (buffer, strstr (cases[i].text, cases[i].following) - cases[i].text, "comment", TRUE);
+
+		g_object_unref (buffer);
+	}
+}
 
 static void
 setup_search_paths (const char *basedir)
@@ -106,6 +140,8 @@ main (gint   argc,
 	g_assert_nonnull (srcdir);
 
 	g_test_init (&argc, &argv, NULL);
+
+	g_test_add_func ("/syntax-highlighting/issue-346", test_quoted_heredoc);
 
 	setup_search_paths (srcdir);
 
