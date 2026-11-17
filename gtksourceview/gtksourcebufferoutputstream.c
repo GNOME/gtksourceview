@@ -1078,36 +1078,8 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		ostream->is_initialized = TRUE;
 	}
 
-	if (ostream->buflen > 0)
-	{
-		gsize allocation_size;
-
-		if (!_gtk_source_utils_checked_add_gsize (ostream->buflen, count, &len) ||
-		    !_gtk_source_utils_checked_add_gsize (len, 1, &allocation_size))
-		{
-			set_too_big_error (error);
-			goto failure;
-		}
-
-		text = g_malloc (allocation_size);
-
-		memcpy (text, ostream->buffer, ostream->buflen);
-		memcpy (text + ostream->buflen, buffer, count);
-
-		text[len] = '\0';
-
-		g_free (ostream->buffer);
-
-		ostream->buffer = NULL;
-		ostream->buflen = 0;
-
-		freetext = TRUE;
-	}
-	else
-	{
-		text = (gchar *) buffer;
-		len = count;
-	}
+	text = (gchar *) buffer;
+	len = count;
 
 	if (!ostream->is_utf8)
 	{
@@ -1195,6 +1167,41 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		text = outbuf;
 		len = outbuf_len;
                 freetext = TRUE;
+	}
+
+	if (ostream->buflen > 0)
+	{
+		gsize allocation_size;
+		gchar *combined;
+
+		if (!_gtk_source_utils_checked_add_gsize (ostream->buflen, len, &len) ||
+		    !_gtk_source_utils_checked_add_gsize (len, 1, &allocation_size))
+		{
+			set_too_big_error (error);
+
+			if (freetext)
+			{
+				g_free (text);
+			}
+
+			goto failure;
+		}
+
+		combined = g_malloc (allocation_size);
+		memcpy (combined, ostream->buffer, ostream->buflen);
+		memcpy (combined + ostream->buflen, text, len - ostream->buflen);
+		combined[len] = '\0';
+
+		if (freetext)
+		{
+			g_free (text);
+		}
+
+		g_clear_pointer (&ostream->buffer, g_free);
+
+		ostream->buflen = 0;
+		text = combined;
+		freetext = TRUE;
 	}
 
 	validate_and_insert (ostream, text, len, freetext);

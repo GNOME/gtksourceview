@@ -650,6 +650,64 @@ test_cancellation_after_partial_insertion (void)
 }
 
 static void
+test_utf16le_crlf_chunk_boundary (void)
+{
+	const GtkSourceEncoding *encoding;
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GInputStream *stream;
+	GSList *candidate_encodings;
+	LoaderTestData data;
+	guint8 contents[8196];
+	char expected[4099];
+	unsigned int i;
+
+	for (i = 0; i < 4095; i++)
+	{
+		contents[2 * i] = 'A';
+		contents[1 + 2 * i] = 0;
+	}
+	contents[8190] = '\r';
+	contents[8191] = 0;
+	contents[8192] = '\n';
+	contents[8193] = 0;
+	contents[8194] = 'B';
+	contents[8195] = 0;
+
+	memset (expected, 'A', 4095);
+	memcpy (expected + 4095, "\r\nB", 4);
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+	stream = test_input_stream_new (contents, sizeof contents, 8192, FALSE);
+	buffer = gtk_source_buffer_new (NULL);
+	file = gtk_source_file_new ();
+	loader = gtk_source_file_loader_new_from_stream (buffer, file, stream);
+
+	encoding = gtk_source_encoding_get_from_charset ("UTF-16LE");
+	candidate_encodings = g_slist_prepend (NULL, (gpointer)encoding);
+	gtk_source_file_loader_set_candidate_encodings (loader, candidate_encodings);
+
+	data.expected_buffer_contents = expected;
+	data.newline_type = -1;
+	gtk_source_file_loader_load_async (loader,
+	                                   G_PRIORITY_DEFAULT,
+	                                   NULL, NULL, NULL, NULL,
+	                                   (GAsyncReadyCallback) load_file_cb,
+	                                   &data);
+
+	g_main_loop_run (main_loop);
+	g_assert_true (gtk_source_file_loader_get_encoding (loader) == encoding);
+
+	g_main_loop_unref (main_loop);
+	g_slist_free (candidate_encodings);
+	g_object_unref (loader);
+	g_object_unref (file);
+	g_object_unref (buffer);
+	g_object_unref (stream);
+}
+
+static void
 test_conversion_failure_after_stream_initialization (void)
 {
 	static const guint8 contents[] = {
@@ -942,6 +1000,7 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/failure-after-partial-read", test_failure_after_partial_read);
 	g_test_add_func ("/file-loader/cancellation-after-partial-insertion", test_cancellation_after_partial_insertion);
 	g_test_add_func ("/file-loader/conversion-failure-after-stream-initialization", test_conversion_failure_after_stream_initialization);
+	g_test_add_func ("/file-loader/utf16le-crlf-chunk-boundary", test_utf16le_crlf_chunk_boundary);
 	g_test_add_func ("/file-loader/max-size-stream", test_max_size_stream);
 	g_test_add_func ("/file-loader/overflow-size-stream", test_overflow_size_stream);
 	g_test_add_func ("/file-loader/max-size-file", test_max_size_file);
