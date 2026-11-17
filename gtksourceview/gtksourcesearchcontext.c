@@ -353,6 +353,7 @@ struct _GtkSourceSearchContext
 
 	GtkSourceStyle *match_style;
 	guint highlight : 1;
+	guint fully_invalid : 1;
 };
 
 /* Data for the asynchronous forward and backward search tasks. */
@@ -586,6 +587,8 @@ clear_task (GtkSourceSearchContext *search)
 static void
 clear_search (GtkSourceSearchContext *search)
 {
+	search->fully_invalid = FALSE;
+
 	g_clear_object (&search->scan_region);
 	g_clear_object (&search->high_priority_region);
 
@@ -1528,7 +1531,8 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 
 	iter = *start;
 
-	while (smart_forward_search_without_scanning (search, &iter, &match_start, &match_end, end))
+	while (search->occurrences_count > 0 &&
+	       smart_forward_search_without_scanning (search, &iter, &match_start, &match_end, end))
 	{
 		if (search->scan_region == NULL)
 		{
@@ -1570,6 +1574,7 @@ scan_subregion (GtkSourceSearchContext *search,
 	text_tag_set_highest_priority (search->found_tag,
 				       search->buffer);
 
+	search->fully_invalid = FALSE;
 	adjust_subregion (search, start, end);
 	remove_occurrences_in_range (search, start, end);
 
@@ -1878,6 +1883,8 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	GtkTextIter match_end;
 
 	g_assert (stopped_at != NULL);
+
+	search->fully_invalid = FALSE;
 
 	gtk_text_buffer_remove_tag (search->buffer,
 				    search->found_tag,
@@ -2416,7 +2423,8 @@ update_regex (GtkSourceSearchContext *search)
 }
 
 static void
-update (GtkSourceSearchContext *search)
+update (GtkSourceSearchContext *search,
+        gboolean                clear_highlight)
 {
 	GtkTextIter start;
 	GtkTextIter end;
@@ -2435,12 +2443,42 @@ update (GtkSourceSearchContext *search)
 	gtk_text_buffer_get_bounds (search->buffer, &start, &end);
 	add_subregion_to_scan (search, &start, &end);
 
+	search->fully_invalid = clear_highlight;
+
+	if (clear_highlight)
+	{
+		gtk_text_buffer_remove_tag (search->buffer, search->found_tag, &start, &end);
+	}
+
 	/* Notify the GtkSourceViews that the search is starting, so that
 	 * _gtk_source_search_context_update_highlight() can be called for the
 	 * visible regions of the buffer.
 	 */
 	buffer_internal = _gtk_source_buffer_internal_get_from_buffer (GTK_SOURCE_BUFFER (search->buffer));
 	_gtk_source_buffer_internal_emit_search_start (buffer_internal, search);
+}
+
+static gboolean
+invalidate_on_edit (GtkSourceSearchContext *search)
+{
+	return gtk_source_search_settings_get_regex_enabled (search->settings) ||
+	       _gtk_source_buffer_in_edit_batch (GTK_SOURCE_BUFFER (search->buffer));
+}
+
+static void
+invalidate (GtkSourceSearchContext *search)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+
+	if (!search->fully_invalid)
+	{
+		update (search, TRUE);
+		return;
+	}
+
+	gtk_text_buffer_get_bounds (search->buffer, &start, &end);
+	add_subregion_to_scan (search, &start, &end);
 }
 
 static void
@@ -2454,7 +2492,7 @@ insert_text_before_cb (GtkSourceSearchContext *search,
 	clear_task (search);
 
 	if (search_text != NULL &&
-	    !gtk_source_search_settings_get_regex_enabled (search->settings))
+	    !invalidate_on_edit (search))
 	{
 		GtkTextIter start = *location;
 		GtkTextIter end = *location;
@@ -2470,9 +2508,9 @@ insert_text_after_cb (GtkSourceSearchContext *search,
                       gchar                  *text,
                       gint                    length)
 {
-	if (gtk_source_search_settings_get_regex_enabled (search->settings))
+	if (invalidate_on_edit (search))
 	{
-		update (search);
+		invalidate (search);
 	}
 	else
 	{
@@ -2499,7 +2537,7 @@ delete_range_before_cb (GtkSourceSearchContext *search,
 
 	clear_task (search);
 
-	if (gtk_source_search_settings_get_regex_enabled (search->settings))
+	if (invalidate_on_edit (search))
 	{
 		return;
 	}
@@ -2532,9 +2570,9 @@ delete_range_after_cb (GtkSourceSearchContext *search,
                        GtkTextIter            *start,
                        GtkTextIter            *end)
 {
-	if (gtk_source_search_settings_get_regex_enabled (search->settings))
+	if (invalidate_on_edit (search))
 	{
-		update (search);
+		invalidate (search);
 	}
 	else
 	{
@@ -2657,7 +2695,7 @@ settings_notify_cb (GtkSourceSearchContext  *search,
 		search_text_updated (search);
 	}
 
-	update (search);
+	update (search, FALSE);
 }
 
 static void
@@ -2682,7 +2720,7 @@ set_settings (GtkSourceSearchContext  *search,
 				 G_CONNECT_SWAPPED);
 
 	search_text_updated (search);
-	update (search);
+	update (search, FALSE);
 
 	g_object_notify_by_pspec (G_OBJECT (search),
 	                          properties [PROP_SETTINGS]);
@@ -3795,6 +3833,7 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 
 	gtk_text_buffer_get_start_iter (search->buffer, &iter);
 
+	_gtk_source_buffer_begin_edit_batch (GTK_SOURCE_BUFFER (search->buffer));
 	gtk_text_buffer_begin_user_action (search->buffer);
 
 	while (smart_forward_search (search, &iter, &match_start, &match_end))
@@ -3817,6 +3856,7 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	}
 
 	gtk_text_buffer_end_user_action (search->buffer);
+	_gtk_source_buffer_end_edit_batch (GTK_SOURCE_BUFFER (search->buffer));
 
 	_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (search->buffer));
 
@@ -3828,7 +3868,7 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	g_signal_handlers_unblock_by_func (search->buffer, delete_range_before_cb, search);
 	g_signal_handlers_unblock_by_func (search->buffer, delete_range_after_cb, search);
 
-	update (search);
+	update (search, FALSE);
 
 	return nb_matches_replaced;
 }

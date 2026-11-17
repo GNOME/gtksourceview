@@ -67,5 +67,8 @@ void                       _gtk_source_buffer_block_cursor_moved        (GtkSour
 void                       _gtk_source_buffer_unblock_cursor_moved      (GtkSourceBuffer        *buffer);
 void                       _gtk_source_buffer_begin_loading             (GtkSourceBuffer        *buffer);
 void                       _gtk_source_buffer_end_loading               (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_begin_edit_batch          (GtkSourceBuffer        *buffer);
+void                       _gtk_source_buffer_end_edit_batch            (GtkSourceBuffer        *buffer);
+gboolean                   _gtk_source_buffer_in_edit_batch             (GtkSourceBuffer        *buffer);
 
 G_END_DECLS

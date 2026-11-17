@@ -172,6 +172,7 @@ typedef struct
 	gint64 insertion_count;
 
 	guint cursor_moved_block_count;
+	guint edit_batch_depth;
 
 	int loading_count;
 
@@ -289,6 +290,22 @@ gtk_source_buffer_constructed (GObject *object)
 }
 
 static void
+gtk_source_buffer_real_undo (GtkTextBuffer *buffer)
+{
+	_gtk_source_buffer_begin_edit_batch (GTK_SOURCE_BUFFER (buffer));
+	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->undo (buffer);
+	_gtk_source_buffer_end_edit_batch (GTK_SOURCE_BUFFER (buffer));
+}
+
+static void
+gtk_source_buffer_real_redo (GtkTextBuffer *buffer)
+{
+	_gtk_source_buffer_begin_edit_batch (GTK_SOURCE_BUFFER (buffer));
+	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->redo (buffer);
+	_gtk_source_buffer_end_edit_batch (GTK_SOURCE_BUFFER (buffer));
+}
+
+static void
 gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
 	GObjectClass *object_class;
@@ -302,6 +319,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	object_class->get_property = gtk_source_buffer_get_property;
 	object_class->set_property = gtk_source_buffer_set_property;
 
+	text_buffer_class->undo = gtk_source_buffer_real_undo;
+	text_buffer_class->redo = gtk_source_buffer_real_redo;
 	text_buffer_class->delete_range = gtk_source_buffer_real_delete_range;
 	text_buffer_class->insert_text = gtk_source_buffer_real_insert_text;
 	text_buffer_class->insert_paintable = gtk_source_buffer_real_insert_paintable;
@@ -3678,4 +3697,35 @@ gtk_source_buffer_get_markup (GtkSourceBuffer *buffer,
 	g_free (prev_attrs);
 
 	return g_string_free (result, result->len == 0);
+}
+
+void
+_gtk_source_buffer_begin_edit_batch (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	priv->edit_batch_depth++;
+}
+
+void
+_gtk_source_buffer_end_edit_batch (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (priv->edit_batch_depth > 0);
+
+	priv->edit_batch_depth--;
+}
+
+gboolean
+_gtk_source_buffer_in_edit_batch (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return priv->edit_batch_depth > 0;
 }

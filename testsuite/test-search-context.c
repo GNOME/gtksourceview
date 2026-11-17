@@ -17,8 +17,11 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "config.h"
+
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcebufferinternal-private.h"
 
 typedef struct
 {
@@ -1606,6 +1609,175 @@ test_destroy_buffer_during_search (void)
 	g_object_unref (context);
 }
 
+static void
+count_search_start (GtkSourceBufferInternal *internal,
+                    GtkSourceSearchContext  *context,
+                    unsigned int            *count)
+{
+	(*count)++;
+}
+
+static void
+count_tag_removal (GtkTextBuffer *buffer,
+                   GtkTextTag    *tag,
+                   GtkTextIter   *start,
+                   GtkTextIter   *end,
+                   unsigned int  *count)
+{
+	(*count)++;
+}
+
+static void
+test_replace_all_history (gconstpointer data)
+{
+	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = NULL;
+	GtkSourceSearchContext *observer = NULL;
+	GString *original = g_string_new (NULL);
+	GString *replaced = g_string_new (NULL);
+	GError *error = NULL;
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (buffer);
+	GtkSourceBufferInternal *internal;
+	unsigned int starts = 0;
+	unsigned int removals = 0;
+	gulong start_handler;
+	gulong removal_handler;
+
+	for (unsigned int i = 0; i < 128; i++)
+	{
+		g_string_append (original, "111111.");
+		g_string_append (replaced, "é23.");
+	}
+
+	gtk_text_buffer_set_text (text_buffer, original->str, original->len);
+	gtk_source_buffer_set_highlight_matching_brackets (buffer, FALSE);
+	gtk_source_search_settings_set_regex_enabled (settings, GPOINTER_TO_INT (data));
+	gtk_source_search_settings_set_search_text (settings,
+						    GPOINTER_TO_INT (data) ? "[0-9]+" : "111111");
+	context = gtk_source_search_context_new (buffer, settings);
+	observer = gtk_source_search_context_new (buffer, settings);
+	flush_queue ();
+
+	internal = _gtk_source_buffer_internal_get_from_buffer (buffer);
+	start_handler = g_signal_connect (internal, "search-start", G_CALLBACK (count_search_start), &starts);
+	removal_handler = g_signal_connect (buffer, "remove-tag", G_CALLBACK (count_tag_removal), &removals);
+
+	for (unsigned int i = 0; i < 3; i++)
+	{
+		char *contents = NULL;
+		int expected_count = i == 1 || GPOINTER_TO_INT (data) ? 128 : 0;
+
+		starts = removals = 0;
+
+		if (i == 0)
+		{
+			g_assert_cmpuint (gtk_source_search_context_replace_all (context, "é23", -1, &error), ==, 128);
+			g_assert_no_error (error);
+		}
+		else if (i == 1)
+		{
+			gtk_text_buffer_undo (text_buffer);
+		}
+		else
+		{
+			gtk_text_buffer_redo (text_buffer);
+		}
+
+		g_test_message ("phase %u: %u search starts, %u tag removals", i, starts, removals);
+		g_assert_cmpuint (starts, <=, 2);
+		g_assert_cmpuint (removals, <=, 2);
+		g_assert_cmpint (gtk_source_search_context_get_occurrences_count (observer), ==, -1);
+		contents = get_buffer_contents (text_buffer);
+		g_assert_cmpstr (contents, ==, i == 1 ? original->str : replaced->str);
+		g_free (contents);
+		flush_queue ();
+		g_assert_cmpint (gtk_source_search_context_get_occurrences_count (context), ==, expected_count);
+		g_assert_cmpint (gtk_source_search_context_get_occurrences_count (observer), ==, expected_count);
+	}
+
+	g_clear_signal_handler (&start_handler, internal);
+	g_clear_signal_handler (&removal_handler, buffer);
+	g_object_unref (context);
+	g_object_unref (observer);
+	g_object_unref (settings);
+	g_object_unref (buffer);
+	g_string_free (original, TRUE);
+	g_string_free (replaced, TRUE);
+}
+
+static void
+search_after_delete (GtkTextBuffer          *buffer,
+                     GtkTextIter            *start,
+                     GtkTextIter            *end,
+                     GtkSourceSearchContext *context)
+{
+	GtkTextIter begin;
+	GtkTextIter match_start;
+	GtkTextIter match_end;
+	char *contents;
+	const char *expected;
+	gboolean found;
+
+	contents = get_buffer_contents (buffer);
+	expected = strstr (contents, "aa");
+	gtk_text_buffer_get_start_iter (buffer, &begin);
+	found = gtk_source_search_context_forward (context, &begin, &match_start, &match_end, NULL);
+	g_assert_cmpint (found, ==, expected != NULL);
+
+	if (found)
+	{
+		g_assert_cmpint (gtk_text_iter_get_offset (&match_start), ==, expected - contents);
+		g_assert_cmpint (gtk_text_iter_get_offset (&match_end), ==, expected - contents + 2);
+	}
+
+	g_free (contents);
+}
+
+static void
+test_search_during_batch (void)
+{
+	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context;
+	GtkSourceSearchContext *observer;
+	GtkTextIter start;
+	GtkTextIter end;
+	gulong handler;
+
+	gtk_text_buffer_set_text (text_buffer, "aaaaaa", -1);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	context = gtk_source_search_context_new (buffer, settings);
+	observer = gtk_source_search_context_new (buffer, settings);
+	flush_queue ();
+
+	handler = g_signal_connect_after (buffer, "delete-range", G_CALLBACK (search_after_delete), observer);
+
+	for (unsigned int i = 0; i < 2; i++)
+	{
+		gtk_source_search_settings_set_regex_enabled (settings, i != 0);
+		g_assert_cmpuint (gtk_source_search_context_replace_all (context, "", 0, NULL), ==, 3);
+		g_assert_cmpint (gtk_text_buffer_get_char_count (text_buffer), ==, 0);
+		flush_queue ();
+		g_assert_cmpint (gtk_source_search_context_get_occurrences_count (observer), ==, 0);
+
+		gtk_text_buffer_undo (text_buffer);
+		gtk_text_buffer_get_start_iter (text_buffer, &start);
+		g_assert_true (gtk_source_search_context_forward (observer, &start, &start, &end, NULL));
+		g_assert_cmpint (gtk_text_iter_get_offset (&start), ==, 0);
+		g_assert_cmpint (gtk_text_iter_get_offset (&end), ==, 2);
+		flush_queue ();
+		g_assert_cmpint (gtk_source_search_context_get_occurrences_count (observer), ==, 3);
+	}
+
+	g_clear_signal_handler (&handler, buffer);
+	g_object_unref (observer);
+	g_object_unref (context);
+	g_object_unref (settings);
+	g_object_unref (buffer);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -1641,6 +1813,11 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/regex/look-behind", test_regex_look_behind);
 	g_test_add_func ("/Search/regex/look-ahead", test_regex_look_ahead);
 	g_test_add_func ("/Search/destroy-buffer-during-search", test_destroy_buffer_during_search);
+
+	g_test_add_data_func ("/Search/replace-all-history/literal", GINT_TO_POINTER (FALSE), test_replace_all_history);
+	g_test_add_data_func ("/Search/replace-all-history/regex", GINT_TO_POINTER (TRUE), test_replace_all_history);
+
+	g_test_add_func ("/Search/during-batch", test_search_during_batch);
 
 	return g_test_run ();
 }

@@ -1757,23 +1757,7 @@ search_start_cb (GtkSourceBufferInternal *buffer_internal,
                  GtkSourceSearchContext  *search_context,
                  GtkSourceView           *view)
 {
-	GtkTextIter visible_start;
-	GtkTextIter visible_end;
-
-	get_visible_region (GTK_TEXT_VIEW (view), &visible_start, &visible_end);
-
-#ifndef G_DISABLE_ASSERT
-	{
-		GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-		GtkSourceBuffer *buffer_search = gtk_source_search_context_get_buffer (search_context);
-		g_assert (buffer_search == priv->source_buffer);
-	}
-#endif
-
-	_gtk_source_search_context_update_highlight (search_context,
-						     &visible_start,
-						     &visible_end,
-						     FALSE);
+	gtk_source_view_queue_highlight_update (view);
 }
 
 static void
