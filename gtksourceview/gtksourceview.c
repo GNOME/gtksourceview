@@ -978,8 +978,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * The signal is a keybinding which gets emitted when the user initiates moving a word.
 	 *
-	 * The default binding key is Alt+Left/Right Arrow and moves the current selection, or the current
-	 * word by one word.
+	 * The default binding key is Alt+Left/Right Arrow on platforms other than macOS.
+	 * It moves the current selection, or the current word by one word.
 	 */
 	signals[MOVE_WORDS] =
 		g_signal_new ("move-words",
@@ -1166,6 +1166,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	                                     "(b)",
 	                                     TRUE);
 
+#ifndef __APPLE__
 	gtk_widget_class_add_binding_signal (widget_class,
 	                                     GDK_KEY_Left,
 	                                     GDK_ALT_MASK,
@@ -1190,6 +1191,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	                                     "move-words",
 	                                     "(i)",
 	                                     1);
+#endif
 
 	gtk_widget_class_add_binding_signal (widget_class,
 	                                     GDK_KEY_Up,
