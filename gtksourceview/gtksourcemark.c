@@ -32,6 +32,9 @@
  * additional info. It is based on [class@Gtk.TextMark] and thus is still valid after
  * the text has changed though its position may change.
  *
+ * Source marks are ordered by their position in the buffer. The order of marks
+ * at the same position is undefined.
+ *
  * `GtkSourceMark`s are organized in categories which you have to set
  * when you create the mark. Each category can have a priority, a pixbuf and
  * other associated attributes. See [method@View.set_mark_attributes].
