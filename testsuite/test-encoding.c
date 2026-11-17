@@ -55,12 +55,51 @@ test_remove_duplicates (void)
 	g_slist_free (list);
 }
 
+static void
+test_charset_aliases (void)
+{
+	g_assert_true (gtk_source_encoding_get_from_charset ("US-ASCII") ==
+	               gtk_source_encoding_get_from_charset ("ASCII"));
+	g_assert_true (gtk_source_encoding_get_from_charset ("ANSI_X3.4-1968") ==
+	               gtk_source_encoding_get_from_charset ("ASCII"));
+	g_assert_true (gtk_source_encoding_get_from_charset ("SHIFT-JIS") ==
+	               gtk_source_encoding_get_from_charset ("SHIFT_JIS"));
+	g_assert_true (gtk_source_encoding_get_from_charset ("KOI8-U") ==
+	               gtk_source_encoding_get_from_charset ("KOI8U"));
+	g_assert_nonnull (gtk_source_encoding_get_from_charset ("ISO-8859-11"));
+}
+
+static void
+test_available_encodings (void)
+{
+	GSList *all = gtk_source_encoding_get_all ();
+
+	g_assert_true (all->data == gtk_source_encoding_get_utf8 ());
+
+	for (GSList *iter = all->next; iter != NULL; iter = iter->next)
+	{
+		const GtkSourceEncoding *encoding = iter->data;
+		const char *charset = gtk_source_encoding_get_charset (encoding);
+		GIConv to_utf8 = g_iconv_open ("UTF-8", charset);
+		GIConv from_utf8 = g_iconv_open (charset, "UTF-8");
+
+		g_assert_true (to_utf8 != (GIConv)-1);
+		g_assert_true (from_utf8 != (GIConv)-1);
+		g_iconv_close (to_utf8);
+		g_iconv_close (from_utf8);
+	}
+
+	g_slist_free (all);
+}
+
 int
 main (int argc, char **argv)
 {
 	gtk_test_init (&argc, &argv);
 
 	g_test_add_func ("/Encoding/remove_duplicates", test_remove_duplicates);
+	g_test_add_func ("/Encoding/charset-aliases", test_charset_aliases);
+	g_test_add_func ("/Encoding/available-encodings", test_available_encodings);
 
 	return g_test_run ();
 }

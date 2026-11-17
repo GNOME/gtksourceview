@@ -53,6 +53,8 @@ G_DEFINE_BOXED_TYPE (GtkSourceEncoding, gtk_source_encoding,
 
 typedef enum _GtkSourceEncodingIndex
 {
+	GTK_SOURCE_ENCODING_ASCII,
+
 	GTK_SOURCE_ENCODING_ISO_8859_1,
 	GTK_SOURCE_ENCODING_ISO_8859_2,
 	GTK_SOURCE_ENCODING_ISO_8859_3,
@@ -63,6 +65,7 @@ typedef enum _GtkSourceEncodingIndex
 	GTK_SOURCE_ENCODING_ISO_8859_8,
 	GTK_SOURCE_ENCODING_ISO_8859_9,
 	GTK_SOURCE_ENCODING_ISO_8859_10,
+	GTK_SOURCE_ENCODING_ISO_8859_11,
 	GTK_SOURCE_ENCODING_ISO_8859_13,
 	GTK_SOURCE_ENCODING_ISO_8859_14,
 	GTK_SOURCE_ENCODING_ISO_8859_15,
@@ -146,6 +149,9 @@ static GtkSourceEncoding unknown_encoding =
 
 static const GtkSourceEncoding encodings[] =
 {
+	{ GTK_SOURCE_ENCODING_ASCII,
+	  "ASCII", N_("ASCII") },
+
 	{ GTK_SOURCE_ENCODING_ISO_8859_1,
 	  "ISO-8859-1", N_("Western") },
 	{ GTK_SOURCE_ENCODING_ISO_8859_2,
@@ -166,6 +172,8 @@ static const GtkSourceEncoding encodings[] =
 	  "ISO-8859-9", N_("Turkish") },
 	{ GTK_SOURCE_ENCODING_ISO_8859_10,
 	  "ISO-8859-10", N_("Nordic") },
+	{ GTK_SOURCE_ENCODING_ISO_8859_11,
+	  "ISO-8859-11", N_("Thai") },
 	{ GTK_SOURCE_ENCODING_ISO_8859_13,
 	  "ISO-8859-13", N_("Baltic") },
 	{ GTK_SOURCE_ENCODING_ISO_8859_14,
@@ -320,6 +328,14 @@ gtk_source_encoding_get_from_charset (const gchar *charset)
 		return gtk_source_encoding_get_utf8 ();
 	}
 
+	if (g_ascii_strcasecmp (charset, "US-ASCII") == 0 ||
+	    g_ascii_strcasecmp (charset, "ANSI_X3.4-1968") == 0)
+		charset = "ASCII";
+	else if (g_ascii_strcasecmp (charset, "SHIFT-JIS") == 0)
+		charset = "SHIFT_JIS";
+	else if (g_ascii_strcasecmp (charset, "KOI8-U") == 0)
+		charset = "KOI8U";
+
 	for (i = 0; i < GTK_SOURCE_ENCODING_LAST; i++)
 	{
 		if (g_ascii_strcasecmp (charset, encodings[i].charset) == 0)
@@ -342,7 +358,7 @@ gtk_source_encoding_get_from_charset (const gchar *charset)
 /**
  * gtk_source_encoding_get_all:
  *
- * Gets all encodings.
+ * Gets all encodings for which conversion to and from UTF-8 is available.
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): a list of
  * all #GtkSourceEncoding's. Free with g_slist_free().
@@ -355,7 +371,16 @@ gtk_source_encoding_get_all (void)
 
 	for (i = GTK_SOURCE_ENCODING_LAST - 1; i >= 0; i--)
 	{
-		all = g_slist_prepend (all, (gpointer) &encodings[i]);
+		GIConv to_utf8 = g_iconv_open ("UTF-8", encodings[i].charset);
+		GIConv from_utf8 = g_iconv_open (encodings[i].charset, "UTF-8");
+
+		if (to_utf8 != (GIConv)-1 && from_utf8 != (GIConv)-1)
+			all = g_slist_prepend (all, (gpointer) &encodings[i]);
+
+		if (to_utf8 != (GIConv)-1)
+			g_iconv_close (to_utf8);
+		if (from_utf8 != (GIConv)-1)
+			g_iconv_close (from_utf8);
 	}
 
 	all = g_slist_prepend (all, (gpointer) &utf8_encoding);
@@ -435,10 +460,6 @@ gtk_source_encoding_to_string (const GtkSourceEncoding* enc)
 	if (enc->name != NULL)
 	{
 	    	return g_strdup_printf ("%s (%s)", _(enc->name), enc->charset);
-	}
-	else if (g_ascii_strcasecmp (enc->charset, "ANSI_X3.4-1968") == 0)
-	{
-		return g_strdup_printf ("US-ASCII (%s)", enc->charset);
 	}
 	else
 	{

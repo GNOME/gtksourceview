@@ -323,7 +323,7 @@ try_convert (GCharsetConverter *converter,
 
 	if (err != NULL)
 	{
-		if (err->code == G_CONVERT_ERROR_PARTIAL_INPUT)
+		if (g_error_matches (err, G_IO_ERROR, G_IO_ERROR_PARTIAL_INPUT))
 		{
 			/* FIXME We can get partial input while guessing the
 			   encoding because we just take some amount of text
@@ -356,7 +356,8 @@ try_convert (GCharsetConverter *converter,
 static GCharsetConverter *
 guess_encoding (GtkSourceBufferOutputStream *stream,
                 const void                  *inbuf,
-                gsize                        inbuf_size)
+                gsize                        inbuf_size,
+                GError                      **error)
 {
 	GCharsetConverter *conv = NULL;
 
@@ -365,6 +366,9 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 		stream->is_utf8 = TRUE;
 		return NULL;
 	}
+
+	if (stream->encodings == NULL)
+		return NULL;
 
 	if (stream->encodings != NULL &&
 	    stream->encodings->next == NULL)
@@ -405,9 +409,10 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 				break;
 			}
 
-			/* Check if the end is less than one char */
+			/* The sample may end in an incomplete UTF-8 character. */
 			remainder = inbuf_size - (end - (gchar *)inbuf);
-			if (remainder < 6)
+			if (memchr (end, '\0', remainder) == NULL &&
+			    g_utf8_get_char_validated (end, remainder) == (gunichar)-2)
 			{
 				stream->is_utf8 = TRUE;
 				break;
@@ -418,7 +423,14 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 
 		conv = g_charset_converter_new ("UTF-8",
 						gtk_source_encoding_get_charset (enc),
-						NULL);
+						stream->use_first ? error : NULL);
+
+		if (conv == NULL)
+		{
+			if (stream->use_first)
+				break;
+			continue;
+		}
 
 		/* If we tried all encodings we use the first one */
 		if (stream->use_first)
@@ -1014,16 +1026,17 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 
 	if (!ostream->is_initialized)
 	{
-		ostream->charset_conv = guess_encoding (ostream, buffer, count);
+		ostream->charset_conv = guess_encoding (ostream, buffer, count, error);
 
 		/* If we still have the previous case is that we didn't guess
 		   anything */
 		if (ostream->charset_conv == NULL &&
 		    !ostream->is_utf8)
 		{
-			g_set_error_literal (error, GTK_SOURCE_FILE_LOADER_ERROR,
-			                     GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED,
-			                     "It is not possible to detect the encoding automatically");
+			if (error != NULL && *error == NULL)
+				g_set_error_literal (error, GTK_SOURCE_FILE_LOADER_ERROR,
+				                     GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED,
+				                     "It is not possible to detect the encoding automatically");
 
 			goto failure;
 		}

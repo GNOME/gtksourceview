@@ -113,6 +113,7 @@ typedef struct
 	 */
 	GtkSourceBufferInputStream *input_stream;
 	GOutputStream *output_stream;
+	GCharsetConverter *charset_converter;
 
 	GFileInfo *info;
 
@@ -167,6 +168,7 @@ task_data_free (gpointer data)
 
 	g_clear_object (&task_data->input_stream);
 	g_clear_object (&task_data->output_stream);
+	g_clear_object (&task_data->charset_converter);
 	g_clear_object (&task_data->info);
 	g_clear_error (&task_data->error);
 
@@ -841,17 +843,11 @@ replace_file_cb (GObject      *source_object,
 
 	if (saver->encoding != gtk_source_encoding_get_utf8 ())
 	{
-		GCharsetConverter *converter;
-
-		converter = g_charset_converter_new (gtk_source_encoding_get_charset (saver->encoding),
-						     "UTF-8",
-						     NULL);
-
 		g_clear_object (&task_data->output_stream);
 		task_data->output_stream = g_converter_output_stream_new (output_stream,
-									  G_CONVERTER (converter));
+									  G_CONVERTER (task_data->charset_converter));
 
-		g_object_unref (converter);
+		g_clear_object (&task_data->charset_converter);
 		g_object_unref (output_stream);
 	}
 	else
@@ -1402,6 +1398,21 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver    *saver,
 					 GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS,
 					 _("The buffer contains invalid characters."));
 		return;
+	}
+
+	if (saver->encoding != gtk_source_encoding_get_utf8 ())
+	{
+		GError *error = NULL;
+
+		task_data->charset_converter = g_charset_converter_new (gtk_source_encoding_get_charset (saver->encoding),
+		                                                        "UTF-8",
+		                                                        &error);
+
+		if (task_data->charset_converter == NULL)
+		{
+			g_task_return_error (saver->task, error);
+			return;
+		}
 	}
 
 	DEBUG ({
