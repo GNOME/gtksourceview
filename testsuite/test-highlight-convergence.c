@@ -84,6 +84,17 @@ test_once_history (void)
 }
 
 static void
+test_nested_match_at_eof (void)
+{
+	GtkSourceBuffer *buffer = test_highlight_buffer_new ("test-eof-nested", "start\\nanything\\n");
+
+	test_highlight_buffer_ensure (buffer);
+	test_highlight_assert_class (buffer, 5, "escape", TRUE);
+	test_highlight_assert_class (buffer, 15, "escape", TRUE);
+	g_object_unref (buffer);
+}
+
+static void
 test_objc_attribute_boundary (void)
 {
 	GtkSourceBuffer *buffer = test_highlight_buffer_new ("objc", "[[Foo alloc] init];\nint value;\n[[nodiscard]] int foo;");
@@ -236,6 +247,7 @@ main (int    argc,
 	gtk_source_init ();
 	g_test_add_func ("/highlight/convergence/column-zero", test_column_zero_convergence);
 	g_test_add_func ("/highlight/convergence/once-history", test_once_history);
+	g_test_add_func ("/highlight/convergence/nested-match-at-eof", test_nested_match_at_eof);
 	g_test_add_func ("/highlight/convergence/objc-attribute-boundary", test_objc_attribute_boundary);
 	g_test_add_func ("/highlight/convergence/first-line-moves", test_first_line_moves);
 	g_test_add_func ("/highlight/convergence/boundary-states", test_boundary_states);

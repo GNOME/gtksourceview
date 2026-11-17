@@ -6093,7 +6093,7 @@ update_syntax_range (GtkSourceContextEngine *ce,
 		 * Even when lines parse independently, invalidate that continuation
 		 * before reusing the following line.
 		 */
-		if (!next_line_invalid)
+		if (!next_line_invalid && line_end_offset < gtk_text_buffer_get_char_count (buffer))
 		{
 			Segment *old_state, *hint;
 			gboolean has_history;
