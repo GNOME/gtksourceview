@@ -11,9 +11,8 @@
  * It is used to provide annotations and display them on [class@View] and also populate
  * [class@HoverDisplay] when the user hovers over an annotation.
  *
- * You can subclass this object and implement [method@AnnotationProvider.populate_hover_async] and
- * [method@AnnotationProvider.populate_hover_finish] or connect to [signal@AnnotationProvider::populate]
- * and call [method@AnnotationProvider.populate] or do it asynchronously.
+ * Subclasses can implement [method@AnnotationProvider.populate_hover_async] and
+ * [method@AnnotationProvider.populate_hover_finish] to populate the hover display.
  *
  * Since: 5.18
  */
@@ -142,8 +141,7 @@ gtk_source_annotation_provider_new (void)
  * @annotation: a #GtkSourceAnnotation
  * @display: a #GtkSourceHoverDisplay to populate
  *
- * Used to populate the [class@HoverDisplay] asynchronously, use
- * [method@AnnotationProvider.populate_hover] to do it synchronously.
+ * Populates the [class@HoverDisplay] asynchronously.
  *
  * Since: 5.18
  */
