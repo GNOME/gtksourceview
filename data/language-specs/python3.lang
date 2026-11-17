@@ -212,10 +212,15 @@
       </include>
     </context>
 
+    <context id="raw-escaped-char" extend-parent="true">
+      <match>\\[\\'"]</match>
+    </context>
+
     <context id="multiline-double-quoted-raw-string" style-ref="multiline-string" class="string" class-disabled="no-spell-check">
       <start>\%{raw-string-prefix}"""</start>
       <end>"""</end>
       <include>
+        <context ref="raw-escaped-char"/>
         <context ref="format"/>
       </include>
     </context>
@@ -224,6 +229,7 @@
       <start>\%{raw-string-prefix}'''</start>
       <end>'''</end>
       <include>
+        <context ref="raw-escaped-char"/>
         <context ref="format"/>
       </include>
     </context>
@@ -232,6 +238,7 @@
       <start>\%{raw-string-prefix}"</start>
       <end>"</end>
       <include>
+        <context ref="raw-escaped-char"/>
         <context ref="format"/>
         <context ref="def:line-continue"/>
       </include>
@@ -241,6 +248,7 @@
       <start>\%{raw-string-prefix}'</start>
       <end>'</end>
       <include>
+        <context ref="raw-escaped-char"/>
         <context ref="format"/>
         <context ref="def:line-continue"/>
       </include>
@@ -250,6 +258,7 @@
       <start>(\%{raw-f-string-prefix}""")</start>
       <end>(""")</end>
       <include>
+        <context ref="raw-escaped-char" style-ref="multiline-string"/>
         <context ref="escaped-curly-brace"/>
         <context ref="f-string-curly-braces"/>
         <context ref="def:line-continue"/>
@@ -265,6 +274,7 @@
       <start>(\%{raw-f-string-prefix}''')</start>
       <end>(''')</end>
       <include>
+        <context ref="raw-escaped-char" style-ref="multiline-string"/>
         <context ref="escaped-curly-brace"/>
         <context ref="f-string-curly-braces"/>
         <context ref="def:line-continue"/>
@@ -280,6 +290,7 @@
       <start>(\%{raw-f-string-prefix}")</start>
       <end>(")</end>
       <include>
+        <context ref="raw-escaped-char" style-ref="string"/>
         <context ref="escaped-curly-brace"/>
         <context ref="f-string-curly-braces"/>
         <context ref="def:line-continue"/>
@@ -295,6 +306,7 @@
       <start>(\%{raw-f-string-prefix}')</start>
       <end>(')</end>
       <include>
+        <context ref="raw-escaped-char" style-ref="string"/>
         <context ref="escaped-curly-brace"/>
         <context ref="f-string-curly-braces"/>
         <context ref="def:line-continue"/>

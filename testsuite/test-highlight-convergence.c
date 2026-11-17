@@ -19,6 +19,10 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
+#include "config.h"
+
+#include <string.h>
+
 #include "test-highlight-utils.h"
 
 static void
@@ -145,7 +149,7 @@ assert_fresh_classes (GtkSourceBuffer *buffer)
 	test_highlight_buffer_ensure (buffer);
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
 	text = gtk_text_buffer_get_slice (GTK_TEXT_BUFFER (buffer), &begin, &end, TRUE);
-	fresh = test_highlight_buffer_new ("test-boundary-state", text);
+	fresh = test_highlight_buffer_new (gtk_source_language_get_id (gtk_source_buffer_get_language (buffer)), text);
 	test_highlight_buffer_ensure (fresh);
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (fresh), &expected);
 
@@ -165,6 +169,83 @@ assert_fresh_classes (GtkSourceBuffer *buffer)
 
 	g_free (text);
 	g_object_unref (fresh);
+}
+
+static void
+test_python_raw_strings (void)
+{
+	const char *languages[] = { "python", "python3" };
+	const char *prefixes[] = { "r", "R", "rb", "br", "rf", "fr" };
+	const char *quotes[] = { "\"", "'", "\"\"\"", "'''" };
+
+	for (guint language = 0; language < G_N_ELEMENTS (languages); language++)
+	{
+		for (guint prefix = 0; prefix < G_N_ELEMENTS (prefixes); prefix++)
+		{
+			for (guint quote = 0; quote < G_N_ELEMENTS (quotes); quote++)
+			{
+				for (guint slashes = 1; slashes <= 4; slashes++)
+				{
+					GString *text;
+					GtkSourceBuffer *buffer;
+					GtkTextIter begin, end;
+					int escape_offset;
+					int tail_offset = -1;
+					int comment_offset;
+
+					if (language == 0 && prefix > 1)
+						continue;
+
+					text = g_string_new ("value = ");
+					g_string_append (text, prefixes[prefix]);
+					g_string_append (text, quotes[quote]);
+					g_string_append (text, "C:\\Users ... ");
+					escape_offset = text->len;
+					for (guint i = 0; i < slashes; i++)
+					{
+						g_string_append_c (text, '\\');
+					}
+					g_string_append (text, quotes[quote]);
+
+					if (slashes % 2 != 0)
+					{
+						g_string_append (text, quote > 1 ? "\n" : " ");
+						tail_offset = text->len;
+						g_string_append (text, "tail");
+						if (prefix >= 4)
+							g_string_append (text, " {1 + 2}");
+						g_string_append (text, quotes[quote]);
+					}
+
+					g_string_append (text, " # after\nnext_value = 1\n");
+					comment_offset = strstr (text->str, "# after") - text->str;
+					g_test_message ("%s: %s", languages[language], text->str);
+					buffer = test_highlight_buffer_new (languages[language], text->str);
+					test_highlight_buffer_ensure (buffer);
+					if (tail_offset >= 0)
+						test_highlight_assert_class (buffer, tail_offset, "string", TRUE);
+					test_highlight_assert_class (buffer, comment_offset, "string", FALSE);
+					test_highlight_assert_class (buffer, comment_offset, "comment", TRUE);
+
+					gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &begin, escape_offset);
+					end = begin;
+					gtk_text_iter_forward_char (&end);
+					gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
+					assert_fresh_classes (buffer);
+
+					gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &begin, escape_offset);
+					gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, "\\", 1);
+					assert_fresh_classes (buffer);
+					if (tail_offset >= 0)
+						test_highlight_assert_class (buffer, tail_offset, "string", TRUE);
+					test_highlight_assert_class (buffer, comment_offset, "string", FALSE);
+					test_highlight_assert_class (buffer, comment_offset, "comment", TRUE);
+					g_object_unref (buffer);
+					g_string_free (text, TRUE);
+				}
+			}
+		}
+	}
 }
 
 static void
@@ -253,6 +334,7 @@ main (int    argc,
 	g_test_add_func ("/highlight/convergence/boundary-states", test_boundary_states);
 	g_test_add_func ("/highlight/convergence/captured-continuation", test_captured_continuation);
 	g_test_add_func ("/highlight/convergence/nested-once-history", test_nested_once_history);
+	g_test_add_func ("/highlight/convergence/python-raw-strings", test_python_raw_strings);
 	result = g_test_run ();
 	gtk_source_finalize ();
 	return result;
