@@ -370,8 +370,8 @@
       <keyword>SIGUSR2</keyword>
     </context>
 
-    <context id="attribute" style-ref="attribute">
-      <start>\[\[</start>
+    <context id="attribute" style-ref="attribute" class="attribute">
+      <start>\[\[(?=[^\n]*\]\])</start>
       <end>\]\]</end>
       <include>
         <context ref="c"/>

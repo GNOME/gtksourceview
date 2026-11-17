@@ -84,6 +84,18 @@ test_once_history (void)
 }
 
 static void
+test_objc_attribute_boundary (void)
+{
+	GtkSourceBuffer *buffer = test_highlight_buffer_new ("objc", "[[Foo alloc] init];\nint value;\n[[nodiscard]] int foo;");
+
+	test_highlight_buffer_ensure (buffer);
+	test_highlight_assert_class (buffer, 0, "attribute", FALSE);
+	test_highlight_assert_class (buffer, 20, "attribute", FALSE);
+	test_highlight_assert_class (buffer, 31, "attribute", TRUE);
+	g_object_unref (buffer);
+}
+
+static void
 test_first_line_moves (void)
 {
 	GtkSourceBuffer *buffer = test_highlight_buffer_new ("test-convergence", " !a\nrest\n");
@@ -224,6 +236,7 @@ main (int    argc,
 	gtk_source_init ();
 	g_test_add_func ("/highlight/convergence/column-zero", test_column_zero_convergence);
 	g_test_add_func ("/highlight/convergence/once-history", test_once_history);
+	g_test_add_func ("/highlight/convergence/objc-attribute-boundary", test_objc_attribute_boundary);
 	g_test_add_func ("/highlight/convergence/first-line-moves", test_first_line_moves);
 	g_test_add_func ("/highlight/convergence/boundary-states", test_boundary_states);
 	g_test_add_func ("/highlight/convergence/captured-continuation", test_captured_continuation);
