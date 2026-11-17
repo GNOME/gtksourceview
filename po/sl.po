@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2025-01-23 20:50+0000\n"
-"PO-Revision-Date: 2025-01-24 22:12+0100\n"
+"POT-Creation-Date: 2026-11-17 20:37+0000\n"
+"PO-Revision-Date: 2026-11-17 21:47+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
 "n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -408,30 +408,39 @@ msgstr "Izrezki"
 msgid "Document Words"
 msgstr "Besede dokumenta"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:920
+#: gtksourceview/gtksourcebufferoutputstream.c:619
+#: gtksourceview/gtksourcefileloader.c:242
+#: gtksourceview/gtksourcefileloader.c:271
+#: gtksourceview/gtksourcefileloader.c:284
+#: gtksourceview/gtksourcefileloader.c:294
+#: gtksourceview/gtksourcefileloader.c:762
+msgid "File too big."
+msgstr "Datoteka je prevelika."
+
+#: gtksourceview/gtksourcebufferoutputstream.c:961
 msgid "Invalid byte sequence in conversion input"
 msgstr "Neveljavno zaporedje bajtov na vhodu pretvorbe"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:926
+#: gtksourceview/gtksourcebufferoutputstream.c:967
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Napaka med pretvorbo: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1019
+#: gtksourceview/gtksourcebufferoutputstream.c:1061
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Pretvorba iz nabora »%s« v »UTF-8« ni podprto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1025
+#: gtksourceview/gtksourcebufferoutputstream.c:1067
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Ni mogoče odpreti pretvornika iz »%s« v »UTF-8«"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1085
+#: gtksourceview/gtksourcebufferoutputstream.c:1107
 msgid "Invalid object, not initialized"
 msgstr "Neveljaven predmet, opravilo ni začeto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1287
+#: gtksourceview/gtksourcebufferoutputstream.c:1363
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Neveljavno zaporedje UTF-8 na vhodu"
@@ -450,7 +459,7 @@ msgstr "_Podrobnosti"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3128
+#: gtksourceview/gtksourcecontextengine.c:3525
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -461,7 +470,7 @@ msgstr ""
 "počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4462
+#: gtksourceview/gtksourcecontextengine.c:5034
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -469,19 +478,19 @@ msgstr ""
 "Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo "
 "onemogočeno."
 
-#: gtksourceview/gtksourcecontextengine.c:5712
+#: gtksourceview/gtksourcecontextengine.c:6349
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "vsebina »%s« ne sme vsebovati \\%%{...@start} ukaza"
 
-#: gtksourceview/gtksourcecontextengine.c:5875
-#: gtksourceview/gtksourcecontextengine.c:5965
+#: gtksourceview/gtksourcecontextengine.c:6532
+#: gtksourceview/gtksourcecontextengine.c:6622
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "podvojen ID vsebine »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6079
-#: gtksourceview/gtksourcecontextengine.c:6139
+#: gtksourceview/gtksourcecontextengine.c:6736
+#: gtksourceview/gtksourcecontextengine.c:6798
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -490,135 +499,139 @@ msgstr ""
 "prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku "
 "»%s« sklica »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6153
+#: gtksourceview/gtksourcecontextengine.c:6812
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "neveljaven vsebinskis klic »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6172
-#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6831
+#: gtksourceview/gtksourcecontextengine.c:6841
 #, c-format
 msgid "unknown context “%s”"
 msgstr "neznana vsebina »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6283
+#: gtksourceview/gtksourcecontextengine.c:6942
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Manjka določitev glavnega jezika (id = »%s«.)"
 
-#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
-#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
-#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:139 gtksourceview/gtksourceencoding.c:187
 #: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
+#: gtksourceview/gtksourceencoding.c:193 gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
 msgid "Unicode"
 msgstr "Unikod"
 
-#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
-#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
+#: gtksourceview/gtksourceencoding.c:153
+msgid "ASCII"
+msgstr "ASCII"
+
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:182
+#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:275
 msgid "Western"
 msgstr "zahodnoevropsko"
 
-#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:271
 msgid "Central European"
 msgstr "srednjeevropsko"
 
-#: gtksourceview/gtksourceencoding.c:154
+#: gtksourceview/gtksourceencoding.c:160
 msgid "South European"
 msgstr "južnoevropsko"
 
-#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
-#: gtksourceview/gtksourceencoding.c:277
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:178
+#: gtksourceview/gtksourceencoding.c:285
 msgid "Baltic"
 msgstr "baltsko"
 
-#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
-#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
-#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:164 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:249 gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:273
 msgid "Cyrillic"
 msgstr "cirilica"
 
-#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
-#: gtksourceview/gtksourceencoding.c:275
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:242
+#: gtksourceview/gtksourceencoding.c:283
 msgid "Arabic"
 msgstr "arabsko"
 
-#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:277
 msgid "Greek"
 msgstr "grško"
 
-#: gtksourceview/gtksourceencoding.c:164
+#: gtksourceview/gtksourceencoding.c:170
 msgid "Hebrew Visual"
 msgstr "hebrejsko predočeno"
 
-#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
-#: gtksourceview/gtksourceencoding.c:271
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Turkish"
 msgstr "turško"
 
-#: gtksourceview/gtksourceencoding.c:168
+#: gtksourceview/gtksourceencoding.c:174
 msgid "Nordic"
 msgstr "nordijsko"
 
-#: gtksourceview/gtksourceencoding.c:172
-msgid "Celtic"
-msgstr "keltsko"
-
-#: gtksourceview/gtksourceencoding.c:176
-msgid "Romanian"
-msgstr "romunsko"
-
-#: gtksourceview/gtksourceencoding.c:194
-msgid "Armenian"
-msgstr "armensko"
-
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
-#: gtksourceview/gtksourceencoding.c:212
-msgid "Chinese Traditional"
-msgstr "kitajsko tradicionalno"
-
-#: gtksourceview/gtksourceencoding.c:200
-msgid "Cyrillic/Russian"
-msgstr "cirilica/rusko"
-
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:252
-msgid "Japanese"
-msgstr "japonsko"
-
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
-#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
-msgid "Korean"
-msgstr "korejsko"
-
-#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
-#: gtksourceview/gtksourceencoding.c:219
-msgid "Chinese Simplified"
-msgstr "kitajsko poenostavljeno"
-
-#: gtksourceview/gtksourceencoding.c:221
-msgid "Georgian"
-msgstr "gruzijsko"
-
-#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
-msgid "Hebrew"
-msgstr "hebrejsko"
-
-#: gtksourceview/gtksourceencoding.c:249
-msgid "Cyrillic/Ukrainian"
-msgstr "cirilica/ukrajinsko"
-
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
-#: gtksourceview/gtksourceencoding.c:279
-msgid "Vietnamese"
-msgstr "vietnamsko"
-
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:264
 msgid "Thai"
 msgstr "tajsko"
 
-#: gtksourceview/gtksourceencoding.c:485
+#: gtksourceview/gtksourceencoding.c:180
+msgid "Celtic"
+msgstr "keltsko"
+
+#: gtksourceview/gtksourceencoding.c:184
+msgid "Romanian"
+msgstr "romunsko"
+
+#: gtksourceview/gtksourceencoding.c:202
+msgid "Armenian"
+msgstr "armensko"
+
+#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
+#: gtksourceview/gtksourceencoding.c:220
+msgid "Chinese Traditional"
+msgstr "kitajsko tradicionalno"
+
+#: gtksourceview/gtksourceencoding.c:208
+msgid "Cyrillic/Russian"
+msgstr "cirilica/rusko"
+
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:213
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:245
+#: gtksourceview/gtksourceencoding.c:260
+msgid "Japanese"
+msgstr "japonsko"
+
+#: gtksourceview/gtksourceencoding.c:218 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:266
+msgid "Korean"
+msgstr "korejsko"
+
+#: gtksourceview/gtksourceencoding.c:223 gtksourceview/gtksourceencoding.c:225
+#: gtksourceview/gtksourceencoding.c:227
+msgid "Chinese Simplified"
+msgstr "kitajsko poenostavljeno"
+
+#: gtksourceview/gtksourceencoding.c:229
+msgid "Georgian"
+msgstr "gruzijsko"
+
+#: gtksourceview/gtksourceencoding.c:240 gtksourceview/gtksourceencoding.c:281
+msgid "Hebrew"
+msgstr "hebrejsko"
+
+#: gtksourceview/gtksourceencoding.c:257
+msgid "Cyrillic/Ukrainian"
+msgstr "cirilica/ukrajinsko"
+
+#: gtksourceview/gtksourceencoding.c:262 gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:287
+msgid "Vietnamese"
+msgstr "vietnamsko"
+
+#: gtksourceview/gtksourceencoding.c:506
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -636,30 +649,26 @@ msgstr "Neznano"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:628
+#: gtksourceview/gtksourceencoding.c:649
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'TRENUTNI', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:502
+#: gtksourceview/gtksourcefileloader.c:634
 msgid ""
 "There was an encoding conversion error so a fallback character was used."
 msgstr ""
 "Prišlo je do napake pretvarjanja kodnega nabora, zato je bil uporabljen "
 "povratni znak."
 
-#: gtksourceview/gtksourcefileloader.c:616
-msgid "File too big."
-msgstr "Datoteka je prevelika."
-
-#: gtksourceview/gtksourcefileloader.c:771
+#: gtksourceview/gtksourcefileloader.c:899
 msgid "Not a regular file."
 msgstr "Datoteka ni običajna datoteka."
 
-#: gtksourceview/gtksourcefilesaver.c:962
+#: gtksourceview/gtksourcefilesaver.c:958
 msgid "The file is externally modified."
 msgstr "Datoteka je močno spremenjena."
 
-#: gtksourceview/gtksourcefilesaver.c:1403
+#: gtksourceview/gtksourcefilesaver.c:1399
 msgid "The buffer contains invalid characters."
 msgstr "Medpomnilnik vsebuje neveljavne znake."
 
@@ -678,12 +687,12 @@ msgstr "Medpomnilnik vsebuje neveljavne znake."
 msgid "Others"
 msgstr "Ostalo"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:946
+#: gtksourceview/gtksourcelanguage-parser-2.c:961
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "Naznan ID »%s« v logičnem izrazu »%s«"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:1176
+#: gtksourceview/gtksourcelanguage-parser-2.c:1195
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "v logičnem izrazu »%s«: povratne naveze niso podprte"
@@ -693,80 +702,80 @@ msgid "using \\C is not supported in language definitions"
 msgstr "uporaba \\C ni podprta v določilih jezika"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:180
 msgid "Select a Style"
 msgstr "Izbor sloga"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:184
 msgid "_Cancel"
 msgstr "_Prekliči"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "_Select"
 msgstr "_Izberi"
 
-#: gtksourceview/gtksourceview.c:1929
+#: gtksourceview/gtksourceview.c:1984
 msgid "All _Upper Case"
 msgstr "Vse _velike črke"
 
-#: gtksourceview/gtksourceview.c:1933
+#: gtksourceview/gtksourceview.c:1988
 msgid "All _Lower Case"
 msgstr "Vse _male črke"
 
-#: gtksourceview/gtksourceview.c:1937
+#: gtksourceview/gtksourceview.c:1992
 msgid "_Invert Case"
 msgstr "_Obrni velikost črk"
 
-#: gtksourceview/gtksourceview.c:1941
+#: gtksourceview/gtksourceview.c:1996
 msgid "_Title Case"
 msgstr "_Velike prve črke besed"
 
-#: gtksourceview/gtksourceview.c:1945
+#: gtksourceview/gtksourceview.c:2000
 msgid "C_hange Case"
 msgstr "Spreme_ni velikost črk"
 
-#: gtksourceview/implregex.c:615
+#: gtksourceview/implregex.c:702
 msgid "hexadecimal digit or “}” expected"
 msgstr "šestnajstiško število ali pa manjka » } «"
 
-#: gtksourceview/implregex.c:631
+#: gtksourceview/implregex.c:718
 msgid "hexadecimal digit expected"
 msgstr "pričakovano šestnajstiško število"
 
-#: gtksourceview/implregex.c:671
+#: gtksourceview/implregex.c:758
 msgid "missing “<” in symbolic reference"
 msgstr "manjka znak » < « v simbolni povezavi"
 
-#: gtksourceview/implregex.c:680
+#: gtksourceview/implregex.c:767
 msgid "unfinished symbolic reference"
 msgstr "nedokončana simbolna povezava"
 
-#: gtksourceview/implregex.c:687
+#: gtksourceview/implregex.c:774
 msgid "zero-length symbolic reference"
 msgstr "simbolna povezava nične dolžine"
 
-#: gtksourceview/implregex.c:698
+#: gtksourceview/implregex.c:785
 msgid "digit expected"
 msgstr "pričakovano število"
 
-#: gtksourceview/implregex.c:716
+#: gtksourceview/implregex.c:803
 msgid "illegal symbolic reference"
 msgstr "neveljavna simbolna povezava"
 
-#: gtksourceview/implregex.c:779
+#: gtksourceview/implregex.c:866
 msgid "stray final “\\”"
 msgstr "obidi končna » \\ «"
 
-#: gtksourceview/implregex.c:783
+#: gtksourceview/implregex.c:870
 msgid "unknown escape sequence"
 msgstr "neznano ubežno zaporedje"
 
-#: gtksourceview/implregex.c:793
+#: gtksourceview/implregex.c:880
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Napaka med razčlenjevanjem besedila zamenjave »%s« pri znaku %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:502
+#: gtksourceview/vim/gtksourceviminsert.c:523
 msgid "-- INSERT --"
 msgstr "-- VSTAVI --"
 
