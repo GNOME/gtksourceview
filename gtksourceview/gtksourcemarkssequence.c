@@ -26,10 +26,8 @@
  * Finding a text mark in the neighborhood of a text iter has a O(log n)
  * complexity, with 'n' the number of marks in the sequence.
  *
- * The GSequenceIter associated to a text mark is inserted into the text mark,
- * with g_object_set_qdata(). So the text mark knows its position in the
- * GSequence. This allows to use normal GtkTextMarks in the API, instead of
- * using a subclass or a custom iter.
+ * A hash table maps each text mark to its GSequenceIter. This allows normal
+ * GtkTextMarks to be used in the API, instead of a subclass or a custom iter.
  *
  * The MarksSequence has a weak reference to the text buffer.
  */
@@ -46,33 +44,17 @@ struct _GtkSourceMarksSequence
 
 	GtkTextBuffer *buffer;
 	GSequence *seq;
-
-	/* The quark used for storing the GSequenceIter into the text mark, with
-	 * g_object_set_qdata().
-	 */
-	GQuark quark;
+	GHashTable *iters;
 };
 
 G_DEFINE_TYPE (GtkSourceMarksSequence, _gtk_source_marks_sequence, G_TYPE_OBJECT)
-
-static void
-remove_qdata (GtkTextMark            *mark,
-              GtkSourceMarksSequence *seq)
-{
-	g_object_set_qdata (G_OBJECT (mark),
-			    seq->quark,
-			    NULL);
-}
 
 static void
 free_sequence (GtkSourceMarksSequence *seq)
 {
 	if (seq->seq != NULL)
 	{
-		g_sequence_foreach (seq->seq,
-				    (GFunc)remove_qdata,
-				    seq);
-
+		g_hash_table_remove_all (seq->iters);
 		g_sequence_free (seq->seq);
 		seq->seq = NULL;
 	}
@@ -108,7 +90,7 @@ mark_set_cb (GtkTextBuffer          *buffer,
 {
 	GSequenceIter *seq_iter;
 
-	seq_iter = g_object_get_qdata (G_OBJECT (mark), seq->quark);
+	seq_iter = g_hash_table_lookup (seq->iters, mark);
 
 	if (seq_iter != NULL)
 	{
@@ -164,6 +146,7 @@ _gtk_source_marks_sequence_dispose (GObject *object)
 	}
 
 	free_sequence (seq);
+	g_clear_pointer (&seq->iters, g_hash_table_unref);
 
 	G_OBJECT_CLASS (_gtk_source_marks_sequence_parent_class)->dispose (object);
 }
@@ -239,13 +222,8 @@ _gtk_source_marks_sequence_class_init (GtkSourceMarksSequenceClass *klass)
 static void
 _gtk_source_marks_sequence_init (GtkSourceMarksSequence *seq)
 {
-	gchar *unique_str;
-
 	seq->seq = g_sequence_new ((GDestroyNotify)g_object_unref);
-
-	unique_str = g_strdup_printf ("gtk-source-marks-sequence-%p", seq);
-	seq->quark = g_quark_from_string (unique_str);
-	g_free (unique_str);
+	seq->iters = g_hash_table_new (g_direct_hash, g_direct_equal);
 }
 
 GtkSourceMarksSequence *
@@ -276,7 +254,7 @@ _gtk_source_marks_sequence_add (GtkSourceMarksSequence *seq,
 	g_return_if_fail (GTK_IS_TEXT_MARK (mark));
 	g_return_if_fail (gtk_text_mark_get_buffer (mark) == seq->buffer);
 
-	seq_iter = g_object_get_qdata (G_OBJECT (mark), seq->quark);
+	seq_iter = g_hash_table_lookup (seq->iters, mark);
 
 	if (seq_iter != NULL)
 	{
@@ -290,9 +268,7 @@ _gtk_source_marks_sequence_add (GtkSourceMarksSequence *seq,
 					     NULL);
 
 	g_object_ref (mark);
-	g_object_set_qdata (G_OBJECT (mark),
-			    seq->quark,
-			    seq_iter);
+	g_hash_table_insert (seq->iters, mark, seq_iter);
 }
 
 void
@@ -304,11 +280,11 @@ _gtk_source_marks_sequence_remove (GtkSourceMarksSequence *seq,
 	g_return_if_fail (GTK_SOURCE_IS_MARKS_SEQUENCE (seq));
 	g_return_if_fail (GTK_IS_TEXT_MARK (mark));
 
-	seq_iter = g_object_get_qdata (G_OBJECT (mark), seq->quark);
+	seq_iter = g_hash_table_lookup (seq->iters, mark);
 
 	if (seq_iter != NULL)
 	{
-		g_object_set_qdata (G_OBJECT (mark), seq->quark, NULL);
+		g_hash_table_remove (seq->iters, mark);
 		g_sequence_remove (seq_iter);
 	}
 }
@@ -323,7 +299,7 @@ _gtk_source_marks_sequence_next (GtkSourceMarksSequence *seq,
 	g_return_val_if_fail (GTK_IS_TEXT_MARK (mark), NULL);
 	g_return_val_if_fail (gtk_text_mark_get_buffer (mark) == seq->buffer, NULL);
 
-	seq_iter = g_object_get_qdata (G_OBJECT (mark), seq->quark);
+	seq_iter = g_hash_table_lookup (seq->iters, mark);
 
 	g_return_val_if_fail (seq_iter != NULL, NULL);
 
@@ -342,7 +318,7 @@ _gtk_source_marks_sequence_prev (GtkSourceMarksSequence *seq,
 	g_return_val_if_fail (GTK_IS_TEXT_MARK (mark), NULL);
 	g_return_val_if_fail (gtk_text_mark_get_buffer (mark) == seq->buffer, NULL);
 
-	seq_iter = g_object_get_qdata (G_OBJECT (mark), seq->quark);
+	seq_iter = g_hash_table_lookup (seq->iters, mark);
 
 	g_return_val_if_fail (seq_iter != NULL, NULL);
 

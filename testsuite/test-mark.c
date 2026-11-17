@@ -20,6 +20,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcemarkssequence-private.h"
 
 static void
 test_create (void)
@@ -136,6 +137,55 @@ test_get_source_marks_at_iter (void)
 	g_object_unref (source_buffer);
 }
 
+static void
+test_marks_sequences (void)
+{
+	GtkTextBuffer *buffer = gtk_text_buffer_new (NULL);
+	GtkSourceMarksSequence *first = _gtk_source_marks_sequence_new (buffer);
+	GtkSourceMarksSequence *second = _gtk_source_marks_sequence_new (buffer);
+	GtkTextIter iter;
+	GtkTextMark *mark1;
+	GtkTextMark *mark2;
+	GtkTextMark *mark3;
+
+	gtk_text_buffer_set_text (buffer, "abc", -1);
+	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
+	mark1 = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
+	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 1);
+	mark2 = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
+	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 2);
+	mark3 = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
+
+	_gtk_source_marks_sequence_add (first, mark1);
+	_gtk_source_marks_sequence_add (first, mark2);
+	_gtk_source_marks_sequence_add (first, mark3);
+	_gtk_source_marks_sequence_add (second, mark1);
+	_gtk_source_marks_sequence_add (second, mark2);
+	_gtk_source_marks_sequence_add (second, mark3);
+	_gtk_source_marks_sequence_add (first, mark2);
+
+	g_assert_true (_gtk_source_marks_sequence_next (first, mark1) == mark2);
+	g_assert_true (_gtk_source_marks_sequence_next (second, mark2) == mark3);
+
+	gtk_text_buffer_get_end_iter (buffer, &iter);
+	gtk_text_buffer_move_mark (buffer, mark2, &iter);
+	g_assert_true (_gtk_source_marks_sequence_next (first, mark3) == mark2);
+	g_assert_true (_gtk_source_marks_sequence_prev (second, mark2) == mark3);
+
+	_gtk_source_marks_sequence_remove (first, mark2);
+	g_assert_true (_gtk_source_marks_sequence_next (first, mark3) == NULL);
+	g_assert_true (_gtk_source_marks_sequence_next (second, mark3) == mark2);
+
+	g_object_unref (first);
+	g_assert_true (_gtk_source_marks_sequence_prev (second, mark2) == mark3);
+
+	gtk_text_buffer_delete_mark (buffer, mark2);
+	g_assert_true (_gtk_source_marks_sequence_next (second, mark3) == NULL);
+
+	g_object_unref (second);
+	g_object_unref (buffer);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -145,6 +195,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/Mark/prev-next", test_prev_next);
 	g_test_add_func ("/Mark/forward-backward-iter", test_forward_backward_iter);
 	g_test_add_func ("/Mark/get-source-marks-at-iter", test_get_source_marks_at_iter);
+	g_test_add_func ("/Mark/marks-sequences", test_marks_sequences);
 
 	return g_test_run();
 }
