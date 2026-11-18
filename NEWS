@@ -11,6 +11,8 @@ Development of this release was funded by Source & Stack, LLC.
  * Improve incremental syntax highlighting, especially after batched edits,
    in large files, and while scrolling; bound parsing and tag updates so
    they can continue across frames
+ * Update visible highlighting before text layout is allocated to avoid
+   invalidating the layout during snapshot (GNOME/gtk#6057)
  * Avoid redundant tag changes and regex work during highlighting
  * Reuse language specification schemas and validate bundled languages and
    style schemes at build time; keep validating external language specs
@@ -38,6 +40,9 @@ Development of this release was funded by Source & Stack, LLC.
  * Fix GdkRGBA color handling in the view (#422)
  * Fix counted Vim motions being applied more than once (#406)
  * Correct Vala smart_home_end behavior
+ * Add configurable file size, line length, and line count thresholds to
+   GtkSourceFileLoader, with a decide-policy signal allowing applications
+   to pause loading while asking the user whether to continue (#208)
  * Validate encoding converters before loading or replacing files (#430)
  * Fix UTF-16LE loading when a CRLF pair crosses a read boundary (#427)
  * Improve UTF-8 detection and recovery for files containing NUL or
