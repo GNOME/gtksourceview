@@ -464,6 +464,16 @@ a = class {
     static constructor() { this._value = null; }
 };
 
+// Class fields must leave following methods and modifiers in the class body.
+class Fields {
+    static empty = {};
+    static nested = { value: { count: 1 } };
+    static number = 1;
+    uninitialized;
+    static afterFields() { return this.nested.value.count; }
+    async fetchStuff() { return Promise.resolve(); }
+}
+
 
 /*
  * Operators

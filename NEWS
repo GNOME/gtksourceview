@@ -28,6 +28,7 @@ Development of this release was funded by Source & Stack, LLC.
    (#389)
  * Ignore escaped parentheses when matching brackets in JavaScript regular
    expressions (#173)
+ * Fix JavaScript highlighting after class fields with object values (#274)
  * Fix fractional tab widths and right-margin placement (#403)
  * Fix current-line redraw when moving the cursor and preserve macOS word
    navigation shortcuts (#429)
