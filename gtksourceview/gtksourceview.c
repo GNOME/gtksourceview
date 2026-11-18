@@ -564,12 +564,27 @@ gtk_source_view_size_allocate (GtkWidget *widget,
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+	GdkRectangle visible_before;
+	GdkRectangle visible_after;
+
+	/* Applying highlighting tags can invalidate GtkTextView's layout. Do it
+	 * before the parent validates the visible lines during allocation.
+	 */
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_before);
+	_gtk_source_view_update_highlight (view);
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->size_allocate (widget, width, height, baseline);
 
 	_gtk_source_view_assistants_size_allocate (&priv->assistants, width, height, baseline);
 
-	_gtk_source_view_update_highlight (view);
+	/* The parent may have changed the visible area. Pick up any newly visible
+	 * lines on the next frame, outside of its allocation and validation.
+	 */
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_after);
+	if (!gdk_rectangle_equal (&visible_before, &visible_after))
+	{
+		gtk_source_view_queue_highlight_update (view);
+	}
 }
 
 static void
