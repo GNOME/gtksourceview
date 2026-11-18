@@ -988,6 +988,545 @@ test_max_size_gzip_file (void)
 	g_object_unref (loader);
 }
 
+typedef enum
+{
+	POLICY_DEFAULT,
+	POLICY_USE,
+	POLICY_USE_LATER,
+	POLICY_IGNORE,
+	POLICY_IGNORE_LATER,
+	POLICY_CANCEL
+} PolicyAnswer;
+
+typedef struct
+{
+	GtkSourceBuffer *buffer;
+	GtkSourceFile *file;
+	GtkSourceFileLoader *loader;
+	GInputStream *stream;
+	GFile *location;
+	GCancellable *cancellable;
+	GtkSourceFileLoaderPolicyDecision *held;
+	PolicyAnswer answer;
+	GtkSourceFileLoaderPolicyReason reasons[3];
+	guint64 values[3];
+	guint64 thresholds[3];
+	GError *error;
+	guint n_decisions;
+} PolicyTestData;
+
+static const char policy_contents[] = "abcd\nx";
+
+static void
+policy_test_setup (PolicyTestData *data,
+                   gconstpointer   user_data)
+{
+	const char *filename = user_data;
+	GSList encodings = { (gpointer)gtk_source_encoding_get_utf8 (), NULL };
+
+	data->buffer = gtk_source_buffer_new (NULL);
+	data->file = gtk_source_file_new ();
+	data->cancellable = g_cancellable_new ();
+	data->answer = POLICY_USE;
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (data->buffer), "original", -1);
+	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (data->buffer), FALSE);
+
+	if (filename != NULL)
+	{
+		GBytes *bytes;
+		GError *error = NULL;
+
+		bytes = g_str_has_suffix (filename, ".gz")
+		      ? create_gzip_data (policy_contents, strlen (policy_contents))
+		      : g_bytes_new_static (policy_contents, strlen (policy_contents));
+		data->location = g_file_new_build_filename (g_get_tmp_dir (), filename, NULL);
+		g_file_set_contents (g_file_peek_path (data->location),
+		                     g_bytes_get_data (bytes, NULL), g_bytes_get_size (bytes), &error);
+		g_assert_no_error (error);
+		g_bytes_unref (bytes);
+
+		gtk_source_file_set_location (data->file, data->location);
+		data->loader = gtk_source_file_loader_new (data->buffer, data->file);
+	}
+	else
+	{
+		data->stream = test_input_stream_new ((const guint8 *)policy_contents,
+		                                      strlen (policy_contents), 2, FALSE);
+		data->loader = gtk_source_file_loader_new_from_stream (data->buffer, data->file, data->stream);
+	}
+
+	gtk_source_file_loader_set_candidate_encodings (data->loader, &encodings);
+	gtk_source_file_loader_set_size_threshold (data->loader, 2);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 0);
+}
+
+static void
+policy_test_teardown (PolicyTestData *data,
+                      gconstpointer   user_data)
+{
+	if (data->location != NULL)
+		delete_file (data->location);
+
+	g_clear_object (&data->held);
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	g_clear_object (&data->file);
+	g_clear_object (&data->buffer);
+	g_clear_object (&data->location);
+	g_clear_object (&data->cancellable);
+	g_clear_error (&data->error);
+}
+
+static gboolean
+answer_policy_cb (gpointer user_data)
+{
+	PolicyTestData *data = user_data;
+
+	if (data->answer == POLICY_CANCEL)
+	{
+		g_cancellable_cancel (data->cancellable);
+	}
+	else if (data->answer == POLICY_IGNORE || data->answer == POLICY_IGNORE_LATER)
+	{
+		gtk_source_file_loader_policy_decision_ignore (data->held);
+		gtk_source_file_loader_policy_decision_use (data->held);
+	}
+	else
+	{
+		gtk_source_file_loader_policy_decision_use (data->held);
+		gtk_source_file_loader_policy_decision_ignore (data->held);
+	}
+
+	g_clear_object (&data->held);
+
+	return G_SOURCE_REMOVE;
+}
+
+static gboolean
+decide_policy_cb (GtkSourceFileLoader               *loader,
+                  GtkSourceFileLoaderPolicyDecision *decision,
+                  PolicyTestData                    *data)
+{
+	guint index = data->n_decisions++;
+
+	g_assert_cmpuint (index, <, G_N_ELEMENTS (data->reasons));
+	g_assert_null (data->held);
+
+	data->reasons[index] = gtk_source_file_loader_policy_decision_get_reason (decision);
+	data->values[index] = gtk_source_file_loader_policy_decision_get_value (decision);
+	data->thresholds[index] = gtk_source_file_loader_policy_decision_get_threshold (decision);
+	data->held = g_object_ref (decision);
+
+	if (data->answer == POLICY_USE_LATER ||
+	    data->answer == POLICY_IGNORE_LATER ||
+	    data->answer == POLICY_CANCEL)
+		g_idle_add (answer_policy_cb, data);
+	else
+		answer_policy_cb (data);
+
+	return TRUE;
+}
+
+static void
+policy_load_cb (GtkSourceFileLoader *loader,
+                GAsyncResult        *result,
+                PolicyTestData      *data)
+{
+	gboolean loaded = gtk_source_file_loader_load_finish (loader, result, &data->error);
+
+	g_assert_cmpint (loaded, ==, data->error == NULL);
+	g_main_loop_quit (main_loop);
+}
+
+static void
+policy_load (PolicyTestData *data,
+             const char     *expected_text)
+{
+	char *text;
+
+	if (data->answer != POLICY_DEFAULT)
+		g_signal_connect (data->loader, "decide-policy", G_CALLBACK (decide_policy_cb), data);
+
+	main_loop = g_main_loop_new (NULL, FALSE);
+	gtk_source_file_loader_load_async (data->loader, G_PRIORITY_DEFAULT, data->cancellable,
+	                                   NULL, NULL, NULL, (GAsyncReadyCallback)policy_load_cb, data);
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
+
+	if (expected_text != NULL)
+	{
+		g_object_get (data->buffer, "text", &text, NULL);
+		g_assert_cmpstr (text, ==, expected_text);
+		g_free (text);
+	}
+}
+
+static void
+test_policy_stream (PolicyTestData *data,
+                    gconstpointer   user_data)
+{
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 3);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 1);
+	data->answer = POLICY_USE_LATER;
+
+	policy_load (data, policy_contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 2);
+	g_assert_cmpint (data->reasons[0], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_LENGTH);
+	g_assert_cmpint (data->reasons[1], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_COUNT);
+	g_assert_cmpuint (data->values[0], ==, 4);
+	g_assert_cmpuint (data->thresholds[0], ==, 3);
+	g_assert_cmpuint (data->values[1], ==, 2);
+	g_assert_cmpuint (data->thresholds[1], ==, 1);
+}
+
+static void
+test_policy_line_count_use (PolicyTestData *data,
+                            gconstpointer   user_data)
+{
+	const char *contents = "abcd\nabc";
+
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	data->stream = test_input_stream_new ((const guint8 *)contents, strlen (contents), 0, FALSE);
+	data->loader = gtk_source_file_loader_new_from_stream (data->buffer, data->file, data->stream);
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 5);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 1);
+	data->answer = POLICY_USE_LATER;
+
+	policy_load (data, contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpint (data->reasons[0], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_COUNT);
+	g_assert_cmpuint (data->values[0], ==, 2);
+}
+
+static void
+test_policy_early_reject (PolicyTestData *data,
+                          gconstpointer   user_data)
+{
+	data->answer = POLICY_IGNORE;
+
+	policy_load (data, "original");
+
+	g_assert_error (data->error, GTK_SOURCE_FILE_LOADER_ERROR, GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpuint (data->values[0], ==, strlen (policy_contents));
+	g_assert_true (g_file_equal (gtk_source_file_get_location (data->file), data->location));
+	g_assert_false (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (data->buffer)));
+}
+
+static void
+test_policy_stream_answers (void)
+{
+	PolicyAnswer answer;
+
+	for (answer = POLICY_DEFAULT; answer <= POLICY_CANCEL; answer++)
+	{
+		PolicyTestData data = { 0 };
+		gboolean reject = answer == POLICY_IGNORE || answer == POLICY_IGNORE_LATER;
+
+		policy_test_setup (&data, NULL);
+		data.answer = answer;
+		policy_load (&data, reject || answer == POLICY_CANCEL ? "ab" : policy_contents);
+
+		g_assert_cmpuint (data.n_decisions, ==, answer == POLICY_DEFAULT ? 0 : 1);
+
+		if (answer != POLICY_DEFAULT)
+		{
+			g_assert_cmpint (data.reasons[0], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE);
+			g_assert_cmpuint (data.values[0], ==, strlen (policy_contents));
+			g_assert_cmpuint (data.thresholds[0], ==, 2);
+		}
+
+		if (reject)
+		{
+			g_assert_error (data.error, GTK_SOURCE_FILE_LOADER_ERROR, GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG);
+			g_assert_true (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (data.buffer)));
+			g_assert_null (gtk_source_file_get_location (data.file));
+		}
+		else if (answer == POLICY_CANCEL)
+		{
+			g_assert_error (data.error, G_IO_ERROR, G_IO_ERROR_CANCELLED);
+			g_assert_cmpuint (((TestInputStream *)data.stream)->n_reads, ==, 2);
+		}
+		else
+		{
+			g_assert_no_error (data.error);
+		}
+
+		policy_test_teardown (&data, NULL);
+	}
+}
+
+static void
+test_policy_file_line_reject (PolicyTestData *data,
+                              gconstpointer   user_data)
+{
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 3);
+	data->answer = POLICY_IGNORE;
+
+	policy_load (data, policy_contents);
+
+	g_assert_error (data->error, GTK_SOURCE_FILE_LOADER_ERROR, GTK_SOURCE_FILE_LOADER_ERROR_LINE_TOO_LONG);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpuint (data->values[0], ==, 4);
+	g_assert_true (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (data->buffer)));
+	g_assert_null (gtk_source_file_get_location (data->file));
+}
+
+static void
+test_policy_size_use (PolicyTestData *data,
+                      gconstpointer   user_data)
+{
+	data->answer = POLICY_USE_LATER;
+
+	policy_load (data, policy_contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpint (data->reasons[0], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE);
+	g_assert_cmpuint (data->values[0], ==, strlen (policy_contents));
+	g_assert_cmpuint (data->thresholds[0], ==, 2);
+	g_assert_true (g_file_equal (gtk_source_file_get_location (data->file), data->location));
+}
+
+static void
+test_policy_line_count_reject (PolicyTestData *data,
+                               gconstpointer   user_data)
+{
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 1);
+	data->answer = POLICY_IGNORE;
+
+	policy_load (data, policy_contents);
+
+	g_assert_error (data->error, GTK_SOURCE_FILE_LOADER_ERROR, GTK_SOURCE_FILE_LOADER_ERROR_TOO_MANY_LINES);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpuint (data->values[0], ==, 2);
+	g_assert_true (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (data->buffer)));
+}
+
+static void
+test_policy_exact_thresholds (PolicyTestData *data,
+                              gconstpointer   user_data)
+{
+	gtk_source_file_loader_set_size_threshold (data->loader, strlen (policy_contents));
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 4);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 2);
+
+	policy_load (data, policy_contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 0);
+}
+
+static void
+test_policy_line_boundaries (PolicyTestData *data,
+                             gconstpointer   user_data)
+{
+	const char *contents = "abc\rdef\r\nghi";
+	GError *error = NULL;
+
+	g_file_set_contents (g_file_peek_path (data->location), contents, -1, &error);
+	g_assert_no_error (error);
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 3);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 3);
+
+	policy_load (data, contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 0);
+}
+
+static void
+test_policy_trailing_newline (PolicyTestData *data,
+                              gconstpointer   user_data)
+{
+	const char *contents = "abc\ndef\n";
+	GError *error = NULL;
+
+	g_file_set_contents (g_file_peek_path (data->location), contents, -1, &error);
+	g_assert_no_error (error);
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 2);
+
+	policy_load (data, "abc\ndef");
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 0);
+}
+
+static void
+test_policy_line_length_boundaries (void)
+{
+	const struct
+	{
+		const char *contents;
+		gsize first_chunk_size;
+	} cases[] = {
+		{ "\nabc", 0 },
+		{ "abc\n\ndef", 0 },
+		{ "abc\ndef", 3 },
+		{ "abc\ndef", 4 },
+		{ "abc\n\ndef", 4 },
+		{ "\nαβγ", 0 },
+	};
+
+	for (guint i = 0; i < G_N_ELEMENTS (cases); i++)
+	{
+		PolicyTestData data = { 0 };
+		const char *contents = cases[i].contents;
+
+		g_test_message ("Line boundary case %u", i);
+		policy_test_setup (&data, NULL);
+		g_clear_object (&data.loader);
+		g_clear_object (&data.stream);
+		data.stream = test_input_stream_new ((const guint8 *)contents, strlen (contents),
+		                                     cases[i].first_chunk_size, FALSE);
+		data.loader = gtk_source_file_loader_new_from_stream (data.buffer, data.file, data.stream);
+		gtk_source_file_loader_set_size_threshold (data.loader, 0);
+		gtk_source_file_loader_set_line_length_threshold (data.loader, 3);
+		gtk_source_file_loader_set_line_count_threshold (data.loader, 0);
+
+		policy_load (&data, contents);
+
+		g_assert_no_error (data.error);
+		g_assert_cmpuint (data.n_decisions, ==, 0);
+		policy_test_teardown (&data, NULL);
+	}
+}
+
+static void
+test_policy_newline_chunks (PolicyTestData *data,
+                            gconstpointer   user_data)
+{
+	char *contents;
+
+	contents = g_strnfill (10 * 8192, 'x');
+	for (guint i = 0; i < 10; i++)
+		contents[(i + 1) * 8192 - 1] = '\n';
+
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	data->stream = test_input_stream_new ((const guint8 *)contents, strlen (contents), 0, FALSE);
+	data->loader = gtk_source_file_loader_new_from_stream (data->buffer, data->file, data->stream);
+	gtk_source_buffer_set_implicit_trailing_newline (data->buffer, FALSE);
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 0);
+
+	policy_load (data, contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 0);
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	g_free (contents);
+}
+
+static void
+test_policy_long_line_chunks (PolicyTestData *data,
+                              gconstpointer   user_data)
+{
+	char *contents = g_strnfill (25000, 'x');
+
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	data->stream = test_input_stream_new ((const guint8 *)contents, strlen (contents), 0, FALSE);
+	data->loader = gtk_source_file_loader_new_from_stream (data->buffer, data->file, data->stream);
+	gtk_source_file_loader_set_size_threshold (data->loader, 0);
+	gtk_source_file_loader_set_line_length_threshold (data->loader, 20000);
+	gtk_source_file_loader_set_line_count_threshold (data->loader, 0);
+
+	policy_load (data, contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpint (data->reasons[0], ==, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_LENGTH);
+	g_assert_cmpuint (data->values[0], >, 20000);
+	g_clear_object (&data->loader);
+	g_clear_object (&data->stream);
+	g_free (contents);
+}
+
+static gboolean
+decide_policy_release_buffer_cb (GtkSourceFileLoader               *loader,
+                                 GtkSourceFileLoaderPolicyDecision *decision,
+                                 PolicyTestData                    *data)
+{
+	g_assert_cmpint (gtk_source_file_loader_policy_decision_get_reason (decision), ==,
+	                 GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE);
+	g_clear_object (&data->buffer);
+	g_assert_nonnull (gtk_source_file_loader_get_buffer (loader));
+	gtk_source_file_loader_policy_decision_use (decision);
+	data->n_decisions++;
+
+	return TRUE;
+}
+
+static void
+test_policy_buffer_lifetime (PolicyTestData *data,
+                             gconstpointer   user_data)
+{
+	data->answer = POLICY_DEFAULT;
+	g_signal_connect (data->loader, "decide-policy",
+	                  G_CALLBACK (decide_policy_release_buffer_cb), data);
+	policy_load (data, NULL);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+}
+
+static gboolean
+decide_policy_release_file_cb (GtkSourceFileLoader               *loader,
+                               GtkSourceFileLoaderPolicyDecision *decision,
+                               PolicyTestData                    *data)
+{
+	g_assert_cmpint (gtk_source_file_loader_policy_decision_get_reason (decision), ==,
+	                 GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE);
+	g_clear_object (&data->file);
+	g_assert_nonnull (gtk_source_file_loader_get_file (loader));
+	data->held = g_object_ref (decision);
+	g_idle_add (answer_policy_cb, data);
+	data->n_decisions++;
+
+	return TRUE;
+}
+
+static void
+test_policy_file_lifetime (PolicyTestData *data,
+                           gconstpointer   user_data)
+{
+	data->answer = POLICY_USE_LATER;
+	g_signal_connect (data->loader, "decide-policy",
+	                  G_CALLBACK (decide_policy_release_file_cb), data);
+	policy_load (data, policy_contents);
+
+	g_assert_no_error (data->error);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+}
+
+static void
+test_policy_hard_cap_after_use (PolicyTestData *data,
+                                gconstpointer   user_data)
+{
+	gtk_source_file_loader_set_size_threshold (data->loader, 1);
+	gtk_source_file_loader_set_max_size (data->loader, 4);
+
+	policy_load (data, "ab");
+
+	g_assert_error (data->error, GTK_SOURCE_FILE_LOADER_ERROR, GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG);
+	g_assert_cmpuint (data->n_decisions, ==, 1);
+	g_assert_cmpuint (data->values[0], ==, 2);
+}
+
 gint
 main (gint   argc,
       gchar *argv[])
@@ -1005,6 +1544,23 @@ main (gint   argc,
 	g_test_add_func ("/file-loader/overflow-size-stream", test_overflow_size_stream);
 	g_test_add_func ("/file-loader/max-size-file", test_max_size_file);
 	g_test_add_func ("/file-loader/max-size-gzip-file", test_max_size_gzip_file);
+	g_test_add ("/file-loader/policy-stream", PolicyTestData, NULL, policy_test_setup, test_policy_stream, policy_test_teardown);
+	g_test_add ("/file-loader/policy-line-count-use", PolicyTestData, NULL, policy_test_setup, test_policy_line_count_use, policy_test_teardown);
+	g_test_add ("/file-loader/policy-early-reject", PolicyTestData, "gtksourceview-policy.txt", policy_test_setup, test_policy_early_reject, policy_test_teardown);
+	g_test_add_func ("/file-loader/policy-stream-answers", test_policy_stream_answers);
+	g_test_add ("/file-loader/policy-file-line-reject", PolicyTestData, "gtksourceview-policy.txt", policy_test_setup, test_policy_file_line_reject, policy_test_teardown);
+	g_test_add ("/file-loader/policy-gzip", PolicyTestData, "gtksourceview-policy.txt.gz", policy_test_setup, test_policy_size_use, policy_test_teardown);
+	g_test_add ("/file-loader/policy-line-count-reject", PolicyTestData, NULL, policy_test_setup, test_policy_line_count_reject, policy_test_teardown);
+	g_test_add ("/file-loader/policy-exact-thresholds", PolicyTestData, NULL, policy_test_setup, test_policy_exact_thresholds, policy_test_teardown);
+	g_test_add ("/file-loader/policy-line-boundaries", PolicyTestData, "gtksourceview-policy-lines.txt", policy_test_setup, test_policy_line_boundaries, policy_test_teardown);
+	g_test_add ("/file-loader/policy-trailing-newline", PolicyTestData, "gtksourceview-policy-lines.txt", policy_test_setup, test_policy_trailing_newline, policy_test_teardown);
+	g_test_add ("/file-loader/policy-long-line-chunks", PolicyTestData, NULL, policy_test_setup, test_policy_long_line_chunks, policy_test_teardown);
+	g_test_add_func ("/file-loader/policy-line-length-boundaries", test_policy_line_length_boundaries);
+	g_test_add ("/file-loader/policy-newline-chunks", PolicyTestData, NULL, policy_test_setup, test_policy_newline_chunks, policy_test_teardown);
+	g_test_add ("/file-loader/policy-buffer-lifetime", PolicyTestData, "gtksourceview-policy-lines.txt", policy_test_setup, test_policy_buffer_lifetime, policy_test_teardown);
+	g_test_add ("/file-loader/policy-file-lifetime", PolicyTestData, "gtksourceview-policy.txt", policy_test_setup, test_policy_file_lifetime, policy_test_teardown);
+	g_test_add ("/file-loader/policy-file-deferred-use", PolicyTestData, "gtksourceview-policy.txt", policy_test_setup, test_policy_size_use, policy_test_teardown);
+	g_test_add ("/file-loader/policy-hard-cap-after-use", PolicyTestData, NULL, policy_test_setup, test_policy_hard_cap_after_use, policy_test_teardown);
 #ifdef G_OS_UNIX
 	g_test_add_func ("/file-loader/non-regular-file-rejected-before-read",
 	                 test_non_regular_file_rejected_before_read);

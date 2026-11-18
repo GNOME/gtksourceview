@@ -55,6 +55,54 @@
  * saved somewhere (for example if you load from stdin), then you should
  * probably call [method@Gtk.TextBuffer.set_modified] with %TRUE after calling
  * [method@FileLoader.load_finish].
+ *
+ * A load asks for an application decision when its expanded size, decoded line
+ * length, or line count exceeds the configured threshold. The
+ * [signal@FileLoader::decide-policy] handler may answer immediately or retain
+ * the decision while showing a dialog. If no handler claims it, loading
+ * continues. The default thresholds are 32 MiB, 65,536 characters, and
+ * 750,000 lines. Setting a threshold to zero disables that policy check.
+ * The existing `max-size` limit always rejects oversized input,
+ * regardless of policy decisions.
+ *
+ * For example, a dialog handler can retain the decision until its callback:
+ *
+ * ```c
+ * static void
+ * policy_dialog_done (GObject      *source,
+ *                     GAsyncResult *result,
+ *                     gpointer      user_data)
+ * {
+ *   GtkSourceFileLoaderPolicyDecision *decision = user_data;
+ *   int response = gtk_alert_dialog_choose_finish (GTK_ALERT_DIALOG (source), result, NULL);
+ *
+ *   if (response == 0)
+ *     gtk_source_file_loader_policy_decision_use (decision);
+ *   else
+ *     gtk_source_file_loader_policy_decision_ignore (decision);
+ *
+ *   g_object_unref (decision);
+ * }
+ *
+ * static gboolean
+ * decide_policy (GtkSourceFileLoader               *loader,
+ *                GtkSourceFileLoaderPolicyDecision *decision,
+ *                GtkWindow                         *parent)
+ * {
+ *   GtkAlertDialog *dialog = gtk_alert_dialog_new ("Continue loading this file?");
+ *   const char *buttons[] = { "Continue", "Cancel", NULL };
+ *
+ *   gtk_alert_dialog_set_buttons (dialog, buttons);
+ *   gtk_alert_dialog_choose (dialog, parent, NULL, policy_dialog_done,
+ *                            g_object_ref (decision));
+ *   g_object_unref (dialog);
+ *   return TRUE;
+ * }
+ * ```
+ *
+ * A declined decision after insertion leaves partial text marked modified and
+ * clears the [class@File] location. The application should offer Save As if the
+ * user wants to keep that text.
  */
 
 enum
@@ -64,12 +112,28 @@ enum
 	PROP_FILE,
 	PROP_LOCATION,
 	PROP_INPUT_STREAM,
-	PROP_MAX_SIZE
+	PROP_MAX_SIZE,
+	PROP_SIZE_THRESHOLD,
+	PROP_LINE_LENGTH_THRESHOLD,
+	PROP_LINE_COUNT_THRESHOLD,
+	N_PROPS
 };
+
+enum
+{
+	DECIDE_POLICY,
+	N_SIGNALS
+};
+
+static GParamSpec *properties[N_PROPS];
+static guint signals[N_SIGNALS];
 
 #define READ_N_PAGES 2
 #define READ_CHUNK_SIZE (_gtk_source_utils_get_page_size()*READ_N_PAGES)
 #define DEFAULT_MAX_SIZE ((guint64)1024 * 1024 * 1024)
+#define DEFAULT_SIZE_THRESHOLD ((guint64)32 * 1024 * 1024)
+#define DEFAULT_LINE_LENGTH_THRESHOLD 65536
+#define DEFAULT_LINE_COUNT_THRESHOLD 750000
 #define LOADER_QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE "," \
 				G_FILE_ATTRIBUTE_STANDARD_TYPE "," \
 				G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
@@ -109,6 +173,9 @@ struct _GtkSourceFileLoader
 
 	GTask *task;
 	guint64 max_size;
+	guint64 size_threshold;
+	guint64 line_length_threshold;
+	guint64 line_count_threshold;
 
 	gint64 load_begin_time;
 };
@@ -122,6 +189,8 @@ typedef struct
 	 */
 	GInputStream *input_stream;
 	GtkSourceBufferOutputStream *output_stream;
+	GtkSourceBuffer *source_buffer;
+	GtkSourceFile *file;
 
 	GFileInfo *info;
 
@@ -134,17 +203,123 @@ typedef struct
 
 	gssize chunk_bytes_read;
 	gchar *chunk_buffer;
+	GtkSourceFileLoaderPolicyDecision *decision;
+	GSource *next_source;
+	gulong cancelled_handler;
+	guint checked_offset;
+	guint64 checked_line_length;
+	guint seen_reasons;
+	guint destination_started : 1;
+	guint finished : 1;
+	guint next_step : 3;
 
 	guint guess_content_type_from_content : 1;
 	guint tried_mount : 1;
 } TaskData;
+
+struct _GtkSourceFileLoaderPolicyDecision
+{
+	GObject parent_instance;
+	GWeakRef task;
+	GtkSourceFileLoaderPolicyReason reason;
+	guint64 value;
+	guint64 threshold;
+	guint answered : 1;
+	guint ignored : 1;
+};
+
+/**
+ * GtkSourceFileLoaderPolicyDecision:
+ *
+ * An application decision requested by [class@FileLoader].
+ *
+ * The signal argument is borrowed. Retain it with g_object_ref() before
+ * returning %TRUE from the signal handler if it will be answered later.
+ * Answer with [method@FileLoaderPolicyDecision.use] or
+ * [method@FileLoaderPolicyDecision.ignore]. The decision becomes inert after
+ * the load completes.
+ *
+ * Since: 5.24
+ */
+G_DEFINE_TYPE (GtkSourceFileLoaderPolicyDecision, gtk_source_file_loader_policy_decision, G_TYPE_OBJECT)
+
+static void
+gtk_source_file_loader_policy_decision_finalize (GObject *object)
+{
+	GtkSourceFileLoaderPolicyDecision *decision = GTK_SOURCE_FILE_LOADER_POLICY_DECISION (object);
+
+	g_weak_ref_clear (&decision->task);
+	G_OBJECT_CLASS (gtk_source_file_loader_policy_decision_parent_class)->finalize (object);
+}
+
+static void
+gtk_source_file_loader_policy_decision_class_init (GtkSourceFileLoaderPolicyDecisionClass *klass)
+{
+	G_OBJECT_CLASS (klass)->finalize = gtk_source_file_loader_policy_decision_finalize;
+}
+
+static void
+gtk_source_file_loader_policy_decision_init (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	g_weak_ref_init (&decision->task, NULL);
+}
 
 G_DEFINE_TYPE (GtkSourceFileLoader, gtk_source_file_loader, G_TYPE_OBJECT)
 
 static void open_file           (GTask *task);
 static void read_file           (GTask *task);
 static void read_file_chunk     (GTask *task);
+static void write_file_chunk    (GTask *task);
+static void write_complete      (GTask *task);
 static void recover_not_mounted (GTask *task);
+static void schedule_next_step (GTask *task);
+static void load_task_return_error (GTask *task, GError *error);
+static void start_destination (GTask *task);
+static gboolean check_text_policy (GTask *task);
+
+enum
+{
+	NEXT_OPEN,
+	NEXT_WRITE,
+	NEXT_READ,
+	NEXT_CLOSE
+};
+
+static void
+finish_policy_error (GTask *task,
+                     GtkSourceFileLoaderPolicyReason reason)
+{
+	GtkSourceFileLoader *loader = g_task_get_source_object (task);
+	TaskData *task_data = g_task_get_task_data (task);
+	GtkSourceFileLoaderError code;
+	const char *message;
+
+	switch (reason)
+	{
+	case GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE:
+		code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG;
+		message = _("File too big.");
+		break;
+	case GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_LENGTH:
+		code = GTK_SOURCE_FILE_LOADER_ERROR_LINE_TOO_LONG;
+		message = _("File has a line that is too long.");
+		break;
+	case GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_COUNT:
+		code = GTK_SOURCE_FILE_LOADER_ERROR_TOO_MANY_LINES;
+		message = _("File has too many lines.");
+		break;
+	default:
+		g_assert_not_reached ();
+	}
+
+	if (task_data->destination_started)
+	{
+		gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (loader->source_buffer), TRUE);
+		gtk_source_file_set_location (loader->file, NULL);
+	}
+
+	load_task_return_error (task, g_error_new_literal (GTK_SOURCE_FILE_LOADER_ERROR, code, message));
+}
 
 static void
 load_task_return_error (GTask  *task,
@@ -156,13 +331,258 @@ load_task_return_error (GTask  *task,
 	g_assert (error != NULL);
 
 	task_data = g_task_get_task_data (task);
+	if (task_data != NULL)
+		task_data->finished = TRUE;
 
 	if (task_data != NULL && task_data->output_stream != NULL)
 	{
 		gtk_source_buffer_output_stream_abort (task_data->output_stream);
 	}
 
+	if (task_data != NULL && task_data->decision != NULL)
+	{
+		if (task_data->cancelled_handler != 0)
+		{
+			g_cancellable_disconnect (g_task_get_cancellable (task), task_data->cancelled_handler);
+			task_data->cancelled_handler = 0;
+		}
+		g_weak_ref_set (&task_data->decision->task, NULL);
+		g_clear_object (&task_data->decision);
+	}
+
 	g_task_return_error (task, error);
+}
+
+static gboolean
+next_step_cb (gpointer user_data)
+{
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data = g_task_get_task_data (task);
+	GError *error = NULL;
+
+	g_clear_pointer (&task_data->next_source, g_source_unref);
+	if (task_data->finished)
+		return G_SOURCE_REMOVE;
+
+	if (g_cancellable_set_error_if_cancelled (g_task_get_cancellable (task), &error))
+	{
+		load_task_return_error (task, error);
+		return G_SOURCE_REMOVE;
+	}
+
+	if (task_data->decision != NULL)
+	{
+		GtkSourceFileLoaderPolicyReason reason = task_data->decision->reason;
+
+		if (!task_data->decision->answered)
+			return G_SOURCE_REMOVE;
+
+		if (task_data->decision->ignored)
+		{
+			finish_policy_error (task, reason);
+			return G_SOURCE_REMOVE;
+		}
+
+		g_weak_ref_set (&task_data->decision->task, NULL);
+		g_clear_object (&task_data->decision);
+
+		if (task_data->cancelled_handler != 0)
+		{
+			g_cancellable_disconnect (g_task_get_cancellable (task), task_data->cancelled_handler);
+			task_data->cancelled_handler = 0;
+		}
+	}
+
+	switch (task_data->next_step)
+	{
+	case NEXT_OPEN:
+		start_destination (task);
+		read_file (task);
+		break;
+	case NEXT_WRITE:
+		write_file_chunk (task);
+		break;
+	case NEXT_READ:
+		if (check_text_policy (task))
+			read_file_chunk (task);
+		break;
+	case NEXT_CLOSE:
+		if (check_text_policy (task))
+			write_complete (task);
+		break;
+	default:
+		g_assert_not_reached ();
+	}
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+schedule_next_step (GTask *task)
+{
+	TaskData *task_data = g_task_get_task_data (task);
+	GSource *source;
+
+	if (task_data->finished || task_data->next_source != NULL)
+		return;
+
+	source = g_idle_source_new ();
+	g_source_set_priority (source, g_task_get_priority (task));
+	g_source_set_callback (source, next_step_cb, g_object_ref (task), g_object_unref);
+	g_source_attach (source, g_task_get_context (task));
+	task_data->next_source = source;
+}
+
+static gboolean
+cancel_pending_cb (gpointer user_data)
+{
+	GTask *task = G_TASK (user_data);
+
+	schedule_next_step (task);
+	return G_SOURCE_REMOVE;
+}
+
+static void
+cancel_pending (GCancellable *cancellable,
+                gpointer      user_data)
+{
+	GTask *task = G_TASK (user_data);
+
+	g_main_context_invoke_full (g_task_get_context (task),
+	                            g_task_get_priority (task),
+	                            cancel_pending_cb,
+	                            g_object_ref (task),
+	                            g_object_unref);
+}
+
+static void
+policy_decision_answer (GtkSourceFileLoaderPolicyDecision *decision,
+                        gboolean                           ignore)
+{
+	GTask *task;
+
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER_POLICY_DECISION (decision));
+
+	if (decision->answered)
+		return;
+
+	decision->answered = TRUE;
+	decision->ignored = ignore;
+	task = g_weak_ref_get (&decision->task);
+
+	if (task != NULL)
+	{
+		schedule_next_step (task);
+		g_object_unref (task);
+	}
+}
+
+/**
+ * gtk_source_file_loader_policy_decision_use:
+ * @decision: a policy decision.
+ *
+ * Continues loading. Only the first answer has an effect.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_file_loader_policy_decision_use (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	policy_decision_answer (decision, FALSE);
+}
+
+/**
+ * gtk_source_file_loader_policy_decision_ignore:
+ * @decision: a policy decision.
+ *
+ * Stops loading. Only the first answer has an effect.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_file_loader_policy_decision_ignore (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	policy_decision_answer (decision, TRUE);
+}
+
+/**
+ * gtk_source_file_loader_policy_decision_get_reason:
+ * @decision: a policy decision.
+ *
+ * Returns: the reason for this decision.
+ *
+ * Since: 5.24
+ */
+GtkSourceFileLoaderPolicyReason
+gtk_source_file_loader_policy_decision_get_reason (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER_POLICY_DECISION (decision), 0);
+
+	return decision->reason;
+}
+
+/**
+ * gtk_source_file_loader_policy_decision_get_value:
+ * @decision: a policy decision.
+ *
+ * Returns: the observed value in the units of the reason.
+ *
+ * Since: 5.24
+ */
+guint64
+gtk_source_file_loader_policy_decision_get_value (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER_POLICY_DECISION (decision), 0);
+
+	return decision->value;
+}
+
+/**
+ * gtk_source_file_loader_policy_decision_get_threshold:
+ * @decision: a policy decision.
+ *
+ * Returns: the configured threshold in the units of the reason.
+ *
+ * Since: 5.24
+ */
+guint64
+gtk_source_file_loader_policy_decision_get_threshold (GtkSourceFileLoaderPolicyDecision *decision)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER_POLICY_DECISION (decision), 0);
+
+	return decision->threshold;
+}
+
+static void
+request_policy (GTask                               *task,
+                GtkSourceFileLoaderPolicyReason       reason,
+                guint64                               value,
+                guint64                               threshold)
+{
+	GtkSourceFileLoader *loader = g_task_get_source_object (task);
+	TaskData *task_data = g_task_get_task_data (task);
+	gboolean handled = FALSE;
+
+	g_assert (task_data->decision == NULL);
+
+	task_data->seen_reasons |= (1u << reason);
+
+	task_data->decision = g_object_new (GTK_SOURCE_TYPE_FILE_LOADER_POLICY_DECISION, NULL);
+	task_data->decision->reason = reason;
+	task_data->decision->value = value;
+	task_data->decision->threshold = threshold;
+	g_weak_ref_set (&task_data->decision->task, task);
+
+	if (g_task_get_cancellable (task) != NULL)
+		task_data->cancelled_handler = g_cancellable_connect (g_task_get_cancellable (task),
+		                                                      G_CALLBACK (cancel_pending),
+		                                                      g_object_ref (task),
+		                                                      g_object_unref);
+
+	g_signal_emit (loader, signals[DECIDE_POLICY], 0, task_data->decision, &handled);
+
+	if (!handled)
+		gtk_source_file_loader_policy_decision_use (task_data->decision);
 }
 
 static TaskData *
@@ -190,7 +610,21 @@ task_data_free (gpointer data)
 
 	g_clear_object (&task_data->input_stream);
 	g_clear_object (&task_data->output_stream);
+	g_clear_object (&task_data->source_buffer);
+	g_clear_object (&task_data->file);
 	g_clear_object (&task_data->info);
+
+	if (task_data->next_source != NULL)
+	{
+		g_source_destroy (task_data->next_source);
+		g_clear_pointer (&task_data->next_source, g_source_unref);
+	}
+
+	if (task_data->decision != NULL)
+	{
+		g_weak_ref_set (&task_data->decision->task, NULL);
+		g_clear_object (&task_data->decision);
+	}
 
 	if (task_data->progress_cb_notify != NULL)
 	{
@@ -300,6 +734,95 @@ check_expanded_size (GtkSourceFileLoader  *loader,
 	return TRUE;
 }
 
+static gboolean
+check_text_policy (GTask *task)
+{
+	GtkSourceFileLoader *loader = g_task_get_source_object (task);
+	TaskData *task_data = g_task_get_task_data (task);
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (loader->source_buffer);
+	GtkTextIter iter;
+	GtkTextIter end;
+	guint64 longest = 0;
+	guint64 line_length = task_data->checked_line_length;
+	guint64 line_count;
+
+	if (loader->line_length_threshold > 0 &&
+	    !(task_data->seen_reasons & (1u << GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_LENGTH)))
+	{
+		gtk_text_buffer_get_iter_at_offset (buffer, &iter, task_data->checked_offset);
+		gtk_text_buffer_get_end_iter (buffer, &end);
+
+		while (gtk_text_iter_compare (&iter, &end) < 0)
+		{
+			GtkTextIter line_end = iter;
+			guint64 length;
+
+			if (!gtk_text_iter_ends_line (&line_end))
+				gtk_text_iter_forward_to_line_end (&line_end);
+			length = gtk_text_iter_get_offset (&line_end) - gtk_text_iter_get_offset (&iter);
+			line_length += length;
+			longest = MAX (longest, line_length);
+
+			if (gtk_text_iter_equal (&line_end, &end))
+				break;
+
+			gtk_text_iter_forward_line (&iter);
+			line_length = 0;
+		}
+
+		task_data->checked_line_length = line_length;
+
+		if (longest > loader->line_length_threshold)
+		{
+			request_policy (task, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_LENGTH,
+			                longest, loader->line_length_threshold);
+			return FALSE;
+		}
+	}
+
+	task_data->checked_offset = gtk_text_buffer_get_char_count (buffer);
+
+	line_count = gtk_text_buffer_get_line_count (buffer);
+	gtk_text_buffer_get_end_iter (buffer, &end);
+	if (gtk_source_buffer_get_implicit_trailing_newline (loader->source_buffer) &&
+	    line_count > 1 &&
+	    gtk_text_iter_starts_line (&end))
+		line_count--;
+
+	if (loader->line_count_threshold > 0 &&
+	    !(task_data->seen_reasons & (1u << GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_COUNT)) &&
+	    line_count > loader->line_count_threshold)
+	{
+		request_policy (task, GTK_SOURCE_FILE_LOADER_POLICY_REASON_LINE_COUNT,
+		                line_count, loader->line_count_threshold);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static void
+start_destination (GTask *task)
+{
+	GtkSourceFileLoader *loader = g_task_get_source_object (task);
+	TaskData *task_data = g_task_get_task_data (task);
+	gboolean implicit_trailing_newline;
+
+	if (task_data->destination_started)
+		return;
+
+	if (loader->input_stream_property != NULL)
+		gtk_source_file_set_location (loader->file, NULL);
+	else
+		gtk_source_file_set_location (loader->file, loader->location);
+
+	implicit_trailing_newline = gtk_source_buffer_get_implicit_trailing_newline (loader->source_buffer);
+	task_data->output_stream = gtk_source_buffer_output_stream_new (loader->source_buffer,
+	                                                                loader->candidate_encodings,
+	                                                                implicit_trailing_newline);
+	task_data->destination_started = TRUE;
+}
+
 static void
 gtk_source_file_loader_set_property (GObject      *object,
                                      guint         prop_id,
@@ -337,6 +860,15 @@ gtk_source_file_loader_set_property (GObject      *object,
 		case PROP_MAX_SIZE:
 			gtk_source_file_loader_set_max_size (loader, g_value_get_uint64 (value));
 			break;
+		case PROP_SIZE_THRESHOLD:
+			gtk_source_file_loader_set_size_threshold (loader, g_value_get_uint64 (value));
+			break;
+		case PROP_LINE_LENGTH_THRESHOLD:
+			gtk_source_file_loader_set_line_length_threshold (loader, g_value_get_uint64 (value));
+			break;
+		case PROP_LINE_COUNT_THRESHOLD:
+			gtk_source_file_loader_set_line_count_threshold (loader, g_value_get_uint64 (value));
+			break;
 
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -372,6 +904,15 @@ gtk_source_file_loader_get_property (GObject    *object,
 
 		case PROP_MAX_SIZE:
 			g_value_set_uint64 (value, loader->max_size);
+			break;
+		case PROP_SIZE_THRESHOLD:
+			g_value_set_uint64 (value, loader->size_threshold);
+			break;
+		case PROP_LINE_LENGTH_THRESHOLD:
+			g_value_set_uint64 (value, loader->line_length_threshold);
+			break;
+		case PROP_LINE_COUNT_THRESHOLD:
+			g_value_set_uint64 (value, loader->line_count_threshold);
 			break;
 
 		default:
@@ -504,14 +1045,12 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 * The #GtkSourceBuffer to load the contents into. The
 	 * #GtkSourceFileLoader object has a weak reference to the buffer.
 	 */
-	g_object_class_install_property (object_class, PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "GtkSourceBuffer",
-							      "",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_BUFFER] =
+		g_param_spec_object ("buffer", NULL, NULL,
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileLoader:file:
@@ -519,14 +1058,12 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 * The #GtkSourceFile. The #GtkSourceFileLoader object has a weak
 	 * reference to the file.
 	 */
-	g_object_class_install_property (object_class, PROP_FILE,
-					 g_param_spec_object ("file",
-							      "GtkSourceFile",
-							      "",
-							      GTK_SOURCE_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_FILE] =
+		g_param_spec_object ("file", NULL, NULL,
+		                     GTK_SOURCE_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileLoader:location:
@@ -535,14 +1072,12 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 * %NULL, by default the location is taken from the #GtkSourceFile at
 	 * construction time.
 	 */
-	g_object_class_install_property (object_class, PROP_LOCATION,
-					 g_param_spec_object ("location",
-							      "Location",
-							      "",
-							      G_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_LOCATION] =
+		g_param_spec_object ("location", NULL, NULL,
+		                     G_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileLoader:input-stream:
@@ -550,14 +1085,12 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 * The #GInputStream to load. Useful for reading stdin. If this property
 	 * is set, the #GtkSourceFileLoader:location property is ignored.
 	 */
-	g_object_class_install_property (object_class, PROP_INPUT_STREAM,
-					 g_param_spec_object ("input-stream",
-							      "Input stream",
-							      "",
-							      G_TYPE_INPUT_STREAM,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_INPUT_STREAM] =
+		g_param_spec_object ("input-stream", NULL, NULL,
+		                     G_TYPE_INPUT_STREAM,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileLoader:max-size:
@@ -567,14 +1100,84 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 *
 	 * Since: 5.22
 	 */
-	g_object_class_install_property (object_class, PROP_MAX_SIZE,
-					 g_param_spec_uint64 ("max-size",
-							      "Maximum Size",
-							      "Maximum expanded size in bytes",
-							      0, G_MAXINT64, DEFAULT_MAX_SIZE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_EXPLICIT_NOTIFY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_MAX_SIZE] =
+		g_param_spec_uint64 ("max-size", NULL, NULL,
+		                     0, G_MAXINT64, DEFAULT_MAX_SIZE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceFileLoader:size-threshold:
+	 *
+	 * The expanded size in bytes at which a policy decision is requested.
+	 * Zero disables the check.
+	 *
+	 * Since: 5.24
+	 */
+	properties[PROP_SIZE_THRESHOLD] =
+		g_param_spec_uint64 ("size-threshold", NULL, NULL,
+		                     0, G_MAXUINT64, DEFAULT_SIZE_THRESHOLD,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceFileLoader:line-length-threshold:
+	 *
+	 * The decoded character count on one line at which a policy decision is
+	 * requested. Zero disables the check.
+	 *
+	 * Since: 5.24
+	 */
+	properties[PROP_LINE_LENGTH_THRESHOLD] =
+		g_param_spec_uint64 ("line-length-threshold", NULL, NULL,
+		                     0, G_MAXUINT64, DEFAULT_LINE_LENGTH_THRESHOLD,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceFileLoader:line-count-threshold:
+	 *
+	 * The buffer line count at which a policy decision is requested.
+	 * Zero disables the check.
+	 *
+	 * Since: 5.24
+	 */
+	properties[PROP_LINE_COUNT_THRESHOLD] =
+		g_param_spec_uint64 ("line-count-threshold", NULL, NULL,
+		                     0, G_MAXUINT64, DEFAULT_LINE_COUNT_THRESHOLD,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
+
+	/**
+	 * GtkSourceFileLoader::decide-policy:
+	 * @loader: the file loader.
+	 * @decision: (transfer none): the decision to answer.
+	 *
+	 * Return %TRUE to claim the decision. The handler may retain @decision and
+	 * answer later with [method@FileLoaderPolicyDecision.use] or
+	 * [method@FileLoaderPolicyDecision.ignore]. Return %FALSE to continue loading.
+	 * With no handler, loading continues. Only the first answer takes effect.
+	 *
+	 * Returns: %TRUE if the decision was claimed.
+	 *
+	 * Since: 5.24
+	 */
+	signals[DECIDE_POLICY] = g_signal_new ("decide-policy",
+	                                       G_TYPE_FROM_CLASS (klass),
+	                                       G_SIGNAL_RUN_LAST,
+	                                       0,
+	                                       g_signal_accumulator_true_handled,
+	                                       NULL,
+	                                       NULL,
+	                                       G_TYPE_BOOLEAN,
+	                                       1,
+	                                       GTK_SOURCE_TYPE_FILE_LOADER_POLICY_DECISION);
 }
 
 static void
@@ -582,6 +1185,9 @@ gtk_source_file_loader_init (GtkSourceFileLoader *loader)
 {
 	loader = gtk_source_file_loader_get_instance_private (loader);
 	loader->max_size = DEFAULT_MAX_SIZE;
+	loader->size_threshold = DEFAULT_SIZE_THRESHOLD;
+	loader->line_length_threshold = DEFAULT_LINE_LENGTH_THRESHOLD;
+	loader->line_count_threshold = DEFAULT_LINE_COUNT_THRESHOLD;
 }
 
 static void
@@ -647,6 +1253,7 @@ close_input_stream_cb (GObject      *source_object,
 	 * other slightly intenstive operations that should be made async.
 	 */
 	begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
+	task_data->finished = TRUE;
 	g_task_return_boolean (task, TRUE);
 	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - begin_time,
 	                          "FileLoader.task-complete-cb", "");
@@ -714,7 +1321,8 @@ write_file_chunk (GTask *task)
 					task_data->progress_cb_data);
 	}
 
-	read_file_chunk (task);
+	task_data->next_step = NEXT_READ;
+	schedule_next_step (task);
 }
 
 static void
@@ -745,6 +1353,18 @@ read_cb (GObject      *source_object,
 	if (!check_expanded_size (loader, task_data, &next_total_bytes_read, &error))
 	{
 		load_task_return_error (task, error);
+		goto cleanup;
+	}
+
+	if (task_data->chunk_bytes_read > 0 &&
+	    loader->size_threshold > 0 &&
+	    !(task_data->seen_reasons & (1u << GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE)) &&
+	    (guint64)next_total_bytes_read > loader->size_threshold)
+	{
+		task_data->total_bytes_read = next_total_bytes_read;
+		task_data->next_step = NEXT_WRITE;
+		request_policy (task, GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE,
+		                next_total_bytes_read, loader->size_threshold);
 		goto cleanup;
 	}
 
@@ -799,13 +1419,15 @@ read_cb (GObject      *source_object,
 		loader->auto_detected_newline_type =
 			gtk_source_buffer_output_stream_detect_newline_type (task_data->output_stream);
 
-		write_complete (task);
+		task_data->next_step = NEXT_CLOSE;
+		schedule_next_step (task);
 		goto cleanup;
 	}
 
 	task_data->total_bytes_read = next_total_bytes_read;
 
-	write_file_chunk (task);
+	task_data->next_step = NEXT_WRITE;
+	schedule_next_step (task);
 
 cleanup:
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
@@ -885,7 +1507,8 @@ create_input_stream (GTask *task)
 	g_return_if_fail (task_data->input_stream != NULL);
 
 	/* start reading */
-	read_file_chunk (task);
+	task_data->next_step = NEXT_READ;
+	schedule_next_step (task);
 }
 
 static gboolean
@@ -995,7 +1618,24 @@ pre_open_query_info_cb (GObject      *source_object,
 		goto cleanup;
 	}
 
-	read_file (task);
+	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE) &&
+	    get_compression_type_from_content_type (g_file_info_get_content_type (task_data->info)) != GTK_SOURCE_COMPRESSION_TYPE_GZIP)
+	{
+		GtkSourceFileLoader *loader = g_task_get_source_object (task);
+		guint64 size = g_file_info_get_attribute_uint64 (task_data->info,
+		                                                 G_FILE_ATTRIBUTE_STANDARD_SIZE);
+
+		if (loader->size_threshold > 0 && size > loader->size_threshold)
+		{
+			task_data->next_step = NEXT_OPEN;
+			request_policy (task, GTK_SOURCE_FILE_LOADER_POLICY_REASON_SIZE,
+			                size, loader->size_threshold);
+			goto cleanup;
+		}
+	}
+
+	task_data->next_step = NEXT_OPEN;
+	schedule_next_step (task);
 
 cleanup:
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
@@ -1161,8 +1801,8 @@ gtk_source_file_loader_error_quark (void)
  * [class@File]'s location.
  *
  * If not already done, call [method@File.set_location] before calling this constructor.
- * The previous location is anyway not needed, because as soon as the file loading begins,
- * the @buffer is emptied.
+ * The buffer is emptied after the preopen metadata checks and any size policy
+ * decision have completed.
  *
  * For path-based [iface@Gio.File] instances, the regular-file safety check is
  * subject to time-of-check/time-of-use races if the path is replaced while the
@@ -1266,7 +1906,7 @@ gtk_source_file_loader_set_max_size (GtkSourceFileLoader *loader,
 	if (loader->max_size != max_size)
 	{
 		loader->max_size = max_size;
-		g_object_notify (G_OBJECT (loader), "max-size");
+		g_object_notify_by_pspec (G_OBJECT (loader), properties[PROP_MAX_SIZE]);
 	}
 }
 
@@ -1286,6 +1926,123 @@ gtk_source_file_loader_get_max_size (GtkSourceFileLoader *loader)
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), 0);
 
 	return loader->max_size;
+}
+
+/**
+ * gtk_source_file_loader_set_size_threshold:
+ * @loader: a file loader.
+ * @threshold: expanded bytes, or 0 to disable the policy check.
+ *
+ * Sets the size at which an application decision is requested.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_file_loader_set_size_threshold (GtkSourceFileLoader *loader,
+                                           guint64              threshold)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (loader->task == NULL);
+
+	if (loader->size_threshold != threshold)
+	{
+		loader->size_threshold = threshold;
+		g_object_notify_by_pspec (G_OBJECT (loader), properties[PROP_SIZE_THRESHOLD]);
+	}
+}
+
+/**
+ * gtk_source_file_loader_get_size_threshold:
+ * @loader: a file loader.
+ *
+ * Returns: the size threshold in expanded bytes.
+ *
+ * Since: 5.24
+ */
+guint64
+gtk_source_file_loader_get_size_threshold (GtkSourceFileLoader *loader)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), 0);
+
+	return loader->size_threshold;
+}
+
+/**
+ * gtk_source_file_loader_set_line_length_threshold:
+ * @loader: a file loader.
+ * @threshold: decoded characters on a line, or 0 to disable the policy check.
+ *
+ * Sets the line length at which an application decision is requested.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_file_loader_set_line_length_threshold (GtkSourceFileLoader *loader,
+                                                  guint64              threshold)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (loader->task == NULL);
+
+	if (loader->line_length_threshold != threshold)
+	{
+		loader->line_length_threshold = threshold;
+		g_object_notify_by_pspec (G_OBJECT (loader), properties[PROP_LINE_LENGTH_THRESHOLD]);
+	}
+}
+
+/**
+ * gtk_source_file_loader_get_line_length_threshold:
+ * @loader: a file loader.
+ *
+ * Returns: the line length threshold in decoded characters.
+ *
+ * Since: 5.24
+ */
+guint64
+gtk_source_file_loader_get_line_length_threshold (GtkSourceFileLoader *loader)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), 0);
+
+	return loader->line_length_threshold;
+}
+
+/**
+ * gtk_source_file_loader_set_line_count_threshold:
+ * @loader: a file loader.
+ * @threshold: lines, or 0 to disable the policy check.
+ *
+ * Sets the line count at which an application decision is requested.
+ *
+ * Since: 5.24
+ */
+void
+gtk_source_file_loader_set_line_count_threshold (GtkSourceFileLoader *loader,
+                                                 guint64              threshold)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (loader->task == NULL);
+
+	if (loader->line_count_threshold != threshold)
+	{
+		loader->line_count_threshold = threshold;
+		g_object_notify_by_pspec (G_OBJECT (loader), properties[PROP_LINE_COUNT_THRESHOLD]);
+	}
+}
+
+/**
+ * gtk_source_file_loader_get_line_count_threshold:
+ * @loader: a file loader.
+ *
+ * Returns: the line count threshold.
+ *
+ * Since: 5.24
+ */
+guint64
+gtk_source_file_loader_get_line_count_threshold (GtkSourceFileLoader *loader)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), 0);
+
+	return loader->line_count_threshold;
 }
 
 /**
@@ -1383,7 +2140,6 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
                                    gpointer               user_data)
 {
 	TaskData *task_data;
-	gboolean implicit_trailing_newline;
 
 	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
@@ -1410,6 +2166,9 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 		return;
 	}
 
+	task_data->source_buffer = g_object_ref (loader->source_buffer);
+	task_data->file = g_object_ref (loader->file);
+
   /* Leave an internal mark about the buffer loading during the
    * progreess of the operation so external tooling can find it.
    */
@@ -1422,35 +2181,9 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 
 	loader->load_begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 
-	/* Update GtkSourceFile location directly. The other GtkSourceFile
-	 * properties are updated when the operation is finished. But since the
-	 * file is loaded, the previous contents is lost, so the previous
-	 * location is anyway not needed. And for display purposes, the new
-	 * location is directly needed (for example to display the filename in a
-	 * tab or an info bar with the progress information).
-	 */
 	if (loader->input_stream_property != NULL)
 	{
-		gtk_source_file_set_location (loader->file, NULL);
-	}
-	else
-	{
-		gtk_source_file_set_location (loader->file,
-					      loader->location);
-	}
-
-	implicit_trailing_newline = gtk_source_buffer_get_implicit_trailing_newline (loader->source_buffer);
-
-	/* The BufferOutputStream has a strong reference to the buffer.
-         * We create the BufferOutputStream here so we are sure that the
-         * buffer will not be destroyed during the file loading.
-         */
-	task_data->output_stream = gtk_source_buffer_output_stream_new (loader->source_buffer,
-									loader->candidate_encodings,
-									implicit_trailing_newline);
-
-	if (loader->input_stream_property != NULL)
-	{
+		start_destination (loader->task);
 		task_data->guess_content_type_from_content = TRUE;
 		task_data->info = g_file_info_new ();
 
@@ -1473,6 +2206,13 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
  * If the contents has been loaded, the following [class@File] properties will
  * be updated: the location, the encoding, the newline type and the compression
  * type.
+ *
+ * Declining a size policy decision returns %GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG.
+ * Declining a line length or line count decision returns
+ * %GTK_SOURCE_FILE_LOADER_ERROR_LINE_TOO_LONG or
+ * %GTK_SOURCE_FILE_LOADER_ERROR_TOO_MANY_LINES, respectively. A decision made
+ * after text insertion leaves the partial buffer modified and clears the file
+ * location.
  *
  * Returns: whether the contents has been loaded successfully.
  */

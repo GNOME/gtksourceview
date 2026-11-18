@@ -47,6 +47,7 @@ typedef struct _GtkSourceCompletionProvider        GtkSourceCompletionProvider;
 typedef struct _GtkSourceEncoding                  GtkSourceEncoding;
 typedef struct _GtkSourceFile                      GtkSourceFile;
 typedef struct _GtkSourceFileLoader                GtkSourceFileLoader;
+typedef struct _GtkSourceFileLoaderPolicyDecision  GtkSourceFileLoaderPolicyDecision;
 typedef struct _GtkSourceFileSaver                 GtkSourceFileSaver;
 typedef struct _GtkSourceGutter                    GtkSourceGutter;
 typedef struct _GtkSourceGutterLines               GtkSourceGutterLines;
