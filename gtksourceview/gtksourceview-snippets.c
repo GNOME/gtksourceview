@@ -226,6 +226,7 @@ buffer_cursor_moved_cb (GtkSourceBuffer       *buffer,
                         GtkSourceViewSnippets *snippets)
 {
 	GtkSourceSnippet *snippet;
+	gboolean changed = FALSE;
 
 	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 	g_assert (snippets != NULL);
@@ -241,6 +242,7 @@ buffer_cursor_moved_cb (GtkSourceBuffer       *buffer,
 		while (snippet != NULL &&
 		       !_gtk_source_snippet_insert_set (snippet, insert))
 		{
+			changed = TRUE;
 			snippet = g_queue_pop_head (&snippets->queue);
 			_gtk_source_snippet_finish (snippet);
 			g_object_unref (snippet);
@@ -248,12 +250,10 @@ buffer_cursor_moved_cb (GtkSourceBuffer       *buffer,
 			snippet = g_queue_peek_head (&snippets->queue);
 		}
 
-		if (snippet == NULL)
+		if (changed)
 		{
-			if (snippets->informative != NULL)
-			{
-				gtk_widget_set_visible (GTK_WIDGET (snippets->informative), FALSE);
-			}
+			g_signal_group_set_target (snippets->snippet_signals, snippet);
+			gtk_source_view_snippets_update_informative (snippets);
 		}
 	}
 }
@@ -269,7 +269,9 @@ _gtk_source_view_snippets_set_buffer (GtkSourceViewSnippets *snippets,
 		return;
 	}
 
+	g_signal_group_set_target (snippets->snippet_signals, NULL);
 	g_queue_clear_full (&snippets->queue, g_object_unref);
+	gtk_source_view_snippets_update_informative (snippets);
 
 	g_clear_signal_handler (&snippets->buffer_insert_text_handler,
 	                        snippets->buffer);
