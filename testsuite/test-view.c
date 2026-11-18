@@ -641,6 +641,98 @@ test_finished_snippet_outlives_view (void)
 }
 
 static void
+test_snippet_backspace_past_empty_chunk (void)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buffer;
+	GtkTextBuffer *snippet_buffer = NULL;
+	GtkSourceSnippet *snippet;
+	GtkTextIter begin;
+	GtkTextIter end;
+	char *text;
+	GError *error = NULL;
+
+	view = g_object_ref_sink (GTK_SOURCE_VIEW (gtk_source_view_new ()));
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	snippet = gtk_source_snippet_new_parsed ("#include <${1:file.h}>$0", &error);
+	g_assert_no_error (error);
+	g_assert_nonnull (snippet);
+
+	gtk_text_buffer_get_start_iter (buffer, &begin);
+	gtk_source_view_push_snippet (view, snippet, &begin);
+	g_assert_true (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end));
+	gtk_text_buffer_delete (buffer, &begin, &end);
+
+	text = get_text (buffer);
+	g_assert_cmpstr (text, ==, "#include <>");
+	g_free (text);
+	g_object_get (snippet, "buffer", &snippet_buffer, NULL);
+	g_assert_nonnull (snippet_buffer);
+	g_clear_object (&snippet_buffer);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &begin, 9);
+	end = begin;
+	gtk_text_iter_forward_char (&end);
+	gtk_text_buffer_delete (buffer, &begin, &end);
+
+	text = get_text (buffer);
+	g_assert_cmpstr (text, ==, "#include >");
+	g_free (text);
+	g_object_get (snippet, "buffer", &snippet_buffer, NULL);
+	g_assert_null (snippet_buffer);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &begin, 8);
+	end = begin;
+	gtk_text_iter_forward_char (&end);
+	gtk_text_buffer_delete (buffer, &begin, &end);
+
+	text = get_text (buffer);
+	g_assert_cmpstr (text, ==, "#include>");
+	g_free (text);
+
+	g_object_unref (snippet);
+	g_object_unref (view);
+}
+
+static void
+test_snippet_backspace_past_last_chunk (void)
+{
+	GtkSourceView *view;
+	GtkTextBuffer *buffer;
+	GtkTextBuffer *snippet_buffer = NULL;
+	GtkSourceSnippet *snippet;
+	GtkTextIter begin;
+	GtkTextIter end;
+	char *text;
+	GError *error = NULL;
+
+	view = g_object_ref_sink (GTK_SOURCE_VIEW (gtk_source_view_new ()));
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	snippet = gtk_source_snippet_new_parsed ("#include <${1:file.h}", &error);
+	g_assert_no_error (error);
+	g_assert_nonnull (snippet);
+
+	gtk_text_buffer_get_start_iter (buffer, &begin);
+	gtk_source_view_push_snippet (view, snippet, &begin);
+	g_assert_true (gtk_text_buffer_get_selection_bounds (buffer, &begin, &end));
+	gtk_text_buffer_delete (buffer, &begin, &end);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &begin, 9);
+	end = begin;
+	gtk_text_iter_forward_char (&end);
+	gtk_text_buffer_delete (buffer, &begin, &end);
+
+	text = get_text (buffer);
+	g_assert_cmpstr (text, ==, "#include ");
+	g_free (text);
+	g_object_get (snippet, "buffer", &snippet_buffer, NULL);
+	g_assert_null (snippet_buffer);
+
+	g_object_unref (snippet);
+	g_object_unref (view);
+}
+
+static void
 test_snippet_buffer_removal (void)
 {
 	guint i;
@@ -679,6 +771,8 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/view/snippet-buffer-removal", test_snippet_buffer_removal);
 	g_test_add_func ("/view/finished-snippet-outlives-view", test_finished_snippet_outlives_view);
+	g_test_add_func ("/view/snippet-backspace-past-empty-chunk", test_snippet_backspace_past_empty_chunk);
+	g_test_add_func ("/view/snippet-backspace-past-last-chunk", test_snippet_backspace_past_last_chunk);
 
 	g_test_add_func ("/view/move-lines/move-single-line", test_move_lines__move_single_line);
 	g_test_add_func ("/view/move-lines/move-several-lines", test_move_lines__move_several_lines);

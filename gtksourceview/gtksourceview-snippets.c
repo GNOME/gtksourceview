@@ -177,11 +177,12 @@ buffer_delete_range_cb (GtkTextBuffer         *buffer,
 
 	if (snippet != NULL)
 	{
-		/* If the deletion will affect multiple chunks in the snippet,
-		 * then we want to cancel all active snippets and go back to
-		 * regular editing.
+		/* If the deletion goes outside the active chunk, cancel snippet
+		 * editing so that fixed text can be removed.
 		 */
-		if (_gtk_source_snippet_count_affected_chunks (snippet, begin, end) > 1)
+		if (!_gtk_source_snippet_chunk_contains (snippet->current_chunk, begin) ||
+		    !_gtk_source_snippet_chunk_contains (snippet->current_chunk, end) ||
+		    _gtk_source_snippet_count_affected_chunks (snippet, begin, end) > 1)
 		{
 			_gtk_source_view_snippets_pop_all (snippets);
 			return;
