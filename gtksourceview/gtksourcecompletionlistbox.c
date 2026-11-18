@@ -256,6 +256,45 @@ gtk_source_completion_list_box_get_offset (GtkSourceCompletionListBox *self)
 	return gtk_adjustment_get_value (self->vadjustment);
 }
 
+static guint
+gtk_source_completion_list_box_get_visible_rows (GtkSourceCompletionListBox *self)
+{
+	GtkWidget *scroller;
+	GtkWidget *row;
+	int height;
+	int row_height;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
+
+	scroller = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_TYPE_SCROLLED_WINDOW);
+	row = gtk_widget_get_first_child (GTK_WIDGET (self->box));
+
+	if (scroller == NULL || row == NULL ||
+	    (height = gtk_widget_get_height (scroller)) == 0 ||
+	    (row_height = gtk_widget_get_height (row)) == 0)
+	{
+		return self->n_rows;
+	}
+
+	height = MIN (height, gtk_widget_get_height (GTK_WIDGET (self)));
+
+	return CLAMP (height / row_height, 1, self->n_rows);
+}
+
+static guint
+gtk_source_completion_list_box_update_page_size (GtkSourceCompletionListBox *self)
+{
+	guint visible_rows;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
+
+	visible_rows = gtk_source_completion_list_box_get_visible_rows (self);
+	gtk_adjustment_set_page_size (self->vadjustment, visible_rows);
+	gtk_adjustment_set_page_increment (self->vadjustment, visible_rows);
+
+	return visible_rows;
+}
+
 static void
 gtk_source_completion_list_box_set_offset (GtkSourceCompletionListBox *self,
                                            guint                       offset)
@@ -350,20 +389,25 @@ static guint
 get_row_at_y (GtkSourceCompletionListBox *self,
               double                      y)
 {
+	GtkWidget *row;
 	guint offset;
 	guint n_items;
-	int height;
+	int row_height;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 	g_assert (G_IS_LIST_MODEL (self->context));
 
-	height = gtk_widget_get_height (GTK_WIDGET (self));
 	offset = gtk_source_completion_list_box_get_offset (self);
-
 	n_items = g_list_model_get_n_items (G_LIST_MODEL (self->context));
-	n_items = MAX (1, MIN (self->n_rows, n_items));
+	row = gtk_widget_get_first_child (GTK_WIDGET (self->box));
+	row_height = row != NULL ? gtk_widget_get_height (row) : 0;
 
-	return offset + (y / (height / n_items));
+	if (row_height == 0 || n_items == 0)
+	{
+		return offset;
+	}
+
+	return MIN (offset + (guint)(y / row_height), n_items - 1);
 }
 
 static void
@@ -830,11 +874,13 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 {
 	GtkSourceCompletionProvider *last_provider = NULL;
 	UpdateState state = {0};
+	guint visible_rows;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 
 	state.self = self;
 	state.context = self->context;
+	visible_rows = gtk_source_completion_list_box_update_page_size (self);
 	state.position = gtk_source_completion_list_box_get_offset (self);
 	state.selected = self->selected;
 
@@ -843,7 +889,7 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 		state.n_items = g_list_model_get_n_items (G_LIST_MODEL (self->context));
 	}
 
-	state.position = MIN (state.position, MAX (state.n_items, self->n_rows) - self->n_rows);
+	state.position = MIN (state.position, MAX (state.n_items, visible_rows) - visible_rows);
 	state.selected = MIN (self->selected, state.n_items ? (int)state.n_items - 1 : 0);
 
 	if (gtk_adjustment_get_upper (self->vadjustment) != state.n_items)
@@ -1014,6 +1060,7 @@ _gtk_source_completion_list_box_set_n_rows (GtkSourceCompletionListBox *self,
 		if (self->vadjustment != NULL)
 		{
 			gtk_adjustment_set_page_size (self->vadjustment, n_rows);
+			gtk_adjustment_set_page_increment (self->vadjustment, n_rows);
 		}
 
 		for (guint i = 0; i < n_rows; i++)
@@ -1210,6 +1257,7 @@ _gtk_source_completion_list_box_move_cursor (GtkSourceCompletionListBox *self,
 {
 	int n_items;
 	int offset;
+	guint visible_rows;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 
@@ -1222,6 +1270,8 @@ _gtk_source_completion_list_box_move_cursor (GtkSourceCompletionListBox *self,
 	/* n_items is signed so that we can do negative comparison */
 	if (n_items < 0)
 		return;
+
+	visible_rows = gtk_source_completion_list_box_update_page_size (self);
 
 	if (step == GTK_MOVEMENT_BUFFER_ENDS)
 	{
@@ -1249,7 +1299,7 @@ _gtk_source_completion_list_box_move_cursor (GtkSourceCompletionListBox *self,
 
 	if (step == GTK_MOVEMENT_PAGES)
 	{
-		direction *= self->n_rows;
+		direction *= visible_rows;
 	}
 
 	if ((self->selected + direction) > n_items)
@@ -1271,9 +1321,9 @@ _gtk_source_completion_list_box_move_cursor (GtkSourceCompletionListBox *self,
 	{
 		gtk_source_completion_list_box_set_offset (self, self->selected);
 	}
-	else if (self->selected >= (int)(offset + self->n_rows))
+	else if (self->selected >= (int)(offset + visible_rows))
 	{
-		gtk_source_completion_list_box_set_offset (self, self->selected - self->n_rows + 1);
+		gtk_source_completion_list_box_set_offset (self, self->selected - visible_rows + 1);
 	}
 
 	gtk_source_completion_list_box_queue_update (self);

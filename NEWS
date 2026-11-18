@@ -48,6 +48,7 @@ Development of this release was funded by Source & Stack, LLC.
  * Document ordering of source marks at the same position (#419)
  * Expand tests for quoted heredoc delimiters (#346)
  * Fix completion teardown and remove deprecated GTK and GDK API usage
+ * Keep the selected completion row visible when the popover is clipped (#335)
  * Allow Backspace to leave snippet editing when deleting fixed text (#321)
  * Clear stale snippet tooltips when moving the cursor or switching buffers
    (#251)
