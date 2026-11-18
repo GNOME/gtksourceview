@@ -1313,6 +1313,10 @@ find_bracket_match_real (GtkSourceBuffer *buffer,
 	{
 		return GTK_SOURCE_BRACKET_MATCH_NONE;
 	}
+	if (gtk_source_buffer_iter_has_context_class (buffer, pos, "no-bracket-match"))
+	{
+		return GTK_SOURCE_BRACKET_MATCH_NONE;
+	}
 
 	cclass_mask = get_bracket_matching_context_class_mask (buffer, pos);
 
@@ -1342,6 +1346,10 @@ find_bracket_match_real (GtkSourceBuffer *buffer,
 		}
 
 		if (cclass_mask != cur_mask)
+		{
+			continue;
+		}
+		if (gtk_source_buffer_iter_has_context_class (buffer, &iter, "no-bracket-match"))
 		{
 			continue;
 		}

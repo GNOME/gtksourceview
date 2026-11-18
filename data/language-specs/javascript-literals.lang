@@ -156,7 +156,7 @@
         </context> <!-- /_legacy-octal-escape-sequences -->
 
         <!-- <EscapeSequence> (preceded by backslash) -->
-        <context id="_escape-sequences" style-ref="js:escape">
+        <context id="_escape-sequences" style-ref="js:escape" class="no-bracket-match">
           <match extended="true">
             \%{js:unicode-escape} |
             \\

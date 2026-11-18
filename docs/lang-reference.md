@@ -292,6 +292,7 @@ your own context classes in custom language definition files. Here are the
 default context classes:
 
 - **comment**: the context delimits a comment;
+- **no-bracket-match**: brackets in the context should be ignored when matching brackets;
 - **no-spell-check**: the context's content should not be spell checked;
 - **path**: the context delimits a path to a file;
 - **string**: the context delimits a string.

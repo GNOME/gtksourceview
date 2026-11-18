@@ -26,6 +26,8 @@ Development of this release was funded by Source & Stack, LLC.
    main contexts in language definitions (#428)
  * Fix highlighting state after recursive text edits from signal handlers
    (#389)
+ * Ignore escaped parentheses when matching brackets in JavaScript regular
+   expressions (#173)
  * Fix fractional tab widths and right-margin placement (#403)
  * Fix current-line redraw when moving the cursor and preserve macOS word
    navigation shortcuts (#429)

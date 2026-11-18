@@ -406,16 +406,16 @@ test_bracket_matching (void)
 {
 	GtkSourceBuffer *buffer;
 	GtkSourceLanguageManager *language_manager;
-	GtkSourceLanguage *c_language;
+	GtkSourceLanguage *language;
 	GtkTextTagTable *table;
 
 	buffer = gtk_source_buffer_new (NULL);
 
 	language_manager = gtk_source_language_manager_get_default ();
-	c_language = gtk_source_language_manager_get_language (language_manager, "c");
-	g_assert_nonnull (c_language);
-	gtk_source_buffer_set_language (buffer, c_language);
-	test_language_prepare (c_language);
+	language = gtk_source_language_manager_get_language (language_manager, "c");
+	g_assert_nonnull (language);
+	gtk_source_buffer_set_language (buffer, language);
+	test_language_prepare (language);
 
 	/* Basics */
 
@@ -479,6 +479,24 @@ test_bracket_matching (void)
 	/* Single char in C */
 	do_test_bracket_matching (buffer, "'(' ')'", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "'(' ')'", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	g_object_unref (buffer);
+
+	language = gtk_source_language_manager_get_language (language_manager, "js");
+	g_assert_nonnull (language);
+	buffer = gtk_source_buffer_new_with_language (language);
+	test_language_prepare (language);
+
+	do_test_bracket_matching (buffer, "var re = /(a\\()/;", 10, 10, 14,
+				  GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "var re = /(a\\()/;", 13, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "var re = /(a\\()/;", 14, 14, 10,
+				  GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "var re = /(a\\))/;", 10, 10, 14,
+				  GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "var re = /(a\\))/;", 13, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "var re = /(a\\\\()/;", 14, 14, 15,
+				  GTK_SOURCE_BRACKET_MATCH_FOUND);
 
 	g_object_unref (buffer);
 
