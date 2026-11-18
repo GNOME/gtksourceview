@@ -33,6 +33,7 @@ Development of this release was funded by Source & Stack, LLC.
  * Fix current-line redraw when moving the cursor and preserve macOS word
    navigation shortcuts (#429)
  * Fix source map tracking when a view's vertical adjustment changes
+ * Keep scrolling when dragging the source map slider beyond the map
  * Measure gutter text using the renderer font (#340)
  * Fix GdkRGBA color handling in the view (#422)
  * Fix counted Vim motions being applied more than once (#406)

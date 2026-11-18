@@ -211,6 +211,9 @@ typedef struct
 	 */
 	guint update_id;
 	guint update_timeout;
+	guint edge_scroll_id;
+	gint64 edge_scroll_last_time;
+	double edge_scroll_distance;
 
 	/* Whether editor adjustment handlers are currently blocked. */
 	guint adjustment_handlers_blocked : 1;
@@ -709,6 +712,23 @@ gtk_source_map_cancel_update (GtkSourceMap *map)
 	g_clear_handle_id (&priv->update_timeout, g_source_remove);
 }
 
+static void
+gtk_source_map_stop_edge_scroll (GtkSourceMap *map)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	if (priv->edge_scroll_id != 0)
+	{
+		gtk_widget_remove_tick_callback (GTK_WIDGET (map), priv->edge_scroll_id);
+		priv->edge_scroll_id = 0;
+	}
+
+	priv->edge_scroll_distance = 0;
+	priv->edge_scroll_last_time = 0;
+}
+
 static gboolean
 gtk_source_map_update (gpointer user_data)
 {
@@ -1193,6 +1213,7 @@ disconnect_view (GtkSourceMap *map)
 	}
 
 	gtk_source_map_cancel_update (map);
+	gtk_source_map_stop_edge_scroll (map);
 	disconnect_buffer (map);
 
 	if (priv->buffer_binding != NULL)
@@ -1337,6 +1358,65 @@ gtk_source_map_set_property (GObject      *object,
 	}
 }
 
+static gboolean
+gtk_source_map_edge_scroll (GtkSourceMap *map,
+                            GdkFrameClock *frame_clock)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GtkAdjustment *vadj;
+	gint64 frame_time;
+	double elapsed;
+	double speed;
+	double value;
+	double limit;
+	double new_value;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+	g_assert (GDK_IS_FRAME_CLOCK (frame_clock));
+
+	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
+	frame_time = gdk_frame_clock_get_frame_time (frame_clock);
+	elapsed = priv->edge_scroll_last_time != 0
+	        ? CLAMP ((frame_time - priv->edge_scroll_last_time) / 1000000.0, 0.0, 0.1)
+	        : 1.0 / 60.0;
+	priv->edge_scroll_last_time = frame_time;
+
+	speed = MIN (3000.0, 300.0 + 15.0 * fabs (priv->edge_scroll_distance));
+	value = gtk_adjustment_get_value (vadj);
+	limit = MAX (gtk_adjustment_get_lower (vadj),
+	             gtk_adjustment_get_upper (vadj) - gtk_adjustment_get_page_size (vadj));
+
+	new_value = CLAMP (value + copysign (speed * elapsed, priv->edge_scroll_distance),
+	                   gtk_adjustment_get_lower (vadj),
+	                   limit);
+	gtk_adjustment_set_value (vadj, new_value);
+
+	return new_value > gtk_adjustment_get_lower (vadj) && new_value < limit;
+}
+
+static gboolean
+gtk_source_map_edge_scroll_tick (GtkWidget     *widget,
+                                 GdkFrameClock *frame_clock,
+                                 gpointer       user_data)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	if (priv->view == NULL || priv->edge_scroll_distance == 0)
+	{
+		priv->edge_scroll_id = 0;
+		return G_SOURCE_REMOVE;
+	}
+
+	if (!gtk_source_map_edge_scroll (map, frame_clock))
+	{
+		priv->edge_scroll_id = 0;
+		return G_SOURCE_REMOVE;
+	}
+
+	return G_SOURCE_CONTINUE;
+}
+
 static void
 gtk_source_map_drag_update (GtkSourceMap   *map,
                             double          x,
@@ -1347,6 +1427,7 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	double yratio;
 	double begin_x;
 	double begin_y;
+	double pointer_y;
 	int ignored;
 	int real_height;
 	int height;
@@ -1362,7 +1443,27 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	widget_height = gtk_widget_get_height (GTK_WIDGET (map));
 
 	gtk_gesture_drag_get_start_point (drag, &begin_x, &begin_y);
-	y = CLAMP (ceil (begin_y + y), 0, widget_height);
+	pointer_y = begin_y + y;
+
+	if (pointer_y < 0 || pointer_y > widget_height)
+	{
+		priv->edge_scroll_distance = pointer_y < 0
+		                           ? pointer_y : pointer_y - widget_height;
+
+		if (priv->edge_scroll_id == 0)
+		{
+			priv->edge_scroll_last_time = 0;
+			priv->edge_scroll_id =
+				gtk_widget_add_tick_callback (GTK_WIDGET (map),
+				                              gtk_source_map_edge_scroll_tick,
+				                              NULL, NULL);
+		}
+
+		return;
+	}
+
+	gtk_source_map_stop_edge_scroll (map);
+	y = ceil (pointer_y);
 
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->measure (GTK_WIDGET (map),
 	                                                         GTK_ORIENTATION_VERTICAL,
@@ -1390,6 +1491,7 @@ gtk_source_map_drag_begin (GtkSourceMap   *map,
 	graphene_rect_t bounds;
 
 	priv->reached_drag_threshold = FALSE;
+	gtk_source_map_stop_edge_scroll (map);
 	gtk_gesture_set_state (GTK_GESTURE (drag), GTK_EVENT_SEQUENCE_CLAIMED);
 	gtk_source_map_drag_update (map, 0, 0, drag);
 
@@ -1427,7 +1529,19 @@ gtk_source_map_drag_end (GtkSourceMap   *map,
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 
+	gtk_source_map_stop_edge_scroll (map);
 	gtk_source_map_queue_update (map);
+	gtk_widget_remove_css_class (GTK_WIDGET (priv->slider), "dragging");
+}
+
+static void
+gtk_source_map_drag_cancel (GtkSourceMap     *map,
+                            GdkEventSequence *sequence,
+                            GtkGesture       *drag)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	gtk_source_map_stop_edge_scroll (map);
 	gtk_widget_remove_css_class (GTK_WIDGET (priv->slider), "dragging");
 }
 
@@ -1556,6 +1670,7 @@ gtk_source_map_unmap (GtkWidget *widget)
 
 	gtk_source_map_set_adjustment_handlers_blocked (map, TRUE);
 	gtk_source_map_cancel_update (map);
+	gtk_source_map_stop_edge_scroll (map);
 
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->unmap (widget);
 }
@@ -1766,6 +1881,10 @@ gtk_source_map_init (GtkSourceMap *map)
 	g_signal_connect_swapped (drag,
 	                          "drag-update",
 	                          G_CALLBACK (gtk_source_map_drag_update),
+	                          map);
+	g_signal_connect_swapped (drag,
+	                          "cancel",
+	                          G_CALLBACK (gtk_source_map_drag_cancel),
 	                          map);
 	gtk_widget_add_controller (GTK_WIDGET (map),
 	                           GTK_EVENT_CONTROLLER (g_steal_pointer (&drag)));
