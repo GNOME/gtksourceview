@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2026-11-17 20:37+0000\n"
-"PO-Revision-Date: 2026-11-17 21:47+0100\n"
+"POT-Creation-Date: 2026-11-18 11:58+0000\n"
+"PO-Revision-Date: 2026-11-19 18:25+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -408,39 +408,40 @@ msgstr "Izrezki"
 msgid "Document Words"
 msgstr "Besede dokumenta"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:619
-#: gtksourceview/gtksourcefileloader.c:242
-#: gtksourceview/gtksourcefileloader.c:271
-#: gtksourceview/gtksourcefileloader.c:284
-#: gtksourceview/gtksourcefileloader.c:294
-#: gtksourceview/gtksourcefileloader.c:762
+#: gtksourceview/gtksourcebufferoutputstream.c:648
+#: gtksourceview/gtksourcefileloader.c:301
+#: gtksourceview/gtksourcefileloader.c:678
+#: gtksourceview/gtksourcefileloader.c:707
+#: gtksourceview/gtksourcefileloader.c:720
+#: gtksourceview/gtksourcefileloader.c:730
+#: gtksourceview/gtksourcefileloader.c:1384
 msgid "File too big."
 msgstr "Datoteka je prevelika."
 
-#: gtksourceview/gtksourcebufferoutputstream.c:961
+#: gtksourceview/gtksourcebufferoutputstream.c:992
 msgid "Invalid byte sequence in conversion input"
 msgstr "Neveljavno zaporedje bajtov na vhodu pretvorbe"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:967
+#: gtksourceview/gtksourcebufferoutputstream.c:998
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Napaka med pretvorbo: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1061
+#: gtksourceview/gtksourcebufferoutputstream.c:1092
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Pretvorba iz nabora »%s« v »UTF-8« ni podprto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1067
+#: gtksourceview/gtksourcebufferoutputstream.c:1098
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Ni mogoče odpreti pretvornika iz »%s« v »UTF-8«"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1107
+#: gtksourceview/gtksourcebufferoutputstream.c:1138
 msgid "Invalid object, not initialized"
 msgstr "Neveljaven predmet, opravilo ni začeto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1363
+#: gtksourceview/gtksourcebufferoutputstream.c:1394
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Neveljavno zaporedje UTF-8 na vhodu"
@@ -459,7 +460,7 @@ msgstr "_Podrobnosti"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3525
+#: gtksourceview/gtksourcecontextengine.c:3524
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -470,7 +471,7 @@ msgstr ""
 "počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:5034
+#: gtksourceview/gtksourcecontextengine.c:5033
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -478,19 +479,19 @@ msgstr ""
 "Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo "
 "onemogočeno."
 
-#: gtksourceview/gtksourcecontextengine.c:6349
+#: gtksourceview/gtksourcecontextengine.c:6348
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "vsebina »%s« ne sme vsebovati \\%%{...@start} ukaza"
 
-#: gtksourceview/gtksourcecontextengine.c:6532
-#: gtksourceview/gtksourcecontextengine.c:6622
+#: gtksourceview/gtksourcecontextengine.c:6531
+#: gtksourceview/gtksourcecontextengine.c:6621
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "podvojen ID vsebine »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6736
-#: gtksourceview/gtksourcecontextengine.c:6798
+#: gtksourceview/gtksourcecontextengine.c:6735
+#: gtksourceview/gtksourcecontextengine.c:6797
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -499,18 +500,18 @@ msgstr ""
 "prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku "
 "»%s« sklica »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6812
+#: gtksourceview/gtksourcecontextengine.c:6811
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "neveljaven vsebinskis klic »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6831
-#: gtksourceview/gtksourcecontextengine.c:6841
+#: gtksourceview/gtksourcecontextengine.c:6830
+#: gtksourceview/gtksourcecontextengine.c:6840
 #, c-format
 msgid "unknown context “%s”"
 msgstr "neznana vsebina »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6942
+#: gtksourceview/gtksourcecontextengine.c:6941
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Manjka določitev glavnega jezika (id = »%s«.)"
@@ -653,22 +654,30 @@ msgstr "Neznano"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'TRENUTNI', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:634
+#: gtksourceview/gtksourcefileloader.c:305
+msgid "File has a line that is too long."
+msgstr "Datoteka vsebuje predolgo vrstico."
+
+#: gtksourceview/gtksourcefileloader.c:309
+msgid "File has too many lines."
+msgstr "Datoteka vsebuje preveč vrstic."
+
+#: gtksourceview/gtksourcefileloader.c:1242
 msgid ""
 "There was an encoding conversion error so a fallback character was used."
 msgstr ""
 "Prišlo je do napake pretvarjanja kodnega nabora, zato je bil uporabljen "
 "povratni znak."
 
-#: gtksourceview/gtksourcefileloader.c:899
+#: gtksourceview/gtksourcefileloader.c:1524
 msgid "Not a regular file."
 msgstr "Datoteka ni običajna datoteka."
 
-#: gtksourceview/gtksourcefilesaver.c:958
+#: gtksourceview/gtksourcefilesaver.c:1001
 msgid "The file is externally modified."
 msgstr "Datoteka je močno spremenjena."
 
-#: gtksourceview/gtksourcefilesaver.c:1399
+#: gtksourceview/gtksourcefilesaver.c:1442
 msgid "The buffer contains invalid characters."
 msgstr "Medpomnilnik vsebuje neveljavne znake."
 
@@ -682,22 +691,27 @@ msgstr "Medpomnilnik vsebuje neveljavne znake."
 #. *
 #. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
 #. * [method@Buffer.set_language] to apply it to a [class@Buffer].
+#. *
+#. * Since 5.24, assigning a language to a buffer prepares it asynchronously.
+#. * Use [method@Language.prepare_async] to wait until its highlighting data and
+#. * styles are available. Style queries return %NULL while preparation is pending;
+#. * when no preparation is pending, they can load the language synchronously.
 #.
-#: gtksourceview/gtksourcelanguage.c:52
+#: gtksourceview/gtksourcelanguage.c:57
 msgid "Others"
 msgstr "Ostalo"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:961
+#: gtksourceview/gtksourcelanguage-parser-2.c:960
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "Naznan ID »%s« v logičnem izrazu »%s«"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:1195
+#: gtksourceview/gtksourcelanguage-parser-2.c:1203
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "v logičnem izrazu »%s«: povratne naveze niso podprte"
 
-#: gtksourceview/gtksourceregex.c:128
+#: gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
 msgstr "uporaba \\C ni podprta v določilih jezika"
 
@@ -714,23 +728,23 @@ msgstr "_Prekliči"
 msgid "_Select"
 msgstr "_Izberi"
 
-#: gtksourceview/gtksourceview.c:1984
+#: gtksourceview/gtksourceview.c:1999
 msgid "All _Upper Case"
 msgstr "Vse _velike črke"
 
-#: gtksourceview/gtksourceview.c:1988
+#: gtksourceview/gtksourceview.c:2003
 msgid "All _Lower Case"
 msgstr "Vse _male črke"
 
-#: gtksourceview/gtksourceview.c:1992
+#: gtksourceview/gtksourceview.c:2007
 msgid "_Invert Case"
 msgstr "_Obrni velikost črk"
 
-#: gtksourceview/gtksourceview.c:1996
+#: gtksourceview/gtksourceview.c:2011
 msgid "_Title Case"
 msgstr "_Velike prve črke besed"
 
-#: gtksourceview/gtksourceview.c:2000
+#: gtksourceview/gtksourceview.c:2015
 msgid "C_hange Case"
 msgstr "Spreme_ni velikost črk"
 
